@@ -24,13 +24,13 @@ public class BlockBedrockOre extends Block implements IDrillInteraction {
 
 	@Override
 	public boolean canBreak(World world, int x, int y, int z, IBlockState state, IMiningDrill drill) {
-		return drill.getDrillRating() > 70;
+		return false;
 	}
 
 	@Override
 	public ItemStack extractResource(World world, int x, int y, int z, IBlockState state, IMiningDrill drill) {
 		
-		if(drill.getDrillRating() > 70)
+		if (drill.getDrillRating() < 70)
 			return null;
 		
 		Item drop = this.getDrop();

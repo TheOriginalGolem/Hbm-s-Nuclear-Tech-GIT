@@ -390,6 +390,8 @@ public class TileEntityMachineMiningLaser extends TileEntityMachineBase implemen
 	public double getBreakSpeed(int speed) {
 
 		float hardness = world.getBlockState(new BlockPos(targetX, targetY, targetZ)).getBlockHardness(world, new BlockPos(targetX, targetY, targetZ)) * 15 / speed;
+		if (world.getBlockState(new BlockPos(targetX, targetY, targetZ)).getBlock() == ModBlocks.ore_bedrock_coltan)
+			hardness = 50;
 		if(hardness == 0)
 			return 1;
 
@@ -424,7 +426,7 @@ public class TileEntityMachineMiningLaser extends TileEntityMachineBase implemen
 	}
 
 	private boolean canBreak(IBlockState block, int x, int y, int z) {
-		return block.getBlock() != Blocks.AIR && block.getBlockHardness(world, new BlockPos(x, y, z)) >= 0 && !block.getMaterial().isLiquid() && block.getBlock() != Blocks.BEDROCK;
+		return block.getBlock() != Blocks.AIR && (block.getBlockHardness(world, new BlockPos(x, y, z)) >= 0 || block.getBlock() == ModBlocks.ore_bedrock_coltan) && !block.getMaterial().isLiquid() && block.getBlock() != Blocks.BEDROCK;
 	}
 
 	public int getOverdrive() {
