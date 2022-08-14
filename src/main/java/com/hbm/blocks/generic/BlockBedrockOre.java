@@ -30,7 +30,7 @@ public class BlockBedrockOre extends Block implements IDrillInteraction {
 	@Override
 	public ItemStack extractResource(World world, int x, int y, int z, IBlockState state, IMiningDrill drill) {
 		
-		if (drill.getDrillRating() < 70)
+		if (drill.getDrillRating() > 70)
 			return null;
 		
 		Item drop = this.getDrop();
@@ -38,7 +38,7 @@ public class BlockBedrockOre extends Block implements IDrillInteraction {
 		if(drop == null)
 			return null;
 		
-		return world.rand.nextInt(50) == 0 ? new ItemStack(drop) : null;
+		return world.rand.nextInt(100) == 0 ? new ItemStack(drop) : null;
 	}
 
 	@Override
