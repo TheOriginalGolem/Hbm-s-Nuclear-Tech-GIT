@@ -33,6 +33,7 @@ import com.hbm.entity.mob.EntityDuck;
 import com.hbm.entity.mob.EntityNuclearCreeper;
 import com.hbm.entity.mob.EntityQuackos;
 import com.hbm.entity.mob.EntityTaintedCreeper;
+import com.hbm.entity.mob.EntityRADBeast;
 import com.hbm.entity.projectile.EntityBurningFOEQ;
 import com.hbm.entity.projectile.EntityMeteor;
 import com.hbm.forgefluid.FFPipeNetwork;
@@ -88,6 +89,7 @@ import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.entity.monster.EntitySpider;
 import net.minecraft.entity.monster.EntityZombie;
+import net.minecraft.entity.monster.EntityBlaze;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntityCow;
@@ -635,6 +637,15 @@ public class ModEventHandler {
 									event.world.spawnEntity(creep);
 							entity.setDead();
 							continue;
+						} else if(entity instanceof EntityBlaze && eRad >= 700) {
+							EntityRADBeast creep = new EntityRADBeast(event.world);
+							creep.setLocationAndAngles(entity.posX, entity.posY, entity.posZ, entity.rotationYaw, entity.rotationPitch);
+
+							if(!entity.isDead)
+								if(!event.world.isRemote)
+									event.world.spawnEntity(creep);
+							entity.setDead();
+							continue;
 						} else if(entity.getClass().equals(EntityDuck.class) && eRad >= 200) {
 
 			        		EntityQuackos quacc = new EntityQuackos(event.world);
@@ -653,8 +664,8 @@ public class ModEventHandler {
 								entity instanceof EntitySkeleton ||
 								entity instanceof EntityQuackos)
 
-						if(eRad > 2500)
-							entRad.setRads(2500);
+						if(eRad > 2500000)
+							entRad.setRads(2500000);
 
 						if(eRad >= 1000) {
 							entity.attackEntityFrom(ModDamageSource.radiation, 1000F);
