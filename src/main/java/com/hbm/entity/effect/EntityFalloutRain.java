@@ -21,11 +21,14 @@ import net.minecraft.util.math.ChunkPos;
 
 import net.minecraft.block.BlockHugeMushroom;
 import net.minecraft.block.BlockSand;
+import net.minecraft.block.BlockDirt;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.init.Blocks;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockLog;
+import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.material.Material;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
@@ -155,11 +158,6 @@ public class EntityFalloutRain extends Entity implements IConstantRenderer, IChu
 				int x = (int) (posX + vec.xCoord);
 				int z = (int) (posZ + vec.zCoord);
 
-				// int y = world.getHeightValue(x, z) - 1;
-
-				// if(world.getBlock(x, y, z) == Blocks.grass)
-				// world.setBlock(x, y, z, ModBlocks.waste_earth);
-
 				double dist = radProgress * 100 / getScale() * 0.5;
 				pos.setPos(x, 0, z);
 				stomp(pos, dist);
@@ -230,15 +228,17 @@ public class EntityFalloutRain extends Entity implements IConstantRenderer, IChu
 
 			if(bblock == Blocks.BEDROCK){
 				world.setBlockState(pos.add(0, 1, 0), ModBlocks.toxic_block.getDefaultState());
+				return;
 			}
 
 			if(bblock.isFlammable(world, pos, EnumFacing.UP)) {
-				if(rand.nextInt(5) == 0)
+				if(world.isAirBlock(pos.add(0, 1, 0)))
 					world.setBlockState(pos.add(0, 1, 0), Blocks.FIRE.getDefaultState());
 			}
 
-			if(bblock == Blocks.LEAVES || bblock == Blocks.LEAVES2) {
+			if(bblock instanceof BlockLeaves) {
 				world.setBlockToAir(pos);
+				continue;
 			}
 
 			// if(b.getBlock() == Blocks.WATER) {
@@ -262,25 +262,37 @@ public class EntityFalloutRain extends Entity implements IConstantRenderer, IChu
 					world.setBlockState(pos, ModBlocks.sellafield_core.getDefaultState());
 				else
 					return;
+				continue;
 
 			} else if(bblock == Blocks.GRASS) {
 				world.setBlockState(pos, ModBlocks.waste_earth.getDefaultState());
+				continue;
 
 			} else if(bblock == Blocks.DIRT) {
-				world.setBlockState(pos, ModBlocks.waste_dirt.getDefaultState());
+				BlockDirt.DirtType meta = b.getValue(BlockDirt.VARIANT);
+				if(meta == BlockDirt.DirtType.DIRT)
+					world.setBlockState(pos, ModBlocks.waste_dirt.getDefaultState());
+				else if(meta == BlockDirt.DirtType.COARSE_DIRT)
+					world.setBlockState(pos, Blocks.GRAVEL.getDefaultState());
+				else if(meta == BlockDirt.DirtType.PODZOL)
+					world.setBlockState(pos, ModBlocks.waste_mycelium.getDefaultState());
+				continue;
 
 			} else if(bblock == Blocks.SNOW_LAYER) {
 				world.setBlockState(pos, ModBlocks.fallout.getDefaultState());
+				continue;
 
 			} else if(bblock == Blocks.SNOW) {
 				world.setBlockState(pos, ModBlocks.block_fallout.getDefaultState());
-			}
-			 else if(bblock instanceof BlockBush || bblock == Blocks.TALLGRASS) {
-				world.setBlockState(pos, Blocks.DEADBUSH.getDefaultState());
+				continue;
+			} else if(bblock instanceof BlockBush && world.getBlockState(pos.add(0, -1, 0)).getBlock() == Blocks.GRASS) {
+				world.setBlockState(pos.add(0, -1, 0), ModBlocks.waste_earth.getDefaultState());
+				world.setBlockState(pos, ModBlocks.waste_grass_tall.getDefaultState());
+				continue;
 
 			} else if(bblock == Blocks.MYCELIUM) {
 				world.setBlockState(pos, ModBlocks.waste_mycelium.getDefaultState());
-				return;
+				continue;
 			} else if(bblock == Blocks.SAND) {
 
 				if(rand.nextInt(60) == 0) {
@@ -312,21 +324,24 @@ public class EntityFalloutRain extends Entity implements IConstantRenderer, IChu
 				return;
 			}
 
-			else if(bblock == Blocks.LOG || bblock == Blocks.LOG2) {
-				world.setBlockState(pos, ModBlocks.waste_log.getDefaultState());
-			}
-
 			else if(bblock == Blocks.BROWN_MUSHROOM_BLOCK || bblock == Blocks.RED_MUSHROOM_BLOCK) {
 				BlockHugeMushroom.EnumType meta = b.getValue(BlockHugeMushroom.VARIANT);
 				if(meta == BlockHugeMushroom.EnumType.STEM) {
-					world.setBlockState(pos, ModBlocks.waste_log.getDefaultState());
+					world.setBlockState(pos, ModBlocks.mush_block_stem.getDefaultState());
 				} else {
-					world.setBlockToAir(pos);
+					world.setBlockState(pos, ModBlocks.mush_block.getDefaultState());
 				}
+				continue;
+			}
+
+			else if(bblock instanceof BlockLog) {
+				world.setBlockState(pos, ModBlocks.waste_log.getDefaultState());
+				continue;
 			}
 
 			else if(bmaterial == Material.WOOD && bblock != ModBlocks.waste_log) {
 				world.setBlockState(pos, ModBlocks.waste_planks.getDefaultState());
+				continue;
 			}
 			// else if(b.getBlock() == ModBlocks.sellafield_4) {
 			// 	world.setBlockState(pos, ModBlocks.sellafield_core.getDefaultState());
