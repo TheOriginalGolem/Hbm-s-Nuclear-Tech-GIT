@@ -375,7 +375,7 @@ public class MainRegistry {
 		HBMSoundHandler.init();
 		FluidRegistry.enableUniversalBucket();
 	}
-
+    
 	@SidedProxy(clientSide = RefStrings.CLIENTSIDE, serverSide = RefStrings.SERVERSIDE)
 	public static ServerProxy proxy;
 
@@ -785,7 +785,13 @@ public class MainRegistry {
 		GameRegistry.registerTileEntity(TileEntityFurnaceSteel.class, new ResourceLocation(RefStrings.MODID, "tileentity_furnace_steel"));
 		GameRegistry.registerTileEntity(TileEntityDoorGeneric.class, new ResourceLocation(RefStrings.MODID, "tileentity_door_generic"));
 		GameRegistry.registerTileEntity(TileEntityBMPowerBox.class, new ResourceLocation(RefStrings.MODID, "tileentity_bm_power_box"));
-		
+		try {
+			if(Class.forName("loliasm.LoliASM") != null) {
+				throw new IllegalStateException("The mod tried to start on an minecraft instance with loliasm and therefore stopped. To allow the game to start "
+						+ "do not use a mod developed by a man who wants to go to 'loli valhalla' "
+						);
+			}
+		} catch(ClassNotFoundException e) { }
 		int i = 0;
 		EntityRegistry.registerModEntity(new ResourceLocation(RefStrings.MODID, "entity_nuke_mk4"), EntityNukeExplosionMK4.class, "entity_nuke_mk4", i++, MainRegistry.instance, 1000, 1, true);
 		EntityRegistry.registerModEntity(new ResourceLocation(RefStrings.MODID, "entity_nuclear_fog"), EntityFogFX.class, "entity_nuclear_fog", i++, MainRegistry.instance, 1000, 1, true);
@@ -974,7 +980,7 @@ public class MainRegistry {
 		
 		registerDispenserBehaviors();
 	}
-
+    
 	public static void reloadConfig() {
 		Configuration config = new Configuration(new File(proxy.getDataDir().getPath() + "/config/hbm/hbm.cfg"));
 		config.load();
