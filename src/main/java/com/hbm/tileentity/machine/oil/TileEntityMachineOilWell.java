@@ -1,18 +1,9 @@
-package com.hbm.tileentity.machine;
-
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Random;
-import java.util.Set;
+package com.hbm.tileentity.machine.oil;
 
 import com.hbm.blocks.ModBlocks;
 import com.hbm.entity.particle.EntityGasFX;
 import com.hbm.explosion.ExplosionLarge;
 import com.hbm.forgefluid.FFUtils;
-import com.hbm.forgefluid.ModForgeFluids;
-import com.hbm.interfaces.IConsumer;
-import com.hbm.interfaces.ITankPacketAcceptor;
 import com.hbm.items.ModItems;
 import com.hbm.lib.Library;
 import com.hbm.packet.AuxElectricityPacket;
@@ -20,118 +11,35 @@ import com.hbm.packet.FluidTankPacket;
 import com.hbm.packet.PacketDispatcher;
 
 import net.minecraft.block.Block;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.ITickable;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
-import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
-import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
-import net.minecraftforge.fluids.capability.IFluidHandler;
-import net.minecraftforge.fluids.capability.IFluidTankProperties;
 import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.minecraftforge.items.CapabilityItemHandler;
-import net.minecraftforge.items.ItemStackHandler;
 
-public class TileEntityMachineOilWell extends TileEntity implements ITickable, IConsumer, IFluidHandler, ITankPacketAcceptor {
+public class TileEntityMachineOilWell extends TileEntityOilDrillBase {
 
-	public ItemStackHandler inventory;
 
-	public long power;
-	public int warning;
-	public int warning2;
-	public static final long maxPower = 100000;
-	public int age = 0;
-	public int age2 = 0;
-	public FluidTank[] tanks;
-	public Fluid[] tankTypes;
-	public boolean needsUpdate;
-
-	private Set<BlockPos> processed = new HashSet<BlockPos>();
 
 	// private static final int[] slots_top = new int[] {1};
 	// private static final int[] slots_bottom = new int[] {2, 0};
 	// private static final int[] slots_side = new int[] {0};
-	Random rand = new Random();
-
-	private String customName;
-
-	public TileEntityMachineOilWell() {
-		inventory = new ItemStackHandler(6) {
-			@Override
-			protected void onContentsChanged(int slot) {
-				markDirty();
-				super.onContentsChanged(slot);
-			}
-		};
-		tanks = new FluidTank[2];
-		tankTypes = new Fluid[2];
-		tanks[0] = new FluidTank(64000);
-		tankTypes[0] = ModForgeFluids.oil;
-		tanks[1] = new FluidTank(64000);
-		tankTypes[1] = ModForgeFluids.gas;
-		needsUpdate = false;
-	}
 
 	public String getInventoryName() {
-		return this.hasCustomInventoryName() ? this.customName : "container.oilWell";
+		return this.hasCustomInventoryName() ? this.getCustomName() : "container.oilWell";
 	}
 
-	public boolean hasCustomInventoryName() {
-		return this.customName != null && this.customName.length() > 0;
-	}
 
-	public void setCustomName(String name) {
-		this.customName = name;
-	}
-
-	public boolean isUseableByPlayer(EntityPlayer player) {
-		if(world.getTileEntity(pos) != this) {
-			return false;
-		} else {
-			return player.getDistanceSq(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D) <= 128;
-		}
-	}
-
-	@Override
-	public void readFromNBT(NBTTagCompound compound) {
-		this.power = compound.getLong("powerTime");
-		this.age = compound.getInteger("age");
-		tankTypes[0] = ModForgeFluids.oil;
-		tankTypes[1] = ModForgeFluids.gas;
-		if(compound.hasKey("tanks"))
-			FFUtils.deserializeTankArray(compound.getTagList("tanks", 10), tanks);
-		if(compound.hasKey("inventory"))
-			inventory.deserializeNBT(compound.getCompoundTag("inventory"));
-		super.readFromNBT(compound);
-	}
-
-	@Override
-	public NBTTagCompound writeToNBT(NBTTagCompound compound) {
-		compound.setLong("powerTime", power);
-		compound.setInteger("age", age);
-		compound.setTag("tanks", FFUtils.serializeTankArray(tanks));
-		compound.setTag("inventory", inventory.serializeNBT());
-		return super.writeToNBT(compound);
-	}
-
-	public long getPowerScaled(long i) {
-		return (power * i) / maxPower;
-	}
 
 	@SuppressWarnings("deprecation")
 	@Override
 	public void update() {
-		int timer = 50;
+		int timer = delay;
 
 		age++;
 		age2++;
@@ -157,7 +65,7 @@ public class TileEntityMachineOilWell extends TileEntity implements ITickable, I
 			}
 			power = Library.chargeTEFromItems(inventory, 0, power, maxPower);
 
-			if(power >= 100) {
+			if(power >= 100 && !(tank0Amount >= tanks[0].getCapacity() || tank1Amount >= tanks[1].getCapacity())) {
 
 				// operation start
 
@@ -192,8 +100,8 @@ public class TileEntityMachineOilWell extends TileEntity implements ITickable, I
 						} else if(this.tanks[0].getFluidAmount() < this.tanks[0].getCapacity() && this.tanks[1].getFluidAmount() < this.tanks[1].getCapacity()) {
 							if(succ(pos.getX(), i, pos.getZ())) {
 
-								this.tanks[0].fill(new FluidStack(tankTypes[0], 500), true);
-								this.tanks[1].fill(new FluidStack(tankTypes[1], (100 + rand.nextInt(401))), true);
+								this.tanks[0].fill(new FluidStack(tankTypes[0], oilPerDeposit), true);
+								this.tanks[1].fill(new FluidStack(tankTypes[1], (gasPerDepositMin + rand.nextInt(extraGasPerDepositMax))), true);
 								needsUpdate = true;
 
 								ExplosionLarge.spawnOilSpills(world, pos.getX() + 0.5F, pos.getY() + 5.5F, pos.getZ() + 0.5F, 3);
@@ -215,7 +123,7 @@ public class TileEntityMachineOilWell extends TileEntity implements ITickable, I
 
 				// operation end
 
-				power -= 100;
+				power -= consumption;
 			} else {
 				warning = 1;
 			}
@@ -240,70 +148,6 @@ public class TileEntityMachineOilWell extends TileEntity implements ITickable, I
 		}
 	}
 
-	public boolean succ(int x, int y, int z) {
-
-		list.clear();
-
-		succ1(x, y, z);
-		succ2(x, y, z);
-
-		if(!list.isEmpty()) {
-
-			int i = rand.nextInt(list.size());
-			int a = list.get(i)[0];
-			int b = list.get(i)[1];
-			int c = list.get(i)[2];
-			BlockPos abc = new BlockPos(a, b, c);
-
-			if(world.getBlockState(abc).getBlock() == ModBlocks.ore_oil) {
-
-				world.setBlockState(abc, ModBlocks.ore_oil_empty.getDefaultState());
-				return true;
-			}
-		}
-
-		processed.clear();
-
-		return false;
-	}
-
-	public void succInit1(int x, int y, int z) {
-		succ1(x + 1, y, z);
-		succ1(x - 1, y, z);
-		succ1(x, y + 1, z);
-		succ1(x, y - 1, z);
-		succ1(x, y, z + 1);
-		succ1(x, y, z - 1);
-	}
-
-	public void succInit2(int x, int y, int z) {
-		succ2(x + 1, y, z);
-		succ2(x - 1, y, z);
-		succ2(x, y + 1, z);
-		succ2(x, y - 1, z);
-		succ2(x, y, z + 1);
-		succ2(x, y, z - 1);
-	}
-
-	List<int[]> list = new ArrayList<int[]>();
-
-	public void succ1(int x, int y, int z) {
-		BlockPos bp = new BlockPos(x, y, z);
-		if(world.getBlockState(bp).getBlock() == ModBlocks.ore_oil_empty && !processed.contains(bp)) {
-			processed.add(bp);
-			succInit1(x, y, z);
-		}
-	}
-
-	public void succ2(int x, int y, int z) {
-		BlockPos bp = new BlockPos(x, y, z);
-		if(world.getBlockState(bp).getBlock() == ModBlocks.ore_oil_empty && processed.contains(bp)) {
-			processed.remove(bp);
-			succInit2(x, y, z);
-		} else if(world.getBlockState(bp).getBlock() == ModBlocks.ore_oil) {
-			list.add(new int[] { x, y, z });
-		}
-	}
 
 	public void fillFluidInit(FluidTank tank) {
 		needsUpdate = FFUtils.fillFluid(this, tank, world, pos.add(-2, 0, 0), 2000) || needsUpdate;
@@ -312,15 +156,6 @@ public class TileEntityMachineOilWell extends TileEntity implements ITickable, I
 		needsUpdate = FFUtils.fillFluid(this, tank, world, pos.add(0, 0, 2), 2000) || needsUpdate;
 	}
 
-	@Override
-	public IFluidTankProperties[] getTankProperties() {
-		return new IFluidTankProperties[] { tanks[0].getTankProperties()[0], tanks[1].getTankProperties()[0] };
-	}
-
-	@Override
-	public int fill(FluidStack resource, boolean doFill) {
-		return 0;
-	}
 
 	@Override
 	public FluidStack drain(FluidStack resource, boolean doDrain) {
@@ -362,32 +197,10 @@ public class TileEntityMachineOilWell extends TileEntity implements ITickable, I
 		}
 	}
 
-	@Override
-	public void setPower(long i) {
-		power = i;
 
-	}
 
-	@Override
-	public long getPower() {
-		return power;
 
-	}
 
-	@Override
-	public long getMaxPower() {
-		return maxPower;
-	}
-
-	@Override
-	public void recievePacket(NBTTagCompound[] tags) {
-		if(tags.length != 2) {
-			return;
-		} else {
-			tanks[0].readFromNBT(tags[0]);
-			tanks[1].readFromNBT(tags[1]);
-		}
-	}
 
 	@Override
 	public AxisAlignedBB getRenderBoundingBox() {
@@ -399,27 +212,4 @@ public class TileEntityMachineOilWell extends TileEntity implements ITickable, I
 	public double getMaxRenderDistanceSquared() {
 		return 65536.0D;
 	}
-	
-	@Override
-	public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
-		if(capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY){
-			return true;
-		} else if(capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY){
-			return true;
-		} else {
-			return super.hasCapability(capability, facing);
-		}
-	}
-	
-	@Override
-	public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
-		if(capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY){
-			return CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.cast(inventory);
-		} else if(capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY){
-			return CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY.cast(this);
-		} else {
-			return super.getCapability(capability, facing);
-		}
-	}
-
 }

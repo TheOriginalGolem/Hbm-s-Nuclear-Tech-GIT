@@ -35,27 +35,33 @@ import com.hbm.world.Vertibird;
 import com.hbm.world.dungeon.AncientTomb;
 import com.hbm.world.dungeon.ArcticVault;
 import com.hbm.world.feature.DepthDeposit;
+import com.hbm.world.feature.OilSpot;
 import com.hbm.world.generator.CellularDungeonFactory;
 import com.hbm.world.generator.DungeonToolbox;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockOldLog;
 import net.minecraft.block.BlockPlanks;
 import net.minecraft.block.BlockSkull;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.block.state.pattern.BlockMatcher;
+import net.minecraft.block.state.pattern.BlockStateMatcher;
 import net.minecraft.init.Biomes;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.tileentity.TileEntitySkull;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.gen.feature.WorldGenMinable;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.IWorldGenerator;
 
 public class HbmWorldGen implements IWorldGenerator {
@@ -175,6 +181,24 @@ public class HbmWorldGen implements IWorldGenerator {
 					}
 				}
 			}
+		}
+
+		if(WorldConfig.bedrockOilSpawn > 0 && rand.nextInt(WorldConfig.bedrockOilSpawn) == 0) {
+			int randPosX = i + rand.nextInt(16);
+			int randPosZ = j + rand.nextInt(16);
+
+			for (int v = 5; v >= -5; v--) {
+				for (int w = 5; w >= -5; w--) {
+					for (int y = 6; y >= 0; y--) {
+						if (world.getBlockState(new BlockPos(randPosX + w, y, randPosZ + v)).getBlock().isReplaceableOreGen(world.getBlockState(new BlockPos(randPosX + w, y, randPosZ + v)), world, new BlockPos(randPosX + w, y, randPosZ + v), BlockMatcher.forBlock(Blocks.BEDROCK))) {
+							world.setBlockState(new BlockPos(randPosX + w, y, randPosZ + v), ModBlocks.ore_bedrock_oil.getDefaultState());
+						}
+					}
+				}
+			}
+
+			DungeonToolbox.generateOre(world, rand, i, j, 16, 8, 10, 50, ModBlocks.stone_porous);
+			OilSpot.generateOilSpot(world, randPosX, randPosZ, 5, 50);
 		}
 		
 		if(GeneralConfig.enable528ColtanDeposit) {
