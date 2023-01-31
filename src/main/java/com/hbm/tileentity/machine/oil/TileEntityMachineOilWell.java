@@ -98,7 +98,7 @@ public class TileEntityMachineOilWell extends TileEntityOilDrillBase {
 							break;
 
 						} else if(this.tanks[0].getFluidAmount() < this.tanks[0].getCapacity() && this.tanks[1].getFluidAmount() < this.tanks[1].getCapacity()) {
-							if(succ(pos.getX(), i, pos.getZ())) {
+							if(succ(pos.getX(), i, pos.getZ()) == 1) {
 
 								this.tanks[0].fill(new FluidStack(tankTypes[0], oilPerDeposit), true);
 								this.tanks[1].fill(new FluidStack(tankTypes[1], (gasPerDepositMin + rand.nextInt(extraGasPerDepositMax))), true);

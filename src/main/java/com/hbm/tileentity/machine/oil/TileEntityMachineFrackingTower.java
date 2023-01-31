@@ -94,12 +94,6 @@ public class TileEntityMachineFrackingTower extends TileEntityOilDrillBase {
 
                     for(int i = pos.getY() - 1; i > pos.getY() - 1 - 100; i--) {
 
-                        if(i <= 5) {
-                            // Code 2: The drilling ended
-                            warning = 2;
-                            break;
-                        }
-
                         Block b = world.getBlockState(new BlockPos(pos.getX(), i, pos.getZ())).getBlock();
                         if(b == ModBlocks.oil_pipe)
                             continue;
@@ -114,7 +108,7 @@ public class TileEntityMachineFrackingTower extends TileEntityOilDrillBase {
 
                         } else if(this.tanks[0].getFluidAmount() < this.tanks[0].getCapacity() && this.tanks[1].getFluidAmount() < this.tanks[1].getCapacity()) {
 
-                            final int succNumber = succWithBedrockOil(pos.getX(), i, pos.getZ());
+                            final int succNumber = succ(pos.getX(), i, pos.getZ());
                             if(succNumber != 0) {
 
                                 if (succNumber == 1) {
@@ -171,36 +165,7 @@ public class TileEntityMachineFrackingTower extends TileEntityOilDrillBase {
         }
     }
 
-    public int succWithBedrockOil(int x, int y, int z) {
 
-        list.clear();
-
-        succ1(x, y, z);
-        succ2(x, y, z);
-
-        if(!list.isEmpty()) {
-
-            int i = rand.nextInt(list.size());
-            int a = list.get(i)[0];
-            int b = list.get(i)[1];
-            int c = list.get(i)[2];
-            BlockPos abc = new BlockPos(a, b, c);
-
-
-            if(world.getBlockState(abc).getBlock() == ModBlocks.ore_oil) {
-
-                world.setBlockState(abc, ModBlocks.ore_oil_empty.getDefaultState());
-                return 1;
-            }
-            else if (world.getBlockState(abc).getBlock() == ModBlocks.ore_bedrock_oil) {
-                return 2;
-            }
-        }
-
-        processed.clear();
-
-        return 0;
-    }
 
 
     public void fillFluidInit(FluidTank tank) {

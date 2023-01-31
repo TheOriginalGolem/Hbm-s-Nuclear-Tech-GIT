@@ -119,7 +119,7 @@ public abstract class TileEntityOilDrillBase extends TileEntity implements ITick
     List<int[]> list = new ArrayList<int[]>();
     Set<BlockPos> processed = new HashSet<BlockPos>();
 
-    public boolean succ(int x, int y, int z) {
+    public byte succ(int x, int y, int z) {
 
         list.clear();
 
@@ -134,16 +134,20 @@ public abstract class TileEntityOilDrillBase extends TileEntity implements ITick
             int c = list.get(i)[2];
             BlockPos abc = new BlockPos(a, b, c);
 
+
             if(world.getBlockState(abc).getBlock() == ModBlocks.ore_oil) {
 
                 world.setBlockState(abc, ModBlocks.ore_oil_empty.getDefaultState());
-                return true;
+                return 1;
+            }
+            else if (world.getBlockState(abc).getBlock() == ModBlocks.ore_bedrock_oil) {
+                return 2;
             }
         }
 
         processed.clear();
 
-        return false;
+        return 0;
     }
 
     public void succInit1(int x, int y, int z) {
