@@ -10,6 +10,7 @@ import java.util.Random;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.energy.IEnergyStorage;
 
@@ -24,6 +25,9 @@ public class EnergyNetwork implements IEnergyStorage{
 	
 	@Override
 	public int receiveEnergy(int maxReceive, boolean simulate) {
+		if(maxReceive >= 0){
+			return maxReceive;
+		}
 		List<IEnergyStorage> storages = new ArrayList<IEnergyStorage>();
 		
 		Iterator<TileEntity> itr = fillables.values().iterator();
@@ -35,7 +39,7 @@ public class EnergyNetwork implements IEnergyStorage{
 			}
 			if(te.hasCapability(CapabilityEnergy.ENERGY, null)){
 				IEnergyStorage e = te.getCapability(CapabilityEnergy.ENERGY, null);
-				if(e != null && e.receiveEnergy(maxReceive, false) > 0){
+				if(e != null && e.receiveEnergy(maxReceive, simulate) > 0){
 					storages.add(e);
 				}
 			}
@@ -46,11 +50,12 @@ public class EnergyNetwork implements IEnergyStorage{
 		
 		//Drillgon200: Extra hacky compensation
 		int intRoundingCompensation = maxReceive-part*storages.size();
-		rand.setSeed(((TileEntity)this.fillables.values().iterator().next()).getWorld().getWorldTime());
+		rand.setSeed(((TileEntity)this.fillables.get(0)).getWorld().getWorldTime());
 		int randomFillIndex = rand.nextInt(storages.size());
+		
 		for(int i = 0; i < storages.size(); i++){
 			IEnergyStorage consumer = storages.get(i);
-			int vol = consumer.receiveEnergy(randomFillIndex == i ? part + intRoundingCompensation : part, false);
+			int vol = consumer.receiveEnergy(randomFillIndex == i ? part + intRoundingCompensation : part, simulate);
 			totalDrained += vol;
 			remaining -= vol;
 			if(remaining <= 0)
@@ -72,17 +77,17 @@ public class EnergyNetwork implements IEnergyStorage{
 		return fillables.size() + cables.size();
 	}
 	
-	public void checkForRemoval(TileEntity te) {
+	public void checkForRemoval(TileEntity te, EnumFacing side) {
 		if(te == null)
 			return;
 		if(te instanceof IEnergyTransmitter) {
 			cables.remove(te.getPos());
-		} else if(te.hasCapability(CapabilityEnergy.ENERGY, null)) {
+		} else if(te.hasCapability(CapabilityEnergy.ENERGY, side)) {
 			fillables.remove(te.getPos());
 		}
 	}
 	
-	public boolean tryAdd(TileEntity te) {
+	public boolean tryAdd(TileEntity te, EnumFacing side) {
 		if(te == null)
 			return false;
 		if(te instanceof IEnergyTransmitter) {
@@ -90,7 +95,7 @@ public class EnergyNetwork implements IEnergyStorage{
 				cables.put(te.getPos(), (IEnergyTransmitter) te);
 				return true;
 			}
-		} else if(te.hasCapability(CapabilityEnergy.ENERGY, null)) {
+		} else if(te.hasCapability(CapabilityEnergy.ENERGY, side)) {
 			if(!fillables.containsKey(te.getPos())) {
 				fillables.put(te.getPos(), te);
 				return true;
@@ -152,31 +157,34 @@ public class EnergyNetwork implements IEnergyStorage{
 		}
 
 		public static void iteratePipes(Map<BlockPos, IEnergyTransmitter> cables, Map<BlockPos, TileEntity> consumers, List<EnergyNetwork> networks, TileEntity te) {
-			if(te == null)
-				return;
+			//Credits to MartinTheDragon for this entire part of the code
+			cables.clear();
+			List<BlockPos> toIterate = new ArrayList<>(); // i'll still have to test if Drill was right or not...
+			toIterate.add(te.getPos());
+			World world = te.getWorld();
 
-			if(te instanceof IEnergyTransmitter) {
-				IEnergyTransmitter cable = (IEnergyTransmitter) te;
-				if(cable.isValidForBuilding()) {
-					if(cable.getNetwork() == null) {
-						if(!cables.containsKey(te.getPos())) {
-							cables.put(te.getPos(), cable);
-							for(EnumFacing e : EnumFacing.VALUES){
-								BlockPos pos = te.getPos().offset(e);
-								if(te.getWorld().isBlockLoaded(pos))
-									iteratePipes(cables, consumers, networks, te.getWorld().getTileEntity(pos));
-							}
-							
-						}
-					} else if(!networks.contains(cable.getNetwork())) {
-						networks.add(cable.getNetwork());
-					}
-				}
-			} else if(te.hasCapability(CapabilityEnergy.ENERGY, null)) {
-				if(!consumers.containsKey(te.getPos()))
-					consumers.put(te.getPos(), te);
+			while (!toIterate.isEmpty()) {
+			  BlockPos nextPos = toIterate.remove(toIterate.size() - 1);
+			  if (cables.containsKey(nextPos)) continue;
+			  
+			  TileEntity nextTileEntity = world.getTileEntity(nextPos);
+			  if (nextTileEntity instanceof IEnergyTransmitter) {
+			    IEnergyTransmitter cable = (IEnergyTransmitter) nextTileEntity; // pre Java 14, aeugh
+			    if (!cable.isValidForBuilding()) continue;
+			    
+			    EnergyNetwork foundNetwork = cable.getNetwork(); // or whatever the network class is
+			    if (foundNetwork == null) {
+			      cables.put(nextPos, cable);
+			      for (EnumFacing direction : EnumFacing.VALUES)
+			        toIterate.add(nextPos.offset(direction)); // i'm not sure whether you should actually bother checking if the position is loaded, large cables may not work
+			    } else if (!networks.contains(foundNetwork)) {
+			      networks.add(foundNetwork);
+			    }
+			  } else if (nextTileEntity.hasCapability(CapabilityEnergy.ENERGY, null)) // for the love of god pass a side here
+			    if (!consumers.containsKey(nextPos))
+			      consumers.put(nextPos, nextTileEntity); // i would just store the capability directly to be honest (which you should be doing by API note)
+			  }
 			}
-		}
 	@Override
 	public int extractEnergy(int maxExtract, boolean simulate) {
 		return 0;
