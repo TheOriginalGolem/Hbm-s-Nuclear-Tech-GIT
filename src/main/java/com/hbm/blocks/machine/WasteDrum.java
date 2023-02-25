@@ -4,7 +4,6 @@ import com.hbm.blocks.ModBlocks;
 import com.hbm.lib.InventoryHelper;
 import com.hbm.main.MainRegistry;
 import com.hbm.tileentity.machine.TileEntityWasteDrum;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -19,52 +18,49 @@ import net.minecraft.world.World;
 
 public class WasteDrum extends BlockContainer {
 
-	public WasteDrum(Material materialIn, String s) {
-		super(materialIn);
-		this.setUnlocalizedName(s);
-		this.setRegistryName(s);
-		
-		ModBlocks.ALL_BLOCKS.add(this);
-	}
+    public WasteDrum(Material materialIn, String s) {
+        super(materialIn);
+        this.setUnlocalizedName(s);
+        this.setRegistryName(s);
 
-	@Override
-	public TileEntity createNewTileEntity(World worldIn, int meta) {
-		return new TileEntityWasteDrum();
-	}
-	
-	@Override
-	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-		if(world.isRemote)
-		{
-			return true;
-		} else if(!player.isSneaking())
-		{
-			TileEntityWasteDrum entity = (TileEntityWasteDrum) world.getTileEntity(pos);
-			if(entity != null)
-			{
-				player.openGui(MainRegistry.instance, ModBlocks.guiID_waste_drum, world, pos.getX(), pos.getY(), pos.getZ());
-			}
-			return true;
-		} else {
-			return false;
-		}
-	}
-	
-	@Override
-	public void neighborChanged(IBlockState state, World world, BlockPos pos, Block blockIn, BlockPos fromPos){
-		if(!world.isRemote)
-			((TileEntityWasteDrum) world.getTileEntity(pos)).updateWater();
-	}
-	
-	@Override
-	public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
-		InventoryHelper.dropInventoryItems(worldIn, pos, worldIn.getTileEntity(pos));
-		super.breakBlock(worldIn, pos, state);
-	}
-	
-	@Override
-	public EnumBlockRenderType getRenderType(IBlockState state) {
-		return EnumBlockRenderType.MODEL;
-	}
+        ModBlocks.ALL_BLOCKS.add(this);
+    }
+
+    @Override
+    public TileEntity createNewTileEntity(World worldIn, int meta) {
+        return new TileEntityWasteDrum();
+    }
+
+    @Override
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+        if (world.isRemote) {
+            return true;
+        } else if (!player.isSneaking()) {
+            TileEntityWasteDrum entity = (TileEntityWasteDrum) world.getTileEntity(pos);
+            if (entity != null) {
+                player.openGui(MainRegistry.instance, ModBlocks.guiID_waste_drum, world, pos.getX(), pos.getY(), pos.getZ());
+            }
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public void neighborChanged(IBlockState state, World world, BlockPos pos, Block blockIn, BlockPos fromPos) {
+        if (!world.isRemote)
+            ((TileEntityWasteDrum) world.getTileEntity(pos)).updateWater();
+    }
+
+    @Override
+    public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
+        InventoryHelper.dropInventoryItems(worldIn, pos, worldIn.getTileEntity(pos));
+        super.breakBlock(worldIn, pos, state);
+    }
+
+    @Override
+    public EnumBlockRenderType getRenderType(IBlockState state) {
+        return EnumBlockRenderType.MODEL;
+    }
 
 }

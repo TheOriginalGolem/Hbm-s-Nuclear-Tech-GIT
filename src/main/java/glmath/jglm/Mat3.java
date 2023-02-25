@@ -5,8 +5,8 @@
 package glmath.jglm;
 
 /**
- * @deprecated
  * @author gbarbieri
+ * @deprecated
  */
 public class Mat3 extends Mat {
 
@@ -53,23 +53,9 @@ public class Mat3 extends Mat {
 
         this();
 
-        c0 = new Vec3(fs, order * 0);
-        c1 = new Vec3(fs, order * 1);
+        c0 = new Vec3(fs, 0);
+        c1 = new Vec3(fs, order);
         c2 = new Vec3(fs, order * 2);
-    }
-
-    public float[] toFloatArray() {
-
-        return new float[]{
-            c0.x, c0.y, c0.z,
-            c1.x, c1.y, c1.z,
-            c2.x, c2.y, c2.z};
-    }
-
-    public void setDiagonal(Vec3 vec3) {
-        c0.x = vec3.x;
-        c1.y = vec3.y;
-        c2.z = vec3.z;
     }
 
     public static Mat3 rotateX(float fAngDeg) {
@@ -112,6 +98,20 @@ public class Mat3 extends Mat {
         mat3.c1.y = fCos;
 
         return mat3;
+    }
+
+    public float[] toFloatArray() {
+
+        return new float[]{
+                c0.x, c0.y, c0.z,
+                c1.x, c1.y, c1.z,
+                c2.x, c2.y, c2.z};
+    }
+
+    public void setDiagonal(Vec3 vec3) {
+        c0.x = vec3.x;
+        c1.y = vec3.y;
+        c2.z = vec3.z;
     }
 
     public Mat3 times(Mat3 mat) {

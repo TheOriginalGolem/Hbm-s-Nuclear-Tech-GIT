@@ -9,7 +9,6 @@ import glmath.glm.Glm;
 import glmath.glm.vec._2.bool.Vec2bool;
 
 /**
- *
  * @author fschaefers
  */
 abstract class FuncRelational extends BooleanOperators {

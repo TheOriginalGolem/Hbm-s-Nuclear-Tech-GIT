@@ -1,13 +1,9 @@
 package com.hbm.entity.projectile;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.hbm.config.RadiationConfig;
 import com.hbm.entity.logic.EntityBlast;
 import com.hbm.entity.logic.IChunkLoader;
 import com.hbm.main.MainRegistry;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityTNTPrimed;
 import net.minecraft.nbt.NBTTagCompound;
@@ -20,40 +16,39 @@ import net.minecraftforge.common.ForgeChunkManager;
 import net.minecraftforge.common.ForgeChunkManager.Ticket;
 import net.minecraftforge.common.ForgeChunkManager.Type;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class EntityRailgunBlast extends Entity implements IChunkLoader {
 
-	public EntityRailgunBlast(World w) {
-		super(w);
-	}
+    List<ChunkPos> loadedChunks = new ArrayList<ChunkPos>();
+    private Ticket loaderTicket;
 
-	private Ticket loaderTicket;
+    public EntityRailgunBlast(World w) {
+        super(w);
+    }
 
-	@Override
-	public void init(Ticket ticket) {
-		if(!world.isRemote) {
+    @Override
+    public void init(Ticket ticket) {
+        if (!world.isRemote) {
 
-			if(ticket != null) {
+            if (ticket != null) {
 
-				if(loaderTicket == null) {
+                if (loaderTicket == null) {
 
-					loaderTicket = ticket;
-					loaderTicket.bindEntity(this);
-					loaderTicket.getModData();	
-				}
+                    loaderTicket = ticket;
+                    loaderTicket.bindEntity(this);
+                    loaderTicket.getModData();
+                }
 
-				ForgeChunkManager.forceChunk(loaderTicket, new ChunkPos(chunkCoordX, chunkCoordZ));
-			}
-		}
-	}
+                ForgeChunkManager.forceChunk(loaderTicket, new ChunkPos(chunkCoordX, chunkCoordZ));
+            }
+        }
+    }
 
-	List<ChunkPos> loadedChunks = new ArrayList<ChunkPos>();
-	
-	public void loadNeighboringChunks(int newChunkX, int newChunkZ)
-    {
-        if(!world.isRemote && loaderTicket != null)
-        {
-            for(ChunkPos chunk : loadedChunks)
-            {
+    public void loadNeighboringChunks(int newChunkX, int newChunkZ) {
+        if (!world.isRemote && loaderTicket != null) {
+            for (ChunkPos chunk : loadedChunks) {
                 ForgeChunkManager.unforceChunk(loaderTicket, chunk);
             }
 
@@ -68,83 +63,81 @@ public class EntityRailgunBlast extends Entity implements IChunkLoader {
             loadedChunks.add(new ChunkPos(newChunkX - 1, newChunkZ));
             loadedChunks.add(new ChunkPos(newChunkX, newChunkZ - 1));
 
-            for(ChunkPos chunk : loadedChunks)
-            {
+            for (ChunkPos chunk : loadedChunks) {
                 ForgeChunkManager.forceChunk(loaderTicket, chunk);
             }
         }
     }
-	
-	@Override
-	protected void entityInit() {
-		init(ForgeChunkManager.requestTicket(MainRegistry.instance, world, Type.ENTITY));
-	}
 
-	@Override
-	public void onUpdate() {
-		this.prevPosX = this.posX;
-		this.prevPosY = this.posY;
-		this.prevPosZ = this.posZ;
-		this.setLocationAndAngles(posX + this.motionX, posY + this.motionY, posZ + this.motionZ, 0, 0);
-		rotation();
+    @Override
+    protected void entityInit() {
+        init(ForgeChunkManager.requestTicket(MainRegistry.instance, world, Type.ENTITY));
+    }
 
-		Vec3d vec3 = new Vec3d(this.posX, this.posY, this.posZ);
-		Vec3d vec31 = new Vec3d(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
-		RayTraceResult movingobjectposition = this.world.rayTraceBlocks(vec3, vec31);
+    @Override
+    public void onUpdate() {
+        this.prevPosX = this.posX;
+        this.prevPosY = this.posY;
+        this.prevPosZ = this.posZ;
+        this.setLocationAndAngles(posX + this.motionX, posY + this.motionY, posZ + this.motionZ, 0, 0);
+        rotation();
 
-		if(movingobjectposition != null) {
+        Vec3d vec3 = new Vec3d(this.posX, this.posY, this.posZ);
+        Vec3d vec31 = new Vec3d(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
+        RayTraceResult movingobjectposition = this.world.rayTraceBlocks(vec3, vec31);
 
-			if(!this.world.isRemote) {
-				this.setLocationAndAngles(movingobjectposition.getBlockPos().getX(), movingobjectposition.getBlockPos().getY(), movingobjectposition.getBlockPos().getZ(), 0, 0);
+        if (movingobjectposition != null) {
 
-				EntityTNTPrimed scapegoat = new EntityTNTPrimed(world);
-				world.newExplosion(scapegoat, posX, posY, posZ, 12F, false, true);
-				world.spawnEntity(EntityBlast.statFac(world, posX, posY, posZ, 45, RadiationConfig.railgunDamage, 12, 5, false));
-			}
-			this.setDead();
-			return;
-		}
+            if (!this.world.isRemote) {
+                this.setLocationAndAngles(movingobjectposition.getBlockPos().getX(), movingobjectposition.getBlockPos().getY(), movingobjectposition.getBlockPos().getZ(), 0, 0);
 
-		if(!world.isRemote) {
-			loadNeighboringChunks((int) (posX / 16), (int) (posZ / 16));
-		}
+                EntityTNTPrimed scapegoat = new EntityTNTPrimed(world);
+                world.newExplosion(scapegoat, posX, posY, posZ, 12F, false, true);
+                world.spawnEntity(EntityBlast.statFac(world, posX, posY, posZ, 45, RadiationConfig.railgunDamage, 12, 5, false));
+            }
+            this.setDead();
+            return;
+        }
 
-		// gravity needs the sec/tick converter squared since it's in seconds
-		// squared
-		motionY -= 9.81D * 0.05 * 0.05;
-	}
+        if (!world.isRemote) {
+            loadNeighboringChunks((int) (posX / 16), (int) (posZ / 16));
+        }
 
-	public void rotation() {
-		float f2 = MathHelper.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
-		this.rotationYaw = (float) (Math.atan2(this.motionX, this.motionZ) * 180.0D / Math.PI);
+        // gravity needs the sec/tick converter squared since it's in seconds
+        // squared
+        motionY -= 9.81D * 0.05 * 0.05;
+    }
 
-		for(this.rotationPitch = (float) (Math.atan2(this.motionY, f2) * 180.0D / Math.PI) - 90; this.rotationPitch - this.prevRotationPitch < -180.0F; this.prevRotationPitch -= 360.0F) {
-			;
-		}
+    public void rotation() {
+        float f2 = MathHelper.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
+        this.rotationYaw = (float) (Math.atan2(this.motionX, this.motionZ) * 180.0D / Math.PI);
 
-		while(this.rotationPitch - this.prevRotationPitch >= 180.0F) {
-			this.prevRotationPitch += 360.0F;
-		}
+        for (this.rotationPitch = (float) (Math.atan2(this.motionY, f2) * 180.0D / Math.PI) - 90; this.rotationPitch - this.prevRotationPitch < -180.0F; this.prevRotationPitch -= 360.0F) {
+        }
 
-		while(this.rotationYaw - this.prevRotationYaw < -180.0F) {
-			this.prevRotationYaw -= 360.0F;
-		}
+        while (this.rotationPitch - this.prevRotationPitch >= 180.0F) {
+            this.prevRotationPitch += 360.0F;
+        }
 
-		while(this.rotationYaw - this.prevRotationYaw >= 180.0F) {
-			this.prevRotationYaw += 360.0F;
-		}
-	}
+        while (this.rotationYaw - this.prevRotationYaw < -180.0F) {
+            this.prevRotationYaw -= 360.0F;
+        }
 
-	@Override
-	public boolean isInRangeToRenderDist(double distance) {
-		return distance < 500000;
-	}
+        while (this.rotationYaw - this.prevRotationYaw >= 180.0F) {
+            this.prevRotationYaw += 360.0F;
+        }
+    }
 
-	@Override
-	protected void readEntityFromNBT(NBTTagCompound compound) {
-	}
+    @Override
+    public boolean isInRangeToRenderDist(double distance) {
+        return distance < 500000;
+    }
 
-	@Override
-	protected void writeEntityToNBT(NBTTagCompound compound) {
-	}
+    @Override
+    protected void readEntityFromNBT(NBTTagCompound compound) {
+    }
+
+    @Override
+    protected void writeEntityToNBT(NBTTagCompound compound) {
+    }
 }

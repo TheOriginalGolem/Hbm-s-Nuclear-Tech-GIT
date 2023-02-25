@@ -5,16 +5,15 @@
  */
 package glmath.glm.vec._3;
 
+import glmath.glm.Glm;
+import glmath.glm.vec._4.Vec4;
+
 import java.io.PrintStream;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
 
-import glmath.glm.Glm;
-import glmath.glm.vec._4.Vec4;
-
 /**
- *
  * @author GBarbieri
  */
 public class Vec3 extends funcRelational {
@@ -54,7 +53,7 @@ public class Vec3 extends funcRelational {
     }
 
     public Vec3(float[] fa, int i) {
-        x = fa[i + 0];
+        x = fa[i];
         y = fa[i + 1];
         z = fa[i + 2];
     }
@@ -63,6 +62,17 @@ public class Vec3 extends funcRelational {
         this.x = (float) x;
         this.y = (float) y;
         this.z = (float) z;
+    }
+
+    public static Vec3 linearRand_(Vec3 min, Vec3 max) {
+        return linearRand(min, max, new Vec3());
+    }
+
+    public static Vec3 linearRand(Vec3 min, Vec3 max, Vec3 res) {
+        res.x = (float) Glm.linearRand(min.x, max.x);
+        res.y = (float) Glm.linearRand(min.y, max.y);
+        res.z = (float) Glm.linearRand(min.z, max.z);
+        return res;
     }
 
     public Vec3 set(Vec3 v) {
@@ -92,17 +102,6 @@ public class Vec3 extends funcRelational {
         y = fa[1];
         z = fa[2];
         return this;
-    }
-
-    public static Vec3 linearRand_(Vec3 min, Vec3 max) {
-        return linearRand(min, max, new Vec3());
-    }
-
-    public static Vec3 linearRand(Vec3 min, Vec3 max, Vec3 res) {
-        res.x = (float) Glm.linearRand(min.x, max.x);
-        res.y = (float) Glm.linearRand(min.y, max.y);
-        res.z = (float) Glm.linearRand(min.z, max.z);
-        return res;
     }
 
     public Vec3 negate() {
@@ -153,7 +152,7 @@ public class Vec3 extends funcRelational {
 
     public FloatBuffer toDfb(FloatBuffer fb, int index) {
         return fb
-                .put(index + 0, x)
+                .put(index, x)
                 .put(index + 1, y)
                 .put(index + 2, z);
     }
@@ -168,8 +167,8 @@ public class Vec3 extends funcRelational {
 
     public ByteBuffer toDbb(ByteBuffer bb, int index) {
         return bb
-                .putFloat(index + 0 * Float.BYTES, x)
-                .putFloat(index + 1 * Float.BYTES, y)
+                .putFloat(index, x)
+                .putFloat(index + Float.BYTES, y)
                 .putFloat(index + 2 * Float.BYTES, z);
     }
 

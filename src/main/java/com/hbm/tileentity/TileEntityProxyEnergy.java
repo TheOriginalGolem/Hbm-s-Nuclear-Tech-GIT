@@ -1,43 +1,42 @@
 package com.hbm.tileentity;
 
 import com.hbm.interfaces.IConsumer;
-
 import net.minecraft.tileentity.TileEntity;
 
 //can be used as a soruce too since the core TE handles that anyway
 public class TileEntityProxyEnergy extends TileEntityProxyBase implements IConsumer {
 
-	@Override
-	public void setPower(long i) {
+    @Override
+    public long getPower() {
 
-		TileEntity te = getTE();
+        TileEntity te = getTE();
 
-		if(te instanceof IConsumer) {
-			((IConsumer) te).setPower(i);
-		}
-	}
+        if (te instanceof IConsumer) {
+            return ((IConsumer) te).getPower();
+        }
 
-	@Override
-	public long getPower() {
+        return 0;
+    }
 
-		TileEntity te = getTE();
+    @Override
+    public void setPower(long i) {
 
-		if(te instanceof IConsumer) {
-			return ((IConsumer) te).getPower();
-		}
+        TileEntity te = getTE();
 
-		return 0;
-	}
+        if (te instanceof IConsumer) {
+            ((IConsumer) te).setPower(i);
+        }
+    }
 
-	@Override
-	public long getMaxPower() {
+    @Override
+    public long getMaxPower() {
 
-		TileEntity te = getTE();
+        TileEntity te = getTE();
 
-		if(te instanceof IConsumer) {
-			return ((IConsumer) te).getMaxPower();
-		}
+        if (te instanceof IConsumer) {
+            return ((IConsumer) te).getMaxPower();
+        }
 
-		return 0;
-	}
+        return 0;
+    }
 }

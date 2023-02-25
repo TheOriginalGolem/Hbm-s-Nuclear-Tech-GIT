@@ -1,7 +1,6 @@
 package com.hbm.entity.item;
 
 import com.hbm.blocks.ModBlocks;
-
 import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
@@ -21,16 +20,13 @@ import net.minecraft.world.World;
 
 public class EntityMovingItem extends Entity {
 
-	public static final DataParameter<ItemStack> STACK = EntityDataManager.createKey(EntityMovingItem.class, DataSerializers.ITEM_STACK);
-	
-	public EntityMovingItem(World p_i1582_1_) {
-		super(p_i1582_1_);
+    public static final DataParameter<ItemStack> STACK = EntityDataManager.createKey(EntityMovingItem.class, DataSerializers.ITEM_STACK);
+    private int schedule = 0;
+
+    public EntityMovingItem(World p_i1582_1_) {
+        super(p_i1582_1_);
         this.setSize(0.5F, 0.25F);
         this.noClip = true;
-	}
-
-    public void setItemStack(ItemStack stack) {
-        this.getDataManager().set(STACK, stack);
     }
 
     public ItemStack getItemStack() {
@@ -39,26 +35,30 @@ public class EntityMovingItem extends Entity {
         return stack == null ? new ItemStack(Blocks.STONE) : stack;
     }
 
+    public void setItemStack(ItemStack stack) {
+        this.getDataManager().set(STACK, stack);
+    }
+
     public boolean canBeCollidedWith() {
         return true;
     }
 
     public boolean interactFirst(EntityPlayer player) {
 
-		if(!world.isRemote && player.inventory.addItemStackToInventory(this.getItemStack().copy())) {
-			this.setDead();
-		}
+        if (!world.isRemote && player.inventory.addItemStackToInventory(this.getItemStack().copy())) {
+            this.setDead();
+        }
 
-		return false;
+        return false;
     }
 
     public boolean attackEntityFrom(DamageSource source, float amount) {
 
-    	if(!world.isRemote) {
-			world.spawnEntity(new EntityItem(world, posX, posY, posZ, this.getItemStack()));
-	    	this.setDead();
-    	}
-    	return true;
+        if (!world.isRemote) {
+            world.spawnEntity(new EntityItem(world, posX, posY, posZ, this.getItemStack()));
+            this.setDead();
+        }
+        return true;
     }
 
     public boolean canAttackWithItem() {
@@ -67,10 +67,10 @@ public class EntityMovingItem extends Entity {
 
     public boolean hitByEntity(Entity attacker) {
 
-    	if(attacker instanceof EntityPlayer) {
-    	}
+        if (attacker instanceof EntityPlayer) {
+        }
 
-		this.setDead();
+        this.setDead();
 
         return false;
     }
@@ -79,53 +79,51 @@ public class EntityMovingItem extends Entity {
         return true;
     }
 
-    private int schedule = 0;
-
     public void onUpdate() {
 
-    	if(!world.isRemote) {
+        if (!world.isRemote) {
 
-    		if(world.getBlockState(new BlockPos((int)Math.floor(posX), (int)Math.floor(posY), (int)Math.floor(posZ))).getBlock() != ModBlocks.conveyor) {
-    			this.setDead();
-    			world.spawnEntity(new EntityItem(world, posX, posY, posZ, this.getItemStack()));
-    			return;
-    		}
-    	}
+            if (world.getBlockState(new BlockPos((int) Math.floor(posX), (int) Math.floor(posY), (int) Math.floor(posZ))).getBlock() != ModBlocks.conveyor) {
+                this.setDead();
+                world.spawnEntity(new EntityItem(world, posX, posY, posZ, this.getItemStack()));
+                return;
+            }
+        }
 
-    	IBlockState b = world.getBlockState(new BlockPos((int)Math.floor(posX), (int)Math.floor(posY), (int)Math.floor(posZ)));
-    	if(b.getBlock() == ModBlocks.conveyor) {
+        IBlockState b = world.getBlockState(new BlockPos((int) Math.floor(posX), (int) Math.floor(posY), (int) Math.floor(posZ)));
+        if (b.getBlock() == ModBlocks.conveyor) {
 
-    		if(schedule <= 0) {
-    			EnumFacing dir = b.getValue(BlockHorizontal.FACING);
+            if (schedule <= 0) {
+                EnumFacing dir = b.getValue(BlockHorizontal.FACING);
 
-    			if(world.getBlockState(new BlockPos((int)Math.floor(posX), (int)Math.floor(posY) + 1, (int)Math.floor(posZ))).getBlock() == ModBlocks.conveyor && motionY >= 0) {
-    				dir = EnumFacing.DOWN;
-    			}
+                if (world.getBlockState(new BlockPos((int) Math.floor(posX), (int) Math.floor(posY) + 1, (int) Math.floor(posZ))).getBlock() == ModBlocks.conveyor && motionY >= 0) {
+                    dir = EnumFacing.DOWN;
+                }
 
-    			if(world.getBlockState(new BlockPos((int)Math.floor(posX), (int)Math.floor(posY) - 1, (int)Math.floor(posZ))).getBlock() == ModBlocks.conveyor && motionY <= 0) {
-    				dir = EnumFacing.UP;
-    			}
+                if (world.getBlockState(new BlockPos((int) Math.floor(posX), (int) Math.floor(posY) - 1, (int) Math.floor(posZ))).getBlock() == ModBlocks.conveyor && motionY <= 0) {
+                    dir = EnumFacing.UP;
+                }
 
-        		double speed = 0.1;
+                double speed = 0.1;
 
-        		schedule = (int) (1 / speed);
-        		motionX = -speed * dir.getFrontOffsetX();
-        		motionY = -speed * dir.getFrontOffsetY();
-        		motionZ = -speed * dir.getFrontOffsetZ();
-    		}
+                schedule = (int) (1 / speed);
+                motionX = -speed * dir.getFrontOffsetX();
+                motionY = -speed * dir.getFrontOffsetY();
+                motionZ = -speed * dir.getFrontOffsetZ();
+            }
 
-    		this.move(MoverType.SELF, motionX, motionY, motionZ);
-    		schedule--;
-    	}
+            this.move(MoverType.SELF, motionX, motionY, motionZ);
+            schedule--;
+        }
     }
 
-	@Override
+    @Override
     protected void entityInit() {
         this.getDataManager().register(STACK, ItemStack.EMPTY);
     }
 
-	@Override
-	protected void readEntityFromNBT(NBTTagCompound nbt) {
+    @Override
+    protected void readEntityFromNBT(NBTTagCompound nbt) {
 
         NBTTagCompound compound = nbt.getCompoundTag("Item");
         this.setItemStack(new ItemStack(compound));
@@ -136,15 +134,15 @@ public class EntityMovingItem extends Entity {
 
         if (stack == null || stack.isEmpty())
             this.setDead();
-	}
+    }
 
-	@Override
-	protected void writeEntityToNBT(NBTTagCompound nbt) {
+    @Override
+    protected void writeEntityToNBT(NBTTagCompound nbt) {
 
         if (this.getItemStack() != null)
-        	nbt.setTag("Item", this.getItemStack().writeToNBT(new NBTTagCompound()));
+            nbt.setTag("Item", this.getItemStack().writeToNBT(new NBTTagCompound()));
 
         nbt.setInteger("schedule", schedule);
-	}
+    }
 
 }

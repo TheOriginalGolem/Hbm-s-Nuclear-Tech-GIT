@@ -1,7 +1,4 @@
-	package com.hbm.items.special.weapon;
-
-import java.util.List;
-import java.util.Random;
+package com.hbm.items.special.weapon;
 
 import com.google.common.collect.Multimap;
 import com.hbm.entity.effect.EntityCloudFleijaRainbow;
@@ -11,7 +8,6 @@ import com.hbm.interfaces.IHasCustomModel;
 import com.hbm.items.ModItems;
 import com.hbm.lib.HBMSoundHandler;
 import com.hbm.main.MainRegistry;
-
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
@@ -33,303 +29,304 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.ArrowLooseEvent;
 
+import java.util.List;
+import java.util.Random;
+
 public class GunB92 extends Item implements IHasCustomModel {
 
-	public static final ModelResourceLocation b92Model = new ModelResourceLocation("hbm:gun_b92", "inventory");
+    public static final ModelResourceLocation b92Model = new ModelResourceLocation("hbm:gun_b92", "inventory");
+    public int dmgMin = 16;
+    public int dmgMax = 28;
+    Random rand = new Random();
 
-	Random rand = new Random();
+    public GunB92(String s) {
 
-	public int dmgMin = 16;
-	public int dmgMax = 28;
+        this.maxStackSize = 1;
+        this.setUnlocalizedName(s);
+        this.setRegistryName(s);
+        this.setCreativeTab(MainRegistry.weaponTab);
+        ModItems.ALL_ITEMS.add(this);
+    }
 
-	public GunB92(String s) {
+    private static int getAnim(ItemStack stack) {
+        if (stack.getTagCompound() == null) {
+            stack.setTagCompound(new NBTTagCompound());
+            return 0;
+        }
 
-		this.maxStackSize = 1;
-		this.setUnlocalizedName(s);
-		this.setRegistryName(s);
-		this.setCreativeTab(MainRegistry.weaponTab);
-		ModItems.ALL_ITEMS.add(this);
-	}
+        return stack.getTagCompound().getInteger("animation");
 
-	@Override
-	public void onPlayerStoppedUsing(ItemStack stack, World worldIn, EntityLivingBase entityLiving, int timeLeft) {
-		if (entityLiving.getItemStackFromSlot(EntityEquipmentSlot.MAINHAND) == stack && !entityLiving.getItemStackFromSlot(EntityEquipmentSlot.OFFHAND).isEmpty() && entityLiving.getItemStackFromSlot(EntityEquipmentSlot.OFFHAND).getItem() == ModItems.gun_b92) {
-			entityLiving.getItemStackFromSlot(EntityEquipmentSlot.OFFHAND).onPlayerStoppedUsing(worldIn, entityLiving, timeLeft);
-		}
-		if (!entityLiving.isSneaking()) {
-			int j = this.getMaxItemUseDuration(stack) - timeLeft;
-			if (entityLiving instanceof EntityPlayer) {
-				ArrowLooseEvent evt = new ArrowLooseEvent((EntityPlayer) entityLiving, stack, worldIn, j, false);
-				MinecraftForge.EVENT_BUS.post(evt);
-				j = evt.getCharge();
-			}
+    }
 
-			boolean flag = true;
+    private static void setAnim(ItemStack stack, int i) {
+        if (stack.getTagCompound() == null) {
+            stack.setTagCompound(new NBTTagCompound());
+        }
 
-			if (flag) {
-				float f = j / 20.0F;
-				f = (f * f + f * 2.0F) / 3.0F;
+        stack.getTagCompound().setInteger("animation", i);
 
-				if (j < 10.0D) {
-					return;
-				}
+    }
 
-				if (j > 10.0F) {
-					f = 10.0F;
-				}
-				if (!worldIn.isRemote)
-					for (int i = 0; i < getPower(stack); i++) {
-						EntityExplosiveBeam entityarrow1;
-						entityarrow1 = new EntityExplosiveBeam(worldIn, entityLiving, 3.0F, entityLiving.getItemStackFromSlot(EntityEquipmentSlot.OFFHAND) == stack);
-						float divergence = i * 0.2F;
+    private static int getPower(ItemStack stack) {
+        if (stack.getTagCompound() == null) {
+            stack.setTagCompound(new NBTTagCompound());
+            return 0;
+        }
 
-						if (divergence > 1F)
-							divergence = 1F;
+        return stack.getTagCompound().getInteger("energy");
 
-						if (i > 0) {
-							entityarrow1.motionX += rand.nextGaussian() * divergence;
-							entityarrow1.motionY += rand.nextGaussian() * divergence;
-							entityarrow1.motionZ += rand.nextGaussian() * divergence;
-						}
+    }
 
-						stack.damageItem(1, entityLiving);
+    private static void setPower(ItemStack stack, int i) {
+        if (stack.getTagCompound() == null) {
+            stack.setTagCompound(new NBTTagCompound());
+        }
 
-						worldIn.spawnEntity(entityarrow1);
-					}
+        stack.getTagCompound().setInteger("energy", i);
 
-				worldIn.playSound(null, entityLiving.posX, entityLiving.posY, entityLiving.posZ, HBMSoundHandler.sparkShoot, SoundCategory.AMBIENT, 5.0F, 1.0F);
-				// Well that was a failure. Maybe I'll make it work one day
-				// if(worldIn.isRemote)
-				// ItemRenderGunAnim.b92Ani.start();
-				setAnim(stack, 1);
-				setPower(stack, 0);
-			}
-		} else {
-		}
-	}
+    }
 
-	@Override
-	public void onUpdate(ItemStack stack, World world, Entity entity, int i, boolean b) {
+    public static float getRotationFromAnim(ItemStack stack, float partialTicks) {
+        float rad = 0.0174533F;
+        rad *= 7.5F;
+        int i = getAnim(stack);
+        // i+=partialTicks;
+        if (i < 10)
+            return 0;
+        i -= 10;
 
-		int j = getAnim(stack);
-		if (j > 0) {
-			{
-				if (j < 30) {
-					setAnim(stack, j + 1);
+        if (i < 6)
+            return rad * (i - 1 + partialTicks);
+        if (i > 14)
+            return rad * (5 - (i + partialTicks - 15));
+        return rad * 5;
+    }
 
-				} else
-					setAnim(stack, 0);
+    public static float getOffsetFromAnim(ItemStack stack, float partialTicks) {
+        float i = getAnim(stack);
+        if (i < 10)
+            return 0;
+        i -= 10;
 
-				if (j == 15) {
-					world.playSound(null, entity.posX, entity.posY, entity.posZ, HBMSoundHandler.b92Reload, SoundCategory.AMBIENT, 2.0F, 0.9F);
-					setPower(stack, getPower(stack) + 1);
+        if (i < 10)
+            return (i + partialTicks) / 10;
+        else
+            return 2 - ((i + partialTicks) / 10);
+    }
 
-					if (getPower(stack) > 10) {
+    public static float getTransFromAnim(ItemStack stack, float partialTicks) {
+        float i = getAnim(stack);
+        if (i < 10)
+            return 0;
+        i -= 10;
 
-						setPower(stack, 0);
+        if (i > 4 && i < 10)
+            return (i + partialTicks - 5) * 0.05F;
 
-						if (!world.isRemote) {
-							world.playSound(null, entity.posX, entity.posY, entity.posZ, SoundEvents.ENTITY_GENERIC_EXPLODE, SoundCategory.AMBIENT, 100.0f, world.rand.nextFloat() * 0.1F + 0.9F);
+        if (i > 9 && i < 15)
+            return (10 * 0.05F) - ((i + partialTicks - 5) * 0.05F);
 
-							EntityNukeExplosionMK3 exp = new EntityNukeExplosionMK3(world);
-							exp.posX = entity.posX;
-							exp.posY = entity.posY;
-							exp.posZ = entity.posZ;
-							exp.destructionRange = 50;
-							exp.speed = 25;
-							exp.coefficient = 1.0F;
-							exp.waste = false;
+        return 0;
+    }
 
-							world.spawnEntity(exp);
+    @Override
+    public void onPlayerStoppedUsing(ItemStack stack, World worldIn, EntityLivingBase entityLiving, int timeLeft) {
+        if (entityLiving.getItemStackFromSlot(EntityEquipmentSlot.MAINHAND) == stack && !entityLiving.getItemStackFromSlot(EntityEquipmentSlot.OFFHAND).isEmpty() && entityLiving.getItemStackFromSlot(EntityEquipmentSlot.OFFHAND).getItem() == ModItems.gun_b92) {
+            entityLiving.getItemStackFromSlot(EntityEquipmentSlot.OFFHAND).onPlayerStoppedUsing(worldIn, entityLiving, timeLeft);
+        }
+        if (!entityLiving.isSneaking()) {
+            int j = this.getMaxItemUseDuration(stack) - timeLeft;
+            if (entityLiving instanceof EntityPlayer) {
+                ArrowLooseEvent evt = new ArrowLooseEvent((EntityPlayer) entityLiving, stack, worldIn, j, false);
+                MinecraftForge.EVENT_BUS.post(evt);
+                j = evt.getCharge();
+            }
 
-							EntityCloudFleijaRainbow cloud = new EntityCloudFleijaRainbow(world, 50);
-							cloud.posX = entity.posX;
-							cloud.posY = entity.posY;
-							cloud.posZ = entity.posZ;
-							world.spawnEntity(cloud);
-						}
-					}
-				}
-			}
+            boolean flag = true;
 
-		}
+            if (flag) {
+                float f = j / 20.0F;
+                f = (f * f + f * 2.0F) / 3.0F;
 
-	}
+                if (j < 10.0D) {
+                    return;
+                }
 
-	/**
-	 * How long it takes to use or consume an item
-	 */
-	@Override
-	public int getMaxItemUseDuration(ItemStack p_77626_1_) {
-		return 72000;
-	}
+                if (j > 10.0F) {
+                    f = 10.0F;
+                }
+                if (!worldIn.isRemote)
+                    for (int i = 0; i < getPower(stack); i++) {
+                        EntityExplosiveBeam entityarrow1;
+                        entityarrow1 = new EntityExplosiveBeam(worldIn, entityLiving, 3.0F, entityLiving.getItemStackFromSlot(EntityEquipmentSlot.OFFHAND) == stack);
+                        float divergence = i * 0.2F;
 
-	/**
-	 * returns the action that specifies what animation to play when the items
-	 * is being used
-	 */
-	@Override
-	public EnumAction getItemUseAction(ItemStack p_77661_1_) {
-		return EnumAction.BOW;
-	}
+                        if (divergence > 1F)
+                            divergence = 1F;
 
-	@Override
-	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
-		ItemStack stack = playerIn.getHeldItem(handIn);
-		if (!playerIn.isSneaking() && getPower(stack) > 0) {
+                        if (i > 0) {
+                            entityarrow1.motionX += rand.nextGaussian() * divergence;
+                            entityarrow1.motionY += rand.nextGaussian() * divergence;
+                            entityarrow1.motionZ += rand.nextGaussian() * divergence;
+                        }
 
-			if (GunB92.getAnim(stack) == 0) {
-				playerIn.setActiveHand(handIn);
-			}
+                        stack.damageItem(1, entityLiving);
 
-		} else {
-			if (getAnim(stack) == 0) {
-				setAnim(stack, 1);
-			}
-		}
-		return super.onItemRightClick(worldIn, playerIn, handIn);
-	}
+                        worldIn.spawnEntity(entityarrow1);
+                    }
 
-	/**
-	 * Return the enchantability factor of the item, most of the time is based
-	 * on material.
-	 */
-	@Override
-	public int getItemEnchantability() {
-		return 1;
-	}
+                worldIn.playSound(null, entityLiving.posX, entityLiving.posY, entityLiving.posZ, HBMSoundHandler.sparkShoot, SoundCategory.AMBIENT, 5.0F, 1.0F);
+                // Well that was a failure. Maybe I'll make it work one day
+                // if(worldIn.isRemote)
+                // ItemRenderGunAnim.b92Ani.start();
+                setAnim(stack, 1);
+                setPower(stack, 0);
+            }
+        } else {
+        }
+    }
 
-	@Override
-	public void addInformation(ItemStack stack, World worldIn, List<String> list, ITooltipFlag flagIn) {
-		if (MainRegistry.polaroidID == 11) {
-			list.add("A weapon that came from the stars.");
-			list.add("It screams for murder.");
-		} else if (MainRegistry.polaroidID == 18) {
-			list.add("One could turn the gun into a bomb");
-			list.add("by overloading the capacitors...");
-		} else {
-			list.add("Stay away from me compootur!");
-		}
-		list.add("");
-		list.add("Projectiles explode on impact.");
-		list.add("Sneak while holding the right mouse button");
-		list.add("to charge additional energy.");
-		list.add("The more energy is stored, the less accurate");
-		list.add("the beams become.");
-		list.add("Only up to ten charges may be stored.");
-		list.add("");
-		list.add("\"It's nerf or nothing!\"");
-		list.add("");
-		list.add("[LEGENDARY WEAPON]");
+    @Override
+    public void onUpdate(ItemStack stack, World world, Entity entity, int i, boolean b) {
 
-		// Yeah attribute modifiers don't work too well for this. Not sure why
-		// this even needs to be here, but oh well.
-		list.add(TextFormatting.BLUE + "+3.5 Attack Damage");
-	}
+        int j = getAnim(stack);
+        if (j > 0) {
+            {
+                if (j < 30) {
+                    setAnim(stack, j + 1);
 
-	@Override
-	public boolean shouldCauseReequipAnimation(ItemStack oldStack, ItemStack newStack, boolean slotChanged) {
-		return false;
-	}
+                } else
+                    setAnim(stack, 0);
 
-	@Override
-	public Multimap<String, AttributeModifier> getItemAttributeModifiers(EntityEquipmentSlot equipmentSlot) {
-		Multimap<String, AttributeModifier> multimap = super.getItemAttributeModifiers(equipmentSlot);
-		// multimap.put(SharedMonsterAttributes.ATTACK_DAMAGE.getName(), new
-		// AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Weapon modifier", 3.5,
-		// 0));
-		return multimap;
-	}
+                if (j == 15) {
+                    world.playSound(null, entity.posX, entity.posY, entity.posZ, HBMSoundHandler.b92Reload, SoundCategory.AMBIENT, 2.0F, 0.9F);
+                    setPower(stack, getPower(stack) + 1);
 
-	private static int getAnim(ItemStack stack) {
-		if (stack.getTagCompound() == null) {
-			stack.setTagCompound(new NBTTagCompound());
-			return 0;
-		}
+                    if (getPower(stack) > 10) {
 
-		return stack.getTagCompound().getInteger("animation");
+                        setPower(stack, 0);
 
-	}
+                        if (!world.isRemote) {
+                            world.playSound(null, entity.posX, entity.posY, entity.posZ, SoundEvents.ENTITY_GENERIC_EXPLODE, SoundCategory.AMBIENT, 100.0f, world.rand.nextFloat() * 0.1F + 0.9F);
 
-	private static void setAnim(ItemStack stack, int i) {
-		if (stack.getTagCompound() == null) {
-			stack.setTagCompound(new NBTTagCompound());
-		}
+                            EntityNukeExplosionMK3 exp = new EntityNukeExplosionMK3(world);
+                            exp.posX = entity.posX;
+                            exp.posY = entity.posY;
+                            exp.posZ = entity.posZ;
+                            exp.destructionRange = 50;
+                            exp.speed = 25;
+                            exp.coefficient = 1.0F;
+                            exp.waste = false;
 
-		stack.getTagCompound().setInteger("animation", i);
+                            world.spawnEntity(exp);
 
-	}
+                            EntityCloudFleijaRainbow cloud = new EntityCloudFleijaRainbow(world, 50);
+                            cloud.posX = entity.posX;
+                            cloud.posY = entity.posY;
+                            cloud.posZ = entity.posZ;
+                            world.spawnEntity(cloud);
+                        }
+                    }
+                }
+            }
 
-	private static int getPower(ItemStack stack) {
-		if (stack.getTagCompound() == null) {
-			stack.setTagCompound(new NBTTagCompound());
-			return 0;
-		}
+        }
 
-		return stack.getTagCompound().getInteger("energy");
+    }
 
-	}
+    /**
+     * How long it takes to use or consume an item
+     */
+    @Override
+    public int getMaxItemUseDuration(ItemStack p_77626_1_) {
+        return 72000;
+    }
 
-	private static void setPower(ItemStack stack, int i) {
-		if (stack.getTagCompound() == null) {
-			stack.setTagCompound(new NBTTagCompound());
-		}
+    /**
+     * returns the action that specifies what animation to play when the items
+     * is being used
+     */
+    @Override
+    public EnumAction getItemUseAction(ItemStack p_77661_1_) {
+        return EnumAction.BOW;
+    }
 
-		stack.getTagCompound().setInteger("energy", i);
+    @Override
+    public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
+        ItemStack stack = playerIn.getHeldItem(handIn);
+        if (!playerIn.isSneaking() && getPower(stack) > 0) {
 
-	}
+            if (GunB92.getAnim(stack) == 0) {
+                playerIn.setActiveHand(handIn);
+            }
 
-	public static float getRotationFromAnim(ItemStack stack, float partialTicks) {
-		float rad = 0.0174533F;
-		rad *= 7.5F;
-		int i = getAnim(stack);
-		// i+=partialTicks;
-		if (i < 10)
-			return 0;
-		i -= 10;
+        } else {
+            if (getAnim(stack) == 0) {
+                setAnim(stack, 1);
+            }
+        }
+        return super.onItemRightClick(worldIn, playerIn, handIn);
+    }
 
-		if (i < 6)
-			return rad * (i - 1 + partialTicks);
-		if (i > 14)
-			return rad * (5 - (i + partialTicks - 15));
-		return rad * 5;
-	}
+    /**
+     * Return the enchantability factor of the item, most of the time is based
+     * on material.
+     */
+    @Override
+    public int getItemEnchantability() {
+        return 1;
+    }
 
-	public static float getOffsetFromAnim(ItemStack stack, float partialTicks) {
-		float i = getAnim(stack);
-		if (i < 10)
-			return 0;
-		i -= 10;
+    @Override
+    public void addInformation(ItemStack stack, World worldIn, List<String> list, ITooltipFlag flagIn) {
+        if (MainRegistry.polaroidID == 11) {
+            list.add("A weapon that came from the stars.");
+            list.add("It screams for murder.");
+        } else if (MainRegistry.polaroidID == 18) {
+            list.add("One could turn the gun into a bomb");
+            list.add("by overloading the capacitors...");
+        } else {
+            list.add("Stay away from me compootur!");
+        }
+        list.add("");
+        list.add("Projectiles explode on impact.");
+        list.add("Sneak while holding the right mouse button");
+        list.add("to charge additional energy.");
+        list.add("The more energy is stored, the less accurate");
+        list.add("the beams become.");
+        list.add("Only up to ten charges may be stored.");
+        list.add("");
+        list.add("\"It's nerf or nothing!\"");
+        list.add("");
+        list.add("[LEGENDARY WEAPON]");
 
-		if (i < 10)
-			return (i + partialTicks) / 10;
-		else
-			return 2 - ((i + partialTicks) / 10);
-	}
+        // Yeah attribute modifiers don't work too well for this. Not sure why
+        // this even needs to be here, but oh well.
+        list.add(TextFormatting.BLUE + "+3.5 Attack Damage");
+    }
 
-	public static float getTransFromAnim(ItemStack stack, float partialTicks) {
-		float i = getAnim(stack);
-		if (i < 10)
-			return 0;
-		i -= 10;
+    @Override
+    public boolean shouldCauseReequipAnimation(ItemStack oldStack, ItemStack newStack, boolean slotChanged) {
+        return false;
+    }
 
-		if (i > 4 && i < 10)
-			return (i + partialTicks - 5) * 0.05F;
+    @Override
+    public Multimap<String, AttributeModifier> getItemAttributeModifiers(EntityEquipmentSlot equipmentSlot) {
+        Multimap<String, AttributeModifier> multimap = super.getItemAttributeModifiers(equipmentSlot);
+        // multimap.put(SharedMonsterAttributes.ATTACK_DAMAGE.getName(), new
+        // AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Weapon modifier", 3.5,
+        // 0));
+        return multimap;
+    }
 
-		if (i > 9 && i < 15)
-			return (10 * 0.05F) - ((i + partialTicks - 5) * 0.05F);
+    @Override
+    public EnumRarity getRarity(ItemStack p_77613_1_) {
 
-		return 0;
-	}
+        return EnumRarity.UNCOMMON;
+    }
 
-	@Override
-	public EnumRarity getRarity(ItemStack p_77613_1_) {
-
-		return EnumRarity.UNCOMMON;
-	}
-
-	@Override
-	public ModelResourceLocation getResourceLocation() {
-		return b92Model;
-	}
+    @Override
+    public ModelResourceLocation getResourceLocation() {
+        return b92Model;
+    }
 }

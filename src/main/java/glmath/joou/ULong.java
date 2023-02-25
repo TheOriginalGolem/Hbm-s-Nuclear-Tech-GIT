@@ -1,12 +1,12 @@
 /**
  * Copyright (c) 2011-2016, Data Geekery GmbH (http://www.datageekery.com)
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -27,11 +27,6 @@ import java.math.BigInteger;
 public final class ULong implements Comparable<ULong> {
 
     /**
-     * Generated UID
-     */
-    private static final long serialVersionUID = -6821055240959745390L;
-
-    /**
      * A constant holding the minimum value an <code>unsigned long</code> can
      * have, 0.
      */
@@ -41,7 +36,10 @@ public final class ULong implements Comparable<ULong> {
      * have, 2<sup>64</sup>-1.
      */
     public static final long MAX_VALUE = 0xffffffffffffffffL;
-
+    /**
+     * Generated UID
+     */
+    private static final long serialVersionUID = -6821055240959745390L;
     /**
      * The value modelling the content of this <code>unsigned long</code>
      */
@@ -107,29 +105,6 @@ public final class ULong implements Comparable<ULong> {
         this.value = uLong.value;
     }
 
-    @Override
-    public int hashCode() {
-        return Long.valueOf(value).hashCode();
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj instanceof ULong) {
-            return value == ((ULong) obj).value;
-        }
-        return false;
-    }
-
-    @Override
-    public String toString() {
-        return Long.toString(value);
-    }
-
-    @Override
-    public int compareTo(ULong o) {
-        return Long.compareUnsigned(value, o.value);
-    }
-    
     /**
      * Throw exception if value out of range (short version)
      *
@@ -212,5 +187,28 @@ public final class ULong implements Comparable<ULong> {
             throw new ArithmeticException("Value is out of range : " + value);
         }
         return Short.parseShort(value);
+    }
+
+    @Override
+    public int hashCode() {
+        return Long.valueOf(value).hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof ULong) {
+            return value == ((ULong) obj).value;
+        }
+        return false;
+    }
+
+    @Override
+    public String toString() {
+        return Long.toString(value);
+    }
+
+    @Override
+    public int compareTo(ULong o) {
+        return Long.compareUnsigned(value, o.value);
     }
 }

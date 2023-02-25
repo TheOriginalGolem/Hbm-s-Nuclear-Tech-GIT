@@ -1,9 +1,6 @@
 package com.hbm.items.special;
 
-import java.util.List;
-
 import com.hbm.items.ModItems;
-
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -11,56 +8,58 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 
+import java.util.List;
+
 public class ItemFusionShield extends Item {
 
-	public long maxDamage;
-	public int maxTemp;
+    public long maxDamage;
+    public int maxTemp;
 
-	public ItemFusionShield(long maxDamage, int maxTemp, String s) {
-		this.maxDamage = maxDamage;
-		this.maxTemp = maxTemp;
-		this.setUnlocalizedName(s);
-		this.setRegistryName(s);
-		
-		ModItems.ALL_ITEMS.add(this);
-	}
+    public ItemFusionShield(long maxDamage, int maxTemp, String s) {
+        this.maxDamage = maxDamage;
+        this.maxTemp = maxTemp;
+        this.setUnlocalizedName(s);
+        this.setRegistryName(s);
 
-	public static long getShieldDamage(ItemStack stack) {
+        ModItems.ALL_ITEMS.add(this);
+    }
 
-		if(!stack.hasTagCompound()) {
-			stack.setTagCompound(new NBTTagCompound());
-			return 0;
-		}
+    public static long getShieldDamage(ItemStack stack) {
 
-		return stack.getTagCompound().getLong("damage");
-	}
-	
-	public static void setShieldDamage(ItemStack stack, long damage) {
+        if (!stack.hasTagCompound()) {
+            stack.setTagCompound(new NBTTagCompound());
+            return 0;
+        }
 
-		if(!stack.hasTagCompound()) {
-			stack.setTagCompound(new NBTTagCompound());
-		}
+        return stack.getTagCompound().getLong("damage");
+    }
 
-		stack.getTagCompound().setLong("damage", damage);
-	}
-	
-	@Override
-	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-		long damage = getShieldDamage(stack);
-		int percent = (int) ((maxDamage - damage) * 100 / maxDamage);
+    public static void setShieldDamage(ItemStack stack, long damage) {
 
-		tooltip.add("Durability: " + (maxDamage - damage) + "/" + maxDamage + " (" + percent + "%)");
+        if (!stack.hasTagCompound()) {
+            stack.setTagCompound(new NBTTagCompound());
+        }
 
-		tooltip.add("Melting point: " + TextFormatting.RED + "" + maxTemp + "°C");
-	}
-	
-	@Override
-	public double getDurabilityForDisplay(ItemStack stack) {
-		return (double)getShieldDamage(stack) / (double)maxDamage;
-	}
-	
-	@Override
-	public boolean showDurabilityBar(ItemStack stack) {
-		return getDurabilityForDisplay(stack) != 0;
-	}
+        stack.getTagCompound().setLong("damage", damage);
+    }
+
+    @Override
+    public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
+        long damage = getShieldDamage(stack);
+        int percent = (int) ((maxDamage - damage) * 100 / maxDamage);
+
+        tooltip.add("Durability: " + (maxDamage - damage) + "/" + maxDamage + " (" + percent + "%)");
+
+        tooltip.add("Melting point: " + TextFormatting.RED + "" + maxTemp + "°C");
+    }
+
+    @Override
+    public double getDurabilityForDisplay(ItemStack stack) {
+        return (double) getShieldDamage(stack) / (double) maxDamage;
+    }
+
+    @Override
+    public boolean showDurabilityBar(ItemStack stack) {
+        return getDurabilityForDisplay(stack) != 0;
+    }
 }

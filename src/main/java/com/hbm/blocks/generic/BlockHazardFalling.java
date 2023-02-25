@@ -1,12 +1,9 @@
 package com.hbm.blocks.generic;
 
-import java.util.Random;
-
 import com.hbm.blocks.ModBlocks;
 import com.hbm.interfaces.IItemHazard;
 import com.hbm.modules.ItemHazardModule;
 import com.hbm.saveddata.RadiationSavedData;
-
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -15,73 +12,75 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
+import java.util.Random;
+
 public class BlockHazardFalling extends BlockFalling implements IItemHazard {
-	
-	ItemHazardModule module;
-	
-	private float rad = 0.0F;
 
-	private boolean beaconable = false;
+    ItemHazardModule module;
 
-	public BlockHazardFalling(SoundType type, String s) {
-		this(Material.SAND);
-		this.setUnlocalizedName(s);
-		this.setRegistryName(s);
-		this.setSoundType(type);
-		
-		ModBlocks.ALL_BLOCKS.add(this);
-	}
+    private float rad = 0.0F;
 
-	public BlockHazardFalling(Material mat) {
-		super(mat);
-		this.module = new ItemHazardModule();
-	}
+    private boolean beaconable = false;
 
-	public BlockHazardFalling makeBeaconable() {
-		this.beaconable  = true;
-		return this;
-	}
+    public BlockHazardFalling(SoundType type, String s) {
+        this(Material.SAND);
+        this.setUnlocalizedName(s);
+        this.setRegistryName(s);
+        this.setSoundType(type);
 
-	@Override
-	public boolean isBeaconBase(IBlockAccess worldObj, BlockPos pos, BlockPos beacon){
-		return beaconable;
-	}
-	
-	@Override
-	public ItemHazardModule getModule() {
-		return module;
-	}
+        ModBlocks.ALL_BLOCKS.add(this);
+    }
 
-	@Override
-	public IItemHazard addRadiation(float radiation) {
-		this.getModule().addRadiation(radiation);
-		this.rad = radiation * 0.1F;
-		return this;
-	}
+    public BlockHazardFalling(Material mat) {
+        super(mat);
+        this.module = new ItemHazardModule();
+    }
 
-	@Override
-	public void updateTick(World world, BlockPos pos, IBlockState state, Random rand){
-		if(this.rad > 0) {
-			RadiationSavedData.incrementRad(world, pos, rad, Float.MAX_VALUE);
-			world.scheduleUpdate(pos, this, this.tickRate(world));
-		}
-		super.updateTick(world, pos, state, rand);
-	}
-	
-	@Override
-	public int tickRate(World world) {
+    public BlockHazardFalling makeBeaconable() {
+        this.beaconable = true;
+        return this;
+    }
 
-		if(this.rad > 0)
-			return 20;
+    @Override
+    public boolean isBeaconBase(IBlockAccess worldObj, BlockPos pos, BlockPos beacon) {
+        return beaconable;
+    }
 
-		return super.tickRate(world);
-	}
+    @Override
+    public ItemHazardModule getModule() {
+        return module;
+    }
 
-	@Override
-	public void onBlockAdded(World world, BlockPos pos, IBlockState state){
-		super.onBlockAdded(world, pos, state);
-		if(this.rad > 0)
-			world.scheduleUpdate(pos, this, this.tickRate(world));
-	}
-	
+    @Override
+    public IItemHazard addRadiation(float radiation) {
+        this.getModule().addRadiation(radiation);
+        this.rad = radiation * 0.1F;
+        return this;
+    }
+
+    @Override
+    public void updateTick(World world, BlockPos pos, IBlockState state, Random rand) {
+        if (this.rad > 0) {
+            RadiationSavedData.incrementRad(world, pos, rad, Float.MAX_VALUE);
+            world.scheduleUpdate(pos, this, this.tickRate(world));
+        }
+        super.updateTick(world, pos, state, rand);
+    }
+
+    @Override
+    public int tickRate(World world) {
+
+        if (this.rad > 0)
+            return 20;
+
+        return super.tickRate(world);
+    }
+
+    @Override
+    public void onBlockAdded(World world, BlockPos pos, IBlockState state) {
+        super.onBlockAdded(world, pos, state);
+        if (this.rad > 0)
+            world.scheduleUpdate(pos, this, this.tickRate(world));
+    }
+
 }

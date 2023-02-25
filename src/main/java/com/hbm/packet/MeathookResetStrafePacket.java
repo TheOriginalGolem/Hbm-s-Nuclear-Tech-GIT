@@ -2,7 +2,6 @@ package com.hbm.packet;
 
 import com.hbm.items.ModItems;
 import com.hbm.items.weapon.ItemGunShotty;
-
 import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
@@ -14,29 +13,29 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class MeathookResetStrafePacket implements IMessage {
 
-	public MeathookResetStrafePacket() {
-	}
-	
-	@Override
-	public void fromBytes(ByteBuf buf) {
-	}
+    public MeathookResetStrafePacket() {
+    }
 
-	@Override
-	public void toBytes(ByteBuf buf) {
-	}
-	
-	public static class Handler implements IMessageHandler<MeathookResetStrafePacket, IMessage> {
+    @Override
+    public void fromBytes(ByteBuf buf) {
+    }
 
-		@Override
-		@SideOnly(Side.CLIENT)
-		public IMessage onMessage(MeathookResetStrafePacket message, MessageContext ctx) {
-			EntityPlayer p = Minecraft.getMinecraft().player;
-			if(p.getHeldItemMainhand().getItem() == ModItems.gun_supershotgun){
-				ItemGunShotty.motionStrafe = 0;
-			}
-			return null;
-		}
-		
-	}
+    @Override
+    public void toBytes(ByteBuf buf) {
+    }
+
+    public static class Handler implements IMessageHandler<MeathookResetStrafePacket, IMessage> {
+
+        @Override
+        @SideOnly(Side.CLIENT)
+        public IMessage onMessage(MeathookResetStrafePacket message, MessageContext ctx) {
+            EntityPlayer p = Minecraft.getMinecraft().player;
+            if (p.getHeldItemMainhand().getItem() == ModItems.gun_supershotgun) {
+                ItemGunShotty.motionStrafe = 0;
+            }
+            return null;
+        }
+
+    }
 
 }

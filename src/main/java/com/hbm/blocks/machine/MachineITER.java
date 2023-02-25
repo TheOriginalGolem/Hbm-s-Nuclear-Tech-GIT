@@ -1,7 +1,5 @@
 package com.hbm.blocks.machine;
 
-import java.util.Random;
-
 import com.hbm.blocks.BlockDummyable;
 import com.hbm.blocks.ModBlocks;
 import com.hbm.lib.ForgeDirection;
@@ -10,7 +8,6 @@ import com.hbm.render.amlfrom1710.Vec3;
 import com.hbm.tileentity.TileEntityProxyCombo;
 import com.hbm.tileentity.machine.TileEntityITER;
 import com.hbm.tileentity.machine.TileEntityITERStruct;
-
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
@@ -27,235 +24,229 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.internal.FMLNetworkHandler;
 
+import java.util.Random;
+
 public class MachineITER extends BlockDummyable {
 
-	public static boolean drop = true;
-	
-	public MachineITER(String s) {
-		super(Material.IRON, s);
-	}
+    public static final int height = 2;
+    public static boolean drop = true;
 
-	@Override
-	public TileEntity createNewTileEntity(World worldIn, int meta) {
-		if(meta >= 12)
-			return new TileEntityITER();
-		if(meta >= 6)
-			return new TileEntityProxyCombo(true, true, true);
-		return null;
-	}
+    public MachineITER(String s) {
+        super(Material.IRON, s);
+    }
 
-	@Override
-	public int[] getDimensions() {
-		//because we'll implement our own gnarly behavior here
-		return new int[] { 0, 0, 0, 0, 0, 0 };
-	}
-	
-	@Override
-	public boolean onBlockActivated(World world, BlockPos pos1, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-		if(world.isRemote)
-		{
-			return true;
-		} else if(!player.isSneaking())
-		{
-			int[] pos = this.findCore(world, pos1.getX(), pos1.getY(), pos1.getZ());
+    @Override
+    public TileEntity createNewTileEntity(World worldIn, int meta) {
+        if (meta >= 12)
+            return new TileEntityITER();
+        if (meta >= 6)
+            return new TileEntityProxyCombo(true, true, true);
+        return null;
+    }
 
-			if(pos == null)
-				return false;
+    @Override
+    public int[] getDimensions() {
+        //because we'll implement our own gnarly behavior here
+        return new int[]{0, 0, 0, 0, 0, 0};
+    }
 
-			TileEntityITER entity = (TileEntityITER) world.getTileEntity(new BlockPos(pos[0], pos[1], pos[2]));
-			if(entity != null)
-			{
-				FMLNetworkHandler.openGui(player, MainRegistry.instance, ModBlocks.guiID_iter, world, pos[0], pos[1], pos[2]);
-			}
-			return true;
-		} else {
-			return false;
-		}
-	}
-	
-	public static final int height = 2;
-	
-	@Override
-	public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase player, ItemStack itemStack) {
-		if(!(player instanceof EntityPlayer))
-			return;
-		EnumHand hand = player.getHeldItemMainhand() == itemStack ? EnumHand.MAIN_HAND : EnumHand.OFF_HAND;
-		int x = pos.getX();
-		int y = pos.getY();
-		int z = pos.getZ();
+    @Override
+    public boolean onBlockActivated(World world, BlockPos pos1, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+        if (world.isRemote) {
+            return true;
+        } else if (!player.isSneaking()) {
+            int[] pos = this.findCore(world, pos1.getX(), pos1.getY(), pos1.getZ());
 
-		int i = MathHelper.floor(player.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
-		EntityPlayer pl = (EntityPlayer) player;
+            if (pos == null)
+                return false;
 
-		int o = getOffset();
+            TileEntityITER entity = (TileEntityITER) world.getTileEntity(new BlockPos(pos[0], pos[1], pos[2]));
+            if (entity != null) {
+                FMLNetworkHandler.openGui(player, MainRegistry.instance, ModBlocks.guiID_iter, world, pos[0], pos[1], pos[2]);
+            }
+            return true;
+        } else {
+            return false;
+        }
+    }
 
-		ForgeDirection dir = ForgeDirection.NORTH;
+    @Override
+    public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase player, ItemStack itemStack) {
+        if (!(player instanceof EntityPlayer))
+            return;
+        EnumHand hand = player.getHeldItemMainhand() == itemStack ? EnumHand.MAIN_HAND : EnumHand.OFF_HAND;
+        int x = pos.getX();
+        int y = pos.getY();
+        int z = pos.getZ();
 
-		if(i == 0)
-		{
-			dir = ForgeDirection.getOrientation(2);
-		}
-		if(i == 1)
-		{
-			dir = ForgeDirection.getOrientation(5);
-		}
-		if(i == 2)
-		{
-			dir = ForgeDirection.getOrientation(3);
-		}
-		if(i == 3)
-		{
-			dir = ForgeDirection.getOrientation(4);
-		}
+        int i = MathHelper.floor(player.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
+        EntityPlayer pl = (EntityPlayer) player;
 
-		dir = dir.getOpposite();
+        int o = getOffset();
 
-		world.setBlockToAir(pos);
+        ForgeDirection dir = ForgeDirection.NORTH;
 
-		if(!checkRequirement(world, x, y, z, dir, o)) {
+        if (i == 0) {
+            dir = ForgeDirection.getOrientation(2);
+        }
+        if (i == 1) {
+            dir = ForgeDirection.getOrientation(5);
+        }
+        if (i == 2) {
+            dir = ForgeDirection.getOrientation(3);
+        }
+        if (i == 3) {
+            dir = ForgeDirection.getOrientation(4);
+        }
 
-			if(!pl.capabilities.isCreativeMode) {
-				ItemStack stack = pl.getHeldItem(hand);
-				Item item = Item.getItemFromBlock(this);
+        dir = dir.getOpposite();
 
-				if(stack == null || stack.isEmpty()) {
-					pl.setHeldItem(hand, new ItemStack(this));
-				} else {
-					if(stack.getItem() != item || stack.getCount() == stack.getMaxStackSize()) {
-						pl.inventory.addItemStackToInventory(new ItemStack(this));
-					} else {
-						pl.getHeldItem(hand).grow(1);
-					}
-				}
-			}
+        world.setBlockToAir(pos);
 
-			return;
-		}
+        if (!checkRequirement(world, x, y, z, dir, o)) {
 
-		pl.getHeldItem(hand).shrink(1);
+            if (!pl.capabilities.isCreativeMode) {
+                ItemStack stack = pl.getHeldItem(hand);
+                Item item = Item.getItemFromBlock(this);
 
-		world.setBlockState(new BlockPos(x + dir.offsetX * o , y + dir.offsetY * o + height, z + dir.offsetZ * o), this.getDefaultState().withProperty(META, dir.ordinal() + offset), 3);
-		safeRem = true;
-		fillSpace(world, x, y, z, dir, o);
-		safeRem = false;
-		world.scheduleUpdate(pos, this, 1);
-		world.scheduleUpdate(pos, this, 2);
-		
-		super.onBlockPlacedBy(world, pos, state, player, itemStack);
-	}
-	
-	@Override
-	public void breakBlock(World world, BlockPos pos, IBlockState state) {
-		int i = state.getValue(META);
-		if(i >= 12 && drop) {
+                if (stack == null || stack.isEmpty()) {
+                    pl.setHeldItem(hand, new ItemStack(this));
+                } else {
+                    if (stack.getItem() != item || stack.getCount() == stack.getMaxStackSize()) {
+                        pl.inventory.addItemStackToInventory(new ItemStack(this));
+                    } else {
+                        pl.getHeldItem(hand).grow(1);
+                    }
+                }
+            }
 
-            for(int l = 0; l < 4; l++)
-            	world.spawnEntity(new EntityItem(world, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, new ItemStack(ModBlocks.fusion_conductor, 64)));
+            return;
+        }
 
-        	world.spawnEntity(new EntityItem(world, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, new ItemStack(ModBlocks.fusion_conductor, 36)));
-        	world.spawnEntity(new EntityItem(world, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, new ItemStack(ModBlocks.fusion_center, 64)));
-        	world.spawnEntity(new EntityItem(world, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, new ItemStack(ModBlocks.fusion_motor, 4)));
-        	world.spawnEntity(new EntityItem(world, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, new ItemStack(ModBlocks.reinforced_glass, 8)));
-        	world.spawnEntity(new EntityItem(world, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, new ItemStack(ModBlocks.struct_iter_core, 1)));
-    	}
+        pl.getHeldItem(hand).shrink(1);
 
-		super.breakBlock(world, pos, state);
-	}
-	
-	@Override
-	protected boolean checkRequirement(World world, int x, int y, int z, ForgeDirection dir, int o) {
-		x = x + dir.offsetX * o;
-		z = z + dir.offsetZ * o;
+        world.setBlockState(new BlockPos(x + dir.offsetX * o, y + dir.offsetY * o + height, z + dir.offsetZ * o), this.getDefaultState().withProperty(META, dir.ordinal() + offset), 3);
+        safeRem = true;
+        fillSpace(world, x, y, z, dir, o);
+        safeRem = false;
+        world.scheduleUpdate(pos, this, 1);
+        world.scheduleUpdate(pos, this, 2);
 
-		int[][][] layout = TileEntityITERStruct.collisionMask;
+        super.onBlockPlacedBy(world, pos, state, player, itemStack);
+    }
 
-		for(int iy = 0; iy < 5; iy++) {
+    @Override
+    public void breakBlock(World world, BlockPos pos, IBlockState state) {
+        int i = state.getValue(META);
+        if (i >= 12 && drop) {
 
-			int l = iy > 2 ? 4 - iy : iy;
-			int[][] layer = layout[l];
+            for (int l = 0; l < 4; l++)
+                world.spawnEntity(new EntityItem(world, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, new ItemStack(ModBlocks.fusion_conductor, 64)));
 
-			for(int ix = 0; ix < layer.length; ix++) {
+            world.spawnEntity(new EntityItem(world, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, new ItemStack(ModBlocks.fusion_conductor, 36)));
+            world.spawnEntity(new EntityItem(world, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, new ItemStack(ModBlocks.fusion_center, 64)));
+            world.spawnEntity(new EntityItem(world, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, new ItemStack(ModBlocks.fusion_motor, 4)));
+            world.spawnEntity(new EntityItem(world, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, new ItemStack(ModBlocks.reinforced_glass, 8)));
+            world.spawnEntity(new EntityItem(world, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, new ItemStack(ModBlocks.struct_iter_core, 1)));
+        }
 
-				for(int iz = 0; iz < layer.length; iz++) {
+        super.breakBlock(world, pos, state);
+    }
 
-					int ex = ix - layer.length / 2;
-					int ez = iz - layer.length / 2;
+    @Override
+    protected boolean checkRequirement(World world, int x, int y, int z, ForgeDirection dir, int o) {
+        x = x + dir.offsetX * o;
+        z = z + dir.offsetZ * o;
 
-					if(ex == 0 && y == 2 && ez == 0)
-						continue;
+        int[][][] layout = TileEntityITERStruct.collisionMask;
 
-					if(!world.getBlockState(new BlockPos(x + ex, y + iy, z + ez)).getBlock().canPlaceBlockAt(world, new BlockPos(x + ex, y + iy, z + ez))) {
-						return false;
-					}
-				}
-			}
-		}
+        for (int iy = 0; iy < 5; iy++) {
 
-		return true;
-	}
+            int l = iy > 2 ? 4 - iy : iy;
+            int[][] layer = layout[l];
 
-	@Override
-	public void fillSpace(World world, int x, int y, int z, ForgeDirection dir, int o) {
-		x = x + dir.offsetX * o;
-		z = z + dir.offsetZ * o;
+            for (int ix = 0; ix < layer.length; ix++) {
 
-		int[][][] layout = TileEntityITERStruct.collisionMask;
+                for (int iz = 0; iz < layer.length; iz++) {
 
-		for(int iy = 0; iy < 5; iy++) {
+                    int ex = ix - layer.length / 2;
+                    int ez = iz - layer.length / 2;
 
-			int l = iy > 2 ? 4 - iy : iy;
-			int[][] layer = layout[l];
+                    if (ex == 0 && y == 2 && ez == 0)
+                        continue;
 
-			for(int ix = 0; ix < layer.length; ix++) {
+                    if (!world.getBlockState(new BlockPos(x + ex, y + iy, z + ez)).getBlock().canPlaceBlockAt(world, new BlockPos(x + ex, y + iy, z + ez))) {
+                        return false;
+                    }
+                }
+            }
+        }
 
-				for(int iz = 0; iz < layer[0].length; iz++) {
+        return true;
+    }
 
-					int ex = ix - layer.length / 2;
-					int ez = iz - layer.length / 2;
+    @Override
+    public void fillSpace(World world, int x, int y, int z, ForgeDirection dir, int o) {
+        x = x + dir.offsetX * o;
+        z = z + dir.offsetZ * o;
 
-					int meta = 0;
+        int[][][] layout = TileEntityITERStruct.collisionMask;
 
-					if(iy < 2) {
-						meta = ForgeDirection.DOWN.ordinal();
-					} else if(iy > 2) {
-						meta = ForgeDirection.UP.ordinal();
-					} else if(ex < 0) {
-						meta = ForgeDirection.WEST.ordinal();
-					} else if(ex > 0) {
-						meta = ForgeDirection.EAST.ordinal();
-					} else if(ez < 0) {
-						meta = ForgeDirection.NORTH.ordinal();
-					} else if(ez > 0) {
-						meta = ForgeDirection.SOUTH.ordinal();
-					} else {
-						continue;
-					}
+        for (int iy = 0; iy < 5; iy++) {
 
-					if(layout[l][ix][iz] > 0)
-						world.setBlockState(new BlockPos(x + ex, y + iy, z + ez), this.getDefaultState().withProperty(META, meta), 3);
-				}
-			}
-		}
-		this.makeExtra(world, x, y, z);
-		this.makeExtra(world, x, y + 4, z);
+            int l = iy > 2 ? 4 - iy : iy;
+            int[][] layer = layout[l];
 
-		Vec3 vec = Vec3.createVectorHelper(5.75, 0, 0);
+            for (int ix = 0; ix < layer.length; ix++) {
 
-		for(int i = 0; i < 16; i++) {
-			vec.rotateAroundY((float) (Math.PI / 8));
-			this.makeExtra(world, x + (int)vec.xCoord, y, z + (int)vec.zCoord);
-			this.makeExtra(world, x + (int)vec.xCoord, y + 4, z + (int)vec.zCoord);
-		}
-	}
-	
-	@Override
-	public int getOffset() {
-		return 7;
-	}
-	
-	@Override
-	public Item getItemDropped(IBlockState state, Random rand, int fortune) {
-		return Items.AIR;
-	}
+                for (int iz = 0; iz < layer[0].length; iz++) {
+
+                    int ex = ix - layer.length / 2;
+                    int ez = iz - layer.length / 2;
+
+                    int meta = 0;
+
+                    if (iy < 2) {
+                        meta = ForgeDirection.DOWN.ordinal();
+                    } else if (iy > 2) {
+                        meta = ForgeDirection.UP.ordinal();
+                    } else if (ex < 0) {
+                        meta = ForgeDirection.WEST.ordinal();
+                    } else if (ex > 0) {
+                        meta = ForgeDirection.EAST.ordinal();
+                    } else if (ez < 0) {
+                        meta = ForgeDirection.NORTH.ordinal();
+                    } else if (ez > 0) {
+                        meta = ForgeDirection.SOUTH.ordinal();
+                    } else {
+                        continue;
+                    }
+
+                    if (layout[l][ix][iz] > 0)
+                        world.setBlockState(new BlockPos(x + ex, y + iy, z + ez), this.getDefaultState().withProperty(META, meta), 3);
+                }
+            }
+        }
+        this.makeExtra(world, x, y, z);
+        this.makeExtra(world, x, y + 4, z);
+
+        Vec3 vec = Vec3.createVectorHelper(5.75, 0, 0);
+
+        for (int i = 0; i < 16; i++) {
+            vec.rotateAroundY((float) (Math.PI / 8));
+            this.makeExtra(world, x + (int) vec.xCoord, y, z + (int) vec.zCoord);
+            this.makeExtra(world, x + (int) vec.xCoord, y + 4, z + (int) vec.zCoord);
+        }
+    }
+
+    @Override
+    public int getOffset() {
+        return 7;
+    }
+
+    @Override
+    public Item getItemDropped(IBlockState state, Random rand, int fortune) {
+        return Items.AIR;
+    }
 
 }

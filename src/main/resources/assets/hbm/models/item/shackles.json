@@ -1,6 +1,6 @@
 {
-	"parent": "item/generated",
-	"textures": {
-		"layer0": "hbm:items/shackles"
-	}
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "hbm:items/shackles"
+  }
 }

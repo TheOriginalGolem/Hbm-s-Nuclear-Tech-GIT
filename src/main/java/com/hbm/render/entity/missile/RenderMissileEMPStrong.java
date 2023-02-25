@@ -1,28 +1,28 @@
 package com.hbm.render.entity.missile;
 
-import org.lwjgl.opengl.GL11;
-
 import com.hbm.entity.missile.EntityMissileEMPStrong;
 import com.hbm.main.ResourceManager;
 import com.hbm.render.RenderHelper;
-
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
+import org.lwjgl.opengl.GL11;
 
 public class RenderMissileEMPStrong extends Render<EntityMissileEMPStrong> {
-	
-	public static final IRenderFactory<EntityMissileEMPStrong> FACTORY = (RenderManager man) -> {return new RenderMissileEMPStrong(man);};
-	
-	protected RenderMissileEMPStrong(RenderManager renderManager) {
-		super(renderManager);
-	}
-	
-	@Override
-	public void doRender(EntityMissileEMPStrong missile, double x, double y, double z, float entityYaw, float partialTicks) {
-		GL11.glPushMatrix();
+
+    public static final IRenderFactory<EntityMissileEMPStrong> FACTORY = (RenderManager man) -> {
+        return new RenderMissileEMPStrong(man);
+    };
+
+    protected RenderMissileEMPStrong(RenderManager renderManager) {
+        super(renderManager);
+    }
+
+    @Override
+    public void doRender(EntityMissileEMPStrong missile, double x, double y, double z, float entityYaw, float partialTicks) {
+        GL11.glPushMatrix();
         GL11.glPushAttrib(GL11.GL_LIGHTING_BIT);
         GlStateManager.enableLighting();
         double[] renderPos = RenderHelper.getRenderPosFromMissile(missile, partialTicks);
@@ -33,15 +33,15 @@ public class RenderMissileEMPStrong extends Render<EntityMissileEMPStrong> {
         GL11.glScalef(1.5F, 1.5F, 1.5F);
         GL11.glRotatef(missile.prevRotationYaw + (missile.rotationYaw - missile.prevRotationYaw) * partialTicks - 90.0F, 0.0F, 1.0F, 0.0F);
         GL11.glRotatef(missile.prevRotationPitch + (missile.rotationPitch - missile.prevRotationPitch) * partialTicks, 0.0F, 0.0F, 1.0F);
-        
+
         bindTexture(ResourceManager.missileStrong_EMP_tex);
         ResourceManager.missileStrong.renderAll();
         GL11.glPopAttrib();
-		GL11.glPopMatrix();
-	}
+        GL11.glPopMatrix();
+    }
 
-	@Override
-	protected ResourceLocation getEntityTexture(EntityMissileEMPStrong entity) {
-		return ResourceManager.missileStrong_EMP_tex;
-	}
+    @Override
+    protected ResourceLocation getEntityTexture(EntityMissileEMPStrong entity) {
+        return ResourceManager.missileStrong_EMP_tex;
+    }
 }

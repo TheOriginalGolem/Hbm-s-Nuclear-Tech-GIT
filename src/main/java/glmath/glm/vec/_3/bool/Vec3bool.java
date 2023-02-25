@@ -6,7 +6,6 @@
 package glmath.glm.vec._3.bool;
 
 /**
- *
  * @author GBarbieri
  */
 public class Vec3bool extends FuncRelational {

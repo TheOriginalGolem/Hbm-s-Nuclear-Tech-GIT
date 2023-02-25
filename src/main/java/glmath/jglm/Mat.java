@@ -5,11 +5,11 @@
 package glmath.jglm;
 
 /**
- * @deprecated
  * @author gbarbieri
+ * @deprecated
  */
 public class Mat {
 
-//    protected float[] matrix;
+    //    protected float[] matrix;
     protected int order;
 }

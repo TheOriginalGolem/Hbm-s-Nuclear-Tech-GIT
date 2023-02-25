@@ -40,7 +40,6 @@ import glmath.glm.vec._4.ul.Vec4ul;
 import glmath.glm.vec._4.us.Vec4us;
 
 /**
- *
  * @author GBarbieri
  */
 abstract class BooleansOperators {

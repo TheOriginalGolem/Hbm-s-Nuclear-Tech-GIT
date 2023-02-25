@@ -6,7 +6,6 @@
 package glmath.joou;
 
 /**
- *
  * @author GBarbieri
  */
 public class UMath {

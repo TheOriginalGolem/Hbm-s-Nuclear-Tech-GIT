@@ -6,7 +6,6 @@
 package glmath.glm.vec._2.s;
 
 /**
- *
  * @author GBarbieri
  */
 public class Vec2s extends FuncRelational {

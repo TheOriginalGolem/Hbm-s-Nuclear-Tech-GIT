@@ -1,67 +1,66 @@
 package com.hbm.creativetabs;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import com.hbm.items.ModItems;
-
 import api.hbm.energy.IBatteryItem;
+import com.hbm.items.ModItems;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ControlTab extends CreativeTabs {
 
-	public ControlTab(int index, String label) {
-		super(index, label);
-	}
+    public ControlTab(int index, String label) {
+        super(index, label);
+    }
 
-	@Override
-	public ItemStack getTabIconItem() {
-		if(ModItems.rod_balefire_blazing != null){
-			return new ItemStack(ModItems.rod_balefire_blazing);
-		}
-		return new ItemStack(Items.IRON_PICKAXE, 1);
-	}
-	
-	@Override
-	public void displayAllRelevantItems(NonNullList<ItemStack> list) {
-		super.displayAllRelevantItems(list);
-		List<ItemStack> batteries = new ArrayList<>();
+    @Override
+    public ItemStack getTabIconItem() {
+        if (ModItems.rod_balefire_blazing != null) {
+            return new ItemStack(ModItems.rod_balefire_blazing);
+        }
+        return new ItemStack(Items.IRON_PICKAXE, 1);
+    }
 
-		for(Object o : list) {
+    @Override
+    public void displayAllRelevantItems(NonNullList<ItemStack> list) {
+        super.displayAllRelevantItems(list);
+        List<ItemStack> batteries = new ArrayList<>();
 
-			if(o instanceof ItemStack) {
+        for (Object o : list) {
 
-				ItemStack stack = (ItemStack) o;
+            if (o instanceof ItemStack) {
 
-				if(stack.getItem() instanceof IBatteryItem) {
-					batteries.add(stack);
-				}
-			}
-		}
+                ItemStack stack = (ItemStack) o;
 
-		for(ItemStack stack : batteries) {
+                if (stack.getItem() instanceof IBatteryItem) {
+                    batteries.add(stack);
+                }
+            }
+        }
 
-			if(!(stack.getItem() instanceof IBatteryItem)) //shouldn't happen but just to make sure
-				continue;
+        for (ItemStack stack : batteries) {
 
-			IBatteryItem battery = (IBatteryItem) stack.getItem();
+            if (!(stack.getItem() instanceof IBatteryItem)) //shouldn't happen but just to make sure
+                continue;
 
-			ItemStack empty = stack.copy();
-			ItemStack full = stack.copy();
+            IBatteryItem battery = (IBatteryItem) stack.getItem();
 
-			battery.setCharge(empty, 0);
-			battery.setCharge(full, battery.getMaxCharge());
+            ItemStack empty = stack.copy();
+            ItemStack full = stack.copy();
 
-			int index = list.indexOf(stack);
+            battery.setCharge(empty, 0);
+            battery.setCharge(full, battery.getMaxCharge());
 
-			list.remove(index);
-			list.add(index, full);
-			//do not list empty versions of SU batteries
-			if(battery.getChargeRate() > 0)
-				list.add(index, empty);
-		}
-	}
+            int index = list.indexOf(stack);
+
+            list.remove(index);
+            list.add(index, full);
+            //do not list empty versions of SU batteries
+            if (battery.getChargeRate() > 0)
+                list.add(index, empty);
+        }
+    }
 }

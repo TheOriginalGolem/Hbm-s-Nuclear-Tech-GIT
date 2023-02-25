@@ -6,7 +6,6 @@
 package glmath.glm;
 
 /**
- *
  * @author elect
  */
 abstract class funcExponential extends FuncCommon {

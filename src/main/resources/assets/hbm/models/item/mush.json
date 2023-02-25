@@ -1,7 +1,6 @@
 {
-	"parent": "item/generated",
-	"textures": {
-		"layer0": "hbm:items/mush"
-	}
-
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "hbm:items/mush"
+  }
 }

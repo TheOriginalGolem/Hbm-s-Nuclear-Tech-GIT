@@ -5,25 +5,23 @@
  */
 package glmath.glm.mat._4.d;
 
-import java.nio.ByteBuffer;
-
 import glmath.glm.Glm;
 import glmath.glm.mat._4.Mat4;
 import glmath.glm.vec._3.d.Vec3d;
 import glmath.glm.vec._4.d.Vec4d;
 
+import java.nio.ByteBuffer;
+
 /**
- *
  * @author GBarbieri
  */
 public class Mat4d {
 
+    public static final int SIZE = 4 * 4 * Double.BYTES;
     public double m00, m10, m20, m30;
     public double m01, m11, m21, m31;
     public double m02, m12, m22, m32;
     public double m03, m13, m23, m33;
-
-    public static final int SIZE = 4 * 4 * Double.BYTES;
 
     public Mat4d() {
         m00 = 1.0;
@@ -102,7 +100,7 @@ public class Mat4d {
     }
 
     public Mat4d(double m00, double m01, double m02, double m03, double m10, double m11, double m12, double m13,
-            double m20, double m21, double m22, double m23, double m30, double m31, double m32, double m33) {
+                 double m20, double m21, double m22, double m23, double m30, double m31, double m32, double m33) {
         this.m00 = m00;
         this.m01 = m01;
         this.m02 = m02;
@@ -121,8 +119,12 @@ public class Mat4d {
         this.m33 = m33;
     }
 
+    public static Mat4d lookAt(Vec3d eye, Vec3d center, Vec3d up, Mat4d res) {
+        return Glm.lookAt(eye, center, up, res);
+    }
+
     public Mat4d set(double m00, double m01, double m02, double m03, double m10, double m11, double m12, double m13,
-            double m20, double m21, double m22, double m23, double m30, double m31, double m32, double m33) {
+                     double m20, double m21, double m22, double m23, double m30, double m31, double m32, double m33) {
         this.m00 = m00;
         this.m01 = m01;
         this.m02 = m02;
@@ -230,8 +232,8 @@ public class Mat4d {
      * thus its last row is equal to <tt>(0, 0, 0, 1)</tt>, then
      * {@link #invert4x3(Matrix4f)} can be used instead of this method.
      *
-     * @see #invert4x3(Matrix4f)
      * @return dest
+     * @see #invert4x3(Matrix4f)
      */
     public Mat4d inverse() {
         return inverse(this);
@@ -246,9 +248,8 @@ public class Mat4d {
      * {@link #inverse4x3()} can be used instead of this method.
      *
      * @param dest
-     * @see #inverse4x3()
-     *
      * @return this
+     * @see #inverse4x3()
      */
     public Mat4d inverse(Mat4d dest) {
         double a = m00 * m11 - m01 * m10;
@@ -284,7 +285,6 @@ public class Mat4d {
         return dest;
     }
 
-
     public Mat4d invTransp() {
         return invTransp3(this);
     }
@@ -304,10 +304,9 @@ public class Mat4d {
      * normal matrix. In that case, use {@link #set3x3(Matrix4f)} to set a given
      * Matrix4f to only the upper left 3x3 submatrix of this matrix.
      *
-     * @see #set3x3(Matrix4f)
-     *
      * @param dest will hold the result
      * @return dest
+     * @see #set3x3(Matrix4f)
      */
     public Mat4d invTransp3(Mat4d dest) {
         double det = det3();
@@ -344,8 +343,7 @@ public class Mat4d {
      * Multiply this Vector4f by the given matrix mat and store the result in
      * <code>dest</code>.
      *
-     * @param right
-     * the destination vector to hold the result
+     * @param right the destination vector to hold the result
      * @param res
      * @return dest
      */
@@ -491,11 +489,9 @@ public class Mat4d {
      * <p>
      * Individual scaling of all three axes can be applied using {@link #scale(float, float, float)}.
      *
-     * @see #scale(float, float, float)
-     *
-     * @param s
-     * the factor for all components
+     * @param s the factor for all components
      * @return this
+     * @see #scale(float, float, float)
      */
     public Mat4d scale(double s) {
         return scale(s, s, s);
@@ -518,12 +514,9 @@ public class Mat4d {
      * vector <code>v</code> with the new matrix by using <code>M * S * v</code>, the
      * scaling will be applied first!
      *
-     * @param x
-     * the factor of the x component
-     * @param y
-     * the factor of the y component
-     * @param z
-     * the factor of the z component
+     * @param x the factor of the x component
+     * @param y the factor of the y component
+     * @param z the factor of the z component
      * @return this
      */
     public Mat4d scale(double x, double y, double z) {
@@ -539,14 +532,10 @@ public class Mat4d {
      * vector <code>v</code> with the new matrix by using <code>M * S * v</code>
      * , the scaling will be applied first!
      *
-     * @param x
-     * the factor of the x component
-     * @param y
-     * the factor of the y component
-     * @param z
-     * the factor of the z component
-     * @param dest
-     * will hold the result
+     * @param x    the factor of the x component
+     * @param y    the factor of the y component
+     * @param z    the factor of the z component
+     * @param dest will hold the result
      * @return dest
      */
     public Mat4d scale(double x, double y, double z, Mat4d dest) {
@@ -619,10 +608,6 @@ public class Mat4d {
         return Glm.lookAt(eye, center, up, this);
     }
 
-    public static Mat4d lookAt(Vec3d eye, Vec3d center, Vec3d up, Mat4d res) {
-        return Glm.lookAt(eye, center, up, res);
-    }
-
     public Mat4d ortho(double left, double right, double bottom, double top, double zNear, double zFar) {
         return Glm.ortho(this, left, right, bottom, top, zNear, zFar);
     }
@@ -634,7 +619,7 @@ public class Mat4d {
     public Mat4d perspectiveFov(double fov, double width, double height, double zNear, double zFar) {
         return Glm.perspectiveFov(fov, width, height, zNear, zFar, this);
     }
-    
+
     public boolean equals3(Mat4d other) {
         return equals3(other, 2);
     }
@@ -729,7 +714,7 @@ public class Mat4d {
     }
 
     public double[] toFa(double[] res, int index) {
-        res[index + 0] = m00;
+        res[index] = m00;
         res[index + 1] = m01;
         res[index + 2] = m02;
         res[index + 3] = m03;
@@ -757,7 +742,7 @@ public class Mat4d {
     }
 
     public ByteBuffer toDbb(ByteBuffer res, int index) {
-        res.putDouble(index + 0, m00);
+        res.putDouble(index, m00);
         res.putDouble(index + 1, m01);
         res.putDouble(index + 2, m02);
         res.putDouble(index + 3, m03);

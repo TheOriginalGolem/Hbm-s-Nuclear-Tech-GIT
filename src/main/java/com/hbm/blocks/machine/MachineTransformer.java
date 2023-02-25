@@ -3,7 +3,6 @@ package com.hbm.blocks.machine;
 import com.hbm.blocks.ModBlocks;
 import com.hbm.main.MainRegistry;
 import com.hbm.tileentity.machine.TileEntityMachineTransformer;
-
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -13,28 +12,28 @@ import net.minecraft.world.World;
 
 public class MachineTransformer extends BlockContainer {
 
-	private long buffer;
-	private int delay;
-	
-	public MachineTransformer(Material materialIn, long b, int d, String s) {
-		super(materialIn);
-		this.setUnlocalizedName(s);
-		this.setRegistryName(s);
-		this.setCreativeTab(MainRegistry.machineTab);
-		buffer = b;
-		delay = d;
-		
-		ModBlocks.ALL_BLOCKS.add(this);
-	}
+    private final long buffer;
+    private final int delay;
 
-	@Override
-	public TileEntity createNewTileEntity(World worldIn, int meta) {
-		return new TileEntityMachineTransformer(buffer, delay);
-	}
-	
-	@Override
-	public EnumBlockRenderType getRenderType(IBlockState state) {
-		return EnumBlockRenderType.MODEL;
-	}
+    public MachineTransformer(Material materialIn, long b, int d, String s) {
+        super(materialIn);
+        this.setUnlocalizedName(s);
+        this.setRegistryName(s);
+        this.setCreativeTab(MainRegistry.machineTab);
+        buffer = b;
+        delay = d;
+
+        ModBlocks.ALL_BLOCKS.add(this);
+    }
+
+    @Override
+    public TileEntity createNewTileEntity(World worldIn, int meta) {
+        return new TileEntityMachineTransformer(buffer, delay);
+    }
+
+    @Override
+    public EnumBlockRenderType getRenderType(IBlockState state) {
+        return EnumBlockRenderType.MODEL;
+    }
 
 }

@@ -6,53 +6,53 @@ import net.minecraftforge.items.ItemStackHandler;
 
 public class ItemStackHandlerWrapper implements IItemHandlerModifiable {
 
-	private ItemStackHandler handle;
-	private int[] validSlots;
-	
-	public ItemStackHandlerWrapper(ItemStackHandler handle) {
-		this.handle = handle;
-		validSlots = new int[]{};
-	}
-	
-	public ItemStackHandlerWrapper(ItemStackHandler handle, int[] validSlots) {
-		this.handle = handle;
-		this.validSlots = validSlots;
-	}
-	
-	@Override
-	public int getSlots() {
-		return handle.getSlots();
-	}
+    private final ItemStackHandler handle;
+    private final int[] validSlots;
 
-	@Override
-	public ItemStack getStackInSlot(int slot) {
-		return handle.getStackInSlot(slot);
-	}
+    public ItemStackHandlerWrapper(ItemStackHandler handle) {
+        this.handle = handle;
+        validSlots = new int[]{};
+    }
 
-	@Override
-	public ItemStack insertItem(int slot, ItemStack stack, boolean simulate) {
-		for(int i : validSlots)
-			if(i == slot)
-				return handle.insertItem(slot, stack, simulate);
-		return stack;
-	}
+    public ItemStackHandlerWrapper(ItemStackHandler handle, int[] validSlots) {
+        this.handle = handle;
+        this.validSlots = validSlots;
+    }
 
-	@Override
-	public ItemStack extractItem(int slot, int amount, boolean simulate) {
-		for(int i : validSlots)
-			if(i == slot)
-				return handle.extractItem(slot, amount, simulate);
-		return ItemStack.EMPTY;
-	}
+    @Override
+    public int getSlots() {
+        return handle.getSlots();
+    }
 
-	@Override
-	public int getSlotLimit(int slot) {
-		return handle.getSlotLimit(slot);
-	}
+    @Override
+    public ItemStack getStackInSlot(int slot) {
+        return handle.getStackInSlot(slot);
+    }
 
-	@Override
-	public void setStackInSlot(int slot, ItemStack stack) {
-		handle.setStackInSlot(slot, stack);
-	}
+    @Override
+    public ItemStack insertItem(int slot, ItemStack stack, boolean simulate) {
+        for (int i : validSlots)
+            if (i == slot)
+                return handle.insertItem(slot, stack, simulate);
+        return stack;
+    }
+
+    @Override
+    public ItemStack extractItem(int slot, int amount, boolean simulate) {
+        for (int i : validSlots)
+            if (i == slot)
+                return handle.extractItem(slot, amount, simulate);
+        return ItemStack.EMPTY;
+    }
+
+    @Override
+    public int getSlotLimit(int slot) {
+        return handle.getSlotLimit(slot);
+    }
+
+    @Override
+    public void setStackInSlot(int slot, ItemStack stack) {
+        handle.setStackInSlot(slot, stack);
+    }
 
 }

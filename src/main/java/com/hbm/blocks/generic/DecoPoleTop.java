@@ -11,47 +11,47 @@ import net.minecraft.world.IBlockAccess;
 
 public class DecoPoleTop extends Block {
 
-	public DecoPoleTop(Material materialIn, String s) {
-		super(materialIn);
-		this.setUnlocalizedName(s);
-		this.setRegistryName(s);
-		
-		ModBlocks.ALL_BLOCKS.add(this);
-	}
-	
-	@Override
-	public boolean canRenderInLayer(IBlockState state, BlockRenderLayer layer) {
-		return layer == BlockRenderLayer.CUTOUT;
-	}
-	
-	@Override
-	public EnumBlockRenderType getRenderType(IBlockState state) {
-		return EnumBlockRenderType.MODEL;
-	}
-	
-	@Override
-	public boolean isOpaqueCube(IBlockState state) {
-		return false;
-	}
-	
-	@Override
-	public boolean isBlockNormalCube(IBlockState state) {
-		return false;
-	}
-	
-	@Override
-	public boolean isNormalCube(IBlockState state) {
-		return false;
-	}
-	
-	@Override
-	public boolean isNormalCube(IBlockState state, IBlockAccess world, BlockPos pos) {
-		return false;
-	}
-	
-	@Override
-	public boolean isFullCube(IBlockState state) {
-		return false;
-	}
-	
+    public DecoPoleTop(Material materialIn, String s) {
+        super(materialIn);
+        this.setUnlocalizedName(s);
+        this.setRegistryName(s);
+
+        ModBlocks.ALL_BLOCKS.add(this);
+    }
+
+    @Override
+    public boolean canRenderInLayer(IBlockState state, BlockRenderLayer layer) {
+        return layer == BlockRenderLayer.CUTOUT;
+    }
+
+    @Override
+    public EnumBlockRenderType getRenderType(IBlockState state) {
+        return EnumBlockRenderType.MODEL;
+    }
+
+    @Override
+    public boolean isOpaqueCube(IBlockState state) {
+        return false;
+    }
+
+    @Override
+    public boolean isBlockNormalCube(IBlockState state) {
+        return false;
+    }
+
+    @Override
+    public boolean isNormalCube(IBlockState state) {
+        return false;
+    }
+
+    @Override
+    public boolean isNormalCube(IBlockState state, IBlockAccess world, BlockPos pos) {
+        return false;
+    }
+
+    @Override
+    public boolean isFullCube(IBlockState state) {
+        return false;
+    }
+
 }

@@ -1,7 +1,6 @@
 package com.hbm.packet;
 
 import com.hbm.interfaces.IAnimatedDoor;
-
 import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;
 import net.minecraft.tileentity.TileEntity;
@@ -14,64 +13,64 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class TEDoorAnimationPacket implements IMessage {
 
-	public int x, y, z;
-	public byte state;
-	public byte texture;
-	
-	public TEDoorAnimationPacket() {
-	}
-	
-	public TEDoorAnimationPacket(BlockPos pos, byte state) {
-		this(pos, state, (byte) -1);
-	}
-	
-	public TEDoorAnimationPacket(BlockPos pos, byte state, byte tex) {
-		this.x = pos.getX();
-		this.y = pos.getY();
-		this.z = pos.getZ();
-		this.state = state;
-		this.texture = tex;
-	}
-	
-	@Override
-	public void fromBytes(ByteBuf buf) {
-		x = buf.readInt();
-		y = buf.readInt();
-		z = buf.readInt();
-		state = buf.readByte();
-		if(buf.readableBytes() == 1){
-			texture = buf.readByte();
-		}
-	}
+    public int x, y, z;
+    public byte state;
+    public byte texture;
 
-	@Override
-	public void toBytes(ByteBuf buf) {
-		buf.writeInt(x);
-		buf.writeInt(y);
-		buf.writeInt(z);
-		buf.writeByte(state);
-		if(texture != -1){
-			buf.writeByte(texture);
-		}
-	}
-	
-	public static class Handler implements IMessageHandler<TEDoorAnimationPacket, IMessage> {
+    public TEDoorAnimationPacket() {
+    }
 
-		@Override
-		@SideOnly(Side.CLIENT)
-		public IMessage onMessage(TEDoorAnimationPacket m, MessageContext ctx) {
-			
-			Minecraft.getMinecraft().addScheduledTask(() -> {
-				BlockPos pos = new BlockPos(m.x, m.y, m.z);
-				TileEntity te = Minecraft.getMinecraft().world.getTileEntity(pos);
-				if(te instanceof IAnimatedDoor){
-					((IAnimatedDoor) te).handleNewState(m.state);
-					((IAnimatedDoor) te).setTextureState(m.texture);
-				}
-			});
-			return null;
-		}
-		
-	}
+    public TEDoorAnimationPacket(BlockPos pos, byte state) {
+        this(pos, state, (byte) -1);
+    }
+
+    public TEDoorAnimationPacket(BlockPos pos, byte state, byte tex) {
+        this.x = pos.getX();
+        this.y = pos.getY();
+        this.z = pos.getZ();
+        this.state = state;
+        this.texture = tex;
+    }
+
+    @Override
+    public void fromBytes(ByteBuf buf) {
+        x = buf.readInt();
+        y = buf.readInt();
+        z = buf.readInt();
+        state = buf.readByte();
+        if (buf.readableBytes() == 1) {
+            texture = buf.readByte();
+        }
+    }
+
+    @Override
+    public void toBytes(ByteBuf buf) {
+        buf.writeInt(x);
+        buf.writeInt(y);
+        buf.writeInt(z);
+        buf.writeByte(state);
+        if (texture != -1) {
+            buf.writeByte(texture);
+        }
+    }
+
+    public static class Handler implements IMessageHandler<TEDoorAnimationPacket, IMessage> {
+
+        @Override
+        @SideOnly(Side.CLIENT)
+        public IMessage onMessage(TEDoorAnimationPacket m, MessageContext ctx) {
+
+            Minecraft.getMinecraft().addScheduledTask(() -> {
+                BlockPos pos = new BlockPos(m.x, m.y, m.z);
+                TileEntity te = Minecraft.getMinecraft().world.getTileEntity(pos);
+                if (te instanceof IAnimatedDoor) {
+                    ((IAnimatedDoor) te).handleNewState(m.state);
+                    ((IAnimatedDoor) te).setTextureState(m.texture);
+                }
+            });
+            return null;
+        }
+
+    }
 
 }

@@ -8,7 +8,6 @@ package glmath.glm.vec._2.us;
 import glmath.joou.UShort;
 
 /**
- *
  * @author GBarbieri
  */
 public class Vec2us extends FuncRelational {

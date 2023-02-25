@@ -6,22 +6,28 @@
 package glmath.glm.mat._4;
 
 /**
- *
  * @author GBarbieri
  */
 abstract class funcMatrix {
 
+    public static final int SIZE = 4 * 4 * Float.BYTES;
     public float m00, m10, m20, m30;
     public float m01, m11, m21, m31;
     public float m02, m12, m22, m32;
     public float m03, m13, m23, m33;
 
-    public static final int SIZE = 4 * 4 * Float.BYTES;
+    public static Mat4 transpose(Mat4 mat, Mat4 dest) {
+        dest.set(mat.m00, mat.m10, mat.m20, mat.m30,
+                mat.m01, mat.m11, mat.m21, mat.m31,
+                mat.m02, mat.m12, mat.m22, mat.m32,
+                mat.m03, mat.m13, mat.m23, mat.m33);
+        return dest;
+    }
 
     public Mat4 inverse() {
         return inverse((Mat4) this);
     }
-    
+
     public Mat4 inverse_() {
         return inverse(new Mat4());
     }
@@ -99,14 +105,6 @@ abstract class funcMatrix {
 
     public Mat4 transpose(Mat4 dest) {
         return transpose((Mat4) this, dest);
-    }
-
-    public static Mat4 transpose(Mat4 mat, Mat4 dest) {
-        dest.set(mat.m00, mat.m10, mat.m20, mat.m30,
-                mat.m01, mat.m11, mat.m21, mat.m31,
-                mat.m02, mat.m12, mat.m22, mat.m32,
-                mat.m03, mat.m13, mat.m23, mat.m33);
-        return dest;
     }
 
     public float det() {

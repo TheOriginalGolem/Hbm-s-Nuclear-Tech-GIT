@@ -5,12 +5,11 @@
  */
 package glmath.glf;
 
-import java.nio.ByteBuffer;
-
 import glmath.glm.vec._2.Vec2;
 
+import java.nio.ByteBuffer;
+
 /**
- *
  * @author GBarbieri
  */
 public class Vertex_v2fv2f {
@@ -27,8 +26,8 @@ public class Vertex_v2fv2f {
 
     public void toBb(ByteBuffer bb, int index) {
         bb
-                .putFloat(index * SIZE + 0 * Float.BYTES, position.x)
-                .putFloat(index * SIZE + 1 * Float.BYTES, position.y)
+                .putFloat(index * SIZE, position.x)
+                .putFloat(index * SIZE + Float.BYTES, position.y)
                 .putFloat(index * SIZE + 2 * Float.BYTES, texCoord.x)
                 .putFloat(index * SIZE + 3 * Float.BYTES, texCoord.y);
     }

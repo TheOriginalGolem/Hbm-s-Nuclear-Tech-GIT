@@ -1,7 +1,6 @@
 package com.hbm.items.weapon;
 
 import com.hbm.handler.GunConfiguration;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -14,49 +13,49 @@ import net.minecraftforge.fml.common.FMLCommonHandler;
 
 public class ItemGunDart extends ItemGunBase {
 
-	public ItemGunDart(GunConfiguration config, String s) {
-		super(config, s);
-	}
-	
-	public static void writePlayer(ItemStack stack, EntityPlayer player) {
+    public ItemGunDart(GunConfiguration config, String s) {
+        super(config, s);
+    }
 
-		if(!stack.hasTagCompound())
-			stack.setTagCompound(new NBTTagCompound());
+    public static void writePlayer(ItemStack stack, EntityPlayer player) {
 
-		stack.getTagCompound().setString("player", player.getDisplayName().getUnformattedText());
-	}
+        if (!stack.hasTagCompound())
+            stack.setTagCompound(new NBTTagCompound());
 
-	public static EntityPlayer readPlayer(ItemStack stack) {
+        stack.getTagCompound().setString("player", player.getDisplayName().getUnformattedText());
+    }
 
-		if(!stack.hasTagCompound())
-			return null;
+    public static EntityPlayer readPlayer(ItemStack stack) {
 
-		return FMLCommonHandler.instance().getMinecraftServerInstance().getPlayerList().getPlayerByUsername(stack.getTagCompound().getString("player"));
-	}
-	
-	@Override
-	public void startAction(ItemStack stack, World world, EntityPlayer player, boolean main, EnumHand hand) {
-		if(main) {
-			super.startAction(stack, world, player, main, hand);
-		} else {
+        if (!stack.hasTagCompound())
+            return null;
 
-			EntityPlayer target = readPlayer(stack);
+        return FMLCommonHandler.instance().getMinecraftServerInstance().getPlayerList().getPlayerByUsername(stack.getTagCompound().getString("player"));
+    }
 
-			if(target != null) {
+    @Override
+    public void startAction(ItemStack stack, World world, EntityPlayer player, boolean main, EnumHand hand) {
+        if (main) {
+            super.startAction(stack, world, player, main, hand);
+        } else {
 
-				int dim = target.world.provider.getDimension();
-				int x = (int)target.posX;
-				int y = (int)target.posY;
-				int z = (int)target.posZ;
-				int dist = (int) target.getDistance(player);
+            EntityPlayer target = readPlayer(stack);
 
-				player.sendMessage(new TextComponentString(target.getDisplayName().getUnformattedText()).setStyle(new Style().setColor(TextFormatting.YELLOW)));
-				player.sendMessage(new TextComponentString("Dim: " + dim + " X:" + x + " Y:" + y + " Z:" + z + " (" + dist + " blocks away)").setStyle(new Style().setColor(TextFormatting.YELLOW)));
-			} else {
+            if (target != null) {
 
-				player.sendMessage(new TextComponentString("No Target").setStyle(new Style().setColor(TextFormatting.RED)));
-			}
-		}
-	}
+                int dim = target.world.provider.getDimension();
+                int x = (int) target.posX;
+                int y = (int) target.posY;
+                int z = (int) target.posZ;
+                int dist = (int) target.getDistance(player);
+
+                player.sendMessage(new TextComponentString(target.getDisplayName().getUnformattedText()).setStyle(new Style().setColor(TextFormatting.YELLOW)));
+                player.sendMessage(new TextComponentString("Dim: " + dim + " X:" + x + " Y:" + y + " Z:" + z + " (" + dist + " blocks away)").setStyle(new Style().setColor(TextFormatting.YELLOW)));
+            } else {
+
+                player.sendMessage(new TextComponentString("No Target").setStyle(new Style().setColor(TextFormatting.RED)));
+            }
+        }
+    }
 
 }

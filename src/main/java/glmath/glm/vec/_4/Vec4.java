@@ -5,15 +5,14 @@
  */
 package glmath.glm.vec._4;
 
+import glmath.glm.vec._2.Vec2;
+import glmath.glm.vec._3.Vec3;
+
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
 
-import glmath.glm.vec._2.Vec2;
-import glmath.glm.vec._3.Vec3;
-
 /**
- *
  * @author GBarbieri
  */
 public class Vec4 extends colorSpace {
@@ -35,7 +34,7 @@ public class Vec4 extends colorSpace {
     }
 
     public Vec4(float[] fa, int i) {
-        this(fa[i + 0], fa[i + 1], fa[i + 2], fa[i + 3]);
+        this(fa[i], fa[i + 1], fa[i + 2], fa[i + 3]);
     }
 
     public Vec4(double d) {
@@ -47,7 +46,7 @@ public class Vec4 extends colorSpace {
     }
 
     public Vec4(double[] da, int i) {
-        this(da[i + 0], da[i + 1], da[i + 2], da[i + 3]);
+        this(da[i], da[i + 1], da[i + 2], da[i + 3]);
     }
 
     public Vec4(float f, Vec3 v) {
@@ -94,7 +93,7 @@ public class Vec4 extends colorSpace {
     }
 
     public Vec4 set(float[] fa, int i) {
-        return set(fa[i + 0], fa[i + 1], fa[i + 2], fa[i + 3]);
+        return set(fa[i], fa[i + 1], fa[i + 2], fa[i + 3]);
     }
 
     public Vec4 set(double d) {
@@ -106,7 +105,7 @@ public class Vec4 extends colorSpace {
     }
 
     public Vec4 set(double[] da, int i) {
-        return set(da[i + 0], da[i + 1], da[i + 2], da[i + 3]);
+        return set(da[i], da[i + 1], da[i + 2], da[i + 3]);
     }
 
     public Vec4 set(float f, Vec3 v) {
@@ -144,7 +143,7 @@ public class Vec4 extends colorSpace {
     public Vec3 toVec3(Vec3 res) {
         return res.set(x, y, z);
     }
-    
+
     public float[] toFA_() {
         return toFA(new float[4]);
     }
@@ -167,7 +166,7 @@ public class Vec4 extends colorSpace {
 
     public FloatBuffer toDfb(FloatBuffer fb, int index) {
         return fb
-                .put(index + 0, x)
+                .put(index, x)
                 .put(index + 1, y)
                 .put(index + 2, z)
                 .put(index + 3, w);
@@ -183,8 +182,8 @@ public class Vec4 extends colorSpace {
 
     public ByteBuffer toDbb(ByteBuffer bb, int index) {
         return bb
-                .putFloat(index + 0 * Float.BYTES, x)
-                .putFloat(index + 1 * Float.BYTES, y)
+                .putFloat(index, x)
+                .putFloat(index + Float.BYTES, y)
                 .putFloat(index + 2 * Float.BYTES, z)
                 .putFloat(index + 3 * Float.BYTES, w);
     }
@@ -193,7 +192,7 @@ public class Vec4 extends colorSpace {
     public String toString() {
         return "(" + x + ", " + y + ", " + z + ", " + w + ")";
     }
-    
+
     public void print() {
         print("", true);
     }

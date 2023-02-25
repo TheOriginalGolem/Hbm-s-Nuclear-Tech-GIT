@@ -6,9 +6,8 @@
 package glmath.glm.vec._2.t;
 
 /**
- *
  * @author elect
  */
 public class Vec2t {
-    
+
 }

@@ -5,7 +5,6 @@ import com.hbm.blocks.ModBlocks;
 import com.hbm.main.MainRegistry;
 import com.hbm.tileentity.TileEntityProxyCombo;
 import com.hbm.tileentity.turret.TileEntityTurretChekhov;
-
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -20,47 +19,47 @@ import net.minecraftforge.fml.common.network.internal.FMLNetworkHandler;
 
 public class TurretChekhov extends BlockDummyable {
 
-	public TurretChekhov(Material materialIn, String s){
-		super(materialIn, s);
-	}
+    public TurretChekhov(Material materialIn, String s) {
+        super(materialIn, s);
+    }
 
-	@Override
-	public TileEntity createNewTileEntity(World worldIn, int meta){
-		if(meta >= 12)
-			return new TileEntityTurretChekhov();
-		return new TileEntityProxyCombo(true, true, false);
-	}
-	
-	@Override
-	public int[] getDimensions(){
-		return new int[] { 0, 0, 1, 0, 1, 0 };
-	}
-	
-	@Override
-	public int getOffset(){
-		return 0;
-	}
-	
-	@Override
-	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos){
-		return new AxisAlignedBB(0.0F, 0.0F, 0.0F, 1.0F, 0.5F, 1.0F);
-	}
-	
-	@Override
-	public boolean onBlockActivated(World world, BlockPos bpos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ){
-		if(world.isRemote) {
-			return true;
-		} else if(!player.isSneaking()) {
-			int[] pos = this.findCore(world, bpos.getX(), bpos.getY(), bpos.getZ());
+    @Override
+    public TileEntity createNewTileEntity(World worldIn, int meta) {
+        if (meta >= 12)
+            return new TileEntityTurretChekhov();
+        return new TileEntityProxyCombo(true, true, false);
+    }
 
-			if(pos == null)
-				return false;
-			
-			FMLNetworkHandler.openGui(player, MainRegistry.instance, ModBlocks.guiID_chekhov, world, pos[0], pos[1], pos[2]);
-			return true;
-		} else {
-			return false;
-		}
-	}
-	
+    @Override
+    public int[] getDimensions() {
+        return new int[]{0, 0, 1, 0, 1, 0};
+    }
+
+    @Override
+    public int getOffset() {
+        return 0;
+    }
+
+    @Override
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
+        return new AxisAlignedBB(0.0F, 0.0F, 0.0F, 1.0F, 0.5F, 1.0F);
+    }
+
+    @Override
+    public boolean onBlockActivated(World world, BlockPos bpos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+        if (world.isRemote) {
+            return true;
+        } else if (!player.isSneaking()) {
+            int[] pos = this.findCore(world, bpos.getX(), bpos.getY(), bpos.getZ());
+
+            if (pos == null)
+                return false;
+
+            FMLNetworkHandler.openGui(player, MainRegistry.instance, ModBlocks.guiID_chekhov, world, pos[0], pos[1], pos[2]);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }

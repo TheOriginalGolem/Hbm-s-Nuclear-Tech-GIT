@@ -5,7 +5,6 @@ import com.hbm.lib.Library;
 import com.hbm.packet.AuxElectricityPacket;
 import com.hbm.packet.PacketDispatcher;
 import com.hbm.packet.TEMissilePacket;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -22,129 +21,126 @@ import net.minecraftforge.items.ItemStackHandler;
 
 public class TileEntityLaunchPad extends TileEntity implements ITickable, IConsumer {
 
-	public ItemStackHandler inventory;
+    public final long maxPower = 100000;
+    public ItemStackHandler inventory;
+    public long power;
+    // private static final int[] slots_top = new int[] {0};
+    // private static final int[] slots_bottom = new int[] { 0, 1, 2};
+    // private static final int[] slots_side = new int[] {0};
+    public int state = 0;
 
-	public long power;
-	public final long maxPower = 100000;
+    private String customName;
+    private ItemStack detectStack = ItemStack.EMPTY;
+    private long detectPower;
 
-	// private static final int[] slots_top = new int[] {0};
-	// private static final int[] slots_bottom = new int[] { 0, 1, 2};
-	// private static final int[] slots_side = new int[] {0};
-	public int state = 0;
+    public TileEntityLaunchPad() {
+        inventory = new ItemStackHandler(3);
+    }
 
-	private String customName;
+    public String getInventoryName() {
+        return this.hasCustomInventoryName() ? this.customName : "container.launchPad";
+    }
 
-	public TileEntityLaunchPad() {
-		inventory = new ItemStackHandler(3);
-	}
+    public boolean hasCustomInventoryName() {
+        return this.customName != null && this.customName.length() > 0;
+    }
 
-	public String getInventoryName() {
-		return this.hasCustomInventoryName() ? this.customName : "container.launchPad";
-	}
+    public void setCustomName(String name) {
+        this.customName = name;
+    }
 
-	public boolean hasCustomInventoryName() {
-		return this.customName != null && this.customName.length() > 0;
-	}
+    public boolean isUseableByPlayer(EntityPlayer player) {
+        if (world.getTileEntity(pos) != this) {
+            return false;
+        } else {
+            return player.getDistanceSq(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D) <= 64;
+        }
+    }
 
-	public void setCustomName(String name) {
-		this.customName = name;
-	}
+    @Override
+    public void readFromNBT(NBTTagCompound compound) {
+        power = compound.getLong("power");
+        detectPower = power + 1;
+        if (compound.hasKey("inventory"))
+            inventory.deserializeNBT(compound.getCompoundTag("inventory"));
 
-	public boolean isUseableByPlayer(EntityPlayer player) {
-		if (world.getTileEntity(pos) != this) {
-			return false;
-		} else {
-			return player.getDistanceSq(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D) <= 64;
-		}
-	}
+        super.readFromNBT(compound);
+    }
 
-	@Override
-	public void readFromNBT(NBTTagCompound compound) {
-		power = compound.getLong("power");
-		detectPower = power + 1;
-		if (compound.hasKey("inventory"))
-			inventory.deserializeNBT(compound.getCompoundTag("inventory"));
+    @Override
+    public NBTTagCompound writeToNBT(NBTTagCompound compound) {
+        compound.setLong("power", power);
 
-		super.readFromNBT(compound);
-	}
+        compound.setTag("inventory", inventory.serializeNBT());
 
-	@Override
-	public NBTTagCompound writeToNBT(NBTTagCompound compound) {
-		compound.setLong("power", power);
+        return super.writeToNBT(compound);
+    }
 
-		compound.setTag("inventory", inventory.serializeNBT());
+    public long getPowerScaled(long i) {
+        return (power * i) / maxPower;
+    }
 
-		return super.writeToNBT(compound);
-	}
+    @Override
+    public void update() {
 
-	public long getPowerScaled(long i) {
-		return (power * i) / maxPower;
-	}
+        if (!world.isRemote) {
+            power = Library.chargeTEFromItems(inventory, 2, power, maxPower);
+            detectAndSendChanges();
+        }
 
-	@Override
-	public void update() {
-		
-		if (!world.isRemote) {
-			power = Library.chargeTEFromItems(inventory, 2, power, maxPower);
-			detectAndSendChanges();
-		}
+    }
 
-	}
+    private void detectAndSendChanges() {
+        boolean mark = false;
+        if (!(detectStack.isEmpty() && inventory.getStackInSlot(0).isEmpty()) && !detectStack.isItemEqualIgnoreDurability(inventory.getStackInSlot(0))) {
+            mark = true;
+            detectStack = inventory.getStackInSlot(0).copy();
+        }
+        if (detectPower != power) {
+            mark = true;
+            detectPower = power;
+        }
+        PacketDispatcher.wrapper.sendToAllTracking(new TEMissilePacket(pos.getX(), pos.getY(), pos.getZ(), inventory.getStackInSlot(0)), new TargetPoint(world.provider.getDimension(), pos.getX(), pos.getY(), pos.getZ(), 1000));
+        PacketDispatcher.wrapper.sendToAllAround(new AuxElectricityPacket(pos.getX(), pos.getY(), pos.getZ(), power), new TargetPoint(world.provider.getDimension(), pos.getX(), pos.getY(), pos.getZ(), 10));
+        if (mark)
+            markDirty();
+    }
 
-	private ItemStack detectStack = ItemStack.EMPTY;
-	private long detectPower;
-	
-	private void detectAndSendChanges() {
-		boolean mark = false;
-		if(!(detectStack.isEmpty() && inventory.getStackInSlot(0).isEmpty()) && !detectStack.isItemEqualIgnoreDurability(inventory.getStackInSlot(0))){
-			mark = true;
-			detectStack = inventory.getStackInSlot(0).copy();
-		}
-		if(detectPower != power){
-			mark = true;
-			detectPower = power;
-		}
-		PacketDispatcher.wrapper.sendToAllTracking(new TEMissilePacket(pos.getX(), pos.getY(), pos.getZ(), inventory.getStackInSlot(0)), new TargetPoint(world.provider.getDimension(), pos.getX(), pos.getY(), pos.getZ(), 1000));
-		PacketDispatcher.wrapper.sendToAllAround(new AuxElectricityPacket(pos.getX(), pos.getY(), pos.getZ(), power), new TargetPoint(world.provider.getDimension(), pos.getX(), pos.getY(), pos.getZ(), 10));
-		if(mark)
-			markDirty();
-	}
+    @Override
+    public AxisAlignedBB getRenderBoundingBox() {
+        return INFINITE_EXTENT_AABB;
+    }
 
-	@Override
-	public AxisAlignedBB getRenderBoundingBox() {
-		return INFINITE_EXTENT_AABB;
-	}
+    @Override
+    public long getPower() {
+        return power;
 
-	@Override
-	public void setPower(long i) {
-		power = i;
+    }
 
-	}
+    @Override
+    public void setPower(long i) {
+        power = i;
 
-	@Override
-	public long getPower() {
-		return power;
+    }
 
-	}
+    @Override
+    public long getMaxPower() {
+        return maxPower;
+    }
 
-	@Override
-	public long getMaxPower() {
-		return maxPower;
-	}
+    @Override
+    @SideOnly(Side.CLIENT)
+    public double getMaxRenderDistanceSquared() {
+        return 65536.0D;
+    }
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public double getMaxRenderDistanceSquared() {
-		return 65536.0D;
-	}
-	
-	@Override
-	public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
-		return capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY || super.hasCapability(capability, facing);
-	}
-	
-	@Override
-	public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
-		return capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY ? CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.cast(inventory) : super.getCapability(capability, facing);
-	}
+    @Override
+    public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
+        return capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY || super.hasCapability(capability, facing);
+    }
+
+    @Override
+    public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
+        return capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY ? CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.cast(inventory) : super.getCapability(capability, facing);
+    }
 }

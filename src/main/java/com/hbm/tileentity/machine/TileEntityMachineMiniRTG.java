@@ -1,89 +1,88 @@
 package com.hbm.tileentity.machine;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.hbm.blocks.ModBlocks;
 import com.hbm.interfaces.IConsumer;
 import com.hbm.interfaces.ISource;
 import com.hbm.lib.Library;
-
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class TileEntityMachineMiniRTG extends TileEntity implements ITickable, ISource {
 
-	public List<IConsumer> list = new ArrayList<>();
-	public long power;
-	boolean tact = false;
-	
-	@Override
-	public void update() {
-		if(!world.isRemote) {
+    public List<IConsumer> list = new ArrayList<>();
+    public long power;
+    boolean tact = false;
 
-			if(this.getBlockType() == ModBlocks.machine_powerrtg)
-				power += 2500;
-			else
-				power += 70;
+    @Override
+    public void update() {
+        if (!world.isRemote) {
 
-			if(power > getMaxPower())
-				power = getMaxPower();
+            if (this.getBlockType() == ModBlocks.machine_powerrtg)
+                power += 2500;
+            else
+                power += 70;
 
-			tact = false;
-			ffgeuaInit();
-			tact = true;
-			ffgeuaInit();
-		}
-	}
-	
-	private int getMaxPower() {
+            if (power > getMaxPower())
+                power = getMaxPower();
 
-		if(this.getBlockType() == ModBlocks.machine_powerrtg)
-			return 50000;
+            tact = false;
+            ffgeuaInit();
+            tact = true;
+            ffgeuaInit();
+        }
+    }
 
-		return 1400;
-	}
-	
-	@Override
-	public void ffgeuaInit() {
-		ffgeua(pos.up(), getTact());
-		ffgeua(pos.down(), getTact());
-		ffgeua(pos.west(), getTact());
-		ffgeua(pos.east(), getTact());
-		ffgeua(pos.north(), getTact());
-		ffgeua(pos.south(), getTact());
-	}
+    private int getMaxPower() {
 
-	@Override
-	public void ffgeua(BlockPos pos, boolean newTact) {
+        if (this.getBlockType() == ModBlocks.machine_powerrtg)
+            return 50000;
 
-		Library.ffgeua(new BlockPos.MutableBlockPos(pos), newTact, this, world);
-	}
+        return 1400;
+    }
 
-	@Override
-	public boolean getTact() {
-		return tact;
-	}
+    @Override
+    public void ffgeuaInit() {
+        ffgeua(pos.up(), getTact());
+        ffgeua(pos.down(), getTact());
+        ffgeua(pos.west(), getTact());
+        ffgeua(pos.east(), getTact());
+        ffgeua(pos.north(), getTact());
+        ffgeua(pos.south(), getTact());
+    }
 
-	@Override
-	public long getSPower() {
-		return power;
-	}
+    @Override
+    public void ffgeua(BlockPos pos, boolean newTact) {
 
-	@Override
-	public void setSPower(long i) {
-		power = i;
-	}
+        Library.ffgeua(new BlockPos.MutableBlockPos(pos), newTact, this, world);
+    }
 
-	@Override
-	public List<IConsumer> getList() {
-		return list;
-	}
+    @Override
+    public boolean getTact() {
+        return tact;
+    }
 
-	@Override
-	public void clearList() {
-		list.clear();
-	}
+    @Override
+    public long getSPower() {
+        return power;
+    }
+
+    @Override
+    public void setSPower(long i) {
+        power = i;
+    }
+
+    @Override
+    public List<IConsumer> getList() {
+        return list;
+    }
+
+    @Override
+    public void clearList() {
+        list.clear();
+    }
 
 }

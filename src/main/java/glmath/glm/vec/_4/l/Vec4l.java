@@ -6,7 +6,6 @@
 package glmath.glm.vec._4.l;
 
 /**
- *
  * @author GBarbieri
  */
 public class Vec4l extends FuncRelational {
@@ -26,7 +25,7 @@ public class Vec4l extends FuncRelational {
         this.z = z;
         this.w = w;
     }
-    
+
     public Vec4l set(long x, long y, long z, long w) {
         this.x = x;
         this.y = y;

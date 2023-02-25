@@ -1,10 +1,7 @@
 package com.hbm.blocks.machine;
 
-import java.util.List;
-
 import com.hbm.blocks.ModBlocks;
 import com.hbm.tileentity.deco.TileEntitySpinnyLight;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.BlockDirectional;
@@ -30,214 +27,217 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.oredict.OreDictionary;
 
+import java.util.List;
+
 public class BlockSpinnyLight extends BlockContainer {
 
-	public static final PropertyDirection FACING = BlockDirectional.FACING;
-	public static final PropertyBool POWERED = PropertyBool.create("powered");
-	public static AxisAlignedBB[] boxes;
-	static {
-		boxes = new AxisAlignedBB[EnumFacing.VALUES.length];
-		boxes[EnumFacing.UP.ordinal()] = new AxisAlignedBB(0.3, 0, 0.3, 0.7, 0.4F, 0.7);
-		boxes[EnumFacing.DOWN.ordinal()] = new AxisAlignedBB(0.3, 0.6, 0.3, 0.7, 1, 0.7);
-		boxes[EnumFacing.NORTH.ordinal()] = new AxisAlignedBB(0.3, 0.3, 0.6, 0.7, 0.7, 1);
-		boxes[EnumFacing.SOUTH.ordinal()] = new AxisAlignedBB(0.3, 0.3, 0, 0.7, 0.7, 0.4);
-		boxes[EnumFacing.EAST.ordinal()] = new AxisAlignedBB(0, 0.3, 0.3, 0.4, 0.7, 0.7);
-		boxes[EnumFacing.WEST.ordinal()] = new AxisAlignedBB(0.6, 0.3, 0.3, 1, 0.7, 0.7);
-	}
+    public static final PropertyDirection FACING = BlockDirectional.FACING;
+    public static final PropertyBool POWERED = PropertyBool.create("powered");
+    public static AxisAlignedBB[] boxes;
 
-	public BlockSpinnyLight(Material materialIn, String s) {
-		super(materialIn);
-		this.setUnlocalizedName(s);
-		this.setRegistryName(s);
+    static {
+        boxes = new AxisAlignedBB[EnumFacing.VALUES.length];
+        boxes[EnumFacing.UP.ordinal()] = new AxisAlignedBB(0.3, 0, 0.3, 0.7, 0.4F, 0.7);
+        boxes[EnumFacing.DOWN.ordinal()] = new AxisAlignedBB(0.3, 0.6, 0.3, 0.7, 1, 0.7);
+        boxes[EnumFacing.NORTH.ordinal()] = new AxisAlignedBB(0.3, 0.3, 0.6, 0.7, 0.7, 1);
+        boxes[EnumFacing.SOUTH.ordinal()] = new AxisAlignedBB(0.3, 0.3, 0, 0.7, 0.7, 0.4);
+        boxes[EnumFacing.EAST.ordinal()] = new AxisAlignedBB(0, 0.3, 0.3, 0.4, 0.7, 0.7);
+        boxes[EnumFacing.WEST.ordinal()] = new AxisAlignedBB(0.6, 0.3, 0.3, 1, 0.7, 0.7);
+    }
 
-		ModBlocks.ALL_BLOCKS.add(this);
-	}
+    public BlockSpinnyLight(Material materialIn, String s) {
+        super(materialIn);
+        this.setUnlocalizedName(s);
+        this.setRegistryName(s);
 
-	@Override
-	public TileEntity createNewTileEntity(World worldIn, int meta) {
-		return new TileEntitySpinnyLight();
-	}
-	
-	@Override
-	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-		if(!playerIn.getHeldItem(hand).isEmpty() && !worldIn.isRemote){
-			int[] ores = OreDictionary.getOreIDs(playerIn.getHeldItem(hand));
-			for(int ore : ores){
-				String name = OreDictionary.getOreName(ore);
-				//Why are these ones named differently
-				if(name.equals("dyeLightBlue"))
-					name = "dyeLight_Blue";
-				if(name.equals("dyeLightGray"))
-					name = "dyeSilver";
-				if(name.length() > 3 && name.startsWith("dye")){
-					try {
-						EnumDyeColor color = EnumDyeColor.valueOf(name.substring(3, name.length()).toUpperCase());
-						TileEntitySpinnyLight ent = (TileEntitySpinnyLight)worldIn.getTileEntity(pos);
-						ent.color = color;
-						ent.markDirty();
-						worldIn.notifyBlockUpdate(pos, state, state, 2 | 4);
-						//if(!playerIn.isCreative())
-							playerIn.getHeldItem(hand).shrink(1);
-						return true;
-					} catch(IllegalArgumentException e){}
-				}
-			}
-		}
-		return super.onBlockActivated(worldIn, pos, state, playerIn, hand, facing, hitX, hitY, hitZ);
-	}
-	
-	@Override
-	public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
-		tooltip.add("Change color by right clicking with dye");
-	}
-	
-	@Override
-	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
-		return boxes[state.getValue(FACING).ordinal()];
-	}
-	
-	@Override
-	public boolean isSideSolid(IBlockState base_state, IBlockAccess world, BlockPos pos, EnumFacing side) {
-		return false;
-	}
-	
-	@Override
-	public boolean isFullCube(IBlockState state) {
-		return false;
-	}
+        ModBlocks.ALL_BLOCKS.add(this);
+    }
 
-	@Override
-	public BlockFaceShape getBlockFaceShape(IBlockAccess worldIn, IBlockState state, BlockPos pos, EnumFacing face) {
-		return BlockFaceShape.UNDEFINED;
-	}
-	
-	@Override
-	public boolean canPlaceBlockOnSide(World worldIn, BlockPos pos, EnumFacing side) {
-		return canPlaceBlock(worldIn, pos, side);
-	}
+    //From BlockButton
+    @SuppressWarnings("deprecation")
+    protected static boolean canPlaceBlock(World worldIn, BlockPos pos, EnumFacing direction) {
+        BlockPos blockpos = pos.offset(direction.getOpposite());
+        IBlockState iblockstate = worldIn.getBlockState(blockpos);
+        boolean flag = iblockstate.getBlockFaceShape(worldIn, blockpos, direction) == BlockFaceShape.SOLID;
+        Block block = iblockstate.getBlock();
 
-	@Override
-	public boolean canPlaceBlockAt(World worldIn, BlockPos pos) {
-		for(EnumFacing enumfacing : EnumFacing.values()) {
-			if(canPlaceBlock(worldIn, pos, enumfacing)) {
-				return true;
-			}
-		}
-		return false;
-	}
+        if (direction == EnumFacing.UP) {
+            return iblockstate.isTopSolid() || !isExceptionBlockForAttaching(block) && flag;
+        } else {
+            return !isExceptBlockForAttachWithPiston(block) && flag;
+        }
+    }
 
-	//From BlockButton
-	@SuppressWarnings("deprecation")
-	protected static boolean canPlaceBlock(World worldIn, BlockPos pos, EnumFacing direction) {
-		BlockPos blockpos = pos.offset(direction.getOpposite());
-		IBlockState iblockstate = worldIn.getBlockState(blockpos);
-		boolean flag = iblockstate.getBlockFaceShape(worldIn, blockpos, direction) == BlockFaceShape.SOLID;
-		Block block = iblockstate.getBlock();
+    @Override
+    public TileEntity createNewTileEntity(World worldIn, int meta) {
+        return new TileEntitySpinnyLight();
+    }
 
-		if(direction == EnumFacing.UP) {
-			return iblockstate.isTopSolid() || !isExceptionBlockForAttaching(block) && flag;
-		} else {
-			return !isExceptBlockForAttachWithPiston(block) && flag;
-		}
-	}
+    @Override
+    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+        if (!playerIn.getHeldItem(hand).isEmpty() && !worldIn.isRemote) {
+            int[] ores = OreDictionary.getOreIDs(playerIn.getHeldItem(hand));
+            for (int ore : ores) {
+                String name = OreDictionary.getOreName(ore);
+                //Why are these ones named differently
+                if (name.equals("dyeLightBlue"))
+                    name = "dyeLight_Blue";
+                if (name.equals("dyeLightGray"))
+                    name = "dyeSilver";
+                if (name.length() > 3 && name.startsWith("dye")) {
+                    try {
+                        EnumDyeColor color = EnumDyeColor.valueOf(name.substring(3).toUpperCase());
+                        TileEntitySpinnyLight ent = (TileEntitySpinnyLight) worldIn.getTileEntity(pos);
+                        ent.color = color;
+                        ent.markDirty();
+                        worldIn.notifyBlockUpdate(pos, state, state, 2 | 4);
+                        //if(!playerIn.isCreative())
+                        playerIn.getHeldItem(hand).shrink(1);
+                        return true;
+                    } catch (IllegalArgumentException e) {
+                    }
+                }
+            }
+        }
+        return super.onBlockActivated(worldIn, pos, state, playerIn, hand, facing, hitX, hitY, hitZ);
+    }
 
-	@Override
-	public IBlockState getStateForPlacement(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
-		return canPlaceBlock(worldIn, pos, facing) ? this.getDefaultState().withProperty(FACING, facing).withProperty(POWERED, Boolean.FALSE) : this.getDefaultState().withProperty(FACING, EnumFacing.DOWN).withProperty(POWERED, Boolean.FALSE);
-	}
+    @Override
+    public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
+        tooltip.add("Change color by right clicking with dye");
+    }
 
-	private boolean checkForDrop(World worldIn, BlockPos pos, IBlockState state) {
-		if(this.canPlaceBlockAt(worldIn, pos)) {
-			return true;
-		} else {
-			this.dropBlockAsItem(worldIn, pos, state, 0);
-			worldIn.setBlockToAir(pos);
-			return false;
-		}
-	}
+    @Override
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
+        return boxes[state.getValue(FACING).ordinal()];
+    }
 
-	@Override
-	public void neighborChanged(IBlockState state, World world, BlockPos pos, Block blockIn, BlockPos fromPos) {
-		if (this.checkForDrop(world, pos, state) && !canPlaceBlock(world, pos, (EnumFacing)state.getValue(FACING)))
-        {
+    @Override
+    public boolean isSideSolid(IBlockState base_state, IBlockAccess world, BlockPos pos, EnumFacing side) {
+        return false;
+    }
+
+    @Override
+    public boolean isFullCube(IBlockState state) {
+        return false;
+    }
+
+    @Override
+    public BlockFaceShape getBlockFaceShape(IBlockAccess worldIn, IBlockState state, BlockPos pos, EnumFacing face) {
+        return BlockFaceShape.UNDEFINED;
+    }
+
+    @Override
+    public boolean canPlaceBlockOnSide(World worldIn, BlockPos pos, EnumFacing side) {
+        return canPlaceBlock(worldIn, pos, side);
+    }
+
+    @Override
+    public boolean canPlaceBlockAt(World worldIn, BlockPos pos) {
+        for (EnumFacing enumfacing : EnumFacing.values()) {
+            if (canPlaceBlock(worldIn, pos, enumfacing)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public IBlockState getStateForPlacement(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
+        return canPlaceBlock(worldIn, pos, facing) ? this.getDefaultState().withProperty(FACING, facing).withProperty(POWERED, Boolean.FALSE) : this.getDefaultState().withProperty(FACING, EnumFacing.DOWN).withProperty(POWERED, Boolean.FALSE);
+    }
+
+    private boolean checkForDrop(World worldIn, BlockPos pos, IBlockState state) {
+        if (this.canPlaceBlockAt(worldIn, pos)) {
+            return true;
+        } else {
+            this.dropBlockAsItem(worldIn, pos, state, 0);
+            worldIn.setBlockToAir(pos);
+            return false;
+        }
+    }
+
+    @Override
+    public void neighborChanged(IBlockState state, World world, BlockPos pos, Block blockIn, BlockPos fromPos) {
+        if (this.checkForDrop(world, pos, state) && !canPlaceBlock(world, pos, state.getValue(FACING))) {
             this.dropBlockAsItem(world, pos, state, 0);
             world.setBlockToAir(pos);
             return;
         }
-		if(world.isBlockIndirectlyGettingPowered(pos) > 0) {
-			if(state.getValue(POWERED) == false){
-				TileEntity te = world.getTileEntity(pos);
-				world.setBlockState(pos, state.withProperty(POWERED, true));
-				te.validate();
-				world.setTileEntity(pos, te);
-			}
-		} else {
-			if(state.getValue(POWERED) == true){
-				TileEntity te = world.getTileEntity(pos);
-				world.setBlockState(pos, state.withProperty(POWERED, false));
-				te.validate();
-				world.setTileEntity(pos, te);
-			}
-		}
-	}
+        if (world.isBlockIndirectlyGettingPowered(pos) > 0) {
+            if (!state.getValue(POWERED)) {
+                TileEntity te = world.getTileEntity(pos);
+                world.setBlockState(pos, state.withProperty(POWERED, true));
+                te.validate();
+                world.setTileEntity(pos, te);
+            }
+        } else {
+            if (state.getValue(POWERED)) {
+                TileEntity te = world.getTileEntity(pos);
+                world.setBlockState(pos, state.withProperty(POWERED, false));
+                te.validate();
+                world.setTileEntity(pos, te);
+            }
+        }
+    }
 
-	@Override
-	public EnumBlockRenderType getRenderType(IBlockState state) {
-		return EnumBlockRenderType.ENTITYBLOCK_ANIMATED;
-	}
-	
-	@Override
-	public BlockRenderLayer getBlockLayer() {
-		return BlockRenderLayer.TRANSLUCENT;
-	}
+    @Override
+    public EnumBlockRenderType getRenderType(IBlockState state) {
+        return EnumBlockRenderType.ENTITYBLOCK_ANIMATED;
+    }
 
-	@Override
-	public boolean isOpaqueCube(IBlockState state) {
-		return false;
-	}
+    @Override
+    public BlockRenderLayer getBlockLayer() {
+        return BlockRenderLayer.TRANSLUCENT;
+    }
 
-	@Override
-	public boolean isBlockNormalCube(IBlockState state) {
-		return false;
-	}
+    @Override
+    public boolean isOpaqueCube(IBlockState state) {
+        return false;
+    }
 
-	@Override
-	public boolean isNormalCube(IBlockState state) {
-		return false;
-	}
+    @Override
+    public boolean isBlockNormalCube(IBlockState state) {
+        return false;
+    }
 
-	@Override
-	public boolean isNormalCube(IBlockState state, IBlockAccess world, BlockPos pos) {
-		return false;
-	}
+    @Override
+    public boolean isNormalCube(IBlockState state) {
+        return false;
+    }
 
-	@Override
-	public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {
-		return false;
-	}
-	
-	@Override
-	public int getLightValue(IBlockState state) {
-		return state.getValue(POWERED) ? 5 : 0;
-	}
+    @Override
+    public boolean isNormalCube(IBlockState state, IBlockAccess world, BlockPos pos) {
+        return false;
+    }
 
-	@Override
-	protected BlockStateContainer createBlockState() {
-		return new BlockStateContainer(this, FACING, POWERED);
-	}
+    @Override
+    public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {
+        return false;
+    }
 
-	@Override
-	public int getMetaFromState(IBlockState state) {
-		int powered = state.getValue(POWERED) ? 1 : 0;
-		int facing = state.getValue(FACING).ordinal();
-		return facing | (powered << 3);
-	}
+    @Override
+    public int getLightValue(IBlockState state) {
+        return state.getValue(POWERED) ? 5 : 0;
+    }
 
-	@Override
-	public IBlockState getStateFromMeta(int meta) {
-		boolean powered = ((meta >>> 3) & 1) > 0;
-		EnumFacing facing = EnumFacing.VALUES[meta & 7];
-		return this.getDefaultState().withProperty(FACING, facing).withProperty(POWERED, powered);
-	}
+    @Override
+    protected BlockStateContainer createBlockState() {
+        return new BlockStateContainer(this, FACING, POWERED);
+    }
+
+    @Override
+    public int getMetaFromState(IBlockState state) {
+        int powered = state.getValue(POWERED) ? 1 : 0;
+        int facing = state.getValue(FACING).ordinal();
+        return facing | (powered << 3);
+    }
+
+    @Override
+    public IBlockState getStateFromMeta(int meta) {
+        boolean powered = ((meta >>> 3) & 1) > 0;
+        EnumFacing facing = EnumFacing.VALUES[meta & 7];
+        return this.getDefaultState().withProperty(FACING, facing).withProperty(POWERED, powered);
+    }
 
 }

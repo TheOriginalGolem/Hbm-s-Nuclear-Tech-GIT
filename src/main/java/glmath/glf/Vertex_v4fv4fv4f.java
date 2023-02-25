@@ -8,7 +8,6 @@ package glmath.glf;
 import glmath.glm.vec._4.Vec4;
 
 /**
- *
  * @author GBarbieri
  */
 public class Vertex_v4fv4fv4f {

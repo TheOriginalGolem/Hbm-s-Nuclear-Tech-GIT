@@ -6,7 +6,6 @@
 package glmath.glm.vec._3.d;
 
 /**
- *
  * @author GBarbieri
  */
 public class Vec3d extends FuncRelational {

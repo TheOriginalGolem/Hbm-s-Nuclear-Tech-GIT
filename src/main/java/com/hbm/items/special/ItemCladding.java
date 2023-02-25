@@ -1,11 +1,8 @@
 package com.hbm.items.special;
 
-import java.util.List;
-
 import com.hbm.handler.HazmatRegistry;
 import com.hbm.items.ModItems;
 import com.hbm.lib.HBMSoundHandler;
-
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -17,48 +14,50 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 
+import java.util.List;
+
 public class ItemCladding extends Item {
 
-	float rad;
+    float rad;
 
-	public ItemCladding(float rad, String s) {
-		this.setUnlocalizedName(s);
-		this.setRegistryName(s);
-		this.rad = rad;
-		
-		ModItems.ALL_ITEMS.add(this);
-	}
-	
-	@Override
-	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
-		if(!world.isRemote) {
-			ItemStack stack = player.getHeldItem(hand);
+    public ItemCladding(float rad, String s) {
+        this.setUnlocalizedName(s);
+        this.setRegistryName(s);
+        this.rad = rad;
 
-			boolean used = false;
+        ModItems.ALL_ITEMS.add(this);
+    }
 
-			for(ItemStack armor : player.inventory.armorInventory) {
+    @Override
+    public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
+        if (!world.isRemote) {
+            ItemStack stack = player.getHeldItem(hand);
 
-				if(armor != null && HazmatRegistry.getCladding(armor) < rad) {
+            boolean used = false;
 
-					if(!armor.hasTagCompound())
-						armor.setTagCompound(new NBTTagCompound());
+            for (ItemStack armor : player.inventory.armorInventory) {
 
-					armor.getTagCompound().setFloat("hfr_cladding", rad);
+                if (armor != null && HazmatRegistry.getCladding(armor) < rad) {
 
-					used = true;
-				}
-			}
+                    if (!armor.hasTagCompound())
+                        armor.setTagCompound(new NBTTagCompound());
 
-			if(used) {
-				world.playSound(null, player.posX, player.posY, player.posZ, HBMSoundHandler.repair, SoundCategory.PLAYERS, 1.0F, 1.0F);
-				stack.shrink(1);
-			}
-		}
-		return super.onItemRightClick(world, player, hand);
-	}
-	
-	@Override
-	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-		tooltip.add(TextFormatting.YELLOW + "Adds " + rad + " rad-resistance to all armor pieces.");
-	}
+                    armor.getTagCompound().setFloat("hfr_cladding", rad);
+
+                    used = true;
+                }
+            }
+
+            if (used) {
+                world.playSound(null, player.posX, player.posY, player.posZ, HBMSoundHandler.repair, SoundCategory.PLAYERS, 1.0F, 1.0F);
+                stack.shrink(1);
+            }
+        }
+        return super.onItemRightClick(world, player, hand);
+    }
+
+    @Override
+    public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
+        tooltip.add(TextFormatting.YELLOW + "Adds " + rad + " rad-resistance to all armor pieces.");
+    }
 }

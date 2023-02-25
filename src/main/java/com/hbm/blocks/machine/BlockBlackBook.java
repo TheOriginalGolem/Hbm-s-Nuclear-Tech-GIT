@@ -2,7 +2,6 @@ package com.hbm.blocks.machine;
 
 import com.hbm.blocks.ModBlocks;
 import com.hbm.tileentity.machine.TileEntityBlackBook;
-
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -15,24 +14,24 @@ import net.minecraft.world.World;
 
 public class BlockBlackBook extends BlockContainer {
 
-	public BlockBlackBook(Material materialIn, String s) {
-		super(materialIn);
-		this.setUnlocalizedName(s);
-		this.setRegistryName(s);
-		
-		ModBlocks.ALL_BLOCKS.add(this);
-	}
+    public BlockBlackBook(Material materialIn, String s) {
+        super(materialIn);
+        this.setUnlocalizedName(s);
+        this.setRegistryName(s);
 
-	@Override
-	public TileEntity createNewTileEntity(World worldIn, int meta) {
-		return new TileEntityBlackBook();
-	}
-	
-	@Override
-	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-		((TileEntityBlackBook)worldIn.getTileEntity(pos)).effectTime = 0;
-		((TileEntityBlackBook)worldIn.getTileEntity(pos)).end = true;
-		return super.onBlockActivated(worldIn, pos, state, playerIn, hand, facing, hitX, hitY, hitZ);
-	}
+        ModBlocks.ALL_BLOCKS.add(this);
+    }
+
+    @Override
+    public TileEntity createNewTileEntity(World worldIn, int meta) {
+        return new TileEntityBlackBook();
+    }
+
+    @Override
+    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+        ((TileEntityBlackBook) worldIn.getTileEntity(pos)).effectTime = 0;
+        ((TileEntityBlackBook) worldIn.getTileEntity(pos)).end = true;
+        return super.onBlockActivated(worldIn, pos, state, playerIn, hand, facing, hitX, hitY, hitZ);
+    }
 
 }

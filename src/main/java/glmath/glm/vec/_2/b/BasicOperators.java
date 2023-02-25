@@ -8,7 +8,6 @@ package glmath.glm.vec._2.b;
 import glmath.glm.Glm;
 
 /**
- *
  * @author GBarbieri
  */
 abstract class BasicOperators {
@@ -136,7 +135,7 @@ abstract class BasicOperators {
     public Vec2b sub(Vec2b b, Vec2b res) {
         return Glm.sub(res, (Vec2b) this, (int) b.x, b.y);
     }
-    
+
     public Vec2b mul_(byte b) {
         return Glm.mul(new Vec2b(), (Vec2b) this, (int) b, b);
     }
@@ -196,7 +195,7 @@ abstract class BasicOperators {
     public Vec2b mul(Vec2b b, Vec2b res) {
         return Glm.mul(res, (Vec2b) this, (int) b.x, b.y);
     }
-    
+
     public Vec2b div_(byte b) {
         return Glm.div(new Vec2b(), (Vec2b) this, (int) b, b);
     }

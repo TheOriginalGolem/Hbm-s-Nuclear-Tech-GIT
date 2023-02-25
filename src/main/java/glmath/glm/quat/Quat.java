@@ -9,7 +9,6 @@ import glmath.glm.mat._4.Mat4;
 import glmath.glm.vec._3.Vec3;
 
 /**
- *
  * @author GBarbieri
  */
 public class Quat extends funcGeometric {
@@ -37,46 +36,10 @@ public class Quat extends funcGeometric {
         this.z = z;
     }
 
-    public Quat set() {
-        return set(0.0f, 0.0f, 0.0f);
-    }
-
-    public Quat set(float x, float y, float z) {
-        return set(1.0f, x, y, z);
-    }
-
-    public Quat set(Quat q) {
-        return set(q.w, q.x, q.y, q.z);
-    }
-
-    public Quat set(float f, Vec3 v) {
-        return set(f, v.x, v.y, v.z);
-    }
-
-    public Quat set(float w, float x, float y, float z) {
-        this.w = w;
-        this.x = x;
-        this.y = y;
-        this.z = z;
-        return this;
-    }
-
-    public Quat conjugate_() {
-        return conjugate(new Quat());
-    }
-
-    public Quat conjugate() {
-        return conjugate(this);
-    }
-
-    public Quat conjugate(Quat res) {
-        return res.set(w, -x, -y, -z);
-    }
-
     public static Quat cast_(Mat4 m) {
         return cast(m, new Quat());
     }
-    
+
     public static Quat cast(Mat4 m, Quat res) {
 
         float fourXSquaredMinus1 = m.m00 - m.m11 - m.m22;
@@ -129,6 +92,42 @@ public class Quat extends funcGeometric {
                 break;
         }
         return res;
+    }
+
+    public Quat set() {
+        return set(0.0f, 0.0f, 0.0f);
+    }
+
+    public Quat set(float x, float y, float z) {
+        return set(1.0f, x, y, z);
+    }
+
+    public Quat set(Quat q) {
+        return set(q.w, q.x, q.y, q.z);
+    }
+
+    public Quat set(float f, Vec3 v) {
+        return set(f, v.x, v.y, v.z);
+    }
+
+    public Quat set(float w, float x, float y, float z) {
+        this.w = w;
+        this.x = x;
+        this.y = y;
+        this.z = z;
+        return this;
+    }
+
+    public Quat conjugate_() {
+        return conjugate(new Quat());
+    }
+
+    public Quat conjugate() {
+        return conjugate(this);
+    }
+
+    public Quat conjugate(Quat res) {
+        return res.set(w, -x, -y, -z);
     }
 
     public Mat4 toMat_() {

@@ -5,8 +5,8 @@
 package glmath.jglm;
 
 /**
- * @deprecated 
  * @author gbarbieri
+ * @deprecated
  */
 public class Vec3i extends Veci {
 
@@ -39,7 +39,7 @@ public class Vec3i extends Veci {
         y = vector[1];
         z = vector[2];
     }
-    
+
 //    public Vec3i(Vec4i vec4i){
 //        
 //        x = vec4i.x;

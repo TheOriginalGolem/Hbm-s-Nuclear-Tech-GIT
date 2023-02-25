@@ -2,7 +2,6 @@ package com.hbm.packet;
 
 import com.hbm.interfaces.IKeypadHandler;
 import com.hbm.util.KeypadClient;
-
 import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;
 import net.minecraft.tileentity.TileEntity;
@@ -15,57 +14,55 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class KeypadClientPacket implements IMessage {
 
-	public int x, y, z;
-	byte[] data;
-	
-	public KeypadClientPacket() {
-	}
-	
-	public KeypadClientPacket(BlockPos pos, byte[] data) {
-		this.x = pos.getX();
-		this.y = pos.getY();
-		this.z = pos.getZ();
-		this.data = data;
-	}
+    public int x, y, z;
+    byte[] data;
 
-	@Override
-	public void fromBytes(ByteBuf buf) {
-		x = buf.readInt();
-		y = buf.readInt();
-		z = buf.readInt();
-		data = new byte[21];
-		buf.readBytes(data);
-	}
+    public KeypadClientPacket() {
+    }
 
-	@Override
-	public void toBytes(ByteBuf buf) {
-		buf.writeInt(x);
-		buf.writeInt(y);
-		buf.writeInt(z);
-		buf.writeBytes(data);
-	}
+    public KeypadClientPacket(BlockPos pos, byte[] data) {
+        this.x = pos.getX();
+        this.y = pos.getY();
+        this.z = pos.getZ();
+        this.data = data;
+    }
 
-	public static class Handler implements IMessageHandler<KeypadClientPacket, IMessage> {
+    @Override
+    public void fromBytes(ByteBuf buf) {
+        x = buf.readInt();
+        y = buf.readInt();
+        z = buf.readInt();
+        data = new byte[21];
+        buf.readBytes(data);
+    }
 
-		@Override
-		@SideOnly(Side.CLIENT)
-		public IMessage onMessage(KeypadClientPacket m, MessageContext ctx) {
-			TileEntity te = Minecraft.getMinecraft().world.getTileEntity(new BlockPos(m.x, m.y, m.z));
-			if(te instanceof IKeypadHandler){
-				KeypadClient pad = ((IKeypadHandler) te).getKeypad().client();
-				for(int i = 0; i < 12; i ++){
-					pad.buttons[i].cooldown = m.data[i];
-				}
-				pad.isSettingCode = m.data[12] == 1 ? true : false;
-				for(int i = 0; i < 6; i ++){
-					pad.code[i] = m.data[13 + i];
-				}
-				pad.successColorTicks = m.data[19];
-				pad.failColorTicks = m.data[20];
-			}
-			return null;
-		}
-		
-	}
-	
+    @Override
+    public void toBytes(ByteBuf buf) {
+        buf.writeInt(x);
+        buf.writeInt(y);
+        buf.writeInt(z);
+        buf.writeBytes(data);
+    }
+
+    public static class Handler implements IMessageHandler<KeypadClientPacket, IMessage> {
+
+        @Override
+        @SideOnly(Side.CLIENT)
+        public IMessage onMessage(KeypadClientPacket m, MessageContext ctx) {
+            TileEntity te = Minecraft.getMinecraft().world.getTileEntity(new BlockPos(m.x, m.y, m.z));
+            if (te instanceof IKeypadHandler) {
+                KeypadClient pad = ((IKeypadHandler) te).getKeypad().client();
+                for (int i = 0; i < 12; i++) {
+                    pad.buttons[i].cooldown = m.data[i];
+                }
+                pad.isSettingCode = m.data[12] == 1;
+                System.arraycopy(m.data, 13, pad.code, 0, 6);
+                pad.successColorTicks = m.data[19];
+                pad.failColorTicks = m.data[20];
+            }
+            return null;
+        }
+
+    }
+
 }

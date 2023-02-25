@@ -11,18 +11,18 @@ import net.minecraftforge.common.capabilities.ICapabilityProvider;
 
 /**
  * This class is a simple extension of {@link ItemEnergyContainer}. It exposes the Forge Energy Capability via the {@link EnergyContainerItemWrapper} class.
- *
+ * <p>
  * Use/extend this or implement your own. This particular implementation allows for an item to both send and receive energy.
  *
  * @author King Lemming
  */
 public class ItemEnergyContainerCap extends ItemEnergyContainer {
 
-	/* CAPABILITIES */
-	@Override
-	public ICapabilityProvider initCapabilities(ItemStack stack, NBTTagCompound nbt) {
+    /* CAPABILITIES */
+    @Override
+    public ICapabilityProvider initCapabilities(ItemStack stack, NBTTagCompound nbt) {
 
-		return new EnergyContainerItemWrapper(stack, this);
-	}
+        return new EnergyContainerItemWrapper(stack, this);
+    }
 
 }

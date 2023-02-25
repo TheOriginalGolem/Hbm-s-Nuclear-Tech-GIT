@@ -8,7 +8,6 @@ package glmath.glm.vec._2;
 import glmath.glm.Glm;
 
 /**
- *
  * @author GBarbieri
  */
 abstract class BasicOperators {

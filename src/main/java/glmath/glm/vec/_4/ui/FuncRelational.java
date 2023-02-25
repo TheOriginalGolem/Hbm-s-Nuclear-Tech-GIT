@@ -9,7 +9,6 @@ import glmath.glm.Glm;
 import glmath.glm.vec._4.bool.Vec4bool;
 
 /**
- *
  * @author fschaefers
  */
 abstract class FuncRelational extends ArithmeticOperators {

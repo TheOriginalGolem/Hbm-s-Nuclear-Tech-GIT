@@ -6,10 +6,9 @@
 package glmath.glm.vec._2.ui;
 
 /**
- *
  * @author fschaefers
  */
-abstract class FuncCommon extends FuncRelational{
+abstract class FuncCommon extends FuncRelational {
 
-    
+
 }

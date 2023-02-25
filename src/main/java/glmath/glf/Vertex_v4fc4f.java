@@ -8,15 +8,13 @@ package glmath.glf;
 import glmath.glm.vec._4.Vec4;
 
 /**
- *
  * @author GBarbieri
  */
 public class Vertex_v4fc4f {
 
+    public static final int SIZE = 2 * Vec4.SIZE;
     public Vec4 position;
     public Vec4 color;
-
-    public static final int SIZE = 2 * Vec4.SIZE;
 
     public Vertex_v4fc4f() {
     }
@@ -28,7 +26,7 @@ public class Vertex_v4fc4f {
 
     public float[] toFa_() {
         return new float[]{
-            position.x, position.y, position.z, position.w,
-            color.x, color.y, color.z, color.w};
+                position.x, position.y, position.z, position.w,
+                color.x, color.y, color.z, color.w};
     }
 }

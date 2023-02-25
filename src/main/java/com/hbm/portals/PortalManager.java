@@ -5,5 +5,5 @@ import java.util.List;
 
 public class PortalManager {
 
-	public static final List<Portal> ALL_RENDER_PORTALS = new ArrayList<Portal>();
+    public static final List<Portal> ALL_RENDER_PORTALS = new ArrayList<Portal>();
 }

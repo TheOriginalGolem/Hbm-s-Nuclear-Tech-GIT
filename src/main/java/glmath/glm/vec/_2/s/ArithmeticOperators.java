@@ -8,15 +8,14 @@ package glmath.glm.vec._2.s;
 import glmath.glm.Glm;
 
 /**
- *
  * @author GBarbieri
  */
 abstract class ArithmeticOperators {
-    
+
     public static final int SIZE = 2 * Short.BYTES;
 
     public short x, y;
-    
+
     public Vec2s add_(short b) {
         return Glm.add(new Vec2s(), (Vec2s) this, (int) b, b);
     }
@@ -136,7 +135,7 @@ abstract class ArithmeticOperators {
     public Vec2s sub(Vec2s b, Vec2s res) {
         return Glm.sub(res, (Vec2s) this, (int) b.x, b.y);
     }
-    
+
     public Vec2s mul_(short b) {
         return Glm.mul(new Vec2s(), (Vec2s) this, (int) b, b);
     }
@@ -196,7 +195,7 @@ abstract class ArithmeticOperators {
     public Vec2s mul(Vec2s b, Vec2s res) {
         return Glm.mul(res, (Vec2s) this, (int) b.x, b.y);
     }
-    
+
     public Vec2s div_(short b) {
         return Glm.div(new Vec2s(), (Vec2s) this, (int) b, b);
     }

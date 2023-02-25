@@ -3,110 +3,108 @@ package com.hbm.tileentity.machine;
 import com.hbm.blocks.machine.BlockHadronDiode;
 import com.hbm.lib.ForgeDirection;
 import com.hbm.tileentity.TileEntityTickingBase;
-
 import net.minecraft.nbt.NBTTagCompound;
 
 public class TileEntityHadronDiode extends TileEntityTickingBase {
 
-	int age = 0;
-	boolean fatherIAskOfYouToUpdateMe = false;
+    public DiodeConfig[] sides = new DiodeConfig[6];
+    int age = 0;
+    boolean fatherIAskOfYouToUpdateMe = false;
 
-	public DiodeConfig[] sides = new DiodeConfig[6];
-	
-	public TileEntityHadronDiode() {
-		for(int i = 0; i < 6; i ++){
-			sides[i] = DiodeConfig.NONE;
-		}
-	}
-	
-	@Override
-	public void update() {
-		if(!world.isRemote) {
-			age++;
+    public TileEntityHadronDiode() {
+        for (int i = 0; i < 6; i++) {
+            sides[i] = DiodeConfig.NONE;
+        }
+    }
 
-			if(age >= 20) {
-				age = 0;
-				sendSides();
-			}
-			
-			if(fatherIAskOfYouToUpdateMe) {
-				fatherIAskOfYouToUpdateMe = false;
-				//world.markBlockRangeForRenderUpdate(pos, pos);
-				BlockHadronDiode.resetBlockState(world, pos);
-			}
-		}
-	}
+    @Override
+    public void update() {
+        if (!world.isRemote) {
+            age++;
 
-	@Override
-	public String getInventoryName() {
-		return "";
-	}
-	
-	public void sendSides() {
+            if (age >= 20) {
+                age = 0;
+                sendSides();
+            }
 
-		NBTTagCompound data = new NBTTagCompound();
+            if (fatherIAskOfYouToUpdateMe) {
+                fatherIAskOfYouToUpdateMe = false;
+                //world.markBlockRangeForRenderUpdate(pos, pos);
+                BlockHadronDiode.resetBlockState(world, pos);
+            }
+        }
+    }
 
-		for(int i = 0; i < 6; i++) {
+    @Override
+    public String getInventoryName() {
+        return "";
+    }
 
-			if(sides[i] != null)
-				data.setInteger("" + i, sides[i].ordinal());
-		}
-		BlockHadronDiode.resetBlockState(world, pos);
-		this.networkPack(data, 250);
-	}
-	
-	@Override
-	public void networkUnpack(NBTTagCompound nbt) {
-		for(int i = 0; i < 6; i++) {
-			sides[i] = DiodeConfig.values()[nbt.getInteger("" + i)];
-		}
-		//world.markBlockRangeForRenderUpdate(pos, pos);
-	}
-	
-	public DiodeConfig getConfig(int side) {
+    public void sendSides() {
 
-		if(ForgeDirection.getOrientation(side) == ForgeDirection.UNKNOWN)
-			return DiodeConfig.NONE;
+        NBTTagCompound data = new NBTTagCompound();
 
-		DiodeConfig conf = sides[side];
+        for (int i = 0; i < 6; i++) {
 
-		if(conf == null)
-			return DiodeConfig.NONE;
+            if (sides[i] != null)
+                data.setInteger("" + i, sides[i].ordinal());
+        }
+        BlockHadronDiode.resetBlockState(world, pos);
+        this.networkPack(data, 250);
+    }
 
-		return conf;
-	}
+    @Override
+    public void networkUnpack(NBTTagCompound nbt) {
+        for (int i = 0; i < 6; i++) {
+            sides[i] = DiodeConfig.values()[nbt.getInteger("" + i)];
+        }
+        //world.markBlockRangeForRenderUpdate(pos, pos);
+    }
 
-	public void setConfig(int side, int config) {
-		sides[side] = DiodeConfig.values()[config];
-		this.markDirty();
-		sendSides();
-	}
-	
-	@Override
-	public void readFromNBT(NBTTagCompound compound) {
-		for(int i = 0; i < 6; i++) {
-			sides[i] = DiodeConfig.values()[compound.getInteger("side_" + i)];
-		}
+    public DiodeConfig getConfig(int side) {
 
-		fatherIAskOfYouToUpdateMe = true;
-		super.readFromNBT(compound);
-	}
-	
-	@Override
-	public NBTTagCompound writeToNBT(NBTTagCompound compound) {
-		for(int i = 0; i < 6; i++) {
+        if (ForgeDirection.getOrientation(side) == ForgeDirection.UNKNOWN)
+            return DiodeConfig.NONE;
 
-			if(sides[i] != null) {
-				compound.setInteger("side_" + i, sides[i].ordinal());
-			}
-		}
-		return super.writeToNBT(compound);
-	}
+        DiodeConfig conf = sides[side];
 
-	public static enum DiodeConfig {
-		NONE,
-		IN,
-		OUT
-	}
-	
+        if (conf == null)
+            return DiodeConfig.NONE;
+
+        return conf;
+    }
+
+    public void setConfig(int side, int config) {
+        sides[side] = DiodeConfig.values()[config];
+        this.markDirty();
+        sendSides();
+    }
+
+    @Override
+    public void readFromNBT(NBTTagCompound compound) {
+        for (int i = 0; i < 6; i++) {
+            sides[i] = DiodeConfig.values()[compound.getInteger("side_" + i)];
+        }
+
+        fatherIAskOfYouToUpdateMe = true;
+        super.readFromNBT(compound);
+    }
+
+    @Override
+    public NBTTagCompound writeToNBT(NBTTagCompound compound) {
+        for (int i = 0; i < 6; i++) {
+
+            if (sides[i] != null) {
+                compound.setInteger("side_" + i, sides[i].ordinal());
+            }
+        }
+        return super.writeToNBT(compound);
+    }
+
+    public enum DiodeConfig {
+        NONE,
+        IN,
+        OUT
+    }
+
 }

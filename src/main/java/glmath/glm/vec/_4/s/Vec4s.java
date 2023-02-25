@@ -6,7 +6,6 @@
 package glmath.glm.vec._4.s;
 
 /**
- *
  * @author GBarbieri
  */
 public class Vec4s extends FuncRelational {

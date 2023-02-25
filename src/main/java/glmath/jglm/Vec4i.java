@@ -5,8 +5,8 @@
 package glmath.jglm;
 
 /**
- * @deprecated 
  * @author gbarbieri
+ * @deprecated
  */
 public class Vec4i extends Veci {
 
@@ -73,7 +73,7 @@ public class Vec4i extends Veci {
         System.out.println(title + " (" + x + ", " + y + ", " + z + ", " + w + ")");
     }
 
-//    public Vec4 mult(float scalar) {
+    //    public Vec4 mult(float scalar) {
 //
 //        return new Vec4(x * scalar, y * scalar, z * scalar, w * scalar);
 //    }

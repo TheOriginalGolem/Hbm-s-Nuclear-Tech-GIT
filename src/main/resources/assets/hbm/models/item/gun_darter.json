@@ -1,6 +1,6 @@
 {
-	"parent": "item/handheld",
-	"textures": {
-		"layer0": "hbm:items/gun_darter"
-	}
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "hbm:items/gun_darter"
+  }
 }

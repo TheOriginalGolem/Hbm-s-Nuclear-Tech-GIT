@@ -11,7 +11,6 @@ import glmath.glm.vec._3.Vec3;
 import glmath.glm.vec._3.d.Vec3d;
 
 /**
- *
  * @author GBarbieri
  */
 abstract class matrixTransform extends funcMatrix {
@@ -111,6 +110,7 @@ abstract class matrixTransform extends funcMatrix {
     public static Mat4 ortho_(float left, float right, float bottom, float top) {
         return ortho(new Mat4(), left, right, bottom, top);
     }
+
     public static Mat4 ortho(Mat4 res, float left, float right, float bottom, float top) {
         res.identity();
         res.m00 = 2 / (right - left);

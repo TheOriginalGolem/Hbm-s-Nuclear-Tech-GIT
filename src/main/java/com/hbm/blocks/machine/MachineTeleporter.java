@@ -4,7 +4,6 @@ import com.hbm.blocks.ModBlocks;
 import com.hbm.items.ModItems;
 import com.hbm.main.MainRegistry;
 import com.hbm.tileentity.machine.TileEntityMachineTeleporter;
-
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -18,39 +17,39 @@ import net.minecraft.world.World;
 
 public class MachineTeleporter extends BlockContainer {
 
-	public MachineTeleporter(Material materialIn, String s) {
-		super(materialIn);
-		this.setUnlocalizedName(s);
-		this.setRegistryName(s);
-		
-		ModBlocks.ALL_BLOCKS.add(this);
-	}
+    public MachineTeleporter(Material materialIn, String s) {
+        super(materialIn);
+        this.setUnlocalizedName(s);
+        this.setRegistryName(s);
 
-	@Override
-	public TileEntity createNewTileEntity(World worldIn, int meta) {
-		return new TileEntityMachineTeleporter();
-	}
-	
-	@Override
-	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-		if (world.isRemote) {
-			return true;
-		} else if(player.getHeldItemMainhand().getItem() == ModItems.linker) {
-			return false;
-		}else if (!player.isSneaking()) {
-			TileEntityMachineTeleporter entity = (TileEntityMachineTeleporter) world.getTileEntity(pos);
-			if (entity != null) {
-				player.openGui(MainRegistry.instance, ModBlocks.guiID_machine_teleporter, world, pos.getX(), pos.getY(), pos.getZ());
-			}
-			return true;
-		} else {
-			return false;
-		}
-	}
-	
-	@Override
-	public EnumBlockRenderType getRenderType(IBlockState state) {
-		return EnumBlockRenderType.MODEL;
-	}
+        ModBlocks.ALL_BLOCKS.add(this);
+    }
+
+    @Override
+    public TileEntity createNewTileEntity(World worldIn, int meta) {
+        return new TileEntityMachineTeleporter();
+    }
+
+    @Override
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+        if (world.isRemote) {
+            return true;
+        } else if (player.getHeldItemMainhand().getItem() == ModItems.linker) {
+            return false;
+        } else if (!player.isSneaking()) {
+            TileEntityMachineTeleporter entity = (TileEntityMachineTeleporter) world.getTileEntity(pos);
+            if (entity != null) {
+                player.openGui(MainRegistry.instance, ModBlocks.guiID_machine_teleporter, world, pos.getX(), pos.getY(), pos.getZ());
+            }
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public EnumBlockRenderType getRenderType(IBlockState state) {
+        return EnumBlockRenderType.MODEL;
+    }
 
 }

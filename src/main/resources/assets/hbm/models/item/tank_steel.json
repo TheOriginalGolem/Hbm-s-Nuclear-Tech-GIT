@@ -1,6 +1,6 @@
 {
-	"parent": "item/generated",
-	"textures": {
-		"layer0": "hbm:items/tank_steel"
-	}
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "hbm:items/tank_steel"
+  }
 }

@@ -5,8 +5,8 @@ import net.minecraft.world.World;
 
 public class ParticleLargeFlame extends Particle {
 
-	protected ParticleLargeFlame(World worldIn, double posXIn, double posYIn, double posZIn) {
-		super(worldIn, posXIn, posYIn, posZIn);
-	}
+    protected ParticleLargeFlame(World worldIn, double posXIn, double posYIn, double posZIn) {
+        super(worldIn, posXIn, posYIn, posZIn);
+    }
 
 }

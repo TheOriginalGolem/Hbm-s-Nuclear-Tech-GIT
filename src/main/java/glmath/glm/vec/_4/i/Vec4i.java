@@ -5,16 +5,15 @@
  */
 package glmath.glm.vec._4.i;
 
+import glmath.glm.vec._2.i.Vec2i;
+import glmath.glm.vec._3.i.Vec3i;
+
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
 
-import glmath.glm.vec._2.i.Vec2i;
-import glmath.glm.vec._3.i.Vec3i;
-
 /**
- *
  * @author GBarbieri
  */
 public class Vec4i extends FuncRelational {
@@ -43,7 +42,7 @@ public class Vec4i extends FuncRelational {
     }
 
     public Vec4i(int[] ia, int i) {
-        this(ia[i + 0], ia[i + 1], ia[i + 2], ia[i + 3]);
+        this(ia[i], ia[i + 1], ia[i + 2], ia[i + 3]);
     }
 
     public Vec4i(long l) {
@@ -55,7 +54,7 @@ public class Vec4i extends FuncRelational {
     }
 
     public Vec4i(long[] la, int i) {
-        this(la[i + 0], la[i + 1], la[i + 2], la[i + 3]);
+        this(la[i], la[i + 1], la[i + 2], la[i + 3]);
     }
 
     public Vec4i(int i, Vec3i v) {
@@ -95,7 +94,7 @@ public class Vec4i extends FuncRelational {
     }
 
     public Vec4i set(int[] ia, int i) {
-        return set(ia[i + 0], ia[i + 1], ia[i + 2], ia[i + 3]);
+        return set(ia[i], ia[i + 1], ia[i + 2], ia[i + 3]);
     }
 
     public Vec4i set(long l) {
@@ -107,7 +106,7 @@ public class Vec4i extends FuncRelational {
     }
 
     public Vec4i set(long[] la, int i) {
-        return set(la[i + 0], la[i + 1], la[i + 2], la[i + 3]);
+        return set(la[i], la[i + 1], la[i + 2], la[i + 3]);
     }
 
     public Vec4i set(int i, Vec3i v) {
@@ -160,7 +159,7 @@ public class Vec4i extends FuncRelational {
 
     public IntBuffer toDib(IntBuffer ib, int index) {
         return ib
-                .put(index + 0, x)
+                .put(index, x)
                 .put(index + 1, y)
                 .put(index + 2, z)
                 .put(index + 3, w);
@@ -176,7 +175,7 @@ public class Vec4i extends FuncRelational {
 
     public FloatBuffer toDfb(FloatBuffer fb, int index) {
         return fb
-                .put(index + 0, x)
+                .put(index, x)
                 .put(index + 1, y)
                 .put(index + 2, z)
                 .put(index + 3, w);
@@ -192,8 +191,8 @@ public class Vec4i extends FuncRelational {
 
     public ByteBuffer toDbb(ByteBuffer bb, int index) {
         return bb
-                .putInt(index + 0 * Integer.BYTES, x)
-                .putInt(index + 1 * Integer.BYTES, y)
+                .putInt(index, x)
+                .putInt(index + Integer.BYTES, y)
                 .putInt(index + 2 * Integer.BYTES, z)
                 .putInt(index + 3 * Integer.BYTES, w);
     }

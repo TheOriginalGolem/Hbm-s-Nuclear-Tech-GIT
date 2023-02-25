@@ -1,12 +1,11 @@
 package com.hbm.tileentity.bomb;
 
+import api.hbm.energy.IBatteryItem;
 import com.hbm.entity.effect.EntityNukeCloudSmall;
 import com.hbm.entity.logic.EntityBalefire;
 import com.hbm.items.ModItems;
 import com.hbm.lib.HBMSoundHandler;
 import com.hbm.tileentity.TileEntityMachineBase;
-
-import api.hbm.energy.IBatteryItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
@@ -18,156 +17,151 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class TileEntityNukeBalefire extends TileEntityMachineBase implements ITickable {
 
-	public boolean loaded;
-	public boolean started;
-	public int timer;
-	
-	public TileEntityNukeBalefire() {
-		super(2);
-		timer = 18000;
-	}
+    public boolean loaded;
+    public boolean started;
+    public int timer;
 
-	@Override
-	public String getName() {
-		return "container.nukeFstbmb";
-	}
+    public TileEntityNukeBalefire() {
+        super(2);
+        timer = 18000;
+    }
 
-	@Override
-	public void update() {
-		if(!world.isRemote) {
+    @Override
+    public String getName() {
+        return "container.nukeFstbmb";
+    }
 
-			if(!this.isLoaded()) {
-				started = false;
-			}
+    @Override
+    public void update() {
+        if (!world.isRemote) {
 
-			if(started) {
-				timer--;
+            if (!this.isLoaded()) {
+                started = false;
+            }
 
-				if(timer % 20 == 0)
-					world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), HBMSoundHandler.fstbmbPing, SoundCategory.BLOCKS, 5.0F, 1.0F);
-			}
+            if (started) {
+                timer--;
 
-			if(timer <= 0) {
-				explode();
-			}
+                if (timer % 20 == 0)
+                    world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), HBMSoundHandler.fstbmbPing, SoundCategory.BLOCKS, 5.0F, 1.0F);
+            }
 
-			NBTTagCompound data = new NBTTagCompound();
-			data.setInteger("timer", timer);
-			data.setBoolean("loaded", this.isLoaded());
-			data.setBoolean("started", started);
-			networkPack(data, 250);
-		}
-	}
-	
-	public void handleButtonPacket(int value, int meta) {
+            if (timer <= 0) {
+                explode();
+            }
 
-		if(meta == 0 && this.isLoaded()) {
-			world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), HBMSoundHandler.fstbmbStart, SoundCategory.BLOCKS, 5.0F, 1.0F);
-			started = true;
-		}
+            NBTTagCompound data = new NBTTagCompound();
+            data.setInteger("timer", timer);
+            data.setBoolean("loaded", this.isLoaded());
+            data.setBoolean("started", started);
+            networkPack(data, 250);
+        }
+    }
 
-		if(meta == 1)
-			timer = value * 20;
-	}
-	
-	@Override
-	public void networkUnpack(NBTTagCompound data) {
-		timer = data.getInteger("timer");
-		started = data.getBoolean("started");
-		loaded = data.getBoolean("loaded");
-	}
-	
-	public boolean isLoaded() {
+    public void handleButtonPacket(int value, int meta) {
 
-		return hasEgg() && hasBattery();
-	}
+        if (meta == 0 && this.isLoaded()) {
+            world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), HBMSoundHandler.fstbmbStart, SoundCategory.BLOCKS, 5.0F, 1.0F);
+            started = true;
+        }
 
-	public boolean hasEgg() {
+        if (meta == 1)
+            timer = value * 20;
+    }
 
-		if(inventory.getStackInSlot(0).getItem() == ModItems.egg_balefire) {
-			return true;
-		}
+    @Override
+    public void networkUnpack(NBTTagCompound data) {
+        timer = data.getInteger("timer");
+        started = data.getBoolean("started");
+        loaded = data.getBoolean("loaded");
+    }
 
-		return false;
-	}
+    public boolean isLoaded() {
 
-	public boolean hasBattery() {
+        return hasEgg() && hasBattery();
+    }
 
-		return getBattery() > 0;
-	}
+    public boolean hasEgg() {
 
-	public int getBattery() {
-		
-		if(inventory.getStackInSlot(1).getItem() == ModItems.battery_spark &&
-				((IBatteryItem)ModItems.battery_spark).getCharge(inventory.getStackInSlot(1)) == ((IBatteryItem)ModItems.battery_spark).getMaxCharge()) {
-			return 1;
-		}
-		if(inventory.getStackInSlot(1).getItem() == ModItems.battery_trixite &&
-				((IBatteryItem)ModItems.battery_trixite).getCharge(inventory.getStackInSlot(1)) == ((IBatteryItem)ModItems.battery_trixite).getMaxCharge()) {
-			return 2;
-		}
+        return inventory.getStackInSlot(0).getItem() == ModItems.egg_balefire;
+    }
 
-		return 0;
-	}
+    public boolean hasBattery() {
 
-	public void explode() {
-		for(int i = 0; i < inventory.getSlots(); i++)
-			inventory.setStackInSlot(i, ItemStack.EMPTY);
+        return getBattery() > 0;
+    }
 
-		world.destroyBlock(pos, false);
+    public int getBattery() {
 
-		EntityBalefire bf = new EntityBalefire(world);
-		bf.posX = pos.getX() + 0.5;
-		bf.posY = pos.getY() + 0.5;
-		bf.posZ = pos.getZ() + 0.5;
-		bf.destructionRange = (int) 250;
-		world.spawnEntity(bf);
-		world.spawnEntity(EntityNukeCloudSmall.statFacBale(world, pos.getX() + 0.5, pos.getY() + 5, pos.getZ() + 0.5, 250F));
-	}
+        if (inventory.getStackInSlot(1).getItem() == ModItems.battery_spark &&
+                ((IBatteryItem) ModItems.battery_spark).getCharge(inventory.getStackInSlot(1)) == ((IBatteryItem) ModItems.battery_spark).getMaxCharge()) {
+            return 1;
+        }
+        if (inventory.getStackInSlot(1).getItem() == ModItems.battery_trixite &&
+                ((IBatteryItem) ModItems.battery_trixite).getCharge(inventory.getStackInSlot(1)) == ((IBatteryItem) ModItems.battery_trixite).getMaxCharge()) {
+            return 2;
+        }
 
-	public String getMinutes() {
+        return 0;
+    }
 
-		String mins = "" + (timer / 1200);
+    public void explode() {
+        for (int i = 0; i < inventory.getSlots(); i++)
+            inventory.setStackInSlot(i, ItemStack.EMPTY);
 
-		if(mins.length() == 1)
-			mins = "0" + mins;
+        world.destroyBlock(pos, false);
 
-		return mins;
-	}
+        EntityBalefire bf = new EntityBalefire(world);
+        bf.posX = pos.getX() + 0.5;
+        bf.posY = pos.getY() + 0.5;
+        bf.posZ = pos.getZ() + 0.5;
+        bf.destructionRange = 250;
+        world.spawnEntity(bf);
+        world.spawnEntity(EntityNukeCloudSmall.statFacBale(world, pos.getX() + 0.5, pos.getY() + 5, pos.getZ() + 0.5, 250F));
+    }
 
-	public String getSeconds() {
+    public String getMinutes() {
 
-		String mins = "" + ((timer / 20) % 60);
+        String mins = "" + (timer / 1200);
 
-		if(mins.length() == 1)
-			mins = "0" + mins;
+        if (mins.length() == 1)
+            mins = "0" + mins;
 
-		return mins;
-	}
+        return mins;
+    }
 
-	@Override
-	public void readFromNBT(NBTTagCompound compound) {
-		started = compound.getBoolean("started");
-		timer = compound.getInteger("timer");
-		super.readFromNBT(compound);
-	}
-	
-	@Override
-	public NBTTagCompound writeToNBT(NBTTagCompound compound) {
-		compound.setBoolean("started", started);
-		compound.setInteger("timer", timer);
-		return super.writeToNBT(compound);
-	}
-	
-	@Override
-	public AxisAlignedBB getRenderBoundingBox() {
-		return TileEntity.INFINITE_EXTENT_AABB;
-	}
+    public String getSeconds() {
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public double getMaxRenderDistanceSquared()
-	{
-		return 65536.0D;
-	}
+        String mins = "" + ((timer / 20) % 60);
+
+        if (mins.length() == 1)
+            mins = "0" + mins;
+
+        return mins;
+    }
+
+    @Override
+    public void readFromNBT(NBTTagCompound compound) {
+        started = compound.getBoolean("started");
+        timer = compound.getInteger("timer");
+        super.readFromNBT(compound);
+    }
+
+    @Override
+    public NBTTagCompound writeToNBT(NBTTagCompound compound) {
+        compound.setBoolean("started", started);
+        compound.setInteger("timer", timer);
+        return super.writeToNBT(compound);
+    }
+
+    @Override
+    public AxisAlignedBB getRenderBoundingBox() {
+        return TileEntity.INFINITE_EXTENT_AABB;
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public double getMaxRenderDistanceSquared() {
+        return 65536.0D;
+    }
 }

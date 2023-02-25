@@ -1,16 +1,16 @@
 /**
  * Copyright 2010 JogAmp Community. All rights reserved.
- *
+ * <p>
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are met:
- *
+ * <p>
  * 1. Redistributions of source code must retain the above copyright notice,
  * this list of conditions and the following disclaimer.
- *
+ * <p>
  * 2. Redistributions in binary form must reproduce the above copyright notice,
  * this list of conditions and the following disclaimer in the documentation
  * and/or other materials provided with the distribution.
- *
+ * <p>
  * THIS SOFTWARE IS PROVIDED BY JogAmp Community ``AS IS'' AND ANY EXPRESS OR
  * IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
  * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO
@@ -21,17 +21,16 @@
  * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- *
+ * <p>
  * The views and conclusions contained in the software and documentation are
  * those of the authors and should not be interpreted as representing official
  * policies, either expressed or implied, of JogAmp Community.
- *
  */
 package glmath.jglm;
 
 /**
- * @deprecated
  * @author GBarbieri
+ * @deprecated
  */
 public class Quat {
 
@@ -71,6 +70,58 @@ public class Quat {
         this.z = (float) Math.sin(theta / 2) * cross[2];
         this.w = (float) Math.cos(theta / 2);
         this.normalize();
+    }
+
+    public static Quat getQuatBetweenVecs(Vec3 v1, Vec3 v2) {
+
+        Vec3 cross = v1.crossProduct(v2);
+
+        Quat quat = new Quat();
+
+        quat.x = cross.x;
+        quat.y = cross.y;
+        quat.z = cross.z;
+
+//        quat.w = (float) (Math.sqrt(Math.pow(v1.length(), 2) * Math.pow(v2.length(), 2)) + v1.dot(v2));
+        quat.w = v1.length() * v2.length() + v1.dot(v2);
+
+        return quat;
+    }
+
+    public static Quat getQuatBetweenVecs1(Vec3 a, Vec3 b) {
+
+        Vec3 tmp;
+        Vec3 xUnit = new Vec3(1f, 0f, 0f);
+        Vec3 yUnit = new Vec3(0f, 1f, 0f);
+        Quat quat;
+
+        float dot = a.dot(b);
+
+        if (dot < -0.999999) {
+//            System.out.println("1");
+            tmp = xUnit.crossProduct(a);
+
+            if (tmp.length() < 0.000001) {
+
+                tmp = yUnit.crossProduct(a);
+            }
+            tmp.normalize();
+
+            quat = Jglm.angleAxis(180, tmp);
+
+        } else if (dot > 0.999999) {
+//            System.out.println("2");
+            quat = new Quat(0f, 0f, 0f, 1f);
+
+        } else {
+//            System.out.println("3");
+            tmp = a.crossProduct(b);
+
+            quat = new Quat(tmp.x, tmp.y, tmp.z, 1 + dot);
+
+            quat.normalize();
+        }
+        return quat;
     }
 
     /**
@@ -158,58 +209,6 @@ public class Quat {
         out[2] = vec2[1] * vec1[0] - vec2[0] * vec1[1];
 
         return out;
-    }
-
-    public static Quat getQuatBetweenVecs(Vec3 v1, Vec3 v2) {
-
-        Vec3 cross = v1.crossProduct(v2);
-
-        Quat quat = new Quat();
-
-        quat.x = cross.x;
-        quat.y = cross.y;
-        quat.z = cross.z;
-
-//        quat.w = (float) (Math.sqrt(Math.pow(v1.length(), 2) * Math.pow(v2.length(), 2)) + v1.dot(v2));
-        quat.w = (float) (v1.length() * v2.length() + v1.dot(v2));
-
-        return quat;
-    }
-
-    public static Quat getQuatBetweenVecs1(Vec3 a, Vec3 b) {
-
-        Vec3 tmp;
-        Vec3 xUnit = new Vec3(1f, 0f, 0f);
-        Vec3 yUnit = new Vec3(0f, 1f, 0f);
-        Quat quat;
-
-        float dot = a.dot(b);
-
-        if (dot < -0.999999) {
-//            System.out.println("1");
-            tmp = xUnit.crossProduct(a);
-
-            if (tmp.length() < 0.000001) {
-
-                tmp = yUnit.crossProduct(a);
-            }
-            tmp.normalize();
-
-            quat = Jglm.angleAxis(180, tmp);
-
-        } else if (dot > 0.999999) {
-//            System.out.println("2");
-            quat = new Quat(0f, 0f, 0f, 1f);
-
-        } else {
-//            System.out.println("3");
-            tmp = a.crossProduct(b);
-
-            quat = new Quat(tmp.x, tmp.y, tmp.z, 1 + dot);
-
-            quat.normalize();
-        }
-        return quat;
     }
 
     public float getW() {
@@ -450,10 +449,7 @@ public class Quat {
      * @return true if empty, false otherwise
      */
     public boolean isEmpty() {
-        if (w == 1 && x == 0 && y == 0 && z == 0) {
-            return true;
-        }
-        return false;
+        return w == 1 && x == 0 && y == 0 && z == 0;
     }
 
     /**
@@ -462,10 +458,7 @@ public class Quat {
      * @return true if it is an identity rep., false otherwise
      */
     public boolean isIdentity() {
-        if (w == 0 && x == 0 && y == 0 && z == 0) {
-            return true;
-        }
-        return false;
+        return w == 0 && x == 0 && y == 0 && z == 0;
     }
 
     /**

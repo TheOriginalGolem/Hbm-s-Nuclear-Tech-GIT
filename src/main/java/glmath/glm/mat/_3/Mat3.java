@@ -5,17 +5,16 @@
  */
 package glmath.glm.mat._3;
 
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
-import java.nio.FloatBuffer;
-
 import glmath.glm.mat._4.Mat4;
 import glmath.glm.quat.Quat;
 import glmath.glm.vec._2.Vec2;
 import glmath.glm.vec._3.Vec3;
 
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+import java.nio.FloatBuffer;
+
 /**
- *
  * @author GBarbieri
  */
 public class Mat3 extends matrixQuery {
@@ -36,7 +35,7 @@ public class Mat3 extends matrixQuery {
                 v.x, 0, 0,
                 0, v.y, 0,
                 0, 0, v.z);
-    }   
+    }
 
     public Mat3(Mat3 mat) {
         this(
@@ -58,7 +57,7 @@ public class Mat3 extends matrixQuery {
 
     public Mat3(float[] f, int offset) {
         this(
-                f[offset + 0], f[offset + 1], f[offset + 2],
+                f[offset], f[offset + 1], f[offset + 2],
                 f[offset + 3], f[offset + 4], f[offset + 5],
                 f[offset + 6], f[offset + 7], f[offset + 8]);
     }
@@ -96,6 +95,34 @@ public class Mat3 extends matrixQuery {
         result.m21 = 2 * q.y * q.z - 2 * q.w * q.x;
         result.m22 = 1 - 2 * q.x * q.x - 2 * q.y * q.y;
         return result;
+    }
+
+    /**
+     * Compare two floating points for equality within a margin of error.
+     * <p>
+     * This can be used to compensate for inequality caused by accumulated
+     * floating point math errors.
+     * <p>
+     * The error margin is specified in ULPs (units of least precision). A
+     * one-ULP difference means there are no representable floats in between.
+     * E.g. 0f and 1.4e-45f are one ULP apart. So are -6.1340704f and -6.13407f.
+     * Depending on the number of calculations involved, typically a margin of
+     * 1-5 ULPs should be enough.
+     *
+     * @param expected The expected value.
+     * @param actual   The actual value.
+     * @param maxUlps  The maximum difference in ULPs.
+     * @return
+     */
+    public static boolean compareFloatEquals(float expected, float actual, int maxUlps) {
+        int expectedBits = Float.floatToIntBits(expected) < 0 ? 0x80000000 - Float.floatToIntBits(expected) : Float.floatToIntBits(expected);
+        int actualBits = Float.floatToIntBits(actual) < 0 ? 0x80000000 - Float.floatToIntBits(actual) : Float.floatToIntBits(actual);
+        int difference = expectedBits > actualBits ? expectedBits - actualBits : actualBits - expectedBits;
+//        if (difference > maxUlps) {
+        System.out.println("expected: " + expected + ", actual: " + actual);
+        System.out.println("diff " + difference);
+//        }
+        return !Float.isNaN(expected) && !Float.isNaN(actual) && difference <= maxUlps;
     }
 
     public Mat3 set() {
@@ -146,7 +173,7 @@ public class Mat3 extends matrixQuery {
 
     public Mat3 set(float[] f, int offset) {
         set(
-                f[offset + 0], f[offset + 1], f[offset + 2],
+                f[offset], f[offset + 1], f[offset + 2],
                 f[offset + 3], f[offset + 4], f[offset + 5],
                 f[offset + 6], f[offset + 7], f[offset + 8]);
 
@@ -196,11 +223,11 @@ public class Mat3 extends matrixQuery {
     public Vec3 mul(Vec3 v) {
         return mul(v, new Vec3());
     }
+
     public Vec3 mul_(Vec3 v) {
         return mul(v, v);
     }
-    
-    
+
     public Vec3 mul(Vec3 right, Vec3 res) {
         res.set(m00 * right.x + m10 * right.y + m20 * right.z,
                 m01 * right.x + m11 * right.y + m21 * right.z,
@@ -264,41 +291,13 @@ public class Mat3 extends matrixQuery {
         return compareFloatEquals(m22, other.m22, maxUlps);
     }
 
-    /**
-     * Compare two floating points for equality within a margin of error.
-     *
-     * This can be used to compensate for inequality caused by accumulated
-     * floating point math errors.
-     *
-     * The error margin is specified in ULPs (units of least precision). A
-     * one-ULP difference means there are no representable floats in between.
-     * E.g. 0f and 1.4e-45f are one ULP apart. So are -6.1340704f and -6.13407f.
-     * Depending on the number of calculations involved, typically a margin of
-     * 1-5 ULPs should be enough.
-     *
-     * @param expected The expected value.
-     * @param actual The actual value.
-     * @param maxUlps The maximum difference in ULPs.
-     * @return
-     */
-    public static boolean compareFloatEquals(float expected, float actual, int maxUlps) {
-        int expectedBits = Float.floatToIntBits(expected) < 0 ? 0x80000000 - Float.floatToIntBits(expected) : Float.floatToIntBits(expected);
-        int actualBits = Float.floatToIntBits(actual) < 0 ? 0x80000000 - Float.floatToIntBits(actual) : Float.floatToIntBits(actual);
-        int difference = expectedBits > actualBits ? expectedBits - actualBits : actualBits - expectedBits;
-//        if (difference > maxUlps) {
-        System.out.println("expected: " + expected + ", actual: " + actual);
-        System.out.println("diff " + difference);
-//        }
-        return !Float.isNaN(expected) && !Float.isNaN(actual) && difference <= maxUlps;
-    }
-    
     public Mat4 toMat4_() {
         return toMat4(new Mat4());
     }
 
     public Mat4 toMat4(Mat4 res) {
         return res.set(
-                m00, m01, m02, 0, 
+                m00, m01, m02, 0,
                 m10, m11, m12, 0,
                 m20, m21, m22, 0,
                 0, 0, 0, 1);
@@ -313,7 +312,7 @@ public class Mat3 extends matrixQuery {
     }
 
     public float[] toFa(float[] res, int index) {
-        res[index + 0] = m00;
+        res[index] = m00;
         res[index + 1] = m01;
         res[index + 2] = m02;
         res[index + 3] = m10;
@@ -334,8 +333,8 @@ public class Mat3 extends matrixQuery {
     }
 
     public ByteBuffer toDbb(ByteBuffer res, int index) {
-        res.putFloat(index + 0 * Float.BYTES, m00);
-        res.putFloat(index + 1 * Float.BYTES, m01);
+        res.putFloat(index, m00);
+        res.putFloat(index + Float.BYTES, m01);
         res.putFloat(index + 2 * Float.BYTES, m02);
         res.putFloat(index + 3 * Float.BYTES, m10);
         res.putFloat(index + 4 * Float.BYTES, m11);
@@ -355,7 +354,7 @@ public class Mat3 extends matrixQuery {
     }
 
     public FloatBuffer toDfb(FloatBuffer res, int index) {
-        res.put(index + 0, m00);
+        res.put(index, m00);
         res.put(index + 1, m01);
         res.put(index + 2, m02);
         res.put(index + 3, m10);

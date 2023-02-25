@@ -8,10 +8,8 @@ import com.hbm.interfaces.ITankPacketAcceptor;
 import com.hbm.packet.FluidTankPacket;
 import com.hbm.packet.PacketDispatcher;
 import com.hbm.tileentity.TileEntityMachineBase;
-
 import net.minecraft.block.Block;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
@@ -28,159 +26,159 @@ import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
 
 public class TileEntityBarrel extends TileEntityMachineBase implements ITickable, IFluidHandler, ITankPacketAcceptor {
 
-	public FluidTank tank;
-	//Drillgon200: I think this would be much easier to read as an enum.
-	public short mode = 0;
-	public static final short modes = 4;
-	private int age = 0;
-	
-	public TileEntityBarrel() {
-		super(4);
-		tank = new FluidTank(-1);
-	}
-	
-	public TileEntityBarrel(int cap) {
-		super(4);
-		tank = new FluidTank(cap);
-	}
+    public static final short modes = 4;
+    public FluidTank tank;
+    //Drillgon200: I think this would be much easier to read as an enum.
+    public short mode = 0;
+    private int age = 0;
 
-	@Override
-	public void update() {
-		
-		if(!world.isRemote){
-			FluidTank compareTank = FFUtils.copyTank(tank);
-			FFUtils.fillFromFluidContainer(inventory, tank, 0, 1);
-			FFUtils.fillFluidContainer(inventory, tank, 2, 3);
+    public TileEntityBarrel() {
+        super(4);
+        tank = new FluidTank(-1);
+    }
 
-			age++;
-			if(age >= 20)
-				age = 0;
-			
-			if((mode == 1 || mode == 2) && (age == 9 || age == 19))
-				fillFluidInit(tank);
-			
-			if(tank.getFluid() != null && tank.getFluidAmount() > 0) {
-				checkFluidInteraction();
-			}
-			
-			PacketDispatcher.wrapper.sendToAllAround(new FluidTankPacket(pos, new FluidTank[]{tank}), new TargetPoint(world.provider.getDimension(), pos.getX(), pos.getY(), pos.getZ(), 100));
-			if(!FFUtils.areTanksEqual(tank, compareTank))
-				markDirty();
-		}
-	}
-	
-	public void checkFluidInteraction(){
-		Block b = this.getBlockType();
-		Fluid f = tank.getFluid().getFluid();
-		
-		//for when you fill antimatter into a matter tank
-		if(b != ModBlocks.barrel_antimatter && FluidTypeHandler.containsTrait(f, FluidTrait.AMAT)) {
-			world.destroyBlock(pos, false);
-			world.newExplosion(null, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 5, true, true);
-		}
-		
-		//for when you fill hot or corrosive liquids into a plastic tank
-		if(b == ModBlocks.barrel_plastic && (FluidTypeHandler.isCorrosive(f) || FluidTypeHandler.isHot(f))) {
-			world.destroyBlock(pos, false);
-			world.playSound(null, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, SoundEvents.BLOCK_LAVA_EXTINGUISH, SoundCategory.BLOCKS, 1.0F, 1.0F);
-		}
-		
-		//for when you fill corrosive liquid into an iron tank
-		if((b == ModBlocks.barrel_iron && FluidTypeHandler.isCorrosive(f)) ||
-				(b == ModBlocks.barrel_steel && FluidTypeHandler.isCorrosive2(f))) {
-			world.setBlockState(pos, ModBlocks.barrel_corroded.getDefaultState());
-			this.validate();
-			world.setTileEntity(pos, this);
-			
-			tank.setCapacity(6000);
-			tank.drain(Math.max(0, tank.getFluidAmount()-tank.getCapacity()), true);
-			
-			world.playSound(null, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, SoundEvents.BLOCK_LAVA_EXTINGUISH, SoundCategory.BLOCKS, 1.0F, 1.0F);
-		}
-		
-		if(b == ModBlocks.barrel_corroded && world.rand.nextInt(3) == 0) {
-			tank.drain(1, true);
-		}
-	}
-	
-	public void fillFluidInit(FluidTank tank) {
-		fillFluid(pos.east(), tank);
-		fillFluid(pos.west(), tank);
-		fillFluid(pos.up(), tank);
-		fillFluid(pos.down(), tank);
-		fillFluid(pos.south(), tank);
-		fillFluid(pos.north(), tank);
-	}
+    public TileEntityBarrel(int cap) {
+        super(4);
+        tank = new FluidTank(cap);
+    }
 
-	public void fillFluid(BlockPos pos1, FluidTank tank) {
-		FFUtils.fillFluid(this, tank, world, pos1, 4000);
-	}
-	
-	@Override
-	public IFluidTankProperties[] getTankProperties() {
-		return tank.getTankProperties();
-	}
+    @Override
+    public void update() {
 
-	@Override
-	public int fill(FluidStack resource, boolean doFill) {
-		if(mode == 2 || mode == 3)
-			return 0;
-		return tank.fill(resource, doFill);
-	}
+        if (!world.isRemote) {
+            FluidTank compareTank = FFUtils.copyTank(tank);
+            FFUtils.fillFromFluidContainer(inventory, tank, 0, 1);
+            FFUtils.fillFluidContainer(inventory, tank, 2, 3);
 
-	@Override
-	public FluidStack drain(FluidStack resource, boolean doDrain) {
-		if(mode == 0 || mode == 3)
-			return null;
-		return tank.drain(resource, doDrain);
-	}
+            age++;
+            if (age >= 20)
+                age = 0;
 
-	@Override
-	public FluidStack drain(int maxDrain, boolean doDrain) {
-		if(mode == 0 || mode == 3)
-			return null;
-		return tank.drain(maxDrain, doDrain);
-	}
+            if ((mode == 1 || mode == 2) && (age == 9 || age == 19))
+                fillFluidInit(tank);
 
-	@Override
-	public String getName() {
-		return "container.barrel";
-	}
-	
-	@Override
-	public NBTTagCompound writeToNBT(NBTTagCompound compound) {
-		compound.setShort("mode", mode);
-		compound.setInteger("cap", tank.getCapacity());
-		tank.writeToNBT(compound);
-		return super.writeToNBT(compound);
-	}
-	
-	@Override
-	public void readFromNBT(NBTTagCompound compound) {
-		mode = compound.getShort("mode");
-		if(tank == null || tank.getCapacity() <= 0)
-			tank = new FluidTank(compound.getInteger("cap"));
-		tank.readFromNBT(compound);
-		super.readFromNBT(compound);
-	}
-	
-	@Override
-	public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
-		if(capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY){
-			return CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY.cast(this);
-		}
-		return super.getCapability(capability, facing);
-	}
-	
-	@Override
-	public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
-		return capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY || super.hasCapability(capability, facing);
-	}
+            if (tank.getFluid() != null && tank.getFluidAmount() > 0) {
+                checkFluidInteraction();
+            }
 
-	@Override
-	public void recievePacket(NBTTagCompound[] tags) {
-		if(tags.length == 1)
-			tank.readFromNBT(tags[0]);
-	}
+            PacketDispatcher.wrapper.sendToAllAround(new FluidTankPacket(pos, tank), new TargetPoint(world.provider.getDimension(), pos.getX(), pos.getY(), pos.getZ(), 100));
+            if (!FFUtils.areTanksEqual(tank, compareTank))
+                markDirty();
+        }
+    }
+
+    public void checkFluidInteraction() {
+        Block b = this.getBlockType();
+        Fluid f = tank.getFluid().getFluid();
+
+        //for when you fill antimatter into a matter tank
+        if (b != ModBlocks.barrel_antimatter && FluidTypeHandler.containsTrait(f, FluidTrait.AMAT)) {
+            world.destroyBlock(pos, false);
+            world.newExplosion(null, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 5, true, true);
+        }
+
+        //for when you fill hot or corrosive liquids into a plastic tank
+        if (b == ModBlocks.barrel_plastic && (FluidTypeHandler.isCorrosive(f) || FluidTypeHandler.isHot(f))) {
+            world.destroyBlock(pos, false);
+            world.playSound(null, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, SoundEvents.BLOCK_LAVA_EXTINGUISH, SoundCategory.BLOCKS, 1.0F, 1.0F);
+        }
+
+        //for when you fill corrosive liquid into an iron tank
+        if ((b == ModBlocks.barrel_iron && FluidTypeHandler.isCorrosive(f)) ||
+                (b == ModBlocks.barrel_steel && FluidTypeHandler.isCorrosive2(f))) {
+            world.setBlockState(pos, ModBlocks.barrel_corroded.getDefaultState());
+            this.validate();
+            world.setTileEntity(pos, this);
+
+            tank.setCapacity(6000);
+            tank.drain(Math.max(0, tank.getFluidAmount() - tank.getCapacity()), true);
+
+            world.playSound(null, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, SoundEvents.BLOCK_LAVA_EXTINGUISH, SoundCategory.BLOCKS, 1.0F, 1.0F);
+        }
+
+        if (b == ModBlocks.barrel_corroded && world.rand.nextInt(3) == 0) {
+            tank.drain(1, true);
+        }
+    }
+
+    public void fillFluidInit(FluidTank tank) {
+        fillFluid(pos.east(), tank);
+        fillFluid(pos.west(), tank);
+        fillFluid(pos.up(), tank);
+        fillFluid(pos.down(), tank);
+        fillFluid(pos.south(), tank);
+        fillFluid(pos.north(), tank);
+    }
+
+    public void fillFluid(BlockPos pos1, FluidTank tank) {
+        FFUtils.fillFluid(this, tank, world, pos1, 4000);
+    }
+
+    @Override
+    public IFluidTankProperties[] getTankProperties() {
+        return tank.getTankProperties();
+    }
+
+    @Override
+    public int fill(FluidStack resource, boolean doFill) {
+        if (mode == 2 || mode == 3)
+            return 0;
+        return tank.fill(resource, doFill);
+    }
+
+    @Override
+    public FluidStack drain(FluidStack resource, boolean doDrain) {
+        if (mode == 0 || mode == 3)
+            return null;
+        return tank.drain(resource, doDrain);
+    }
+
+    @Override
+    public FluidStack drain(int maxDrain, boolean doDrain) {
+        if (mode == 0 || mode == 3)
+            return null;
+        return tank.drain(maxDrain, doDrain);
+    }
+
+    @Override
+    public String getName() {
+        return "container.barrel";
+    }
+
+    @Override
+    public NBTTagCompound writeToNBT(NBTTagCompound compound) {
+        compound.setShort("mode", mode);
+        compound.setInteger("cap", tank.getCapacity());
+        tank.writeToNBT(compound);
+        return super.writeToNBT(compound);
+    }
+
+    @Override
+    public void readFromNBT(NBTTagCompound compound) {
+        mode = compound.getShort("mode");
+        if (tank == null || tank.getCapacity() <= 0)
+            tank = new FluidTank(compound.getInteger("cap"));
+        tank.readFromNBT(compound);
+        super.readFromNBT(compound);
+    }
+
+    @Override
+    public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
+        if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY) {
+            return CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY.cast(this);
+        }
+        return super.getCapability(capability, facing);
+    }
+
+    @Override
+    public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
+        return capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY || super.hasCapability(capability, facing);
+    }
+
+    @Override
+    public void recievePacket(NBTTagCompound[] tags) {
+        if (tags.length == 1)
+            tank.readFromNBT(tags[0]);
+    }
 
 }

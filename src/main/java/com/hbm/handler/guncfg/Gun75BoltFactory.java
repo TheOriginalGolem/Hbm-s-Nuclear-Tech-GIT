@@ -1,7 +1,5 @@
 package com.hbm.handler.guncfg;
 
-import java.util.ArrayList;
-
 import com.hbm.entity.projectile.EntityBulletBase;
 import com.hbm.handler.BulletConfigSyncingUtil;
 import com.hbm.handler.BulletConfiguration;
@@ -19,159 +17,161 @@ import com.hbm.render.anim.BusAnimationKeyframe;
 import com.hbm.render.anim.BusAnimationSequence;
 import com.hbm.render.anim.HbmAnimations.AnimType;
 import com.hbm.render.misc.RenderScreenOverlay.Crosshair;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
 import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
 
+import java.util.ArrayList;
+
 public class Gun75BoltFactory {
 
-	public static GunConfiguration getBolterConfig() {
+    static float inaccuracy = 0.5F;
 
-		GunConfiguration config = new GunConfiguration();
+    public static GunConfiguration getBolterConfig() {
 
-		config.rateOfFire = 2;
-		config.roundsPerCycle = 1;
-		config.gunMode = GunConfiguration.MODE_NORMAL;
-		config.firingMode = GunConfiguration.FIRE_AUTO;
-		config.hasSights = false;
-		config.reloadDuration = 40;
-		config.firingDuration = 0;
-		config.ammoCap = 30;
-		config.reloadType = GunConfiguration.RELOAD_FULL;
-		config.allowsInfinity = true;
-		config.crosshair = Crosshair.NONE;
-		config.durability = 10000;
-		config.reloadSound = GunConfiguration.RSOUND_MAG;
-		config.firingSound = HBMSoundHandler.hksShoot;
-		config.reloadSoundEnd = false;
-		config.showAmmo = false;
+        GunConfiguration config = new GunConfiguration();
 
-		config.animations.put(AnimType.CYCLE, new BusAnimation()
-				.addBus("RECOIL", new BusAnimationSequence()
-						.addKeyframe(new BusAnimationKeyframe(1, 0, 0, 25))
-						.addKeyframe(new BusAnimationKeyframe(0, 0, 0, 75))
-						)
-				.addBus("EJECT", new BusAnimationSequence()
-						.addKeyframe(new BusAnimationKeyframe(0, 0, 0, 25))
-						.addKeyframe(new BusAnimationKeyframe(0, 0, 1, 75))
-						)
-				);
+        config.rateOfFire = 2;
+        config.roundsPerCycle = 1;
+        config.gunMode = GunConfiguration.MODE_NORMAL;
+        config.firingMode = GunConfiguration.FIRE_AUTO;
+        config.hasSights = false;
+        config.reloadDuration = 40;
+        config.firingDuration = 0;
+        config.ammoCap = 30;
+        config.reloadType = GunConfiguration.RELOAD_FULL;
+        config.allowsInfinity = true;
+        config.crosshair = Crosshair.NONE;
+        config.durability = 10000;
+        config.reloadSound = GunConfiguration.RSOUND_MAG;
+        config.firingSound = HBMSoundHandler.hksShoot;
+        config.reloadSoundEnd = false;
+        config.showAmmo = false;
 
-		config.animations.put(AnimType.RELOAD, new BusAnimation()
-				.addBus("TILT", new BusAnimationSequence()
-						.addKeyframe(new BusAnimationKeyframe(1, 0, 0, 250))
-						.addKeyframe(new BusAnimationKeyframe(1, 0, 0, 1500))
-						.addKeyframe(new BusAnimationKeyframe(0, 0, 0, 250))
-						)
-				.addBus("MAG", new BusAnimationSequence()
-						.addKeyframe(new BusAnimationKeyframe(0, 0, 1, 500))
-						.addKeyframe(new BusAnimationKeyframe(1, 0, 1, 500))
-						.addKeyframe(new BusAnimationKeyframe(0, 0, 0, 500))
-						)
-				);
+        config.animations.put(AnimType.CYCLE, new BusAnimation()
+                .addBus("RECOIL", new BusAnimationSequence()
+                        .addKeyframe(new BusAnimationKeyframe(1, 0, 0, 25))
+                        .addKeyframe(new BusAnimationKeyframe(0, 0, 0, 75))
+                )
+                .addBus("EJECT", new BusAnimationSequence()
+                        .addKeyframe(new BusAnimationKeyframe(0, 0, 0, 25))
+                        .addKeyframe(new BusAnimationKeyframe(0, 0, 1, 75))
+                )
+        );
 
-		config.name = "Manticora Pattern Boltgun";
-		config.manufacturer = "Cerix Magnus";
+        config.animations.put(AnimType.RELOAD, new BusAnimation()
+                .addBus("TILT", new BusAnimationSequence()
+                        .addKeyframe(new BusAnimationKeyframe(1, 0, 0, 250))
+                        .addKeyframe(new BusAnimationKeyframe(1, 0, 0, 1500))
+                        .addKeyframe(new BusAnimationKeyframe(0, 0, 0, 250))
+                )
+                .addBus("MAG", new BusAnimationSequence()
+                        .addKeyframe(new BusAnimationKeyframe(0, 0, 1, 500))
+                        .addKeyframe(new BusAnimationKeyframe(1, 0, 1, 500))
+                        .addKeyframe(new BusAnimationKeyframe(0, 0, 0, 500))
+                )
+        );
 
-		config.config = new ArrayList<>();
-		config.config.add(BulletConfigSyncingUtil.B75_NORMAL);
-		config.config.add(BulletConfigSyncingUtil.B75_INCENDIARY);
-		config.config.add(BulletConfigSyncingUtil.B75_HE);
+        config.name = "Manticora Pattern Boltgun";
+        config.manufacturer = "Cerix Magnus";
 
-		return config;
-	}
+        config.config = new ArrayList<>();
+        config.config.add(BulletConfigSyncingUtil.B75_NORMAL);
+        config.config.add(BulletConfigSyncingUtil.B75_INCENDIARY);
+        config.config.add(BulletConfigSyncingUtil.B75_HE);
 
-	static float inaccuracy = 0.5F;
-	public static BulletConfiguration get75BoltConfig() {
+        return config;
+    }
 
-		BulletConfiguration bullet = BulletConfigFactory.standardBulletConfig();
+    public static BulletConfiguration get75BoltConfig() {
 
-		bullet.ammo = ModItems.ammo_75bolt;
-		bullet.ammoCount = 30;
-		bullet.spread *= inaccuracy;
-		bullet.dmgMin = 24;
-		bullet.dmgMax = 32;
-		bullet.doesRicochet = false;
-		bullet.explosive = 0.25F;
+        BulletConfiguration bullet = BulletConfigFactory.standardBulletConfig();
 
-		bullet.bHurt = new IBulletHurtBehavior() {
+        bullet.ammo = ModItems.ammo_75bolt;
+        bullet.ammoCount = 30;
+        bullet.spread *= inaccuracy;
+        bullet.dmgMin = 24;
+        bullet.dmgMax = 32;
+        bullet.doesRicochet = false;
+        bullet.explosive = 0.25F;
 
-			@Override
-			public void behaveEntityHurt(EntityBulletBase bullet, Entity hit) {
+        bullet.bHurt = new IBulletHurtBehavior() {
 
-				if(bullet.world.isRemote)
-					return;
+            @Override
+            public void behaveEntityHurt(EntityBulletBase bullet, Entity hit) {
 
-				if(hit instanceof EntityLivingBase) {
-					EntityLivingBase living = (EntityLivingBase) hit;
-					float f = living.getHealth();
-					f = Math.max(0, f - 2);
-					living.setHealth(f);
+                if (bullet.world.isRemote)
+                    return;
 
-					if(f == 0)
-						living.onDeath(ModDamageSource.lead);
-				}
-			}
-		};
-		
-		return bullet;
-	}
-	
-	public static BulletConfiguration get75BoltIncConfig() {
+                if (hit instanceof EntityLivingBase) {
+                    EntityLivingBase living = (EntityLivingBase) hit;
+                    float f = living.getHealth();
+                    f = Math.max(0, f - 2);
+                    living.setHealth(f);
 
-		BulletConfiguration bullet = BulletConfigFactory.standardBulletConfig();
+                    if (f == 0)
+                        living.onDeath(ModDamageSource.lead);
+                }
+            }
+        };
 
-		bullet.ammo = ModItems.ammo_75bolt_incendiary;
-		bullet.ammoCount = 30;
-		bullet.spread *= inaccuracy;
-		bullet.dmgMin = 26;
-		bullet.dmgMax = 36;
-		bullet.doesRicochet = false;
-		bullet.explosive = 0.25F;
+        return bullet;
+    }
 
-		bullet.incendiary = 5;
-		bullet.doesPenetrate = false;
+    public static BulletConfiguration get75BoltIncConfig() {
 
-		PotionEffect eff = new PotionEffect(HbmPotion.phosphorus, 20 * 20, 0, true, false);
-		eff.getCurativeItems().clear();
-		bullet.effects = new ArrayList<>();
-		bullet.effects.add(new PotionEffect(eff));
+        BulletConfiguration bullet = BulletConfigFactory.standardBulletConfig();
 
-		bullet.bImpact = new IBulletImpactBehavior() {
+        bullet.ammo = ModItems.ammo_75bolt_incendiary;
+        bullet.ammoCount = 30;
+        bullet.spread *= inaccuracy;
+        bullet.dmgMin = 26;
+        bullet.dmgMax = 36;
+        bullet.doesRicochet = false;
+        bullet.explosive = 0.25F;
 
-			@Override
-			public void behaveBlockHit(EntityBulletBase bullet, int x, int y, int z) {
+        bullet.incendiary = 5;
+        bullet.doesPenetrate = false;
 
-				NBTTagCompound data = new NBTTagCompound();
-				data.setString("type", "vanillaburst");
-				data.setString("mode", "flame");
-				data.setInteger("count", 15);
-				data.setDouble("motion", 0.05D);
+        PotionEffect eff = new PotionEffect(HbmPotion.phosphorus, 20 * 20, 0, true, false);
+        eff.getCurativeItems().clear();
+        bullet.effects = new ArrayList<>();
+        bullet.effects.add(new PotionEffect(eff));
 
-				PacketDispatcher.wrapper.sendToAllAround(new AuxParticlePacketNT(data, bullet.posX, bullet.posY, bullet.posZ), new TargetPoint(bullet.dimension, bullet.posX, bullet.posY, bullet.posZ, 50));
-			}
-		};
+        bullet.bImpact = new IBulletImpactBehavior() {
 
-		return bullet;
-	}
+            @Override
+            public void behaveBlockHit(EntityBulletBase bullet, int x, int y, int z) {
 
-	public static BulletConfiguration get75BoltHEConfig() {
+                NBTTagCompound data = new NBTTagCompound();
+                data.setString("type", "vanillaburst");
+                data.setString("mode", "flame");
+                data.setInteger("count", 15);
+                data.setDouble("motion", 0.05D);
 
-		BulletConfiguration bullet = BulletConfigFactory.standardBulletConfig();
+                PacketDispatcher.wrapper.sendToAllAround(new AuxParticlePacketNT(data, bullet.posX, bullet.posY, bullet.posZ), new TargetPoint(bullet.dimension, bullet.posX, bullet.posY, bullet.posZ, 50));
+            }
+        };
 
-		bullet.ammo = ModItems.ammo_75bolt_he;
-		bullet.ammoCount = 30;
-		bullet.spread *= inaccuracy;
-		bullet.dmgMin = 32;
-		bullet.dmgMax = 48;
-		bullet.doesRicochet = false;
-		bullet.explosive = 2.5F;
-		bullet.blockDamage = false;
+        return bullet;
+    }
 
-		return bullet;
-	}
+    public static BulletConfiguration get75BoltHEConfig() {
+
+        BulletConfiguration bullet = BulletConfigFactory.standardBulletConfig();
+
+        bullet.ammo = ModItems.ammo_75bolt_he;
+        bullet.ammoCount = 30;
+        bullet.spread *= inaccuracy;
+        bullet.dmgMin = 32;
+        bullet.dmgMax = 48;
+        bullet.doesRicochet = false;
+        bullet.explosive = 2.5F;
+        bullet.blockDamage = false;
+
+        return bullet;
+    }
 
 }

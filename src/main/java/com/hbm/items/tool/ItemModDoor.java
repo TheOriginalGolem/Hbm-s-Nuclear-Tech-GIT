@@ -2,7 +2,6 @@ package com.hbm.items.tool;
 
 import com.hbm.blocks.ModBlocks;
 import com.hbm.items.ModItems;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDoor;
 import net.minecraft.block.SoundType;
@@ -20,62 +19,16 @@ import net.minecraft.world.World;
 
 public class ItemModDoor extends Item {
 
-	public ItemModDoor(String s) {
-		this.setUnlocalizedName(s);
-		this.setRegistryName(s);
-		this.maxStackSize = 1;
+    public ItemModDoor(String s) {
+        this.setUnlocalizedName(s);
+        this.setRegistryName(s);
+        this.maxStackSize = 1;
         this.setCreativeTab(CreativeTabs.REDSTONE);
-		
-		ModItems.ALL_ITEMS.add(this);
-	}
-	
-	public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
-    {
-        if (facing != EnumFacing.UP)
-        {
-            return EnumActionResult.FAIL;
-        }
-        else
-        {
-            IBlockState iblockstate = worldIn.getBlockState(pos);
-            Block block = iblockstate.getBlock();
 
-            if (!block.isReplaceable(worldIn, pos))
-            {
-                pos = pos.offset(facing);
-            }
-            Block block1;
-
-            if(this == ModItems.door_metal)
-            	block1 = ModBlocks.door_metal;
-            else if(this == ModItems.door_office)
-            	block1 = ModBlocks.door_office;
-            else
-            	block1 = ModBlocks.door_bunker;
-
-            ItemStack itemstack = player.getHeldItem(hand);
-
-            if (player.canPlayerEdit(pos, facing, itemstack) && block1.canPlaceBlockAt(worldIn, pos))
-            {
-                EnumFacing enumfacing = EnumFacing.fromAngle((double)player.rotationYaw);
-                int i = enumfacing.getFrontOffsetX();
-                int j = enumfacing.getFrontOffsetZ();
-                boolean flag = i < 0 && hitZ < 0.5F || i > 0 && hitZ > 0.5F || j < 0 && hitX > 0.5F || j > 0 && hitX < 0.5F;
-                placeDoor(worldIn, pos, enumfacing, block1, flag);
-                SoundType soundtype = worldIn.getBlockState(pos).getBlock().getSoundType(worldIn.getBlockState(pos), worldIn, pos, player);
-                worldIn.playSound(player, pos, soundtype.getPlaceSound(), SoundCategory.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F);
-                itemstack.shrink(1);
-                return EnumActionResult.SUCCESS;
-            }
-            else
-            {
-                return EnumActionResult.FAIL;
-            }
-        }
+        ModItems.ALL_ITEMS.add(this);
     }
 
-    public static void placeDoor(World worldIn, BlockPos pos, EnumFacing facing, Block door, boolean isRightHinge)
-    {
+    public static void placeDoor(World worldIn, BlockPos pos, EnumFacing facing, Block door, boolean isRightHinge) {
         BlockPos blockpos = pos.offset(facing.rotateY());
         BlockPos blockpos1 = pos.offset(facing.rotateYCCW());
         int i = (worldIn.getBlockState(blockpos1).isNormalCube() ? 1 : 0) + (worldIn.getBlockState(blockpos1.up()).isNormalCube() ? 1 : 0);
@@ -83,15 +36,11 @@ public class ItemModDoor extends Item {
         boolean flag = worldIn.getBlockState(blockpos1).getBlock() == door || worldIn.getBlockState(blockpos1.up()).getBlock() == door;
         boolean flag1 = worldIn.getBlockState(blockpos).getBlock() == door || worldIn.getBlockState(blockpos.up()).getBlock() == door;
 
-        if ((!flag || flag1) && j <= i)
-        {
-            if (flag1 && !flag || j < i)
-            {
+        if ((!flag || flag1) && j <= i) {
+            if (flag1 && !flag || j < i) {
                 isRightHinge = false;
             }
-        }
-        else
-        {
+        } else {
             isRightHinge = true;
         }
 
@@ -102,5 +51,42 @@ public class ItemModDoor extends Item {
         worldIn.setBlockState(blockpos2, iblockstate.withProperty(BlockDoor.HALF, BlockDoor.EnumDoorHalf.UPPER), 2);
         worldIn.notifyNeighborsOfStateChange(pos, door, false);
         worldIn.notifyNeighborsOfStateChange(blockpos2, door, false);
+    }
+
+    public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+        if (facing != EnumFacing.UP) {
+            return EnumActionResult.FAIL;
+        } else {
+            IBlockState iblockstate = worldIn.getBlockState(pos);
+            Block block = iblockstate.getBlock();
+
+            if (!block.isReplaceable(worldIn, pos)) {
+                pos = pos.offset(facing);
+            }
+            Block block1;
+
+            if (this == ModItems.door_metal)
+                block1 = ModBlocks.door_metal;
+            else if (this == ModItems.door_office)
+                block1 = ModBlocks.door_office;
+            else
+                block1 = ModBlocks.door_bunker;
+
+            ItemStack itemstack = player.getHeldItem(hand);
+
+            if (player.canPlayerEdit(pos, facing, itemstack) && block1.canPlaceBlockAt(worldIn, pos)) {
+                EnumFacing enumfacing = EnumFacing.fromAngle(player.rotationYaw);
+                int i = enumfacing.getFrontOffsetX();
+                int j = enumfacing.getFrontOffsetZ();
+                boolean flag = i < 0 && hitZ < 0.5F || i > 0 && hitZ > 0.5F || j < 0 && hitX > 0.5F || j > 0 && hitX < 0.5F;
+                placeDoor(worldIn, pos, enumfacing, block1, flag);
+                SoundType soundtype = worldIn.getBlockState(pos).getBlock().getSoundType(worldIn.getBlockState(pos), worldIn, pos, player);
+                worldIn.playSound(player, pos, soundtype.getPlaceSound(), SoundCategory.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F);
+                itemstack.shrink(1);
+                return EnumActionResult.SUCCESS;
+            } else {
+                return EnumActionResult.FAIL;
+            }
+        }
     }
 }

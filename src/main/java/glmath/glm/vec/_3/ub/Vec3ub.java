@@ -8,7 +8,6 @@ package glmath.glm.vec._3.ub;
 import glmath.joou.UByte;
 
 /**
- *
  * @author elect
  */
 public class Vec3ub extends FuncRelational {

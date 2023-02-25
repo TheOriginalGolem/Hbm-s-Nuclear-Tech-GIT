@@ -1,8 +1,5 @@
 package com.hbm.items.machine;
 
-import java.util.List;
-import java.util.Map.Entry;
-
 import com.hbm.interfaces.IHasCustomModel;
 import com.hbm.items.ModItems;
 import com.hbm.lib.RefStrings;
@@ -10,7 +7,6 @@ import com.hbm.main.MainRegistry;
 import com.hbm.tileentity.conductor.TileEntityFFFluidDuct;
 import com.hbm.tileentity.conductor.TileEntityFFFluidDuctMk2;
 import com.hbm.util.I18nUtil;
-
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
@@ -30,89 +26,92 @@ import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 
+import java.util.List;
+import java.util.Map.Entry;
+
 public class ItemForgeFluidIdentifier extends Item implements IHasCustomModel {
 
-	public static final ModelResourceLocation identifierModel = new ModelResourceLocation(RefStrings.MODID + ":forge_fluid_identifier", "inventory");
+    public static final ModelResourceLocation identifierModel = new ModelResourceLocation(RefStrings.MODID + ":forge_fluid_identifier", "inventory");
 
-	public ItemForgeFluidIdentifier(String s) {
-		this.setUnlocalizedName(s);
-		this.setRegistryName(s);
-		this.setCreativeTab(MainRegistry.partsTab);
+    public ItemForgeFluidIdentifier(String s) {
+        this.setUnlocalizedName(s);
+        this.setRegistryName(s);
+        this.setCreativeTab(MainRegistry.partsTab);
 
-		ModItems.ALL_ITEMS.add(this);
-	}
+        ModItems.ALL_ITEMS.add(this);
+    }
 
-	@Override
-	public ItemStack getContainerItem(ItemStack itemStack) {
-		return itemStack.copy();
-	}
+    public static Fluid getType(ItemStack stack) {
+        if (stack != null && stack.getItem() instanceof ItemForgeFluidIdentifier && stack.hasTagCompound())
+            return FluidRegistry.getFluid(stack.getTagCompound().getString("fluidtype"));
+        else
+            return null;
+    }
 
-	@Override
-	public boolean hasContainerItem() {
-		return true;
-	}
+    public static ItemStack getStackFromFluid(Fluid f) {
+        ItemStack stack = new ItemStack(ModItems.forge_fluid_identifier, 1, 0);
+        NBTTagCompound tag = new NBTTagCompound();
+        tag.setString("fluidtype", f.getName());
+        stack.setTagCompound(tag);
+        return stack;
+    }
 
-	@Override
-	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
-		if (tab == this.getCreativeTab() || tab == CreativeTabs.SEARCH) {
-			for (Entry<String, Fluid> set : FluidRegistry.getRegisteredFluids().entrySet()) {
-				ItemStack stack = new ItemStack(this, 1, 0);
-				NBTTagCompound tag = new NBTTagCompound();
-				tag.setString("fluidtype", set.getKey());
-				stack.setTagCompound(tag);
-				items.add(stack);
-			}
-		}
-	}
+    @Override
+    public ItemStack getContainerItem(ItemStack itemStack) {
+        return itemStack.copy();
+    }
 
-	@Override
-	public void addInformation(ItemStack stack, World worldIn, List<String> list, ITooltipFlag flagIn) {
-		if (!(stack.getItem() instanceof ItemForgeFluidIdentifier))
-			return;
-		Fluid f = null;
-		if (stack.hasTagCompound()) {
-			f = FluidRegistry.getFluid(stack.getTagCompound().getString("fluidtype"));
-		}
-		list.add(TextFormatting.YELLOW + I18nUtil.resolveKey("info.templatefolder"));
-		list.add("");
-		list.add("Universal fluid identifier for:");
-		if (f != null)
-			list.add("   " + f.getLocalizedName(new FluidStack(f, 1000)));
-		else
-			list.add("   " + "ERROR - bad data");
-	}
+    @Override
+    public boolean hasContainerItem() {
+        return true;
+    }
 
-	public static Fluid getType(ItemStack stack) {
-		if (stack != null && stack.getItem() instanceof ItemForgeFluidIdentifier && stack.hasTagCompound())
-			return FluidRegistry.getFluid(stack.getTagCompound().getString("fluidtype"));
-		else
-			return null;
-	}
-	
-	public static ItemStack getStackFromFluid(Fluid f){
-		ItemStack stack = new ItemStack(ModItems.forge_fluid_identifier, 1, 0);
-		NBTTagCompound tag = new NBTTagCompound();
-		tag.setString("fluidtype", f.getName());
-		stack.setTagCompound(tag);
-		return stack;
-	}
+    @Override
+    public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
+        if (tab == this.getCreativeTab() || tab == CreativeTabs.SEARCH) {
+            for (Entry<String, Fluid> set : FluidRegistry.getRegisteredFluids().entrySet()) {
+                ItemStack stack = new ItemStack(this, 1, 0);
+                NBTTagCompound tag = new NBTTagCompound();
+                tag.setString("fluidtype", set.getKey());
+                stack.setTagCompound(tag);
+                items.add(stack);
+            }
+        }
+    }
 
-	@Override
-	public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-		TileEntity te = worldIn.getTileEntity(pos);
-		if (te != null && te instanceof TileEntityFFFluidDuct) {
-			TileEntityFFFluidDuct duct = (TileEntityFFFluidDuct) te;
-			duct.setType(getType(player.getHeldItem(hand)));
-		}
-		if (te != null && te instanceof TileEntityFFFluidDuctMk2) {
-			TileEntityFFFluidDuctMk2 duct = (TileEntityFFFluidDuctMk2) te;
-			duct.setType(getType(player.getHeldItem(hand)));
-		}
-		return super.onItemUse(player, worldIn, pos, hand, facing, hitX, hitY, hitZ);
-	}
+    @Override
+    public void addInformation(ItemStack stack, World worldIn, List<String> list, ITooltipFlag flagIn) {
+        if (!(stack.getItem() instanceof ItemForgeFluidIdentifier))
+            return;
+        Fluid f = null;
+        if (stack.hasTagCompound()) {
+            f = FluidRegistry.getFluid(stack.getTagCompound().getString("fluidtype"));
+        }
+        list.add(TextFormatting.YELLOW + I18nUtil.resolveKey("info.templatefolder"));
+        list.add("");
+        list.add("Universal fluid identifier for:");
+        if (f != null)
+            list.add("   " + f.getLocalizedName(new FluidStack(f, 1000)));
+        else
+            list.add("   " + "ERROR - bad data");
+    }
 
-	@Override
-	public ModelResourceLocation getResourceLocation() {
-		return identifierModel;
-	}
+    @Override
+    public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+        TileEntity te = worldIn.getTileEntity(pos);
+        if (te != null && te instanceof TileEntityFFFluidDuct) {
+            TileEntityFFFluidDuct duct = (TileEntityFFFluidDuct) te;
+            duct.setType(getType(player.getHeldItem(hand)));
+        }
+        if (te != null && te instanceof TileEntityFFFluidDuctMk2) {
+            TileEntityFFFluidDuctMk2 duct = (TileEntityFFFluidDuctMk2) te;
+            duct.setType(getType(player.getHeldItem(hand)));
+        }
+        return super.onItemUse(player, worldIn, pos, hand, facing, hitX, hitY, hitZ);
+    }
+
+    @Override
+    public ModelResourceLocation getResourceLocation() {
+        return identifierModel;
+    }
 }

@@ -14,101 +14,101 @@ import net.minecraft.world.World;
 
 public class EntityBOTPrimeBody extends EntityBOTPrimeBase {
 
-	public static final DataParameter<Boolean> SHIELD = EntityDataManager.createKey(EntityBOTPrimeBody.class, DataSerializers.BOOLEAN);
-	
-	private WormMovementBodyNT movement = new WormMovementBodyNT(this);
+    public static final DataParameter<Boolean> SHIELD = EntityDataManager.createKey(EntityBOTPrimeBody.class, DataSerializers.BOOLEAN);
 
-	public EntityBOTPrimeBody(World world) {
-		super(world);
-		this.bodySpeed = 0.6D;
-		this.rangeForParts = 70.0D;
-		this.segmentDistance = 3.5D;
-	    this.maxBodySpeed = 1.4D;
-	    this.targetTasks.addTask(1, new EntityAINearestAttackableTargetNT(this, EntityPlayer.class, 0, false, false, this.selector, 128.0D));
-	}
-	
-	@Override
-	protected void entityInit() {
-		super.entityInit();
-		this.getDataManager().register(SHIELD, false);
-	}
+    private final WormMovementBodyNT movement = new WormMovementBodyNT(this);
 
-	@Override
-	public float getAttackStrength(Entity target) {
-		if(target instanceof EntityLivingBase) {
-			return ((EntityLivingBase) target).getHealth() * 0.75F;
-		}
+    public EntityBOTPrimeBody(World world) {
+        super(world);
+        this.bodySpeed = 0.6D;
+        this.rangeForParts = 70.0D;
+        this.segmentDistance = 3.5D;
+        this.maxBodySpeed = 1.4D;
+        this.targetTasks.addTask(1, new EntityAINearestAttackableTargetNT(this, EntityPlayer.class, 0, false, false, this.selector, 128.0D));
+    }
 
-		return 100;
-	}
-	
-	@Override
-	public boolean isPotionApplicable(PotionEffect potioneffectIn) {
-		return false;
-	}
-	
-	@Override
-	protected void updateAITasks() {
-		this.movement.updateMovement();
-		this.targetTasks.onUpdateTasks();
+    @Override
+    protected void entityInit() {
+        super.entityInit();
+        this.getDataManager().register(SHIELD, false);
+    }
 
-		if(this.didCheck) {
-			if(this.targetedEntity == null || !this.targetedEntity.isEntityAlive()) {
-				setHealth(getHealth() - 1999.0F);
-			}
-			if(((this.followed == null) || (!this.followed.isEntityAlive())) && (this.rand.nextInt(60) == 0)) {
-				this.world.createExplosion(this, this.posX, this.posY, this.posZ, 2.0F, false);
-			}
-		}
-		if(this.followed != null && this.followed.isEntityAlive() && getAttackTarget() != null) {
-			if(canEntityBeSeen(getAttackTarget())) {
-				this.attackCounter += 1;
-				if(this.attackCounter == 10) {
-					laserAttack(this.getAttackTarget(), false);
+    @Override
+    public float getAttackStrength(Entity target) {
+        if (target instanceof EntityLivingBase) {
+            return ((EntityLivingBase) target).getHealth() * 0.75F;
+        }
 
-					this.attackCounter = -20;
-				}
-			} else if(this.attackCounter > 0) {
-				this.attackCounter -= 1;
-			}
-		} else if(this.attackCounter > 0) {
-			this.attackCounter -= 1;
-		}
+        return 100;
+    }
 
-		if(this.targetedEntity != null) {
-			double dx = targetedEntity.posX - posX;
-			double dy = targetedEntity.posY - posY;
-			double dz = targetedEntity.posZ - posZ;
-	        float f3 = MathHelper.sqrt(dx * dx + dz * dz);
-	        this.prevRotationYaw = this.rotationYaw = (float)(Math.atan2(dx, dz) * 180.0D / Math.PI);
-	        this.prevRotationPitch = this.rotationPitch = (float)(Math.atan2(dy, f3) * 180.0D / Math.PI);
-		}
-	}
+    @Override
+    public boolean isPotionApplicable(PotionEffect potioneffectIn) {
+        return false;
+    }
 
-	@Override
-	public void onUpdate() {
+    @Override
+    protected void updateAITasks() {
+        this.movement.updateMovement();
+        this.targetTasks.onUpdateTasks();
 
-		super.onUpdate();
+        if (this.didCheck) {
+            if (this.targetedEntity == null || !this.targetedEntity.isEntityAlive()) {
+                setHealth(getHealth() - 1999.0F);
+            }
+            if (((this.followed == null) || (!this.followed.isEntityAlive())) && (this.rand.nextInt(60) == 0)) {
+                this.world.createExplosion(this, this.posX, this.posY, this.posZ, 2.0F, false);
+            }
+        }
+        if (this.followed != null && this.followed.isEntityAlive() && getAttackTarget() != null) {
+            if (canEntityBeSeen(getAttackTarget())) {
+                this.attackCounter += 1;
+                if (this.attackCounter == 10) {
+                    laserAttack(this.getAttackTarget(), false);
 
-		if(this.targetedEntity != null) {
-			double dx = targetedEntity.posX - posX;
-			double dy = targetedEntity.posY - posY;
-			double dz = targetedEntity.posZ - posZ;
-			float f3 = MathHelper.sqrt(dx * dx + dz * dz);
-			this.prevRotationYaw = this.rotationYaw = (float) (Math.atan2(dx, dz) * 180.0D / Math.PI);
-			this.prevRotationPitch = this.rotationPitch = (float) (Math.atan2(dy, f3) * 180.0D / Math.PI);
-		}
-	}
-	
-	@Override
-	public void writeEntityToNBT(NBTTagCompound compound) {
-		super.writeEntityToNBT(compound);
-		compound.setInteger("partID", this.getPartNumber());
-	}
-	
-	@Override
-	public void readEntityFromNBT(NBTTagCompound compound) {
-		super.readEntityFromNBT(compound);
-		setPartNumber(compound.getInteger("partID"));
-	}
+                    this.attackCounter = -20;
+                }
+            } else if (this.attackCounter > 0) {
+                this.attackCounter -= 1;
+            }
+        } else if (this.attackCounter > 0) {
+            this.attackCounter -= 1;
+        }
+
+        if (this.targetedEntity != null) {
+            double dx = targetedEntity.posX - posX;
+            double dy = targetedEntity.posY - posY;
+            double dz = targetedEntity.posZ - posZ;
+            float f3 = MathHelper.sqrt(dx * dx + dz * dz);
+            this.prevRotationYaw = this.rotationYaw = (float) (Math.atan2(dx, dz) * 180.0D / Math.PI);
+            this.prevRotationPitch = this.rotationPitch = (float) (Math.atan2(dy, f3) * 180.0D / Math.PI);
+        }
+    }
+
+    @Override
+    public void onUpdate() {
+
+        super.onUpdate();
+
+        if (this.targetedEntity != null) {
+            double dx = targetedEntity.posX - posX;
+            double dy = targetedEntity.posY - posY;
+            double dz = targetedEntity.posZ - posZ;
+            float f3 = MathHelper.sqrt(dx * dx + dz * dz);
+            this.prevRotationYaw = this.rotationYaw = (float) (Math.atan2(dx, dz) * 180.0D / Math.PI);
+            this.prevRotationPitch = this.rotationPitch = (float) (Math.atan2(dy, f3) * 180.0D / Math.PI);
+        }
+    }
+
+    @Override
+    public void writeEntityToNBT(NBTTagCompound compound) {
+        super.writeEntityToNBT(compound);
+        compound.setInteger("partID", this.getPartNumber());
+    }
+
+    @Override
+    public void readEntityFromNBT(NBTTagCompound compound) {
+        super.readEntityFromNBT(compound);
+        setPartNumber(compound.getInteger("partID"));
+    }
 }

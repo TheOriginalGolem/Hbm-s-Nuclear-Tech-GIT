@@ -1,54 +1,52 @@
 package com.hbm.render.entity.projectile;
 
-import org.lwjgl.opengl.GL11;
-
 import com.hbm.entity.projectile.EntityBeamBase;
 import com.hbm.lib.Library;
 import com.hbm.render.amlfrom1710.Vec3;
 import com.hbm.render.misc.BeamPronter;
 import com.hbm.render.misc.BeamPronter.EnumBeamType;
 import com.hbm.render.misc.BeamPronter.EnumWaveType;
-
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
+import org.lwjgl.opengl.GL11;
 
 public class RenderVortexBeam extends Render<EntityBeamBase> {
 
-	public static final IRenderFactory<EntityBeamBase> FACTORY = man -> new RenderVortexBeam(man);
-	
-	protected RenderVortexBeam(RenderManager renderManager) {
-		super(renderManager);
-	}
-	
-	@Override
-	public void doRender(EntityBeamBase laser, double x, double y, double z, float entityYaw, float partialTicks) {
-		GL11.glPushMatrix();
+    public static final IRenderFactory<EntityBeamBase> FACTORY = man -> new RenderVortexBeam(man);
 
-		EntityPlayer player = laser.world.getPlayerEntityByName(laser.getDataManager().get(EntityBeamBase.PLAYER_NAME));
+    protected RenderVortexBeam(RenderManager renderManager) {
+        super(renderManager);
+    }
 
-		if(player != null) {
+    @Override
+    public void doRender(EntityBeamBase laser, double x, double y, double z, float entityYaw, float partialTicks) {
+        GL11.glPushMatrix();
 
-			GL11.glTranslated(x, y, z);
+        EntityPlayer player = laser.world.getPlayerEntityByName(laser.getDataManager().get(EntityBeamBase.PLAYER_NAME));
 
-			RayTraceResult pos = Library.rayTrace(player, 100, 1);
+        if (player != null) {
 
-			Vec3 skeleton = Vec3.createVectorHelper(pos.hitVec.x - player.posX, pos.hitVec.y - player.posY - player.getEyeHeight(), pos.hitVec.z - player.posZ);
-			int init = (int) -(System.currentTimeMillis() % 360);
+            GL11.glTranslated(x, y, z);
 
-	        BeamPronter.prontBeam(skeleton, EnumWaveType.SPIRAL, EnumBeamType.SOLID, 0x000040, 0x2020d0, init, 1, 0F, 4, 0.005F);
-	        BeamPronter.prontBeam(skeleton, EnumWaveType.RANDOM, EnumBeamType.LINE, 0x8080ff, 0x8080ff, init, (int)skeleton.lengthVector() * 3 + 1, 0.01F, 1, 0.01F);
-		}
+            RayTraceResult pos = Library.rayTrace(player, 100, 1);
 
-		GL11.glPopMatrix();
-	}
+            Vec3 skeleton = Vec3.createVectorHelper(pos.hitVec.x - player.posX, pos.hitVec.y - player.posY - player.getEyeHeight(), pos.hitVec.z - player.posZ);
+            int init = (int) -(System.currentTimeMillis() % 360);
 
-	@Override
-	protected ResourceLocation getEntityTexture(EntityBeamBase entity) {
-		return null;
-	}
+            BeamPronter.prontBeam(skeleton, EnumWaveType.SPIRAL, EnumBeamType.SOLID, 0x000040, 0x2020d0, init, 1, 0F, 4, 0.005F);
+            BeamPronter.prontBeam(skeleton, EnumWaveType.RANDOM, EnumBeamType.LINE, 0x8080ff, 0x8080ff, init, (int) skeleton.lengthVector() * 3 + 1, 0.01F, 1, 0.01F);
+        }
+
+        GL11.glPopMatrix();
+    }
+
+    @Override
+    protected ResourceLocation getEntityTexture(EntityBeamBase entity) {
+        return null;
+    }
 
 }

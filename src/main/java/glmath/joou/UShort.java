@@ -1,12 +1,12 @@
 /**
  * Copyright (c) 2011-2016, Data Geekery GmbH (http://www.datageekery.com)
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -25,19 +25,16 @@ import java.math.BigInteger;
  */
 public final class UShort extends UNumber implements Comparable<UShort> {
 
-    /**
-     * Generated UID
-     */
-    private static final long serialVersionUID = -6821055240959745390L;
-
     public static final int MIN_VALUE = 0x0000;
-
     /**
      * A constant holding the maximum value an <code>unsigned short</code> can
      * have, 2<sup>16</sup>-1.
      */
     public static final int MAX_VALUE = 0xffff;
-
+    /**
+     * Generated UID
+     */
+    private static final long serialVersionUID = -6821055240959745390L;
     /**
      * The value modelling the content of this <code>unsigned short</code>
      */
@@ -94,7 +91,6 @@ public final class UShort extends UNumber implements Comparable<UShort> {
 
     /**
      * Create an <code>unsigned short</code>
-     *
      */
     private UShort(String value) {
         this.value = Short.parseShort(value);
@@ -102,38 +98,6 @@ public final class UShort extends UNumber implements Comparable<UShort> {
 
     public UShort(UShort uShort) {
         this.value = uShort.value;
-    }
-
-    @Override
-    public int hashCode() {
-        return Integer.valueOf(value).hashCode();
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj instanceof UShort) {
-            return value == ((UShort) obj).value;
-        }
-        return false;
-    }
-
-    @Override
-    public String toString() {
-        return Integer.toString(value);
-    }
-
-    @Override
-    public int compareTo(UShort o) {
-        int a = value, b = o.value;
-        return a < b ? -1 : (a == b ? 0 : 1);
-    }
-    
-    public int intValue() {
-        return value & 0xffff;
-    }
-    
-    public long longValue() {
-        return value & 0xffff;
     }
 
     /**
@@ -218,5 +182,37 @@ public final class UShort extends UNumber implements Comparable<UShort> {
             throw new ArithmeticException("Value is out of range : " + value);
         }
         return Short.parseShort(value);
+    }
+
+    @Override
+    public int hashCode() {
+        return Integer.valueOf(value).hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof UShort) {
+            return value == ((UShort) obj).value;
+        }
+        return false;
+    }
+
+    @Override
+    public String toString() {
+        return Integer.toString(value);
+    }
+
+    @Override
+    public int compareTo(UShort o) {
+        int a = value, b = o.value;
+        return a < b ? -1 : (a == b ? 0 : 1);
+    }
+
+    public int intValue() {
+        return value & 0xffff;
+    }
+
+    public long longValue() {
+        return value & 0xffff;
     }
 }

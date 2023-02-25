@@ -1,9 +1,6 @@
 package com.hbm.items.machine;
 
-import java.util.List;
-
 import com.hbm.items.ModItems;
-
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.player.EntityPlayer;
@@ -16,76 +13,78 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
+import java.util.List;
+
 public class ItemCapacitor extends Item {
 
-	private int dura;
-	
-	public ItemCapacitor(int dura, String s) {
-		this.setUnlocalizedName(s);
-		this.setRegistryName(s);
-		this.dura = dura;
-		
-		ModItems.ALL_ITEMS.add(this);
-	}
-	
-	@Override
-	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-		if (this == ModItems.redcoil_capacitor) {
-			tooltip.add("Right-click a block to negate positive charge.");
-			tooltip.add("[Needed for Schrabidium Synthesis]");
-			tooltip.add(getDura(stack) + "/" + dura);
-		}
-		if (this == ModItems.titanium_filter) {
-			tooltip.add("[Needed for Watz Reaction]");
-			tooltip.add((getDura(stack) / 20) + "/" + (dura / 20));
-		}
-	}
-	
-	@Override
-	public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-		if (this == ModItems.redcoil_capacitor) {
-			ItemStack stack = player.getHeldItem(hand);
-			if (!player.isSneaking()) {
-				if (getDura(stack) < dura) {
+    private final int dura;
 
-					setDura(stack, getDura(stack) + 1);
-					if (!world.isRemote) {
-						world.createExplosion(null, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 2.5F, true);
-					}
-					world.spawnEntity(new EntityLightningBolt(world, pos.getX(), pos.getY(), pos.getZ(), false));
+    public ItemCapacitor(int dura, String s) {
+        this.setUnlocalizedName(s);
+        this.setRegistryName(s);
+        this.dura = dura;
 
-					return EnumActionResult.SUCCESS;
-				}
-			}
-		}
+        ModItems.ALL_ITEMS.add(this);
+    }
 
-		return EnumActionResult.PASS;
-	}
-	
-	@Override
-	public boolean showDurabilityBar(ItemStack stack) {
-		return getDurabilityForDisplay(stack) > 0;
-	}
-	
-	@Override
-	public double getDurabilityForDisplay(ItemStack stack) {
-		return 1D - (double)getDura(stack) / (double)dura;
-	}
-	
-	public static int getDura(ItemStack stack) {
+    public static int getDura(ItemStack stack) {
 
-    	if(stack.getTagCompound() == null)
-    		return ((ItemCapacitor)stack.getItem()).dura;
+        if (stack.getTagCompound() == null)
+            return ((ItemCapacitor) stack.getItem()).dura;
 
-    	return stack.getTagCompound().getInteger("dura");
+        return stack.getTagCompound().getInteger("dura");
     }
 
     public static void setDura(ItemStack stack, int dura) {
 
-    	if(!stack.hasTagCompound())
-    		stack.setTagCompound(new NBTTagCompound());
+        if (!stack.hasTagCompound())
+            stack.setTagCompound(new NBTTagCompound());
 
-    	stack.getTagCompound().setInteger("dura", dura);
+        stack.getTagCompound().setInteger("dura", dura);
     }
-	
+
+    @Override
+    public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
+        if (this == ModItems.redcoil_capacitor) {
+            tooltip.add("Right-click a block to negate positive charge.");
+            tooltip.add("[Needed for Schrabidium Synthesis]");
+            tooltip.add(getDura(stack) + "/" + dura);
+        }
+        if (this == ModItems.titanium_filter) {
+            tooltip.add("[Needed for Watz Reaction]");
+            tooltip.add((getDura(stack) / 20) + "/" + (dura / 20));
+        }
+    }
+
+    @Override
+    public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+        if (this == ModItems.redcoil_capacitor) {
+            ItemStack stack = player.getHeldItem(hand);
+            if (!player.isSneaking()) {
+                if (getDura(stack) < dura) {
+
+                    setDura(stack, getDura(stack) + 1);
+                    if (!world.isRemote) {
+                        world.createExplosion(null, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 2.5F, true);
+                    }
+                    world.spawnEntity(new EntityLightningBolt(world, pos.getX(), pos.getY(), pos.getZ(), false));
+
+                    return EnumActionResult.SUCCESS;
+                }
+            }
+        }
+
+        return EnumActionResult.PASS;
+    }
+
+    @Override
+    public boolean showDurabilityBar(ItemStack stack) {
+        return getDurabilityForDisplay(stack) > 0;
+    }
+
+    @Override
+    public double getDurabilityForDisplay(ItemStack stack) {
+        return 1D - (double) getDura(stack) / (double) dura;
+    }
+
 }

@@ -6,14 +6,9 @@
 package glmath.glm.vec._4;
 
 /**
- *
  * @author elect
  */
 abstract class funcGeometric extends funcCommon {
-
-    public float dot(Vec4 y) {
-        return dot((Vec4) this, y);
-    }
 
     public static float dot(Vec4 x, Vec4 y) {
         float tX = x.x * y.x;
@@ -21,6 +16,10 @@ abstract class funcGeometric extends funcCommon {
         float tZ = x.z * y.z;
         float tW = x.w * y.w;
         return tX + tY + tZ + tW;
+    }
+
+    public float dot(Vec4 y) {
+        return dot((Vec4) this, y);
     }
 
     /**

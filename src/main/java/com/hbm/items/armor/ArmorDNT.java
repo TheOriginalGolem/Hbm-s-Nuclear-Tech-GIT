@@ -1,8 +1,5 @@
 package com.hbm.items.armor;
 
-import java.util.List;
-import java.util.UUID;
-
 import com.google.common.collect.Multimap;
 import com.hbm.capability.HbmCapability;
 import com.hbm.capability.HbmCapability.IHBMData;
@@ -15,7 +12,6 @@ import com.hbm.packet.AuxParticlePacketNT;
 import com.hbm.packet.PacketDispatcher;
 import com.hbm.render.model.ModelArmorDNT;
 import com.hbm.util.I18nUtil;
-
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
@@ -37,163 +33,165 @@ import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import java.util.List;
+import java.util.UUID;
+
 public class ArmorDNT extends ArmorFSBPowered {
 
-	public ArmorDNT(ArmorMaterial material, int layer, EntityEquipmentSlot slot, String texture, long maxPower, long chargeRate, long consumption, long drain, String s) {
-		super(material, layer, slot, texture, maxPower, chargeRate, consumption, drain, s);
-	}
+    private static final UUID speed = UUID.fromString("6ab858ba-d712-485c-bae9-e5e765fc555a");
+    @SideOnly(Side.CLIENT)
+    ModelArmorDNT[] models;
 
-	@SideOnly(Side.CLIENT)
-	ModelArmorDNT[] models;
+    public ArmorDNT(ArmorMaterial material, int layer, EntityEquipmentSlot slot, String texture, long maxPower, long chargeRate, long consumption, long drain, String s) {
+        super(material, layer, slot, texture, maxPower, chargeRate, consumption, drain, s);
+    }
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack, EntityEquipmentSlot armorSlot, ModelBiped _default){
-		if(models == null) {
-			models = new ModelArmorDNT[4];
+    @Override
+    @SideOnly(Side.CLIENT)
+    public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack, EntityEquipmentSlot armorSlot, ModelBiped _default) {
+        if (models == null) {
+            models = new ModelArmorDNT[4];
 
-			for(int i = 0; i < 4; i++)
-				models[i] = new ModelArmorDNT(i);
-		}
+            for (int i = 0; i < 4; i++)
+                models[i] = new ModelArmorDNT(i);
+        }
 
-		return models[armorSlot.getIndex()];
-	}
-	
-	private static final UUID speed = UUID.fromString("6ab858ba-d712-485c-bae9-e5e765fc555a");
+        return models[armorSlot.getIndex()];
+    }
 
-	@Override
-	public void onArmorTick(World world, EntityPlayer player, ItemStack stack) {
+    @Override
+    public void onArmorTick(World world, EntityPlayer player, ItemStack stack) {
 
-		super.onArmorTick(world, player, stack);
-		
-		if(this != ModItems.dns_plate)
-			return;
+        super.onArmorTick(world, player, stack);
 
-		IHBMData props = HbmCapability.getData(player);
-		
-		/// SPEED ///
-		Multimap<String, AttributeModifier> multimap = super.getAttributeModifiers(EntityEquipmentSlot.CHEST, stack);
-		multimap.put(SharedMonsterAttributes.MOVEMENT_SPEED.getName(), new AttributeModifier(speed, "DNT SPEED", 0.25, 0));
-		player.getAttributeMap().removeAttributeModifiers(multimap);
-		
-		if(player.isSprinting()) {
-			player.getAttributeMap().applyAttributeModifiers(multimap);
-		}
+        if (this != ModItems.dns_plate)
+            return;
 
-		if(!world.isRemote) {
-			
-			/// JET ///
-			if(hasFSBArmor(player) && (props.isJetpackActive() || (!player.onGround && !player.isSneaking() && props.getEnableBackpack()))) {
+        IHBMData props = HbmCapability.getData(player);
 
-				NBTTagCompound data = new NBTTagCompound();
-				data.setString("type", "jetpack_dns");
-				data.setInteger("player", player.getEntityId());
-				PacketDispatcher.wrapper.sendToAllAround(new AuxParticlePacketNT(data, player.posX, player.posY, player.posZ), new TargetPoint(world.provider.getDimension(), player.posX, player.posY, player.posZ, 100));
-			}
-		}
+        /// SPEED ///
+        Multimap<String, AttributeModifier> multimap = super.getAttributeModifiers(EntityEquipmentSlot.CHEST, stack);
+        multimap.put(SharedMonsterAttributes.MOVEMENT_SPEED.getName(), new AttributeModifier(speed, "DNT SPEED", 0.25, 0));
+        player.getAttributeMap().removeAttributeModifiers(multimap);
 
-		if(hasFSBArmor(player)) {
-			
-			ArmorUtil.resetFlightTime(player);
+        if (player.isSprinting()) {
+            player.getAttributeMap().applyAttributeModifiers(multimap);
+        }
 
-			if(props.isJetpackActive()) {
+        if (!world.isRemote) {
 
-				if(player.motionY < 0.6D)
-					player.motionY += 0.2D;
+            /// JET ///
+            if (hasFSBArmor(player) && (props.isJetpackActive() || (!player.onGround && !player.isSneaking() && props.getEnableBackpack()))) {
 
-				player.fallDistance = 0;
+                NBTTagCompound data = new NBTTagCompound();
+                data.setString("type", "jetpack_dns");
+                data.setInteger("player", player.getEntityId());
+                PacketDispatcher.wrapper.sendToAllAround(new AuxParticlePacketNT(data, player.posX, player.posY, player.posZ), new TargetPoint(world.provider.getDimension(), player.posX, player.posY, player.posZ, 100));
+            }
+        }
 
-				world.playSound(null, player.posX, player.posY, player.posZ, HBMSoundHandler.immolatorShoot, SoundCategory.PLAYERS, 0.125F, 1.5F);
+        if (hasFSBArmor(player)) {
 
-			} else if(!player.isSneaking() && !player.onGround && props.getEnableBackpack()) {
-				player.fallDistance = 0;
-				
-				if(player.motionY < -1)
-					player.motionY += 0.4D;
-				else if(player.motionY < -0.1)
-					player.motionY += 0.2D;
-				else if(player.motionY < 0)
-					player.motionY = 0;
+            ArmorUtil.resetFlightTime(player);
 
-				player.motionX *= 1.05D;
-				player.motionZ *= 1.05D;
-				
-				if(player.moveForward != 0) {
-					player.motionX += player.getLookVec().x * 0.25 * player.moveForward;
-					player.motionZ += player.getLookVec().z * 0.25 * player.moveForward;
-				}
+            if (props.isJetpackActive()) {
 
-				world.playSound(null, player.posX, player.posY, player.posZ, HBMSoundHandler.immolatorShoot, SoundCategory.PLAYERS, 0.125F, 1.5F);
-			}
-			
-			if(player.isSneaking() && !player.onGround) {
-				player.motionY -= 0.1D;
-			}
-		}
-	}
-	
-	@Override
-	public void handleAttack(LivingAttackEvent event, ArmorFSB chestplate) {
+                if (player.motionY < 0.6D)
+                    player.motionY += 0.2D;
 
-		EntityLivingBase e = event.getEntityLiving();
+                player.fallDistance = 0;
 
-		if(e instanceof EntityPlayer) {
-			EntityPlayer player = (EntityPlayer) e;
+                world.playSound(null, player.posX, player.posY, player.posZ, HBMSoundHandler.immolatorShoot, SoundCategory.PLAYERS, 0.125F, 1.5F);
 
-			if(ArmorFSB.hasFSBArmor(player)) {
-				
-				if(event.getSource().isExplosion()) {
-					return;
-				}
+            } else if (!player.isSneaking() && !player.onGround && props.getEnableBackpack()) {
+                player.fallDistance = 0;
 
-				e.world.playSound(null, e.posX, e.posY, e.posZ, SoundEvents.BLOCK_ANVIL_BREAK, SoundCategory.PLAYERS, 5F, 1.0F + e.getRNG().nextFloat() * 0.5F);
-				event.setCanceled(true);
-			}
-		}
-	}
-	
-	@Override
-	public void handleHurt(LivingHurtEvent event, ArmorFSB chestplate) {
+                if (player.motionY < -1)
+                    player.motionY += 0.4D;
+                else if (player.motionY < -0.1)
+                    player.motionY += 0.2D;
+                else if (player.motionY < 0)
+                    player.motionY = 0;
 
-		EntityLivingBase e = event.getEntityLiving();
+                player.motionX *= 1.05D;
+                player.motionZ *= 1.05D;
 
-		if(e instanceof EntityPlayer) {
-			EntityPlayer player = (EntityPlayer) e;
+                if (player.moveForward != 0) {
+                    player.motionX += player.getLookVec().x * 0.25 * player.moveForward;
+                    player.motionZ += player.getLookVec().z * 0.25 * player.moveForward;
+                }
 
-			if(ArmorFSB.hasFSBArmor(player)) {
-				
-				if(event.getSource().isExplosion()) {
-					event.setAmount(event.getAmount()*0.001F);
-					return;
-				}
-				
-				event.setAmount(0);
-			}
-		}
-	}
-	
-	@Override
-	public void addInformation(ItemStack stack, World worldIn, List<String> list, ITooltipFlag flagIn){
-		list.add("Charge: " + Library.getShortNumber(getCharge(stack)) + " / " + Library.getShortNumber(maxPower));
+                world.playSound(null, player.posX, player.posY, player.posZ, HBMSoundHandler.immolatorShoot, SoundCategory.PLAYERS, 0.125F, 1.5F);
+            }
 
-		list.add(TextFormatting.GOLD + I18nUtil.resolveKey("armor.fullSetBonus"));
+            if (player.isSneaking() && !player.onGround) {
+                player.motionY -= 0.1D;
+            }
+        }
+    }
 
-		if(!effects.isEmpty()) {
+    @Override
+    public void handleAttack(LivingAttackEvent event, ArmorFSB chestplate) {
 
-			for(PotionEffect effect : effects) {
-				list.add(TextFormatting.AQUA + "  " + I18n.format(effect.getEffectName()));
-			}
-		}
-		
-		list.add(TextFormatting.YELLOW + "  " + I18nUtil.resolveKey("armor.explosionImmune"));
-		list.add(TextFormatting.YELLOW + "  " + I18nUtil.resolveKey("armor.cap", 5));
-		list.add(TextFormatting.YELLOW + "  " + I18nUtil.resolveKey("armor.modifier", 0.001F));
-		list.add(TextFormatting.RED + "  " + I18nUtil.resolveKey("armor.vats"));
-		list.add(TextFormatting.RED + "  " + I18nUtil.resolveKey("armor.thermal"));
-		list.add(TextFormatting.RED + "  " + I18nUtil.resolveKey("armor.hardLanding"));
-		list.add(TextFormatting.DARK_RED + "  " + I18nUtil.resolveKey("armor.ignoreLimit"));
-		list.add(TextFormatting.AQUA + "  " + I18nUtil.resolveKey("armor.rocketBoots"));
-		list.add(TextFormatting.AQUA + "  " + I18nUtil.resolveKey("armor.fastFall"));
-		list.add(TextFormatting.AQUA + "  " + I18nUtil.resolveKey("armor.sprintBoost"));
-	}
+        EntityLivingBase e = event.getEntityLiving();
+
+        if (e instanceof EntityPlayer) {
+            EntityPlayer player = (EntityPlayer) e;
+
+            if (ArmorFSB.hasFSBArmor(player)) {
+
+                if (event.getSource().isExplosion()) {
+                    return;
+                }
+
+                e.world.playSound(null, e.posX, e.posY, e.posZ, SoundEvents.BLOCK_ANVIL_BREAK, SoundCategory.PLAYERS, 5F, 1.0F + e.getRNG().nextFloat() * 0.5F);
+                event.setCanceled(true);
+            }
+        }
+    }
+
+    @Override
+    public void handleHurt(LivingHurtEvent event, ArmorFSB chestplate) {
+
+        EntityLivingBase e = event.getEntityLiving();
+
+        if (e instanceof EntityPlayer) {
+            EntityPlayer player = (EntityPlayer) e;
+
+            if (ArmorFSB.hasFSBArmor(player)) {
+
+                if (event.getSource().isExplosion()) {
+                    event.setAmount(event.getAmount() * 0.001F);
+                    return;
+                }
+
+                event.setAmount(0);
+            }
+        }
+    }
+
+    @Override
+    public void addInformation(ItemStack stack, World worldIn, List<String> list, ITooltipFlag flagIn) {
+        list.add("Charge: " + Library.getShortNumber(getCharge(stack)) + " / " + Library.getShortNumber(maxPower));
+
+        list.add(TextFormatting.GOLD + I18nUtil.resolveKey("armor.fullSetBonus"));
+
+        if (!effects.isEmpty()) {
+
+            for (PotionEffect effect : effects) {
+                list.add(TextFormatting.AQUA + "  " + I18n.format(effect.getEffectName()));
+            }
+        }
+
+        list.add(TextFormatting.YELLOW + "  " + I18nUtil.resolveKey("armor.explosionImmune"));
+        list.add(TextFormatting.YELLOW + "  " + I18nUtil.resolveKey("armor.cap", 5));
+        list.add(TextFormatting.YELLOW + "  " + I18nUtil.resolveKey("armor.modifier", 0.001F));
+        list.add(TextFormatting.RED + "  " + I18nUtil.resolveKey("armor.vats"));
+        list.add(TextFormatting.RED + "  " + I18nUtil.resolveKey("armor.thermal"));
+        list.add(TextFormatting.RED + "  " + I18nUtil.resolveKey("armor.hardLanding"));
+        list.add(TextFormatting.DARK_RED + "  " + I18nUtil.resolveKey("armor.ignoreLimit"));
+        list.add(TextFormatting.AQUA + "  " + I18nUtil.resolveKey("armor.rocketBoots"));
+        list.add(TextFormatting.AQUA + "  " + I18nUtil.resolveKey("armor.fastFall"));
+        list.add(TextFormatting.AQUA + "  " + I18nUtil.resolveKey("armor.sprintBoost"));
+    }
 }

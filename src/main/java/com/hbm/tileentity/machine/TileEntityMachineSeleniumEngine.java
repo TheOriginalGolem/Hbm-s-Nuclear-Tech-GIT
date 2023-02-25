@@ -1,8 +1,5 @@
 package com.hbm.tileentity.machine;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.hbm.forgefluid.FFUtils;
 import com.hbm.forgefluid.ModForgeFluids;
 import com.hbm.interfaces.IConsumer;
@@ -14,7 +11,6 @@ import com.hbm.packet.AuxElectricityPacket;
 import com.hbm.packet.AuxGaugePacket;
 import com.hbm.packet.FluidTankPacket;
 import com.hbm.packet.PacketDispatcher;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.nbt.NBTTagCompound;
@@ -24,11 +20,7 @@ import net.minecraft.util.ITickable;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidRegistry;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.FluidTank;
-import net.minecraftforge.fluids.FluidUtil;
+import net.minecraftforge.fluids.*;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidTankProperties;
@@ -36,297 +28,292 @@ import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class TileEntityMachineSeleniumEngine extends TileEntity implements ITickable, ISource, IFluidHandler, ITankPacketAcceptor {
 
-	public ItemStackHandler inventory;
+    public static final long maxPower = 250000;
+    public ItemStackHandler inventory;
+    public long power;
+    public int soundCycle = 0;
+    public long powerCap = 250000;
+    public int age = 0;
+    public List<IConsumer> list = new ArrayList<IConsumer>();
+    public FluidTank tank;
+    public Fluid tankType;
+    public boolean needsUpdate = true;
+    public int pistonCount = 0;
 
-	public long power;
-	public int soundCycle = 0;
-	public static final long maxPower = 250000;
-	public long powerCap = 250000;
-	public int age = 0;
-	public List<IConsumer> list = new ArrayList<IConsumer>();
-	public FluidTank tank;
-	public Fluid tankType;
-	public boolean needsUpdate = true;
-	public int pistonCount = 0;
+    //private static final int[] slots_top = new int[] { 0 };
+    //private static final int[] slots_bottom = new int[] { 1, 2 };
+    //private static final int[] slots_side = new int[] { 2 };
 
-	//private static final int[] slots_top = new int[] { 0 };
-	//private static final int[] slots_bottom = new int[] { 1, 2 };
-	//private static final int[] slots_side = new int[] { 2 };
+    private String customName;
 
-	private String customName;
-	
-	public TileEntityMachineSeleniumEngine() {
-		inventory = new ItemStackHandler(14){
-			@Override
-			protected void onContentsChanged(int slot) {
-				markDirty();
-				super.onContentsChanged(slot);
-			}
-		};
-		tank = new FluidTank(16000);
-		tankType = ModForgeFluids.diesel;
-	}
-	
-	public String getInventoryName() {
-		return this.hasCustomInventoryName() ? this.customName : "container.machineSelenium";
-	}
+    public TileEntityMachineSeleniumEngine() {
+        inventory = new ItemStackHandler(14) {
+            @Override
+            protected void onContentsChanged(int slot) {
+                markDirty();
+                super.onContentsChanged(slot);
+            }
+        };
+        tank = new FluidTank(16000);
+        tankType = ModForgeFluids.diesel;
+    }
 
-	public boolean hasCustomInventoryName() {
-		return this.customName != null && this.customName.length() > 0;
-	}
+    public String getInventoryName() {
+        return this.hasCustomInventoryName() ? this.customName : "container.machineSelenium";
+    }
 
-	public void setCustomName(String name) {
-		this.customName = name;
-	}
-	
-	public boolean isUseableByPlayer(EntityPlayer player) {
-		if (world.getTileEntity(pos) != this) {
-			return false;
-		} else {
-			return player.getDistanceSq(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D) <= 64;
-		}
-	}
-	
-	@Override
-	public void readFromNBT(NBTTagCompound compound) {
-		this.power = compound.getLong("powerTime");
-		this.powerCap = compound.getLong("powerCap");
-		tank.readFromNBT(compound);
-		tankType = FluidRegistry.getFluid(compound.getString("tankType"));
-		if(compound.hasKey("inventory"))
-			inventory.deserializeNBT(compound.getCompoundTag("inventory"));
-		super.readFromNBT(compound);
-	}
-	
-	@Override
-	public NBTTagCompound writeToNBT(NBTTagCompound compound) {
-		compound.setLong("powerTime", power);
-		compound.setLong("powerCap", powerCap);
-		tank.writeToNBT(compound);
-		compound.setString("tankType", tankType.getName());
-		compound.setTag("inventory", inventory.serializeNBT());
-		return super.writeToNBT(compound);
-	}
-	
-	public long getPowerScaled(long i) {
-		return (power * i) / powerCap;
-	}
-	
-	@Override
-	public void update() {
-		if(tank.getFluid() != null){
-			tankType = tank.getFluid().getFluid();
-		}
-		if (!world.isRemote) {
-			
-			age++;
-			if (age >= 20) {
-				age = 0;
-			}
+    public boolean hasCustomInventoryName() {
+        return this.customName != null && this.customName.length() > 0;
+    }
 
-			if (age == 9 || age == 19)
-				ffgeuaInit();
-			
-			pistonCount = countPistons();
+    public void setCustomName(String name) {
+        this.customName = name;
+    }
 
-			//Tank Management
-			if(inputValidForTank(-1, 9))
-				if(FFUtils.fillFromFluidContainer(inventory, tank, 9, 10))
-					needsUpdate = true;
+    public boolean isUseableByPlayer(EntityPlayer player) {
+        if (world.getTileEntity(pos) != this) {
+            return false;
+        } else {
+            return player.getDistanceSq(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D) <= 64;
+        }
+    }
 
-			if(tankType == ModForgeFluids.nitan)
-				powerCap = maxPower * 10;
-			else
-				powerCap = maxPower;
-			
-			// Battery Item
-			power = Library.chargeItemsFromTE(inventory, 13, power, powerCap);
+    @Override
+    public void readFromNBT(NBTTagCompound compound) {
+        this.power = compound.getLong("powerTime");
+        this.powerCap = compound.getLong("powerCap");
+        tank.readFromNBT(compound);
+        tankType = FluidRegistry.getFluid(compound.getString("tankType"));
+        if (compound.hasKey("inventory"))
+            inventory.deserializeNBT(compound.getCompoundTag("inventory"));
+        super.readFromNBT(compound);
+    }
 
-			if(this.pistonCount > 2)
-				generate();
+    @Override
+    public NBTTagCompound writeToNBT(NBTTagCompound compound) {
+        compound.setLong("powerTime", power);
+        compound.setLong("powerCap", powerCap);
+        tank.writeToNBT(compound);
+        compound.setString("tankType", tankType.getName());
+        compound.setTag("inventory", inventory.serializeNBT());
+        return super.writeToNBT(compound);
+    }
 
-			if(needsUpdate){
-				PacketDispatcher.wrapper.sendToAllAround(new FluidTankPacket(pos.getX(), pos.getY(), pos.getZ(), new FluidTank[]{tank}), new TargetPoint(world.provider.getDimension(), pos.getX(), pos.getY(), pos.getZ(), 100));
-				needsUpdate = false;
-			}
-			PacketDispatcher.wrapper.sendToAllAround(new AuxElectricityPacket(pos.getX(), pos.getY(), pos.getZ(), power), new TargetPoint(world.provider.getDimension(), pos.getX(), pos.getY(), pos.getZ(), 20));
-			PacketDispatcher.wrapper.sendToAllAround(new AuxGaugePacket(pos.getX(), pos.getY(), pos.getZ(), pistonCount, 0), new TargetPoint(world.provider.getDimension(), pos.getX(), pos.getY(), pos.getZ(), 20));
-			PacketDispatcher.wrapper.sendToAllAround(new AuxGaugePacket(pos.getX(), pos.getY(), pos.getZ(), (int)powerCap, 1), new TargetPoint(world.provider.getDimension(), pos.getX(), pos.getY(), pos.getZ(), 20));
-		}
-	}
-	
-	public int countPistons() {
-		int count = 0;
-		
-		for(int i = 0; i < 9; i++) {
-			if(inventory.getStackInSlot(i).getItem() == ModItems.piston_selenium)
-				count++;
-		}
-		
-		return count;
-	}
-	
-	public boolean hasAcceptableFuel() {
-		return getHEFromFuel() > 0;
-	}
-	
-	public int getHEFromFuel() {
-		if(tankType == ModForgeFluids.smear)
-			return 50;
-		if(tankType == ModForgeFluids.heatingoil)
-			return 75;
-		if(tankType == ModForgeFluids.diesel)
-			return 225;
-		if(tankType == ModForgeFluids.kerosene)
-			return 300;
-		if(tankType == ModForgeFluids.reclaimed)
-			return 100;
-		if(tankType == ModForgeFluids.petroil)
-			return 125;
-		if(tankType == ModForgeFluids.biofuel)
-			return 200;
-		if(tankType == ModForgeFluids.nitan)
-			return 2500;
-		return 0;
-	}
+    public long getPowerScaled(long i) {
+        return (power * i) / powerCap;
+    }
 
-	public void generate() {
-		if (hasAcceptableFuel()) {
-			if (tank.getFluidAmount() > 0) {
-				if (soundCycle == 0) {
-					//if (tank.getTankType().name().equals(FluidType.) > 0)
-					//	this.worldObj.playSoundEffect(this.xCoord, this.yCoord, this.zCoord, "fireworks.blast", 1.0F, 1.0F);
-					//else
-						this.world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.ENTITY_FIREWORK_BLAST, SoundCategory.BLOCKS, 1.0F, 0.5F);
-				}
-				soundCycle++;
+    @Override
+    public void update() {
+        if (tank.getFluid() != null) {
+            tankType = tank.getFluid().getFluid();
+        }
+        if (!world.isRemote) {
 
-				if (soundCycle >= 3)
-					soundCycle = 0;
+            age++;
+            if (age >= 20) {
+                age = 0;
+            }
 
-				tank.drain(this.pistonCount * 5, true);
-				needsUpdate = true;
+            if (age == 9 || age == 19)
+                ffgeuaInit();
 
-				power += getHEFromFuel() * Math.pow(this.pistonCount, 1.15D);
-					
-				if(power > powerCap)
-					power = powerCap;
-			}
-		}
-	}
+            pistonCount = countPistons();
 
-	protected boolean inputValidForTank(int tank, int slot){
-		if(this.tank != null){
-			if(isValidFluidForTank(tank, FluidUtil.getFluidContained(inventory.getStackInSlot(slot)))){
-				return true;
-			}
-		}
-		return false;
-	}
-	
-	private boolean isValidFluidForTank(int tank, FluidStack stack) {
-		if(stack == null || this.tank == null)
-			return false;
-		Fluid f = stack.getFluid();
-		return this.tank.getFluid() != null ? f == this.tank.getFluid().getFluid() :(f == ModForgeFluids.smear || f == ModForgeFluids.heatingoil || f == ModForgeFluids.diesel || f == ModForgeFluids.kerosene || f == ModForgeFluids.reclaimed || f == ModForgeFluids.petroil || f == ModForgeFluids.biofuel || f == ModForgeFluids.nitan);
-	}
+            //Tank Management
+            if (inputValidForTank(-1, 9))
+                if (FFUtils.fillFromFluidContainer(inventory, tank, 9, 10))
+                    needsUpdate = true;
 
-	@Override
-	public void ffgeua(BlockPos pos, boolean newTact) {
-		
-		Library.ffgeua(new BlockPos.MutableBlockPos(pos), newTact, this, world);
-	}
+            if (tankType == ModForgeFluids.nitan)
+                powerCap = maxPower * 10;
+            else
+                powerCap = maxPower;
 
-	@Override
-	public void ffgeuaInit() {
-		ffgeua(pos.down(), getTact());
-	}
+            // Battery Item
+            power = Library.chargeItemsFromTE(inventory, 13, power, powerCap);
 
-	@Override
-	public boolean getTact() {
-		if (age >= 0 && age < 10) {
-			return true;
-		}
+            if (this.pistonCount > 2)
+                generate();
 
-		return false;
-	}
+            if (needsUpdate) {
+                PacketDispatcher.wrapper.sendToAllAround(new FluidTankPacket(pos.getX(), pos.getY(), pos.getZ(), new FluidTank[]{tank}), new TargetPoint(world.provider.getDimension(), pos.getX(), pos.getY(), pos.getZ(), 100));
+                needsUpdate = false;
+            }
+            PacketDispatcher.wrapper.sendToAllAround(new AuxElectricityPacket(pos.getX(), pos.getY(), pos.getZ(), power), new TargetPoint(world.provider.getDimension(), pos.getX(), pos.getY(), pos.getZ(), 20));
+            PacketDispatcher.wrapper.sendToAllAround(new AuxGaugePacket(pos.getX(), pos.getY(), pos.getZ(), pistonCount, 0), new TargetPoint(world.provider.getDimension(), pos.getX(), pos.getY(), pos.getZ(), 20));
+            PacketDispatcher.wrapper.sendToAllAround(new AuxGaugePacket(pos.getX(), pos.getY(), pos.getZ(), (int) powerCap, 1), new TargetPoint(world.provider.getDimension(), pos.getX(), pos.getY(), pos.getZ(), 20));
+        }
+    }
 
-	@Override
-	public long getSPower() {
-		return power;
-	}
+    public int countPistons() {
+        int count = 0;
 
-	@Override
-	public void setSPower(long i) {
-		this.power = i;
-	}
+        for (int i = 0; i < 9; i++) {
+            if (inventory.getStackInSlot(i).getItem() == ModItems.piston_selenium)
+                count++;
+        }
 
-	@Override
-	public List<IConsumer> getList() {
-		return list;
-	}
+        return count;
+    }
 
-	@Override
-	public void clearList() {
-		this.list.clear();
-	}
+    public boolean hasAcceptableFuel() {
+        return getHEFromFuel() > 0;
+    }
 
-	@Override
-	public int fill(FluidStack resource, boolean doFill) {
-		if(isValidFluidForTank(-1, resource)){
-			needsUpdate = true;
-			return tank.fill(resource, doFill);
-		} else {
-			return 0;
-		}
-	}
+    public int getHEFromFuel() {
+        if (tankType == ModForgeFluids.smear)
+            return 50;
+        if (tankType == ModForgeFluids.heatingoil)
+            return 75;
+        if (tankType == ModForgeFluids.diesel)
+            return 225;
+        if (tankType == ModForgeFluids.kerosene)
+            return 300;
+        if (tankType == ModForgeFluids.reclaimed)
+            return 100;
+        if (tankType == ModForgeFluids.petroil)
+            return 125;
+        if (tankType == ModForgeFluids.biofuel)
+            return 200;
+        if (tankType == ModForgeFluids.nitan)
+            return 2500;
+        return 0;
+    }
 
-	@Override
-	public FluidStack drain(FluidStack resource, boolean doDrain) {
-		return null;
-	}
+    public void generate() {
+        if (hasAcceptableFuel()) {
+            if (tank.getFluidAmount() > 0) {
+                if (soundCycle == 0) {
+                    //if (tank.getTankType().name().equals(FluidType.) > 0)
+                    //	this.worldObj.playSoundEffect(this.xCoord, this.yCoord, this.zCoord, "fireworks.blast", 1.0F, 1.0F);
+                    //else
+                    this.world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.ENTITY_FIREWORK_BLAST, SoundCategory.BLOCKS, 1.0F, 0.5F);
+                }
+                soundCycle++;
 
-	@Override
-	public FluidStack drain(int maxDrain, boolean doDrain) {
-		return null;
-	}
-	
-	@Override
-	public IFluidTankProperties[] getTankProperties() {
-		return new IFluidTankProperties[]{tank.getTankProperties()[0]};
-	}
-	
-	@Override
-	public void recievePacket(NBTTagCompound[] tags) {
-		if(tags.length != 1){
-			return;
-		} else {
-			tank.readFromNBT(tags[0]);
-		}
-	}
-	
-	@Override
-	public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
-		if(capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY){
-			return true;
-		} else if(capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY){
-			return true;
-		} else {
-			return super.hasCapability(capability, facing);
-		}
-	}
-	
-	@Override
-	public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
-		if(capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY){
-			return CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.cast(inventory);
-		} else if(capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY){
-			return CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY.cast(this);
-		} else {
-			return super.getCapability(capability, facing);
-		}
-	}
+                if (soundCycle >= 3)
+                    soundCycle = 0;
+
+                tank.drain(this.pistonCount * 5, true);
+                needsUpdate = true;
+
+                power += getHEFromFuel() * Math.pow(this.pistonCount, 1.15D);
+
+                if (power > powerCap)
+                    power = powerCap;
+            }
+        }
+    }
+
+    protected boolean inputValidForTank(int tank, int slot) {
+        if (this.tank != null) {
+            return isValidFluidForTank(tank, FluidUtil.getFluidContained(inventory.getStackInSlot(slot)));
+        }
+        return false;
+    }
+
+    private boolean isValidFluidForTank(int tank, FluidStack stack) {
+        if (stack == null || this.tank == null)
+            return false;
+        Fluid f = stack.getFluid();
+        return this.tank.getFluid() != null ? f == this.tank.getFluid().getFluid() : (f == ModForgeFluids.smear || f == ModForgeFluids.heatingoil || f == ModForgeFluids.diesel || f == ModForgeFluids.kerosene || f == ModForgeFluids.reclaimed || f == ModForgeFluids.petroil || f == ModForgeFluids.biofuel || f == ModForgeFluids.nitan);
+    }
+
+    @Override
+    public void ffgeua(BlockPos pos, boolean newTact) {
+
+        Library.ffgeua(new BlockPos.MutableBlockPos(pos), newTact, this, world);
+    }
+
+    @Override
+    public void ffgeuaInit() {
+        ffgeua(pos.down(), getTact());
+    }
+
+    @Override
+    public boolean getTact() {
+        return age >= 0 && age < 10;
+    }
+
+    @Override
+    public long getSPower() {
+        return power;
+    }
+
+    @Override
+    public void setSPower(long i) {
+        this.power = i;
+    }
+
+    @Override
+    public List<IConsumer> getList() {
+        return list;
+    }
+
+    @Override
+    public void clearList() {
+        this.list.clear();
+    }
+
+    @Override
+    public int fill(FluidStack resource, boolean doFill) {
+        if (isValidFluidForTank(-1, resource)) {
+            needsUpdate = true;
+            return tank.fill(resource, doFill);
+        } else {
+            return 0;
+        }
+    }
+
+    @Override
+    public FluidStack drain(FluidStack resource, boolean doDrain) {
+        return null;
+    }
+
+    @Override
+    public FluidStack drain(int maxDrain, boolean doDrain) {
+        return null;
+    }
+
+    @Override
+    public IFluidTankProperties[] getTankProperties() {
+        return new IFluidTankProperties[]{tank.getTankProperties()[0]};
+    }
+
+    @Override
+    public void recievePacket(NBTTagCompound[] tags) {
+        if (tags.length != 1) {
+        } else {
+            tank.readFromNBT(tags[0]);
+        }
+    }
+
+    @Override
+    public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
+        if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
+            return true;
+        } else if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY) {
+            return true;
+        } else {
+            return super.hasCapability(capability, facing);
+        }
+    }
+
+    @Override
+    public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
+        if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
+            return CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.cast(inventory);
+        } else if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY) {
+            return CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY.cast(this);
+        } else {
+            return super.getCapability(capability, facing);
+        }
+    }
 
 }

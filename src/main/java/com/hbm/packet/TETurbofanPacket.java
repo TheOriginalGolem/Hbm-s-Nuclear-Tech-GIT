@@ -1,7 +1,6 @@
 package com.hbm.packet;
 
 import com.hbm.tileentity.machine.TileEntityMachineTurbofan;
-
 import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;
 import net.minecraft.tileentity.TileEntity;
@@ -14,61 +13,59 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class TETurbofanPacket implements IMessage {
 
-	int x;
-	int y;
-	int z;
-	int spin;
-	boolean isRunning;
+    int x;
+    int y;
+    int z;
+    int spin;
+    boolean isRunning;
 
-	public TETurbofanPacket()
-	{
-		
-	}
+    public TETurbofanPacket() {
 
-	public TETurbofanPacket(int x, int y, int z, int spin, boolean isRunning)
-	{
-		this.x = x;
-		this.y = y;
-		this.z = z;
-		this.spin = spin;
-		this.isRunning = isRunning;
-	}
+    }
 
-	@Override
-	public void fromBytes(ByteBuf buf) {
-		x = buf.readInt();
-		y = buf.readInt();
-		z = buf.readInt();
-		spin = buf.readInt();
-		isRunning = buf.readBoolean();
-	}
+    public TETurbofanPacket(int x, int y, int z, int spin, boolean isRunning) {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+        this.spin = spin;
+        this.isRunning = isRunning;
+    }
 
-	@Override
-	public void toBytes(ByteBuf buf) {
-		buf.writeInt(x);
-		buf.writeInt(y);
-		buf.writeInt(z);
-		buf.writeInt(spin);
-		buf.writeBoolean(isRunning);
-	}
+    @Override
+    public void fromBytes(ByteBuf buf) {
+        x = buf.readInt();
+        y = buf.readInt();
+        z = buf.readInt();
+        spin = buf.readInt();
+        isRunning = buf.readBoolean();
+    }
 
-	public static class Handler implements IMessageHandler<TETurbofanPacket, IMessage> {
-		
-		@Override
-		@SideOnly(Side.CLIENT)
-		public IMessage onMessage(TETurbofanPacket m, MessageContext ctx) {
-			Minecraft.getMinecraft().addScheduledTask(() -> {
-				TileEntity te = Minecraft.getMinecraft().world.getTileEntity(new BlockPos(m.x, m.y, m.z));
+    @Override
+    public void toBytes(ByteBuf buf) {
+        buf.writeInt(x);
+        buf.writeInt(y);
+        buf.writeInt(z);
+        buf.writeInt(spin);
+        buf.writeBoolean(isRunning);
+    }
 
-				if (te != null && te instanceof TileEntityMachineTurbofan) {
-						
-					TileEntityMachineTurbofan gen = (TileEntityMachineTurbofan) te;
-					gen.spin = m.spin;
-					gen.isRunning = m.isRunning;
-				}
-			});
-			
-			return null;
-		}
-	}
+    public static class Handler implements IMessageHandler<TETurbofanPacket, IMessage> {
+
+        @Override
+        @SideOnly(Side.CLIENT)
+        public IMessage onMessage(TETurbofanPacket m, MessageContext ctx) {
+            Minecraft.getMinecraft().addScheduledTask(() -> {
+                TileEntity te = Minecraft.getMinecraft().world.getTileEntity(new BlockPos(m.x, m.y, m.z));
+
+                if (te != null && te instanceof TileEntityMachineTurbofan) {
+
+                    TileEntityMachineTurbofan gen = (TileEntityMachineTurbofan) te;
+                    gen.spin = m.spin;
+                    gen.isRunning = m.isRunning;
+                }
+            });
+
+            return null;
+        }
+    }
 }

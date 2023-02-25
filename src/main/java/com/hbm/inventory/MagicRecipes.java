@@ -1,125 +1,125 @@
 package com.hbm.inventory;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import com.hbm.blocks.ModBlocks;
 import com.hbm.inventory.RecipesCommon.AStack;
 import com.hbm.inventory.RecipesCommon.ComparableStack;
 import com.hbm.inventory.RecipesCommon.OreDictStack;
 import com.hbm.items.ModItems;
-import static com.hbm.inventory.OreDictManager.*;
-
 import net.minecraft.init.Items;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import static com.hbm.inventory.OreDictManager.DNT;
+
 public class MagicRecipes {
 
-	//Drillgon200: I hate these warnings. 
-	//All it takes are these two characters                 ||
-	//But bob evidently just hates not having warnings      VV
-	private static List<MagicRecipe> recipes = new ArrayList<>();
+    //Drillgon200: I hate these warnings.
+    //All it takes are these two characters                 ||
+    //But bob evidently just hates not having warnings      VV
+    private static final List<MagicRecipe> recipes = new ArrayList<>();
 
-	public static ItemStack getRecipe(InventoryCrafting matrix) {
+    public static ItemStack getRecipe(InventoryCrafting matrix) {
 
-		List<ComparableStack> comps = new ArrayList<>();
+        List<ComparableStack> comps = new ArrayList<>();
 
-		for(int i = 0; i < 4; i++) {
-			if(!matrix.getStackInSlot(i).isEmpty())
-				comps.add(new ComparableStack(matrix.getStackInSlot(i)).makeSingular());
-		}
+        for (int i = 0; i < 4; i++) {
+            if (!matrix.getStackInSlot(i).isEmpty())
+                comps.add(new ComparableStack(matrix.getStackInSlot(i)).makeSingular());
+        }
 
-		//Collections.sort(comps);
+        //Collections.sort(comps);
 
-		for(MagicRecipe recipe : recipes) {
-			if(recipe.matches(comps))
-				return recipe.getResult();
-		}
-		
-		return ItemStack.EMPTY;
-	}
+        for (MagicRecipe recipe : recipes) {
+            if (recipe.matches(comps))
+                return recipe.getResult();
+        }
 
-	public static void register() {
-		recipes.add(new MagicRecipe(new ItemStack(ModItems.ingot_u238m2), new ComparableStack(ModItems.ingot_u238m2, 1, 1), new ComparableStack(ModItems.ingot_u238m2, 1, 2), new ComparableStack(ModItems.ingot_u238m2, 1, 3)));
-		recipes.add(new MagicRecipe(new ItemStack(ModItems.rod_of_discord), new ComparableStack(Items.ENDER_PEARL), new ComparableStack(Items.BLAZE_ROD), new ComparableStack(ModItems.nugget_euphemium)));
-		recipes.add(new MagicRecipe(new ItemStack(ModItems.balefire_and_steel), new OreDictStack("ingotSteel"), new ComparableStack(ModItems.egg_balefire_shard)));
-		recipes.add(new MagicRecipe(new ItemStack(ModItems.mysteryshovel), new ComparableStack(Items.IRON_SHOVEL), new ComparableStack(Items.BONE), new ComparableStack(ModItems.ingot_starmetal), new ComparableStack(ModItems.ducttape)));
-		recipes.add(new MagicRecipe(new ItemStack(ModItems.ingot_electronium), new OreDictStack(DNT.ingot()),  new OreDictStack(DNT.ingot()), new ComparableStack(ModItems.pellet_charged), new ComparableStack(ModItems.pellet_charged)));
+        return ItemStack.EMPTY;
+    }
 
-		recipes.add(new MagicRecipe(new ItemStack(ModItems.ammo_44_pip),
-				new ComparableStack(ModItems.ammo_44),
-				new ComparableStack(ModItems.powder_magic),
-				new ComparableStack(ModItems.powder_magic),
-				new ComparableStack(ModItems.powder_magic)));
-		recipes.add(new MagicRecipe(new ItemStack(ModItems.ammo_44_bj),
-				new ComparableStack(ModItems.ammo_44),
-				new ComparableStack(ModItems.powder_magic),
-				new ComparableStack(ModItems.powder_magic),
-				new ComparableStack(ModItems.powder_desh)));
-		recipes.add(new MagicRecipe(new ItemStack(ModItems.ammo_44_silver),
-				new ComparableStack(ModItems.ammo_44),
-				new ComparableStack(ModItems.powder_magic),
-				new ComparableStack(ModItems.powder_magic),
-				new ComparableStack(ModItems.ingot_starmetal)));
-		recipes.add(new MagicRecipe(new ItemStack(ModItems.gun_bf),
-				new ComparableStack(ModItems.gun_fatman),
-				new ComparableStack(ModItems.egg_balefire_shard),
-				new ComparableStack(ModItems.powder_magic),
-				new ComparableStack(ModItems.powder_magic)));
-		recipes.add(new MagicRecipe(new ItemStack(ModItems.diamond_gavel),
-				new ComparableStack(ModBlocks.gravel_diamond),
-				new ComparableStack(ModBlocks.gravel_diamond),
-				new ComparableStack(ModBlocks.gravel_diamond),
-				new ComparableStack(ModItems.lead_gavel)));
-		recipes.add(new MagicRecipe(new ItemStack(ModItems.mese_gavel),
-				new ComparableStack(ModItems.shimmer_handle),
-				new ComparableStack(ModItems.powder_dineutronium),
-				new ComparableStack(ModItems.blades_desh),
-				new ComparableStack(ModItems.diamond_gavel)));
-		recipes.add(new MagicRecipe(new ItemStack(ModBlocks.hadron_coil_mese),
-				new ComparableStack(ModBlocks.hadron_coil_starmetal),
-				new ComparableStack(ModItems.powder_dineutronium),
-				new ComparableStack(ModItems.plate_desh),
-				new OreDictStack("dustGold")));
-		recipes.add(new MagicRecipe(new ItemStack(ModItems.gun_darter),
-				new OreDictStack("plateSteel"),
-				new OreDictStack("plateSteel"),
-				new ComparableStack(ModItems.ingot_polymer),
-				new OreDictStack("plateGold")));
-	}
+    public static void register() {
+        recipes.add(new MagicRecipe(new ItemStack(ModItems.ingot_u238m2), new ComparableStack(ModItems.ingot_u238m2, 1, 1), new ComparableStack(ModItems.ingot_u238m2, 1, 2), new ComparableStack(ModItems.ingot_u238m2, 1, 3)));
+        recipes.add(new MagicRecipe(new ItemStack(ModItems.rod_of_discord), new ComparableStack(Items.ENDER_PEARL), new ComparableStack(Items.BLAZE_ROD), new ComparableStack(ModItems.nugget_euphemium)));
+        recipes.add(new MagicRecipe(new ItemStack(ModItems.balefire_and_steel), new OreDictStack("ingotSteel"), new ComparableStack(ModItems.egg_balefire_shard)));
+        recipes.add(new MagicRecipe(new ItemStack(ModItems.mysteryshovel), new ComparableStack(Items.IRON_SHOVEL), new ComparableStack(Items.BONE), new ComparableStack(ModItems.ingot_starmetal), new ComparableStack(ModItems.ducttape)));
+        recipes.add(new MagicRecipe(new ItemStack(ModItems.ingot_electronium), new OreDictStack(DNT.ingot()), new OreDictStack(DNT.ingot()), new ComparableStack(ModItems.pellet_charged), new ComparableStack(ModItems.pellet_charged)));
 
-	public static List<MagicRecipe> getRecipes() {
-		return recipes;
-	}
+        recipes.add(new MagicRecipe(new ItemStack(ModItems.ammo_44_pip),
+                new ComparableStack(ModItems.ammo_44),
+                new ComparableStack(ModItems.powder_magic),
+                new ComparableStack(ModItems.powder_magic),
+                new ComparableStack(ModItems.powder_magic)));
+        recipes.add(new MagicRecipe(new ItemStack(ModItems.ammo_44_bj),
+                new ComparableStack(ModItems.ammo_44),
+                new ComparableStack(ModItems.powder_magic),
+                new ComparableStack(ModItems.powder_magic),
+                new ComparableStack(ModItems.powder_desh)));
+        recipes.add(new MagicRecipe(new ItemStack(ModItems.ammo_44_silver),
+                new ComparableStack(ModItems.ammo_44),
+                new ComparableStack(ModItems.powder_magic),
+                new ComparableStack(ModItems.powder_magic),
+                new ComparableStack(ModItems.ingot_starmetal)));
+        recipes.add(new MagicRecipe(new ItemStack(ModItems.gun_bf),
+                new ComparableStack(ModItems.gun_fatman),
+                new ComparableStack(ModItems.egg_balefire_shard),
+                new ComparableStack(ModItems.powder_magic),
+                new ComparableStack(ModItems.powder_magic)));
+        recipes.add(new MagicRecipe(new ItemStack(ModItems.diamond_gavel),
+                new ComparableStack(ModBlocks.gravel_diamond),
+                new ComparableStack(ModBlocks.gravel_diamond),
+                new ComparableStack(ModBlocks.gravel_diamond),
+                new ComparableStack(ModItems.lead_gavel)));
+        recipes.add(new MagicRecipe(new ItemStack(ModItems.mese_gavel),
+                new ComparableStack(ModItems.shimmer_handle),
+                new ComparableStack(ModItems.powder_dineutronium),
+                new ComparableStack(ModItems.blades_desh),
+                new ComparableStack(ModItems.diamond_gavel)));
+        recipes.add(new MagicRecipe(new ItemStack(ModBlocks.hadron_coil_mese),
+                new ComparableStack(ModBlocks.hadron_coil_starmetal),
+                new ComparableStack(ModItems.powder_dineutronium),
+                new ComparableStack(ModItems.plate_desh),
+                new OreDictStack("dustGold")));
+        recipes.add(new MagicRecipe(new ItemStack(ModItems.gun_darter),
+                new OreDictStack("plateSteel"),
+                new OreDictStack("plateSteel"),
+                new ComparableStack(ModItems.ingot_polymer),
+                new OreDictStack("plateGold")));
+    }
 
-	public static class MagicRecipe {
+    public static List<MagicRecipe> getRecipes() {
+        return recipes;
+    }
 
-		public List<AStack> in;
-		public ItemStack out;
+    public static class MagicRecipe {
 
-		public MagicRecipe(ItemStack out, AStack... in) {
-			this.out = out;
-			this.in = Arrays.asList(in);
-			//Collections.sort(this.in);
-		}
+        public List<AStack> in;
+        public ItemStack out;
 
-		public boolean matches(List<ComparableStack> comps) {
-			if(comps.size() != in.size())
-				return false;
+        public MagicRecipe(ItemStack out, AStack... in) {
+            this.out = out;
+            this.in = Arrays.asList(in);
+            //Collections.sort(this.in);
+        }
 
-			for(int i = 0; i < in.size(); i++) {
+        public boolean matches(List<ComparableStack> comps) {
+            if (comps.size() != in.size())
+                return false;
 
-				if(!in.get(i).isApplicable(comps.get(i)))
-					return false;
-			}
+            for (int i = 0; i < in.size(); i++) {
 
-			return true;
-		}
+                if (!in.get(i).isApplicable(comps.get(i)))
+                    return false;
+            }
 
-		public ItemStack getResult() {
-			return out.copy();
-		}
-	}
+            return true;
+        }
+
+        public ItemStack getResult() {
+            return out.copy();
+        }
+    }
 }

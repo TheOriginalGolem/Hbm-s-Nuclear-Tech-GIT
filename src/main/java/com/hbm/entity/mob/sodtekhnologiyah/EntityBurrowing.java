@@ -8,48 +8,47 @@ import net.minecraft.world.World;
 
 public abstract class EntityBurrowing extends EntityCreature {
 
-	protected float dragInAir;
-	protected float dragInGround;
-	
-	public EntityBurrowing(World worldIn) {
-		super(worldIn);
-	}
-	
-	/*
-	 * No need to update this
-	 */
-	@Override
-	public void fall(float distance, float damageMultiplier) {}
-	
-	/*
-	 * Our "eye"-height should always be centered
-	 */
-	@Override
-	public float getEyeHeight() {
-		return this.height * 0.5F;
-	}
-	
-	public boolean getIsHead() {
-		return false;
-	}
+    protected float dragInAir;
+    protected float dragInGround;
 
-	/*
-	 * No fall damage :P
-	 */
-	@Override
-	protected void updateFallState(double y, boolean onGroundIn, IBlockState state, BlockPos pos) {}
-	
-	@Override
-	public void travel(float strafe, float vertical, float forward) {
-		float drag = this.dragInGround;
-        if ((!isEntityInsideOpaqueBlock()) && (!isInWater()) && (!isInLava()))
-        {
-        	drag = this.dragInAir;
-        }
-        else
-        {
-          this.distanceWalkedModified = ((float)(this.distanceWalkedModified + Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ) * 0.4D));
-          this.distanceWalkedOnStepModified = ((float)(this.distanceWalkedOnStepModified + Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ + this.motionY * this.motionY) * 0.4D));
+    public EntityBurrowing(World worldIn) {
+        super(worldIn);
+    }
+
+    /*
+     * No need to update this
+     */
+    @Override
+    public void fall(float distance, float damageMultiplier) {
+    }
+
+    /*
+     * Our "eye"-height should always be centered
+     */
+    @Override
+    public float getEyeHeight() {
+        return this.height * 0.5F;
+    }
+
+    public boolean getIsHead() {
+        return false;
+    }
+
+    /*
+     * No fall damage :P
+     */
+    @Override
+    protected void updateFallState(double y, boolean onGroundIn, IBlockState state, BlockPos pos) {
+    }
+
+    @Override
+    public void travel(float strafe, float vertical, float forward) {
+        float drag = this.dragInGround;
+        if ((!isEntityInsideOpaqueBlock()) && (!isInWater()) && (!isInLava())) {
+            drag = this.dragInAir;
+        } else {
+            this.distanceWalkedModified = ((float) (this.distanceWalkedModified + Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ) * 0.4D));
+            this.distanceWalkedOnStepModified = ((float) (this.distanceWalkedOnStepModified + Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ + this.motionY * this.motionY) * 0.4D));
           /*if (this.distanceWalkedOnStepModified > this.nextStepDistance)
           {
             //this.nextStepDistance = ((int)this.distanceWalkedOnStepModified + 1);
@@ -67,7 +66,7 @@ public abstract class EntityBurrowing extends EntityCreature {
           }*/
         }
         if (!getIsHead()) {
-        	drag *= 0.9F;
+            drag *= 0.9F;
         }
         this.moveRelative(strafe, vertical, forward, 0.02F);
 
@@ -81,15 +80,15 @@ public abstract class EntityBurrowing extends EntityCreature {
         double deltaZ = this.posZ - this.prevPosZ;
         float dist = (float) Math.sqrt(deltaX * deltaX + deltaZ * deltaZ) * 4.0F;
         if (dist > 1.0F) {
-          dist = 1.0F;
+            dist = 1.0F;
         }
         this.limbSwingAmount += (dist - this.limbSwingAmount) * 0.4F;
         this.limbSwing += this.limbSwingAmount;
-	}
+    }
 
-	
-	@Override
-	public boolean isOnLadder() {
-		return false;
-	}
+
+    @Override
+    public boolean isOnLadder() {
+        return false;
+    }
 }

@@ -8,7 +8,6 @@ package glmath.dev;
 import glmath.glm.vec._4.Vec4;
 
 /**
- *
  * @author GBarbieri
  */
 public class Vec4u8 {
@@ -23,7 +22,7 @@ public class Vec4u8 {
         z = 0;
         w = 0;
     }
-    
+
     public Vec4u8(Vec4 v) {
         x = (byte) v.x;
         y = (byte) v.y;

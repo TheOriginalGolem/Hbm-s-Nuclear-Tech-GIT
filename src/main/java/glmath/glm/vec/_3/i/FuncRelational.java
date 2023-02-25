@@ -9,7 +9,6 @@ import glmath.glm.Glm;
 import glmath.glm.vec._3.bool.Vec3bool;
 
 /**
- *
  * @author fschaefers
  */
 abstract class FuncRelational extends funcCommon {
@@ -21,7 +20,7 @@ abstract class FuncRelational extends funcCommon {
     public boolean all() {
         return Glm.all((Vec3i) this);
     }
-    
+
     public Vec3i not_() {
         return Glm.not((Vec3i) this, new Vec3i());
     }
@@ -29,7 +28,7 @@ abstract class FuncRelational extends funcCommon {
     public Vec3i not() {
         return Glm.not((Vec3i) this, (Vec3i) this);
     }
-    
+
     public Vec3bool lessThan__(Vec3i b) {
         return Glm.lessThan((Vec3i) this, b, new Vec3bool());
     }

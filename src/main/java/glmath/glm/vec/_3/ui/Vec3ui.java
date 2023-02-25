@@ -8,7 +8,6 @@ package glmath.glm.vec._3.ui;
 import glmath.joou.UInt;
 
 /**
- *
  * @author elect
  */
 public class Vec3ui extends FuncRelational {

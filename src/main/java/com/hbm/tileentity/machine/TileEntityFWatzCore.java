@@ -1,9 +1,5 @@
 package com.hbm.tileentity.machine;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-
 import com.hbm.forgefluid.FFUtils;
 import com.hbm.forgefluid.ModForgeFluids;
 import com.hbm.interfaces.IConsumer;
@@ -16,7 +12,6 @@ import com.hbm.packet.AuxElectricityPacket;
 import com.hbm.packet.FluidTankPacket;
 import com.hbm.packet.PacketDispatcher;
 import com.hbm.world.FWatz;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.nbt.NBTTagCompound;
@@ -36,370 +31,360 @@ import net.minecraftforge.fluids.capability.IFluidTankProperties;
 import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
 import net.minecraftforge.items.ItemStackHandler;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
 public class TileEntityFWatzCore extends TileEntity implements ITickable, IReactor, ISource, IFluidHandler, ITankPacketAcceptor {
 
-	public long power;
-	public final static long maxPower = 10000000000L;
-	public boolean cooldown = false;
+    public final static long maxPower = 10000000000L;
+    public long power;
+    public boolean cooldown = false;
 
-	public FluidTank tanks[];
-	public Fluid[] tankTypes;
-	public boolean needsUpdate;
+    public FluidTank[] tanks;
+    public Fluid[] tankTypes;
+    public boolean needsUpdate;
+    public ItemStackHandler inventory;
+    public int age = 0;
+    public List<IConsumer> list = new ArrayList<IConsumer>();
+    Random rand = new Random();
+    private String customName;
 
-	Random rand = new Random();
+    public TileEntityFWatzCore() {
+        inventory = new ItemStackHandler(7) {
+            @Override
+            protected void onContentsChanged(int slot) {
+                markDirty();
+                super.onContentsChanged(slot);
+            }
+        };
+        tanks = new FluidTank[3];
+        tankTypes = new Fluid[3];
+        tanks[0] = new FluidTank(128000);
+        tankTypes[0] = ModForgeFluids.coolant;
+        tanks[1] = new FluidTank(64000);
+        tankTypes[1] = ModForgeFluids.amat;
+        tanks[2] = new FluidTank(64000);
+        tankTypes[2] = ModForgeFluids.aschrab;
+        needsUpdate = false;
+    }
 
-	public ItemStackHandler inventory;
-	public int age = 0;
-	public List<IConsumer> list = new ArrayList<IConsumer>();
+    public String getInventoryName() {
+        return this.hasCustomInventoryName() ? this.customName : "container.fusionaryWatzPlant";
+    }
 
-	private String customName;
+    public boolean hasCustomInventoryName() {
+        return this.customName != null && this.customName.length() > 0;
+    }
 
-	public TileEntityFWatzCore() {
-		inventory = new ItemStackHandler(7) {
-			@Override
-			protected void onContentsChanged(int slot) {
-				markDirty();
-				super.onContentsChanged(slot);
-			}
-		};
-		tanks = new FluidTank[3];
-		tankTypes = new Fluid[3];
-		tanks[0] = new FluidTank(128000);
-		tankTypes[0] = ModForgeFluids.coolant;
-		tanks[1] = new FluidTank(64000);
-		tankTypes[1] = ModForgeFluids.amat;
-		tanks[2] = new FluidTank(64000);
-		tankTypes[2] = ModForgeFluids.aschrab;
-		needsUpdate = false;
-	}
+    public void setCustomName(String name) {
+        this.customName = name;
+    }
 
-	public String getInventoryName() {
-		return this.hasCustomInventoryName() ? this.customName : "container.fusionaryWatzPlant";
-	}
+    public boolean isUseableByPlayer(EntityPlayer player) {
+        return world.getTileEntity(pos) == this;
+    }
 
-	public boolean hasCustomInventoryName() {
-		return this.customName != null && this.customName.length() > 0;
-	}
+    @Override
+    public void readFromNBT(NBTTagCompound compound) {
+        power = compound.getLong("power");
+        tankTypes[0] = ModForgeFluids.coolant;
+        tankTypes[1] = ModForgeFluids.amat;
+        tankTypes[2] = ModForgeFluids.aschrab;
+        if (compound.hasKey("tanks"))
+            FFUtils.deserializeTankArray(compound.getTagList("tanks", 10), tanks);
+        if (compound.hasKey("inventory"))
+            inventory.deserializeNBT(compound.getCompoundTag("inventory"));
+        super.readFromNBT(compound);
+    }
 
-	public void setCustomName(String name) {
-		this.customName = name;
-	}
+    @Override
+    public NBTTagCompound writeToNBT(NBTTagCompound compound) {
+        compound.setLong("power", power);
+        compound.setTag("inventory", inventory.serializeNBT());
+        compound.setTag("tanks", FFUtils.serializeTankArray(tanks));
+        return super.writeToNBT(compound);
+    }
 
-	public boolean isUseableByPlayer(EntityPlayer player) {
-		if(world.getTileEntity(pos) != this) {
-			return false;
-		} else {
-			return true;
-		}
-	}
+    @Override
+    public void update() {
+        if (!world.isRemote && this.isStructureValid(this.world)) {
 
-	@Override
-	public void readFromNBT(NBTTagCompound compound) {
-		power = compound.getLong("power");
-		tankTypes[0] = ModForgeFluids.coolant;
-		tankTypes[1] = ModForgeFluids.amat;
-		tankTypes[2] = ModForgeFluids.aschrab;
-		if(compound.hasKey("tanks"))
-			FFUtils.deserializeTankArray(compound.getTagList("tanks", 10), tanks);
-		if(compound.hasKey("inventory"))
-			inventory.deserializeNBT(compound.getCompoundTag("inventory"));
-		super.readFromNBT(compound);
-	}
+            age++;
+            if (age >= 20) {
+                age = 0;
+            }
 
-	@Override
-	public NBTTagCompound writeToNBT(NBTTagCompound compound) {
-		compound.setLong("power", power);
-		compound.setTag("inventory", inventory.serializeNBT());
-		compound.setTag("tanks", FFUtils.serializeTankArray(tanks));
-		return super.writeToNBT(compound);
-	}
+            if (age == 9 || age == 19)
+                ffgeuaInit();
+            if (hasFuse() && getSingularityType() > 0) {
+                if (cooldown) {
 
-	@Override
-	public void update() {
-		if(!world.isRemote && this.isStructureValid(this.world)) {
+                    int i = getSingularityType();
 
-			age++;
-			if(age >= 20) {
-				age = 0;
-			}
+                    if (i == 1)
+                        tanks[0].fill(new FluidStack(tankTypes[0], 1500), true);
+                    if (i == 2)
+                        tanks[0].fill(new FluidStack(tankTypes[0], 3000), true);
+                    if (i == 3)
+                        tanks[0].fill(new FluidStack(tankTypes[0], 750), true);
+                    if (i == 4)
+                        tanks[0].fill(new FluidStack(tankTypes[0], 500), true);
+                    if (i == 5)
+                        tanks[0].fill(new FluidStack(tankTypes[0], 15000), true);
 
-			if(age == 9 || age == 19)
-				ffgeuaInit();
-			if(hasFuse() && getSingularityType() > 0) {
-				if(cooldown) {
+                    if (tanks[0].getFluidAmount() >= tanks[0].getCapacity()) {
+                        cooldown = false;
+                    }
 
-					int i = getSingularityType();
+                } else {
+                    int i = getSingularityType();
 
-					if(i == 1)
-						tanks[0].fill(new FluidStack(tankTypes[0], 1500), true);
-					if(i == 2)
-						tanks[0].fill(new FluidStack(tankTypes[0], 3000), true);
-					if(i == 3)
-						tanks[0].fill(new FluidStack(tankTypes[0], 750), true);
-					if(i == 4)
-						tanks[0].fill(new FluidStack(tankTypes[0], 500), true);
-					if(i == 5)
-						tanks[0].fill(new FluidStack(tankTypes[0], 15000), true);
+                    if (i == 1 && tanks[1].getFluidAmount() - 75 >= 0 && tanks[2].getFluidAmount() - 75 >= 0) {
+                        tanks[0].drain(150, true);
+                        tanks[1].drain(75, true);
+                        tanks[2].drain(75, true);
+                        needsUpdate = true;
+                        power += 5000000;
+                    }
+                    if (i == 2 && tanks[1].getFluidAmount() - 75 >= 0 && tanks[2].getFluidAmount() - 35 >= 0) {
+                        tanks[0].drain(75, true);
+                        tanks[1].drain(35, true);
+                        tanks[2].drain(30, true);
+                        needsUpdate = true;
+                        power += 2500000;
+                    }
+                    if (i == 3 && tanks[1].getFluidAmount() - 75 >= 0 && tanks[2].getFluidAmount() - 140 >= 0) {
+                        tanks[0].drain(300, true);
+                        tanks[1].drain(75, true);
+                        tanks[2].drain(140, true);
+                        needsUpdate = true;
+                        power += 10000000;
+                    }
+                    if (i == 4 && tanks[1].getFluidAmount() - 100 >= 0 && tanks[2].getFluidAmount() - 100 >= 0) {
+                        tanks[0].drain(100, true);
+                        tanks[1].drain(100, true);
+                        tanks[2].drain(100, true);
+                        needsUpdate = true;
+                        power += 10000000;
+                    }
+                    if (i == 5 && tanks[1].getFluidAmount() - 15 >= 0 && tanks[2].getFluidAmount() - 15 >= 0) {
+                        tanks[0].drain(150, true);
+                        tanks[1].drain(15, true);
+                        tanks[2].drain(15, true);
+                        needsUpdate = true;
+                        power += 100000000;
+                    }
 
-					if(tanks[0].getFluidAmount() >= tanks[0].getCapacity()) {
-						cooldown = false;
-					}
+                    if (power > maxPower)
+                        power = maxPower;
 
-				} else {
-					int i = getSingularityType();
+                    if (tanks[0].getFluidAmount() <= 0) {
+                        cooldown = true;
+                    }
+                }
+            }
 
-					if(i == 1 && tanks[1].getFluidAmount() - 75 >= 0 && tanks[2].getFluidAmount() - 75 >= 0) {
-						tanks[0].drain(150, true);
-						tanks[1].drain(75, true);
-						tanks[2].drain(75, true);
-						needsUpdate = true;
-						power += 5000000;
-					}
-					if(i == 2 && tanks[1].getFluidAmount() - 75 >= 0 && tanks[2].getFluidAmount() - 35 >= 0) {
-						tanks[0].drain(75, true);
-						tanks[1].drain(35, true);
-						tanks[2].drain(30, true);
-						needsUpdate = true;
-						power += 2500000;
-					}
-					if(i == 3 && tanks[1].getFluidAmount() - 75 >= 0 && tanks[2].getFluidAmount() - 140 >= 0) {
-						tanks[0].drain(300, true);
-						tanks[1].drain(75, true);
-						tanks[2].drain(140, true);
-						needsUpdate = true;
-						power += 10000000;
-					}
-					if(i == 4 && tanks[1].getFluidAmount() - 100 >= 0 && tanks[2].getFluidAmount() - 100 >= 0) {
-						tanks[0].drain(100, true);
-						tanks[1].drain(100, true);
-						tanks[2].drain(100, true);
-						needsUpdate = true;
-						power += 10000000;
-					}
-					if(i == 5 && tanks[1].getFluidAmount() - 15 >= 0 && tanks[2].getFluidAmount() - 15 >= 0) {
-						tanks[0].drain(150, true);
-						tanks[1].drain(15, true);
-						tanks[2].drain(15, true);
-						needsUpdate = true;
-						power += 100000000;
-					}
+            if (power > maxPower)
+                power = maxPower;
 
-					if(power > maxPower)
-						power = maxPower;
+            power = Library.chargeItemsFromTE(inventory, 0, power, maxPower);
 
-					if(tanks[0].getFluidAmount() <= 0) {
-						cooldown = true;
-					}
-				}
-			}
+            if (this.inputValidForTank(1, 3))
+                if (FFUtils.fillFromFluidContainer(inventory, tanks[1], 3, 5))
+                    needsUpdate = true;
+            if (this.inputValidForTank(2, 4))
+                if (FFUtils.fillFromFluidContainer(inventory, tanks[2], 4, 6))
+                    needsUpdate = true;
+            if (needsUpdate) {
+                needsUpdate = false;
+            }
 
-			if(power > maxPower)
-				power = maxPower;
+            if (this.isRunning() && (tanks[1].getFluidAmount() <= 0 || tanks[2].getFluidAmount() <= 0 || !hasFuse() || getSingularityType() == 0) || cooldown || !this.isStructureValid(world))
+                this.emptyPlasma();
 
-			power = Library.chargeItemsFromTE(inventory, 0, power, maxPower);
+            if (!this.isRunning() && tanks[1].getFluidAmount() >= 100 && tanks[2].getFluidAmount() >= 100 && hasFuse() && getSingularityType() > 0 && !cooldown && this.isStructureValid(world))
+                this.fillPlasma();
 
-			if(this.inputValidForTank(1, 3))
-				if(FFUtils.fillFromFluidContainer(inventory, tanks[1], 3, 5))
-					needsUpdate = true;
-			if(this.inputValidForTank(2, 4))
-				if(FFUtils.fillFromFluidContainer(inventory, tanks[2], 4, 6))
-					needsUpdate = true;
-			if(needsUpdate) {
-				needsUpdate = false;
-			}
+            PacketDispatcher.wrapper.sendToAllAround(new FluidTankPacket(pos, tanks[0], tanks[1], tanks[2]), new TargetPoint(world.provider.getDimension(), pos.getX(), pos.getY(), pos.getZ(), 25));
+            PacketDispatcher.wrapper.sendToAllAround(new AuxElectricityPacket(pos, power), new TargetPoint(world.provider.getDimension(), pos.getX(), pos.getY(), pos.getZ(), 25));
 
-			if(this.isRunning() && (tanks[1].getFluidAmount() <= 0 || tanks[2].getFluidAmount() <= 0 || !hasFuse() || getSingularityType() == 0) || cooldown || !this.isStructureValid(world))
-				this.emptyPlasma();
+        }
 
-			if(!this.isRunning() && tanks[1].getFluidAmount() >= 100 && tanks[2].getFluidAmount() >= 100 && hasFuse() && getSingularityType() > 0 && !cooldown && this.isStructureValid(world))
-				this.fillPlasma();
+    }
 
-			PacketDispatcher.wrapper.sendToAllAround(new FluidTankPacket(pos, new FluidTank[] { tanks[0], tanks[1], tanks[2] }), new TargetPoint(world.provider.getDimension(), pos.getX(), pos.getY(), pos.getZ(), 25));
-			PacketDispatcher.wrapper.sendToAllAround(new AuxElectricityPacket(pos, power), new TargetPoint(world.provider.getDimension(), pos.getX(), pos.getY(), pos.getZ(), 25));
+    @Override
+    public boolean isStructureValid(World world) {
+        return FWatz.checkHull(world, pos);
+    }
 
-		}
+    @Override
+    public boolean isCoatingValid(World world) {
+        return true;
+    }
 
-	}
+    @Override
+    public boolean hasFuse() {
+        return inventory.getStackInSlot(1).getItem() == ModItems.fuse || inventory.getStackInSlot(1).getItem() == ModItems.screwdriver;
+    }
 
-	@Override
-	public boolean isStructureValid(World world) {
-		return FWatz.checkHull(world, pos);
-	}
+    @Override
+    public int getWaterScaled(int i) {
+        return 0;
+    }
 
-	@Override
-	public boolean isCoatingValid(World world) {
-		return true;
-	}
+    @Override
+    public int getCoolantScaled(int i) {
+        return 0;
+    }
 
-	@Override
-	public boolean hasFuse() {
-		return inventory.getStackInSlot(1).getItem() == ModItems.fuse || inventory.getStackInSlot(1).getItem() == ModItems.screwdriver;
-	}
+    @Override
+    public long getPowerScaled(long i) {
+        return (power / 100 * i) / (maxPower / 100);
+    }
 
-	@Override
-	public int getWaterScaled(int i) {
-		return 0;
-	}
+    @Override
+    public int getHeatScaled(int i) {
+        return 0;
+    }
 
-	@Override
-	public int getCoolantScaled(int i) {
-		return 0;
-	}
+    public int getSingularityType() {
 
-	@Override
-	public long getPowerScaled(long i) {
-		return (power / 100 * i) / (maxPower / 100);
-	}
+        if (!inventory.getStackInSlot(2).isEmpty()) {
+            Item item = inventory.getStackInSlot(2).getItem();
 
-	@Override
-	public int getHeatScaled(int i) {
-		return 0;
-	}
+            if (item == ModItems.singularity)
+                return 1;
+            if (item == ModItems.singularity_counter_resonant)
+                return 2;
+            if (item == ModItems.singularity_super_heated)
+                return 3;
+            if (item == ModItems.black_hole)
+                return 4;
+            if (item == ModItems.overfuse)
+                return 5;
+        }
 
-	public int getSingularityType() {
+        return 0;
+    }
 
-		if(!inventory.getStackInSlot(2).isEmpty()) {
-			Item item = inventory.getStackInSlot(2).getItem();
+    public void fillPlasma() {
+        if (!this.world.isRemote)
+            FWatz.fillPlasma(world, pos);
+    }
 
-			if(item == ModItems.singularity)
-				return 1;
-			if(item == ModItems.singularity_counter_resonant)
-				return 2;
-			if(item == ModItems.singularity_super_heated)
-				return 3;
-			if(item == ModItems.black_hole)
-				return 4;
-			if(item == ModItems.overfuse)
-				return 5;
-		}
+    public void emptyPlasma() {
+        if (!this.world.isRemote)
+            FWatz.emptyPlasma(world, pos);
+    }
 
-		return 0;
-	}
+    public boolean isRunning() {
+        return FWatz.getPlasma(world, pos) && this.isStructureValid(world);
+    }
 
-	public void fillPlasma() {
-		if(!this.world.isRemote)
-			FWatz.fillPlasma(world, pos);
-	}
+    protected boolean inputValidForTank(int tank, int slot) {
+        if (tanks[tank] != null) {
+            return inventory.getStackInSlot(slot).getItem() == ModItems.fluid_barrel_infinite || isValidFluidForTank(tank, FluidUtil.getFluidContained(inventory.getStackInSlot(slot)));
+        }
+        return false;
+    }
 
-	public void emptyPlasma() {
-		if(!this.world.isRemote)
-			FWatz.emptyPlasma(world, pos);
-	}
+    private boolean isValidFluidForTank(int tank, FluidStack stack) {
+        if (stack == null || tanks[tank] == null)
+            return false;
+        return stack.getFluid() == tankTypes[tank];
+    }
 
-	public boolean isRunning() {
-		return FWatz.getPlasma(world, pos) && this.isStructureValid(world);
-	}
+    @Override
+    public void ffgeua(BlockPos pos, boolean newTact) {
 
-	protected boolean inputValidForTank(int tank, int slot) {
-		if(tanks[tank] != null) {
-			if(inventory.getStackInSlot(slot).getItem() == ModItems.fluid_barrel_infinite || isValidFluidForTank(tank, FluidUtil.getFluidContained(inventory.getStackInSlot(slot)))) {
-				return true;
-			}
-		}
-		return false;
-	}
+        Library.ffgeua(new BlockPos.MutableBlockPos(pos), newTact, this, world);
+    }
 
-	private boolean isValidFluidForTank(int tank, FluidStack stack) {
-		if(stack == null || tanks[tank] == null)
-			return false;
-		return stack.getFluid() == tankTypes[tank];
-	}
-	
-	@Override
-	public void ffgeua(BlockPos pos, boolean newTact) {
+    @Override
+    public void ffgeuaInit() {
+        ffgeua(pos.add(10, -11, 0), getTact());
+        ffgeua(pos.add(-10, -11, 0), getTact());
+        ffgeua(pos.add(0, -11, 10), getTact());
+        ffgeua(pos.add(0, -11, -10), getTact());
+    }
 
-		Library.ffgeua(new BlockPos.MutableBlockPos(pos), newTact, this, world);
-	}
+    @Override
+    public boolean getTact() {
+        return age >= 0 && age < 10;
+    }
 
-	@Override
-	public void ffgeuaInit() {
-		ffgeua(pos.add(10, -11, 0), getTact());
-		ffgeua(pos.add(-10, -11, 0), getTact());
-		ffgeua(pos.add(0, -11, 10), getTact());
-		ffgeua(pos.add(0, -11, -10), getTact());
-	}
+    @Override
+    public long getSPower() {
+        return power;
+    }
 
-	@Override
-	public boolean getTact() {
-		if(age >= 0 && age < 10) {
-			return true;
-		}
+    @Override
+    public void setSPower(long i) {
+        this.power = i;
+    }
 
-		return false;
-	}
+    @Override
+    public List<IConsumer> getList() {
+        return list;
+    }
 
-	@Override
-	public long getSPower() {
-		return power;
-	}
+    @Override
+    public void clearList() {
+        this.list.clear();
+    }
 
-	@Override
-	public void setSPower(long i) {
-		this.power = i;
-	}
+    @Override
+    public IFluidTankProperties[] getTankProperties() {
+        return new IFluidTankProperties[]{tanks[0].getTankProperties()[0], tanks[1].getTankProperties()[0], tanks[2].getTankProperties()[0]};
+    }
 
-	@Override
-	public List<IConsumer> getList() {
-		return list;
-	}
+    @Override
+    public int fill(FluidStack resource, boolean doFill) {
+        if (resource == null) {
+            return 0;
+        } else if (resource.getFluid() == tankTypes[0]) {
+            needsUpdate = true;
+            return tanks[0].fill(resource, doFill);
+        } else if (resource.getFluid() == tankTypes[1]) {
+            needsUpdate = true;
+            return tanks[1].fill(resource, doFill);
+        } else if (resource.getFluid() == tankTypes[2]) {
+            needsUpdate = true;
+            return tanks[2].fill(resource, doFill);
+        } else {
+            return 0;
+        }
+    }
 
-	@Override
-	public void clearList() {
-		this.list.clear();
-	}
+    @Override
+    public FluidStack drain(FluidStack resource, boolean doDrain) {
+        return null;
+    }
 
-	@Override
-	public IFluidTankProperties[] getTankProperties() {
-		return new IFluidTankProperties[]{tanks[0].getTankProperties()[0], tanks[1].getTankProperties()[0], tanks[2].getTankProperties()[0]};
-	}
+    @Override
+    public FluidStack drain(int maxDrain, boolean doDrain) {
+        return null;
+    }
 
-	@Override
-	public int fill(FluidStack resource, boolean doFill) {
-		if(resource == null) {
-			return 0;
-		} else if(resource.getFluid() == tankTypes[0]) {
-			needsUpdate = true;
-			return tanks[0].fill(resource, doFill);
-		} else if(resource.getFluid() == tankTypes[1]) {
-			needsUpdate = true;
-			return tanks[1].fill(resource, doFill);
-		} else if(resource.getFluid() == tankTypes[2]) {
-			needsUpdate = true;
-			return tanks[2].fill(resource, doFill);
-		} else {
-			return 0;
-		}
-	}
+    @Override
+    public void recievePacket(NBTTagCompound[] tags) {
+        if (tags.length != 3) {
+        } else {
+            tanks[0].readFromNBT(tags[0]);
+            tanks[1].readFromNBT(tags[1]);
+            tanks[2].readFromNBT(tags[2]);
+        }
+    }
 
-	@Override
-	public FluidStack drain(FluidStack resource, boolean doDrain) {
-		return null;
-	}
+    @Override
+    public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
+        return capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY || super.hasCapability(capability, facing);
+    }
 
-	@Override
-	public FluidStack drain(int maxDrain, boolean doDrain) {
-		return null;
-	}
-
-	@Override
-	public void recievePacket(NBTTagCompound[] tags) {
-		if(tags.length != 3) {
-			return;
-		} else {
-			tanks[0].readFromNBT(tags[0]);
-			tanks[1].readFromNBT(tags[1]);
-			tanks[2].readFromNBT(tags[2]);
-		}
-	}
-	
-	@Override
-	public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
-		return capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY || super.hasCapability(capability, facing);
-	}
-	
-	@Override
-	public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
-		return capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY ? CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY.cast(this) : super.getCapability(capability, facing);
-	}
+    @Override
+    public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
+        return capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY ? CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY.cast(this) : super.getCapability(capability, facing);
+    }
 
 }

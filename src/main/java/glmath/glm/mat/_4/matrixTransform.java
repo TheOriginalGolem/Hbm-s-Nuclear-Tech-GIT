@@ -9,10 +9,33 @@ import glmath.glm.Glm;
 import glmath.glm.vec._3.Vec3;
 
 /**
- *
  * @author GBarbieri
  */
 abstract class matrixTransform extends funcMatrix {
+
+    public static Mat4 translation(Mat4 result, float x, float y, float z) {
+        result.m00 = 1.0f;
+        result.m01 = 0.0f;
+        result.m02 = 0.0f;
+        result.m03 = 0.0f;
+        result.m10 = 0.0f;
+        result.m11 = 1.0f;
+        result.m12 = 0.0f;
+        result.m13 = 0.0f;
+        result.m20 = 0.0f;
+        result.m21 = 0.0f;
+        result.m22 = 1.0f;
+        result.m23 = 0.0f;
+        result.m30 = x;
+        result.m31 = y;
+        result.m32 = z;
+        result.m33 = 1.0f;
+        return result;
+    }
+
+    public static Mat4 lookAt(Vec3 eye, Vec3 center, Vec3 up, Mat4 res) {
+        return Glm.lookAt(eye, center, up, res);
+    }
 
     /**
      * Vec must be normalized
@@ -391,26 +414,6 @@ abstract class matrixTransform extends funcMatrix {
         return translation((Mat4) this, x, y, z);
     }
 
-    public static Mat4 translation(Mat4 result, float x, float y, float z) {
-        result.m00 = 1.0f;
-        result.m01 = 0.0f;
-        result.m02 = 0.0f;
-        result.m03 = 0.0f;
-        result.m10 = 0.0f;
-        result.m11 = 1.0f;
-        result.m12 = 0.0f;
-        result.m13 = 0.0f;
-        result.m20 = 0.0f;
-        result.m21 = 0.0f;
-        result.m22 = 1.0f;
-        result.m23 = 0.0f;
-        result.m30 = x;
-        result.m31 = y;
-        result.m32 = z;
-        result.m33 = 1.0f;
-        return result;
-    }
-
     public Mat4 translate(Vec3 v) {
         return translate((Mat4) this, v.x, v.y, v.z);
     }
@@ -439,10 +442,6 @@ abstract class matrixTransform extends funcMatrix {
 
     public Mat4 lookAt(Vec3 eye, Vec3 center, Vec3 up) {
         return Glm.lookAt(eye, center, up, (Mat4) this);
-    }
-
-    public static Mat4 lookAt(Vec3 eye, Vec3 center, Vec3 up, Mat4 res) {
-        return Glm.lookAt(eye, center, up, res);
     }
 
     public Mat4 ortho(float left, float right, float bottom, float top, float zNear, float zFar) {

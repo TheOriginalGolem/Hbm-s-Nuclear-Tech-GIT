@@ -1,6 +1,6 @@
 {
-	"parent": "item/generated",
-	"textures": {
-		"layer0": "hbm:items/clip_jack"
-	}
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "hbm:items/clip_jack"
+  }
 }

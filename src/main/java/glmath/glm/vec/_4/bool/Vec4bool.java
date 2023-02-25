@@ -6,7 +6,6 @@
 package glmath.glm.vec._4.bool;
 
 /**
- *
  * @author GBarbieri
  */
 public class Vec4bool extends FuncRelational {
@@ -20,7 +19,7 @@ public class Vec4bool extends FuncRelational {
         this.z = z;
         this.w = w;
     }
-    
+
     public Vec4bool set(boolean x, boolean y, boolean z, boolean w) {
         this.x = x;
         this.y = y;

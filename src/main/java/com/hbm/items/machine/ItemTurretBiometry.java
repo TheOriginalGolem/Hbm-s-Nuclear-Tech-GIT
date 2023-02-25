@@ -1,12 +1,8 @@
 package com.hbm.items.machine;
 
-import java.util.Arrays;
-import java.util.List;
-
 import com.hbm.items.ModItems;
 import com.hbm.lib.HBMSoundHandler;
 import com.hbm.main.MainRegistry;
-
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -18,81 +14,84 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 public class ItemTurretBiometry extends Item {
 
-	public ItemTurretBiometry(String s) {
-		this.setUnlocalizedName(s);
-		this.setRegistryName(s);
-		this.setCreativeTab(MainRegistry.weaponTab);
-		
-		ModItems.ALL_ITEMS.add(this);
-	}
-	
-	@Override
-	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-		String[] names = getNames(stack);
-		if(names != null)
-			for(int i = 0; i < names.length; i++)
-				tooltip.add(names[i]);
-	}
-	
-	@Override
-	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand handIn) {
-		ItemStack stack = player.getHeldItem(handIn);
-		addName(stack, player.getDisplayName().getUnformattedText());
+    public ItemTurretBiometry(String s) {
+        this.setUnlocalizedName(s);
+        this.setRegistryName(s);
+        this.setCreativeTab(MainRegistry.weaponTab);
 
-        if(world.isRemote)
-        	player.sendMessage(new TextComponentTranslation("Added player data!"));
+        ModItems.ALL_ITEMS.add(this);
+    }
 
-    	world.playSound(player.posX, player.posY, player.posZ, HBMSoundHandler.techBleep, SoundCategory.PLAYERS, 1.0F, 1.0F, true);
-		
-		player.swingArm(handIn);;
-		
-		return super.onItemRightClick(world, player, handIn);
-	}
-	
-	public static String[] getNames(ItemStack stack) {
-		if(stack.getTagCompound() == null) {
-			stack.setTagCompound(new NBTTagCompound());
-			return null;
-		}
-		
-		String[] names = new String [stack.getTagCompound().getInteger("playercount")];
-		
-		for(int i = 0; i < names.length; i++) {
-			names[i] = stack.getTagCompound().getString("player_" + i);
-		}
-		
-		if(names.length == 0)
-			return null;
-		
-		return names;
-	}
-	
-	public static void addName(ItemStack stack, String s) {
-		if(stack.getTagCompound() == null) {
-			stack.setTagCompound(new NBTTagCompound());
-		}
-		
-		String[] names = getNames(stack);
-		int count = 0;
-		
-		if(names != null && Arrays.asList(names).contains(s))
-			return;
-		
-		if(names != null)
-			count = names.length;
-		
-		stack.getTagCompound().setInteger("playercount", count + 1);
-		
-		stack.getTagCompound().setString("player_" + count, s);
-	}
-	
-	public static void clearNames(ItemStack stack) {
-		if(stack.getTagCompound() == null) {
-			stack.setTagCompound(new NBTTagCompound());
-		}
-		
-		stack.getTagCompound().setInteger("playercount", 0);
-	}
+    public static String[] getNames(ItemStack stack) {
+        if (stack.getTagCompound() == null) {
+            stack.setTagCompound(new NBTTagCompound());
+            return null;
+        }
+
+        String[] names = new String[stack.getTagCompound().getInteger("playercount")];
+
+        for (int i = 0; i < names.length; i++) {
+            names[i] = stack.getTagCompound().getString("player_" + i);
+        }
+
+        if (names.length == 0)
+            return null;
+
+        return names;
+    }
+
+    public static void addName(ItemStack stack, String s) {
+        if (stack.getTagCompound() == null) {
+            stack.setTagCompound(new NBTTagCompound());
+        }
+
+        String[] names = getNames(stack);
+        int count = 0;
+
+        if (names != null && Arrays.asList(names).contains(s))
+            return;
+
+        if (names != null)
+            count = names.length;
+
+        stack.getTagCompound().setInteger("playercount", count + 1);
+
+        stack.getTagCompound().setString("player_" + count, s);
+    }
+
+    public static void clearNames(ItemStack stack) {
+        if (stack.getTagCompound() == null) {
+            stack.setTagCompound(new NBTTagCompound());
+        }
+
+        stack.getTagCompound().setInteger("playercount", 0);
+    }
+
+    @Override
+    public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
+        String[] names = getNames(stack);
+        if (names != null)
+            Collections.addAll(tooltip, names);
+    }
+
+    @Override
+    public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand handIn) {
+        ItemStack stack = player.getHeldItem(handIn);
+        addName(stack, player.getDisplayName().getUnformattedText());
+
+        if (world.isRemote)
+            player.sendMessage(new TextComponentTranslation("Added player data!"));
+
+        world.playSound(player.posX, player.posY, player.posZ, HBMSoundHandler.techBleep, SoundCategory.PLAYERS, 1.0F, 1.0F, true);
+
+        player.swingArm(handIn);
+
+        return super.onItemRightClick(world, player, handIn);
+    }
 }

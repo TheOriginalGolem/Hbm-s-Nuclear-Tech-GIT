@@ -4,7 +4,6 @@ import com.hbm.blocks.BlockDummyable;
 import com.hbm.blocks.ModBlocks;
 import com.hbm.blocks.machine.MachineITER;
 import com.hbm.lib.ForgeDirection;
-
 import net.minecraft.block.Block;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ITickable;
@@ -15,173 +14,189 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class TileEntityITERStruct extends TileEntity implements ITickable {
 
-	public static final int[][][] layout = new int[][][] {
+    public static final int[][][] layout = new int[][][]{
 
-		new int[][] {
-			new int[] {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-			new int[] {0,0,0,0,0,1,1,1,1,1,0,0,0,0,0},
-			new int[] {0,0,0,0,1,1,1,1,1,1,1,0,0,0,0},
-			new int[] {0,0,0,1,1,0,0,0,0,0,1,1,0,0,0},
-			new int[] {0,0,1,1,0,0,0,0,0,0,0,1,1,0,0},
-			new int[] {0,1,1,0,0,0,0,0,0,0,0,0,1,1,0},
-			new int[] {0,1,1,0,0,0,0,0,0,0,0,0,1,1,0},
-			new int[] {0,1,1,0,0,0,0,3,0,0,0,0,1,1,0},
-			new int[] {0,1,1,0,0,0,0,0,0,0,0,0,1,1,0},
-			new int[] {0,1,1,0,0,0,0,0,0,0,0,0,1,1,0},
-			new int[] {0,0,1,1,0,0,0,0,0,0,0,1,1,0,0},
-			new int[] {0,0,0,1,1,0,0,0,0,0,1,1,0,0,0},
-			new int[] {0,0,0,0,1,1,1,1,1,1,1,0,0,0,0},
-			new int[] {0,0,0,0,0,1,1,1,1,1,0,0,0,0,0},
-			new int[] {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-		},
-		new int[][] {
-			new int[] {0,0,0,0,0,0,1,1,1,0,0,0,0,0,0},
-			new int[] {0,0,0,0,1,1,0,0,0,1,1,0,0,0,0},
-			new int[] {0,0,0,1,0,0,0,0,0,0,0,1,0,0,0},
-			new int[] {0,0,1,0,0,1,1,1,1,1,0,0,1,0,0},
-			new int[] {0,1,0,0,1,0,2,2,2,0,1,0,0,1,0},
-			new int[] {0,1,0,1,0,2,0,2,0,2,0,1,0,1,0},
-			new int[] {1,0,0,1,2,0,0,2,0,0,2,1,0,0,1},
-			new int[] {1,0,0,1,2,2,2,3,2,2,2,1,0,0,1},
-			new int[] {1,0,0,1,2,0,0,2,0,0,2,1,0,0,1},
-			new int[] {0,1,0,1,0,2,0,2,0,2,0,1,0,1,0},
-			new int[] {0,1,0,0,1,0,2,2,2,0,1,0,0,1,0},
-			new int[] {0,0,1,0,0,1,1,1,1,1,0,0,1,0,0},
-			new int[] {0,0,0,1,0,0,0,0,0,0,0,1,0,0,0},
-			new int[] {0,0,0,0,1,1,0,0,0,1,1,0,0,0,0},
-			new int[] {0,0,0,0,0,0,1,1,1,0,0,0,0,0,0}
-		},
-		new int[][] {
-			new int[] {0,0,0,0,0,0,1,1,1,0,0,0,0,0,0},
-			new int[] {0,0,0,0,1,1,0,0,0,1,1,0,0,0,0},
-			new int[] {0,0,0,4,0,0,0,0,0,0,0,4,0,0,0},
-			new int[] {0,0,4,0,0,1,1,1,1,1,0,0,4,0,0},
-			new int[] {0,1,0,0,1,0,2,2,2,0,1,0,0,1,0},
-			new int[] {0,1,0,1,0,2,0,0,0,2,0,1,0,1,0},
-			new int[] {1,0,0,1,2,0,0,0,0,0,2,1,0,0,1},
-			new int[] {1,0,0,1,2,0,0,3,0,0,2,1,0,0,1},
-			new int[] {1,0,0,1,2,0,0,0,0,0,2,1,0,0,1},
-			new int[] {0,1,0,1,0,2,0,0,0,2,0,1,0,1,0},
-			new int[] {0,1,0,0,1,0,2,2,2,0,1,0,0,1,0},
-			new int[] {0,0,4,0,0,1,1,1,1,1,0,0,4,0,0},
-			new int[] {0,0,0,4,0,0,0,0,0,0,0,4,0,0,0},
-			new int[] {0,0,0,0,1,1,0,0,0,1,1,0,0,0,0},
-			new int[] {0,0,0,0,0,0,1,1,1,0,0,0,0,0,0}
-		}
-	};
-	
-	public static final int[][][] collisionMask = new int[][][] {
+            new int[][]{
+                    new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+                    new int[]{0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0},
+                    new int[]{0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0},
+                    new int[]{0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0},
+                    new int[]{0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0},
+                    new int[]{0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0},
+                    new int[]{0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0},
+                    new int[]{0, 1, 1, 0, 0, 0, 0, 3, 0, 0, 0, 0, 1, 1, 0},
+                    new int[]{0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0},
+                    new int[]{0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0},
+                    new int[]{0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0},
+                    new int[]{0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0},
+                    new int[]{0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0},
+                    new int[]{0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0},
+                    new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+            },
+            new int[][]{
+                    new int[]{0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0},
+                    new int[]{0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 0},
+                    new int[]{0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0},
+                    new int[]{0, 0, 1, 0, 0, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0},
+                    new int[]{0, 1, 0, 0, 1, 0, 2, 2, 2, 0, 1, 0, 0, 1, 0},
+                    new int[]{0, 1, 0, 1, 0, 2, 0, 2, 0, 2, 0, 1, 0, 1, 0},
+                    new int[]{1, 0, 0, 1, 2, 0, 0, 2, 0, 0, 2, 1, 0, 0, 1},
+                    new int[]{1, 0, 0, 1, 2, 2, 2, 3, 2, 2, 2, 1, 0, 0, 1},
+                    new int[]{1, 0, 0, 1, 2, 0, 0, 2, 0, 0, 2, 1, 0, 0, 1},
+                    new int[]{0, 1, 0, 1, 0, 2, 0, 2, 0, 2, 0, 1, 0, 1, 0},
+                    new int[]{0, 1, 0, 0, 1, 0, 2, 2, 2, 0, 1, 0, 0, 1, 0},
+                    new int[]{0, 0, 1, 0, 0, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0},
+                    new int[]{0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0},
+                    new int[]{0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 0},
+                    new int[]{0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0}
+            },
+            new int[][]{
+                    new int[]{0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0},
+                    new int[]{0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 0},
+                    new int[]{0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0},
+                    new int[]{0, 0, 4, 0, 0, 1, 1, 1, 1, 1, 0, 0, 4, 0, 0},
+                    new int[]{0, 1, 0, 0, 1, 0, 2, 2, 2, 0, 1, 0, 0, 1, 0},
+                    new int[]{0, 1, 0, 1, 0, 2, 0, 0, 0, 2, 0, 1, 0, 1, 0},
+                    new int[]{1, 0, 0, 1, 2, 0, 0, 0, 0, 0, 2, 1, 0, 0, 1},
+                    new int[]{1, 0, 0, 1, 2, 0, 0, 3, 0, 0, 2, 1, 0, 0, 1},
+                    new int[]{1, 0, 0, 1, 2, 0, 0, 0, 0, 0, 2, 1, 0, 0, 1},
+                    new int[]{0, 1, 0, 1, 0, 2, 0, 0, 0, 2, 0, 1, 0, 1, 0},
+                    new int[]{0, 1, 0, 0, 1, 0, 2, 2, 2, 0, 1, 0, 0, 1, 0},
+                    new int[]{0, 0, 4, 0, 0, 1, 1, 1, 1, 1, 0, 0, 4, 0, 0},
+                    new int[]{0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0},
+                    new int[]{0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 0},
+                    new int[]{0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0}
+            }
+    };
 
-		new int[][] {
-			new int[] {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-			new int[] {0,0,0,0,0,1,1,1,1,1,0,0,0,0,0},
-			new int[] {0,0,0,0,1,1,1,1,1,1,1,0,0,0,0},
-			new int[] {0,0,0,1,1,0,0,0,0,0,1,1,0,0,0},
-			new int[] {0,0,1,1,0,0,0,0,0,0,0,1,1,0,0},
-			new int[] {0,1,1,0,0,0,0,0,0,0,0,0,1,1,0},
-			new int[] {0,1,1,0,0,0,0,0,0,0,0,0,1,1,0},
-			new int[] {0,1,1,0,0,0,0,3,0,0,0,0,1,1,0},
-			new int[] {0,1,1,0,0,0,0,0,0,0,0,0,1,1,0},
-			new int[] {0,1,1,0,0,0,0,0,0,0,0,0,1,1,0},
-			new int[] {0,0,1,1,0,0,0,0,0,0,0,1,1,0,0},
-			new int[] {0,0,0,1,1,0,0,0,0,0,1,1,0,0,0},
-			new int[] {0,0,0,0,1,1,1,1,1,1,1,0,0,0,0},
-			new int[] {0,0,0,0,0,1,1,1,1,1,0,0,0,0,0},
-			new int[] {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-		},
-		new int[][] {
-			new int[] {0,0,0,0,0,0,1,1,1,0,0,0,0,0,0},
-			new int[] {0,0,0,0,1,1,1,1,1,1,1,0,0,0,0},
-			new int[] {0,0,0,1,1,1,1,1,1,1,1,1,0,0,0},
-			new int[] {0,0,1,1,1,1,1,1,1,1,1,1,1,0,0},
-			new int[] {0,1,1,1,1,0,2,2,2,0,1,1,1,1,0},
-			new int[] {0,1,1,1,0,2,0,0,0,2,0,1,1,1,0},
-			new int[] {1,1,1,1,2,0,0,0,0,0,2,1,1,1,1},
-			new int[] {1,1,1,1,2,0,0,3,0,0,2,1,1,1,1},
-			new int[] {1,1,1,1,2,0,0,0,0,0,2,1,1,1,1},
-			new int[] {0,1,1,1,0,2,0,0,0,2,0,1,1,1,0},
-			new int[] {0,1,1,1,1,0,2,2,2,0,1,1,1,1,0},
-			new int[] {0,0,1,1,1,1,1,1,1,1,1,1,1,0,0},
-			new int[] {0,0,0,1,1,1,1,1,1,1,1,1,0,0,0},
-			new int[] {0,0,0,0,1,1,1,1,1,1,1,0,0,0,0},
-			new int[] {0,0,0,0,0,0,1,1,1,0,0,0,0,0,0}
-		},
-		new int[][] {
-			new int[] {0,0,0,0,0,0,1,1,1,0,0,0,0,0,0},
-			new int[] {0,0,0,0,1,1,1,1,1,1,1,0,0,0,0},
-			new int[] {0,0,0,1,1,1,1,1,1,1,1,1,0,0,0},
-			new int[] {0,0,1,1,1,1,1,1,1,1,1,1,1,0,0},
-			new int[] {0,1,1,1,1,1,1,1,1,1,1,1,1,1,0},
-			new int[] {0,1,1,1,1,1,1,1,1,1,1,1,1,1,0},
-			new int[] {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-			new int[] {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-			new int[] {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-			new int[] {0,1,1,1,1,1,1,1,1,1,1,1,1,1,0},
-			new int[] {0,1,1,1,1,1,1,1,1,1,1,1,1,1,0},
-			new int[] {0,0,1,1,1,1,1,1,1,1,1,1,1,0,0},
-			new int[] {0,0,0,1,1,1,1,1,1,1,1,1,0,0,0},
-			new int[] {0,0,0,0,1,1,1,1,1,1,1,0,0,0,0},
-			new int[] {0,0,0,0,0,0,1,1,1,0,0,0,0,0,0}
-		}
-	};
-	
-	int age;
+    public static final int[][][] collisionMask = new int[][][]{
 
-	@Override
-	public void update() {
+            new int[][]{
+                    new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+                    new int[]{0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0},
+                    new int[]{0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0},
+                    new int[]{0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0},
+                    new int[]{0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0},
+                    new int[]{0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0},
+                    new int[]{0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0},
+                    new int[]{0, 1, 1, 0, 0, 0, 0, 3, 0, 0, 0, 0, 1, 1, 0},
+                    new int[]{0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0},
+                    new int[]{0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0},
+                    new int[]{0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0},
+                    new int[]{0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0},
+                    new int[]{0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0},
+                    new int[]{0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0},
+                    new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+            },
+            new int[][]{
+                    new int[]{0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0},
+                    new int[]{0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0},
+                    new int[]{0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0},
+                    new int[]{0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0},
+                    new int[]{0, 1, 1, 1, 1, 0, 2, 2, 2, 0, 1, 1, 1, 1, 0},
+                    new int[]{0, 1, 1, 1, 0, 2, 0, 0, 0, 2, 0, 1, 1, 1, 0},
+                    new int[]{1, 1, 1, 1, 2, 0, 0, 0, 0, 0, 2, 1, 1, 1, 1},
+                    new int[]{1, 1, 1, 1, 2, 0, 0, 3, 0, 0, 2, 1, 1, 1, 1},
+                    new int[]{1, 1, 1, 1, 2, 0, 0, 0, 0, 0, 2, 1, 1, 1, 1},
+                    new int[]{0, 1, 1, 1, 0, 2, 0, 0, 0, 2, 0, 1, 1, 1, 0},
+                    new int[]{0, 1, 1, 1, 1, 0, 2, 2, 2, 0, 1, 1, 1, 1, 0},
+                    new int[]{0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0},
+                    new int[]{0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0},
+                    new int[]{0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0},
+                    new int[]{0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0}
+            },
+            new int[][]{
+                    new int[]{0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0},
+                    new int[]{0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0},
+                    new int[]{0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0},
+                    new int[]{0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0},
+                    new int[]{0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0},
+                    new int[]{0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0},
+                    new int[]{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+                    new int[]{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+                    new int[]{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+                    new int[]{0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0},
+                    new int[]{0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0},
+                    new int[]{0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0},
+                    new int[]{0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0},
+                    new int[]{0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0},
+                    new int[]{0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0}
+            }
+    };
 
-		if(world.isRemote)
-			return;
+    int age;
 
-		age++;
+    @Override
+    public void update() {
 
-		if(age < 20)
-			return;
+        if (world.isRemote)
+            return;
 
-		age = 0;
-		
-		for(int y = 0; y < 5; y++) {
-			for(int x = 0; x < layout[0].length; x++) {
-				for(int z = 0; z < layout[0][0].length; z++) {
+        age++;
 
-					int ly = y > 2 ? 4 - y : y;
+        if (age < 20)
+            return;
 
-					int width = 7;
+        age = 0;
 
-					if(x == width && y == 0 && z == width)
-						continue;
+        for (int y = 0; y < 5; y++) {
+            for (int x = 0; x < layout[0].length; x++) {
+                for (int z = 0; z < layout[0][0].length; z++) {
 
-					int b = layout[ly][x][z];
-					Block block = world.getBlockState(new BlockPos(pos.getX() + x - width, pos.getY() + y, pos.getZ() + z - width)).getBlock();
-					switch(b) {
-					case 1: if(block != ModBlocks.fusion_conductor) { return; } break;
-					case 2: if(block != ModBlocks.fusion_center) { return; } break;
-					case 3: if(block != ModBlocks.fusion_motor) { return; } break;
-					case 4: if(block != ModBlocks.reinforced_glass) { return; } break;
-					}
-				}
-			}
-		}
+                    int ly = y > 2 ? 4 - y : y;
 
-		for(int x = -2; x <= 2; x++)
-			for(int y = 1; y <= 3; y++)
-				for(int z = -2; z <= 2; z++)
-					world.setBlockToAir(new BlockPos(pos.getX() + x, pos.getY() + y, pos.getZ() + z));
+                    int width = 7;
 
-		BlockDummyable.safeRem = true;
-		world.setBlockState(new BlockPos(pos.getX(), pos.getY() + 2, pos.getZ()), ModBlocks.iter.getDefaultState().withProperty(MachineITER.META, 12), 3);
-		((MachineITER)ModBlocks.iter).fillSpace(world, pos.getX(), pos.getY(), pos.getZ(), ForgeDirection.UNKNOWN, 0);
-		BlockDummyable.safeRem = false;
-	}
+                    if (x == width && y == 0 && z == width)
+                        continue;
 
-	@Override
-	public AxisAlignedBB getRenderBoundingBox() {
-		return TileEntity.INFINITE_EXTENT_AABB;
-	}
+                    int b = layout[ly][x][z];
+                    Block block = world.getBlockState(new BlockPos(pos.getX() + x - width, pos.getY() + y, pos.getZ() + z - width)).getBlock();
+                    switch (b) {
+                        case 1:
+                            if (block != ModBlocks.fusion_conductor) {
+                                return;
+                            }
+                            break;
+                        case 2:
+                            if (block != ModBlocks.fusion_center) {
+                                return;
+                            }
+                            break;
+                        case 3:
+                            if (block != ModBlocks.fusion_motor) {
+                                return;
+                            }
+                            break;
+                        case 4:
+                            if (block != ModBlocks.reinforced_glass) {
+                                return;
+                            }
+                            break;
+                    }
+                }
+            }
+        }
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public double getMaxRenderDistanceSquared() {
-		return 65536.0D;
-	}
+        for (int x = -2; x <= 2; x++)
+            for (int y = 1; y <= 3; y++)
+                for (int z = -2; z <= 2; z++)
+                    world.setBlockToAir(new BlockPos(pos.getX() + x, pos.getY() + y, pos.getZ() + z));
+
+        BlockDummyable.safeRem = true;
+        world.setBlockState(new BlockPos(pos.getX(), pos.getY() + 2, pos.getZ()), ModBlocks.iter.getDefaultState().withProperty(MachineITER.META, 12), 3);
+        ((MachineITER) ModBlocks.iter).fillSpace(world, pos.getX(), pos.getY(), pos.getZ(), ForgeDirection.UNKNOWN, 0);
+        BlockDummyable.safeRem = false;
+    }
+
+    @Override
+    public AxisAlignedBB getRenderBoundingBox() {
+        return TileEntity.INFINITE_EXTENT_AABB;
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public double getMaxRenderDistanceSquared() {
+        return 65536.0D;
+    }
 }
