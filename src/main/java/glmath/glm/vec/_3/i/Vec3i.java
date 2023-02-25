@@ -5,15 +5,16 @@
  */
 package glmath.glm.vec._3.i;
 
-import glmath.glm.Glm;
-import glmath.glm.vec._4.i.Vec4i;
-
 import java.io.PrintStream;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.IntBuffer;
 
+import glmath.glm.Glm;
+import glmath.glm.vec._4.i.Vec4i;
+
 /**
+ *
  * @author GBarbieri
  */
 public class Vec3i extends FuncRelational {
@@ -53,7 +54,7 @@ public class Vec3i extends FuncRelational {
     }
 
     public Vec3i(int[] fa, int i) {
-        x = fa[i];
+        x = fa[i + 0];
         y = fa[i + 1];
         z = fa[i + 2];
     }
@@ -62,17 +63,6 @@ public class Vec3i extends FuncRelational {
         this.x = (int) x;
         this.y = (int) y;
         this.z = (int) z;
-    }
-
-    public static Vec3i linearRand_(Vec3i min, Vec3i max) {
-        return linearRand(min, max, new Vec3i());
-    }
-
-    public static Vec3i linearRand(Vec3i min, Vec3i max, Vec3i res) {
-        res.x = Glm.linearRand(min.x, max.x);
-        res.y = Glm.linearRand(min.y, max.y);
-        res.z = Glm.linearRand(min.z, max.z);
-        return res;
     }
 
     public Vec3i set(int i) {
@@ -98,6 +88,17 @@ public class Vec3i extends FuncRelational {
         y = fa[1];
         z = fa[2];
         return this;
+    }
+
+    public static Vec3i linearRand_(Vec3i min, Vec3i max) {
+        return linearRand(min, max, new Vec3i());
+    }
+
+    public static Vec3i linearRand(Vec3i min, Vec3i max, Vec3i res) {
+        res.x = Glm.linearRand(min.x, max.x);
+        res.y = Glm.linearRand(min.y, max.y);
+        res.z = Glm.linearRand(min.z, max.z);
+        return res;
     }
 
     public Vec3i negate() {
@@ -140,7 +141,7 @@ public class Vec3i extends FuncRelational {
 
     public IntBuffer toDib(IntBuffer ib, int index) {
         return ib
-                .put(index, x)
+                .put(index + 0, x)
                 .put(index + 1, y)
                 .put(index + 2, z);
     }
@@ -155,8 +156,8 @@ public class Vec3i extends FuncRelational {
 
     public ByteBuffer toDbb(ByteBuffer bb, int index) {
         return bb
-                .putInt(index, x)
-                .putInt(index + Integer.BYTES, y)
+                .putInt(index + 0 * Integer.BYTES, x)
+                .putInt(index + 1 * Integer.BYTES, y)
                 .putInt(index + 2 * Integer.BYTES, z);
     }
 
@@ -169,6 +170,6 @@ public class Vec3i extends FuncRelational {
     }
 
     public void print(String title, PrintStream printStream) {
-        printStream.println(title + "\n(" + x + ", " + y + ", " + z + ")");
+        printStream.println( title + "\n(" + x + ", " + y + ", " + z + ")");
     }
 }

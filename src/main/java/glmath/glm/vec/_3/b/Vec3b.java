@@ -6,10 +6,12 @@
 package glmath.glm.vec._3.b;
 
 /**
+ *
  * @author elect
  */
-public class Vec3b extends FuncRelational {
+public class Vec3b extends FuncRelational{
 
+    
 
     public Vec3b() {
         this(0);

@@ -1,5 +1,7 @@
 package com.hbm.handler;
 
+import org.lwjgl.opengl.GL11;
+import org.lwjgl.util.glu.Project;
 import com.hbm.lib.RefStrings;
 import com.hbm.main.ResourceManager;
 import net.minecraft.client.Minecraft;
@@ -10,73 +12,72 @@ import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
+import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import org.lwjgl.opengl.GL11;
-import org.lwjgl.util.glu.Project;
 
 @SideOnly(Side.CLIENT)
 @Mod.EventBusSubscriber(value = Side.CLIENT, modid = RefStrings.MODID)
 public class WorldSpaceFPRender {
 
-    public static boolean shouldCustomRender = false;
-    //public static int ticksActive = -1;
-    //private static long renderTime;
-    //public static AnimationWrapper wrapper;
-    //public static List<ParticleLightningStrip> lightning_strips = new ArrayList<>();
-    //public static List<Particle> particles = new ArrayList<>();
+	public static boolean shouldCustomRender = false;
+	//public static int ticksActive = -1;
+	//private static long renderTime;
+	//public static AnimationWrapper wrapper;
+	//public static List<ParticleLightningStrip> lightning_strips = new ArrayList<>();
+	//public static List<Particle> particles = new ArrayList<>(); 
+	
+	@SubscribeEvent
+	public static void renderHand(RenderHandEvent e) {
+		if(true || !shouldCustomRender)
+			return;
+		e.setCanceled(true);
+	}
+	
+	@SubscribeEvent
+	public static void doDepthRender(CameraSetup e){
+		if(true || Minecraft.getMinecraft().gameSettings.thirdPersonView != 0 || !shouldCustomRender)
+			return;
+			
+		GlStateManager.matrixMode(GL11.GL_PROJECTION);
+		GL11.glPushMatrix();
+		GL11.glLoadIdentity();
+		Project.gluPerspective(70, (float) Minecraft.getMinecraft().displayWidth / (float) Minecraft.getMinecraft().displayHeight, 0.05F, Minecraft.getMinecraft().gameSettings.renderDistanceChunks * 16F * 2.0F);
+		GlStateManager.matrixMode(GL11.GL_MODELVIEW);
+		GL11.glLoadIdentity();
+		GL11.glPushMatrix();
+			
+		GL11.glTranslated(-0.3, 0, -2.25);
+		GL11.glRotated(90, 0, 1, 0);
+		
+		//Minecraft.getMinecraft().getTextureManager().bindTexture(ResourceManager.skin);
+		//ResourceManager.lightning_fp.controller.setAnim(wrapper);
+		GlStateManager.colorMask(false, false, false, false);
+		ResourceManager.maxdepth.use();
+		//ResourceManager.lightning_fp.renderAnimated(renderTime = System.currentTimeMillis());
+		Minecraft.getMinecraft().entityRenderer.itemRenderer.renderItemInFirstPerson((float) e.getRenderPartialTicks());
+		HbmShaderManager2.releaseShader();
+		GlStateManager.colorMask(true, true, true, true);
+		GL11.glPopMatrix();
+		GlStateManager.matrixMode(GL11.GL_PROJECTION);
+		GL11.glPopMatrix();
+		GlStateManager.matrixMode(GL11.GL_MODELVIEW);
+	}
 
-    @SubscribeEvent
-    public static void renderHand(RenderHandEvent e) {
-        if (true)
-            return;
-        e.setCanceled(true);
-    }
-
-    @SubscribeEvent
-    public static void doDepthRender(CameraSetup e) {
-        if (true)
-            return;
-
-        GlStateManager.matrixMode(GL11.GL_PROJECTION);
-        GL11.glPushMatrix();
-        GL11.glLoadIdentity();
-        Project.gluPerspective(70, (float) Minecraft.getMinecraft().displayWidth / (float) Minecraft.getMinecraft().displayHeight, 0.05F, Minecraft.getMinecraft().gameSettings.renderDistanceChunks * 16F * 2.0F);
-        GlStateManager.matrixMode(GL11.GL_MODELVIEW);
-        GL11.glLoadIdentity();
-        GL11.glPushMatrix();
-
-        GL11.glTranslated(-0.3, 0, -2.25);
-        GL11.glRotated(90, 0, 1, 0);
-
-        //Minecraft.getMinecraft().getTextureManager().bindTexture(ResourceManager.skin);
-        //ResourceManager.lightning_fp.controller.setAnim(wrapper);
-        GlStateManager.colorMask(false, false, false, false);
-        ResourceManager.maxdepth.use();
-        //ResourceManager.lightning_fp.renderAnimated(renderTime = System.currentTimeMillis());
-        Minecraft.getMinecraft().entityRenderer.itemRenderer.renderItemInFirstPerson((float) e.getRenderPartialTicks());
-        HbmShaderManager2.releaseShader();
-        GlStateManager.colorMask(true, true, true, true);
-        GL11.glPopMatrix();
-        GlStateManager.matrixMode(GL11.GL_PROJECTION);
-        GL11.glPopMatrix();
-        GlStateManager.matrixMode(GL11.GL_MODELVIEW);
-    }
-
-    public static void doHandRendering(RenderWorldLastEvent e) {
-        if (true)
-            return;
-
-        GlStateManager.clear(GL11.GL_DEPTH_BUFFER_BIT);
-        GlStateManager.matrixMode(GL11.GL_PROJECTION);
-        GL11.glPushMatrix();
-        GL11.glLoadIdentity();
-        Project.gluPerspective(70, (float) Minecraft.getMinecraft().displayWidth / (float) Minecraft.getMinecraft().displayHeight, 0.05F, Minecraft.getMinecraft().gameSettings.renderDistanceChunks * 16F * 2.0F);
-        GlStateManager.matrixMode(GL11.GL_MODELVIEW);
-        GL11.glLoadIdentity();
-        GL11.glPushMatrix();
-
-        Minecraft.getMinecraft().entityRenderer.itemRenderer.renderItemInFirstPerson(e.getPartialTicks());
+	public static void doHandRendering(RenderWorldLastEvent e) {
+		if(true || Minecraft.getMinecraft().gameSettings.thirdPersonView != 0 || !shouldCustomRender)
+			return;
+		
+		GlStateManager.clear(GL11.GL_DEPTH_BUFFER_BIT);
+		GlStateManager.matrixMode(GL11.GL_PROJECTION);
+		GL11.glPushMatrix();
+		GL11.glLoadIdentity();
+		Project.gluPerspective(70, (float) Minecraft.getMinecraft().displayWidth / (float) Minecraft.getMinecraft().displayHeight, 0.05F, Minecraft.getMinecraft().gameSettings.renderDistanceChunks * 16F * 2.0F);
+		GlStateManager.matrixMode(GL11.GL_MODELVIEW);
+		GL11.glLoadIdentity();
+		GL11.glPushMatrix();
+		
+		Minecraft.getMinecraft().entityRenderer.itemRenderer.renderItemInFirstPerson(e.getPartialTicks());
 		
 		/*if(ticksActive >= 0){
 			GL11.glPushMatrix();
@@ -107,17 +108,17 @@ public class WorldSpaceFPRender {
         	if(p != null)
         		p.renderParticle(Tessellator.getInstance().getBuffer(), Minecraft.getMinecraft().getRenderViewEntity(), e.getPartialTicks(), 0, 0, 0, 0, 0);
         }*/
-
-        GL11.glPopMatrix();
-        GlStateManager.matrixMode(GL11.GL_PROJECTION);
-        GL11.glPopMatrix();
-        GlStateManager.matrixMode(GL11.GL_MODELVIEW);
-    }
-
-    @SubscribeEvent
-    public static void worldTick(TickEvent.ClientTickEvent e) {
-        if (true) {
-        }
+        
+		GL11.glPopMatrix();
+		GlStateManager.matrixMode(GL11.GL_PROJECTION);
+		GL11.glPopMatrix();
+		GlStateManager.matrixMode(GL11.GL_MODELVIEW);
+	}
+	
+	@SubscribeEvent
+	public static void worldTick(TickEvent.ClientTickEvent e){
+		if(true || e.phase == Phase.END || Minecraft.getMinecraft().world == null)
+			return;
 		/*Random rand = Minecraft.getMinecraft().world.rand;
 		if(ticksActive >= 0){
 			ticksActive ++;
@@ -147,6 +148,6 @@ public class WorldSpaceFPRender {
 			if(!p.isAlive())
 				iter2.remove();
 		}*/
-    }
+	}
 
 }

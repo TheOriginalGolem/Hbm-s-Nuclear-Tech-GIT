@@ -6,8 +6,9 @@
 package glmath.glm.vec._3.t;
 
 /**
+ *
  * @author elect
  */
 public class Vec3t {
-
+    
 }

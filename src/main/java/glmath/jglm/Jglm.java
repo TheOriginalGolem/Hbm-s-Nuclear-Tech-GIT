@@ -5,8 +5,8 @@
 package glmath.jglm;
 
 /**
+ * @deprecated 
  * @author gbarbieri
- * @deprecated
  */
 public class Jglm {
 
@@ -14,7 +14,7 @@ public class Jglm {
         return (start + lerp * (end - start));
     }
 
-    //    public static Vec normalize(Vec vec) {
+//    public static Vec normalize(Vec vec) {
 //
 //        float length = 0;
 //

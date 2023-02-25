@@ -8,43 +8,41 @@ import net.minecraft.world.World;
 
 public class EntityBurrowingNT extends EntityCreature {
 
-    protected float dragInAir;
-    protected float dragInGround;
-
-    public EntityBurrowingNT(World worldIn) {
-        super(worldIn);
-    }
-
-    @Override
-    public void fall(float distance, float damageMultiplier) {
-    }
-
-    @Override
-    public float getEyeHeight() {
-        return this.height * 0.5F;
-    }
-
-    public boolean getIsHead() {
-        return false;
-    }
-
-    @Override
-    protected void updateFallState(double y, boolean onGroundIn, IBlockState state, BlockPos pos) {
-    }
-
-    @Override
-    public void travel(float strafe, float vertical, float forward) {
-        float drag = this.dragInGround;
-
-        if ((!isEntityInsideOpaqueBlock()) && (!isInWater()) && (!isInLava())) {
-            drag = this.dragInAir;
-        } else if (this.getRNG().nextInt(100) == 0) {
-            //Block b = worldObj.getBlock((int)Math.floor(posX), (int)Math.floor(posY), (int)Math.floor(posZ));
-            //this.playSound(b.stepSound.getStepResourcePath(), 5F, 1F);
-        }
+	protected float dragInAir;
+	protected float dragInGround;
+	
+	public EntityBurrowingNT(World worldIn) {
+		super(worldIn);
+	}
+	
+	@Override
+	public void fall(float distance, float damageMultiplier) {}
+	
+	@Override
+	public float getEyeHeight() {
+		return this.height * 0.5F;
+	}
+	
+	public boolean getIsHead() {
+		return false;
+	}
+	
+	@Override
+	protected void updateFallState(double y, boolean onGroundIn, IBlockState state, BlockPos pos) {}
+	
+	@Override
+	public void travel(float strafe, float vertical, float forward) {
+		float drag = this.dragInGround;
+		
+		if((!isEntityInsideOpaqueBlock()) && (!isInWater()) && (!isInLava())) {
+			drag = this.dragInAir;
+		} else if(this.getRNG().nextInt(100) == 0) {
+			//Block b = worldObj.getBlock((int)Math.floor(posX), (int)Math.floor(posY), (int)Math.floor(posZ));
+			//this.playSound(b.stepSound.getStepResourcePath(), 5F, 1F);
+		}
 
         if (!getIsHead()) {
-            drag *= 0.9F;
+        	drag *= 0.9F;
         }
         moveRelative(strafe, vertical, forward, 0.02F);
 
@@ -52,11 +50,11 @@ public class EntityBurrowingNT extends EntityCreature {
         this.motionX *= drag;
         this.motionY *= drag;
         this.motionZ *= drag;
-    }
-
-    @Override
-    public boolean isOnLadder() {
-        return false;
-    }
+	}
+	
+	@Override
+	public boolean isOnLadder() {
+		return false;
+	}
 
 }

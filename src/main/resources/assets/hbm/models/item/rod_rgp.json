@@ -1,6 +1,6 @@
 {
-  "parent": "item/generated",
-  "textures": {
-    "layer0": "hbm:items/rod_rgp"
-  }
+	"parent": "item/generated",
+	"textures": {
+		"layer0": "hbm:items/rod_rgp"
+	}
 }

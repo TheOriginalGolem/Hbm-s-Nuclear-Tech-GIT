@@ -1,6 +1,10 @@
 package com.hbm.entity.missile;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import api.hbm.entity.IRadarDetectable;
+
 import com.hbm.config.BombConfig;
 import com.hbm.entity.effect.EntityNukeCloudSmall;
 import com.hbm.entity.logic.EntityNukeExplosionMK4;
@@ -9,6 +13,8 @@ import com.hbm.entity.particle.EntitySmokeFX;
 import com.hbm.explosion.ExplosionLarge;
 import com.hbm.interfaces.IConstantRenderer;
 import com.hbm.main.MainRegistry;
+
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.init.Blocks;
 import net.minecraft.network.datasync.DataParameter;
@@ -26,148 +32,150 @@ import net.minecraftforge.common.ForgeChunkManager.Type;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class EntityMIRV extends EntityThrowable implements IChunkLoader, IConstantRenderer, IRadarDetectable {
-    public static final DataParameter<Integer> HEALTH = EntityDataManager.createKey(EntityMIRV.class, DataSerializers.VARINT);
-    public int health = 25;
-    List<ChunkPos> loadedChunks = new ArrayList<ChunkPos>();
-    private Ticket loaderTicket;
+	private Ticket loaderTicket;
+	public static final DataParameter<Integer> HEALTH = EntityDataManager.createKey(EntityMIRV.class, DataSerializers.VARINT);
+	public int health = 25;
+	
+	public boolean attackEntityFrom(DamageSource p_70097_1_, float p_70097_2_) {
+			if(!this.isDead && !this.world.isRemote) {
+				health -= p_70097_2_;
 
+				if(this.health <= 0) {
+					this.setDead();
+					this.killMissile();
+				}
+			}
 
-    public EntityMIRV(World worldIn) {
-        super(worldIn);
-        this.ignoreFrustumCheck = true;
-    }
+			return true;
+		}
+	
 
-    public boolean attackEntityFrom(DamageSource p_70097_1_, float p_70097_2_) {
-        if (!this.isDead && !this.world.isRemote) {
-            health -= p_70097_2_;
+	private void killMissile() {
+		ExplosionLarge.explode(world, posX, posY, posZ, 5, true, false, true);
+		ExplosionLarge.spawnShrapnelShower(world, posX, posY, posZ, motionX, motionY, motionZ, 15, 0.075);
+	}
+	public EntityMIRV(World worldIn) {
+		super(worldIn);
+		this.ignoreFrustumCheck = true;
+	}
+	@Override
+	protected void entityInit() {
+		init(ForgeChunkManager.requestTicket(MainRegistry.instance, world, Type.ENTITY));
+		this.getDataManager().register(HEALTH, Integer.valueOf(this.health));
+	}
 
-            if (this.health <= 0) {
-                this.setDead();
-                this.killMissile();
-            }
-        }
-
-        return true;
-    }
-
-    private void killMissile() {
-        ExplosionLarge.explode(world, posX, posY, posZ, 5, true, false, true);
-        ExplosionLarge.spawnShrapnelShower(world, posX, posY, posZ, motionX, motionY, motionZ, 15, 0.075);
-    }
-
-    @Override
-    protected void entityInit() {
-        init(ForgeChunkManager.requestTicket(MainRegistry.instance, world, Type.ENTITY));
-        this.getDataManager().register(HEALTH, Integer.valueOf(this.health));
-    }
-
-    @Override
-    public void onUpdate() {
-        this.prevPosX = this.posX;
-        this.prevPosY = this.posY;
-        this.prevPosZ = this.posZ;
-
-        this.posX += this.motionX;
-        this.posY += this.motionY;
-        this.posZ += this.motionZ;
-
-        this.motionY -= 0.03;
-
+	@Override
+	public void onUpdate() {
+		this.prevPosX = this.posX;
+		this.prevPosY = this.posY;
+		this.prevPosZ = this.posZ;
+		
+		this.posX += this.motionX;
+		this.posY += this.motionY;
+		this.posZ += this.motionZ;
+		
+		this.motionY -= 0.03;
+        
         this.rotation();
-
-        if (this.world.getBlockState(new BlockPos((int) this.posX, (int) this.posY, (int) this.posZ)).getBlock() != Blocks.AIR) {
-            if (!this.world.isRemote) {
-                world.spawnEntity(EntityNukeExplosionMK4.statFac(world, BombConfig.mirvRadius, posX, posY, posZ));
-                EntityNukeCloudSmall entity2 = new EntityNukeCloudSmall(this.world, BombConfig.mirvRadius);
-                entity2.posX = this.posX;
-                entity2.posY = this.posY;
-                entity2.posZ = this.posZ;
-                this.world.spawnEntity(entity2);
-            }
-            this.setDead();
+        
+        if(this.world.getBlockState(new BlockPos((int)this.posX, (int)this.posY, (int)this.posZ)).getBlock() != Blocks.AIR)
+        {
+    		if(!this.world.isRemote)
+    		{
+    	    	world.spawnEntity(EntityNukeExplosionMK4.statFac(world, BombConfig.mirvRadius, posX, posY, posZ));
+    			EntityNukeCloudSmall entity2 = new EntityNukeCloudSmall(this.world, BombConfig.mirvRadius);
+    	    	entity2.posX = this.posX;
+    	    	entity2.posY = this.posY;
+    	    	entity2.posZ = this.posZ;
+    	    	this.world.spawnEntity(entity2);
+    		}
+    		this.setDead();
         }
-
+        
         this.world.spawnEntity(new EntitySmokeFX(this.world, this.posX, this.posY, this.posZ, 0.0, 0.0, 0.0));
-    }
-
-    protected void rotation() {
+	}
+	
+	protected void rotation() {
         float f2 = MathHelper.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
-        this.rotationYaw = (float) (Math.atan2(this.motionX, this.motionZ) * 180.0D / Math.PI);
+        this.rotationYaw = (float)(Math.atan2(this.motionX, this.motionZ) * 180.0D / Math.PI);
 
-        for (this.rotationPitch = (float) (Math.atan2(this.motionY, f2) * 180.0D / Math.PI) - 90; this.rotationPitch - this.prevRotationPitch < -180.0F; this.prevRotationPitch -= 360.0F) {
+        for (this.rotationPitch = (float)(Math.atan2(this.motionY, f2) * 180.0D / Math.PI) - 90; this.rotationPitch - this.prevRotationPitch < -180.0F; this.prevRotationPitch -= 360.0F)
+        {
+            ;
         }
 
-        while (this.rotationPitch - this.prevRotationPitch >= 180.0F) {
+        while (this.rotationPitch - this.prevRotationPitch >= 180.0F)
+        {
             this.prevRotationPitch += 360.0F;
         }
 
-        while (this.rotationYaw - this.prevRotationYaw < -180.0F) {
+        while (this.rotationYaw - this.prevRotationYaw < -180.0F)
+        {
             this.prevRotationYaw -= 360.0F;
         }
 
-        while (this.rotationYaw - this.prevRotationYaw >= 180.0F) {
+        while (this.rotationYaw - this.prevRotationYaw >= 180.0F)
+        {
             this.prevRotationYaw += 360.0F;
         }
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public boolean isInRangeToRenderDist(double distance) {
+	}
+	
+	@Override
+	@SideOnly(Side.CLIENT)
+    public boolean isInRangeToRenderDist(double distance)
+    {
         return distance < 500000;
     }
+	
+	@Override
+	protected void onImpact(RayTraceResult result) {
+		
+	}
 
-    @Override
-    protected void onImpact(RayTraceResult result) {
+	@Override
+	public RadarTargetType getTargetType() {
+		return RadarTargetType.MIRVLET;
+	}
 
-    }
+	@Override
+	public void init(Ticket ticket) {
+		if(!world.isRemote) {
 
-    @Override
-    public RadarTargetType getTargetType() {
-        return RadarTargetType.MIRVLET;
-    }
+	          if(ticket != null) {
 
-    @Override
-    public void init(Ticket ticket) {
-        if (!world.isRemote) {
+	              if(loaderTicket == null) {
 
-            if (ticket != null) {
+	            	loaderTicket = ticket;
+	            	loaderTicket.bindEntity(this);
+	            	loaderTicket.getModData();
+	              }
 
-                if (loaderTicket == null) {
+	            ForgeChunkManager.forceChunk(loaderTicket, new ChunkPos(chunkCoordX, chunkCoordZ));
+	        }
+	     }
+	   }
+	List<ChunkPos> loadedChunks = new ArrayList<ChunkPos>();
+	public void loadNeighboringChunks(int newChunkX, int newChunkZ) {
+		if (!world.isRemote && loaderTicket != null) {
+			for (ChunkPos chunk : loadedChunks) {
+				ForgeChunkManager.unforceChunk(loaderTicket, chunk);
+			}
 
-                    loaderTicket = ticket;
-                    loaderTicket.bindEntity(this);
-                    loaderTicket.getModData();
-                }
+			loadedChunks.clear();
+			loadedChunks.add(new ChunkPos(newChunkX, newChunkZ));
+			loadedChunks.add(new ChunkPos(newChunkX + 1, newChunkZ + 1));
+			loadedChunks.add(new ChunkPos(newChunkX - 1, newChunkZ - 1));
+			loadedChunks.add(new ChunkPos(newChunkX + 1, newChunkZ - 1));
+			loadedChunks.add(new ChunkPos(newChunkX - 1, newChunkZ + 1));
+			loadedChunks.add(new ChunkPos(newChunkX + 1, newChunkZ));
+			loadedChunks.add(new ChunkPos(newChunkX, newChunkZ + 1));
+			loadedChunks.add(new ChunkPos(newChunkX - 1, newChunkZ));
+			loadedChunks.add(new ChunkPos(newChunkX, newChunkZ - 1));
 
-                ForgeChunkManager.forceChunk(loaderTicket, new ChunkPos(chunkCoordX, chunkCoordZ));
-            }
-        }
-    }
-
-    public void loadNeighboringChunks(int newChunkX, int newChunkZ) {
-        if (!world.isRemote && loaderTicket != null) {
-            for (ChunkPos chunk : loadedChunks) {
-                ForgeChunkManager.unforceChunk(loaderTicket, chunk);
-            }
-
-            loadedChunks.clear();
-            loadedChunks.add(new ChunkPos(newChunkX, newChunkZ));
-            loadedChunks.add(new ChunkPos(newChunkX + 1, newChunkZ + 1));
-            loadedChunks.add(new ChunkPos(newChunkX - 1, newChunkZ - 1));
-            loadedChunks.add(new ChunkPos(newChunkX + 1, newChunkZ - 1));
-            loadedChunks.add(new ChunkPos(newChunkX - 1, newChunkZ + 1));
-            loadedChunks.add(new ChunkPos(newChunkX + 1, newChunkZ));
-            loadedChunks.add(new ChunkPos(newChunkX, newChunkZ + 1));
-            loadedChunks.add(new ChunkPos(newChunkX - 1, newChunkZ));
-            loadedChunks.add(new ChunkPos(newChunkX, newChunkZ - 1));
-
-            for (ChunkPos chunk : loadedChunks) {
-                ForgeChunkManager.forceChunk(loaderTicket, chunk);
-            }
-        }
-    }
+			for (ChunkPos chunk : loadedChunks) {
+				ForgeChunkManager.forceChunk(loaderTicket, chunk);
+			}
+		}
+	}
 }

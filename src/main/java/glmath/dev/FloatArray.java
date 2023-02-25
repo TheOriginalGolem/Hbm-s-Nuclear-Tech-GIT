@@ -6,6 +6,7 @@
 package glmath.dev;
 
 /**
+ *
  * @author GBarbieri
  */
 public class FloatArray {

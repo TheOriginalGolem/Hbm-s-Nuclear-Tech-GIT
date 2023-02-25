@@ -6,9 +6,22 @@
 package glmath.glm.vec._4;
 
 /**
+ *
  * @author GBarbieri
  */
 public abstract class colorSpace extends noise {
+
+    public Vec4 convertLinearToSRGB() {
+        return compute_rgbToSrgb((Vec4) this, 0.41666f, (Vec4) this);
+    }
+
+    public Vec4 convertLinearToSRGB_() {
+        return compute_rgbToSrgb((Vec4) this, 0.41666f, new Vec4());
+    }
+
+    public Vec4 convertLinearToSRGB(Vec4 colorSRGB) {
+        return compute_rgbToSrgb((Vec4) this, 0.41666f, colorSRGB);
+    }
 
     public static Vec4 compute_rgbToSrgb(Vec4 colorRGB, float gammaCorrection, Vec4 colorSRGB) {
         // vecType<T, P> const ClampedColor(clamp(ColorRGB, static_cast<T>(0), static_cast<T>(1)));
@@ -33,17 +46,5 @@ public abstract class colorSpace extends noise {
         colorSRGB.z = xZ + aZ * (yZ - xZ);
         colorSRGB.w = colorRGB.w;
         return colorSRGB;
-    }
-
-    public Vec4 convertLinearToSRGB() {
-        return compute_rgbToSrgb((Vec4) this, 0.41666f, (Vec4) this);
-    }
-
-    public Vec4 convertLinearToSRGB_() {
-        return compute_rgbToSrgb((Vec4) this, 0.41666f, new Vec4());
-    }
-
-    public Vec4 convertLinearToSRGB(Vec4 colorSRGB) {
-        return compute_rgbToSrgb((Vec4) this, 0.41666f, colorSRGB);
     }
 }

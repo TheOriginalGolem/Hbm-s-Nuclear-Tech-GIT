@@ -1,12 +1,12 @@
 /**
  * Copyright (c) 2011-2016, Data Geekery GmbH (http://www.datageekery.com)
- * <p>
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * <p>
- * http://www.apache.org/licenses/LICENSE-2.0
- * <p>
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -32,8 +32,7 @@ public abstract class UNumber {
     /**
      * Get this number as a {@link BigInteger}. This is a convenience method for
      * calling <code>new BigInteger(toString())</code>
-     *
-     * @return
+     * @return 
      */
     public BigInteger toBigInteger() {
         return new BigInteger(toString());

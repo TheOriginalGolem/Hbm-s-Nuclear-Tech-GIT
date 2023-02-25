@@ -10,6 +10,7 @@ import java.nio.ByteOrder;
 import java.nio.IntBuffer;
 
 /**
+ *
  * @author GBarbieri
  */
 public class Vec2i extends FuncRelational {
@@ -45,8 +46,8 @@ public class Vec2i extends FuncRelational {
         this.y = y;
         return this;
     }
-
-    public int[] toIA_() {
+    
+     public int[] toIA_() {
         return toIA_(new int[2]);
     }
 
@@ -66,7 +67,7 @@ public class Vec2i extends FuncRelational {
 
     public IntBuffer toDib(IntBuffer ib, int index) {
         return ib
-                .put(index, x)
+                .put(index + 0, x)
                 .put(index + 1, y);
     }
 
@@ -80,8 +81,8 @@ public class Vec2i extends FuncRelational {
 
     public ByteBuffer toDbb(ByteBuffer bb, int index) {
         return bb
-                .putInt(index, x)
-                .putInt(index + Integer.BYTES, y);
+                .putInt(index + 0 * Integer.BYTES, x)
+                .putInt(index + 1 * Integer.BYTES, y);
     }
 
     @Override

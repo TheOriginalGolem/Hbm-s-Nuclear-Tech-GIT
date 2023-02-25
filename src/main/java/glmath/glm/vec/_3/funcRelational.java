@@ -9,6 +9,7 @@ import glmath.glm.Glm;
 import glmath.glm.vec._3.bool.Vec3bool;
 
 /**
+ *
  * @author elect
  */
 abstract class funcRelational extends funcGeometric {
@@ -20,7 +21,7 @@ abstract class funcRelational extends funcGeometric {
     public boolean all() {
         return Glm.all((Vec3) this);
     }
-
+    
     public Vec3 not_() {
         return Glm.not((Vec3) this, new Vec3());
     }
@@ -28,7 +29,7 @@ abstract class funcRelational extends funcGeometric {
     public Vec3 not() {
         return Glm.not((Vec3) this, (Vec3) this);
     }
-
+    
     public Vec3bool lessThan__(Vec3 b) {
         return Glm.lessThan((Vec3) this, b, new Vec3bool());
     }

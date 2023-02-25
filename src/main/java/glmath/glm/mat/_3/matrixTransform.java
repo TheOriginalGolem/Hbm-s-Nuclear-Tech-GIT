@@ -8,6 +8,7 @@ package glmath.glm.mat._3;
 import glmath.glm.vec._3.Vec3;
 
 /**
+ *
  * @author GBarbieri
  */
 abstract class matrixTransform extends funcMatrix {

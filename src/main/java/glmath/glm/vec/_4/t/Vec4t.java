@@ -6,10 +6,11 @@
 package glmath.glm.vec._4.t;
 
 /**
+ *
  * @author elect
  */
 public class Vec4t<T> {
-
+    
     public T r;
     public T g;
     public T b;
@@ -28,7 +29,7 @@ public class Vec4t<T> {
         this.b = b;
         this.a = a;
     }
-
+    
 //    public T[] toArray() {
 //        return new T[]{r, g, b, a};
 //    }

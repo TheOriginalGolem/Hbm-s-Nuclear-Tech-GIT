@@ -1,32 +1,37 @@
 package com.hbm.render.amlfrom1710;
+import java.util.ArrayList;
 
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import java.util.ArrayList;
-
-public class GroupObject {
+public class GroupObject
+{
     public String name;
     public ArrayList<Face> faces = new ArrayList<Face>();
     public int glDrawingMode;
 
-    public GroupObject() {
+    public GroupObject()
+    {
         this("");
     }
 
-    public GroupObject(String name) {
+    public GroupObject(String name)
+    {
         this(name, -1);
     }
 
-    public GroupObject(String name, int glDrawingMode) {
+    public GroupObject(String name, int glDrawingMode)
+    {
         this.name = name;
         this.glDrawingMode = glDrawingMode;
     }
 
     @SideOnly(Side.CLIENT)
-    public void render() {
-        if (faces.size() > 0) {
-
+    public void render()
+    {
+        if (faces.size() > 0)
+        {
+        	
             Tessellator tessellator = Tessellator.instance;
             tessellator.startDrawing(glDrawingMode);
             render(tessellator);
@@ -35,9 +40,12 @@ public class GroupObject {
     }
 
     @SideOnly(Side.CLIENT)
-    public void render(Tessellator tessellator) {
-        if (faces.size() > 0) {
-            for (Face face : faces) {
+    public void render(Tessellator tessellator)
+    {
+        if (faces.size() > 0)
+        {
+            for (Face face : faces)
+            {
                 face.addFaceForRender(tessellator);
             }
         }

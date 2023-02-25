@@ -1,6 +1,6 @@
 {
-  "parent": "item/generated",
-  "textures": {
-    "layer0": "hbm:blocks/forgefluid/mud_still"
-  }
+	"parent": "item/generated",
+	"textures": {
+		"layer0": "hbm:blocks/forgefluid/mud_still"
+	}
 }

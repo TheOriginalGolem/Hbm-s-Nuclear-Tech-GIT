@@ -5,8 +5,8 @@
 package glmath.jglm;
 
 /**
+ * @deprecated 
  * @author gbarbieri
- * @deprecated
  */
 public class Vec {
 

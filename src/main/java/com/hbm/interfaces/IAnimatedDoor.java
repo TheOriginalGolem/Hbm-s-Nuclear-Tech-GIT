@@ -2,5 +2,5 @@ package com.hbm.interfaces;
 
 public interface IAnimatedDoor extends IDoor {
 
-    void handleNewState(byte state);
+	public void handleNewState(byte state);
 }

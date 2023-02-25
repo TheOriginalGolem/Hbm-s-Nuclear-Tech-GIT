@@ -1,25 +1,28 @@
 package com.hbm.render.amlfrom1710;
 
+import java.util.Comparator;
+
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import java.util.Comparator;
-
 @SideOnly(Side.CLIENT)
-public class QuadComparator implements Comparator<Object> {
-    private final float field_147630_a;
-    private final float field_147628_b;
-    private final float field_147629_c;
-    private final int[] field_147627_d;
+public class QuadComparator implements Comparator<Object>
+{
+    private float field_147630_a;
+    private float field_147628_b;
+    private float field_147629_c;
+    private int[] field_147627_d;
 
-    public QuadComparator(int[] p_i45077_1_, float p_i45077_2_, float p_i45077_3_, float p_i45077_4_) {
+    public QuadComparator(int[] p_i45077_1_, float p_i45077_2_, float p_i45077_3_, float p_i45077_4_)
+    {
         this.field_147627_d = p_i45077_1_;
         this.field_147630_a = p_i45077_2_;
         this.field_147628_b = p_i45077_3_;
         this.field_147629_c = p_i45077_4_;
     }
 
-    public int compare(Integer p_compare_1_, Integer p_compare_2_) {
+    public int compare(Integer p_compare_1_, Integer p_compare_2_)
+    {
         float f = Float.intBitsToFloat(this.field_147627_d[p_compare_1_.intValue()]) - this.field_147630_a;
         float f1 = Float.intBitsToFloat(this.field_147627_d[p_compare_1_.intValue() + 1]) - this.field_147628_b;
         float f2 = Float.intBitsToFloat(this.field_147627_d[p_compare_1_.intValue() + 2]) - this.field_147629_c;
@@ -55,7 +58,8 @@ public class QuadComparator implements Comparator<Object> {
         return Float.compare(f31, f30);
     }
 
-    public int compare(Object p_compare_1_, Object p_compare_2_) {
-        return this.compare((Integer) p_compare_1_, (Integer) p_compare_2_);
+    public int compare(Object p_compare_1_, Object p_compare_2_)
+    {
+        return this.compare((Integer)p_compare_1_, (Integer)p_compare_2_);
     }
 }

@@ -35,6 +35,7 @@ import glmath.joou.ULong;
 import glmath.joou.UShort;
 
 /**
+ *
  * @author GBarbieri
  */
 abstract class SpecialOperators extends BooleansOperators {

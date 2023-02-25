@@ -1,10 +1,14 @@
 package com.hbm.items.weapon;
 
+import java.util.List;
+import java.util.Random;
+
 import com.hbm.entity.projectile.EntitySparkBeam;
 import com.hbm.items.ModItems;
 import com.hbm.lib.HBMSoundHandler;
 import com.hbm.lib.Library;
 import com.hbm.main.MainRegistry;
+
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityLivingBase;
@@ -21,128 +25,126 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.ArrowLooseEvent;
 import net.minecraftforge.event.entity.player.ArrowNockEvent;
 
-import java.util.List;
-import java.util.Random;
-
 public class GunSpark extends Item {
 
-    public int dmgMin = 12;
-    public int dmgMax = 24;
-    Random rand = new Random();
+	Random rand = new Random();
 
-    public GunSpark(String s) {
-        this.setUnlocalizedName(s);
-        this.setRegistryName(s);
-        this.setCreativeTab(MainRegistry.weaponTab);
-        this.setMaxStackSize(1);
+	public int dmgMin = 12;
+	public int dmgMax = 24;
 
-        ModItems.ALL_ITEMS.add(this);
-    }
+	public GunSpark(String s) {
+		this.setUnlocalizedName(s);
+		this.setRegistryName(s);
+		this.setCreativeTab(MainRegistry.weaponTab);
+		this.setMaxStackSize(1);
 
-    /**
-     * called when the player releases the use item button. Args: itemstack,
-     * world, entityplayer, itemInUseCount
-     */
-    @Override
-    public void onPlayerStoppedUsing(ItemStack stack, World world, EntityLivingBase entityLiving, int timeLeft) {
-        int j = this.getMaxItemUseDuration(stack) - timeLeft;
-        if (entityLiving instanceof EntityPlayer) {
-            ArrowLooseEvent event = new ArrowLooseEvent((EntityPlayer) entityLiving, stack, world, j, true);
-            MinecraftForge.EVENT_BUS.post(event);
-            j = event.getCharge();
-        }
-        boolean creative = false;
-        boolean hasAmmo = false;
-        if (entityLiving instanceof EntityPlayer) {
-            if (((EntityPlayer) entityLiving).capabilities.isCreativeMode) {
-                creative = true;
-            }
-            hasAmmo = Library.hasInventoryItem(((EntityPlayer) entityLiving).inventory, ModItems.gun_spark_ammo);
-        }
-        boolean flag = creative || EnchantmentHelper.getEnchantmentLevel(Enchantments.INFINITY, stack) > 0;
-        if (flag || hasAmmo) {
-            float f = j / 20.0F;
-            f = (f * f + f * 2.0F) / 3.0F;
+		ModItems.ALL_ITEMS.add(this);
+	}
 
-            if (j < 10.0D) {
-                return;
-            }
+	/**
+	 * called when the player releases the use item button. Args: itemstack,
+	 * world, entityplayer, itemInUseCount
+	 */
+	@Override
+	public void onPlayerStoppedUsing(ItemStack stack, World world, EntityLivingBase entityLiving, int timeLeft) {
+		int j = this.getMaxItemUseDuration(stack) - timeLeft;
+		if (entityLiving instanceof EntityPlayer) {
+			ArrowLooseEvent event = new ArrowLooseEvent((EntityPlayer) entityLiving, stack, world, j, true);
+			MinecraftForge.EVENT_BUS.post(event);
+			j = event.getCharge();
+		}
+		boolean creative = false;
+		boolean hasAmmo = false;
+		if(entityLiving instanceof EntityPlayer){
+			if(((EntityPlayer)entityLiving).capabilities.isCreativeMode){
+				creative = true;
+			}
+			hasAmmo = Library.hasInventoryItem(((EntityPlayer) entityLiving).inventory, ModItems.gun_spark_ammo);
+		}
+		boolean flag = creative || EnchantmentHelper.getEnchantmentLevel(Enchantments.INFINITY, stack) > 0;
+		if (flag || hasAmmo) {
+			float f = j / 20.0F;
+			f = (f * f + f * 2.0F) / 3.0F;
 
-            if (j > 10.0F) {
-                f = 10.0F;
-            }
+			if (j < 10.0D) {
+				return;
+			}
 
-            stack.damageItem(1, entityLiving);
+			if (j > 10.0F) {
+				f = 10.0F;
+			}
 
-            world.playSound(entityLiving.posX, entityLiving.posY, entityLiving.posZ, HBMSoundHandler.sparkShoot, SoundCategory.PLAYERS, 1.0F, 1.0F, true);
+			stack.damageItem(1, entityLiving);
 
-            if (flag) {
-            } else {
-                if (entityLiving instanceof EntityPlayer)
-                    Library.consumeInventoryItem(((EntityPlayer) entityLiving).inventory, ModItems.gun_spark_ammo);
-            }
+			world.playSound(entityLiving.posX, entityLiving.posY, entityLiving.posZ, HBMSoundHandler.sparkShoot, SoundCategory.PLAYERS, 1.0F, 1.0F, true);
 
-            EntitySparkBeam beam = new EntitySparkBeam(world, entityLiving, 3F, entityLiving.getHeldItem(EnumHand.MAIN_HAND) == stack ? EnumHand.MAIN_HAND : EnumHand.OFF_HAND);
-            beam.setDamage(dmgMin + rand.nextInt(dmgMax - dmgMin));
-            if (!world.isRemote)
-                world.spawnEntity(beam);
-        }
-    }
+			if (flag) {
+			} else {
+				if(entityLiving instanceof EntityPlayer)
+					Library.consumeInventoryItem(((EntityPlayer) entityLiving).inventory, ModItems.gun_spark_ammo);
+			}
 
-    /**
-     * How long it takes to use or consume an item
-     */
-    @Override
-    public int getMaxItemUseDuration(ItemStack p_77626_1_) {
-        return 72000;
-    }
+			EntitySparkBeam beam = new EntitySparkBeam(world, entityLiving, 3F, entityLiving.getHeldItem(EnumHand.MAIN_HAND) == stack ? EnumHand.MAIN_HAND : EnumHand.OFF_HAND);
+			beam.setDamage(dmgMin + rand.nextInt(dmgMax - dmgMin));
+			if (!world.isRemote)
+				world.spawnEntity(beam);
+		}
+	}
 
-    /**
-     * returns the action that specifies what animation to play when the items
-     * is being used
-     */
-    @Override
-    public EnumAction getItemUseAction(ItemStack p_77661_1_) {
-        return EnumAction.BOW;
-    }
+	/**
+	 * How long it takes to use or consume an item
+	 */
+	@Override
+	public int getMaxItemUseDuration(ItemStack p_77626_1_) {
+		return 72000;
+	}
 
-    /**
-     * Called whenever this item is equipped and the right mouse button is
-     * pressed. Args: itemStack, world, entityPlayer
-     */
+	/**
+	 * returns the action that specifies what animation to play when the items
+	 * is being used
+	 */
+	@Override
+	public EnumAction getItemUseAction(ItemStack p_77661_1_) {
+		return EnumAction.BOW;
+	}
 
-    @Override
-    public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
-        ArrowNockEvent event = new ArrowNockEvent(playerIn, playerIn.getHeldItem(handIn), handIn, worldIn, true);
-        MinecraftForge.EVENT_BUS.post(event);
+	/**
+	 * Called whenever this item is equipped and the right mouse button is
+	 * pressed. Args: itemStack, world, entityPlayer
+	 */
+	
+	@Override
+	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
+		ArrowNockEvent event = new ArrowNockEvent(playerIn, playerIn.getHeldItem(handIn), handIn, worldIn, true);
+		MinecraftForge.EVENT_BUS.post(event);
 
-        playerIn.setActiveHand(handIn);
-        return super.onItemRightClick(worldIn, playerIn, handIn);
-    }
+		playerIn.setActiveHand(handIn);
+		return super.onItemRightClick(worldIn, playerIn, handIn);
+	}
+	
+	@Override
+	public boolean shouldCauseReequipAnimation(ItemStack oldStack, ItemStack newStack, boolean slotChanged) {
+		return false;
+	}
 
-    @Override
-    public boolean shouldCauseReequipAnimation(ItemStack oldStack, ItemStack newStack, boolean slotChanged) {
-        return false;
-    }
+	/**
+	 * Return the enchantability factor of the item, most of the time is based
+	 * on material.
+	 */
+	@Override
+	public int getItemEnchantability() {
+		return 1;
+	}
 
-    /**
-     * Return the enchantability factor of the item, most of the time is based
-     * on material.
-     */
-    @Override
-    public int getItemEnchantability() {
-        return 1;
-    }
+	@Override
+	public void addInformation(ItemStack itemstack, World world, List<String> list, ITooltipFlag bool) {
 
-    @Override
-    public void addInformation(ItemStack itemstack, World world, List<String> list, ITooltipFlag bool) {
-
-        list.add("'magic does not compute'");
-        list.add("'aeiou'");
-        list.add("");
-        list.add("Ammo: Electromagnetic Cartridge");
-        list.add("Projectiles explode on impact.");
-        list.add("");
-        list.add("[LEGENDARY WEAPON]");
-    }
+		list.add("'magic does not compute'");
+		list.add("'aeiou'");
+		list.add("");
+		list.add("Ammo: Electromagnetic Cartridge");
+		list.add("Projectiles explode on impact.");
+		list.add("");
+		list.add("[LEGENDARY WEAPON]");
+	}
 }

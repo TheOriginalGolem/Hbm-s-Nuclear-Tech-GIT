@@ -6,9 +6,10 @@
 package glmath.dev;
 
 /**
+ *
  * @author GBarbieri
  */
 public class Vec2i8 {
-
+    
     public static final int SIZE = 2 * Byte.BYTES;
 }

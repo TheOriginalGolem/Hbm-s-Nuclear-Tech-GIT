@@ -1,12 +1,12 @@
 /**
  * Copyright (c) 2011-2016, Data Geekery GmbH (http://www.datageekery.com)
- * <p>
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * <p>
- * http://www.apache.org/licenses/LICENSE-2.0
- * <p>
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -27,19 +27,22 @@ import java.math.BigInteger;
 public final class UInt extends UNumber implements Comparable<UInt> {
 
     /**
+     * Generated UID
+     */
+    private static final long serialVersionUID = -6821055240959745390L;
+
+    /**
      * A constant holding the minimum value an <code>unsigned int</code> can
      * have, 0.
      */
     public static final int MIN_VALUE = 0x00000000;
+
     /**
      * A constant holding the maximum value an <code>unsigned int</code> can
      * have, 2<sup>32</sup>-1.
      */
     public static final int MAX_VALUE = 0xffffffff;
-    /**
-     * Generated UID
-     */
-    private static final long serialVersionUID = -6821055240959745390L;
+
     /**
      * The value modelling the content of this <code>unsigned int</code>
      */
@@ -97,6 +100,34 @@ public final class UInt extends UNumber implements Comparable<UInt> {
 
     public UInt(UInt uInteger) {
         this.value = uInteger.value;
+    }
+
+    @Override
+    public int hashCode() {
+        return Long.valueOf(value).hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof UInt) {
+            return value == ((UInt) obj).value;
+        }
+
+        return false;
+    }
+
+    @Override
+    public String toString() {
+        return Long.toString(value);
+    }
+
+    @Override
+    public int compareTo(UInt o) {
+        return Integer.compareUnsigned(value, o.value);
+    }
+    
+    public long longValue() {
+        return value & 0xffffffffL;
     }
 
     /**
@@ -181,33 +212,5 @@ public final class UInt extends UNumber implements Comparable<UInt> {
             throw new ArithmeticException("Value is out of range : " + value);
         }
         return Integer.parseInt(value);
-    }
-
-    @Override
-    public int hashCode() {
-        return Long.valueOf(value).hashCode();
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj instanceof UInt) {
-            return value == ((UInt) obj).value;
-        }
-
-        return false;
-    }
-
-    @Override
-    public String toString() {
-        return Long.toString(value);
-    }
-
-    @Override
-    public int compareTo(UInt o) {
-        return Integer.compareUnsigned(value, o.value);
-    }
-
-    public long longValue() {
-        return value & 0xffffffffL;
     }
 }

@@ -8,13 +8,11 @@ package glmath.glf;
 import glmath.glm.vec._3.Vec3;
 
 /**
+ *
  * @author GBarbieri
  */
 public class Vertex_v3fn3f {
 
-    public static final int SIZE = 2 * Vec3.SIZE;
-    public static final int OFFSET_POSITION = 0;
-    public static final int OFFSET_NORMAL = Vec3.SIZE;
     public Vec3 position;
     public Vec3 normal;
 
@@ -22,4 +20,8 @@ public class Vertex_v3fn3f {
         this.position = position;
         this.normal = normal;
     }
+
+    public static final int SIZE = 2 * Vec3.SIZE;
+    public static final int OFFSET_POSITION = 0;
+    public static final int OFFSET_NORMAL = Vec3.SIZE;
 }

@@ -5,6 +5,7 @@ import com.hbm.packet.AuxLongPacket;
 import com.hbm.packet.FluidTankPacket;
 import com.hbm.packet.PacketDispatcher;
 import com.hbm.tileentity.machine.TileEntityCoreReceiver;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -16,62 +17,63 @@ import net.minecraftforge.fluids.FluidTank;
 
 public class ContainerCoreReceiver extends Container {
 
-    private final TileEntityCoreReceiver te;
-    int joules;
-    FluidTank tank;
-    private EntityPlayerMP player;
+	private TileEntityCoreReceiver te;
+	private EntityPlayerMP player;
 
-    public ContainerCoreReceiver(EntityPlayer player, TileEntityCoreReceiver te) {
-        InventoryPlayer invPlayer = player.inventory;
-        if (player instanceof EntityPlayerMP)
-            this.player = (EntityPlayerMP) player;
-        this.te = te;
+	public ContainerCoreReceiver(EntityPlayer player, TileEntityCoreReceiver te) {
+		InventoryPlayer invPlayer = player.inventory;
+		if(player instanceof EntityPlayerMP)
+			this.player = (EntityPlayerMP) player;
+		this.te = te;
 
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 9; j++) {
-                this.addSlotToContainer(new Slot(invPlayer, j + i * 9 + 9, 8 + j * 18, 84 + i * 18));
-            }
-        }
+		for(int i = 0; i < 3; i++) {
+			for(int j = 0; j < 9; j++) {
+				this.addSlotToContainer(new Slot(invPlayer, j + i * 9 + 9, 8 + j * 18, 84 + i * 18));
+			}
+		}
 
-        for (int i = 0; i < 9; i++) {
-            this.addSlotToContainer(new Slot(invPlayer, i, 8 + i * 18, 142));
-        }
-    }
+		for(int i = 0; i < 9; i++) {
+			this.addSlotToContainer(new Slot(invPlayer, i, 8 + i * 18, 142));
+		}
+	}
 
-    @Override
-    public void addListener(IContainerListener listener) {
-        super.addListener(listener);
-        PacketDispatcher.sendTo(new AuxLongPacket(te.getPos(), te.syncJoules, 0), player);
-        PacketDispatcher.sendTo(new FluidTankPacket(te.getPos(), tank), player);
-    }
+	@Override
+	public void addListener(IContainerListener listener) {
+		super.addListener(listener);
+		PacketDispatcher.sendTo(new AuxLongPacket(te.getPos(), te.syncJoules, 0), player);
+		PacketDispatcher.sendTo(new FluidTankPacket(te.getPos(), new FluidTank[] { tank }), player);
+	}
 
-    @Override
-    public void detectAndSendChanges() {
-        if (joules != te.syncJoules) {
-            joules = (int) te.syncJoules;
-            PacketDispatcher.sendTo(new AuxLongPacket(te.getPos(), te.syncJoules, 0), player);
-        }
-        if (!FFUtils.areTanksEqual(tank, te.tank)) {
-            tank = FFUtils.copyTank(te.tank);
-            PacketDispatcher.sendTo(new FluidTankPacket(te.getPos(), tank), player);
-        }
-        super.detectAndSendChanges();
-    }
+	int joules;
+	FluidTank tank;
 
-    @Override
-    public boolean canInteractWith(EntityPlayer player) {
-        return te.isUseableByPlayer(player);
-    }
+	@Override
+	public void detectAndSendChanges() {
+		if(joules != te.syncJoules) {
+			joules = (int) te.syncJoules;
+			PacketDispatcher.sendTo(new AuxLongPacket(te.getPos(), te.syncJoules, 0), player);
+		}
+		if(!FFUtils.areTanksEqual(tank, te.tank)){
+			tank = FFUtils.copyTank(te.tank);
+			PacketDispatcher.sendTo(new FluidTankPacket(te.getPos(), new FluidTank[] { tank }), player);
+		}
+		super.detectAndSendChanges();
+	}
 
-    @Override
-    public ItemStack transferStackInSlot(EntityPlayer p_82846_1_, int par2) {
-        ItemStack var3 = ItemStack.EMPTY;
-        Slot var4 = this.inventorySlots.get(par2);
+	@Override
+	public boolean canInteractWith(EntityPlayer player) {
+		return te.isUseableByPlayer(player);
+	}
 
-        if (var4 != null && var4.getHasStack()) {
-            return ItemStack.EMPTY;
-        }
+	@Override
+	public ItemStack transferStackInSlot(EntityPlayer p_82846_1_, int par2) {
+		ItemStack var3 = ItemStack.EMPTY;
+		Slot var4 = (Slot) this.inventorySlots.get(par2);
 
-        return var3;
-    }
+		if(var4 != null && var4.getHasStack()) {
+			return ItemStack.EMPTY;
+		}
+
+		return var3;
+	}
 }

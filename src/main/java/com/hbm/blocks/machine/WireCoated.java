@@ -2,6 +2,7 @@ package com.hbm.blocks.machine;
 
 import com.hbm.blocks.ModBlocks;
 import com.hbm.tileentity.machine.TileEntityWireCoated;
+
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -11,22 +12,22 @@ import net.minecraft.world.World;
 
 public class WireCoated extends BlockContainer {
 
-    public WireCoated(Material materialIn, String s) {
-        super(materialIn);
-        this.setUnlocalizedName(s);
-        this.setRegistryName(s);
+	public WireCoated(Material materialIn, String s) {
+		super(materialIn);
+		this.setUnlocalizedName(s);
+		this.setRegistryName(s);
+		
+		ModBlocks.ALL_BLOCKS.add(this);
+	}
+	
+	@Override
+	public TileEntity createNewTileEntity(World worldIn, int meta) {
+		return new TileEntityWireCoated();
+	}
 
-        ModBlocks.ALL_BLOCKS.add(this);
-    }
-
-    @Override
-    public TileEntity createNewTileEntity(World worldIn, int meta) {
-        return new TileEntityWireCoated();
-    }
-
-    @Override
-    public EnumBlockRenderType getRenderType(IBlockState state) {
-        return EnumBlockRenderType.MODEL;
-    }
-
+	@Override
+	public EnumBlockRenderType getRenderType(IBlockState state) {
+		return EnumBlockRenderType.MODEL;
+	}
+	
 }

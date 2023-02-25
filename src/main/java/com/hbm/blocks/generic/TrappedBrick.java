@@ -1,9 +1,12 @@
 package com.hbm.blocks.generic;
 
+import java.util.List;
+
 import com.hbm.blocks.ModBlocks;
 import com.hbm.lib.HBMSoundHandler;
 import com.hbm.lib.ModDamageSource;
 import com.hbm.tileentity.deco.TileEntityTrappedBrick;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -29,176 +32,174 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import java.util.List;
-
 public class TrappedBrick extends BlockContainer {
 
-    public static final PropertyInteger TYPE = PropertyInteger.create("type", 0, 15);
+	public static final PropertyInteger TYPE = PropertyInteger.create("type", 0, 15);
+	
+	public TrappedBrick(Material materialIn, String s) {
+		super(materialIn);
+		this.setUnlocalizedName(s);
+		this.setRegistryName(s);
+		
+		ModBlocks.ALL_BLOCKS.add(this);
+	}
 
-    public TrappedBrick(Material materialIn, String s) {
-        super(materialIn);
-        this.setUnlocalizedName(s);
-        this.setRegistryName(s);
+	@Override
+	public TileEntity createNewTileEntity(World worldIn, int meta) {
+		if(Trap.get(meta).type == TrapType.DETECTOR)
+			return new TileEntityTrappedBrick();
+		return null;
+	}
+	
+	@Override
+	public EnumBlockRenderType getRenderType(IBlockState state) {
+		return EnumBlockRenderType.MODEL;
+	}
+	
+	@Override
+	public void addInformation(ItemStack stack, World player, List<String> list, ITooltipFlag advanced) {
+		list.add(Trap.get(stack.getItemDamage()).toString());
+	}
+	
+	@Override
+	public void onEntityWalk(World world, BlockPos pos, Entity entity) {
+		int x = pos.getX();
+		int y = pos.getY();
+		int z = pos.getZ();
+		int meta = world.getBlockState(pos).getValue(TYPE);
 
-        ModBlocks.ALL_BLOCKS.add(this);
-    }
+    	if(world.isRemote || Trap.get(meta).type != TrapType.ON_STEP || !(entity instanceof EntityPlayer)) {
+    		return;
+    	}
 
-    @Override
-    public TileEntity createNewTileEntity(World worldIn, int meta) {
-        if (Trap.get(meta).type == TrapType.DETECTOR)
-            return new TileEntityTrappedBrick();
-        return null;
-    }
+    	EntityPlayer player = (EntityPlayer)entity;
 
-    @Override
-    public EnumBlockRenderType getRenderType(IBlockState state) {
-        return EnumBlockRenderType.MODEL;
-    }
+		switch(Trap.get(meta)) {
+		case FIRE:
+			if(world.getBlockState(new BlockPos(x, y + 1, z)).getBlock().isReplaceable(world, new BlockPos(x, y + 1, z)))
+				world.setBlockState(new BlockPos(x, y + 1, z), Blocks.FIRE.getDefaultState());
+			break;
+		case SPIKES:
+			if(world.getBlockState(new BlockPos(x, y + 1, z)).getBlock().isReplaceable(world, new BlockPos(x, y + 1, z)))
+				world.setBlockState(new BlockPos(x, y + 1, z), ModBlocks.spikes.getDefaultState());
+			List<Entity> targets = world.getEntitiesWithinAABB(Entity.class, new AxisAlignedBB(x, y + 1, z, x + 1, y + 2, z + 1));
+			for(Entity e : targets)
+				e.attackEntityFrom(ModDamageSource.spikes, 10);
+			world.playSound(null, x + 0.5, y + 1.5, z + 0.5, HBMSoundHandler.slicer, SoundCategory.HOSTILE, 1.0F, 1.0F);
+			break;
+		case MINE:
+			world.createExplosion(null, x + 0.5, y + 1.5, z + 0.5, 1F, false);
+			break;
+		case WEB:
+			if(world.getBlockState(new BlockPos(x, y + 1, z)).getBlock().isReplaceable(world, new BlockPos(x, y + 1, z)))
+				world.setBlockState(new BlockPos(x, y + 1, z), Blocks.WEB.getDefaultState());
+			break;
+		case RAD_CONVERSION:
+			for(int a = - 3; a <= 3; a++) {
+				for(int b = - 3; b <= 3; b++) {
+					for(int c = - 3; c <= 3; c++) {
 
-    @Override
-    public void addInformation(ItemStack stack, World player, List<String> list, ITooltipFlag advanced) {
-        list.add(Trap.get(stack.getItemDamage()).toString());
-    }
+						if(world.rand.nextBoolean())
+							continue;
 
-    @Override
-    public void onEntityWalk(World world, BlockPos pos, Entity entity) {
-        int x = pos.getX();
-        int y = pos.getY();
-        int z = pos.getZ();
-        int meta = world.getBlockState(pos).getValue(TYPE);
+						Block bl = world.getBlockState(new BlockPos(x + a, y + b, z + c)).getBlock();
+						if(bl == ModBlocks.brick_jungle || bl == ModBlocks.brick_jungle_cracked || bl == ModBlocks.brick_jungle_lava) {
+							world.setBlockState(new BlockPos(x + a, y + b, z + c), ModBlocks.brick_jungle_ooze.getDefaultState());
+						}
+					}
+				}
+			}
+			break;
+		case MAGIC_CONVERSTION:
+			for(int a = - 3; a <= 3; a++) {
+				for(int b = - 3; b <= 3; b++) {
+					for(int c = - 3; c <= 3; c++) {
 
-        if (world.isRemote || Trap.get(meta).type != TrapType.ON_STEP || !(entity instanceof EntityPlayer)) {
-            return;
-        }
+						if(world.rand.nextBoolean())
+							continue;
 
-        EntityPlayer player = (EntityPlayer) entity;
+						Block bl = world.getBlockState(new BlockPos(x + a, y + b, z + c)).getBlock();
+						if(bl == ModBlocks.brick_jungle || bl == ModBlocks.brick_jungle_cracked || bl == ModBlocks.brick_jungle_lava) {
+							world.setBlockState(new BlockPos(x + a, y + b, z + c), ModBlocks.brick_jungle_mystic.getDefaultState());
+						}
+					}
+				}
+			}
+			break;
+		case SLOWNESS:
+			player.addPotionEffect(new PotionEffect(MobEffects.SLOWNESS, 300, 2));
+			break;
+		case WEAKNESS:
+			player.addPotionEffect(new PotionEffect(MobEffects.WEAKNESS, 300, 2));
+			break;
+		default:
+			break;
+		}
 
-        switch (Trap.get(meta)) {
-            case FIRE:
-                if (world.getBlockState(new BlockPos(x, y + 1, z)).getBlock().isReplaceable(world, new BlockPos(x, y + 1, z)))
-                    world.setBlockState(new BlockPos(x, y + 1, z), Blocks.FIRE.getDefaultState());
-                break;
-            case SPIKES:
-                if (world.getBlockState(new BlockPos(x, y + 1, z)).getBlock().isReplaceable(world, new BlockPos(x, y + 1, z)))
-                    world.setBlockState(new BlockPos(x, y + 1, z), ModBlocks.spikes.getDefaultState());
-                List<Entity> targets = world.getEntitiesWithinAABB(Entity.class, new AxisAlignedBB(x, y + 1, z, x + 1, y + 2, z + 1));
-                for (Entity e : targets)
-                    e.attackEntityFrom(ModDamageSource.spikes, 10);
-                world.playSound(null, x + 0.5, y + 1.5, z + 0.5, HBMSoundHandler.slicer, SoundCategory.HOSTILE, 1.0F, 1.0F);
-                break;
-            case MINE:
-                world.createExplosion(null, x + 0.5, y + 1.5, z + 0.5, 1F, false);
-                break;
-            case WEB:
-                if (world.getBlockState(new BlockPos(x, y + 1, z)).getBlock().isReplaceable(world, new BlockPos(x, y + 1, z)))
-                    world.setBlockState(new BlockPos(x, y + 1, z), Blocks.WEB.getDefaultState());
-                break;
-            case RAD_CONVERSION:
-                for (int a = -3; a <= 3; a++) {
-                    for (int b = -3; b <= 3; b++) {
-                        for (int c = -3; c <= 3; c++) {
+		world.playSound(null, x + 0.5D, y + 0.5D, z + 0.5D, SoundEvents.BLOCK_TRIPWIRE_CLICK_ON, SoundCategory.BLOCKS, 0.3F, 0.6F);
+		world.setBlockState(new BlockPos(x, y, z), ModBlocks.brick_jungle.getDefaultState());
+	}
+	
+	@Override
+	protected BlockStateContainer createBlockState() {
+		return new BlockStateContainer(this, TYPE);
+	}
+	
+	@Override
+	public int getMetaFromState(IBlockState state) {
+		return state.getValue(TYPE);
+	}
+	
+	@Override
+	public IBlockState getStateFromMeta(int meta) {
+		return this.getDefaultState().withProperty(TYPE, meta);
+	}
+	
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> items) {
+		if(tab == this.getCreativeTabToDisplayOn() || tab == CreativeTabs.SEARCH)
+			for (int i = 0; i < Trap.values().length; ++i) {
+				items.add(new ItemStack(this, 1, i));
+			}
+	}
+	
+	public static enum TrapType {
+		ON_STEP,
+		DETECTOR
+	}
 
-                            if (world.rand.nextBoolean())
-                                continue;
+	public static enum Trap {
 
-                            Block bl = world.getBlockState(new BlockPos(x + a, y + b, z + c)).getBlock();
-                            if (bl == ModBlocks.brick_jungle || bl == ModBlocks.brick_jungle_cracked || bl == ModBlocks.brick_jungle_lava) {
-                                world.setBlockState(new BlockPos(x + a, y + b, z + c), ModBlocks.brick_jungle_ooze.getDefaultState());
-                            }
-                        }
-                    }
-                }
-                break;
-            case MAGIC_CONVERSTION:
-                for (int a = -3; a <= 3; a++) {
-                    for (int b = -3; b <= 3; b++) {
-                        for (int c = -3; c <= 3; c++) {
+		FALLING_ROCKS(TrapType.DETECTOR),
+		FIRE(TrapType.ON_STEP),
+		ARROW(TrapType.DETECTOR),
+		SPIKES(TrapType.ON_STEP),
+		MINE(TrapType.ON_STEP),
+		WEB(TrapType.ON_STEP),
+		FLAMING_ARROW(TrapType.DETECTOR),
+		PILLAR(TrapType.DETECTOR),
+		RAD_CONVERSION(TrapType.ON_STEP),
+		MAGIC_CONVERSTION(TrapType.ON_STEP),
+		SLOWNESS(TrapType.ON_STEP),
+		WEAKNESS(TrapType.ON_STEP),
+		POISON_DART(TrapType.DETECTOR),
+		ZOMBIE(TrapType.DETECTOR),
+		SPIDERS(TrapType.DETECTOR);
 
-                            if (world.rand.nextBoolean())
-                                continue;
+		public TrapType type;
 
-                            Block bl = world.getBlockState(new BlockPos(x + a, y + b, z + c)).getBlock();
-                            if (bl == ModBlocks.brick_jungle || bl == ModBlocks.brick_jungle_cracked || bl == ModBlocks.brick_jungle_lava) {
-                                world.setBlockState(new BlockPos(x + a, y + b, z + c), ModBlocks.brick_jungle_mystic.getDefaultState());
-                            }
-                        }
-                    }
-                }
-                break;
-            case SLOWNESS:
-                player.addPotionEffect(new PotionEffect(MobEffects.SLOWNESS, 300, 2));
-                break;
-            case WEAKNESS:
-                player.addPotionEffect(new PotionEffect(MobEffects.WEAKNESS, 300, 2));
-                break;
-            default:
-                break;
-        }
+		private Trap(TrapType type) {
+			this.type = type;
+		}
 
-        world.playSound(null, x + 0.5D, y + 0.5D, z + 0.5D, SoundEvents.BLOCK_TRIPWIRE_CLICK_ON, SoundCategory.BLOCKS, 0.3F, 0.6F);
-        world.setBlockState(new BlockPos(x, y, z), ModBlocks.brick_jungle.getDefaultState());
-    }
+		public static Trap get(int i) {
 
-    @Override
-    protected BlockStateContainer createBlockState() {
-        return new BlockStateContainer(this, TYPE);
-    }
+			if(i >= 0 && i < Trap.values().length)
+				return Trap.values()[i];
 
-    @Override
-    public int getMetaFromState(IBlockState state) {
-        return state.getValue(TYPE);
-    }
-
-    @Override
-    public IBlockState getStateFromMeta(int meta) {
-        return this.getDefaultState().withProperty(TYPE, meta);
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> items) {
-        if (tab == this.getCreativeTabToDisplayOn() || tab == CreativeTabs.SEARCH)
-            for (int i = 0; i < Trap.values().length; ++i) {
-                items.add(new ItemStack(this, 1, i));
-            }
-    }
-
-    public enum TrapType {
-        ON_STEP,
-        DETECTOR
-    }
-
-    public enum Trap {
-
-        FALLING_ROCKS(TrapType.DETECTOR),
-        FIRE(TrapType.ON_STEP),
-        ARROW(TrapType.DETECTOR),
-        SPIKES(TrapType.ON_STEP),
-        MINE(TrapType.ON_STEP),
-        WEB(TrapType.ON_STEP),
-        FLAMING_ARROW(TrapType.DETECTOR),
-        PILLAR(TrapType.DETECTOR),
-        RAD_CONVERSION(TrapType.ON_STEP),
-        MAGIC_CONVERSTION(TrapType.ON_STEP),
-        SLOWNESS(TrapType.ON_STEP),
-        WEAKNESS(TrapType.ON_STEP),
-        POISON_DART(TrapType.DETECTOR),
-        ZOMBIE(TrapType.DETECTOR),
-        SPIDERS(TrapType.DETECTOR);
-
-        public TrapType type;
-
-        Trap(TrapType type) {
-            this.type = type;
-        }
-
-        public static Trap get(int i) {
-
-            if (i >= 0 && i < Trap.values().length)
-                return Trap.values()[i];
-
-            return FIRE;
-        }
-    }
+			return FIRE;
+		}
+	}
 
 }

@@ -5,8 +5,8 @@
 package glmath.jglm;
 
 /**
+ * @deprecated 
  * @author gbarbieri
- * @deprecated
  */
 public class Vec3 extends Vec {
 
@@ -31,7 +31,7 @@ public class Vec3 extends Vec {
         this.z = z;
         vector = new float[]{x, y, z};
     }
-
+    
     public Vec3(float f) {
 
         x = f;
@@ -39,7 +39,7 @@ public class Vec3 extends Vec {
         z = f;
         vector = new float[]{f, f, f};
     }
-
+    
     public Vec3(Vec3 v) {
 
         x = v.x;
@@ -69,22 +69,10 @@ public class Vec3 extends Vec {
         return new Vec3((p1.x + p2.x) / 2, (p1.y + p2.y) / 2, (p1.z + p2.z) / 2);
     }
 
-    public static Vec3 mix(Vec3 start, Vec3 end, float lerp) {
-
-        Vec3 result = end.minus(start);
-
-        result = result.times(lerp);
-
-        result = start.plus(result);
-
-//        return (start + lerp * (end - start));
-        return result;
-    }
-
     public Vec3 normalize() {
 
         float length = ((float) Math.sqrt(x * x + y * y + z * z));
-
+        
         return length != 0 ? new Vec3(x / length, y / length, z / length) : new Vec3();
     }
 
@@ -98,10 +86,22 @@ public class Vec3 extends Vec {
         return new Vec3(x * scalar, y * scalar, z * scalar);
     }
 
+    public static Vec3 mix(Vec3 start, Vec3 end, float lerp) {
+        
+        Vec3 result = end.minus(start);
+        
+        result = result.times(lerp);
+        
+        result = start.plus(result);
+        
+//        return (start + lerp * (end - start));
+        return result;
+    }
+    
     /**
      * Not traditional way.
      * v' = q * v * conjugate(q)
-     * <p>
+     *
      * This is supposed to be around 35% faster.
      * http://molecularmusings.wordpress.com/2013/05/24/a-faster-quaternion-vector-multiplication/
      * t = 2 * cross(q.xyz, v)

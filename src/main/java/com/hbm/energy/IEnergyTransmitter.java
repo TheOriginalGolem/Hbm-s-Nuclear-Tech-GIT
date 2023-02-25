@@ -1,13 +1,10 @@
 package com.hbm.energy;
 
 public interface IEnergyTransmitter {
-
-    EnergyNetwork getNetwork();
-
-    void setNetwork(EnergyNetwork net);
-
-    void joinOrMakeNetwork();
-
-    boolean isValidForBuilding();
-
+	
+	public EnergyNetwork getNetwork();
+	public void setNetwork(EnergyNetwork net);
+	public void joinOrMakeNetwork();
+	public boolean isValidForBuilding();
+	
 }

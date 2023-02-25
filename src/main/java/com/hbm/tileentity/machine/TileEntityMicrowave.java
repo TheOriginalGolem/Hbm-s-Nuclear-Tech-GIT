@@ -3,6 +3,7 @@ package com.hbm.tileentity.machine;
 import com.hbm.interfaces.IConsumer;
 import com.hbm.lib.Library;
 import com.hbm.tileentity.TileEntityMachineBase;
+
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.nbt.NBTTagCompound;
@@ -15,182 +16,183 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class TileEntityMicrowave extends TileEntityMachineBase implements ITickable, IConsumer {
 
-    public static final long maxPower = 50000;
-    public static final int consumption = 50;
-    public static final int maxTime = 300;
-    public static final int maxSpeed = 5;
-    public long power;
-    public int time;
-    public int speed;
+	public long power;
+	public static final long maxPower = 50000;
+	public static final int consumption = 50;
+	public static final int maxTime = 300;
+	public int time;
+	public int speed;
+	public static final int maxSpeed = 5;
+	
+	public TileEntityMicrowave() {
+		super(3);
+	}
+	
+	@Override
+	public String getName() {
+		return "container.microwave";
+	}
+	
+	@Override
+	public void update() {
+		if(!world.isRemote) {
 
-    public TileEntityMicrowave() {
-        super(3);
-    }
+			this.power = Library.chargeTEFromItems(inventory, 2, power, maxPower);
 
-    @Override
-    public String getName() {
-        return "container.microwave";
-    }
+			if(canProcess()) {
 
-    @Override
-    public void update() {
-        if (!world.isRemote) {
+				if(speed >= maxSpeed) {
+					world.destroyBlock(pos, false);
+					world.newExplosion(null, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 7.5F, true, true);
+					return;
+				}
 
-            this.power = Library.chargeTEFromItems(inventory, 2, power, maxPower);
+				if(time >= maxTime) {
+					process();
+					time = 0;
+				}
+				
+				if(canProcess()) {
+					power -= consumption;
+					time += speed * 2;
+				}
+			}
 
-            if (canProcess()) {
+			NBTTagCompound data = new NBTTagCompound();
+			data.setLong("power", power);
+			data.setInteger("time", time);
+			data.setInteger("speed", speed);
+			networkPack(data, 50);
+		}
+	}
 
-                if (speed >= maxSpeed) {
-                    world.destroyBlock(pos, false);
-                    world.newExplosion(null, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 7.5F, true, true);
-                    return;
-                }
+	@Override
+	public void networkUnpack(NBTTagCompound data) {
+		power = data.getLong("power");
+		time = data.getInteger("time");
+		speed = data.getInteger("speed");
+	}
+	
+	@Override
+	public void readFromNBT(NBTTagCompound compound) {
+		power = compound.getLong("power");
+		speed = compound.getInteger("speed");
+		super.readFromNBT(compound);
+	}
+	
+	@Override
+	public NBTTagCompound writeToNBT(NBTTagCompound compound) {
+		compound.setLong("power", power);
+		compound.setInteger("speed", speed);
+		return super.writeToNBT(compound);
+	}
+	
+	@Override
+	public void handleButtonPacket(int value, int meta) {
+		if(value == 0)
+			speed++;
 
-                if (time >= maxTime) {
-                    process();
-                    time = 0;
-                }
+		if(value == 1)
+			speed--;
 
-                if (canProcess()) {
-                    power -= consumption;
-                    time += speed * 2;
-                }
-            }
+		if(speed < 0)
+			speed = 0;
 
-            NBTTagCompound data = new NBTTagCompound();
-            data.setLong("power", power);
-            data.setInteger("time", time);
-            data.setInteger("speed", speed);
-            networkPack(data, 50);
-        }
-    }
+		if(speed > maxSpeed)
+			speed = maxSpeed;
+	}
+	
+	@Override
+	public boolean isItemValidForSlot(int i, ItemStack stack) {
+		return i == 0 && !FurnaceRecipes.instance().getSmeltingResult(stack).isEmpty();
+	}
+	
+	@Override
+	public boolean canExtractItem(int slot, ItemStack itemStack, int amount) {
+		return slot == 1;
+	}
+	
+	@Override
+	public int[] getAccessibleSlotsFromSide(EnumFacing e) {
+		return e.ordinal() == 0 ? new int[] { 1 } : new int[] { 0 };
+	}
+	
+	private void process() {
 
-    @Override
-    public void networkUnpack(NBTTagCompound data) {
-        power = data.getLong("power");
-        time = data.getInteger("time");
-        speed = data.getInteger("speed");
-    }
+		ItemStack stack = FurnaceRecipes.instance().getSmeltingResult(inventory.getStackInSlot(0)).copy();
 
-    @Override
-    public void readFromNBT(NBTTagCompound compound) {
-        power = compound.getLong("power");
-        speed = compound.getInteger("speed");
-        super.readFromNBT(compound);
-    }
+		if(inventory.getStackInSlot(1).isEmpty()) {
+			inventory.setStackInSlot(1, stack);
+		} else {
+			inventory.getStackInSlot(1).setCount(inventory.getStackInSlot(1).getCount() + stack.getCount());
+		}
 
-    @Override
-    public NBTTagCompound writeToNBT(NBTTagCompound compound) {
-        compound.setLong("power", power);
-        compound.setInteger("speed", speed);
-        return super.writeToNBT(compound);
-    }
+		inventory.getStackInSlot(0).shrink(1);
 
-    @Override
-    public void handleButtonPacket(int value, int meta) {
-        if (value == 0)
-            speed++;
+		this.markDirty();
+	}
 
-        if (value == 1)
-            speed--;
+	private boolean canProcess() {
 
-        if (speed < 0)
-            speed = 0;
+		if(speed  == 0)
+			return false;
 
-        if (speed > maxSpeed)
-            speed = maxSpeed;
-    }
+		if(power < consumption)
+			return false;
 
-    @Override
-    public boolean isItemValidForSlot(int i, ItemStack stack) {
-        return i == 0 && !FurnaceRecipes.instance().getSmeltingResult(stack).isEmpty();
-    }
+		if(!FurnaceRecipes.instance().getSmeltingResult(inventory.getStackInSlot(0)).isEmpty()) {
 
-    @Override
-    public boolean canExtractItem(int slot, ItemStack itemStack, int amount) {
-        return slot == 1;
-    }
+			ItemStack stack = FurnaceRecipes.instance().getSmeltingResult(inventory.getStackInSlot(0));
 
-    @Override
-    public int[] getAccessibleSlotsFromSide(EnumFacing e) {
-        return e.ordinal() == 0 ? new int[]{1} : new int[]{0};
-    }
+			if(inventory.getStackInSlot(1).isEmpty())
+				return true;
 
-    private void process() {
+			if(!stack.isItemEqual(inventory.getStackInSlot(1)))
+				return false;
 
-        ItemStack stack = FurnaceRecipes.instance().getSmeltingResult(inventory.getStackInSlot(0)).copy();
+			return stack.getCount() + inventory.getStackInSlot(1).getCount() <= stack.getMaxStackSize();
+		}
 
-        if (inventory.getStackInSlot(1).isEmpty()) {
-            inventory.setStackInSlot(1, stack);
-        } else {
-            inventory.getStackInSlot(1).setCount(inventory.getStackInSlot(1).getCount() + stack.getCount());
-        }
+		return false;
+	}
+	
+	public long getPowerScaled(int i) {
+		return (power * i) / maxPower;
+	}
 
-        inventory.getStackInSlot(0).shrink(1);
+	public int getProgressScaled(int i) {
+		return (time * i) / maxTime;
+	}
 
-        this.markDirty();
-    }
+	public int getSpeedScaled(int i) {
+		return (speed * i) / maxSpeed;
+	}
 
-    private boolean canProcess() {
+	@Override
+	public AxisAlignedBB getRenderBoundingBox() {
+		return TileEntity.INFINITE_EXTENT_AABB;
+	}
 
-        if (speed == 0)
-            return false;
+	@Override
+	@SideOnly(Side.CLIENT)
+	public double getMaxRenderDistanceSquared()
+	{
+		return 65536.0D;
+	}
+	
+	@Override
+	public void setPower(long i) {
+		power = i;
+	}
 
-        if (power < consumption)
-            return false;
+	@Override
+	public long getPower() {
+		return power;
+	}
 
-        if (!FurnaceRecipes.instance().getSmeltingResult(inventory.getStackInSlot(0)).isEmpty()) {
-
-            ItemStack stack = FurnaceRecipes.instance().getSmeltingResult(inventory.getStackInSlot(0));
-
-            if (inventory.getStackInSlot(1).isEmpty())
-                return true;
-
-            if (!stack.isItemEqual(inventory.getStackInSlot(1)))
-                return false;
-
-            return stack.getCount() + inventory.getStackInSlot(1).getCount() <= stack.getMaxStackSize();
-        }
-
-        return false;
-    }
-
-    public long getPowerScaled(int i) {
-        return (power * i) / maxPower;
-    }
-
-    public int getProgressScaled(int i) {
-        return (time * i) / maxTime;
-    }
-
-    public int getSpeedScaled(int i) {
-        return (speed * i) / maxSpeed;
-    }
-
-    @Override
-    public AxisAlignedBB getRenderBoundingBox() {
-        return TileEntity.INFINITE_EXTENT_AABB;
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public double getMaxRenderDistanceSquared() {
-        return 65536.0D;
-    }
-
-    @Override
-    public long getPower() {
-        return power;
-    }
-
-    @Override
-    public void setPower(long i) {
-        power = i;
-    }
-
-    @Override
-    public long getMaxPower() {
-        return maxPower;
-    }
+	@Override
+	public long getMaxPower() {
+		return maxPower;
+	}
 
 }

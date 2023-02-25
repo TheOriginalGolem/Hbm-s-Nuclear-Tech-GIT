@@ -18,81 +18,81 @@ import net.minecraftforge.energy.CapabilityEnergy;
  */
 public class EnergyContainerItemWrapper implements ICapabilityProvider {
 
-    final ItemStack stack;
-    final IEnergyContainerItem container;
+	final ItemStack stack;
+	final IEnergyContainerItem container;
 
-    final boolean canExtract;
-    final boolean canReceive;
+	final boolean canExtract;
+	final boolean canReceive;
 
-    final net.minecraftforge.energy.IEnergyStorage energyCap;
+	final net.minecraftforge.energy.IEnergyStorage energyCap;
 
-    public EnergyContainerItemWrapper(ItemStack stackIn, IEnergyContainerItem containerIn, boolean extractIn, boolean receiveIn) {
+	public EnergyContainerItemWrapper(ItemStack stackIn, IEnergyContainerItem containerIn, boolean extractIn, boolean receiveIn) {
 
-        this.stack = stackIn;
-        this.container = containerIn;
+		this.stack = stackIn;
+		this.container = containerIn;
 
-        this.canExtract = extractIn;
-        this.canReceive = receiveIn;
+		this.canExtract = extractIn;
+		this.canReceive = receiveIn;
 
-        this.energyCap = new net.minecraftforge.energy.IEnergyStorage() {
+		this.energyCap = new net.minecraftforge.energy.IEnergyStorage() {
 
-            @Override
-            public int receiveEnergy(int maxReceive, boolean simulate) {
+			@Override
+			public int receiveEnergy(int maxReceive, boolean simulate) {
 
-                return container.receiveEnergy(stack, maxReceive, simulate);
-            }
+				return container.receiveEnergy(stack, maxReceive, simulate);
+			}
 
-            @Override
-            public int extractEnergy(int maxExtract, boolean simulate) {
+			@Override
+			public int extractEnergy(int maxExtract, boolean simulate) {
 
-                return container.extractEnergy(stack, maxExtract, simulate);
-            }
+				return container.extractEnergy(stack, maxExtract, simulate);
+			}
 
-            @Override
-            public int getEnergyStored() {
+			@Override
+			public int getEnergyStored() {
 
-                return container.getEnergyStored(stack);
-            }
+				return container.getEnergyStored(stack);
+			}
 
-            @Override
-            public int getMaxEnergyStored() {
+			@Override
+			public int getMaxEnergyStored() {
 
-                return container.getMaxEnergyStored(stack);
-            }
+				return container.getMaxEnergyStored(stack);
+			}
 
-            @Override
-            public boolean canExtract() {
+			@Override
+			public boolean canExtract() {
 
-                return canExtract;
-            }
+				return canExtract;
+			}
 
-            @Override
-            public boolean canReceive() {
+			@Override
+			public boolean canReceive() {
 
-                return canReceive;
-            }
-        };
-    }
+				return canReceive;
+			}
+		};
+	}
 
-    public EnergyContainerItemWrapper(ItemStack stackIn, IEnergyContainerItem containerIn) {
+	public EnergyContainerItemWrapper(ItemStack stackIn, IEnergyContainerItem containerIn) {
 
-        this(stackIn, containerIn, true, true);
-    }
+		this(stackIn, containerIn, true, true);
+	}
 
-    /* ICapabilityProvider */
-    @Override
-    public boolean hasCapability(Capability<?> capability, EnumFacing from) {
+	/* ICapabilityProvider */
+	@Override
+	public boolean hasCapability(Capability<?> capability, EnumFacing from) {
 
-        return capability == CapabilityEnergy.ENERGY;
-    }
+		return capability == CapabilityEnergy.ENERGY;
+	}
 
-    @Override
-    public <T> T getCapability(Capability<T> capability, final EnumFacing from) {
+	@Override
+	public <T> T getCapability(Capability<T> capability, final EnumFacing from) {
 
-        if (!hasCapability(capability, from)) {
-            return null;
-        }
-        return CapabilityEnergy.ENERGY.cast(energyCap);
-    }
+		if (!hasCapability(capability, from)) {
+			return null;
+		}
+		return CapabilityEnergy.ENERGY.cast(energyCap);
+	}
 
 }

@@ -6,6 +6,7 @@
 package glmath.glm.vec._2.bool;
 
 /**
+ *
  * @author elect
  */
 abstract class BooleanOperators {

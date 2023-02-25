@@ -6,9 +6,10 @@
 package glmath.glm.vec._2.b;
 
 /**
+ *
  * @author GBarbieri
  */
 abstract class FuncCommon {
-
-
+    
+    
 }

@@ -4,17 +4,11 @@ import net.minecraft.item.ItemStack;
 
 public interface IBatteryItem {
 
-    void chargeBattery(ItemStack stack, long i);
-
-    void setCharge(ItemStack stack, long i);
-
-    void dischargeBattery(ItemStack stack, long i);
-
-    long getCharge(ItemStack stack);
-
-    long getMaxCharge();
-
-    long getChargeRate();
-
-    long getDischargeRate();
+	public void chargeBattery(ItemStack stack, long i);
+    public void setCharge(ItemStack stack, long i);
+    public void dischargeBattery(ItemStack stack, long i);
+    public long getCharge(ItemStack stack);
+    public long getMaxCharge();
+    public long getChargeRate();    
+    public long getDischargeRate();
 }

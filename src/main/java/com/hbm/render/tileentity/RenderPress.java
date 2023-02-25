@@ -1,7 +1,10 @@
 package com.hbm.render.tileentity;
 
+import org.lwjgl.opengl.GL11;
+
 import com.hbm.main.ResourceManager;
 import com.hbm.tileentity.machine.TileEntityMachinePress;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.IBakedModel;
@@ -14,27 +17,26 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.Vec3d;
 import net.minecraftforge.client.ForgeHooksClient;
-import org.lwjgl.opengl.GL11;
 
 public class RenderPress extends TileEntitySpecialRenderer<TileEntityMachinePress> {
 
-    /*private static final float[] IDENTITY_MATRIX =
-            new float[] {
-                1.0f, 0.0f, 0.0f, 0.0f,
-                0.0f, 1.0f, 0.0f, 0.0f,
-                0.0f, 0.0f, 1.0f, 0.0f,
-                0.0f, 0.0f, 0.0f, 1.0f };
+	/*private static final float[] IDENTITY_MATRIX =
+			new float[] {
+				1.0f, 0.0f, 0.0f, 0.0f,
+				0.0f, 1.0f, 0.0f, 0.0f,
+				0.0f, 0.0f, 1.0f, 0.0f,
+				0.0f, 0.0f, 0.0f, 1.0f };
+	
+	private static final FloatBuffer matrix = BufferUtils.createFloatBuffer(16);*/
+	public static Vec3d pos = new Vec3d(0, 0, 0);
+	
+	public RenderPress() {
+		super();
+	}
 
-    private static final FloatBuffer matrix = BufferUtils.createFloatBuffer(16);*/
-    public static Vec3d pos = new Vec3d(0, 0, 0);
-
-    public RenderPress() {
-        super();
-    }
-
-    @Override
-    public void render(TileEntityMachinePress te, double x, double y, double z, float partialTicks, int destroyStage, float alpha) {
-        pos = new Vec3d(x, y, z);
+	@Override
+	public void render(TileEntityMachinePress te, double x, double y, double z, float partialTicks, int destroyStage, float alpha) {
+		pos = new Vec3d(x, y, z);
 		/*if(MainRegistry.useShaders) {
 			if(!ModEventHandlerClient.tester.containsKey(te))
 				ModEventHandlerClient.tester.put(te, new Flashlight(new Vec3d(te.getPos().getX() + 0.5, te.getPos().getY() + 0.5, te.getPos().getZ() + 0.5), new Vec3d(1, 0, 0), 10));
@@ -105,25 +107,26 @@ public class RenderPress extends TileEntitySpecialRenderer<TileEntityMachinePres
 		GL11.glTranslated(x + 0.5D, y, z + 0.5D);
 		GL11.glClipPlane(GL11.GL_CLIP_PLANE0, buf);
 		GL11.glPopMatrix();*/
+		
+		GL11.glPushMatrix();
 
-        GL11.glPushMatrix();
+		GL11.glTranslated(x + 0.5D, y, z + 0.5D);
+		GlStateManager.enableLighting();
+		GL11.glRotatef(180, 0F, 1F, 0F);
+		
+		
+		
+		//ColladaLoader.test.apply(2000);
+		//test.applyAll();
+		this.bindTexture(ResourceManager.press_body_tex);
+		ResourceManager.press_body.renderAll();
 
-        GL11.glTranslated(x + 0.5D, y, z + 0.5D);
-        GlStateManager.enableLighting();
-        GL11.glRotatef(180, 0F, 1F, 0F);
-
-
-        //ColladaLoader.test.apply(2000);
-        //test.applyAll();
-        this.bindTexture(ResourceManager.press_body_tex);
-        ResourceManager.press_body.renderAll();
-
-
-        renderTileEntityAt2(te, x, y, z, partialTicks);
-        GL11.glPopMatrix();
-        //GL11.glDisable(GL11.GL_CLIP_PLANE0);
-        //if(model.controller.getAnim() == AnimationWrapper.EMPTY)
-        //	model.controller.setAnim(new AnimationWrapper(anim_test).onEnd(new EndResult(EndType.REPEAT_REVERSE, null)));
+		
+		renderTileEntityAt2(te, x, y, z, partialTicks);
+		GL11.glPopMatrix();
+		//GL11.glDisable(GL11.GL_CLIP_PLANE0);
+		//if(model.controller.getAnim() == AnimationWrapper.EMPTY)
+		//	model.controller.setAnim(new AnimationWrapper(anim_test).onEnd(new EndResult(EndType.REPEAT_REVERSE, null)));
 		/*GL11.glPushMatrix();
 		if(ResourceManager.model.controller.getAnim() == AnimationWrapper.EMPTY)
 			ResourceManager.model.controller.setAnim(new AnimationWrapper(ResourceManager.anim_test).onEnd(new EndResult(EndType.REPEAT, null)));
@@ -139,65 +142,65 @@ public class RenderPress extends TileEntitySpecialRenderer<TileEntityMachinePres
 			GlStateManager.disableBlend();
 			HbmShaderManager.releaseShader2();
 		}*/
+		
+		// GL11.glMatrixMode(GL11.GL_PROJECTION);
+		// GL11.glLoadIdentity();
+		// GL11.glLoadMatrix(oldMatrix);
+		// GL11.glMatrixMode(GL11.GL_MODELVIEW);
+		// GL11.glViewport(0, 0, Minecraft.getMinecraft().displayWidth,
+		// Minecraft.getMinecraft().displayHeight);
+		// GL11.glDisable(GL11.GL_STENCIL_TEST);
+	}
 
-        // GL11.glMatrixMode(GL11.GL_PROJECTION);
-        // GL11.glLoadIdentity();
-        // GL11.glLoadMatrix(oldMatrix);
-        // GL11.glMatrixMode(GL11.GL_MODELVIEW);
-        // GL11.glViewport(0, 0, Minecraft.getMinecraft().displayWidth,
-        // Minecraft.getMinecraft().displayHeight);
-        // GL11.glDisable(GL11.GL_STENCIL_TEST);
-    }
+	public void renderTileEntityAt2(TileEntity tileEntity, double x, double y, double z, float f) {
+		GL11.glPushMatrix();
+		GL11.glTranslated(0, 1 - 0.125D, 0);
+		GL11.glScalef(0.95F, 1, 0.95F);
 
-    public void renderTileEntityAt2(TileEntity tileEntity, double x, double y, double z, float f) {
-        GL11.glPushMatrix();
-        GL11.glTranslated(0, 1 - 0.125D, 0);
-        GL11.glScalef(0.95F, 1, 0.95F);
+		TileEntityMachinePress press = (TileEntityMachinePress) tileEntity;
+		float f1 = press.progress * (1 - 0.125F) / TileEntityMachinePress.maxProgress;
+		GL11.glTranslated(0, -f1, 0);
+		this.bindTexture(ResourceManager.press_head_tex);
 
-        TileEntityMachinePress press = (TileEntityMachinePress) tileEntity;
-        float f1 = press.progress * (1 - 0.125F) / TileEntityMachinePress.maxProgress;
-        GL11.glTranslated(0, -f1, 0);
-        this.bindTexture(ResourceManager.press_head_tex);
+		ResourceManager.press_head.renderAll();
 
-        ResourceManager.press_head.renderAll();
+		GL11.glPopMatrix();
+		renderTileEntityAt3(tileEntity, x, y, z, f);
+	}
 
-        GL11.glPopMatrix();
-        renderTileEntityAt3(tileEntity, x, y, z, f);
-    }
+	public void renderTileEntityAt3(TileEntity tileEntity, double x, double y, double z, float f) {
+		GL11.glTranslated(0, 1, -1);
+		GlStateManager.enableLighting();
+		GL11.glRotatef(180, 0F, 1F, 0F);
+		GL11.glRotatef(-90, 1F, 0F, 0F);
+		
+		TileEntityMachinePress press = (TileEntityMachinePress) tileEntity;
+		ItemStack stack = new ItemStack(Item.getItemById(press.item), 1, press.meta);
 
-    public void renderTileEntityAt3(TileEntity tileEntity, double x, double y, double z, float f) {
-        GL11.glTranslated(0, 1, -1);
-        GlStateManager.enableLighting();
-        GL11.glRotatef(180, 0F, 1F, 0F);
-        GL11.glRotatef(-90, 1F, 0F, 0F);
+		if(!(stack.getItem() instanceof ItemBlock) && !stack.isEmpty()) {
+			IBakedModel model = Minecraft.getMinecraft().getRenderItem().getItemModelWithOverrides(stack, tileEntity.getWorld(), null);
+			model = ForgeHooksClient.handleCameraTransforms(model, TransformType.FIXED, false);
+			Minecraft.getMinecraft().getTextureManager().bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
+			GL11.glTranslatef(0.0F, 1.0F, 0.0F);
+			GL11.glRotatef(180, 0F, 1F, 0F);
+			GL11.glScalef(0.5F, 0.5F, 0.5F);
+			
+			
+			Minecraft.getMinecraft().getRenderItem().renderItem(stack, model);
+		}
 
-        TileEntityMachinePress press = (TileEntityMachinePress) tileEntity;
-        ItemStack stack = new ItemStack(Item.getItemById(press.item), 1, press.meta);
+	}
 
-        if (!(stack.getItem() instanceof ItemBlock) && !stack.isEmpty()) {
-            IBakedModel model = Minecraft.getMinecraft().getRenderItem().getItemModelWithOverrides(stack, tileEntity.getWorld(), null);
-            model = ForgeHooksClient.handleCameraTransforms(model, TransformType.FIXED, false);
-            Minecraft.getMinecraft().getTextureManager().bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
-            GL11.glTranslatef(0.0F, 1.0F, 0.0F);
-            GL11.glRotatef(180, 0F, 1F, 0F);
-            GL11.glScalef(0.5F, 0.5F, 0.5F);
-
-
-            Minecraft.getMinecraft().getRenderItem().renderItem(stack, model);
-        }
-
-    }
-
-    /**
-     *
-     * @param r
-     *            -
-     * @param l
-     * @param t
-     * @param b
-     * @param zNear
-     * @param zFar
-     */
+	/**
+	 * 
+	 * @param r
+	 *            -
+	 * @param l
+	 * @param t
+	 * @param b
+	 * @param zNear
+	 * @param zFar
+	 */
 	/*public void setupProjMatrix(float r, float l, float t, float b, float zNear, float zFar){
 		
 		float r2, l2, t2, b2, r3, l3, t3, b3;

@@ -5,15 +5,16 @@
  */
 package glmath.glm.vec._2;
 
-import glmath.glm.vec._2.i.Vec2i;
-import glmath.glm.vec._3.Vec3;
-import glmath.glm.vec._4.Vec4;
-
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
 
+import glmath.glm.vec._2.i.Vec2i;
+import glmath.glm.vec._3.Vec3;
+import glmath.glm.vec._4.Vec4;
+
 /**
+ *
  * @author GBarbieri
  */
 public class Vec2 extends FuncRelational {
@@ -111,7 +112,7 @@ public class Vec2 extends FuncRelational {
 
     public FloatBuffer toDfb(FloatBuffer fb, int index) {
         return fb
-                .put(index, x)
+                .put(index + 0, x)
                 .put(index + 1, y);
     }
 
@@ -125,8 +126,8 @@ public class Vec2 extends FuncRelational {
 
     public ByteBuffer toDbb(ByteBuffer bb, int index) {
         return bb
-                .putFloat(index, x)
-                .putFloat(index + Float.BYTES, y);
+                .putFloat(index + 0 * Float.BYTES, x)
+                .putFloat(index + 1 * Float.BYTES, y);
     }
 
     /**

@@ -7,6 +7,7 @@ import com.hbm.packet.PacketDispatcher;
 import com.hbm.packet.SatPanelPacket;
 import com.hbm.saveddata.satellites.Satellite;
 import com.hbm.saveddata.satellites.SatelliteSavedData;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -20,29 +21,29 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ItemSatInterface extends ItemSatChip {
 
-    @SideOnly(Side.CLIENT)
-    public static Satellite currentSat;
+	@SideOnly(Side.CLIENT)
+	public static Satellite currentSat;
+	
+	public ItemSatInterface(String s) {
+		super(s);
+	}
 
-    public ItemSatInterface(String s) {
-        super(s);
-    }
+	@Override
+	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand handIn) {
+		if(world.isRemote) {
 
-    @Override
-    public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand handIn) {
-        if (world.isRemote) {
-
-            if (this == ModItems.sat_interface)
-                player.openGui(MainRegistry.instance, ModItems.guiID_item_sat_interface, world, 0, 0, 0);
-            if (this == ModItems.sat_coord)
-                player.openGui(MainRegistry.instance, ModItems.guiID_item_sat_coord, world, 0, 0, 0);
-        }
-
-        return ActionResult.newResult(EnumActionResult.PASS, player.getHeldItem(handIn));
-    }
-
-    @Override
-    public void onUpdate(ItemStack stack, World world, Entity entity, int itemSlot, boolean isSelected) {
-        //Drillgon200: what in the world
+			if(this == ModItems.sat_interface)
+				player.openGui(MainRegistry.instance, ModItems.guiID_item_sat_interface, world, 0, 0, 0);
+			if(this == ModItems.sat_coord)
+				player.openGui(MainRegistry.instance, ModItems.guiID_item_sat_coord, world, 0, 0, 0);
+		}
+		
+		return ActionResult.newResult(EnumActionResult.PASS, player.getHeldItem(handIn));
+	}
+	
+	@Override
+	public void onUpdate(ItemStack stack, World world, Entity entity, int itemSlot, boolean isSelected) {
+		//Drillgon200: what in the world
 		/*if(!world.isRemote) {
 		    SatelliteSavedData data = (SatelliteSavedData)entity.world.perWorldStorage.loadData(SatelliteSavedData.class, "satellites");
 			
@@ -52,16 +53,16 @@ public class ItemSatInterface extends ItemSatChip {
 			    }
 		    }
 		}*/
-        if (world.isRemote || !(entity instanceof EntityPlayerMP))
-            return;
-
-        if (((EntityPlayerMP) entity).getHeldItemMainhand() != stack)
-            return;
-
-        Satellite sat = SatelliteSavedData.getData(world).getSatFromFreq(getFreq(stack));
-
-        if (sat != null && entity.ticksExisted % 2 == 0) {
-            PacketDispatcher.sendTo(new SatPanelPacket(sat), (EntityPlayerMP) entity);
-        }
-    }
+		if(world.isRemote || !(entity instanceof EntityPlayerMP))
+    		return;
+    	
+    	if(((EntityPlayerMP)entity).getHeldItemMainhand() != stack)
+    		return;
+    	
+    	Satellite sat = SatelliteSavedData.getData(world).getSatFromFreq(getFreq(stack));
+    	
+    	if(sat != null && entity.ticksExisted % 2 == 0) {
+    		PacketDispatcher.sendTo(new SatPanelPacket(sat), (EntityPlayerMP) entity);
+    	}
+	}
 }

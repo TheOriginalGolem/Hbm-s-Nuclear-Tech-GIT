@@ -6,9 +6,9 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
 
 public interface IToolable {
-    boolean onScrew(World world, EntityPlayer player, int x, int y, int z, EnumFacing side, float fX, float fY, float fZ, EnumHand hand, ToolType tool);
+	public boolean onScrew(World world, EntityPlayer player, int x, int y, int z, EnumFacing side, float fX, float fY, float fZ, EnumHand hand, ToolType tool);
 
-    enum ToolType {
-        SCREWDRIVER, HAND_DRILL
-    }
+	public static enum ToolType {
+		SCREWDRIVER, HAND_DRILL
+	}
 }

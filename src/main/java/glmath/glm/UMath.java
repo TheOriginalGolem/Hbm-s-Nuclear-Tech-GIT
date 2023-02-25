@@ -11,6 +11,7 @@ import glmath.joou.ULong;
 import glmath.joou.UShort;
 
 /**
+ *
  * @author GBarbieri
  */
 public class UMath {

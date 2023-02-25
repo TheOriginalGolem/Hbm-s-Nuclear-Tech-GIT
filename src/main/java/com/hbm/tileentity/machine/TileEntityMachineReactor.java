@@ -3,6 +3,7 @@ package com.hbm.tileentity.machine;
 import com.hbm.inventory.BreederRecipes;
 import com.hbm.inventory.BreederRecipes.BreederRecipe;
 import com.hbm.tileentity.TileEntityMachineBase;
+
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
@@ -13,243 +14,252 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class TileEntityMachineReactor extends TileEntityMachineBase implements ITickable {
 
-    public static final int maxPower = 1000;
-    public static final int processingSpeed = 1000;
-    private static final int[] slots_top = new int[]{1};
-    private static final int[] slots_bottom = new int[]{2, 0};
-    private static final int[] slots_side = new int[]{0};
-    public int progress;
-    public int charge;
-    public int heat;
-    AxisAlignedBB bb = null;
+	public int progress;
+	public int charge;
+	public int heat;
+	public static final int maxPower = 1000;
+	public static final int processingSpeed = 1000;
 
-    public TileEntityMachineReactor() {
-        super(3);
-    }
+	private static final int[] slots_top = new int[] { 1 };
+	private static final int[] slots_bottom = new int[] { 2, 0 };
+	private static final int[] slots_side = new int[] { 0 };
 
-    private static int getItemPower(ItemStack stack) {
-        int[] power = BreederRecipes.getFuelValue(stack);
+	public TileEntityMachineReactor() {
+		super(3);
+	}
 
-        if (power == null)
-            return 0;
+	@Override
+	public String getName() {
+		return "container.reactor";
+	}
 
-        return power[1];
-    }
+	public boolean hasItemPower(ItemStack stack) {
+		return BreederRecipes.getFuelValue(stack) != null;
+	}
 
-    private static int getItemHeat(ItemStack stack) {
+	private static int getItemPower(ItemStack stack) {
+		int[] power = BreederRecipes.getFuelValue(stack);
+		
+		if(power == null)
+			return 0;
+		
+		return power[1];
+	}
+	
+	private static int getItemHeat(ItemStack stack) {
+		
+		int[] power = BreederRecipes.getFuelValue(stack);
+		
+		if(power == null)
+			return 0;
+		
+		return power[0];
+	}
 
-        int[] power = BreederRecipes.getFuelValue(stack);
+	@Override
+	public void readFromNBT(NBTTagCompound nbt) {
+		super.readFromNBT(nbt);
 
-        if (power == null)
-            return 0;
+		charge = nbt.getShort("powerTime");
+		heat = nbt.getShort("heat");
+		progress = nbt.getShort("CookTime");
+	}
 
-        return power[0];
-    }
+	@Override
+	public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
 
-    @Override
-    public String getName() {
-        return "container.reactor";
-    }
+		nbt.setShort("powerTime", (short) charge);
+		nbt.setShort("heat", (short) heat);
+		nbt.setShort("cookTime", (short) progress);
 
-    public boolean hasItemPower(ItemStack stack) {
-        return BreederRecipes.getFuelValue(stack) != null;
-    }
+		return super.writeToNBT(nbt);
+	}
+	
+	AxisAlignedBB bb = null;
 
-    @Override
-    public void readFromNBT(NBTTagCompound nbt) {
-        super.readFromNBT(nbt);
+	@Override
+	public AxisAlignedBB getRenderBoundingBox() {
 
-        charge = nbt.getShort("powerTime");
-        heat = nbt.getShort("heat");
-        progress = nbt.getShort("CookTime");
-    }
+		if(bb == null) {
+			bb = new AxisAlignedBB(
+					pos.getX(),
+					pos.getY(),
+					pos.getZ(),
+					pos.getX() + 1,
+					pos.getY() + 3,
+					pos.getZ() + 1
+					);
+		}
 
-    @Override
-    public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
+		return bb;
+	}
 
-        nbt.setShort("powerTime", (short) charge);
-        nbt.setShort("heat", (short) heat);
-        nbt.setShort("cookTime", (short) progress);
+	@Override
+	@SideOnly(Side.CLIENT)
+	public double getMaxRenderDistanceSquared() {
+		return 65536.0D;
+	}
 
-        return super.writeToNBT(nbt);
-    }
+	@Override
+	public int[] getAccessibleSlotsFromSide(EnumFacing e) {
+		int side = e.ordinal();
+		return side == 0 ? slots_bottom : (side == 1 ? slots_top : slots_side);
+	}
 
-    @Override
-    public AxisAlignedBB getRenderBoundingBox() {
+	@Override
+	public boolean canExtractItem(int slot, ItemStack itemStack, int amount) {
+		if(slot == 0) {
+			if(!hasItemPower(inventory.getStackInSlot(0))) {
+				return true;
+			}
 
-        if (bb == null) {
-            bb = new AxisAlignedBB(
-                    pos.getX(),
-                    pos.getY(),
-                    pos.getZ(),
-                    pos.getX() + 1,
-                    pos.getY() + 3,
-                    pos.getZ() + 1
-            );
-        }
+			return false;
+		}
 
-        return bb;
-    }
+		return true;
+	}
 
-    @Override
-    @SideOnly(Side.CLIENT)
-    public double getMaxRenderDistanceSquared() {
-        return 65536.0D;
-    }
+	@Override
+	public boolean isItemValidForSlot(int i, ItemStack stack) {
+		return i == 2 ? false : (i == 0 ? hasItemPower(stack) : true);
+	}
 
-    @Override
-    public int[] getAccessibleSlotsFromSide(EnumFacing e) {
-        int side = e.ordinal();
-        return side == 0 ? slots_bottom : (side == 1 ? slots_top : slots_side);
-    }
+	public int getProgressScaled(int i) {
+		return (progress * i) / processingSpeed;
+	}
 
-    @Override
-    public boolean canExtractItem(int slot, ItemStack itemStack, int amount) {
-        if (slot == 0) {
-            return !hasItemPower(inventory.getStackInSlot(0));
-        }
+	public int getHeatScaled(int i) {
+		return (heat * i) / 4;
+	}
 
-        return true;
-    }
+	public boolean hasPower() {
+		return charge > 0;
+	}
 
-    @Override
-    public boolean isItemValidForSlot(int i, ItemStack stack) {
-        return i != 2 && (i != 0 || hasItemPower(stack));
-    }
+	public boolean isProcessing() {
+		return this.progress > 0;
+	}
 
-    public int getProgressScaled(int i) {
-        return (progress * i) / processingSpeed;
-    }
+	public boolean canProcess() {
+		if(inventory.getStackInSlot(1).isEmpty()) {
+			return false;
+		}
+		
+		BreederRecipe recipe = BreederRecipes.getOutput(inventory.getStackInSlot(1));
+		
+		if(recipe == null)
+			return false;
+		
+		if(this.heat < recipe.heat)
+			return false;
 
-    public int getHeatScaled(int i) {
-        return (heat * i) / 4;
-    }
+		if(inventory.getStackInSlot(2).isEmpty())
+			return true;
 
-    public boolean hasPower() {
-        return charge > 0;
-    }
+		if(!inventory.getStackInSlot(2).isItemEqual(recipe.output))
+			return false;
 
-    public boolean isProcessing() {
-        return this.progress > 0;
-    }
+		if(inventory.getStackInSlot(2).getCount() < inventory.getSlotLimit(2) && inventory.getStackInSlot(2).getCount() < inventory.getStackInSlot(2).getMaxStackSize())
+			return true;
+		else
+			return inventory.getStackInSlot(2).getCount() < recipe.output.getMaxStackSize();
+	}
 
-    public boolean canProcess() {
-        if (inventory.getStackInSlot(1).isEmpty()) {
-            return false;
-        }
+	private void processItem() {
+		if(canProcess()) {
+			
+			BreederRecipe rec = BreederRecipes.getOutput(inventory.getStackInSlot(1));
+			
+			if(rec == null)
+				return;
+			
+			ItemStack itemStack = rec.output;
 
-        BreederRecipe recipe = BreederRecipes.getOutput(inventory.getStackInSlot(1));
+			if(inventory.getStackInSlot(2).isEmpty()) {
+				inventory.setStackInSlot(2, itemStack.copy());
+			} else if(inventory.getStackInSlot(2).isItemEqual(itemStack)) {
+				inventory.getStackInSlot(2).grow(itemStack.getCount());
+			}
 
-        if (recipe == null)
-            return false;
+			for(int i = 1; i < 2; i++) {
+				if(inventory.getStackInSlot(i).isEmpty()) {
+					inventory.setStackInSlot(i, new ItemStack(inventory.getStackInSlot(i).getItem()));
+				} else {
+					inventory.getStackInSlot(i).shrink(1);
+				}
+				if(inventory.getStackInSlot(i).isEmpty()) {
+					inventory.setStackInSlot(i, ItemStack.EMPTY);
+				}
+			}
+		}
+	}
 
-        if (this.heat < recipe.heat)
-            return false;
+	@Override
+	public void update() {
+		if(!world.isRemote) {
+			
+			boolean markDirty = false;
+			
+			if(charge == 0) {
+				heat = 0;
+			}
+			
+			if(hasItemPower(inventory.getStackInSlot(0)) && charge == 0) {
+				
+				charge += getItemPower(inventory.getStackInSlot(0));
+				heat = getItemHeat(inventory.getStackInSlot(0));
+				
+				if(!inventory.getStackInSlot(0).isEmpty()) {
+					ItemStack container = inventory.getStackInSlot(0).getItem().getContainerItem(inventory.getStackInSlot(0));
+					inventory.getStackInSlot(0).shrink(1);
+					
+					if(inventory.getStackInSlot(0).isEmpty()) {
+						inventory.setStackInSlot(0, container);
+					}
+					
+					markDirty = true;
+				}
+			}
 
-        if (inventory.getStackInSlot(2).isEmpty())
-            return true;
+			if(hasPower() && canProcess()) {
+				
+				progress++;
 
-        if (!inventory.getStackInSlot(2).isItemEqual(recipe.output))
-            return false;
+				if(this.progress == TileEntityMachineReactor.processingSpeed) {
+					this.progress = 0;
+					this.charge--;
+					this.processItem();
+					markDirty = true;
+				}
+			} else {
+				progress = 0;
+			}
 
-        if (inventory.getStackInSlot(2).getCount() < inventory.getSlotLimit(2) && inventory.getStackInSlot(2).getCount() < inventory.getStackInSlot(2).getMaxStackSize())
-            return true;
-        else
-            return inventory.getStackInSlot(2).getCount() < recipe.output.getMaxStackSize();
-    }
+			boolean trigger = true;
 
-    private void processItem() {
-        if (canProcess()) {
+			if(hasPower() && canProcess() && this.progress == 0)
+				trigger = false;
 
-            BreederRecipe rec = BreederRecipes.getOutput(inventory.getStackInSlot(1));
+			if(trigger) {
+				markDirty = true;
+			}
 
-            if (rec == null)
-                return;
-
-            ItemStack itemStack = rec.output;
-
-            if (inventory.getStackInSlot(2).isEmpty()) {
-                inventory.setStackInSlot(2, itemStack.copy());
-            } else if (inventory.getStackInSlot(2).isItemEqual(itemStack)) {
-                inventory.getStackInSlot(2).grow(itemStack.getCount());
-            }
-
-            for (int i = 1; i < 2; i++) {
-                if (inventory.getStackInSlot(i).isEmpty()) {
-                    inventory.setStackInSlot(i, new ItemStack(inventory.getStackInSlot(i).getItem()));
-                } else {
-                    inventory.getStackInSlot(i).shrink(1);
-                }
-                if (inventory.getStackInSlot(i).isEmpty()) {
-                    inventory.setStackInSlot(i, ItemStack.EMPTY);
-                }
-            }
-        }
-    }
-
-    @Override
-    public void update() {
-        if (!world.isRemote) {
-
-            boolean markDirty = false;
-
-            if (charge == 0) {
-                heat = 0;
-            }
-
-            if (hasItemPower(inventory.getStackInSlot(0)) && charge == 0) {
-
-                charge += getItemPower(inventory.getStackInSlot(0));
-                heat = getItemHeat(inventory.getStackInSlot(0));
-
-                if (!inventory.getStackInSlot(0).isEmpty()) {
-                    ItemStack container = inventory.getStackInSlot(0).getItem().getContainerItem(inventory.getStackInSlot(0));
-                    inventory.getStackInSlot(0).shrink(1);
-
-                    if (inventory.getStackInSlot(0).isEmpty()) {
-                        inventory.setStackInSlot(0, container);
-                    }
-
-                    markDirty = true;
-                }
-            }
-
-            if (hasPower() && canProcess()) {
-
-                progress++;
-
-                if (this.progress == TileEntityMachineReactor.processingSpeed) {
-                    this.progress = 0;
-                    this.charge--;
-                    this.processItem();
-                    markDirty = true;
-                }
-            } else {
-                progress = 0;
-            }
-
-            boolean trigger = !hasPower() || !canProcess() || this.progress != 0;
-
-            if (trigger) {
-                markDirty = true;
-            }
-
-            if (markDirty)
-                this.markDirty();
-
-            NBTTagCompound data = new NBTTagCompound();
-            data.setShort("charge", (short) charge);
-            data.setShort("progress", (short) progress);
-            data.setByte("heat", (byte) heat);
-            this.networkPack(data, 20);
-        }
-    }
-
-    @Override
-    public void networkUnpack(NBTTagCompound data) {
-        charge = data.getShort("charge");
-        progress = data.getShort("progress");
-        heat = data.getByte("heat");
-    }
+			if(markDirty)
+				this.markDirty();
+			
+			NBTTagCompound data = new NBTTagCompound();
+			data.setShort("charge", (short)charge);
+			data.setShort("progress", (short)progress);
+			data.setByte("heat", (byte)heat);
+			this.networkPack(data, 20);
+		}
+	}
+	
+	@Override
+	public void networkUnpack(NBTTagCompound data) {
+		charge = data.getShort("charge");
+		progress = data.getShort("progress");
+		heat = data.getByte("heat");
+	}
 
 }

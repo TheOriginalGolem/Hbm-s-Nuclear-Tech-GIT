@@ -8,15 +8,13 @@ import net.minecraft.world.World;
 
 public class TEISRBase extends TileEntityItemStackRenderer {
 
-    public IBakedModel itemModel;
-    public TransformType type;
-    /**
-     * Can be null.
-     */
-    public EntityLivingBase entity;
-    public World world;
-
-    public boolean doNullTransform() {
-        return false;
-    }
+	public IBakedModel itemModel;
+	public TransformType type;
+	/** Can be null. */
+	public EntityLivingBase entity;
+	public World world;
+	
+	public boolean doNullTransform(){
+		return false;
+	}
 }

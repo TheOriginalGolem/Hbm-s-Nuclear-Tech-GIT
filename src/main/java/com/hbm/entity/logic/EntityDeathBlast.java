@@ -7,6 +7,7 @@ import com.hbm.lib.HBMSoundHandler;
 import com.hbm.packet.AuxParticlePacketNT;
 import com.hbm.packet.PacketDispatcher;
 import com.hbm.render.amlfrom1710.Vec3;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.SoundCategory;
@@ -17,17 +18,17 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class EntityDeathBlast extends Entity implements IConstantRenderer {
 
-    public static final int maxAge = 60;
+	public static final int maxAge = 60;
+	
+	public EntityDeathBlast(World worldIn) {
+		super(worldIn);
+		this.ignoreFrustumCheck = true;
+	}
 
-    public EntityDeathBlast(World worldIn) {
-        super(worldIn);
-        this.ignoreFrustumCheck = true;
-    }
-
-    @Override
-    public void onUpdate() {
-        if (this.ticksExisted >= maxAge && !world.isRemote) {
-            this.setDead();
+	@Override
+	public void onUpdate() {
+		if(this.ticksExisted >= maxAge && !world.isRemote) {
+			this.setDead();
 
 			/*new ExplosionNT(worldObj, null, posX, posY, posZ, 35).addAllAttrib(ExplosionNT.nukeAttribs).explode();
 			new ExplosionNT(worldObj, null, posX + 10, posY, posZ, 20).addAllAttrib(ExplosionNT.nukeAttribs).explode();
@@ -37,57 +38,60 @@ public class EntityDeathBlast extends Entity implements IConstantRenderer {
 			
 			for(int k = 1; k < 6; k++)
 				new ExplosionNT(worldObj, null, posX, posY - k * 7, posZ, 20).addAllAttrib(ExplosionNT.nukeAttribs).explode();*/
-
-            world.spawnEntity(EntityNukeExplosionMK4.statFacNoRad(world, 40, posX, posY, posZ).mute());
-
-            int count = 100;
-            for (int i = 0; i < count; i++) {
-
-                Vec3 vec = Vec3.createVectorHelper(0.2, 0, 0);
-                vec.rotateAroundY((float) (2 * Math.PI * i / (float) count));
-
-                EntityBulletBase laser = new EntityBulletBase(world, BulletConfigSyncingUtil.MASKMAN_BOLT);
-                laser.setPosition(posX, posY + 2, posZ);
-                laser.motionX = vec.xCoord;
-                laser.motionZ = vec.zCoord;
-                laser.motionY = -0.01;
-                world.spawnEntity(laser);
-            }
-
-            NBTTagCompound data = new NBTTagCompound();
-            data.setString("type", "muke");
-            PacketDispatcher.wrapper.sendToAllAround(new AuxParticlePacketNT(data, posX, posY + 0.5, posZ), new TargetPoint(world.provider.getDimension(), posX, posY, posZ, 250));
-            world.playSound(null, posX, posY, posZ, HBMSoundHandler.mukeExplosion, SoundCategory.HOSTILE, 25.0F, 0.9F);
-        }
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public int getBrightnessForRender() {
+			
+			world.spawnEntity(EntityNukeExplosionMK4.statFacNoRad(world, 40, posX, posY, posZ).mute());
+			
+			int count = 100;
+			for(int i = 0; i < count; i++) {
+				
+				Vec3 vec = Vec3.createVectorHelper(0.2, 0, 0);
+				vec.rotateAroundY((float)(2 * Math.PI * i / (float)count));
+				
+				EntityBulletBase laser = new EntityBulletBase(world, BulletConfigSyncingUtil.MASKMAN_BOLT);
+				laser.setPosition(posX, posY + 2, posZ);
+				laser.motionX = vec.xCoord;
+				laser.motionZ = vec.zCoord;
+				laser.motionY = -0.01;
+				world.spawnEntity(laser);
+			}
+			
+			NBTTagCompound data = new NBTTagCompound();
+			data.setString("type", "muke");
+			PacketDispatcher.wrapper.sendToAllAround(new AuxParticlePacketNT(data, posX, posY + 0.5, posZ), new TargetPoint(world.provider.getDimension(), posX, posY, posZ, 250));
+			world.playSound(null, posX, posY, posZ, HBMSoundHandler.mukeExplosion, SoundCategory.HOSTILE, 25.0F, 0.9F);
+		}
+	}
+	
+	@Override
+	@SideOnly(Side.CLIENT)
+    public int getBrightnessForRender()
+    {
         return 15728880;
     }
 
     @Override
-    public float getBrightness() {
+	public float getBrightness()
+    {
         return 1.0F;
     }
-
+	
     @Override
-    @SideOnly(Side.CLIENT)
-    public boolean isInRangeToRenderDist(double distance) {
+	@SideOnly(Side.CLIENT)
+    public boolean isInRangeToRenderDist(double distance)
+    {
         return distance < 25000;
     }
+	
+	@Override
+	protected void entityInit() {
+	}
 
-    @Override
-    protected void entityInit() {
-    }
+	@Override
+	protected void readEntityFromNBT(NBTTagCompound compound) {
+	}
 
-    @Override
-    protected void readEntityFromNBT(NBTTagCompound compound) {
-    }
-
-    @Override
-    protected void writeEntityToNBT(NBTTagCompound compound) {
-    }
+	@Override
+	protected void writeEntityToNBT(NBTTagCompound compound) {
+	}
 
 }

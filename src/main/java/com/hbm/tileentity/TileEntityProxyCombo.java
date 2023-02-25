@@ -1,6 +1,7 @@
 package com.hbm.tileentity;
 
 import com.hbm.interfaces.IConsumer;
+
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
@@ -12,135 +13,135 @@ import net.minecraftforge.items.CapabilityItemHandler;
 
 public class TileEntityProxyCombo extends TileEntityProxyBase implements IConsumer {
 
-    TileEntity tile;
-    boolean inventory;
-    boolean power;
-    boolean fluid;
+	TileEntity tile;
+	boolean inventory;
+	boolean power;
+	boolean fluid;
+	
+	public TileEntityProxyCombo() {
+	}
+	
+	public TileEntityProxyCombo(boolean inventory, boolean power, boolean fluid) {
+		this.inventory = inventory;
+		this.power = power;
+		this.fluid = fluid;
+	}
 
-    public TileEntityProxyCombo() {
-    }
+	// fewer messy recursive operations
+	public TileEntity getTile() {
 
-    public TileEntityProxyCombo(boolean inventory, boolean power, boolean fluid) {
-        this.inventory = inventory;
-        this.power = power;
-        this.fluid = fluid;
-    }
+		if(tile == null) {
+			tile = this.getTE();
+		}
 
-    // fewer messy recursive operations
-    public TileEntity getTile() {
+		return tile;
+	}
+	
+	@Override
+	public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
+		if(tile == null) {
+			tile = this.getTE();
+			if(tile == null){
+				return super.getCapability(capability, facing);
+			}
+		}
+		if(inventory && capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY){
+			return tile.getCapability(capability, facing);
+		}
+		if(power && capability == CapabilityEnergy.ENERGY){
+			return tile.getCapability(capability, facing);
+		}
+		if(fluid && capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY){
+			return tile.getCapability(capability, facing);
+		}
+		return super.getCapability(capability, facing);
+	}
+	
+	@Override
+	public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
+		if(tile == null) {
+			tile = this.getTE();
+			if(tile == null){
+				return super.hasCapability(capability, facing);
+			}
+		}
+		if(inventory && capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY){
+			return tile.hasCapability(capability, facing);
+		}
+		if(power && capability == CapabilityEnergy.ENERGY){
+			return tile.hasCapability(capability, facing);
+		}
+		if(fluid && capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY){
+			return tile.hasCapability(capability, facing);
+		}
+		return super.hasCapability(capability, facing);
+	}
 
-        if (tile == null) {
-            tile = this.getTE();
-        }
+	@Override
+	public void setPower(long i) {
 
-        return tile;
-    }
+		if(!power)
+			return;
 
-    @Override
-    public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
-        if (tile == null) {
-            tile = this.getTE();
-            if (tile == null) {
-                return super.getCapability(capability, facing);
-            }
-        }
-        if (inventory && capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
-            return tile.getCapability(capability, facing);
-        }
-        if (power && capability == CapabilityEnergy.ENERGY) {
-            return tile.getCapability(capability, facing);
-        }
-        if (fluid && capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY) {
-            return tile.getCapability(capability, facing);
-        }
-        return super.getCapability(capability, facing);
-    }
+		if(getTile() instanceof IConsumer) {
+			((IConsumer)getTile()).setPower(i);
+		}
+	}
 
-    @Override
-    public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
-        if (tile == null) {
-            tile = this.getTE();
-            if (tile == null) {
-                return super.hasCapability(capability, facing);
-            }
-        }
-        if (inventory && capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
-            return tile.hasCapability(capability, facing);
-        }
-        if (power && capability == CapabilityEnergy.ENERGY) {
-            return tile.hasCapability(capability, facing);
-        }
-        if (fluid && capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY) {
-            return tile.hasCapability(capability, facing);
-        }
-        return super.hasCapability(capability, facing);
-    }
+	@Override
+	public long getPower() {
 
-    @Override
-    public long getPower() {
+		if(!power)
+			return 0;
 
-        if (!power)
-            return 0;
+		if(getTile() instanceof IConsumer) {
+			return ((IConsumer)getTile()).getPower();
+		}
 
-        if (getTile() instanceof IConsumer) {
-            return ((IConsumer) getTile()).getPower();
-        }
+		return 0;
+	}
 
-        return 0;
-    }
+	@Override
+	public long getMaxPower() {
 
-    @Override
-    public void setPower(long i) {
+		if(!power)
+			return 0;
 
-        if (!power)
-            return;
+		if(getTile() instanceof IConsumer) {
+			return ((IConsumer)getTile()).getMaxPower();
+		}
 
-        if (getTile() instanceof IConsumer) {
-            ((IConsumer) getTile()).setPower(i);
-        }
-    }
-
-    @Override
-    public long getMaxPower() {
-
-        if (!power)
-            return 0;
-
-        if (getTile() instanceof IConsumer) {
-            return ((IConsumer) getTile()).getMaxPower();
-        }
-
-        return 0;
-    }
-
-    @Override
-    public void readFromNBT(NBTTagCompound compound) {
-        inventory = compound.getBoolean("inv");
-        fluid = compound.getBoolean("flu");
-        power = compound.getBoolean("pow");
-        super.readFromNBT(compound);
-    }
-
-    @Override
-    public NBTTagCompound writeToNBT(NBTTagCompound compound) {
-        compound.setBoolean("inv", inventory);
-        compound.setBoolean("flu", fluid);
-        compound.setBoolean("pow", power);
-        return super.writeToNBT(compound);
-    }
-
-    @Override
-    public NBTTagCompound getUpdateTag() {
-        return writeToNBT(new NBTTagCompound());
-    }
-
-    @Override
-    public SPacketUpdateTileEntity getUpdatePacket() {
-        return new SPacketUpdateTileEntity(pos, 0, getUpdateTag());
-    }
-
-    @Override
-    public void handleUpdateTag(NBTTagCompound tag) {
-        this.readFromNBT(tag);
-    }
+		return 0;
+	}
+	
+	@Override
+	public void readFromNBT(NBTTagCompound compound) {
+		inventory = compound.getBoolean("inv");
+		fluid = compound.getBoolean("flu");
+		power = compound.getBoolean("pow");
+		super.readFromNBT(compound);
+	}
+	
+	@Override
+	public NBTTagCompound writeToNBT(NBTTagCompound compound) {
+		compound.setBoolean("inv", inventory);
+		compound.setBoolean("flu", fluid);
+		compound.setBoolean("pow", power);
+		return super.writeToNBT(compound);
+	}
+	
+	@Override
+	public NBTTagCompound getUpdateTag() {
+		return writeToNBT(new NBTTagCompound());
+	}
+	
+	@Override
+	public SPacketUpdateTileEntity getUpdatePacket() {
+		return new SPacketUpdateTileEntity(pos, 0, getUpdateTag());
+	}
+	
+	@Override
+	public void handleUpdateTag(NBTTagCompound tag) {
+		this.readFromNBT(tag);
+	}
 }

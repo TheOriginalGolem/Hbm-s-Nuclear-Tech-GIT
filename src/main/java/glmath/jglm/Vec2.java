@@ -5,8 +5,8 @@
 package glmath.jglm;
 
 /**
+ * @deprecated 
  * @author gbarbieri
- * @deprecated
  */
 public class Vec2 extends Vec {
 
@@ -60,7 +60,7 @@ public class Vec2 extends Vec {
 
         return new Vec2(x - vec2.x, y - vec2.y);
     }
-
+    
     public Vec2 minus(Vec2i vec2) {
 
         return new Vec2(x - vec2.x, y - vec2.y);
@@ -83,9 +83,9 @@ public class Vec2 extends Vec {
     public void print(String title) {
         System.out.println(title + " (" + x + ", " + y + ")");
     }
-
-    public float[] toFloatArray() {
-
+    
+    public float[] toFloatArray(){
+        
         return new float[]{x, y};
     }
 }

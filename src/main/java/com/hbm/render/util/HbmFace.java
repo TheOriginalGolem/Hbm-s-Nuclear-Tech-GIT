@@ -4,6 +4,7 @@ import com.hbm.render.amlfrom1710.Tessellator;
 import com.hbm.render.amlfrom1710.TextureCoordinate;
 import com.hbm.render.amlfrom1710.Vec3;
 import com.hbm.render.amlfrom1710.Vertex;
+
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -14,13 +15,16 @@ public class HbmFace {
     public TextureCoordinate[] textureCoordinates;
 
     @SideOnly(Side.CLIENT)
-    public void addFaceForRender(Tessellator tessellator) {
+    public void addFaceForRender(Tessellator tessellator)
+    {
         addFaceForRender(tessellator, 0.0005F);
     }
 
     @SideOnly(Side.CLIENT)
-    public void addFaceForRender(Tessellator tessellator, float textureOffset) {
-        if (faceNormal == null) {
+    public void addFaceForRender(Tessellator tessellator, float textureOffset)
+    {
+        if (faceNormal == null)
+        {
             faceNormal = this.calculateFaceNormal();
         }
 
@@ -29,8 +33,10 @@ public class HbmFace {
         float averageU = 0F;
         float averageV = 0F;
 
-        if ((textureCoordinates != null) && (textureCoordinates.length > 0)) {
-            for (int i = 0; i < textureCoordinates.length; ++i) {
+        if ((textureCoordinates != null) && (textureCoordinates.length > 0))
+        {
+            for (int i = 0; i < textureCoordinates.length; ++i)
+            {
                 averageU += textureCoordinates[i].u;
                 averageV += textureCoordinates[i].v;
             }
@@ -41,27 +47,34 @@ public class HbmFace {
 
         float offsetU, offsetV;
 
-        for (int i = 0; i < vertices.length; ++i) {
+        for (int i = 0; i < vertices.length; ++i)
+        {
 
-            if ((textureCoordinates != null) && (textureCoordinates.length > 0)) {
+            if ((textureCoordinates != null) && (textureCoordinates.length > 0))
+            {
                 offsetU = textureOffset;
                 offsetV = textureOffset;
 
-                if (textureCoordinates[i].u > averageU) {
+                if (textureCoordinates[i].u > averageU)
+                {
                     offsetU = -offsetU;
                 }
-                if (textureCoordinates[i].v > averageV) {
+                if (textureCoordinates[i].v > averageV)
+                {
                     offsetV = -offsetV;
                 }
 
-                tessellator.addVertexWithUV(vertices[i].x, vertices[i].y, vertices[i].z, textureCoordinates[i].u + offsetU, textureCoordinates[i].v + offsetV + (((double) System.currentTimeMillis() % HmfController.modoloMod) / HmfController.quotientMod));
-            } else {
+                tessellator.addVertexWithUV(vertices[i].x, vertices[i].y, vertices[i].z, textureCoordinates[i].u + offsetU, textureCoordinates[i].v + offsetV + (((double)System.currentTimeMillis() % HmfController.modoloMod) / HmfController.quotientMod));
+            }
+            else
+            {
                 tessellator.addVertex(vertices[i].x, vertices[i].y, vertices[i].z);
             }
         }
     }
 
-    public Vertex calculateFaceNormal() {
+    public Vertex calculateFaceNormal()
+    {
         Vec3 v1 = Vec3.createVectorHelper(vertices[1].x - vertices[0].x, vertices[1].y - vertices[0].y, vertices[1].z - vertices[0].z);
         Vec3 v2 = Vec3.createVectorHelper(vertices[2].x - vertices[0].x, vertices[2].y - vertices[0].y, vertices[2].z - vertices[0].z);
         Vec3 normalVector = null;

@@ -8,6 +8,7 @@ package glmath.glm.vec._3.bool;
 import glmath.glm.Glm;
 
 /**
+ *
  * @author GBarbieri
  */
 abstract class FuncRelational {

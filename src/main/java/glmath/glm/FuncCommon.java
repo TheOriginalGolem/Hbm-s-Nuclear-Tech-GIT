@@ -44,6 +44,7 @@ import glmath.joou.ULong;
 import glmath.joou.UShort;
 
 /**
+ *
  * @author elect
  */
 abstract class FuncCommon extends FuncRelational {
@@ -776,7 +777,7 @@ abstract class FuncCommon extends FuncRelational {
 
     public static Vec3i floatBitsToUInt(Vec3 v, Vec3i res) {
         if (v.x < 0 || v.y < 0 || v.z < 0) {
-            throw new NumberFormatException("Value is out of range : ");
+            throw new NumberFormatException("Value is out of range : "); 
         }
         res.x = (int) (Double.doubleToLongBits(v.x) & UInt.MAX_VALUE);
         res.y = (int) (Double.doubleToLongBits(v.y) & UInt.MAX_VALUE);
@@ -3718,10 +3719,10 @@ abstract class FuncCommon extends FuncRelational {
 
     /**
      * Compare two floating points for equality within a margin of error.
-     * <p>
+     *
      * This can be used to compensate for inequality caused by accumulated
      * floating point math errors.
-     * <p>
+     *
      * The error margin is specified in ULPs (units of least precision). A
      * one-ULP difference means there are no representable floats in between.
      * E.g. 0f and 1.4e-45f are one ULP apart. So are -6.1340704f and -6.13407f.
@@ -3729,8 +3730,8 @@ abstract class FuncCommon extends FuncRelational {
      * 1-5 ULPs should be enough.
      *
      * @param expected The expected value.
-     * @param actual   The actual value.
-     * @param maxUlps  The maximum difference in ULPs.
+     * @param actual The actual value.
+     * @param maxUlps The maximum difference in ULPs.
      * @return
      */
     public static boolean compareFloatEquals(float expected, float actual) {

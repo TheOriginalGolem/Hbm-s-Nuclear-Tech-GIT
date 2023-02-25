@@ -1,6 +1,6 @@
 {
-  "parent": "item/generated",
-  "textures": {
-    "layer0": "hbm:items/padlock"
-  }
+	"parent": "item/generated",
+	"textures": {
+		"layer0": "hbm:items/padlock"
+	}
 }

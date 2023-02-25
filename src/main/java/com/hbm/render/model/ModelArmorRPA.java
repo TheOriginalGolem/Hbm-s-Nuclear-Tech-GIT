@@ -1,11 +1,13 @@
 package com.hbm.render.model;
 
+import org.lwjgl.opengl.GL11;
+
 import com.hbm.main.ResourceManager;
 import com.hbm.render.loader.ModelRendererObj;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.Entity;
-import org.lwjgl.opengl.GL11;
 
 public class ModelArmorRPA extends ModelArmorBase {
 
@@ -30,23 +32,23 @@ public class ModelArmorRPA extends ModelArmorBase {
         GL11.glPushMatrix();
         GlStateManager.shadeModel(GL11.GL_SMOOTH);
 
-        if (type == 3) {
+        if(type == 3) {
             Minecraft.getMinecraft().renderEngine.bindTexture(ResourceManager.rpa_helmet);
             head.render(par7);
         }
-        if (type == 2) {
+        if(type == 2) {
             Minecraft.getMinecraft().renderEngine.bindTexture(ResourceManager.rpa_chest);
             body.render(par7);
             Minecraft.getMinecraft().renderEngine.bindTexture(ResourceManager.rpa_arm);
             leftArm.render(par7);
             rightArm.render(par7);
         }
-        if (type == 1) {
+        if(type == 1) {
             Minecraft.getMinecraft().renderEngine.bindTexture(ResourceManager.rpa_leg);
             leftLeg.render(par7);
             rightLeg.render(par7);
         }
-        if (type == 0) {
+        if(type == 0) {
             Minecraft.getMinecraft().renderEngine.bindTexture(ResourceManager.rpa_leg);
             leftFoot.render(par7);
             rightFoot.render(par7);

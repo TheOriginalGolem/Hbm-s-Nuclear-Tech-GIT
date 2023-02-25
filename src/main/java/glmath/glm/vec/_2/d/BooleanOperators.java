@@ -6,6 +6,7 @@
 package glmath.glm.vec._2.d;
 
 /**
+ *
  * @author elect
  */
 abstract class BooleanOperators extends ArithmeticOperators {

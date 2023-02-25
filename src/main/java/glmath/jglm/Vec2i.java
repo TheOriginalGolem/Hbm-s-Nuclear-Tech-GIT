@@ -5,8 +5,8 @@
 package glmath.jglm;
 
 /**
- * @author gbarbieri
  * @deprecated
+ * @author gbarbieri
  */
 public class Vec2i extends Veci {
 

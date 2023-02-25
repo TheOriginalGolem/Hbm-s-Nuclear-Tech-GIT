@@ -10,49 +10,49 @@ import net.minecraft.world.World;
 
 public class EntityBeamVortex extends EntityBeamBase {
 
-    public EntityBeamVortex(World worldIn) {
-        super(worldIn);
-    }
+	public EntityBeamVortex(World worldIn) {
+		super(worldIn);
+	}
+	
+	public EntityBeamVortex(World world, EntityPlayer player) {
+		super(world, player);
+	}
+	
+	@Override
+	public void onUpdate() {
+		if(world.isRemote){
+			if(this.ticksExisted == 1){
+				EntityPlayer player = this.world.getPlayerEntityByName(this.getDataManager().get(PLAYER_NAME));
+				
+			}
+			return;
+		}
+		if(this.ticksExisted > 10)
+			this.setDead();
 
-    public EntityBeamVortex(World world, EntityPlayer player) {
-        super(world, player);
-    }
+		if(this.ticksExisted > 1)
+			return;
 
-    @Override
-    public void onUpdate() {
-        if (world.isRemote) {
-            if (this.ticksExisted == 1) {
-                EntityPlayer player = this.world.getPlayerEntityByName(this.getDataManager().get(PLAYER_NAME));
+		int range = 100;
 
-            }
-            return;
-        }
-        if (this.ticksExisted > 10)
-            this.setDead();
+		EntityPlayer player = world.getPlayerEntityByName(this.getDataManager().get(PLAYER_NAME));
 
-        if (this.ticksExisted > 1)
-            return;
+		if(player != null) {
 
-        int range = 100;
+			RayTraceResult pos = Library.rayTrace(player, range, 1, false, true, false);
 
-        EntityPlayer player = world.getPlayerEntityByName(this.getDataManager().get(PLAYER_NAME));
+			if(pos == null)
+				return;
 
-        if (player != null) {
+			world.spawnParticle(EnumParticleTypes.CLOUD, pos.hitVec.x, pos.hitVec.y, pos.hitVec.z, 0, 0, 0);
+			world.playSound(null, pos.hitVec.x, pos.hitVec.y, pos.hitVec.z, SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.HOSTILE, 1, 1);
 
-            RayTraceResult pos = Library.rayTrace(player, range, 1, false, true, false);
+			//List<Entity> list = world.getEntitiesWithinAABB(Entity.class, new AxisAlignedBB(pos.hitVec.x - 1, pos.hitVec.y - 1, pos.hitVec.z - 1, pos.hitVec.x + 1, pos.hitVec.y + 1, pos.hitVec.z + 1));
 
-            if (pos == null)
-                return;
+			//for(Entity e : list)
+			//	e.attackEntityFrom(ModDamageSource.radiation, 5);
+		}
+	}
 
-            world.spawnParticle(EnumParticleTypes.CLOUD, pos.hitVec.x, pos.hitVec.y, pos.hitVec.z, 0, 0, 0);
-            world.playSound(null, pos.hitVec.x, pos.hitVec.y, pos.hitVec.z, SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.HOSTILE, 1, 1);
-
-            //List<Entity> list = world.getEntitiesWithinAABB(Entity.class, new AxisAlignedBB(pos.hitVec.x - 1, pos.hitVec.y - 1, pos.hitVec.z - 1, pos.hitVec.x + 1, pos.hitVec.y + 1, pos.hitVec.z + 1));
-
-            //for(Entity e : list)
-            //	e.attackEntityFrom(ModDamageSource.radiation, 5);
-        }
-    }
-
-
+	
 }

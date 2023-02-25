@@ -9,6 +9,7 @@ import glmath.glm.vec._2.Vec2;
 import glmath.glm.vec._4.Vec4;
 
 /**
+ *
  * @author GBarbieri
  */
 public class Vertex_v2fc4f {

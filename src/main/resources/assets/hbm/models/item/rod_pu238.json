@@ -1,6 +1,6 @@
 {
-  "parent": "item/generated",
-  "textures": {
-    "layer0": "hbm:items/rod_pu238"
-  }
+	"parent": "item/generated",
+	"textures": {
+		"layer0": "hbm:items/rod_pu238"
+	}
 }

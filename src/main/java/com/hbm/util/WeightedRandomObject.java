@@ -5,28 +5,28 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.WeightedRandom;
 
 public class WeightedRandomObject extends WeightedRandom.Item {
+	
+	Object item;
 
-    Object item;
+	public WeightedRandomObject(Object o, int weight) {
+		super(weight);
+		item = o;
+	}
+	
+	public ItemStack asStack() {
+		
+		if(item instanceof ItemStack)
+			return ((ItemStack) item).copy();
+		
+		return null;
+	}
+	
+	public Item asItem() {
 
-    public WeightedRandomObject(Object o, int weight) {
-        super(weight);
-        item = o;
-    }
+		if(item instanceof Item)
+			return (Item) item;
 
-    public ItemStack asStack() {
-
-        if (item instanceof ItemStack)
-            return ((ItemStack) item).copy();
-
-        return null;
-    }
-
-    public Item asItem() {
-
-        if (item instanceof Item)
-            return (Item) item;
-
-        return null;
-    }
+		return null;
+	}
 
 }

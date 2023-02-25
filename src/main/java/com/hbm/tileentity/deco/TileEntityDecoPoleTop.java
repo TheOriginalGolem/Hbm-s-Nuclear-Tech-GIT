@@ -5,11 +5,12 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class TileEntityDecoPoleTop extends TileEntity {
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public double getMaxRenderDistanceSquared() {
-        return 65536.0D;
-    }
+	
+	@Override
+	@SideOnly(Side.CLIENT)
+	public double getMaxRenderDistanceSquared()
+	{
+		return 65536.0D;
+	}
 
 }

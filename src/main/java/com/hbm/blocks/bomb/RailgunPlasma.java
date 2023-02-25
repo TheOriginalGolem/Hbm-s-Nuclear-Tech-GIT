@@ -1,9 +1,12 @@
 package com.hbm.blocks.bomb;
 
+import java.util.List;
+
 import com.hbm.blocks.ModBlocks;
 import com.hbm.lib.InventoryHelper;
 import com.hbm.main.MainRegistry;
 import com.hbm.tileentity.bomb.TileEntityRailgun;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.SoundType;
@@ -20,90 +23,90 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-import java.util.List;
-
 public class RailgunPlasma extends BlockContainer {
 
-    private static boolean keepInventory;
+	public RailgunPlasma(Material p_i45386_1_, String s) {
+		super(p_i45386_1_);
+		this.setUnlocalizedName(s);
+		this.setRegistryName(s);
+		
+		ModBlocks.ALL_BLOCKS.add(this);
+	}
+	
+	@Override
+	public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
+		tooltip.add("Uses Deuterium Plasma Capsules");
+	}
+	
+	@Override
+	public Block setSoundType(SoundType sound) {
+		return super.setSoundType(sound);
+	}
 
-    public RailgunPlasma(Material p_i45386_1_, String s) {
-        super(p_i45386_1_);
-        this.setUnlocalizedName(s);
-        this.setRegistryName(s);
+	@Override
+	public TileEntity createNewTileEntity(World p_149915_1_, int p_149915_2_) {
+		return new TileEntityRailgun();
+	}
+	
+	@Override
+	public EnumBlockRenderType getRenderType(IBlockState state) {
+		return EnumBlockRenderType.ENTITYBLOCK_ANIMATED;
+	}
+	
+	@Override
+	public boolean isOpaqueCube(IBlockState state) {
+		return false;
+	}
 
-        ModBlocks.ALL_BLOCKS.add(this);
-    }
+	@Override
+	public boolean isBlockNormalCube(IBlockState state) {
+		return false;
+	}
 
-    @Override
-    public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
-        tooltip.add("Uses Deuterium Plasma Capsules");
-    }
+	@Override
+	public boolean isNormalCube(IBlockState state) {
+		return false;
+	}
 
-    @Override
-    public Block setSoundType(SoundType sound) {
-        return super.setSoundType(sound);
-    }
+	@Override
+	public boolean isNormalCube(IBlockState state, IBlockAccess world, BlockPos pos) {
+		return false;
+	}
 
-    @Override
-    public TileEntity createNewTileEntity(World p_149915_1_, int p_149915_2_) {
-        return new TileEntityRailgun();
-    }
+	@Override
+	public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {
+		return false;
+	}
+	
+	@Override
+	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+		if(world.isRemote)
+		{
+			return true;
+		} else if(!player.isSneaking())
+		{
+			player.openGui(MainRegistry.instance, ModBlocks.guiID_railgun, world, pos.getX(), pos.getY(), pos.getZ());
+			return true;
+		} else {
+			return true;
+		}
+	}
+	
+	private static boolean keepInventory;
+	
+	@Override
+	public void breakBlock(World world, BlockPos pos, IBlockState state) {
+		if(!keepInventory) {
+			TileEntity tileentity = world.getTileEntity(pos);
 
-    @Override
-    public EnumBlockRenderType getRenderType(IBlockState state) {
-        return EnumBlockRenderType.ENTITYBLOCK_ANIMATED;
-    }
+			if(tileentity instanceof TileEntityRailgun) {
+				InventoryHelper.dropInventoryItems(world, pos, ((TileEntityRailgun) tileentity).specialProvider);
 
-    @Override
-    public boolean isOpaqueCube(IBlockState state) {
-        return false;
-    }
+				world.updateComparatorOutputLevel(pos, this);
+			}
+		}
 
-    @Override
-    public boolean isBlockNormalCube(IBlockState state) {
-        return false;
-    }
-
-    @Override
-    public boolean isNormalCube(IBlockState state) {
-        return false;
-    }
-
-    @Override
-    public boolean isNormalCube(IBlockState state, IBlockAccess world, BlockPos pos) {
-        return false;
-    }
-
-    @Override
-    public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {
-        return false;
-    }
-
-    @Override
-    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-        if (world.isRemote) {
-            return true;
-        } else if (!player.isSneaking()) {
-            player.openGui(MainRegistry.instance, ModBlocks.guiID_railgun, world, pos.getX(), pos.getY(), pos.getZ());
-            return true;
-        } else {
-            return true;
-        }
-    }
-
-    @Override
-    public void breakBlock(World world, BlockPos pos, IBlockState state) {
-        if (!keepInventory) {
-            TileEntity tileentity = world.getTileEntity(pos);
-
-            if (tileentity instanceof TileEntityRailgun) {
-                InventoryHelper.dropInventoryItems(world, pos, ((TileEntityRailgun) tileentity).specialProvider);
-
-                world.updateComparatorOutputLevel(pos, this);
-            }
-        }
-
-        super.breakBlock(world, pos, state);
-    }
+		super.breakBlock(world, pos, state);
+	}
 
 }

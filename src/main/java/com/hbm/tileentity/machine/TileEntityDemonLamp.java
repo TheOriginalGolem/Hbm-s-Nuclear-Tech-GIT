@@ -1,9 +1,12 @@
 package com.hbm.tileentity.machine;
 
+import java.util.List;
+
 import com.hbm.render.amlfrom1710.Vec3;
 import com.hbm.util.ContaminationUtil;
 import com.hbm.util.ContaminationUtil.ContaminationType;
 import com.hbm.util.ContaminationUtil.HazardType;
+
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.tileentity.TileEntity;
@@ -15,65 +18,63 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import java.util.List;
-
 public class TileEntityDemonLamp extends TileEntity implements ITickable {
 
-    @Override
-    public void update() {
-        if (!world.isRemote) {
-            radiate(world, pos.getX(), pos.getY(), pos.getZ());
-        }
-    }
+	@Override
+	public void update(){
+		if(!world.isRemote) {
+			radiate(world, pos.getX(), pos.getY(), pos.getZ());
+		}
+	}
 
-    @SuppressWarnings("deprecation")
-    private void radiate(World world, int x, int y, int z) {
+	@SuppressWarnings("deprecation")
+	private void radiate(World world, int x, int y, int z){
 
-        float rads = 100000F;
-        double range = 25D;
+		float rads = 100000F;
+		double range = 25D;
 
-        List<EntityLivingBase> entities = world.getEntitiesWithinAABB(EntityLivingBase.class, new AxisAlignedBB(x + 0.5, y + 0.5, z + 0.5, x + 0.5, y + 0.5, z + 0.5).grow(range, range, range));
-        for (EntityLivingBase e : entities) {
+		List<EntityLivingBase> entities = world.getEntitiesWithinAABB(EntityLivingBase.class, new AxisAlignedBB(x + 0.5, y + 0.5, z + 0.5, x + 0.5, y + 0.5, z + 0.5).grow(range, range, range));
+		for(EntityLivingBase e : entities) {
 
-            Vec3 vec = Vec3.createVectorHelper(e.posX - (x + 0.5), (e.posY + e.getEyeHeight()) - (y + 0.5), e.posZ - (z + 0.5));
-            double len = vec.lengthVector();
-            vec = vec.normalize();
+			Vec3 vec = Vec3.createVectorHelper(e.posX - (x + 0.5), (e.posY + e.getEyeHeight()) - (y + 0.5), e.posZ - (z + 0.5));
+			double len = vec.lengthVector();
+			vec = vec.normalize();
 
-            float res = 0;
+			float res = 0;
 
-            for (int i = 1; i < len; i++) {
+			for(int i = 1; i < len; i++) {
 
-                int ix = (int) Math.floor(x + 0.5 + vec.xCoord * i);
-                int iy = (int) Math.floor(y + 0.5 + vec.yCoord * i);
-                int iz = (int) Math.floor(z + 0.5 + vec.zCoord * i);
+				int ix = (int)Math.floor(x + 0.5 + vec.xCoord * i);
+				int iy = (int)Math.floor(y + 0.5 + vec.yCoord * i);
+				int iz = (int)Math.floor(z + 0.5 + vec.zCoord * i);
+				
+				BlockPos pos = new BlockPos(ix, iy, iz);
+				IBlockState state = world.getBlockState(pos);
+				res += state.getBlock().getExplosionResistance(null);
+			}
 
-                BlockPos pos = new BlockPos(ix, iy, iz);
-                IBlockState state = world.getBlockState(pos);
-                res += state.getBlock().getExplosionResistance(null);
-            }
+			if(res < 1)
+				res = 1;
 
-            if (res < 1)
-                res = 1;
+			float eRads = rads;
+			eRads /= (float)res;
+			eRads /= (float)(len * len);
 
-            float eRads = rads;
-            eRads /= res;
-            eRads /= (float) (len * len);
+			ContaminationUtil.contaminate(e, HazardType.RADIATION, ContaminationType.CREATIVE, eRads);
+			if(len < 2) {
+				e.attackEntityFrom(DamageSource.IN_FIRE, 100);
+			}
+		}
+	}
 
-            ContaminationUtil.contaminate(e, HazardType.RADIATION, ContaminationType.CREATIVE, eRads);
-            if (len < 2) {
-                e.attackEntityFrom(DamageSource.IN_FIRE, 100);
-            }
-        }
-    }
+	@Override
+	public AxisAlignedBB getRenderBoundingBox(){
+		return TileEntity.INFINITE_EXTENT_AABB;
+	}
 
-    @Override
-    public AxisAlignedBB getRenderBoundingBox() {
-        return TileEntity.INFINITE_EXTENT_AABB;
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public double getMaxRenderDistanceSquared() {
-        return 65536.0D;
-    }
+	@Override
+	@SideOnly(Side.CLIENT)
+	public double getMaxRenderDistanceSquared(){
+		return 65536.0D;
+	}
 }

@@ -5,8 +5,8 @@
 package glmath.jglm;
 
 /**
- * @author gbarbieri
  * @deprecated
+ * @author gbarbieri
  */
 public class Mat4 extends Mat {
 
@@ -93,6 +93,145 @@ public class Mat4 extends Mat {
         c3.w = diag.w;
     }
 
+//    public void rotationYawPitchRoll(float yaw, float pitch, float roll) {
+//
+//        if (yaw != 0) {
+//         
+//            rotationX(roll)
+//        }
+//    }
+    public float[] toFloatArray() {
+        return new float[]{
+            c0.x, c0.y, c0.z, c0.w,
+            c1.x, c1.y, c1.z, c1.w,
+            c2.x, c2.y, c2.z, c2.w,
+            c3.x, c3.y, c3.z, c3.w};
+    }
+
+    public void setDiagonal(Vec3 vec3) {
+        c0.x = vec3.x;
+        c1.y = vec3.y;
+        c2.z = vec3.z;
+    }
+
+    public Mat4 mult(Mat4 second) {
+        float[] result = new float[16];
+        float partial;
+
+//        System.out.println("this: ");
+//        print();
+//        System.out.println("second: ");
+//        second.print();
+        for (int i = 0; i < order; i++) {
+//            System.out.println("i: " + i);
+            for (int j = 0; j < order; j++) {
+//                System.out.println("j: " + j);
+                partial = 0;
+
+                for (int k = 0; k < order; k++) {
+                    partial += toFloatArray()[4 * k + j] * second.toFloatArray()[4 * i + k];
+//                    System.out.println("k: " + k + " first: " + this.toFloatArray()[4 * k + j] + " second: " + second.toFloatArray()[4 * i + k] + " = "
+//                            + (this.toFloatArray()[4 * k + j] * second.toFloatArray()[4 * i + k]) + " partial: " + partial);
+                }
+                result[4 * i + j] = partial;
+            }
+        }
+
+        return new Mat4(result);
+    }
+
+    public Vec4 mult(Vec4 second) {
+
+        float[] result = new float[4];
+        float partial;
+
+        for (int i = 0; i < order; i++) {
+
+            partial = 0;
+
+            for (int j = 0; j < order; j++) {
+
+                partial += toFloatArray()[4 * j + i] * second.toFloatArray()[j];
+            }
+            result[i] = partial;
+        }
+
+        return new Vec4(result);
+    }
+
+    public Mat4 transpose() {
+
+        float[] transposed = new float[]{
+            c0.x, c1.x, c2.x, c3.x,
+            c0.y, c1.y, c2.y, c3.y,
+            c0.z, c1.z, c2.z, c3.z,
+            c0.w, c1.w, c2.w, c3.w};
+
+        return new Mat4(transposed);
+    }
+
+    public Quat toQuaternion() {
+
+        float trace, s, x, y, z, w;
+
+        trace = c0.x + c1.y + c2.z;
+
+        if (trace > 0) {
+
+            s = (float) (Math.sqrt(trace + 1) * 2);
+
+            x = (c1.z - c2.y) / s;
+
+            y = (c2.x - c0.z) / s;
+
+            z = (c0.y - c1.x) / s;
+
+            w = 0.25f * s;
+
+        } else if ((c0.x > c1.y) && (c0.x > c2.z)) {
+
+            s = (float) (Math.sqrt(1.0f + c0.x - c1.y - c2.z) * 2);
+
+            x = 0.25f * s;
+
+            y = (c1.x + c0.y) / s;
+
+            z = (c2.x + c0.z) / s;
+
+            w = (c1.z - c2.y) / s;
+
+        } else if (c1.y > c2.z) {
+
+            s = (float) (Math.sqrt(1.0f + c1.y - c0.x - c2.z) * 2);
+
+            x = (c1.x + c0.y) / s;
+
+            y = 0.25f * s;
+
+            z = (c2.y + c1.z) / s;
+
+            w = (c2.x - c0.z) / s;
+
+        } else {
+
+            s = (float) (Math.sqrt(1.0f + c2.z - c0.x - c1.y) * 2);
+
+            x = (c2.x + c0.z) / s;
+
+            y = (c2.y + c1.z) / s;
+
+            z = 0.25f * s;
+
+            w = (c0.y - c1.x) / s;
+        }
+
+        Quat quat = new Quat(x, y, z, w);
+
+        quat.normalize();
+
+        return quat;
+    }
+
     public static Mat4 translate(Vec3 translation) {
 
         Mat4 translationMat = new Mat4(1.0f);
@@ -167,145 +306,6 @@ public class Mat4 extends Mat {
         translationMat.c3 = new Vec4(cameraPt.negated(), 1.0f);
 
         return rotationMat.mult(translationMat);
-    }
-
-    //    public void rotationYawPitchRoll(float yaw, float pitch, float roll) {
-//
-//        if (yaw != 0) {
-//
-//            rotationX(roll)
-//        }
-//    }
-    public float[] toFloatArray() {
-        return new float[]{
-                c0.x, c0.y, c0.z, c0.w,
-                c1.x, c1.y, c1.z, c1.w,
-                c2.x, c2.y, c2.z, c2.w,
-                c3.x, c3.y, c3.z, c3.w};
-    }
-
-    public void setDiagonal(Vec3 vec3) {
-        c0.x = vec3.x;
-        c1.y = vec3.y;
-        c2.z = vec3.z;
-    }
-
-    public Mat4 mult(Mat4 second) {
-        float[] result = new float[16];
-        float partial;
-
-//        System.out.println("this: ");
-//        print();
-//        System.out.println("second: ");
-//        second.print();
-        for (int i = 0; i < order; i++) {
-//            System.out.println("i: " + i);
-            for (int j = 0; j < order; j++) {
-//                System.out.println("j: " + j);
-                partial = 0;
-
-                for (int k = 0; k < order; k++) {
-                    partial += toFloatArray()[4 * k + j] * second.toFloatArray()[4 * i + k];
-//                    System.out.println("k: " + k + " first: " + this.toFloatArray()[4 * k + j] + " second: " + second.toFloatArray()[4 * i + k] + " = "
-//                            + (this.toFloatArray()[4 * k + j] * second.toFloatArray()[4 * i + k]) + " partial: " + partial);
-                }
-                result[4 * i + j] = partial;
-            }
-        }
-
-        return new Mat4(result);
-    }
-
-    public Vec4 mult(Vec4 second) {
-
-        float[] result = new float[4];
-        float partial;
-
-        for (int i = 0; i < order; i++) {
-
-            partial = 0;
-
-            for (int j = 0; j < order; j++) {
-
-                partial += toFloatArray()[4 * j + i] * second.toFloatArray()[j];
-            }
-            result[i] = partial;
-        }
-
-        return new Vec4(result);
-    }
-
-    public Mat4 transpose() {
-
-        float[] transposed = new float[]{
-                c0.x, c1.x, c2.x, c3.x,
-                c0.y, c1.y, c2.y, c3.y,
-                c0.z, c1.z, c2.z, c3.z,
-                c0.w, c1.w, c2.w, c3.w};
-
-        return new Mat4(transposed);
-    }
-
-    public Quat toQuaternion() {
-
-        float trace, s, x, y, z, w;
-
-        trace = c0.x + c1.y + c2.z;
-
-        if (trace > 0) {
-
-            s = (float) (Math.sqrt(trace + 1) * 2);
-
-            x = (c1.z - c2.y) / s;
-
-            y = (c2.x - c0.z) / s;
-
-            z = (c0.y - c1.x) / s;
-
-            w = 0.25f * s;
-
-        } else if ((c0.x > c1.y) && (c0.x > c2.z)) {
-
-            s = (float) (Math.sqrt(1.0f + c0.x - c1.y - c2.z) * 2);
-
-            x = 0.25f * s;
-
-            y = (c1.x + c0.y) / s;
-
-            z = (c2.x + c0.z) / s;
-
-            w = (c1.z - c2.y) / s;
-
-        } else if (c1.y > c2.z) {
-
-            s = (float) (Math.sqrt(1.0f + c1.y - c0.x - c2.z) * 2);
-
-            x = (c1.x + c0.y) / s;
-
-            y = 0.25f * s;
-
-            z = (c2.y + c1.z) / s;
-
-            w = (c2.x - c0.z) / s;
-
-        } else {
-
-            s = (float) (Math.sqrt(1.0f + c2.z - c0.x - c1.y) * 2);
-
-            x = (c2.x + c0.z) / s;
-
-            y = (c2.y + c1.z) / s;
-
-            z = 0.25f * s;
-
-            w = (c0.y - c1.x) / s;
-        }
-
-        Quat quat = new Quat(x, y, z, w);
-
-        quat.normalize();
-
-        return quat;
     }
 
     public boolean isEqual(Mat4 second) {

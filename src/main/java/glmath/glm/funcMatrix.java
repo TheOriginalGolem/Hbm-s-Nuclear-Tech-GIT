@@ -8,6 +8,7 @@ package glmath.glm;
 import glmath.glm.mat._4.Mat4;
 
 /**
+ *
  * @author GBarbieri
  */
 abstract class funcMatrix extends packing {

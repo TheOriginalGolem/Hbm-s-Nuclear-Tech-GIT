@@ -6,6 +6,7 @@
 package glmath.glm.mat._3;
 
 /**
+ *
  * @author fschaefers
  */
 abstract class matrixQuery extends matrixTransform {

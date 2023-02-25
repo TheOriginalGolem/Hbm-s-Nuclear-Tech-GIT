@@ -9,6 +9,7 @@ import glmath.glm.Glm;
 import glmath.glm.vec._2.bool.Vec2bool;
 
 /**
+ *
  * @author elect
  */
 abstract class FuncRelational extends funcGeometric {
@@ -20,7 +21,7 @@ abstract class FuncRelational extends funcGeometric {
     public boolean all() {
         return Glm.all((Vec2) this);
     }
-
+    
     public Vec2 not_() {
         return Glm.not((Vec2) this, new Vec2());
     }

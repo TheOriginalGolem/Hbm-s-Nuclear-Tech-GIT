@@ -8,6 +8,7 @@ package glmath.glm.vec._3.s;
 import glmath.glm.Glm;
 
 /**
+ *
  * @author GBarbieri
  */
 abstract class ArithmeticOperators {

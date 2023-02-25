@@ -6,6 +6,7 @@
 package glmath.glm.vec._4.b;
 
 /**
+ *
  * @author elect
  */
 public class Vec4b extends FuncRelational {
@@ -35,7 +36,7 @@ public class Vec4b extends FuncRelational {
         this.z = (byte) z;
         this.w = (byte) w;
     }
-
+    
     public Vec4b set(int x, int y, int z, int w) {
         return set((byte) x, (byte) y, (byte) z, (byte) w);
     }

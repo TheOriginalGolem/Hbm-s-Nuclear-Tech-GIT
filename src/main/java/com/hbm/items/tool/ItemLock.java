@@ -3,6 +3,7 @@ package com.hbm.items.tool;
 import com.hbm.lib.HBMSoundHandler;
 import com.hbm.tileentity.machine.TileEntityDummy;
 import com.hbm.tileentity.machine.TileEntityLockableBase;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -15,57 +16,57 @@ import net.minecraft.world.World;
 
 public class ItemLock extends ItemKeyPin {
 
-    public double lockMod = 0.1D;
+	public double lockMod = 0.1D;
+	
+	public ItemLock(double mod, String s) {
+		super(s);
+		lockMod = mod;
+	}
 
-    public ItemLock(double mod, String s) {
-        super(s);
-        lockMod = mod;
-    }
+	@Override
+	public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+		ItemStack stack = player.getHeldItem(hand);
+		if(getPins(stack) != 0) {
+			TileEntity te = world.getTileEntity(pos);
 
-    @Override
-    public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-        ItemStack stack = player.getHeldItem(hand);
-        if (getPins(stack) != 0) {
-            TileEntity te = world.getTileEntity(pos);
+			if(te != null && te instanceof TileEntityLockableBase) {
+				TileEntityLockableBase tile = (TileEntityLockableBase) te;
 
-            if (te != null && te instanceof TileEntityLockableBase) {
-                TileEntityLockableBase tile = (TileEntityLockableBase) te;
+				if (!tile.isLocked() && tile.canLock(player, hand, facing)) {
+					tile.setPins(getPins(stack));
+					tile.lock();
+					tile.setMod(this.lockMod);
+					world.playSound((EntityPlayer) null, player.posX, player.posY, player.posZ, HBMSoundHandler.lockHang, SoundCategory.PLAYERS, 1.0F, 1.0F);
+					stack.shrink(1);
+					return EnumActionResult.SUCCESS;
+				}
 
-                if (!tile.isLocked() && tile.canLock(player, hand, facing)) {
-                    tile.setPins(getPins(stack));
-                    tile.lock();
-                    tile.setMod(this.lockMod);
-                    world.playSound(null, player.posX, player.posY, player.posZ, HBMSoundHandler.lockHang, SoundCategory.PLAYERS, 1.0F, 1.0F);
-                    stack.shrink(1);
-                    return EnumActionResult.SUCCESS;
-                }
+				return EnumActionResult.FAIL;
+			}
+			if(te != null && te instanceof TileEntityDummy) {
+				
+				TileEntityDummy dummy = (TileEntityDummy)te;
+				TileEntity target = world.getTileEntity(dummy.target);
 
-                return EnumActionResult.FAIL;
-            }
-            if (te != null && te instanceof TileEntityDummy) {
+				if(target != null && target instanceof TileEntityLockableBase) {
+					TileEntityLockableBase tile = (TileEntityLockableBase)target;
+					
+					if(tile.isLocked())
+						return EnumActionResult.FAIL;
+					
+					tile.setPins(getPins(stack));
+					tile.lock();
+					tile.setMod(lockMod);
 
-                TileEntityDummy dummy = (TileEntityDummy) te;
-                TileEntity target = world.getTileEntity(dummy.target);
-
-                if (target != null && target instanceof TileEntityLockableBase) {
-                    TileEntityLockableBase tile = (TileEntityLockableBase) target;
-
-                    if (tile.isLocked())
-                        return EnumActionResult.FAIL;
-
-                    tile.setPins(getPins(stack));
-                    tile.lock();
-                    tile.setMod(lockMod);
-
-                    world.playSound(null, player.posX, player.posY, player.posZ, HBMSoundHandler.lockHang, SoundCategory.PLAYERS, 1.0F, 1.0F);
-                    stack.shrink(1);
-
-                    return EnumActionResult.SUCCESS;
-                }
-            }
-        }
-
-        return EnumActionResult.PASS;
-    }
-
+		        	world.playSound(null, player.posX, player.posY, player.posZ, HBMSoundHandler.lockHang, SoundCategory.PLAYERS, 1.0F, 1.0F);
+					stack.shrink(1);
+					
+					return EnumActionResult.SUCCESS;
+				}
+			}
+		}
+		
+		return EnumActionResult.PASS;
+	}
+	
 }

@@ -1,12 +1,15 @@
 package com.hbm.entity.missile;
 
-import api.hbm.entity.IRadarDetectable;
+import java.util.ArrayList;
+import java.util.List;
+
 import com.hbm.entity.logic.IChunkLoader;
 import com.hbm.explosion.ExplosionLarge;
 import com.hbm.interfaces.IConstantRenderer;
 import com.hbm.main.MainRegistry;
 import com.hbm.packet.AuxParticlePacket;
 import com.hbm.packet.PacketDispatcher;
+import api.hbm.entity.IRadarDetectable;
 import net.minecraft.entity.Entity;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
@@ -27,272 +30,273 @@ import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public abstract class EntityMissileBaseAdvanced extends Entity implements IChunkLoader, IConstantRenderer, IRadarDetectable {
 
-    public static final DataParameter<Integer> HEALTH = EntityDataManager.createKey(EntityMissileBaseAdvanced.class, DataSerializers.VARINT);
-    public int velocity;
-    public int health = 50;
-    public double prevPosX2;
-    public double prevPosY2;
-    public double prevPosZ2;
-    int startX;
-    int startZ;
-    int targetX;
-    int targetZ;
-    double decelY;
-    double accelXZ;
-    boolean isCluster = false;
-    List<ChunkPos> loadedChunks = new ArrayList<ChunkPos>();
-    private Ticket loaderTicket;
+	public static final DataParameter<Integer> HEALTH = EntityDataManager.createKey(EntityMissileBaseAdvanced.class, DataSerializers.VARINT);
 
-    public EntityMissileBaseAdvanced(World worldIn) {
-        super(worldIn);
-        this.ignoreFrustumCheck = true;
-        startX = (int) posX;
-        startZ = (int) posZ;
-        targetX = (int) posX;
-        targetZ = (int) posZ;
-    }
+	int startX;
+	int startZ;
+	int targetX;
+	int targetZ;
+	public int velocity;
+	double decelY;
+	double accelXZ;
+	boolean isCluster = false;
+	private Ticket loaderTicket;
+	public int health = 50;
 
-    public EntityMissileBaseAdvanced(World world, float x, float y, float z, int a, int b) {
-        super(world);
-        this.ignoreFrustumCheck = true;
+	public double prevPosX2;
+	public double prevPosY2;
+	public double prevPosZ2;
+
+	public EntityMissileBaseAdvanced(World worldIn) {
+		super(worldIn);
+		this.ignoreFrustumCheck = true;
+		startX = (int) posX;
+		startZ = (int) posZ;
+		targetX = (int) posX;
+		targetZ = (int) posZ;
+	}
+
+	public EntityMissileBaseAdvanced(World world, float x, float y, float z, int a, int b) {
+		super(world);
+		this.ignoreFrustumCheck = true;
 		/*this.posX = x;
 		this.posY = y;
 		this.posZ = z;*/
-        this.setLocationAndAngles(x, y, z, 0, 0);
-        startX = (int) x;
-        startZ = (int) z;
-        targetX = a;
-        targetZ = b;
-        this.motionY = 2;
+		this.setLocationAndAngles(x, y, z, 0, 0);
+		startX = (int) x;
+		startZ = (int) z;
+		targetX = a;
+		targetZ = b;
+		this.motionY = 2;
 
-        Vec3d vector = new Vec3d(targetX - startX, 0, targetZ - startZ);
-        accelXZ = decelY = 1 / vector.lengthVector();
-        decelY *= 2;
+		Vec3d vector = new Vec3d(targetX - startX, 0, targetZ - startZ);
+		accelXZ = decelY = 1 / vector.lengthVector();
+		decelY *= 2;
 
-        velocity = 1;
+		velocity = 1;
 
-        this.setSize(1.5F, 1.5F);
-    }
+		this.setSize(1.5F, 1.5F);
+	}
 
-    @Override
-    public boolean canBeCollidedWith() {
-        return true;
-    }
+	@Override
+	public boolean canBeCollidedWith() {
+		return true;
+	}
 
-    @Override
-    public boolean attackEntityFrom(DamageSource source, float amount) {
-        if (this.isEntityInvulnerable(source)) {
-            return false;
-        } else {
-            if (!this.isDead && !this.world.isRemote) {
-                health -= amount;
+	@Override
+	public boolean attackEntityFrom(DamageSource source, float amount) {
+		if (this.isEntityInvulnerable(source)) {
+			return false;
+		} else {
+			if (!this.isDead && !this.world.isRemote) {
+				health -= amount;
 
-                if (this.health <= 0) {
-                    this.setDead();
-                    this.killMissile();
-                }
-            }
+				if (this.health <= 0) {
+					this.setDead();
+					this.killMissile();
+				}
+			}
 
-            return true;
-        }
-    }
+			return true;
+		}
+	}
 
-    private void killMissile() {
-        ExplosionLarge.explode(world, posX, posY, posZ, 5, true, false, true);
-        ExplosionLarge.spawnShrapnelShower(world, posX, posY, posZ, motionX, motionY, motionZ, 15, 0.075);
-        ExplosionLarge.spawnMissileDebris(world, posX, posY, posZ, motionX, motionY, motionZ, 0.25, getDebris(), getDebrisRareDrop());
-    }
+	private void killMissile() {
+		ExplosionLarge.explode(world, posX, posY, posZ, 5, true, false, true);
+		ExplosionLarge.spawnShrapnelShower(world, posX, posY, posZ, motionX, motionY, motionZ, 15, 0.075);
+		ExplosionLarge.spawnMissileDebris(world, posX, posY, posZ, motionX, motionY, motionZ, 0.25, getDebris(), getDebrisRareDrop());
+	}
 
-    @Override
-    public void init(Ticket ticket) {
-        if (!world.isRemote) {
+	List<ChunkPos> loadedChunks = new ArrayList<ChunkPos>();
 
-            if (ticket != null) {
+	@Override
+	public void init(Ticket ticket) {
+		if (!world.isRemote) {
 
-                if (loaderTicket == null) {
+			if (ticket != null) {
 
-                    loaderTicket = ticket;
-                    loaderTicket.bindEntity(this);
-                    loaderTicket.getModData();
-                }
+				if (loaderTicket == null) {
 
-                ForgeChunkManager.forceChunk(loaderTicket, new ChunkPos(chunkCoordX, chunkCoordZ));
-            }
-        }
-    }
+					loaderTicket = ticket;
+					loaderTicket.bindEntity(this);
+					loaderTicket.getModData();
+				}
 
-    public void loadNeighboringChunks(int newChunkX, int newChunkZ) {
-        if (!world.isRemote && loaderTicket != null) {
-            for (ChunkPos chunk : loadedChunks) {
-                ForgeChunkManager.unforceChunk(loaderTicket, chunk);
-            }
+				ForgeChunkManager.forceChunk(loaderTicket, new ChunkPos(chunkCoordX, chunkCoordZ));
+			}
+		}
+	}
 
-            loadedChunks.clear();
-            loadedChunks.add(new ChunkPos(newChunkX, newChunkZ));
-            loadedChunks.add(new ChunkPos(newChunkX + 1, newChunkZ + 1));
-            loadedChunks.add(new ChunkPos(newChunkX - 1, newChunkZ - 1));
-            loadedChunks.add(new ChunkPos(newChunkX + 1, newChunkZ - 1));
-            loadedChunks.add(new ChunkPos(newChunkX - 1, newChunkZ + 1));
-            loadedChunks.add(new ChunkPos(newChunkX + 1, newChunkZ));
-            loadedChunks.add(new ChunkPos(newChunkX, newChunkZ + 1));
-            loadedChunks.add(new ChunkPos(newChunkX - 1, newChunkZ));
-            loadedChunks.add(new ChunkPos(newChunkX, newChunkZ - 1));
+	public void loadNeighboringChunks(int newChunkX, int newChunkZ) {
+		if (!world.isRemote && loaderTicket != null) {
+			for (ChunkPos chunk : loadedChunks) {
+				ForgeChunkManager.unforceChunk(loaderTicket, chunk);
+			}
 
-            for (ChunkPos chunk : loadedChunks) {
-                ForgeChunkManager.forceChunk(loaderTicket, chunk);
-            }
-        }
-    }
+			loadedChunks.clear();
+			loadedChunks.add(new ChunkPos(newChunkX, newChunkZ));
+			loadedChunks.add(new ChunkPos(newChunkX + 1, newChunkZ + 1));
+			loadedChunks.add(new ChunkPos(newChunkX - 1, newChunkZ - 1));
+			loadedChunks.add(new ChunkPos(newChunkX + 1, newChunkZ - 1));
+			loadedChunks.add(new ChunkPos(newChunkX - 1, newChunkZ + 1));
+			loadedChunks.add(new ChunkPos(newChunkX + 1, newChunkZ));
+			loadedChunks.add(new ChunkPos(newChunkX, newChunkZ + 1));
+			loadedChunks.add(new ChunkPos(newChunkX - 1, newChunkZ));
+			loadedChunks.add(new ChunkPos(newChunkX, newChunkZ - 1));
 
-    @Override
-    protected void entityInit() {
-        init(ForgeChunkManager.requestTicket(MainRegistry.instance, world, Type.ENTITY));
-        this.getDataManager().register(HEALTH, Integer.valueOf(this.health));
-    }
+			for (ChunkPos chunk : loadedChunks) {
+				ForgeChunkManager.forceChunk(loaderTicket, chunk);
+			}
+		}
+	}
 
-    @Override
-    protected void readEntityFromNBT(NBTTagCompound nbt) {
-        motionX = nbt.getDouble("moX");
-        motionY = nbt.getDouble("moY");
-        motionZ = nbt.getDouble("moZ");
-        posX = nbt.getDouble("poX");
-        posY = nbt.getDouble("poY");
-        posZ = nbt.getDouble("poZ");
-        decelY = nbt.getDouble("decel");
-        accelXZ = nbt.getDouble("accel");
-        targetX = nbt.getInteger("tX");
-        targetZ = nbt.getInteger("tZ");
-        startX = nbt.getInteger("sX");
-        startZ = nbt.getInteger("sZ");
-        velocity = nbt.getInteger("veloc");
+	@Override
+	protected void entityInit() {
+		init(ForgeChunkManager.requestTicket(MainRegistry.instance, world, Type.ENTITY));
+		this.getDataManager().register(HEALTH, Integer.valueOf(this.health));
+	}
 
-    }
+	@Override
+	protected void readEntityFromNBT(NBTTagCompound nbt) {
+		motionX = nbt.getDouble("moX");
+		motionY = nbt.getDouble("moY");
+		motionZ = nbt.getDouble("moZ");
+		posX = nbt.getDouble("poX");
+		posY = nbt.getDouble("poY");
+		posZ = nbt.getDouble("poZ");
+		decelY = nbt.getDouble("decel");
+		accelXZ = nbt.getDouble("accel");
+		targetX = nbt.getInteger("tX");
+		targetZ = nbt.getInteger("tZ");
+		startX = nbt.getInteger("sX");
+		startZ = nbt.getInteger("sZ");
+		velocity = nbt.getInteger("veloc");
 
-    @Override
-    protected void writeEntityToNBT(NBTTagCompound nbt) {
-        nbt.setDouble("moX", motionX);
-        nbt.setDouble("moY", motionY);
-        nbt.setDouble("moZ", motionZ);
-        nbt.setDouble("poX", posX);
-        nbt.setDouble("poY", posY);
-        nbt.setDouble("poZ", posZ);
-        nbt.setDouble("decel", decelY);
-        nbt.setDouble("accel", accelXZ);
-        nbt.setInteger("tX", targetX);
-        nbt.setInteger("tZ", targetZ);
-        nbt.setInteger("sX", startX);
-        nbt.setInteger("sZ", startZ);
-        nbt.setInteger("veloc", velocity);
+	}
 
-    }
+	@Override
+	protected void writeEntityToNBT(NBTTagCompound nbt) {
+		nbt.setDouble("moX", motionX);
+		nbt.setDouble("moY", motionY);
+		nbt.setDouble("moZ", motionZ);
+		nbt.setDouble("poX", posX);
+		nbt.setDouble("poY", posY);
+		nbt.setDouble("poZ", posZ);
+		nbt.setDouble("decel", decelY);
+		nbt.setDouble("accel", accelXZ);
+		nbt.setInteger("tX", targetX);
+		nbt.setInteger("tZ", targetZ);
+		nbt.setInteger("sX", startX);
+		nbt.setInteger("sZ", startZ);
+		nbt.setInteger("veloc", velocity);
 
-    @Override
-    public void onUpdate() {
+	}
 
-        if (velocity < 1)
-            velocity = 1;
-        if (this.ticksExisted > 80)
-            velocity = 3;
-        else if (this.ticksExisted > 40)
-            velocity = 2;
+	@Override
+	public void onUpdate() {
 
-        this.getDataManager().set(HEALTH, Integer.valueOf(this.health));
+		if (velocity < 1)
+			velocity = 1;
+		if (this.ticksExisted > 80)
+			velocity = 3;
+		else if (this.ticksExisted > 40)
+			velocity = 2;
 
-        this.prevPosX = this.posX;
-        this.prevPosY = this.posY;
-        this.prevPosZ = this.posZ;
-        this.prevPosX2 = this.posX;
-        this.prevPosY2 = this.posY;
-        this.prevPosZ2 = this.posZ;
+		this.getDataManager().set(HEALTH, Integer.valueOf(this.health));
 
-        //TODO: instead of crappy skipping, implement a hitscan
-        for (int i = 0; i < velocity; i++) {
-            // this.posX += this.motionX;
-            // this.posY += this.motionY;
-            // this.posZ += this.motionZ;
-            this.setLocationAndAngles(posX + this.motionX, posY + this.motionY, posZ + this.motionZ, 0, 0);
+		this.prevPosX = this.posX;
+		this.prevPosY = this.posY;
+		this.prevPosZ = this.posZ;
+		this.prevPosX2 = this.posX;
+		this.prevPosY2 = this.posY;
+		this.prevPosZ2 = this.posZ;
 
-            this.rotation();
+		 //TODO: instead of crappy skipping, implement a hitscan
+		for (int i = 0; i < velocity; i++) {
+			// this.posX += this.motionX;
+			// this.posY += this.motionY;
+			// this.posZ += this.motionZ;
+			this.setLocationAndAngles(posX + this.motionX, posY + this.motionY, posZ + this.motionZ, 0, 0);
 
-            this.motionY -= decelY;
+			this.rotation();
 
-            Vec3d vector = new Vec3d(targetX - startX, 0, targetZ - startZ);
-            vector = vector.normalize();
-            vector = new Vec3d(vector.x * accelXZ, vector.y, vector.z * accelXZ);
+			this.motionY -= decelY;
 
-            if (motionY > 0) {
-                motionX += vector.x;
-                motionZ += vector.z;
-            }
+			Vec3d vector = new Vec3d(targetX - startX, 0, targetZ - startZ);
+			vector = vector.normalize();
+			vector = new Vec3d(vector.x * accelXZ, vector.y, vector.z * accelXZ);
 
-            if (motionY < 0) {
-                motionX -= vector.x;
-                motionZ -= vector.z;
-            }
+			if (motionY > 0) {
+				motionX += vector.x;
+				motionZ += vector.z;
+			}
 
-            if (!this.world.isRemote)
-                // this.worldObj.spawnEntityInWorld(new
-                // EntitySmokeFX(this.worldObj, this.posX, this.posY, this.posZ,
-                // 0.0, 0.0, 0.0));
-                PacketDispatcher.wrapper.sendToAllAround(new AuxParticlePacket(posX, posY, posZ, 2), new TargetPoint(world.provider.getDimension(), posX, posY, posZ, 300));
-            BlockPos pos = new BlockPos((int) this.posX, (int) this.posY, (int) this.posZ);
-            if (this.world.getBlockState(pos).getBlock() != Blocks.AIR && this.world.getBlockState(pos).getBlock() != Blocks.WATER && this.world.getBlockState(pos) != Blocks.FLOWING_WATER) {
+			if (motionY < 0) {
+				motionX -= vector.x;
+				motionZ -= vector.z;
+			}
 
-                if (!this.world.isRemote) {
-                    onImpact();
-                }
-                this.setDead();
-                return;
-            }
+			if (!this.world.isRemote)
+				// this.worldObj.spawnEntityInWorld(new
+				// EntitySmokeFX(this.worldObj, this.posX, this.posY, this.posZ,
+				// 0.0, 0.0, 0.0));
+				PacketDispatcher.wrapper.sendToAllAround(new AuxParticlePacket(posX, posY, posZ, 2), new TargetPoint(world.provider.getDimension(), posX, posY, posZ, 300));
+			BlockPos pos = new BlockPos((int) this.posX, (int) this.posY, (int) this.posZ);
+			if (this.world.getBlockState(pos).getBlock() != Blocks.AIR && this.world.getBlockState(pos).getBlock() != Blocks.WATER && this.world.getBlockState(pos) != Blocks.FLOWING_WATER) {
 
-            loadNeighboringChunks((int) (posX / 16), (int) (posZ / 16));
+				if (!this.world.isRemote) {
+					onImpact();
+				}
+				this.setDead();
+				return;
+			}
 
-            if (motionY < -1 && this.isCluster && !world.isRemote) {
-                cluster();
-                this.setDead();
-                return;
-            }
-        }
-    }
+			loadNeighboringChunks((int) (posX / 16), (int) (posZ / 16));
 
-    protected void rotation() {
-        float f2 = MathHelper.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
-        this.rotationYaw = (float) (Math.atan2(this.motionX, this.motionZ) * 180.0D / Math.PI);
+			if (motionY < -1 && this.isCluster && !world.isRemote) {
+				cluster();
+				this.setDead();
+				return;
+			}
+		}
+	}
 
-        for (this.rotationPitch = (float) (Math.atan2(this.motionY, f2) * 180.0D / Math.PI) - 90; this.rotationPitch - this.prevRotationPitch < -180.0F; this.prevRotationPitch -= 360.0F) {
-        }
+	protected void rotation() {
+		float f2 = MathHelper.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
+		this.rotationYaw = (float) (Math.atan2(this.motionX, this.motionZ) * 180.0D / Math.PI);
 
-        while (this.rotationPitch - this.prevRotationPitch >= 180.0F) {
-            this.prevRotationPitch += 360.0F;
-        }
+		for (this.rotationPitch = (float) (Math.atan2(this.motionY, f2) * 180.0D / Math.PI) - 90; this.rotationPitch - this.prevRotationPitch < -180.0F; this.prevRotationPitch -= 360.0F) {
+			;
+		}
 
-        while (this.rotationYaw - this.prevRotationYaw < -180.0F) {
-            this.prevRotationYaw -= 360.0F;
-        }
+		while (this.rotationPitch - this.prevRotationPitch >= 180.0F) {
+			this.prevRotationPitch += 360.0F;
+		}
 
-        while (this.rotationYaw - this.prevRotationYaw >= 180.0F) {
-            this.prevRotationYaw += 360.0F;
-        }
-    }
+		while (this.rotationYaw - this.prevRotationYaw < -180.0F) {
+			this.prevRotationYaw -= 360.0F;
+		}
 
-    @Override
-    @SideOnly(Side.CLIENT)
-    public boolean isInRangeToRenderDist(double distance) {
-        return distance < 500000;
-    }
+		while (this.rotationYaw - this.prevRotationYaw >= 180.0F) {
+			this.prevRotationYaw += 360.0F;
+		}
+	}
 
-    public abstract void onImpact();
+	@Override
+	@SideOnly(Side.CLIENT)
+	public boolean isInRangeToRenderDist(double distance) {
+		return distance < 500000;
+	}
 
-    public abstract List<ItemStack> getDebris();
+	public abstract void onImpact();
 
-    public abstract ItemStack getDebrisRareDrop();
+	public abstract List<ItemStack> getDebris();
 
-    public void cluster() {
-    }
+	public abstract ItemStack getDebrisRareDrop();
+
+	public void cluster() {
+	}
 
 }

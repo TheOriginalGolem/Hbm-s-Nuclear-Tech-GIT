@@ -9,11 +9,11 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class IconUtil {
 
-    public static TextureAtlasSprite getTextureFromBlock(Block b) {
-        return Minecraft.getMinecraft().getBlockRendererDispatcher().getModelForState(b.getDefaultState()).getParticleTexture();
-    }
+	public static TextureAtlasSprite getTextureFromBlock(Block b) {
+		return Minecraft.getMinecraft().getBlockRendererDispatcher().getModelForState(b.getDefaultState()).getParticleTexture();
+	}
 
-    //Drillgon200: Pretty sure I can't do this in 1.12.2, particle textures will have to do.
+	//Drillgon200: Pretty sure I can't do this in 1.12.2, particle textures will have to do.
 	/*public static ResourceLocation getTextureFromBlockAndSide(Block b, int side) {
 
 

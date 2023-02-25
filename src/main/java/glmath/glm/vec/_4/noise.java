@@ -6,6 +6,7 @@
 package glmath.glm.vec._4;
 
 /**
+ *
  * @author elect
  */
 abstract class noise extends FuncRelational {

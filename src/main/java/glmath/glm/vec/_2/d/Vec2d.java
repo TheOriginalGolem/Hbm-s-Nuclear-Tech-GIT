@@ -6,6 +6,7 @@
 package glmath.glm.vec._2.d;
 
 /**
+ *
  * @author elect
  */
 public class Vec2d extends FuncRelational {
@@ -16,7 +17,7 @@ public class Vec2d extends FuncRelational {
     }
 
     public Vec2d(int x, int y) {
-        this(x, (double) y);
+        this((double) x, (double) y);
     }
 
     public Vec2d(double x, double y) {

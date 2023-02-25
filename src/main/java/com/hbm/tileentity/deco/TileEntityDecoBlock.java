@@ -7,15 +7,16 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class TileEntityDecoBlock extends TileEntity {
 
-    @Override
-    public AxisAlignedBB getRenderBoundingBox() {
-        return TileEntity.INFINITE_EXTENT_AABB;
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public double getMaxRenderDistanceSquared() {
-        return 65536.0D;
-    }
-
+	@Override
+	public AxisAlignedBB getRenderBoundingBox() {
+		return TileEntity.INFINITE_EXTENT_AABB;
+	}
+	
+	@Override
+	@SideOnly(Side.CLIENT)
+	public double getMaxRenderDistanceSquared()
+	{
+		return 65536.0D;
+	}
+	
 }

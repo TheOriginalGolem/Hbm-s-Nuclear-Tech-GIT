@@ -4,6 +4,7 @@ import com.hbm.items.ModItems;
 import com.hbm.items.gear.ArmorFSB;
 import com.hbm.lib.ModDamageSource;
 import com.hbm.render.model.ModelArmorBJ;
+
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -15,39 +16,39 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ArmorBJ extends ArmorFSBPowered {
 
-    @SideOnly(Side.CLIENT)
-    ModelArmorBJ[] models;
+	public ArmorBJ(ArmorMaterial material, int layer, EntityEquipmentSlot slot, String texture, long maxPower, long chargeRate, long consumption, long drain, String s) {
+		super(material, layer, slot, texture, maxPower, chargeRate, consumption, drain, s);
+	}
 
-    public ArmorBJ(ArmorMaterial material, int layer, EntityEquipmentSlot slot, String texture, long maxPower, long chargeRate, long consumption, long drain, String s) {
-        super(material, layer, slot, texture, maxPower, chargeRate, consumption, drain, s);
-    }
+	@SideOnly(Side.CLIENT)
+	ModelArmorBJ[] models;
+	
+	@Override
+	@SideOnly(Side.CLIENT)
+	public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack, EntityEquipmentSlot armorSlot, ModelBiped _default) {
+		if(models == null) {
+			models = new ModelArmorBJ[4];
 
-    @Override
-    @SideOnly(Side.CLIENT)
-    public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack, EntityEquipmentSlot armorSlot, ModelBiped _default) {
-        if (models == null) {
-            models = new ModelArmorBJ[4];
+			for(int i = 0; i < 4; i++)
+				models[i] = new ModelArmorBJ(i);
+		}
+		return models[3-armorSlot.getIndex()];
+	}
+	
+	@Override
+	public void onArmorTick(World world, EntityPlayer player, ItemStack itemStack) {
+		super.onArmorTick(world, player, itemStack);
 
-            for (int i = 0; i < 4; i++)
-                models[i] = new ModelArmorBJ(i);
-        }
-        return models[3 - armorSlot.getIndex()];
-    }
+    	if(this == ModItems.bj_helmet && ArmorFSB.hasFSBArmorIgnoreCharge(player) && !ArmorFSB.hasFSBArmor(player)) {
 
-    @Override
-    public void onArmorTick(World world, EntityPlayer player, ItemStack itemStack) {
-        super.onArmorTick(world, player, itemStack);
+    		ItemStack helmet = player.inventory.armorInventory.get(3);
 
-        if (this == ModItems.bj_helmet && ArmorFSB.hasFSBArmorIgnoreCharge(player) && !ArmorFSB.hasFSBArmor(player)) {
+    		if(!player.inventory.addItemStackToInventory(helmet))
+    			player.dropItem(helmet, false);
 
-            ItemStack helmet = player.inventory.armorInventory.get(3);
+    		player.inventory.armorInventory.set(3, ItemStack.EMPTY);
 
-            if (!player.inventory.addItemStackToInventory(helmet))
-                player.dropItem(helmet, false);
-
-            player.inventory.armorInventory.set(3, ItemStack.EMPTY);
-
-            player.attackEntityFrom(ModDamageSource.lunar, 1000);
-        }
-    }
+    		player.attackEntityFrom(ModDamageSource.lunar, 1000);
+    	}
+	}
 }

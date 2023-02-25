@@ -1,5 +1,9 @@
 package com.hbm.items.machine;
 
+import java.util.List;
+
+import javax.annotation.Nonnull;
+
 import com.hbm.interfaces.IHasCustomModel;
 import com.hbm.inventory.AssemblerRecipes;
 import com.hbm.inventory.RecipesCommon.ComparableStack;
@@ -8,6 +12,7 @@ import com.hbm.items.ModItems;
 import com.hbm.lib.RefStrings;
 import com.hbm.main.MainRegistry;
 import com.hbm.util.I18nUtil;
+
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
@@ -22,163 +27,160 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
 
-import javax.annotation.Nonnull;
-import java.util.List;
-
 public class ItemAssemblyTemplate extends Item implements IHasCustomModel {
 
-    public static final ModelResourceLocation location = new ModelResourceLocation(
-            RefStrings.MODID + ":assembly_template", "inventory");
-
-    //private static IForgeRegistry<Item> itemRegistry;
-    //private static IForgeRegistry<Block> blockRegistry;
-
-
-    //public static List<AssemblerRecipe> recipes = new ArrayList<AssemblerRecipe>();
-    //public static List<AssemblerRecipe> recipesBackup = null;
+	public static final ModelResourceLocation location = new ModelResourceLocation(
+			RefStrings.MODID + ":assembly_template", "inventory");
+	
+	//private static IForgeRegistry<Item> itemRegistry;
+	//private static IForgeRegistry<Block> blockRegistry;
 
 
-    public ItemAssemblyTemplate(String s) {
-        this.setUnlocalizedName(s);
-        this.setRegistryName(s);
-        this.setHasSubtypes(true);
-        this.setMaxDamage(0);
-        this.setCreativeTab(MainRegistry.templateTab);
+	//public static List<AssemblerRecipe> recipes = new ArrayList<AssemblerRecipe>();
+	//public static List<AssemblerRecipe> recipesBackup = null;
+	
 
-        ModItems.ALL_ITEMS.add(this);
-    }
+	public ItemAssemblyTemplate(String s) {
+		this.setUnlocalizedName(s);
+		this.setRegistryName(s);
+		this.setHasSubtypes(true);
+		this.setMaxDamage(0);
+		this.setCreativeTab(MainRegistry.templateTab);
 
-    public static ItemStack getTemplate(int id) {
-        NBTTagCompound tag = new NBTTagCompound();
-        tag.setInteger("type", id);
-        ItemStack stack = new ItemStack(ModItems.assembly_template, 1, 0);
-        stack.setTagCompound(tag);
-        return stack;
-    }
+		ModItems.ALL_ITEMS.add(this);
+	}
 
-    public static int getProcessTime(ItemStack stack) {
-        if (!(stack.getItem() instanceof ItemAssemblyTemplate))
-            return 100;
+	@Override
+	@SideOnly(Side.CLIENT)
+	public String getItemStackDisplayName(ItemStack stack) {
+		String s = ("" + I18n.format(this.getUnlocalizedName() + ".name")).trim();
+		int damage = getTagWithRecipeNumber(stack).getInteger("type");
+		ItemStack out = damage < AssemblerRecipes.recipeList.size() ? AssemblerRecipes.recipeList.get(damage).toStack() : ItemStack.EMPTY;
+		String s1 = ("" + I18n.format((out != ItemStack.EMPTY ? out.getUnlocalizedName() : "") + ".name")).trim();
 
-        int i = getTagWithRecipeNumber(stack).getInteger("type");
+		if (s1 != null) {
+			s = s + " " + s1;
+		}
 
-        if (i < 0 || i >= AssemblerRecipes.recipeList.size())
-            return 100;
+		return s;
+	}
 
-        ComparableStack out = AssemblerRecipes.recipeList.get(i);
-        Integer time = AssemblerRecipes.time.get(out);
+	@Override
+	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> list) {
+		if (tab == this.getCreativeTab() || tab == CreativeTabs.SEARCH) {
+			int count = AssemblerRecipes.recipeList.size();
 
-        if (time != null)
-            return time;
-        else
-            return 100;
+	    	for(int i = 0; i < count; i++) {
+				NBTTagCompound tag = new NBTTagCompound();
+				tag.setInteger("type", i);
+				ItemStack stack = new ItemStack(this, 1, 0);
+				stack.setTagCompound(tag);
+				list.add(stack);
+			}
+		}
+	}
+	
+	public static ItemStack getTemplate(int id){
+		NBTTagCompound tag = new NBTTagCompound();
+		tag.setInteger("type", id);
+		ItemStack stack = new ItemStack(ModItems.assembly_template, 1, 0);
+		stack.setTagCompound(tag);
+		return stack;
+	}
 
-    }
+	@Override
+	public void addInformation(ItemStack stack, World worldIn, List<String> list, ITooltipFlag flagIn) {
+		if (!(stack.getItem() instanceof ItemAssemblyTemplate))
+			return;
+		
+		list.add(TextFormatting.YELLOW + I18nUtil.resolveKey("info.templatefolder"));
+		list.add("");
 
-    public static int getRecipeIndex(ItemStack stack) {
-        return getTagWithRecipeNumber(stack).getInteger("type");
-    }
+		int i = getTagWithRecipeNumber(stack).getInteger("type");
+		
+		if(i < 0 || i >= AssemblerRecipes.recipeList.size()) {
+    		list.add("I AM ERROR");
+    		return;
+    	}
 
-    public static NBTTagCompound getTagWithRecipeNumber(@Nonnull ItemStack stack) {
-        if (!stack.hasTagCompound()) {
-            stack.setTagCompound(new NBTTagCompound());
-            stack.getTagCompound().setInteger("type", 0);
-        }
-        return stack.getTagCompound();
-    }
+    	ComparableStack out = AssemblerRecipes.recipeList.get(i);
 
-    @Override
-    @SideOnly(Side.CLIENT)
-    public String getItemStackDisplayName(ItemStack stack) {
-        String s = ("" + I18n.format(this.getUnlocalizedName() + ".name")).trim();
-        int damage = getTagWithRecipeNumber(stack).getInteger("type");
-        ItemStack out = damage < AssemblerRecipes.recipeList.size() ? AssemblerRecipes.recipeList.get(damage).toStack() : ItemStack.EMPTY;
-        String s1 = ("" + I18n.format((out != ItemStack.EMPTY ? out.getUnlocalizedName() : "") + ".name")).trim();
+    	if(out == null) {
+    		list.add("I AM ERROR");
+    		return;
+    	}
 
-        if (s1 != null) {
-            s = s + " " + s1;
-        }
+    	Object[] in = AssemblerRecipes.recipes.get(out);
 
-        return s;
-    }
+    	if(in == null) {
+    		list.add("I AM ERROR");
+    		return;
+    	}
 
-    @Override
-    public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> list) {
-        if (tab == this.getCreativeTab() || tab == CreativeTabs.SEARCH) {
-            int count = AssemblerRecipes.recipeList.size();
+    	ItemStack output = out.toStack();
 
-            for (int i = 0; i < count; i++) {
-                NBTTagCompound tag = new NBTTagCompound();
-                tag.setInteger("type", i);
-                ItemStack stack = new ItemStack(this, 1, 0);
-                stack.setTagCompound(tag);
-                list.add(stack);
-            }
-        }
-    }
+    	list.add(TextFormatting.BOLD + I18nUtil.resolveKey("info.template_out"));
+		list.add(output.getCount() + "x " + output.getDisplayName());
+		list.add(TextFormatting.BOLD + I18nUtil.resolveKey("info.template_in_p"));
 
-    @Override
-    public void addInformation(ItemStack stack, World worldIn, List<String> list, ITooltipFlag flagIn) {
-        if (!(stack.getItem() instanceof ItemAssemblyTemplate))
-            return;
+		for(Object o : in) {
 
-        list.add(TextFormatting.YELLOW + I18nUtil.resolveKey("info.templatefolder"));
-        list.add("");
+			if(o instanceof ComparableStack)  {
+				ItemStack input = ((ComparableStack)o).toStack();
+	    		list.add(input.getCount() + "x " + input.getDisplayName());
 
-        int i = getTagWithRecipeNumber(stack).getInteger("type");
+			} else if(o instanceof OreDictStack)  {
+				OreDictStack input = (OreDictStack) o;
+				NonNullList<ItemStack> ores = OreDictionary.getOres(input.name);
 
-        if (i < 0 || i >= AssemblerRecipes.recipeList.size()) {
-            list.add("I AM ERROR");
-            return;
-        }
+				if(ores.size() > 0) {
+					ItemStack inStack = ores.get((int) (Math.abs(System.currentTimeMillis() / 1000) % ores.size()));
+		    		list.add(input.count() + "x " + inStack.getDisplayName());
+				} else {
+		    		list.add("I AM ERROR");
+				}
+			}
+		}
 
-        ComparableStack out = AssemblerRecipes.recipeList.get(i);
+		list.add(TextFormatting.BOLD + I18nUtil.resolveKey("info.template_time"));
+    	list.add(Math.floor((float)(getProcessTime(stack)) / 20 * 100) / 100 + " " + I18nUtil.resolveKey("info.template_seconds"));
+	}
 
-        if (out == null) {
-            list.add("I AM ERROR");
-            return;
-        }
+	public static int getProcessTime(ItemStack stack) {
+		if (!(stack.getItem() instanceof ItemAssemblyTemplate))
+			return 100;
+		
+		int i = getTagWithRecipeNumber(stack).getInteger("type");
 
-        Object[] in = AssemblerRecipes.recipes.get(out);
+    	if(i < 0 || i >= AssemblerRecipes.recipeList.size())
+    		return 100;
 
-        if (in == null) {
-            list.add("I AM ERROR");
-            return;
-        }
+    	ComparableStack out = AssemblerRecipes.recipeList.get(i);
+    	Integer time = AssemblerRecipes.time.get(out);
 
-        ItemStack output = out.toStack();
+    	if(time != null)
+    		return time;
+    	else
+    		return 100;
 
-        list.add(TextFormatting.BOLD + I18nUtil.resolveKey("info.template_out"));
-        list.add(output.getCount() + "x " + output.getDisplayName());
-        list.add(TextFormatting.BOLD + I18nUtil.resolveKey("info.template_in_p"));
+	}
 
-        for (Object o : in) {
+	@Override
+	public ModelResourceLocation getResourceLocation() {
+		return location;
+	}
+	
+	public static int getRecipeIndex(ItemStack stack){
+		return getTagWithRecipeNumber(stack).getInteger("type");
+	}
 
-            if (o instanceof ComparableStack) {
-                ItemStack input = ((ComparableStack) o).toStack();
-                list.add(input.getCount() + "x " + input.getDisplayName());
-
-            } else if (o instanceof OreDictStack) {
-                OreDictStack input = (OreDictStack) o;
-                NonNullList<ItemStack> ores = OreDictionary.getOres(input.name);
-
-                if (ores.size() > 0) {
-                    ItemStack inStack = ores.get((int) (Math.abs(System.currentTimeMillis() / 1000) % ores.size()));
-                    list.add(input.count() + "x " + inStack.getDisplayName());
-                } else {
-                    list.add("I AM ERROR");
-                }
-            }
-        }
-
-        list.add(TextFormatting.BOLD + I18nUtil.resolveKey("info.template_time"));
-        list.add(Math.floor((float) (getProcessTime(stack)) / 20 * 100) / 100 + " " + I18nUtil.resolveKey("info.template_seconds"));
-    }
-
-    @Override
-    public ModelResourceLocation getResourceLocation() {
-        return location;
-    }
+	public static NBTTagCompound getTagWithRecipeNumber(@Nonnull ItemStack stack){
+		if(!stack.hasTagCompound()){
+			stack.setTagCompound(new NBTTagCompound());
+			stack.getTagCompound().setInteger("type", 0);
+		}
+		return stack.getTagCompound();
+	}
 	
 	/*public static class AssemblerRecipe {
 		private int time;

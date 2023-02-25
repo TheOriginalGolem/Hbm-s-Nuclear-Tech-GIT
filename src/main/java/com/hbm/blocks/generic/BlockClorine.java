@@ -1,7 +1,10 @@
 package com.hbm.blocks.generic;
 
+import java.util.Random;
+
 import com.hbm.blocks.ModBlocks;
 import com.hbm.handler.ArmorUtil;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -21,79 +24,77 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import java.util.Random;
-
 public class BlockClorine extends Block {
 
-    public BlockClorine(Material materialIn, String s) {
-        super(materialIn);
-        this.setUnlocalizedName(s);
-        this.setRegistryName(s);
-        this.setTickRandomly(true);
+	public BlockClorine(Material materialIn, String s) {
+		super(materialIn);
+		this.setUnlocalizedName(s);
+		this.setRegistryName(s);
+		this.setTickRandomly(true);
+		
+		ModBlocks.ALL_BLOCKS.add(this);
+	}
+	
+	@Override
+	public boolean isOpaqueCube(IBlockState state) {
+		return false;
+	}
 
-        ModBlocks.ALL_BLOCKS.add(this);
-    }
+	@Override
+	public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
+		worldIn.setBlockState(pos, Blocks.AIR.getDefaultState());
+	}
+	
+	@Override
+	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos) {
+		return NULL_AABB;
+	}
+	
+	@Override
+	public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity) {
+		if (entity instanceof EntityPlayer && ArmorUtil.checkForGasMask((EntityPlayer) entity)) {
+			
+			if(world.rand.nextInt(25) == 0)
+				ArmorUtil.damageSuit((EntityPlayer)entity, 3, world.rand.nextInt(2));
 
-    @Override
-    public boolean isOpaqueCube(IBlockState state) {
-        return false;
-    }
-
-    @Override
-    public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
-        worldIn.setBlockState(pos, Blocks.AIR.getDefaultState());
-    }
-
-    @Override
-    public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos) {
-        return NULL_AABB;
-    }
-
-    @Override
-    public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity) {
-        if (entity instanceof EntityPlayer && ArmorUtil.checkForGasMask((EntityPlayer) entity)) {
-
-            if (world.rand.nextInt(25) == 0)
-                ArmorUtil.damageSuit((EntityPlayer) entity, 3, world.rand.nextInt(2));
-
-        } else if (entity instanceof EntityLivingBase) {
-            ((EntityLivingBase) entity)
-                    .addPotionEffect(new PotionEffect(MobEffects.BLINDNESS, 5 * 20, 0));
-            ((EntityLivingBase) entity)
-                    .addPotionEffect(new PotionEffect(MobEffects.POISON, 20 * 20, 2));
-            ((EntityLivingBase) entity)
-                    .addPotionEffect(new PotionEffect(MobEffects.WITHER, 20, 1));
-            ((EntityLivingBase) entity)
-                    .addPotionEffect(new PotionEffect(MobEffects.SLOWNESS, 30 * 20, 1));
-            ((EntityLivingBase) entity)
-                    .addPotionEffect(new PotionEffect(MobEffects.MINING_FATIGUE, 30 * 20, 2));
-        }
-    }
-
-    @Override
-    public Item getItemDropped(IBlockState state, Random rand, int fortune) {
-        return Items.AIR;
-    }
-
-    @Override
-    public boolean isFullCube(IBlockState state) {
-        return false;
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getBlockLayer() {
-        return BlockRenderLayer.TRANSLUCENT;
-    }
-
-    @Override
-    public boolean canCollideCheck(IBlockState state, boolean hitIfLiquid) {
-        return false;
-    }
-
-    @Override
-    public boolean isReplaceable(IBlockAccess worldIn, BlockPos pos) {
-        return true;
-    }
-
+		} else if (entity instanceof EntityLivingBase) {
+			((EntityLivingBase) entity)
+					.addPotionEffect(new PotionEffect(MobEffects.BLINDNESS, 5 * 20, 0));
+			((EntityLivingBase) entity)
+					.addPotionEffect(new PotionEffect(MobEffects.POISON, 20 * 20, 2));
+			((EntityLivingBase) entity)
+					.addPotionEffect(new PotionEffect(MobEffects.WITHER, 1 * 20, 1));
+			((EntityLivingBase) entity)
+					.addPotionEffect(new PotionEffect(MobEffects.SLOWNESS, 30 * 20, 1));
+			((EntityLivingBase) entity)
+					.addPotionEffect(new PotionEffect(MobEffects.MINING_FATIGUE, 30 * 20, 2));
+		}
+	}
+	
+	@Override
+	public Item getItemDropped(IBlockState state, Random rand, int fortune) {
+		return Items.AIR;
+	}
+	
+	@Override
+	public boolean isFullCube(IBlockState state) {
+		return false;
+	}
+	
+	@Override
+	@SideOnly(Side.CLIENT)
+	public BlockRenderLayer getBlockLayer() {
+		return BlockRenderLayer.TRANSLUCENT;
+	}
+	
+	@Override
+	public boolean canCollideCheck(IBlockState state, boolean hitIfLiquid) {
+		return false;
+	}
+	
+	@Override
+	public boolean isReplaceable(IBlockAccess worldIn, BlockPos pos) {
+		return true;
+	}
+	
 }

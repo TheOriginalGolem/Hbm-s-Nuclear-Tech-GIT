@@ -8,25 +8,21 @@ import net.minecraftforge.fml.client.registry.IRenderFactory;
 
 public class RenderEmpty extends Render<Entity> {
 
-    public static final IRenderFactory<Entity> FACTORY = (RenderManager man) -> {
-        return new RenderEmpty(man);
-    };
+	public static final IRenderFactory<Entity> FACTORY = (RenderManager man) -> {return new RenderEmpty(man);};
+	
+	protected RenderEmpty(RenderManager renderManager) {
+		super(renderManager);
+	}
+	
+	@Override
+	public void doRender(Entity entity, double x, double y, double z, float entityYaw, float partialTicks) {}
 
-    protected RenderEmpty(RenderManager renderManager) {
-        super(renderManager);
-    }
-
-    @Override
-    public void doRender(Entity entity, double x, double y, double z, float entityYaw, float partialTicks) {
-    }
-
-    @Override
-    public void doRenderShadowAndFire(Entity entityIn, double x, double y, double z, float yaw, float partialTicks) {
-    }
-
-    @Override
-    protected ResourceLocation getEntityTexture(Entity entity) {
-        return null;
-    }
+	@Override
+	public void doRenderShadowAndFire(Entity entityIn, double x, double y, double z, float yaw, float partialTicks) {}
+	
+	@Override
+	protected ResourceLocation getEntityTexture(Entity entity) {
+		return null;
+	}
 
 }

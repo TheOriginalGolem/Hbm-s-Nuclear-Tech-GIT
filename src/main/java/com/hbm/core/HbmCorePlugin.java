@@ -1,15 +1,15 @@
 package com.hbm.core;
 
-import net.minecraftforge.fml.relauncher.IFMLLoadingPlugin;
-
 import java.util.Map;
+
+import net.minecraftforge.fml.relauncher.IFMLLoadingPlugin;
 
 @IFMLLoadingPlugin.MCVersion("1.12.2")
 @IFMLLoadingPlugin.TransformerExclusions({"com.hbm.core"})
 public class HbmCorePlugin implements IFMLLoadingPlugin {
 
-    @Override
-    public String[] getASMTransformerClass() {
+	@Override
+	public String[] getASMTransformerClass() {
 		/*File file = new File("./config/hbm/hbm.cfg");
 		if(file.exists()){
 			Configuration config = new Configuration(file);
@@ -23,26 +23,26 @@ public class HbmCorePlugin implements IFMLLoadingPlugin {
 			}
 		}
 		System.out.println("Shaders are disabled! Not applying transformers!");*/
-        return new String[]{/*"com.hbm.core.EntityRendererTransformer"*/};
-    }
+		return new String[]{/*"com.hbm.core.EntityRendererTransformer"*/};
+	}
 
-    @Override
-    public String getModContainerClass() {
-        return "com.hbm.core.HbmCoreModContainer";
-    }
+	@Override
+	public String getModContainerClass() {
+		return "com.hbm.core.HbmCoreModContainer";
+	}
 
-    @Override
-    public String getSetupClass() {
-        return null;
-    }
+	@Override
+	public String getSetupClass() {
+		return null;
+	}
 
-    @Override
-    public void injectData(Map<String, Object> data) {
-    }
+	@Override
+	public void injectData(Map<String, Object> data) {
+	}
 
-    @Override
-    public String getAccessTransformerClass() {
-        return null;
-    }
+	@Override
+	public String getAccessTransformerClass() {
+		return null;
+	}
 
 }

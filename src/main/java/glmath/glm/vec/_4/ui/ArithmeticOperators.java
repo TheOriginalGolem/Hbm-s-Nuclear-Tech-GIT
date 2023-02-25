@@ -9,6 +9,7 @@ import glmath.glm.Glm;
 import glmath.joou.UInt;
 
 /**
+ *
  * @author GBarbieri
  */
 abstract class ArithmeticOperators {

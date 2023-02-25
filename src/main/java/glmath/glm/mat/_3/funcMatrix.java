@@ -6,22 +6,16 @@
 package glmath.glm.mat._3;
 
 /**
+ *
  * @author GBarbieri
  */
 abstract class funcMatrix {
 
-    public static final int SIZE = 3 * 3 * Float.BYTES;
     public float m00, m10, m20;
     public float m01, m11, m21;
     public float m02, m12, m22;
 
-    public static Mat3 transpose(Mat3 mat, Mat3 dest) {
-        dest.set(
-                mat.m00, mat.m10, mat.m20,
-                mat.m01, mat.m11, mat.m21,
-                mat.m02, mat.m12, mat.m22);
-        return dest;
-    }
+    public static final int SIZE = 3 * 3 * Float.BYTES;
 
     public float det() {
         return (m00 * m11 - m01 * m10) * m22 + (m02 * m10 - m00 * m12) * m21 + (m01 * m12 - m02 * m11) * m20;
@@ -89,5 +83,13 @@ abstract class funcMatrix {
 
     public Mat3 transpose(Mat3 dest) {
         return transpose((Mat3) this, dest);
+    }
+
+    public static Mat3 transpose(Mat3 mat, Mat3 dest) {
+        dest.set(
+                mat.m00, mat.m10, mat.m20,
+                mat.m01, mat.m11, mat.m21,
+                mat.m02, mat.m12, mat.m22);
+        return dest;
     }
 }

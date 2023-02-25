@@ -4,12 +4,9 @@ import com.hbm.util.Keypad;
 
 public interface IKeypadHandler {
 
-    Keypad getKeypad();
-
-    default void keypadActivated() {
-    }
-
-    default void passwordSet() {
-    }
-
+	public Keypad getKeypad();
+	
+	public default void keypadActivated(){};
+	
+	public default void passwordSet(){};
 }

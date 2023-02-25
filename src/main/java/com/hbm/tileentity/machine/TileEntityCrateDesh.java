@@ -1,17 +1,20 @@
 package com.hbm.tileentity.machine;
 
-import com.hbm.interfaces.ILaserable;
 import com.hbm.items.ModItems;
 import com.hbm.items.tool.ItemKeyPin;
-import com.hbm.items.weapon.ItemCrucible;
 import com.hbm.lib.HBMSoundHandler;
+import com.hbm.interfaces.ILaserable;
+import com.hbm.items.ModItems;
+import com.hbm.items.weapon.ItemCrucible;
 import com.hbm.packet.AuxParticlePacket;
 import com.hbm.packet.PacketDispatcher;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.SoundCategory;
 import net.minecraftforge.common.capabilities.Capability;
@@ -21,119 +24,120 @@ import net.minecraftforge.items.ItemStackHandler;
 
 public class TileEntityCrateDesh extends TileEntityLockableBase implements ITickable, ILaserable {
 
-    public ItemStackHandler inventory;
-    public int heatTimer;
-    private String customName;
+	public ItemStackHandler inventory;
+	private String customName;
 
-    public TileEntityCrateDesh() {
-        inventory = new ItemStackHandler(104) {
-            @Override
-            protected void onContentsChanged(int slot) {
-                markDirty();
-            }
-        };
-    }
+	public int heatTimer;
 
-    public boolean canAccess(EntityPlayer player) {
+	public TileEntityCrateDesh() {
+		inventory = new ItemStackHandler(104){
+			@Override
+			protected void onContentsChanged(int slot){
+				markDirty();
+			}
+		};
+	}
 
-        if (!this.isLocked() || player == null) {
-            return true;
-        } else {
-            ItemStack stack = player.getHeldItemMainhand();
+	public boolean canAccess(EntityPlayer player) {
+		
+		if(!this.isLocked() || player == null) {
+			return true;
+		} else {
+			ItemStack stack = player.getHeldItemMainhand();
+			
+			if(stack.getItem() instanceof ItemKeyPin && ItemKeyPin.getPins(stack) == this.lock) {
+	        	world.playSound(null, player.posX, player.posY, player.posZ, HBMSoundHandler.lockOpen, SoundCategory.BLOCKS, 1.0F, 1.0F);
+				return true;
+			}
+			
+			if(stack.getItem() == ModItems.key_red) {
+	        	world.playSound(null, player.posX, player.posY, player.posZ, HBMSoundHandler.lockOpen, SoundCategory.BLOCKS, 1.0F, 1.0F);
+				return true;
+			}
+			
+			return this.tryPick(player);
+		}
+	}
 
-            if (stack.getItem() instanceof ItemKeyPin && ItemKeyPin.getPins(stack) == this.lock) {
-                world.playSound(null, player.posX, player.posY, player.posZ, HBMSoundHandler.lockOpen, SoundCategory.BLOCKS, 1.0F, 1.0F);
-                return true;
-            }
+	public String getInventoryName() {
+		return this.hasCustomInventoryName() ? this.customName : "container.crateDesh";
+	}
 
-            if (stack.getItem() == ModItems.key_red) {
-                world.playSound(null, player.posX, player.posY, player.posZ, HBMSoundHandler.lockOpen, SoundCategory.BLOCKS, 1.0F, 1.0F);
-                return true;
-            }
+	public boolean hasCustomInventoryName() {
+		return this.customName != null && this.customName.length() > 0;
+	}
 
-            return this.tryPick(player);
-        }
-    }
+	public void setCustomName(String name) {
+		this.customName = name;
+	}
 
-    public String getInventoryName() {
-        return this.hasCustomInventoryName() ? this.customName : "container.crateDesh";
-    }
+	public boolean isUseableByPlayer(EntityPlayer player) {
+		if (world.getTileEntity(pos) != this) {
+			return false;
+		} else {
+			return player.getDistanceSq(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D) <= 64;
+		}
+	}
 
-    public boolean hasCustomInventoryName() {
-        return this.customName != null && this.customName.length() > 0;
-    }
+	@Override
+	public void update() {
+		
+		if(!world.isRemote) {
+			if(heatTimer > 0)
+				heatTimer--;
+	
+			if(heatTimer > 0) {
+				PacketDispatcher.wrapper.sendToAllAround(new AuxParticlePacket(pos.getX(), pos.getY(), pos.getZ(), 4), new TargetPoint(world.provider.getDimension(), pos.getX(), pos.getY(), pos.getZ(), 50));
+			}
+		}
+	}
 
-    public void setCustomName(String name) {
-        this.customName = name;
-    }
-
-    public boolean isUseableByPlayer(EntityPlayer player) {
-        if (world.getTileEntity(pos) != this) {
-            return false;
-        } else {
-            return player.getDistanceSq(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D) <= 64;
-        }
-    }
-
-    @Override
-    public void update() {
-
-        if (!world.isRemote) {
-            if (heatTimer > 0)
-                heatTimer--;
-
-            if (heatTimer > 0) {
-                PacketDispatcher.wrapper.sendToAllAround(new AuxParticlePacket(pos.getX(), pos.getY(), pos.getZ(), 4), new TargetPoint(world.provider.getDimension(), pos.getX(), pos.getY(), pos.getZ(), 50));
-            }
-        }
-    }
-
-    @Override
-    public void addEnergy(long energy, EnumFacing dir) {
-        heatTimer = 5;
-
-        for (int i = 0; i < inventory.getSlots(); i++) {
-
-            if (inventory.getStackInSlot(i).isEmpty())
-                continue;
-
-            ItemStack result = FurnaceRecipes.instance().getSmeltingResult(inventory.getStackInSlot(i));
-
-            if (inventory.getStackInSlot(i).getItem() == ModItems.billet_polonium && energy > 10000000)
-                result = new ItemStack(ModItems.billet_yharonite);
-
-            if (inventory.getStackInSlot(i).getItem() == ModItems.crucible && ItemCrucible.getCharges(inventory.getStackInSlot(i)) < 3 && energy > 10000000)
-                ItemCrucible.charge(inventory.getStackInSlot(i));
-
-            int size = inventory.getStackInSlot(i).getCount();
-
-            if (!result.isEmpty() && result.getCount() * size <= result.getMaxStackSize()) {
-                inventory.setStackInSlot(i, result.copy());
-                inventory.getStackInSlot(i).setCount(inventory.getStackInSlot(i).getCount() * size);
-            }
-        }
-    }
-
-    @Override
-    public void readFromNBT(NBTTagCompound compound) {
-        if (compound.hasKey("inventory"))
-            inventory.deserializeNBT(compound.getCompoundTag("inventory"));
-        super.readFromNBT(compound);
-    }
-
-    @Override
-    public NBTTagCompound writeToNBT(NBTTagCompound compound) {
-        compound.setTag("inventory", inventory.serializeNBT());
-        return super.writeToNBT(compound);
-    }
-
-    @Override
-    public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
-        return capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY || super.hasCapability(capability, facing);
-    }
-
-    @Override
-    public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
-        return capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY ? CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.cast(inventory) : super.getCapability(capability, facing);
-    }
+	@Override
+	public void addEnergy(long energy, EnumFacing dir) {
+		heatTimer = 5;
+		
+		for(int i = 0; i < inventory.getSlots(); i++) {
+			
+			if(inventory.getStackInSlot(i).isEmpty())
+				continue;
+			
+			ItemStack result = FurnaceRecipes.instance().getSmeltingResult(inventory.getStackInSlot(i));
+			
+			if(inventory.getStackInSlot(i).getItem() == ModItems.billet_polonium && energy > 10000000)
+				result = new ItemStack(ModItems.billet_yharonite);
+			
+			if(inventory.getStackInSlot(i).getItem() == ModItems.crucible && ItemCrucible.getCharges(inventory.getStackInSlot(i)) < 3 && energy > 10000000)
+				ItemCrucible.charge(inventory.getStackInSlot(i));
+			
+			int size = inventory.getStackInSlot(i).getCount();
+			
+			if(!result.isEmpty() && result.getCount() * size <= result.getMaxStackSize()) {
+				inventory.setStackInSlot(i, result.copy());
+				inventory.getStackInSlot(i).setCount(inventory.getStackInSlot(i).getCount()*size);
+			}
+		}
+	}
+	
+	@Override
+	public void readFromNBT(NBTTagCompound compound) {
+		if(compound.hasKey("inventory"))
+			inventory.deserializeNBT(compound.getCompoundTag("inventory"));
+		super.readFromNBT(compound);
+	}
+	
+	@Override
+	public NBTTagCompound writeToNBT(NBTTagCompound compound) {
+		compound.setTag("inventory", inventory.serializeNBT());
+		return super.writeToNBT(compound);
+	}
+	
+	@Override
+	public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
+		return capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY || super.hasCapability(capability, facing);
+	}
+	
+	@Override
+	public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
+		return capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY ? CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.cast(inventory) : super.getCapability(capability, facing);
+	}
 }
