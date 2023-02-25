@@ -15,7 +15,7 @@ public class CellularDungeon {
 	CellularDungeonRoom[][] cells;
 	EnumFacing[][] doors;
 	// the order in which the buffer should be processed
-	private List<int[]> order = new ArrayList<int[]>();
+	private final List<int[]> order = new ArrayList<int[]>();
 
 	// the size of the cell array x
 	int dimX;

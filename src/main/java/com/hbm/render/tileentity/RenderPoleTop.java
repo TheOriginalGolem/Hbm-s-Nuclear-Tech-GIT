@@ -13,7 +13,7 @@ public class RenderPoleTop extends TileEntitySpecialRenderer<TileEntityDecoPoleT
 
 	private static final ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":" + "textures/models/PoleTop.png");
 	
-	private ModelPoleTop model;
+	private final ModelPoleTop model;
 	
 	public RenderPoleTop() {
 		this.model = new ModelPoleTop();

@@ -132,7 +132,7 @@ public class TileEntityTesla extends TileEntityMachineBase implements ITickable,
 			}
 			
 			if(e instanceof EntityNuclearCreeper) {
-				((EntityNuclearCreeper)e).getDataManager().set(EntityNuclearCreeper.POWERED, true);
+				e.getDataManager().set(EntityNuclearCreeper.POWERED, true);
 			}
 			
 			double offset = 0;

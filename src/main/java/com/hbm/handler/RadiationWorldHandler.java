@@ -76,7 +76,7 @@ public class RadiationWorldHandler {
 		WorldServer serv = (WorldServer)world;
 
 		RadiationSavedData data = RadiationSavedData.getData(serv);
-		ChunkProviderServer provider = (ChunkProviderServer) serv.getChunkProvider();
+		ChunkProviderServer provider = serv.getChunkProvider();
 
 		Object[] entries = data.contamination.entrySet().toArray();
 

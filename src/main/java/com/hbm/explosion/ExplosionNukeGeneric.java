@@ -193,12 +193,8 @@ public class ExplosionNukeGeneric {
 			return true;
 		}
 
-		if (e instanceof EntityPlayerMP && (((EntityPlayerMP)e).isCreative() || ((EntityPlayerMP)e).isSpectator())) {
-			return true;
-		}
-
-		return false;
-	}
+        return e instanceof EntityPlayerMP && (((EntityPlayerMP) e).isCreative() || ((EntityPlayerMP) e).isSpectator());
+    }
 	
 	public static void succ(World world, int x, int y, int z, int radius) {
 		int i;
@@ -219,7 +215,7 @@ public class ExplosionNukeGeneric {
 		List<Entity> list = world.getEntitiesWithinAABBExcludingEntity(null, new AxisAlignedBB(i, k, l, j, i2, j2));
 
 		for (int i1 = 0; i1 < list.size(); ++i1) {
-			Entity entity = (Entity) list.get(i1);
+			Entity entity = list.get(i1);
 			
 			if(entity instanceof EntityBlackHole)
 				continue;
@@ -266,7 +262,7 @@ public class ExplosionNukeGeneric {
 		List<Entity> list = world.getEntitiesWithinAABBExcludingEntity(null, new AxisAlignedBB(i, k, l, j, i2, j2));
 
 		for (int i1 = 0; i1 < list.size(); ++i1) {
-			Entity entity = (Entity) list.get(i1);
+			Entity entity = list.get(i1);
 			double d4 = entity.getDistance(x, y, z) / radius;
 
 			if (d4 <= 1.0D) {
@@ -425,8 +421,7 @@ public class ExplosionNukeGeneric {
 			IBlockState bs = world.getBlockState(pos);
 			Block b = bs.getBlock();
 			if(b == Blocks.AIR){
-				return;	
-			}
+            }
 
 			else if (b == Blocks.ACACIA_DOOR || b == Blocks.BIRCH_DOOR || b == Blocks.DARK_OAK_DOOR || b == Blocks.JUNGLE_DOOR || b == Blocks.OAK_DOOR || b == Blocks.SPRUCE_DOOR || b == Blocks.IRON_DOOR) {
 				world.setBlockState(pos, Blocks.AIR.getDefaultState(), 2);
@@ -579,8 +574,7 @@ public class ExplosionNukeGeneric {
 			Block b = world.getBlockState(pos).getBlock();
 
 			if(b == Blocks.AIR){
-				return;	
-			}
+            }
 
 			else if (b == Blocks.GLASS || b == Blocks.STAINED_GLASS
 					|| b == Blocks.ACACIA_DOOR || b == Blocks.BIRCH_DOOR || b == Blocks.DARK_OAK_DOOR || b == Blocks.JUNGLE_DOOR || b == Blocks.OAK_DOOR || b == Blocks.SPRUCE_DOOR || b == Blocks.IRON_DOOR

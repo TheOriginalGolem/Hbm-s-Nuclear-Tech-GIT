@@ -3,6 +3,7 @@ package com.hbm.inventory;
 
 import static com.hbm.inventory.OreDictManager.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import com.hbm.blocks.ModBlocks;
@@ -20,8 +21,8 @@ import net.minecraft.item.ItemStack;
 
 public class AnvilRecipes {
 
-	private static List<AnvilSmithingRecipe> smithingRecipes = new ArrayList<>();
-	private static List<AnvilConstructionRecipe> constructionRecipes = new ArrayList<>();
+	private static final List<AnvilSmithingRecipe> smithingRecipes = new ArrayList<>();
+	private static final List<AnvilConstructionRecipe> constructionRecipes = new ArrayList<>();
 	
 	public static void register() {
 		registerSmithing();
@@ -158,7 +159,7 @@ public class AnvilRecipes {
 						new OreDictStack("ingotSteel", 8 * ukModifier),
 						new OreDictStack("ingotCopper", 8 * ukModifier),
 						new ComparableStack(ModItems.motor, 2 * ukModifier),
-						new ComparableStack(ModItems.circuit_aluminium, 1 * ukModifier)
+						new ComparableStack(ModItems.circuit_aluminium, ukModifier)
 				},
 				new AnvilOutput(new ItemStack(ModBlocks.machine_assembler))).setTier(2));
 		
@@ -516,20 +517,20 @@ public class AnvilRecipes {
 		}
 		
 		public AnvilConstructionRecipe(AStack[] input, AnvilOutput output) {
-			for(AStack stack : input) this.input.add(stack);
+            Collections.addAll(this.input, input);
 			this.output.add(output);
 			this.setOverlay(OverlayType.CONSTRUCTION); //preferred overlay for many:1 conversions is construction
 		}
 		
 		public AnvilConstructionRecipe(AStack input, AnvilOutput[] output) {
 			this.input.add(input);
-			for(AnvilOutput out : output) this.output.add(out);
+            Collections.addAll(this.output, output);
 			this.setOverlay(OverlayType.RECYCLING); //preferred overlay for 1:many conversions is recycling
 		}
 		
 		public AnvilConstructionRecipe(AStack[] input, AnvilOutput[] output) {
-			for(AStack stack : input) this.input.add(stack);
-			for(AnvilOutput out : output) this.output.add(out);
+            Collections.addAll(this.input, input);
+            Collections.addAll(this.output, output);
 			this.setOverlay(OverlayType.NONE); //no preferred overlay for many:many conversions
 		}
 		
@@ -593,10 +594,10 @@ public class AnvilRecipes {
 		}
 	}
 	
-	public static enum OverlayType {
+	public enum OverlayType {
 		NONE,
 		CONSTRUCTION,
 		RECYCLING,
-		SMITHING;
-	}
+		SMITHING
+    }
 }

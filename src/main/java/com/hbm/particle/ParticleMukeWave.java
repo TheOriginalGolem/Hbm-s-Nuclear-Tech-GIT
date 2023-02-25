@@ -53,10 +53,10 @@ public class ParticleMukeWave extends Particle {
 	    float pZ = (float) (this.prevPosZ + (this.posZ - this.prevPosZ) * (double)partialTicks - interpPosZ);
 
 	    buffer.begin(GL11.GL_QUADS, DefaultVertexFormats.PARTICLE_POSITION_TEX_COLOR_LMAP);
-	    buffer.pos((double)(pX - 1 * scale), (double)(pY), (double)(pZ - 1 * scale)).tex(1, 1).color(1, 1, 1, particleAlpha).lightmap(240, 240).endVertex();
-	    buffer.pos((double)(pX - 1 * scale), (double)(pY), (double)(pZ + 1 * scale)).tex(1, 0).color(1, 1, 1, particleAlpha).lightmap(240, 240).endVertex();
-	    buffer.pos((double)(pX + 1 * scale), (double)(pY), (double)(pZ + 1 * scale)).tex(0, 0).color(1, 1, 1, particleAlpha).lightmap(240, 240).endVertex();
-	    buffer.pos((double)(pX + 1 * scale), (double)(pY), (double)(pZ - 1 * scale)).tex(0, 1).color(1, 1, 1, particleAlpha).lightmap(240, 240).endVertex();
+	    buffer.pos(pX - 1 * scale, pY, pZ - 1 * scale).tex(1, 1).color(1, 1, 1, particleAlpha).lightmap(240, 240).endVertex();
+	    buffer.pos(pX - 1 * scale, pY, pZ + 1 * scale).tex(1, 0).color(1, 1, 1, particleAlpha).lightmap(240, 240).endVertex();
+	    buffer.pos(pX + 1 * scale, pY, pZ + 1 * scale).tex(0, 0).color(1, 1, 1, particleAlpha).lightmap(240, 240).endVertex();
+	    buffer.pos(pX + 1 * scale, pY, pZ - 1 * scale).tex(0, 1).color(1, 1, 1, particleAlpha).lightmap(240, 240).endVertex();
 	    Tessellator.getInstance().draw();
 	    
 	    GlStateManager.enableCull();

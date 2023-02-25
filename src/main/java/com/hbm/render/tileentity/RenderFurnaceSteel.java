@@ -33,7 +33,7 @@ public class RenderFurnaceSteel extends TileEntitySpecialRenderer<TileEntityFurn
 		bindTexture(ResourceManager.furnace_steel_tex);
 		ResourceManager.furnace_steel.renderAll();
 		
-		TileEntityFurnaceSteel furnace = (TileEntityFurnaceSteel) tileEntity;
+		TileEntityFurnaceSteel furnace = tileEntity;
 		if(furnace.wasOn) {
 			GlStateManager.disableTexture2D();
 			GlStateManager.enableBlend();	

@@ -67,10 +67,8 @@ public class DecoBlock extends BlockContainer {
 	
 	@Override
 	public boolean hasTileEntity(IBlockState state) {
-		if(this == ModBlocks.steel_scaffold || this == ModBlocks.steel_beam)
-			return false;
-		return true;
-	}
+        return this != ModBlocks.steel_scaffold && this != ModBlocks.steel_beam;
+    }
 	
 	@Override
 	public EnumBlockRenderType getRenderType(IBlockState state) {
@@ -160,12 +158,12 @@ public class DecoBlock extends BlockContainer {
 	
 	@Override
 	protected BlockStateContainer createBlockState() {
-		return new BlockStateContainer(this, new IProperty[]{FACING});
+		return new BlockStateContainer(this, FACING);
 	}
 	
 	@Override
 	public int getMetaFromState(IBlockState state) {
-		return ((EnumFacing)state.getValue(FACING)).getIndex();
+		return state.getValue(FACING).getIndex();
 	}
 	
 	@Override
@@ -184,13 +182,13 @@ public class DecoBlock extends BlockContainer {
 	
 	@Override
 	public IBlockState withRotation(IBlockState state, Rotation rot) {
-		return state.withProperty(FACING, rot.rotate((EnumFacing)state.getValue(FACING)));
+		return state.withProperty(FACING, rot.rotate(state.getValue(FACING)));
 	}
 	
 	@Override
 	public IBlockState withMirror(IBlockState state, Mirror mirrorIn)
 	{
-	   return state.withRotation(mirrorIn.toRotation((EnumFacing)state.getValue(FACING)));
+	   return state.withRotation(mirrorIn.toRotation(state.getValue(FACING)));
 	}
 
 }

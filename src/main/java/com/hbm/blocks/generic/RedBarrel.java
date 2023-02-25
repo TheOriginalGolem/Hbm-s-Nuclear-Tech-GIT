@@ -61,7 +61,7 @@ public class RedBarrel extends Block {
 	public void explode(World p_149695_1_, int x, int y, int z) {
 
 		if(this == ModBlocks.red_barrel || this == ModBlocks.pink_barrel)
-			p_149695_1_.newExplosion((Entity)null, x + 0.5F, y + 0.5F, z + 0.5F, 2.5F, true, true);
+			p_149695_1_.newExplosion(null, x + 0.5F, y + 0.5F, z + 0.5F, 2.5F, true, true);
 		
 		if(this == ModBlocks.lox_barrel) {
 

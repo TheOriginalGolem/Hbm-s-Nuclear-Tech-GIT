@@ -73,7 +73,7 @@ public class ItemSurveyScanner extends Item {
 					
 				String s = OreDictionary.getOreName(ids[j]);
 					
-				if(s.length() > 3 && s.substring(0, 3).equals("ore"))
+				if(s.length() > 3 && s.startsWith("ore"))
 					return 1;
 			}
 		} else {
@@ -123,7 +123,7 @@ public class ItemSurveyScanner extends Item {
 			for(int i =  y + 15; i > 5; i--)
 				level += getLevel(world.getBlockState(mPos.setPos(x + xOff, i, z + -5)), getMode(stack));
 			for(int i =  y + 15; i > 5; i--)
-				level += getLevel(world.getBlockState(mPos.setPos(x + xOff, i, z + 0)), getMode(stack));
+				level += getLevel(world.getBlockState(mPos.setPos(x + xOff, i, z)), getMode(stack));
 			for(int i =  y + 15; i > 5; i--)
 				level += getLevel(world.getBlockState(mPos.setPos(x + xOff, i, z + 5)), getMode(stack));
 			for(int i =  y + 15; i > 5; i--)
@@ -146,7 +146,7 @@ public class ItemSurveyScanner extends Item {
 			for(int i =  y + 15; i > 5; i--)
 				level += getLevel(world.getBlockState(mPos.setPos(x + xOff, i, z + -5)), getMode(stack));
 			for(int i =  y + 15; i > 5; i--)
-				level += getLevel(world.getBlockState(mPos.setPos(x + xOff, i, z + 0)), getMode(stack));
+				level += getLevel(world.getBlockState(mPos.setPos(x + xOff, i, z)), getMode(stack));
 			for(int i =  y + 15; i > 5; i--)
 				level += getLevel(world.getBlockState(mPos.setPos(x + xOff, i, z + 5)), getMode(stack));
 			for(int i =  y + 15; i > 5; i--)
@@ -169,7 +169,7 @@ public class ItemSurveyScanner extends Item {
 			for(int i =  y + 15; i > 5; i--)
 				level += getLevel(world.getBlockState(mPos.setPos(x + xOff, i, z + -5)), getMode(stack));
 			for(int i =  y + 15; i > 5; i--)
-				level += getLevel(world.getBlockState(mPos.setPos(x + xOff, i, z + 0)), getMode(stack));
+				level += getLevel(world.getBlockState(mPos.setPos(x + xOff, i, z)), getMode(stack));
 			for(int i =  y + 15; i > 5; i--)
 				level += getLevel(world.getBlockState(mPos.setPos(x + xOff, i, z + 5)), getMode(stack));
 			for(int i =  y + 15; i > 5; i--)
@@ -192,7 +192,7 @@ public class ItemSurveyScanner extends Item {
 			for(int i =  y + 15; i > 5; i--)
 				level += getLevel(world.getBlockState(mPos.setPos(x + xOff, i, z + -5)), getMode(stack));
 			for(int i =  y + 15; i > 5; i--)
-				level += getLevel(world.getBlockState(mPos.setPos(x + xOff, i, z + 0)), getMode(stack));
+				level += getLevel(world.getBlockState(mPos.setPos(x + xOff, i, z)), getMode(stack));
 			for(int i =  y + 15; i > 5; i--)
 				level += getLevel(world.getBlockState(mPos.setPos(x + xOff, i, z + 5)), getMode(stack));
 			for(int i =  y + 15; i > 5; i--)
@@ -215,7 +215,7 @@ public class ItemSurveyScanner extends Item {
 			for(int i =  y + 15; i > 5; i--)
 				level += getLevel(world.getBlockState(mPos.setPos(x + xOff, i, z + -5)), getMode(stack));
 			for(int i =  y + 15; i > 5; i--)
-				level += getLevel(world.getBlockState(mPos.setPos(x + xOff, i, z + 0)), getMode(stack));
+				level += getLevel(world.getBlockState(mPos.setPos(x + xOff, i, z)), getMode(stack));
 			for(int i =  y + 15; i > 5; i--)
 				level += getLevel(world.getBlockState(mPos.setPos(x + xOff, i, z + 5)), getMode(stack));
 			for(int i =  y + 15; i > 5; i--)
@@ -238,7 +238,7 @@ public class ItemSurveyScanner extends Item {
 			for(int i =  y + 15; i > 5; i--)
 				level += getLevel(world.getBlockState(mPos.setPos(x + xOff, i, z + -5)), getMode(stack));
 			for(int i =  y + 15; i > 5; i--)
-				level += getLevel(world.getBlockState(mPos.setPos(x + xOff, i, z + 0)), getMode(stack));
+				level += getLevel(world.getBlockState(mPos.setPos(x + xOff, i, z)), getMode(stack));
 			for(int i =  y + 15; i > 5; i--)
 				level += getLevel(world.getBlockState(mPos.setPos(x + xOff, i, z + 5)), getMode(stack));
 			for(int i =  y + 15; i > 5; i--)
@@ -261,7 +261,7 @@ public class ItemSurveyScanner extends Item {
 			for(int i =  y + 15; i > 5; i--)
 				level += getLevel(world.getBlockState(mPos.setPos(x + xOff, i, z + -5)), getMode(stack));
 			for(int i =  y + 15; i > 5; i--)
-				level += getLevel(world.getBlockState(mPos.setPos(x + xOff, i, z + 0)), getMode(stack));
+				level += getLevel(world.getBlockState(mPos.setPos(x + xOff, i, z)), getMode(stack));
 			for(int i =  y + 15; i > 5; i--)
 				level += getLevel(world.getBlockState(mPos.setPos(x + xOff, i, z + 5)), getMode(stack));
 			for(int i =  y + 15; i > 5; i--)
@@ -284,7 +284,7 @@ public class ItemSurveyScanner extends Item {
 			for(int i =  y + 15; i > 5; i--)
 				level += getLevel(world.getBlockState(mPos.setPos(x + xOff, i, z + -5)), getMode(stack));
 			for(int i =  y + 15; i > 5; i--)
-				level += getLevel(world.getBlockState(mPos.setPos(x + xOff, i, z + 0)), getMode(stack));
+				level += getLevel(world.getBlockState(mPos.setPos(x + xOff, i, z)), getMode(stack));
 			for(int i =  y + 15; i > 5; i--)
 				level += getLevel(world.getBlockState(mPos.setPos(x + xOff, i, z + 5)), getMode(stack));
 			for(int i =  y + 15; i > 5; i--)
@@ -307,7 +307,7 @@ public class ItemSurveyScanner extends Item {
 			for(int i =  y + 15; i > 5; i--)
 				level += getLevel(world.getBlockState(mPos.setPos(x + xOff, i, z + -5)), getMode(stack));
 			for(int i =  y + 15; i > 5; i--)
-				level += getLevel(world.getBlockState(mPos.setPos(x + xOff, i, z + 0)), getMode(stack));
+				level += getLevel(world.getBlockState(mPos.setPos(x + xOff, i, z)), getMode(stack));
 			for(int i =  y + 15; i > 5; i--)
 				level += getLevel(world.getBlockState(mPos.setPos(x + xOff, i, z + 5)), getMode(stack));
 			for(int i =  y + 15; i > 5; i--)
@@ -330,7 +330,7 @@ public class ItemSurveyScanner extends Item {
 			for(int i =  y + 15; i > 5; i--)
 				level += getLevel(world.getBlockState(mPos.setPos(x + xOff, i, z + -5)), getMode(stack));
 			for(int i =  y + 15; i > 5; i--)
-				level += getLevel(world.getBlockState(mPos.setPos(x + xOff, i, z + 0)), getMode(stack));
+				level += getLevel(world.getBlockState(mPos.setPos(x + xOff, i, z)), getMode(stack));
 			for(int i =  y + 15; i > 5; i--)
 				level += getLevel(world.getBlockState(mPos.setPos(x + xOff, i, z + 5)), getMode(stack));
 			for(int i =  y + 15; i > 5; i--)
@@ -353,7 +353,7 @@ public class ItemSurveyScanner extends Item {
 			for(int i =  y + 15; i > 5; i--)
 				level += getLevel(world.getBlockState(mPos.setPos(x + xOff, i, z + -5)), getMode(stack));
 			for(int i =  y + 15; i > 5; i--)
-				level += getLevel(world.getBlockState(mPos.setPos(x + xOff, i, z + 0)), getMode(stack));
+				level += getLevel(world.getBlockState(mPos.setPos(x + xOff, i, z)), getMode(stack));
 			for(int i =  y + 15; i > 5; i--)
 				level += getLevel(world.getBlockState(mPos.setPos(x + xOff, i, z + 5)), getMode(stack));
 			for(int i =  y + 15; i > 5; i--)

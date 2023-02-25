@@ -329,9 +329,9 @@ abstract class funcCommon extends ArithmeticOperators {
         int ltY = x.y < edge.y ? 1 : 0;
         int ltZ = x.z < edge.z ? 1 : 0;
         // mix(1, 0, glm::lessThan(x, edge));
-        result.x = 1 + ltX * (0 - 1);
-        result.y = 1 + ltY * (0 - 1);
-        result.z = 1 + ltZ * (0 - 1);
+        result.x = 1 + ltX * (-1);
+        result.y = 1 + ltY * (-1);
+        result.z = 1 + ltZ * (-1);
         return result;
     }
 

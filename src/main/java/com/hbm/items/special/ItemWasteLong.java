@@ -54,7 +54,7 @@ public class ItemWasteLong extends ItemContaminating {
 		public int liquid;
 		public int gas;
 		
-		private WasteClass(String name, int liquid, int gas) {
+		WasteClass(String name, int liquid, int gas) {
 			this.name = name;
 			this.liquid = liquid;
 			this.gas = gas;

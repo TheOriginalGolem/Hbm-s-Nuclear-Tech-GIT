@@ -19,7 +19,7 @@ abstract class packing extends funcGeometric {
         result[0] = (int) (Math.max(-1, Math.min(1, v.x)) * 511.f);
         result[1] = (int) (Math.max(-1, Math.min(1, v.y)) * 511.f);
         result[2] = (int) (Math.max(-1, Math.min(1, v.z)) * 511.f);
-        result[3] = (int) (Math.max(-1, Math.min(1, v.w)) * 1.f);
+        result[3] = (int) (Math.max(-1, Math.min(1, v.w)));
         result[0] = (result[0] << 22) >>> 22;
         result[1] = (result[1] << 22) >>> 12;
         result[2] = (result[2] << 22) >>> 2;

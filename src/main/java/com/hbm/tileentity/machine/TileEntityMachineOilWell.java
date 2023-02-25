@@ -56,7 +56,7 @@ public class TileEntityMachineOilWell extends TileEntity implements ITickable, I
 	public Fluid[] tankTypes;
 	public boolean needsUpdate;
 
-	private Set<BlockPos> processed = new HashSet<BlockPos>();
+	private final Set<BlockPos> processed = new HashSet<BlockPos>();
 
 	// private static final int[] slots_top = new int[] {1};
 	// private static final int[] slots_bottom = new int[] {2, 0};
@@ -233,7 +233,7 @@ public class TileEntityMachineOilWell extends TileEntity implements ITickable, I
 			}
 
 			PacketDispatcher.wrapper.sendToAllAround(new AuxElectricityPacket(pos, power), new TargetPoint(world.provider.getDimension(), pos.getX(), pos.getY(), pos.getZ(), 10));
-			PacketDispatcher.wrapper.sendToAllAround(new FluidTankPacket(pos, new FluidTank[] { tanks[0], tanks[1] }), new TargetPoint(world.provider.getDimension(), pos.getX(), pos.getY(), pos.getZ(), 10));
+			PacketDispatcher.wrapper.sendToAllAround(new FluidTankPacket(pos, tanks[0], tanks[1]), new TargetPoint(world.provider.getDimension(), pos.getX(), pos.getY(), pos.getZ(), 10));
 			if(tank0Amount != tanks[0].getFluidAmount() || tank1Amount != tanks[1].getFluidAmount()){
 				markDirty();
 			}
@@ -382,8 +382,7 @@ public class TileEntityMachineOilWell extends TileEntity implements ITickable, I
 	@Override
 	public void recievePacket(NBTTagCompound[] tags) {
 		if(tags.length != 2) {
-			return;
-		} else {
+        } else {
 			tanks[0].readFromNBT(tags[0]);
 			tanks[1].readFromNBT(tags[1]);
 		}

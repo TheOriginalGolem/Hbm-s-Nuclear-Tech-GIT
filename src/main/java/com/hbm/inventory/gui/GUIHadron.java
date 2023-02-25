@@ -21,7 +21,7 @@ import net.minecraft.util.ResourceLocation;
 public class GUIHadron extends GuiInfoContainer {
 
 	public static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/machine/gui_hadron.png");
-	private TileEntityHadron hadron;
+	private final TileEntityHadron hadron;
 
 	public GUIHadron(InventoryPlayer invPlayer, TileEntityHadron laser) {
 		super(new ContainerHadron(invPlayer, laser));
@@ -35,7 +35,7 @@ public class GUIHadron extends GuiInfoContainer {
 	public void drawScreen(int mouseX, int mouseY, float f) {
 		super.drawScreen(mouseX, mouseY, f);
 
-		this.drawElectricityInfo(this, mouseX, mouseY, guiLeft + 62, guiTop + 108, 70, 16, hadron.power, hadron.maxPower);
+		this.drawElectricityInfo(this, mouseX, mouseY, guiLeft + 62, guiTop + 108, 70, 16, hadron.power, TileEntityHadron.maxPower);
 
 		if(hadron.hopperMode)
 			this.drawCustomInfoStat(mouseX, mouseY, guiLeft + 142, guiTop + 89, 18, 18, mouseX, mouseY, I18nUtil.resolveKeyArray("hadron.hopper1"));

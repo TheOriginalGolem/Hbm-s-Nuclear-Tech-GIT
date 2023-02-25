@@ -13,8 +13,8 @@ import net.minecraft.util.ResourceLocation;
 
 public class GUIFurnaceSteel extends GuiInfoContainer {
 	
-	private static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/processing/gui_furnace_steel.png");
-	private TileEntityFurnaceSteel furnace;
+	private static final ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/processing/gui_furnace_steel.png");
+	private final TileEntityFurnaceSteel furnace;
 
 	public GUIFurnaceSteel(InventoryPlayer invPlayer, TileEntityFurnaceSteel tedf) {
 		super(new ContainerFurnaceSteel(invPlayer, tedf));
@@ -29,11 +29,11 @@ public class GUIFurnaceSteel extends GuiInfoContainer {
 		super.drawScreen(x, y, interp);
 		
 		for(int i = 0; i < 3; i++) {
-			this.drawCustomInfoStat(x, y, guiLeft + 53, guiTop + 17 + 18 * i, 70, 7, x, y, new String[] { String.format("%,d", furnace.progress[i]) + " / " + String.format("%,d", furnace.processTime) + "TU" });
+			this.drawCustomInfoStat(x, y, guiLeft + 53, guiTop + 17 + 18 * i, 70, 7, x, y, new String[] { String.format("%,d", furnace.progress[i]) + " / " + String.format("%,d", TileEntityFurnaceSteel.processTime) + "TU" });
 			this.drawCustomInfoStat(x, y, guiLeft + 53, guiTop + 26 + 18 * i, 70, 7, x, y, new String[] { "Bonus: " + furnace.bonus[i] + "%" });
 		}
 		
-		this.drawCustomInfoStat(x, y, guiLeft + 151, guiTop + 18, 9, 50, x, y, new String[] { String.format("%,d", furnace.heat) + " / " + String.format("%,d", furnace.maxHeat) + "TU" });
+		this.drawCustomInfoStat(x, y, guiLeft + 151, guiTop + 18, 9, 50, x, y, new String[] { String.format("%,d", furnace.heat) + " / " + String.format("%,d", TileEntityFurnaceSteel.maxHeat) + "TU" });
 		this.renderHoveredToolTip(x, y);
 	}
 	
@@ -52,11 +52,11 @@ public class GUIFurnaceSteel extends GuiInfoContainer {
 		Minecraft.getMinecraft().getTextureManager().bindTexture(texture);
 		drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize);
 		
-		int h = furnace.heat * 48 / furnace.maxHeat;
+		int h = furnace.heat * 48 / TileEntityFurnaceSteel.maxHeat;
 		drawTexturedModalRect(guiLeft + 152, guiTop + 67 - h, 176, 76 - h, 7, h);
 		
 		for(int i = 0; i < 3; i++) {
-			int p = furnace.progress[i] * 69 / furnace.processTime;
+			int p = furnace.progress[i] * 69 / TileEntityFurnaceSteel.processTime;
 			drawTexturedModalRect(guiLeft + 54, guiTop + 18 + 18 * i, 176, 18, p, 5);
 			int b = furnace.bonus[i] * 69 / 100;
 			drawTexturedModalRect(guiLeft + 54, guiTop + 27 + 18 * i, 176, 23, b, 5);

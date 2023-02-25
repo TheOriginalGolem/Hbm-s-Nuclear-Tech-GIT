@@ -26,7 +26,7 @@ import net.minecraft.world.World;
 
 public class EntityMaskMan extends EntityMob implements IRadiationImmune {
 
-	private final BossInfoServer bossInfo = (BossInfoServer)(new BossInfoServer(this.getDisplayName(), BossInfo.Color.PURPLE, BossInfo.Overlay.PROGRESS));
+	private final BossInfoServer bossInfo = new BossInfoServer(this.getDisplayName(), BossInfo.Color.PURPLE, BossInfo.Overlay.PROGRESS);
 	
 	public float prevHealth;
 	

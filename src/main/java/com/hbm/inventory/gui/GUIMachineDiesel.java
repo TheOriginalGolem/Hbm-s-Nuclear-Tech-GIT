@@ -14,8 +14,8 @@ import net.minecraft.util.ResourceLocation;
 
 public class GUIMachineDiesel extends GuiInfoContainer {
 	
-	private static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/GUIDiesel.png");
-	private TileEntityMachineDiesel diFurnace;
+	private static final ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/GUIDiesel.png");
+	private final TileEntityMachineDiesel diFurnace;
 
 	public GUIMachineDiesel(InventoryPlayer invPlayer, TileEntityMachineDiesel tedf) {
 		super(new ContainerMachineDiesel(invPlayer, tedf));

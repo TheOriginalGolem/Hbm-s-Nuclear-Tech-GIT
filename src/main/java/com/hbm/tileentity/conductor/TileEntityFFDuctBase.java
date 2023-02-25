@@ -171,10 +171,10 @@ public class TileEntityFFDuctBase extends TileEntity implements IFluidPipe, IFlu
 					this.network.getConsumers().remove(fluidHandlerCache[i]);
 				}
 				if(!this.network.getConsumers().contains(te)) {
-					this.network.getConsumers().add((ICapabilityProvider) te);
+					this.network.getConsumers().add(te);
 				}
 				
-				fluidHandlerCache[i] = (ICapabilityProvider)te;
+				fluidHandlerCache[i] = te;
 					
 			}
 		}

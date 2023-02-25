@@ -125,7 +125,7 @@ public class ItemRTGPellet extends ItemHazard {
 	}
 
 	public static double getDecay(ItemRTGPellet fuel, ItemStack stack) {
-		return (double) Math.pow(0.5, ((double)(fuel.getMaxLifespan()-fuel.getLifespan(stack)) / (double)fuel.getHalfLife()));
+		return Math.pow(0.5, ((double)(fuel.getMaxLifespan()-fuel.getLifespan(stack)) / (double)fuel.getHalfLife()));
 	}
 	
 	public static short getScaledPower(ItemRTGPellet fuel, ItemStack stack) {
@@ -148,7 +148,7 @@ public class ItemRTGPellet extends ItemHazard {
 	@Override
 	public double getDurabilityForDisplay(ItemStack stack) {
 		final ItemRTGPellet instance = (ItemRTGPellet) stack.getItem();
-		return 1D-(double)getDecay(instance, stack);
+		return 1D- getDecay(instance, stack);
 	}
 	
 	@Override
@@ -157,7 +157,7 @@ public class ItemRTGPellet extends ItemHazard {
 		final ItemRTGPellet instance = (ItemRTGPellet) stack.getItem();
 		list.add("§c" + I18nUtil.resolveKey("desc.item.rtgHeat", getScaledPower(instance, stack)) + "§r");
 		if (instance.getDoesDecay()) {
-			list.add("§aFuel left: "+((int)(instance.getDecay(instance, stack) * 100000000D))/1000000D + "%§r");
+			list.add("§aFuel left: "+((int)(getDecay(instance, stack) * 100000000D))/1000000D + "%§r");
 			list.add(I18nUtil.resolveKey("desc.item.rtgDecay", new ItemStack(instance.getDecayItem()).getDisplayName()));
 			list.add("EXTENDED INFO:");
 			list.add(String.format("%s / %s ticks", instance.getLifespan(stack), instance.getMaxLifespan()));

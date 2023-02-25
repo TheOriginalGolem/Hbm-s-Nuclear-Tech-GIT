@@ -13,8 +13,8 @@ import net.minecraft.util.ResourceLocation;
 
 public class GUIMachineRTG extends GuiInfoContainer {
 
-	private static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/gui_rtg.png");
-	private TileEntityMachineRTG rtg;
+	private static final ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/gui_rtg.png");
+	private final TileEntityMachineRTG rtg;
 	
 	public GUIMachineRTG(InventoryPlayer invPlayer, TileEntityMachineRTG tedf) {
 		super(new ContainerMachineRTG(invPlayer, tedf));

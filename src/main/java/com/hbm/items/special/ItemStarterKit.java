@@ -454,8 +454,8 @@ public class ItemStarterKit extends Item {
 		}
 		
 		world.playSound(null, player.posX, player.posY, player.posZ, HBMSoundHandler.itemUnpack, SoundCategory.PLAYERS, 1.0F, 1.0F);
-		stack.shrink(1);;
-		return super.onItemRightClick(world, player, hand);
+		stack.shrink(1);
+        return super.onItemRightClick(world, player, hand);
 	}
 	
 	@Override

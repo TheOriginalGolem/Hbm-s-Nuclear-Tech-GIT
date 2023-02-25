@@ -29,14 +29,14 @@ public class WorldSpaceFPRender {
 	
 	@SubscribeEvent
 	public static void renderHand(RenderHandEvent e) {
-		if(true || !shouldCustomRender)
+		if(true)
 			return;
 		e.setCanceled(true);
 	}
 	
 	@SubscribeEvent
 	public static void doDepthRender(CameraSetup e){
-		if(true || Minecraft.getMinecraft().gameSettings.thirdPersonView != 0 || !shouldCustomRender)
+		if(true)
 			return;
 			
 		GlStateManager.matrixMode(GL11.GL_PROJECTION);
@@ -65,7 +65,7 @@ public class WorldSpaceFPRender {
 	}
 
 	public static void doHandRendering(RenderWorldLastEvent e) {
-		if(true || Minecraft.getMinecraft().gameSettings.thirdPersonView != 0 || !shouldCustomRender)
+		if(true)
 			return;
 		
 		GlStateManager.clear(GL11.GL_DEPTH_BUFFER_BIT);
@@ -117,8 +117,8 @@ public class WorldSpaceFPRender {
 	
 	@SubscribeEvent
 	public static void worldTick(TickEvent.ClientTickEvent e){
-		if(true || e.phase == Phase.END || Minecraft.getMinecraft().world == null)
-			return;
+		if(true) {
+        }
 		/*Random rand = Minecraft.getMinecraft().world.rand;
 		if(ticksActive >= 0){
 			ticksActive ++;

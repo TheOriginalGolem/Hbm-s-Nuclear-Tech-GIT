@@ -15,8 +15,8 @@ import net.minecraft.util.text.TextFormatting;
 
 public class GUINukeCustom extends GuiInfoContainer {
 	
-	private static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/gunBombSchematic.png");
-	private TileEntityNukeCustom testNuke;
+	private static final ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/gunBombSchematic.png");
+	private final TileEntityNukeCustom testNuke;
 	
 	public GUINukeCustom(InventoryPlayer invPlayer, TileEntityNukeCustom tedf) {
 		super(new ContainerNukeCustom(invPlayer, tedf));

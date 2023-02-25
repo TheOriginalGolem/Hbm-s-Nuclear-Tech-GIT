@@ -13,8 +13,8 @@ import net.minecraft.util.ResourceLocation;
 
 public class GUICoreTitanium extends GuiInfoContainer {
 	
-	private static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/factory_titanium.png");
-	private TileEntityCoreTitanium diFurnace;
+	private static final ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/factory_titanium.png");
+	private final TileEntityCoreTitanium diFurnace;
 
 	public GUICoreTitanium(EntityPlayer invPlayer, TileEntityCoreTitanium tedf) {
 		super(new ContainerCoreTitanium(invPlayer, tedf));

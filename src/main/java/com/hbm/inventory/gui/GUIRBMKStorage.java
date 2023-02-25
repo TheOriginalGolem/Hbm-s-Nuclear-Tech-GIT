@@ -14,8 +14,8 @@ import net.minecraft.util.ResourceLocation;
 
 public class GUIRBMKStorage extends GuiContainer {
 	
-	private static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/reactors/gui_rbmk_storage.png");
-	private TileEntityRBMKStorage rod;
+	private static final ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/reactors/gui_rbmk_storage.png");
+	private final TileEntityRBMKStorage rod;
 
 	public GUIRBMKStorage(InventoryPlayer invPlayer, TileEntityRBMKStorage tedf) {
 		super(new ContainerRBMKStorage(invPlayer, tedf));

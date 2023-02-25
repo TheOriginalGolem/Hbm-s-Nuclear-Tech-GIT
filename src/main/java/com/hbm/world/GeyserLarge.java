@@ -88,9 +88,9 @@ public class GeyserLarge extends WorldGenerator {
 		world.setBlockState(pos.setPos(x + 3, y + 6, z + 7), Blocks.STONE.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 4, y + 6, z + 7), Blocks.STONE.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 5, y + 6, z + 7), Blocks.STONE.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 3, y + 7, z + 0), Blocks.STONE.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 4, y + 7, z + 0), Blocks.STONE.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 5, y + 7, z + 0), Blocks.STONE.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x + 3, y + 7, z), Blocks.STONE.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x + 4, y + 7, z), Blocks.STONE.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x + 5, y + 7, z), Blocks.STONE.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 7, z + 1), Blocks.STONE.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 7, z + 1), Blocks.STONE.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 4, y + 7, z + 1), Blocks.STONE.getDefaultState(), 3);
@@ -103,7 +103,7 @@ public class GeyserLarge extends WorldGenerator {
 		world.setBlockState(pos.setPos(x + 5, y + 7, z + 2), Blocks.WATER.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 6, y + 7, z + 2), Blocks.STONE.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 7, y + 7, z + 2), Blocks.STONE.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 7, z + 3), Blocks.STONE.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 7, z + 3), Blocks.STONE.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 7, z + 3), Blocks.STONE.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 7, z + 3), Blocks.WATER.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 7, z + 3), Blocks.WATER.getDefaultState(), 3);
@@ -112,7 +112,7 @@ public class GeyserLarge extends WorldGenerator {
 		world.setBlockState(pos.setPos(x + 6, y + 7, z + 3), Blocks.WATER.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 7, y + 7, z + 3), Blocks.STONE.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 8, y + 7, z + 3), Blocks.STONE.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 7, z + 4), Blocks.STONE.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 7, z + 4), Blocks.STONE.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 7, z + 4), Blocks.STONE.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 7, z + 4), Blocks.WATER.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 7, z + 4), Blocks.WATER.getDefaultState(), 3);
@@ -121,7 +121,7 @@ public class GeyserLarge extends WorldGenerator {
 		world.setBlockState(pos.setPos(x + 6, y + 7, z + 4), Blocks.WATER.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 7, y + 7, z + 4), Blocks.STONE.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 8, y + 7, z + 4), Blocks.STONE.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 7, z + 5), Blocks.STONE.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 7, z + 5), Blocks.STONE.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 7, z + 5), Blocks.STONE.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 7, z + 5), Blocks.WATER.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 7, z + 5), Blocks.WATER.getDefaultState(), 3);
@@ -145,11 +145,11 @@ public class GeyserLarge extends WorldGenerator {
 		world.setBlockState(pos.setPos(x + 3, y + 7, z + 8), Blocks.STONE.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 4, y + 7, z + 8), Blocks.STONE.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 5, y + 7, z + 8), Blocks.STONE.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 2, y + 8, z + 0), Blocks.STONE.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 3, y + 8, z + 0), Blocks.STONE.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 4, y + 8, z + 0), Blocks.STONE.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 5, y + 8, z + 0), Blocks.STONE.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 6, y + 8, z + 0), Blocks.STONE.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x + 2, y + 8, z), Blocks.STONE.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x + 3, y + 8, z), Blocks.STONE.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x + 4, y + 8, z), Blocks.STONE.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x + 5, y + 8, z), Blocks.STONE.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x + 6, y + 8, z), Blocks.STONE.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 8, z + 1), Blocks.STONE.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 8, z + 1), Blocks.STONE.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 8, z + 1), Blocks.STONE.getDefaultState(), 3);
@@ -157,7 +157,7 @@ public class GeyserLarge extends WorldGenerator {
 		world.setBlockState(pos.setPos(x + 5, y + 8, z + 1), Blocks.STONE.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 6, y + 8, z + 1), Blocks.STONE.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 7, y + 8, z + 1), Blocks.STONE.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 8, z + 2), Blocks.STONE.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 8, z + 2), Blocks.STONE.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 8, z + 2), Blocks.STONE.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 8, z + 2), Blocks.STONE.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 8, z + 2), Blocks.AIR.getDefaultState(), 3);
@@ -166,7 +166,7 @@ public class GeyserLarge extends WorldGenerator {
 		world.setBlockState(pos.setPos(x + 6, y + 8, z + 2), Blocks.STONE.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 7, y + 8, z + 2), Blocks.STONE.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 8, y + 8, z + 2), Blocks.STONE.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 8, z + 3), Blocks.STONE.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 8, z + 3), Blocks.STONE.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 8, z + 3), Blocks.STONE.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 8, z + 3), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 8, z + 3), Blocks.AIR.getDefaultState(), 3);
@@ -175,7 +175,7 @@ public class GeyserLarge extends WorldGenerator {
 		world.setBlockState(pos.setPos(x + 6, y + 8, z + 3), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 7, y + 8, z + 3), Blocks.STONE.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 8, y + 8, z + 3), Blocks.STONE.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 8, z + 4), Blocks.STONE.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 8, z + 4), Blocks.STONE.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 8, z + 4), Blocks.STONE.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 8, z + 4), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 8, z + 4), Blocks.AIR.getDefaultState(), 3);
@@ -184,7 +184,7 @@ public class GeyserLarge extends WorldGenerator {
 		world.setBlockState(pos.setPos(x + 6, y + 8, z + 4), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 7, y + 8, z + 4), Blocks.STONE.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 8, y + 8, z + 4), Blocks.STONE.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 8, z + 5), Blocks.STONE.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 8, z + 5), Blocks.STONE.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 8, z + 5), Blocks.STONE.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 8, z + 5), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 8, z + 5), Blocks.AIR.getDefaultState(), 3);
@@ -193,7 +193,7 @@ public class GeyserLarge extends WorldGenerator {
 		world.setBlockState(pos.setPos(x + 6, y + 8, z + 5), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 7, y + 8, z + 5), Blocks.STONE.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 8, y + 8, z + 5), Blocks.STONE.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 8, z + 6), Blocks.STONE.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 8, z + 6), Blocks.STONE.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 8, z + 6), Blocks.STONE.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 8, z + 6), Blocks.STONE.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 8, z + 6), Blocks.AIR.getDefaultState(), 3);
@@ -214,11 +214,11 @@ public class GeyserLarge extends WorldGenerator {
 		world.setBlockState(pos.setPos(x + 4, y + 8, z + 8), Blocks.STONE.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 5, y + 8, z + 8), Blocks.STONE.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 6, y + 8, z + 8), Blocks.STONE.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 2, y + 9, z + 0), Blocks.STONE.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 3, y + 9, z + 0), Blocks.STONE.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 4, y + 9, z + 0), Blocks.STONE.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 5, y + 9, z + 0), Blocks.STONE.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 6, y + 9, z + 0), Blocks.STONE.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x + 2, y + 9, z), Blocks.STONE.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x + 3, y + 9, z), Blocks.STONE.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x + 4, y + 9, z), Blocks.STONE.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x + 5, y + 9, z), Blocks.STONE.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x + 6, y + 9, z), Blocks.STONE.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 9, z + 1), Blocks.STONE.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 9, z + 1), Blocks.STONE.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 9, z + 1), Blocks.STONE.getDefaultState(), 3);
@@ -226,7 +226,7 @@ public class GeyserLarge extends WorldGenerator {
 		world.setBlockState(pos.setPos(x + 5, y + 9, z + 1), Blocks.STONE.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 6, y + 9, z + 1), Blocks.STONE.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 7, y + 9, z + 1), Blocks.STONE.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 9, z + 2), Blocks.STONE.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 9, z + 2), Blocks.STONE.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 9, z + 2), Blocks.STONE.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 9, z + 2), Blocks.STONE.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 9, z + 2), Blocks.AIR.getDefaultState(), 3);
@@ -235,7 +235,7 @@ public class GeyserLarge extends WorldGenerator {
 		world.setBlockState(pos.setPos(x + 6, y + 9, z + 2), Blocks.STONE.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 7, y + 9, z + 2), Blocks.STONE.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 8, y + 9, z + 2), Blocks.STONE.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 9, z + 3), Blocks.STONE.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 9, z + 3), Blocks.STONE.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 9, z + 3), Blocks.STONE.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 9, z + 3), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 9, z + 3), Blocks.AIR.getDefaultState(), 3);
@@ -244,7 +244,7 @@ public class GeyserLarge extends WorldGenerator {
 		world.setBlockState(pos.setPos(x + 6, y + 9, z + 3), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 7, y + 9, z + 3), Blocks.STONE.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 8, y + 9, z + 3), Blocks.STONE.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 9, z + 4), Blocks.STONE.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 9, z + 4), Blocks.STONE.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 9, z + 4), Blocks.STONE.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 9, z + 4), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 9, z + 4), Blocks.AIR.getDefaultState(), 3);
@@ -253,7 +253,7 @@ public class GeyserLarge extends WorldGenerator {
 		world.setBlockState(pos.setPos(x + 6, y + 9, z + 4), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 7, y + 9, z + 4), Blocks.STONE.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 8, y + 9, z + 4), Blocks.STONE.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 9, z + 5), Blocks.STONE.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 9, z + 5), Blocks.STONE.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 9, z + 5), Blocks.STONE.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 9, z + 5), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 9, z + 5), Blocks.AIR.getDefaultState(), 3);
@@ -262,7 +262,7 @@ public class GeyserLarge extends WorldGenerator {
 		world.setBlockState(pos.setPos(x + 6, y + 9, z + 5), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 7, y + 9, z + 5), Blocks.STONE.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 8, y + 9, z + 5), Blocks.STONE.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 9, z + 6), Blocks.STONE.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 9, z + 6), Blocks.STONE.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 9, z + 6), Blocks.STONE.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 9, z + 6), Blocks.STONE.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 9, z + 6), Blocks.AIR.getDefaultState(), 3);
@@ -283,11 +283,11 @@ public class GeyserLarge extends WorldGenerator {
 		world.setBlockState(pos.setPos(x + 4, y + 9, z + 8), Blocks.STONE.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 5, y + 9, z + 8), Blocks.STONE.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 6, y + 9, z + 8), Blocks.STONE.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 2, y + 10, z + 0), Blocks.STONE.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 3, y + 10, z + 0), Blocks.GRAVEL.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 4, y + 10, z + 0), Blocks.STONE.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 5, y + 10, z + 0), Blocks.GRAVEL.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 6, y + 10, z + 0), Blocks.STONE.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x + 2, y + 10, z), Blocks.STONE.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x + 3, y + 10, z), Blocks.GRAVEL.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x + 4, y + 10, z), Blocks.STONE.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x + 5, y + 10, z), Blocks.GRAVEL.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x + 6, y + 10, z), Blocks.STONE.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 10, z + 1), Blocks.GRAVEL.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 10, z + 1), Blocks.STONE.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 10, z + 1), Blocks.STONE.getDefaultState(), 3);
@@ -295,7 +295,7 @@ public class GeyserLarge extends WorldGenerator {
 		world.setBlockState(pos.setPos(x + 5, y + 10, z + 1), Blocks.STONE.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 6, y + 10, z + 1), Blocks.STONE.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 7, y + 10, z + 1), Blocks.STONE.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 10, z + 2), Blocks.STONE.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 10, z + 2), Blocks.STONE.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 10, z + 2), Blocks.STONE.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 10, z + 2), Blocks.STONE.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 10, z + 2), Blocks.STONE.getDefaultState(), 3);
@@ -304,7 +304,7 @@ public class GeyserLarge extends WorldGenerator {
 		world.setBlockState(pos.setPos(x + 6, y + 10, z + 2), Blocks.STONE.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 7, y + 10, z + 2), Blocks.STONE.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 8, y + 10, z + 2), Blocks.GRAVEL.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 10, z + 3), Blocks.GRAVEL.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 10, z + 3), Blocks.GRAVEL.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 10, z + 3), Blocks.STONE.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 10, z + 3), Blocks.STONE.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 10, z + 3), Blocks.AIR.getDefaultState(), 3);
@@ -313,7 +313,7 @@ public class GeyserLarge extends WorldGenerator {
 		world.setBlockState(pos.setPos(x + 6, y + 10, z + 3), Blocks.STONE.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 7, y + 10, z + 3), Blocks.STONE.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 8, y + 10, z + 3), Blocks.STONE.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 10, z + 4), Blocks.GRAVEL.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 10, z + 4), Blocks.GRAVEL.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 10, z + 4), Blocks.STONE.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 10, z + 4), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 10, z + 4), Blocks.AIR.getDefaultState(), 3);
@@ -322,7 +322,7 @@ public class GeyserLarge extends WorldGenerator {
 		world.setBlockState(pos.setPos(x + 6, y + 10, z + 4), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 7, y + 10, z + 4), Blocks.STONE.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 8, y + 10, z + 4), Blocks.STONE.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 10, z + 5), Blocks.STONE.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 10, z + 5), Blocks.STONE.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 10, z + 5), Blocks.STONE.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 10, z + 5), Blocks.STONE.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 10, z + 5), Blocks.AIR.getDefaultState(), 3);
@@ -331,7 +331,7 @@ public class GeyserLarge extends WorldGenerator {
 		world.setBlockState(pos.setPos(x + 6, y + 10, z + 5), Blocks.STONE.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 7, y + 10, z + 5), Blocks.STONE.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 8, y + 10, z + 5), Blocks.STONE.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 10, z + 6), Blocks.STONE.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 10, z + 6), Blocks.STONE.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 10, z + 6), Blocks.STONE.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 10, z + 6), Blocks.STONE.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 10, z + 6), Blocks.STONE.getDefaultState(), 3);

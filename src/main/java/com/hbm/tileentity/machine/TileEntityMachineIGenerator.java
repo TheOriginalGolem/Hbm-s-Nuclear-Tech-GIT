@@ -440,12 +440,8 @@ public class TileEntityMachineIGenerator extends TileEntityMachineBase implement
 
 	@Override
 	public boolean getTact() {
-		if (age >= 0 && age < 10) {
-			return true;
-		}
-
-		return false;
-	}
+        return age >= 0 && age < 10;
+    }
 
 	@Override
 	public long getSPower() {
@@ -543,9 +539,9 @@ public class TileEntityMachineIGenerator extends TileEntityMachineBase implement
 		return super.writeToNBT(nbt);
 	}
 	
-	private static HashBiMap<Item, IGenRTG> rtgPellets = HashBiMap.create();
+	private static final HashBiMap<Item, IGenRTG> rtgPellets = HashBiMap.create();
 	
-	public static enum IGenRTG {
+	public enum IGenRTG {
 		RADIUM(ModItems.pellet_rtg_radium, 9, 3),
 		URANIUM(ModItems.pellet_rtg_weak, 9, 5),
 		PLUTONIUM(ModItems.pellet_rtg, 18, 10),
@@ -557,7 +553,7 @@ public class TileEntityMachineIGenerator extends TileEntityMachineBase implement
 		public int offset;
 		public int heat;
 		
-		private IGenRTG(Item item, int offset, int heat) {
+		IGenRTG(Item item, int offset, int heat) {
 			rtgPellets.put(item, this);
 			this.offset = offset;
 			this.heat = heat;

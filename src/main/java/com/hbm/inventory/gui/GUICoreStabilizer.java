@@ -23,8 +23,8 @@ import net.minecraft.util.math.MathHelper;
 
 public class GUICoreStabilizer extends GuiInfoContainer {
 
-	private static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/dfc/gui_stabilizer.png");
-	private TileEntityCoreStabilizer stabilizer;
+	private static final ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/dfc/gui_stabilizer.png");
+	private final TileEntityCoreStabilizer stabilizer;
     private GuiTextField field;
 	
 	public GUICoreStabilizer(EntityPlayer invPlayer, TileEntityCoreStabilizer tedf) {

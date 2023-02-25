@@ -81,8 +81,7 @@ public class TileEntityMachineBoiler extends TileEntityMachineBase implements IT
 	
 	public boolean isItemValidForSlot(int i, ItemStack stack) {
 		if(i == 4)
-			if(TileEntityFurnace.getItemBurnTime(stack) > 0)
-				return true;
+            return TileEntityFurnace.getItemBurnTime(stack) > 0;
 		return false;
 	}
 	
@@ -210,11 +209,8 @@ public class TileEntityMachineBoiler extends TileEntityMachineBase implements IT
 	}
 
 	protected boolean inputValidForTank(int tank, int slot) {
-		if(inventory.getStackInSlot(slot).hasCapability(CapabilityFluidHandler.FLUID_HANDLER_ITEM_CAPABILITY, null) && isValidFluid(FluidUtil.getFluidContained(inventory.getStackInSlot(slot)))) {
-			return true;
-		}
-		return false;
-	}
+        return inventory.getStackInSlot(slot).hasCapability(CapabilityFluidHandler.FLUID_HANDLER_ITEM_CAPABILITY, null) && isValidFluid(FluidUtil.getFluidContained(inventory.getStackInSlot(slot)));
+    }
 	
 	private boolean isValidFluid(FluidStack stack) {
 		if(stack == null)
@@ -226,8 +222,7 @@ public class TileEntityMachineBoiler extends TileEntityMachineBase implements IT
 	@Override
 	public void recievePacket(NBTTagCompound[] tags) {
 		if(tags.length != 2) {
-			return;
-		} else {
+        } else {
 			tanks[0].readFromNBT(tags[0]);
 			tanks[1].readFromNBT(tags[1]);
 		}
@@ -275,7 +270,7 @@ public class TileEntityMachineBoiler extends TileEntityMachineBase implements IT
 	
 	private int detectHeat;
 	private int detectBurnTime;
-	private FluidTank[] detectTanks = new FluidTank[]{null, null};
+	private final FluidTank[] detectTanks = new FluidTank[]{null, null};
 	
 	private void detectAndSendChanges() {
 		boolean mark = false;

@@ -26,7 +26,7 @@ public class DSmokeRenderer extends Render<EntityDSmokeFX> {
 	public void doRender(EntityDSmokeFX p_76986_1_, double p_76986_2_, double p_76986_4_, double p_76986_6_, float p_76986_8_,
 			float p_76986_9_) {
 		if (p_76986_1_ instanceof EntityDSmokeFX) {
-			EntityDSmokeFX fx = (EntityDSmokeFX) p_76986_1_;
+			EntityDSmokeFX fx = p_76986_1_;
 			sprite = null;
 			if (fx.particleAge <= fx.maxAge && fx.particleAge >= fx.maxAge / 8 * 7) {
 				sprite = sprites[7];
@@ -52,7 +52,7 @@ public class DSmokeRenderer extends Render<EntityDSmokeFX> {
 				sprite = sprites[2];
 			}
 
-			if (fx.particleAge < fx.maxAge / 8 * 2 && fx.particleAge >= fx.maxAge / 8 * 1) {
+			if (fx.particleAge < fx.maxAge / 8 * 2 && fx.particleAge >= fx.maxAge / 8) {
 				sprite = sprites[1];
 			}
 

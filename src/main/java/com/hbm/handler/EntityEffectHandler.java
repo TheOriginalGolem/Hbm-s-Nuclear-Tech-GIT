@@ -94,9 +94,9 @@ public class EntityEffectHandler {
 		RadiationSavedData data = RadiationSavedData.getData(world);
 		
 		if(!world.isRemote) {
-			int ix = (int)MathHelper.floor(entity.posX);
-			int iy = (int)MathHelper.floor(entity.posY);
-			int iz = (int)MathHelper.floor(entity.posZ);
+			int ix = MathHelper.floor(entity.posX);
+			int iy = MathHelper.floor(entity.posY);
+			int iz = MathHelper.floor(entity.posZ);
 	
 			float rad = data.getRadNumFromCoord(new BlockPos(ix, iy, iz));
 	
@@ -260,7 +260,7 @@ public class EntityEffectHandler {
 				}
 				
 				//two hours in, give 'em the full blast
-				if(contagion < 1 * hour && rand.nextInt(100) == 0) {
+				if(contagion < hour && rand.nextInt(100) == 0) {
 					entity.addPotionEffect(new PotionEffect(MobEffects.NAUSEA, 60, 0));
 					entity.addPotionEffect(new PotionEffect(MobEffects.WEAKNESS, 300, 4));
 				}

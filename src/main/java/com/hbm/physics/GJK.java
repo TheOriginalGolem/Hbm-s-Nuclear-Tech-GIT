@@ -197,9 +197,9 @@ public class GJK {
 	
 	/// EPA START ///
 	
-	private static List<Mkv[]> faces = new ArrayList<>();
-	private static List<Mkv[]> edges = new ArrayList<>();
-	private static Vec3[][] features = new Vec3[2][3];
+	private static final List<Mkv[]> faces = new ArrayList<>();
+	private static final List<Mkv[]> edges = new ArrayList<>();
+	private static final Vec3[][] features = new Vec3[2][3];
 	
 	public static void EPA(RigidBody bodyA, RigidBody bodyB, Collider a, Collider b, GJKInfo info){
 		//Create the faces for the first tetrahedron
@@ -392,10 +392,10 @@ public class GJK {
 		public Vec3 contactPointB;
 	}
 	
-	public static enum Result {
+	public enum Result {
 		COLLIDING,
 		SEPARATED,
 		GJK_FAILED,
-		EPA_FAILED;
-	}
+		EPA_FAILED
+    }
 }

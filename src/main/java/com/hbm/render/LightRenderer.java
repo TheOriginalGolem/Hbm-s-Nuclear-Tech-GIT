@@ -53,10 +53,10 @@ public class LightRenderer {
 	
 	public static Field r_setTileEntities;
 	
-	private static Set<Class<?>> blacklistedObjects = new HashSet<>();
+	private static final Set<Class<?>> blacklistedObjects = new HashSet<>();
 
-	private static List<DirectionalLight> flashlights = new ArrayList<>();
-	private static List<PointLight> point_lights = new ArrayList<>();
+	private static final List<DirectionalLight> flashlights = new ArrayList<>();
+	private static final List<PointLight> point_lights = new ArrayList<>();
 	
 	public static int width;
 	public static int height;
@@ -781,13 +781,13 @@ public class LightRenderer {
 		
 	}
 	
-	private static interface ILight {
-		public AxisAlignedBB getBoundingBox();
-		public void addEntToRender(Entity e);
-		public void addTileToRender(TileEntity t);
-		public void addChunkToRender(RenderChunk r);
-		public boolean doesEnts();
-		public boolean doesTiles();
-		public boolean intersects(AxisAlignedBB box);
+	private interface ILight {
+		AxisAlignedBB getBoundingBox();
+		void addEntToRender(Entity e);
+		void addTileToRender(TileEntity t);
+		void addChunkToRender(RenderChunk r);
+		boolean doesEnts();
+		boolean doesTiles();
+		boolean intersects(AxisAlignedBB box);
 	}
 }

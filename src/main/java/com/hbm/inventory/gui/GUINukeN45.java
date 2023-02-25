@@ -14,7 +14,7 @@ import net.minecraft.util.ResourceLocation;
 public class GUINukeN45 extends GuiInfoContainer {
 
 	public static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/gui_n45.png");
-	private TileEntityNukeN45 diFurnace;
+	private final TileEntityNukeN45 diFurnace;
 	
 	public GUINukeN45(InventoryPlayer invPlayer, TileEntityNukeN45 tedf) {
 		super(new ContainerNukeN45(invPlayer, tedf));

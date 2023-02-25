@@ -20,7 +20,7 @@ public class ItemLootCrate extends Item {
 	public static List<ItemMissile> list10 = new ArrayList<ItemMissile>();
 	public static List<ItemMissile> list15 = new ArrayList<ItemMissile>();
 	public static List<ItemMissile> listMisc = new ArrayList<ItemMissile>();
-	private static Random rand = new Random();
+	private static final Random rand = new Random();
 	
 	public ItemLootCrate(String s) {
 		this.setUnlocalizedName(s);

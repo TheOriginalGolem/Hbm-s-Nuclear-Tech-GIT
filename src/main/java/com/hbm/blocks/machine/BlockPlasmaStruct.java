@@ -50,12 +50,12 @@ public class BlockPlasmaStruct extends BlockContainer {
 	
 	@Override
 	protected BlockStateContainer createBlockState() {
-		return new BlockStateContainer(this, new IProperty[]{BlockHorizontal.FACING});
+		return new BlockStateContainer(this, BlockHorizontal.FACING);
 	}
 	
 	@Override
 	public int getMetaFromState(IBlockState state) {
-		return ((EnumFacing)state.getValue(BlockHorizontal.FACING)).getIndex();
+		return state.getValue(BlockHorizontal.FACING).getIndex();
 	}
 	
 	@Override

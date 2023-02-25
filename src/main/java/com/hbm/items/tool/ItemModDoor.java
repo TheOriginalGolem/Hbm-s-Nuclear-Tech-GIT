@@ -57,7 +57,7 @@ public class ItemModDoor extends Item {
 
             if (player.canPlayerEdit(pos, facing, itemstack) && block1.canPlaceBlockAt(worldIn, pos))
             {
-                EnumFacing enumfacing = EnumFacing.fromAngle((double)player.rotationYaw);
+                EnumFacing enumfacing = EnumFacing.fromAngle(player.rotationYaw);
                 int i = enumfacing.getFrontOffsetX();
                 int j = enumfacing.getFrontOffsetZ();
                 boolean flag = i < 0 && hitZ < 0.5F || i > 0 && hitZ > 0.5F || j < 0 && hitX > 0.5F || j > 0 && hitX < 0.5F;

@@ -16,7 +16,7 @@ import net.minecraft.util.ResourceLocation;
 public class GUIMachineBoiler extends GuiInfoContainer {
 
 	public static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/gui_boiler.png");
-	private TileEntityMachineBoiler diFurnace;
+	private final TileEntityMachineBoiler diFurnace;
 
 	public GUIMachineBoiler(InventoryPlayer invPlayer, TileEntityMachineBoiler tedf) {
 		super(new ContainerMachineBoiler(invPlayer, tedf));
@@ -37,8 +37,8 @@ public class GUIMachineBoiler extends GuiInfoContainer {
 		FFUtils.renderTankInfo(this, mouseX, mouseY, guiLeft + 44, guiTop + 69 - 52, 16, 52, dud.tanks[0]);
 		FFUtils.renderTankInfo(this, mouseX, mouseY, guiLeft + 116, guiTop + 69 - 52, 16, 52, dud.tanks[1]);
 
-		this.drawCustomInfoStat(mouseX, mouseY, guiLeft + 84, guiTop + 16, 8, 18, mouseX, mouseY, new String[] { String.valueOf((int) ((double) dud.heat / 100D)) + "°C" });
-		this.drawCustomInfoStat(mouseX, mouseY, guiLeft + 79, guiTop + 34, 18, 18, mouseX, mouseY, new String[] { String.valueOf((int) (Math.ceil((double) dud.burnTime / 20D))) + "s" });
+		this.drawCustomInfoStat(mouseX, mouseY, guiLeft + 84, guiTop + 16, 8, 18, mouseX, mouseY, new String[] {(int) ((double) dud.heat / 100D) + "°C" });
+		this.drawCustomInfoStat(mouseX, mouseY, guiLeft + 79, guiTop + 34, 18, 18, mouseX, mouseY, new String[] {(int) (Math.ceil((double) dud.burnTime / 20D)) + "s" });
 
 		String[] text = new String[] { "Heat produced:", 
 		"  0.5°C/t or 10°C/s", 
@@ -85,7 +85,7 @@ public class GUIMachineBoiler extends GuiInfoContainer {
 		if (dud.burnTime > 0)
 			drawTexturedModalRect(guiLeft + 79, guiTop + 34, 176, 0, 18, 18);
 
-		int j = (int) dud.getHeatScaled(17);
+		int j = dud.getHeatScaled(17);
 		drawTexturedModalRect(guiLeft + 85, guiTop + 33 - j, 194, 16 - j, 6, j);
 
 		this.drawInfoPanel(guiLeft - 16, guiTop + 36, 16, 16, 2);

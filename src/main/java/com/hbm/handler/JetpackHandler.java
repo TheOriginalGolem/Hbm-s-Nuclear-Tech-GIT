@@ -83,7 +83,7 @@ public class JetpackHandler {
 	private static boolean hud_key_down = false;
 	
 	//I should be able to use this cheesily for both server and client, since they're technically different entities.
-	private static Map<PlayerKey, JetpackInfo> perPlayerInfo = new HashMap<>();
+	private static final Map<PlayerKey, JetpackInfo> perPlayerInfo = new HashMap<>();
 	
 	public static JetpackInfo get(EntityPlayer p){
 		return perPlayerInfo.get(new PlayerKey(p));
@@ -96,10 +96,8 @@ public class JetpackHandler {
 	public static boolean hasJetpack(EntityPlayer p){
 		ItemStack chest = p.inventory.armorInventory.get(2);
 		ItemStack stack = ArmorModHandler.pryMod(chest, 1);
-		if(stack.getItem() == ModItems.jetpack_glider)
-			return true;
-		return false;
-	}
+        return stack.getItem() == ModItems.jetpack_glider;
+    }
 	
 	public static FluidTank getTank(EntityPlayer p){
 		ItemStack chest = p.inventory.armorInventory.get(2);
@@ -142,30 +140,30 @@ public class JetpackHandler {
 		return 0;
 	}
 	
-	private static float[] keroseneColor = new float[]{1, 0.6F, 0.5F};
-	private static float[] nitanColor = new float[]{1F, 0.5F, 1F};
-	private static float[] bfColor = new float[]{0.4F, 1, 0.7F};
-	private static float[] abyssColor = new float[]{1F, 1, 0.7F};
-	private static ColorGradient keroseneGradient = new ColorGradient(
+	private static final float[] keroseneColor = new float[]{1, 0.6F, 0.5F};
+	private static final float[] nitanColor = new float[]{1F, 0.5F, 1F};
+	private static final float[] bfColor = new float[]{0.4F, 1, 0.7F};
+	private static final float[] abyssColor = new float[]{1F, 1, 0.7F};
+	private static final ColorGradient keroseneGradient = new ColorGradient(
 			new float[]{1, 0.918F, 0.882F, 1, 0},
 			new float[]{0.887F, 1, 0, 1, 0.177F},
 			new float[]{1, 0.19F, 0, 1, 0.336F},
 			new float[]{1, 0.14F, 0, 1, 0.85F},
 			new float[]{1, 0.14F, 0, 0, 1});
-	private static ColorGradient nitanGradient = new ColorGradient(
+	private static final ColorGradient nitanGradient = new ColorGradient(
 			new float[]{0.845F, 0.779F, 1F, 1, 0},
 			new float[]{1F, 0.3F, 1F, 1, 0.122F},
 			new float[]{0.7F, 0.4F, 1F, 1, 0.389F},
 			new float[]{0.35F, 0.2F, 1F, 1, 0.891F},
 			new float[]{0.1F, 0.1F, 1F, 0, 1});
-	private static ColorGradient bfGradient = new ColorGradient(
+	private static final ColorGradient bfGradient = new ColorGradient(
 			new float[]{1F, 0.95F, 0.279F, 1, 0},
 			new float[]{1F, 0.9F, 0.1F, 1, 0.122F},
 			new float[]{0.013F, 1F, 0.068F, 1, 0.389F},
 			new float[]{0.2F, 1F, 0.3F, 1, 0.891F},
 			new float[]{0, 1F, 0.4F, 0, 1});
 
-	private static ColorGradient abyssGradient = new ColorGradient(
+	private static final ColorGradient abyssGradient = new ColorGradient(
 			new float[]{1F, 0.2F, 0.2F, 1, 0},
 			new float[]{1F, 0.2F, 0.1F, 1, 0.122F},
 			new float[]{1F, 0.2F, 0.07F, 1, 0.389F},
@@ -572,8 +570,8 @@ public class JetpackHandler {
 				float prevMZ = (float) (player.prevPosZ-j.prevPrevPosZ);
 				float mX = (float) (player.posX-player.prevPosX);
 				float mZ = (float) (player.posZ-player.prevPosZ);
-				float motionX = (float) (prevMX + (mX-prevMX)*MainRegistry.proxy.partialTicks());
-				float motionZ = (float) (prevMZ + (mZ-prevMZ)*MainRegistry.proxy.partialTicks());
+				float motionX = prevMX + (mX-prevMX)*MainRegistry.proxy.partialTicks();
+				float motionZ = prevMZ + (mZ-prevMZ)*MainRegistry.proxy.partialTicks();
 				float angle = (float) (Math.atan2(motionX, motionZ) + Math.PI*0.5F);
 				float amount = MathHelper.clamp(MathHelper.sqrt(motionX*motionX+motionZ*motionZ), 0, 2);
 				GL11.glRotated(amount*22.5, Math.toDegrees(MathHelper.sin(angle)), 0, Math.toDegrees(MathHelper.cos(angle)));
@@ -616,7 +614,6 @@ public class JetpackHandler {
 
         for (f = yawOffset - prevYawOffset; f < -180.0F; f += 360.0F)
         {
-            ;
         }
 
         while (f >= 180.0F)

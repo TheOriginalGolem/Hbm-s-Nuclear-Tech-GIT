@@ -85,7 +85,7 @@ public class AnimatedModel {
 			next = first;
 		}
 		
-		renderWithIndex((float) fract(remappedTime), first, next, diffN, c);
+		renderWithIndex(fract(remappedTime), first, next, diffN, c);
 		controller.activeAnim.prevFrame = first;
 	}
 
@@ -145,9 +145,9 @@ public class AnimatedModel {
 		return (float) (number - Math.floor(number));
 	}
 	
-	public static interface IAnimatedModelCallback {
+	public interface IAnimatedModelCallback {
 		//(prevFrame, currentFrame, model, diffN, modelName)
-		public boolean onRender(int prevFrame, int currentFrame, int model, float diffN, String modelName);
-		public default void postRender(int prevFrame, int currentFrame, int model, float diffN, String modelName){};
-	}
+        boolean onRender(int prevFrame, int currentFrame, int model, float diffN, String modelName);
+		default void postRender(int prevFrame, int currentFrame, int model, float diffN, String modelName){}
+    }
 }

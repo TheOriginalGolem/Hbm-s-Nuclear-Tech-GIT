@@ -12,7 +12,7 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 
 public class ItemModMedal extends ItemArmorMod {
-	private float minusRads;
+	private final float minusRads;
 
 	public ItemModMedal(String s, float minusRads) {
 		super(ArmorModHandler.extra, false, true, false, false, s);

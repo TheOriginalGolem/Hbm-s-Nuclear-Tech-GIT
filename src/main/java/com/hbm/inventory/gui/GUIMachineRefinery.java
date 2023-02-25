@@ -14,8 +14,8 @@ import net.minecraft.util.ResourceLocation;
 
 public class GUIMachineRefinery extends GuiInfoContainer {
 
-	private static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/gui_refinery.png");
-	private TileEntityMachineRefinery refinery;
+	private static final ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/gui_refinery.png");
+	private final TileEntityMachineRefinery refinery;
 
 	public GUIMachineRefinery(InventoryPlayer invPlayer, TileEntityMachineRefinery tedf) {
 		super(new ContainerMachineRefinery(invPlayer, tedf));

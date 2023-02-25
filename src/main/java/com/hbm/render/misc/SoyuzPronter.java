@@ -12,7 +12,7 @@ import net.minecraft.util.ResourceLocation;
 public class SoyuzPronter {
 
 	
-	public static enum SoyuzSkin {
+	public enum SoyuzSkin {
 		
 		SOYUZ(
 				ResourceManager.soyuz_engineblock,

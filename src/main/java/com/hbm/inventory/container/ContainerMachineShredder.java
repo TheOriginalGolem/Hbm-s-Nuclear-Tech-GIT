@@ -13,7 +13,7 @@ import net.minecraftforge.items.SlotItemHandler;
 
 public class ContainerMachineShredder extends Container {
 
-	private TileEntityMachineShredder diFurnace;
+	private final TileEntityMachineShredder diFurnace;
 	private int progress;
 	
 	public ContainerMachineShredder(InventoryPlayer invPlayer, TileEntityMachineShredder tedf) {
@@ -75,7 +75,7 @@ public class ContainerMachineShredder extends Container {
     public ItemStack transferStackInSlot(EntityPlayer p_82846_1_, int par2)
     {
 		ItemStack var3 = ItemStack.EMPTY;
-		Slot var4 = (Slot) this.inventorySlots.get(par2);
+		Slot var4 = this.inventorySlots.get(par2);
 		
 		if (var4 != null && var4.getHasStack())
 		{
@@ -119,7 +119,7 @@ public class ContainerMachineShredder extends Container {
 		
 		for(int i = 0; i < this.listeners.size(); i++)
 		{
-			IContainerListener par1 = (IContainerListener)this.listeners.get(i);
+			IContainerListener par1 = this.listeners.get(i);
 			
 			if(this.progress != this.diFurnace.progress)
 			{

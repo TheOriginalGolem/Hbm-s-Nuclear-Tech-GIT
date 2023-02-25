@@ -14,8 +14,8 @@ import net.minecraft.util.ResourceLocation;
 
 public class GUIMachinePuF6Tank extends GuiInfoContainer {
 
-	private static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/puf6Tank.png");
-	private TileEntityMachinePuF6Tank tank;
+	private static final ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/puf6Tank.png");
+	private final TileEntityMachinePuF6Tank tank;
 	
 	public GUIMachinePuF6Tank(InventoryPlayer invPlayer, TileEntityMachinePuF6Tank tedf) {
 		super(new ContainerPuF6Tank(invPlayer, tedf));

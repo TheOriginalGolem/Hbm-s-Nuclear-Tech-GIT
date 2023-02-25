@@ -14,8 +14,8 @@ import net.minecraft.util.ResourceLocation;
 
 public class GUIFWatzCore extends GuiInfoContainer {
 	
-	private static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/gui_fwatz_multiblock.png");
-	private TileEntityFWatzCore diFurnace;
+	private static final ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/gui_fwatz_multiblock.png");
+	private final TileEntityFWatzCore diFurnace;
 
 	public GUIFWatzCore(InventoryPlayer invPlayer, TileEntityFWatzCore tedf) {
 		super(new ContainerFWatzCore(invPlayer, tedf));

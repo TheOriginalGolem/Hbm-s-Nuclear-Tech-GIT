@@ -13,8 +13,8 @@ import net.minecraft.util.ResourceLocation;
 
 public class GUICoreAdvanced extends GuiInfoContainer {
 	
-	private static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/factory_advanced.png");
-	private TileEntityCoreAdvanced diFurnace;
+	private static final ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/factory_advanced.png");
+	private final TileEntityCoreAdvanced diFurnace;
 
 	public GUICoreAdvanced(EntityPlayer invPlayer, TileEntityCoreAdvanced tedf) {
 		super(new ContainerCoreAdvanced(invPlayer, tedf));

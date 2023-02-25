@@ -103,10 +103,10 @@ public class ParticleHaze extends Particle {
 			float pZ = (float) ((this.prevPosZ + (this.posZ - this.prevPosZ) * (double) partialTicks - interpPosZ) + rand.nextGaussian() * 0.5);
 
 			buf.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
-			buf.pos((double) (pX - rotationX * size - rotationXY * size), (double) (pY - rotationZ * size), (double) (pZ - rotationYZ * size - rotationXZ * size)).tex(1, 1).endVertex();
-			buf.pos((double) (pX - rotationX * size + rotationXY * size), (double) (pY + rotationZ * size), (double) (pZ - rotationYZ * size + rotationXZ * size)).tex(1, 0).endVertex();
-			buf.pos((double) (pX + rotationX * size + rotationXY * size), (double) (pY + rotationZ * size), (double) (pZ + rotationYZ * size + rotationXZ * size)).tex(0, 0).endVertex();
-			buf.pos((double) (pX + rotationX * size - rotationXY * size), (double) (pY - rotationZ * size), (double) (pZ + rotationYZ * size - rotationXZ * size)).tex(0, 1).endVertex();
+			buf.pos(pX - rotationX * size - rotationXY * size, pY - rotationZ * size, pZ - rotationYZ * size - rotationXZ * size).tex(1, 1).endVertex();
+			buf.pos(pX - rotationX * size + rotationXY * size, pY + rotationZ * size, pZ - rotationYZ * size + rotationXZ * size).tex(1, 0).endVertex();
+			buf.pos(pX + rotationX * size + rotationXY * size, pY + rotationZ * size, pZ + rotationYZ * size + rotationXZ * size).tex(0, 0).endVertex();
+			buf.pos(pX + rotationX * size - rotationXY * size, pY - rotationZ * size, pZ + rotationYZ * size - rotationXZ * size).tex(0, 1).endVertex();
 			tes.draw();
 
 			GL11.glTranslatef((float) -dX, (float) -dY, (float) -dZ);

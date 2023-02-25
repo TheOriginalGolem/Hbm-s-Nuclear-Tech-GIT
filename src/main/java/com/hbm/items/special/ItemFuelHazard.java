@@ -12,7 +12,7 @@ import net.minecraft.world.World;
 
 public class ItemFuelHazard extends ItemHazard {
 
-	private int burntime;
+	private final int burntime;
 	
 	public ItemFuelHazard(String s, int burntime, boolean pythonic){
 		super(0F, pythonic, s);

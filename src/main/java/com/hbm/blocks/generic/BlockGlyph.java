@@ -82,7 +82,7 @@ public class BlockGlyph extends Block {
 	
 	@Override
 	protected BlockStateContainer createBlockState() {
-		return new BlockStateContainer(this, new IProperty[]{TYPE});
+		return new BlockStateContainer(this, TYPE);
 	}
 	
 	@Override

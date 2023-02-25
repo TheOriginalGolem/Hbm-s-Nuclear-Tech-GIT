@@ -38,14 +38,14 @@ public class GUIAnvil extends GuiContainer {
 
 	public static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/processing/gui_anvil.png");
 	
-	private int tier;
-	private List<AnvilConstructionRecipe> originList = new ArrayList<>();
-	private List<AnvilConstructionRecipe> recipes = new ArrayList<>();
+	private final int tier;
+	private final List<AnvilConstructionRecipe> originList = new ArrayList<>();
+	private final List<AnvilConstructionRecipe> recipes = new ArrayList<>();
 	int index;
 	int size;
 	int selection;
 	private GuiTextField search;
-	private EntityPlayer player;
+	private final EntityPlayer player;
 
 	public GUIAnvil(EntityPlayer player, int tier) {
 		super(new ContainerAnvil(player.inventory, tier));

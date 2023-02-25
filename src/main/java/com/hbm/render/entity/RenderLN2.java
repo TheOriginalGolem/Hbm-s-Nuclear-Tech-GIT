@@ -26,7 +26,7 @@ public class RenderLN2 extends Render<EntityLN2> {
 
 	public static final IRenderFactory<EntityLN2> FACTORY = (RenderManager man) -> {return new RenderLN2(man);};
 	
-	private Map<Item, TextureAtlasSprite> textures = new HashMap<Item, TextureAtlasSprite>();
+	private final Map<Item, TextureAtlasSprite> textures = new HashMap<Item, TextureAtlasSprite>();
 	
 	protected RenderLN2(RenderManager renderManager) {
 		super(renderManager);
@@ -87,7 +87,7 @@ public class RenderLN2 extends Render<EntityLN2> {
 			tex = textures.get(ModItems.ln2_3);
 		}
 
-		if(fx.ticksExisted < fx.maxAge / 10 * 2 && fx.ticksExisted >= fx.maxAge / 10 * 1)
+		if(fx.ticksExisted < fx.maxAge / 10 * 2 && fx.ticksExisted >= fx.maxAge / 10)
 		{
 			tex = textures.get(ModItems.ln2_2);
 		}

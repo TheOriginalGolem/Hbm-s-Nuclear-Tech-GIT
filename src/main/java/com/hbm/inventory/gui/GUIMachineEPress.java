@@ -13,8 +13,8 @@ import net.minecraft.util.ResourceLocation;
 
 public class GUIMachineEPress extends GuiInfoContainer {
 
-	private static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/gui_epress.png");
-	private TileEntityMachineEPress press;
+	private static final ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/gui_epress.png");
+	private final TileEntityMachineEPress press;
 	
 	public GUIMachineEPress(InventoryPlayer invPlayer, TileEntityMachineEPress tedf) {
 		super(new ContainerMachineEPress(invPlayer, tedf));

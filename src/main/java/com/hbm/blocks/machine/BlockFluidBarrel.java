@@ -28,7 +28,7 @@ import net.minecraft.world.World;
 
 public class BlockFluidBarrel extends BlockContainer {
 
-	private int capacity;
+	private final int capacity;
 	public static boolean keepInventory;
 	
 	public BlockFluidBarrel(Material materialIn, int cap, String s) {

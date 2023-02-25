@@ -11,7 +11,7 @@ import net.minecraft.entity.ai.EntityAIBase;
 
 public class EntityAIMaskmanLasergun extends EntityAIBase {
 
-	private EntityCreature owner;
+	private final EntityCreature owner;
     private EntityLivingBase target;
     private EnumLaserAttack attack;
     private int timer;
@@ -95,7 +95,7 @@ public class EntityAIMaskmanLasergun extends EntityAIBase {
 		this.owner.rotationYaw = this.owner.rotationYawHead;
 	}
 	
-	private static enum EnumLaserAttack {
+	private enum EnumLaserAttack {
 
 		ORB(60, 5),
 		MISSILE(10, 10),
@@ -104,7 +104,7 @@ public class EntityAIMaskmanLasergun extends EntityAIBase {
 		public int delay;
 		public int amount;
 
-		private EnumLaserAttack(int delay, int amount) {
+		EnumLaserAttack(int delay, int amount) {
 			this.delay = delay;
 			this.amount = amount;
 		}

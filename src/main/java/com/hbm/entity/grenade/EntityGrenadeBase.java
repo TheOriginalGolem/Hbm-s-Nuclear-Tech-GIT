@@ -30,20 +30,20 @@ public abstract class EntityGrenadeBase extends EntityThrowable {
         this.setSize(0.25F, 0.25F);
         this.setLocationAndAngles(p_i1774_2_.posX, p_i1774_2_.posY + (double)p_i1774_2_.getEyeHeight(), p_i1774_2_.posZ, p_i1774_2_.rotationYaw, p_i1774_2_.rotationPitch);
         if(hand == EnumHand.MAIN_HAND){
-        	this.posX -= (double)(MathHelper.cos(this.rotationYaw / 180.0F * (float)Math.PI) * 0.16F);
+        	this.posX -= MathHelper.cos(this.rotationYaw / 180.0F * (float)Math.PI) * 0.16F;
             this.posY -= 0.10000000149011612D;
-            this.posZ -= (double)(MathHelper.sin(this.rotationYaw / 180.0F * (float)Math.PI) * 0.16F);
+            this.posZ -= MathHelper.sin(this.rotationYaw / 180.0F * (float)Math.PI) * 0.16F;
         } else {
-        	this.posX += (double)(MathHelper.cos(this.rotationYaw / 180.0F * (float)Math.PI) * 0.16F);
+        	this.posX += MathHelper.cos(this.rotationYaw / 180.0F * (float)Math.PI) * 0.16F;
             this.posY -= 0.10000000149011612D;
-            this.posZ += (double)(MathHelper.sin(this.rotationYaw / 180.0F * (float)Math.PI) * 0.16F);
+            this.posZ += MathHelper.sin(this.rotationYaw / 180.0F * (float)Math.PI) * 0.16F;
         }
         
         this.setPosition(this.posX, this.posY, this.posZ);
         float f = 0.4F;
-        this.motionX = (double)(-MathHelper.sin(this.rotationYaw / 180.0F * (float)Math.PI) * MathHelper.cos(this.rotationPitch / 180.0F * (float)Math.PI) * f);
-        this.motionZ = (double)(MathHelper.cos(this.rotationYaw / 180.0F * (float)Math.PI) * MathHelper.cos(this.rotationPitch / 180.0F * (float)Math.PI) * f);
-        this.motionY = (double)(-MathHelper.sin((this.rotationPitch) / 180.0F * (float)Math.PI) * f);
+        this.motionX = -MathHelper.sin(this.rotationYaw / 180.0F * (float)Math.PI) * MathHelper.cos(this.rotationPitch / 180.0F * (float)Math.PI) * f;
+        this.motionZ = MathHelper.cos(this.rotationYaw / 180.0F * (float)Math.PI) * MathHelper.cos(this.rotationPitch / 180.0F * (float)Math.PI) * f;
+        this.motionY = -MathHelper.sin((this.rotationPitch) / 180.0F * (float)Math.PI) * f;
         this.shoot(this.motionX, this.motionY, this.motionZ, 1.5F, 1.0F);
     }
 
@@ -91,7 +91,7 @@ public abstract class EntityGrenadeBase extends EntityThrowable {
     			String s = "null";
     			
     			if(getThrower() != null && getThrower() instanceof EntityPlayer)
-    				s = ((EntityPlayer)getThrower()).getDisplayName().getUnformattedText();
+    				s = getThrower().getDisplayName().getUnformattedText();
     			
     			MainRegistry.logger.log(Level.INFO, "[GREN] Set off grenade at " + ((int)posX) + " / " + ((int)posY) + " / " + ((int)posZ) + " by " + s + "!");
     		}

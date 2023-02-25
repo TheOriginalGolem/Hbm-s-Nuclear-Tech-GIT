@@ -20,7 +20,7 @@ public class TileEntityMachineFENSU extends TileEntityMachineBattery {
 
 		if(!world.isRemote) {
 
-			short mode = (short) this.getRelevantMode();
+			short mode = this.getRelevantMode();
 
 			if(mode == 1 || mode == 2)
 			{

@@ -83,8 +83,7 @@ public class TileEntityMachineBoilerElectric extends TileEntityMachineBase imple
 	
 	public boolean isItemValidForSlot(int i, ItemStack stack) {
 		if(i == 4)
-			if(stack != null && stack.getItem() instanceof IBatteryItem)
-				return true;
+            return stack != null && stack.getItem() instanceof IBatteryItem;
 		return false;
 	}
 	
@@ -212,17 +211,13 @@ public class TileEntityMachineBoilerElectric extends TileEntityMachineBase imple
 	}
 
 	protected boolean inputValidForTank(int tank, int slot) {
-		if(isValidFluid(FluidUtil.getFluidContained(inventory.getStackInSlot(slot)))) {
-			return true;
-		}
-		return false;
-	}
+        return isValidFluid(FluidUtil.getFluidContained(inventory.getStackInSlot(slot)));
+    }
 
 	@Override
 	public void recievePacket(NBTTagCompound[] tags) {
 		if(tags.length != 2) {
-			return;
-		} else {
+        } else {
 			tanks[0].readFromNBT(tags[0]);
 			tanks[1].readFromNBT(tags[1]);
 		}
@@ -272,7 +267,7 @@ public class TileEntityMachineBoilerElectric extends TileEntityMachineBase imple
 
 	private long detectPower;
 	private int detectHeat;
-	private FluidTank[] detectTanks = new FluidTank[] { null, null };
+	private final FluidTank[] detectTanks = new FluidTank[] { null, null };
 
 	private void detectAndSendChanges() {
 		boolean mark = false;

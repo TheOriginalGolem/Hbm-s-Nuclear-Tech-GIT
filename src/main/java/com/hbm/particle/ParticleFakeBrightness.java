@@ -56,8 +56,7 @@ public class ParticleFakeBrightness extends Particle {
 		if(particleAge >= particleMaxAge){
 			setExpired();
 			LensVisibilityHandler.delete(visibilityId);
-			return;
-		}
+        }
 	}
 
 	@Override
@@ -118,11 +117,11 @@ public class ParticleFakeBrightness extends Particle {
 		float visibility = LensVisibilityHandler.getVisibility(visibilityId);
 		visibility *= visibility;
 		
-		float ageN = (float)(this.particleAge+partialTicks)/(float)this.particleMaxAge;
+		float ageN = (this.particleAge+partialTicks) /(float)this.particleMaxAge;
 		float scale = MathHelper.clamp(ageN*fadeInKoeff, 0, 1)* MathHelper.clamp(2-ageN*fadeInKoeff+0.1F, 0, 1);
 		float f4 = 0.1F * this.particleScale * visibility*scale;
         
-        Vec3d[] avec3d = new Vec3d[] {new Vec3d((double)(-rotationX * f4 - rotationXY * f4), (double)(-rotationZ * f4), (double)(-rotationYZ * f4 - rotationXZ * f4)), new Vec3d((double)(-rotationX * f4 + rotationXY * f4), (double)(rotationZ * f4), (double)(-rotationYZ * f4 + rotationXZ * f4)), new Vec3d((double)(rotationX * f4 + rotationXY * f4), (double)(rotationZ * f4), (double)(rotationYZ * f4 + rotationXZ * f4)), new Vec3d((double)(rotationX * f4 - rotationXY * f4), (double)(-rotationZ * f4), (double)(rotationYZ * f4 - rotationXZ * f4))};
+        Vec3d[] avec3d = new Vec3d[] {new Vec3d(-rotationX * f4 - rotationXY * f4, -rotationZ * f4, -rotationYZ * f4 - rotationXZ * f4), new Vec3d(-rotationX * f4 + rotationXY * f4, rotationZ * f4, -rotationYZ * f4 + rotationXZ * f4), new Vec3d(rotationX * f4 + rotationXY * f4, rotationZ * f4, rotationYZ * f4 + rotationXZ * f4), new Vec3d(rotationX * f4 - rotationXY * f4, -rotationZ * f4, rotationYZ * f4 - rotationXZ * f4)};
         if(!local){
         	GlStateManager.enableBlend();
         	GlStateManager.disableAlpha();

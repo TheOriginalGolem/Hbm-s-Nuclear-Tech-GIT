@@ -15,8 +15,8 @@ import net.minecraft.util.ResourceLocation;
 
 public class GUIMachineAssembler extends GuiInfoContainer {
 
-	private static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/gui_assembler.png");
-	private TileEntityMachineAssembler assembler;
+	private static final ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/gui_assembler.png");
+	private final TileEntityMachineAssembler assembler;
 	
 	public GUIMachineAssembler(InventoryPlayer invPlayer, TileEntityMachineAssembler tedf) {
 		super(new ContainerMachineAssembler(invPlayer, tedf));

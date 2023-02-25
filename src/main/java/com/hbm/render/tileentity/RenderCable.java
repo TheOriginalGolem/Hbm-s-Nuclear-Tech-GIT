@@ -24,8 +24,7 @@ public class RenderCable extends TileEntitySpecialRenderer<TileEntityCable> {
 		GlStateManager.disableLighting();
 		this.bindTexture(texture);
 		drawCore(te);
-		;
-		for(int i = 0; i < te.connections.length; i++)
+        for(int i = 0; i < te.connections.length; i++)
 		{
 			if(te.connections[i] != null)
 			{

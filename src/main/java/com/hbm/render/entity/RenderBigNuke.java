@@ -24,14 +24,14 @@ public class RenderBigNuke extends Render<EntityNukeCloudBig> {
 	public static final IRenderFactory<EntityNukeCloudBig> FACTORY = (RenderManager man) -> {return new RenderBigNuke(man);};
 	
 	private static final ResourceLocation objTesterModelRL = new ResourceLocation(/*"/assets/" + */RefStrings.MODID, "models/NukeCloudHuge.obj");
-	private IModelCustom blastModel;
-    private ResourceLocation blastTexture;
+	private final IModelCustom blastModel;
+    private final ResourceLocation blastTexture;
 	private static final ResourceLocation ringModelRL = new ResourceLocation(/*"/assets/" + */RefStrings.MODID, "models/Ring.obj");
-	private IModelCustom ringModel;
-    private ResourceLocation ringTexture;
+	private final IModelCustom ringModel;
+    private final ResourceLocation ringTexture;
 	private static final ResourceLocation ringBigModelRL = new ResourceLocation(/*"/assets/" + */RefStrings.MODID, "models/RingBig.obj");
-	private IModelCustom ringBigModel;
-    private ResourceLocation ringBigTexture;
+	private final IModelCustom ringBigModel;
+    private final ResourceLocation ringBigTexture;
     public float scale = 0;
     public float ring = 0;
 	
@@ -160,7 +160,7 @@ public class RenderBigNuke extends Render<EntityNukeCloudBig> {
             buf.pos(0.0D, 0.0D, 0.0D).color(0.53725490196F, 0.54509803921F, 0.2F, 1.0F - f2).endVertex();
             buf.pos(-0.866D * f4, f3, -0.5F * f4).color(0.53725490196F, 0.54509803921F, 0.27843137254F, 0).endVertex();
             buf.pos(0.866D * f4, f3, -0.5F * f4).color(0.53725490196F, 0.54509803921F, 0.27843137254F, 0).endVertex();
-            buf.pos(0.0D, f3, 1.0F * f4).color(0.53725490196F, 0.54509803921F, 0.27843137254F, 0).endVertex();
+            buf.pos(0.0D, f3, f4).color(0.53725490196F, 0.54509803921F, 0.27843137254F, 0).endVertex();
             buf.pos(-0.866D * f4, f3, -0.5F * f4).color(0.53725490196F, 0.54509803921F, 0.27843137254F, 0).endVertex();
             
             tessellator.draw();

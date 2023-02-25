@@ -20,21 +20,21 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class Tessellator
 {
-    private static int nativeBufferSize = 0x200000;
-    private static int trivertsInBuffer = (nativeBufferSize / 48) * 6;
+    private static final int nativeBufferSize = 0x200000;
+    private static final int trivertsInBuffer = (nativeBufferSize / 48) * 6;
     public static boolean renderingWorldRenderer = false;
     public boolean defaultTexture = false;
     private int rawBufferSize = 0;
     public int textureID = 0;
 
     /** The byte buffer used for GL allocation. */
-    private static ByteBuffer byteBuffer = GLAllocation.createDirectByteBuffer(nativeBufferSize * 4);
+    private static final ByteBuffer byteBuffer = GLAllocation.createDirectByteBuffer(nativeBufferSize * 4);
     /** The same memory as byteBuffer, but referenced as an integer buffer. */
-    private static IntBuffer intBuffer = byteBuffer.asIntBuffer();
+    private static final IntBuffer intBuffer = byteBuffer.asIntBuffer();
     /** The same memory as byteBuffer, but referenced as an float buffer. */
-    private static FloatBuffer floatBuffer = byteBuffer.asFloatBuffer();
+    private static final FloatBuffer floatBuffer = byteBuffer.asFloatBuffer();
     /** The same memory as byteBuffer, but referenced as an short buffer. */
-    private static ShortBuffer shortBuffer = byteBuffer.asShortBuffer();
+    private static final ShortBuffer shortBuffer = byteBuffer.asShortBuffer();
     /** Raw integer array. */
     private int[] rawBuffer;
     /** The number of vertices to be drawn in the next draw call. Reset to 0 between draw calls. */
@@ -210,10 +210,7 @@ public class Tessellator
         {
             int j = ((Integer)priorityqueue.remove()).intValue();
 
-            for (int k = 0; k < b0; ++k)
-            {
-                aint[i + k] = this.rawBuffer[j + k];
-            }
+            System.arraycopy(this.rawBuffer, j + 0, aint, i + 0, b0);
         }
 
         System.arraycopy(aint, 0, this.rawBuffer, 0, aint.length);
@@ -245,7 +242,7 @@ public class Tessellator
     private void reset()
     {
         this.vertexCount = 0;
-        this.byteBuffer.clear();
+        byteBuffer.clear();
         this.rawBufferIndex = 0;
         this.addedVertices = 0;
     }
@@ -538,8 +535,8 @@ public class Tessellator
      */
     public void addTranslation(float p_78372_1_, float p_78372_2_, float p_78372_3_)
     {
-        this.xOffset += (double)p_78372_1_;
-        this.yOffset += (double)p_78372_2_;
-        this.zOffset += (double)p_78372_3_;
+        this.xOffset += p_78372_1_;
+        this.yOffset += p_78372_2_;
+        this.zOffset += p_78372_3_;
     }
 }

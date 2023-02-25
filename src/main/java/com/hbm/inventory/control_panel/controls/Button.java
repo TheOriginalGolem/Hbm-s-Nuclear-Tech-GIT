@@ -1,6 +1,7 @@
 package com.hbm.inventory.control_panel.controls;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import org.lwjgl.opengl.GL11;
@@ -78,7 +79,7 @@ public class Button extends Control {
 	
 	@Override
 	public List<String> getOutEvents(){
-		return Arrays.asList("ctrl_button_press");
+		return Collections.singletonList("ctrl_button_press");
 	}
 	
 	@Override

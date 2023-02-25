@@ -29,8 +29,8 @@ import net.minecraft.util.ResourceLocation;
 
 public class GUIIGenerator extends GuiInfoContainer {
 	
-	private static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/generators/gui_igen.png");
-	private TileEntityMachineIGenerator igen;
+	private static final ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/generators/gui_igen.png");
+	private final TileEntityMachineIGenerator igen;
 	boolean caughtMouse = false;
 
 	public GUIIGenerator(InventoryPlayer invPlayer, TileEntityMachineIGenerator tedf) {

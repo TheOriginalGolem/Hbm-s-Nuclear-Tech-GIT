@@ -12,7 +12,7 @@ import net.minecraftforge.items.SlotItemHandler;
 
 public class ContainerPlasmaHeater extends Container {
 
-	private TileEntityMachinePlasmaHeater microwave;
+	private final TileEntityMachinePlasmaHeater microwave;
 
 	public ContainerPlasmaHeater(InventoryPlayer invPlayer, TileEntityMachinePlasmaHeater tedf) {
 
@@ -42,7 +42,7 @@ public class ContainerPlasmaHeater extends Container {
     public ItemStack transferStackInSlot(EntityPlayer p_82846_1_, int par2)
     {
 		ItemStack var3 = ItemStack.EMPTY;
-		Slot var4 = (Slot) this.inventorySlots.get(par2);
+		Slot var4 = this.inventorySlots.get(par2);
 
 		if (var4 != null && var4.getHasStack())
 		{

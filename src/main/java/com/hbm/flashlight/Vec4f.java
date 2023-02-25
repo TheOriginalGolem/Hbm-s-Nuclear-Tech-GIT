@@ -10,7 +10,7 @@ public class Vec4f extends Tuple4f {
 	private static final long serialVersionUID = 7725582154646111264L;
 	
 	public Vec4f(Vec3d in) {
-		super((float)in.x, (float)in.y, (float)in.z, (float)1.0f);
+		super((float)in.x, (float)in.y, (float)in.z, 1.0f);
 	}
 
 	public Vec4f(float x, float y, float z, float w) {

@@ -20,8 +20,8 @@ import net.minecraft.util.ResourceLocation;
 
 public class GUIRBMKControl extends GuiInfoContainer {
 	
-	private static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/reactors/gui_rbmk_control.png");
-	private TileEntityRBMKControlManual rod;
+	private static final ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/reactors/gui_rbmk_control.png");
+	private final TileEntityRBMKControlManual rod;
 
 	public GUIRBMKControl(InventoryPlayer invPlayer, TileEntityRBMKControlManual tedf) {
 		super(new ContainerRBMKControl(invPlayer, tedf));

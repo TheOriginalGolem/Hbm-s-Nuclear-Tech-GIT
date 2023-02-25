@@ -17,7 +17,7 @@ public class RenderMiniNuke extends Render<EntityMiniNuke> {
 	public static final IRenderFactory<EntityMiniNuke> FACTORY = (RenderManager man) -> {return new RenderMiniNuke(man);};
 	
 	protected static ResourceLocation nuke_rl = new ResourceLocation(RefStrings.MODID + ":textures/models/MiniNuke.png");
-	private ModelMiniNuke miniNuke;
+	private final ModelMiniNuke miniNuke;
 	
 	protected RenderMiniNuke(RenderManager renderManager) {
 		super(renderManager);

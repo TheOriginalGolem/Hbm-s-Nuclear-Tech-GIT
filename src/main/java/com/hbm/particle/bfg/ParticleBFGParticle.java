@@ -134,13 +134,13 @@ public class ParticleBFGParticle extends Particle {
         float f3 = 1;
         float f4 = 0.1F * this.particleScale;
 
-        Vec3d[] avec3d = new Vec3d[] {new Vec3d((double)(-rotationX * f4 - rotationXY * f4), (double)(-rotationZ * f4), (double)(-rotationYZ * f4 - rotationXZ * f4)), new Vec3d((double)(-rotationX * f4 + rotationXY * f4), (double)(rotationZ * f4), (double)(-rotationYZ * f4 + rotationXZ * f4)), new Vec3d((double)(rotationX * f4 + rotationXY * f4), (double)(rotationZ * f4), (double)(rotationYZ * f4 + rotationXZ * f4)), new Vec3d((double)(rotationX * f4 - rotationXY * f4), (double)(-rotationZ * f4), (double)(rotationYZ * f4 - rotationXZ * f4))};
+        Vec3d[] avec3d = new Vec3d[] {new Vec3d(-rotationX * f4 - rotationXY * f4, -rotationZ * f4, -rotationYZ * f4 - rotationXZ * f4), new Vec3d(-rotationX * f4 + rotationXY * f4, rotationZ * f4, -rotationYZ * f4 + rotationXZ * f4), new Vec3d(rotationX * f4 + rotationXY * f4, rotationZ * f4, rotationYZ * f4 + rotationXZ * f4), new Vec3d(rotationX * f4 - rotationXY * f4, -rotationZ * f4, rotationYZ * f4 - rotationXZ * f4)};
 
         buf.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
-        buffer.pos(avec3d[0].x, avec3d[0].y, avec3d[0].z).tex((double)f1, (double)f3).endVertex();
-        buffer.pos(avec3d[1].x, avec3d[1].y, avec3d[1].z).tex((double)f1, (double)f2).endVertex();
-        buffer.pos(avec3d[2].x, avec3d[2].y, avec3d[2].z).tex((double)f, (double)f2).endVertex();
-        buffer.pos(avec3d[3].x, avec3d[3].y, avec3d[3].z).tex((double)f, (double)f3).endVertex();
+        buffer.pos(avec3d[0].x, avec3d[0].y, avec3d[0].z).tex(f1, f3).endVertex();
+        buffer.pos(avec3d[1].x, avec3d[1].y, avec3d[1].z).tex(f1, f2).endVertex();
+        buffer.pos(avec3d[2].x, avec3d[2].y, avec3d[2].z).tex(f, f2).endVertex();
+        buffer.pos(avec3d[3].x, avec3d[3].y, avec3d[3].z).tex(f, f3).endVertex();
         tes.draw();
         
         

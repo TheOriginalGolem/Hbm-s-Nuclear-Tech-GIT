@@ -16,7 +16,7 @@ import net.minecraftforge.items.SlotItemHandler;
 
 public class ContainerMachineGenerator extends Container {
 
-	private TileEntityMachineGenerator diFurnace;
+	private final TileEntityMachineGenerator diFurnace;
 	
 	private int heat;
 	EntityPlayerMP player;

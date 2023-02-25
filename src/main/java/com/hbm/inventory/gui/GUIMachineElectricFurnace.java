@@ -13,8 +13,8 @@ import net.minecraft.util.ResourceLocation;
 
 public class GUIMachineElectricFurnace extends GuiInfoContainer {
 	
-	private static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/GUIElectricFurnace.png");
-	private TileEntityMachineElectricFurnace diFurnace;
+	private static final ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/GUIElectricFurnace.png");
+	private final TileEntityMachineElectricFurnace diFurnace;
 
 	public GUIMachineElectricFurnace(InventoryPlayer invPlayer, TileEntityMachineElectricFurnace tedf) {
 		super(new ContainerElectricFurnace(invPlayer, tedf));

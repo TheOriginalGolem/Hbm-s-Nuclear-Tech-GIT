@@ -86,8 +86,8 @@ public class LensVisibilityHandler {
 	public static class LensSpikeInfo {
 		public float[] modelviewMatrix;
 		public float visibility = 0.0F;
-		private int totalFragmentsQuery;
-		private int fragmentsPassedQuery;
+		private final int totalFragmentsQuery;
+		private final int fragmentsPassedQuery;
 		
 		public LensSpikeInfo(float[] matrix) {
 			this.modelviewMatrix = matrix;

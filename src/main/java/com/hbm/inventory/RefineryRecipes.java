@@ -28,7 +28,7 @@ public class RefineryRecipes {
 	public static final int light_frac_diesel = 40;
 	public static final int light_frac_kero = 60;
 	
-	private static Map<Fluid, Quartet<Fluid, Fluid, Integer, Integer>> fractions = new HashMap<>();
+	private static final Map<Fluid, Quartet<Fluid, Fluid, Integer, Integer>> fractions = new HashMap<>();
 	
 	public static Map<Object, Object[]> getRefineryRecipe() {
 

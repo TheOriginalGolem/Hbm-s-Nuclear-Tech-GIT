@@ -103,7 +103,7 @@ public class ParticleDSmokeFX extends Particle {
 			particleTexture = sprites[2];
 		}
 
-		if (this.particleAge < this.particleMaxAge / 8 * 2 && this.particleAge >= this.particleMaxAge / 8 * 1) {
+		if (this.particleAge < this.particleMaxAge / 8 * 2 && this.particleAge >= this.particleMaxAge / 8) {
 			particleTexture = sprites[1];
 		}
 

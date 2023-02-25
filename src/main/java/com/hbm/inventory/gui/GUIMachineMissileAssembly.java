@@ -22,8 +22,8 @@ import net.minecraft.util.ResourceLocation;
 
 public class GUIMachineMissileAssembly extends GuiInfoContainer {
 
-	private static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/gui_missile_assembly.png");
-	private TileEntityMachineMissileAssembly assembler;
+	private static final ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/gui_missile_assembly.png");
+	private final TileEntityMachineMissileAssembly assembler;
 	
 	public GUIMachineMissileAssembly(InventoryPlayer invPlayer, TileEntityMachineMissileAssembly tedf) {
 		super(new ContainerMachineMissileAssembly(invPlayer, tedf));

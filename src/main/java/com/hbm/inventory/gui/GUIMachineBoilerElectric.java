@@ -15,7 +15,7 @@ import net.minecraft.util.ResourceLocation;
 public class GUIMachineBoilerElectric extends GuiInfoContainer {
 
 	public static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/gui_boiler_electric.png");
-	private TileEntityMachineBoilerElectric diFurnace;
+	private final TileEntityMachineBoilerElectric diFurnace;
 	
 	public GUIMachineBoilerElectric(InventoryPlayer invPlayer, TileEntityMachineBoilerElectric tedf) {
 		super(new ContainerMachineBoilerElectric(invPlayer, tedf));
@@ -32,7 +32,7 @@ public class GUIMachineBoilerElectric extends GuiInfoContainer {
 		FFUtils.renderTankInfo(this, mouseX, mouseY, guiLeft + 44, guiTop + 69 - 52, 16, 52, diFurnace.tanks[0]);
 		FFUtils.renderTankInfo(this, mouseX, mouseY, guiLeft + 116, guiTop + 69 - 52, 16, 52, diFurnace.tanks[1]);
 
-		this.drawCustomInfoStat(mouseX, mouseY, guiLeft + 84, guiTop + 16, 8, 18, mouseX, mouseY, new String[] { String.valueOf((int)((double)diFurnace.heat / 100D)) + "°C"});
+		this.drawCustomInfoStat(mouseX, mouseY, guiLeft + 84, guiTop + 16, 8, 18, mouseX, mouseY, new String[] {(int) ((double) diFurnace.heat / 100D) + "°C"});
 		
 		String[] text = new String[] { "Heat produced:",
 				"  1.5°C/t or 30°C/s",
@@ -81,7 +81,7 @@ public class GUIMachineBoilerElectric extends GuiInfoContainer {
 		if(dud.power > 0)
 			drawTexturedModalRect(guiLeft + 79, guiTop + 34, 176, 0, 18, 18);
 
-		int j = (int)dud.getHeatScaled(17);
+		int j = dud.getHeatScaled(17);
 		drawTexturedModalRect(guiLeft + 85, guiTop + 33 - j, 194, 16 - j, 6, j);
 
 		int i = (int)dud.getPowerScaled(34);

@@ -16,7 +16,7 @@ import net.minecraft.world.World;
 
 public class RailHighspeed extends BlockRailBase {
 
-	public static final PropertyEnum<BlockRailBase.EnumRailDirection> SHAPE = PropertyEnum.<BlockRailBase.EnumRailDirection>create("shape", BlockRailBase.EnumRailDirection.class, new Predicate<BlockRailBase.EnumRailDirection>()
+	public static final PropertyEnum<BlockRailBase.EnumRailDirection> SHAPE = PropertyEnum.create("shape", BlockRailBase.EnumRailDirection.class, new Predicate<BlockRailBase.EnumRailDirection>()
     {
         public boolean apply(@Nullable BlockRailBase.EnumRailDirection p_apply_1_)
         {
@@ -45,7 +45,7 @@ public class RailHighspeed extends BlockRailBase {
 	@Override
 	protected BlockStateContainer createBlockState()
     {
-        return new BlockStateContainer(this, new IProperty[] {SHAPE});
+        return new BlockStateContainer(this, SHAPE);
     }
 	
 	@Override
@@ -57,7 +57,7 @@ public class RailHighspeed extends BlockRailBase {
 	@Override
     public int getMetaFromState(IBlockState state)
     {
-        return ((BlockRailBase.EnumRailDirection)state.getValue(SHAPE)).getMetadata();
+        return state.getValue(SHAPE).getMetadata();
     }
 
 }

@@ -15,7 +15,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
 
 public class EntityGrenadeNuclear extends EntityGrenadeBouncyBase {
-    private static Random rand = new Random();
+    private static final Random rand = new Random();
 
     public EntityGrenadeNuclear(World p_i1773_1_)
     {
@@ -39,7 +39,7 @@ public class EntityGrenadeNuclear extends EntityGrenadeBouncyBase {
         {
             this.setDead();
 
-            world.spawnEntity(EntityNukeExplosionMK4.statFac(world, (int)BombConfig.fatmanRadius/2, posX + 0.5, posY + 0.5, posZ + 0.5));
+            world.spawnEntity(EntityNukeExplosionMK4.statFac(world, BombConfig.fatmanRadius /2, posX + 0.5, posY + 0.5, posZ + 0.5));
             if(rand.nextInt(100) == 0){
                 ExplosionParticleB.spawnMush(world, posX + 0.5, posY - 3, posZ + 0.5);
             } else {

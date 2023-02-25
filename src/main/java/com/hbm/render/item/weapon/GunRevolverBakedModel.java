@@ -26,12 +26,12 @@ public class GunRevolverBakedModel implements IBakedModel {
 
 	@Override
 	public boolean isAmbientOcclusion() {
-		return type != TransformType.GUI ? false : GunRevolverRender.INSTANCE.revolverModel.isAmbientOcclusion();
+		return type == TransformType.GUI && GunRevolverRender.INSTANCE.revolverModel.isAmbientOcclusion();
 	}
 
 	@Override
 	public boolean isGui3d() {
-		return type != TransformType.GUI ? false : GunRevolverRender.INSTANCE.revolverModel.isGui3d();
+		return type == TransformType.GUI && GunRevolverRender.INSTANCE.revolverModel.isGui3d();
 	}
 
 	@Override

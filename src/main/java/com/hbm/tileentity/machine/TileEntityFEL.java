@@ -144,7 +144,7 @@ public class TileEntityFEL extends TileEntityMachineBase implements ITickable, I
 							if(te instanceof TileEntitySILEX) {
 								TileEntitySILEX silex = (TileEntitySILEX) te;
 								int meta = silex.getBlockMetadata() - BlockDummyable.offset;
-								if(rotationIsValid(meta, this.getBlockMetadata() - BlockDummyable.offset) && i >= 5 && silexSpacing == false	) {
+								if(rotationIsValid(meta, this.getBlockMetadata() - BlockDummyable.offset) && i >= 5 && !silexSpacing) {
 									if(silex.mode != this.mode) {
 										silex.mode = this.mode;
 										this.missingValidSilex = false;
@@ -242,12 +242,8 @@ public class TileEntityFEL extends TileEntityMachineBase implements ITickable, I
 	public boolean rotationIsValid(int silexMeta, int felMeta) {
 		ForgeDirection silexDir = ForgeDirection.getOrientation(silexMeta);
 		ForgeDirection felDir = ForgeDirection.getOrientation(felMeta);
-		if(silexDir == felDir || silexDir == felDir.getOpposite()) {
-			return true;
-		}
-		 
-		return false;
-	}
+        return silexDir == felDir || silexDir == felDir.getOpposite();
+    }
 
 	@Override
 	public void networkUnpack(NBTTagCompound nbt) {

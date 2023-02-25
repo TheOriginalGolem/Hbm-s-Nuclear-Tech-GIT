@@ -71,7 +71,7 @@ public class BlockSpinnyLight extends BlockContainer {
 					name = "dyeSilver";
 				if(name.length() > 3 && name.startsWith("dye")){
 					try {
-						EnumDyeColor color = EnumDyeColor.valueOf(name.substring(3, name.length()).toUpperCase());
+						EnumDyeColor color = EnumDyeColor.valueOf(name.substring(3).toUpperCase());
 						TileEntitySpinnyLight ent = (TileEntitySpinnyLight)worldIn.getTileEntity(pos);
 						ent.color = color;
 						ent.markDirty();
@@ -158,21 +158,21 @@ public class BlockSpinnyLight extends BlockContainer {
 
 	@Override
 	public void neighborChanged(IBlockState state, World world, BlockPos pos, Block blockIn, BlockPos fromPos) {
-		if (this.checkForDrop(world, pos, state) && !canPlaceBlock(world, pos, (EnumFacing)state.getValue(FACING)))
+		if (this.checkForDrop(world, pos, state) && !canPlaceBlock(world, pos, state.getValue(FACING)))
         {
             this.dropBlockAsItem(world, pos, state, 0);
             world.setBlockToAir(pos);
             return;
         }
 		if(world.isBlockIndirectlyGettingPowered(pos) > 0) {
-			if(state.getValue(POWERED) == false){
+			if(!state.getValue(POWERED)){
 				TileEntity te = world.getTileEntity(pos);
 				world.setBlockState(pos, state.withProperty(POWERED, true));
 				te.validate();
 				world.setTileEntity(pos, te);
 			}
 		} else {
-			if(state.getValue(POWERED) == true){
+			if(state.getValue(POWERED)){
 				TileEntity te = world.getTileEntity(pos);
 				world.setBlockState(pos, state.withProperty(POWERED, false));
 				te.validate();

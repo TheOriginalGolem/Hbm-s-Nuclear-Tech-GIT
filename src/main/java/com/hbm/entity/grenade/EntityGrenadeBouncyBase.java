@@ -50,20 +50,20 @@ public abstract class EntityGrenadeBouncyBase extends Entity implements IProject
 		this.setSize(0.25F, 0.25F);
 		this.setLocationAndAngles(living.posX, living.posY + (double) living.getEyeHeight(), living.posZ, living.rotationYaw, living.rotationPitch);
 		if (hand == EnumHand.MAIN_HAND) {
-			this.posX -= (double) (MathHelper.cos(this.rotationYaw / 180.0F * (float) Math.PI) * 0.16F);
+			this.posX -= MathHelper.cos(this.rotationYaw / 180.0F * (float) Math.PI) * 0.16F;
 			this.posY -= 0.10000000149011612D;
-			this.posZ -= (double) (MathHelper.sin(this.rotationYaw / 180.0F * (float) Math.PI) * 0.16F);
+			this.posZ -= MathHelper.sin(this.rotationYaw / 180.0F * (float) Math.PI) * 0.16F;
 		} else {
-			this.posX += (double) (MathHelper.cos(this.rotationYaw / 180.0F * (float) Math.PI) * 0.16F);
+			this.posX += MathHelper.cos(this.rotationYaw / 180.0F * (float) Math.PI) * 0.16F;
 			this.posY -= 0.10000000149011612D;
-			this.posZ += (double) (MathHelper.sin(this.rotationYaw / 180.0F * (float) Math.PI) * 0.16F);
+			this.posZ += MathHelper.sin(this.rotationYaw / 180.0F * (float) Math.PI) * 0.16F;
 		}
 
 		this.setPosition(this.posX, this.posY, this.posZ);
 		float f = 0.4F;
-		this.motionX = (double) (-MathHelper.sin(this.rotationYaw / 180.0F * (float) Math.PI) * MathHelper.cos(this.rotationPitch / 180.0F * (float) Math.PI) * f);
-		this.motionZ = (double) (MathHelper.cos(this.rotationYaw / 180.0F * (float) Math.PI) * MathHelper.cos(this.rotationPitch / 180.0F * (float) Math.PI) * f);
-		this.motionY = (double) (-MathHelper.sin((this.rotationPitch + this.func_70183_g()) / 180.0F * (float) Math.PI) * f);
+		this.motionX = -MathHelper.sin(this.rotationYaw / 180.0F * (float) Math.PI) * MathHelper.cos(this.rotationPitch / 180.0F * (float) Math.PI) * f;
+		this.motionZ = MathHelper.cos(this.rotationYaw / 180.0F * (float) Math.PI) * MathHelper.cos(this.rotationPitch / 180.0F * (float) Math.PI) * f;
+		this.motionY = -MathHelper.sin((this.rotationPitch + this.func_70183_g()) / 180.0F * (float) Math.PI) * f;
 		this.shoot(this.motionX, this.motionY, this.motionZ, this.func_70182_d(), 1.0F);
 		this.rotationPitch = 0;
         this.prevRotationPitch = 0;
@@ -100,15 +100,15 @@ public abstract class EntityGrenadeBouncyBase extends Entity implements IProject
 
 	public void shoot(double motionX, double motionY, double motionZ, float f0, float f1) {
 		float f2 = MathHelper.sqrt(motionX * motionX + motionY * motionY + motionZ * motionZ);
-		motionX /= (double) f2;
-		motionY /= (double) f2;
-		motionZ /= (double) f2;
+		motionX /= f2;
+		motionY /= f2;
+		motionZ /= f2;
 		motionX += this.rand.nextGaussian() * 0.007499999832361937D * (double) f1;
 		motionY += this.rand.nextGaussian() * 0.007499999832361937D * (double) f1;
 		motionZ += this.rand.nextGaussian() * 0.007499999832361937D * (double) f1;
-		motionX *= (double) f0;
-		motionY *= (double) f0;
-		motionZ *= (double) f0;
+		motionX *= f0;
+		motionY *= f0;
+		motionZ *= f0;
 		this.motionX = motionX;
 		this.motionY = motionY;
 		this.motionZ = motionZ;
@@ -161,9 +161,9 @@ public abstract class EntityGrenadeBouncyBase extends Entity implements IProject
 			f = underState.getBlock().getSlipperiness(underState, this.world, underPos, this) * 0.98F;
 		}
 
-		this.motionX *= (double) f;
+		this.motionX *= f;
 		this.motionY *= 0.9800000190734863D;
-		this.motionZ *= (double) f;
+		this.motionZ *= f;
 
 		this.handleWaterMovement();
 
@@ -185,7 +185,7 @@ public abstract class EntityGrenadeBouncyBase extends Entity implements IProject
 			String s = "null";
 
 			if (thrower != null && thrower instanceof EntityPlayer)
-				s = ((EntityPlayer) thrower).getDisplayName().getUnformattedText();
+				s = thrower.getDisplayName().getUnformattedText();
 
 			if (GeneralConfig.enableExtendedLogging)
 				MainRegistry.logger.log(Level.INFO, "[GREN] Set off grenade at " + ((int) posX) + " / " + ((int) posY) + " / " + ((int) posZ) + " by " + s + "!");
@@ -220,7 +220,7 @@ public abstract class EntityGrenadeBouncyBase extends Entity implements IProject
 				int k = 0;
 
 				for (int l = list1.size(); k < l; ++k) {
-					y = ((AxisAlignedBB) list1.get(k)).calculateYOffset(this.getEntityBoundingBox(), y);
+					y = list1.get(k).calculateYOffset(this.getEntityBoundingBox(), y);
 				}
 
 				this.setEntityBoundingBox(this.getEntityBoundingBox().offset(0.0D, y, 0.0D));
@@ -230,7 +230,7 @@ public abstract class EntityGrenadeBouncyBase extends Entity implements IProject
 				int j5 = 0;
 
 				for (int l5 = list1.size(); j5 < l5; ++j5) {
-					x = ((AxisAlignedBB) list1.get(j5)).calculateXOffset(this.getEntityBoundingBox(), x);
+					x = list1.get(j5).calculateXOffset(this.getEntityBoundingBox(), x);
 				}
 
 				if (x != 0.0D) {
@@ -242,7 +242,7 @@ public abstract class EntityGrenadeBouncyBase extends Entity implements IProject
 				int k5 = 0;
 
 				for (int i6 = list1.size(); k5 < i6; ++k5) {
-					z = ((AxisAlignedBB) list1.get(k5)).calculateZOffset(this.getEntityBoundingBox(), z);
+					z = list1.get(k5).calculateZOffset(this.getEntityBoundingBox(), z);
 				}
 
 				if (z != 0.0D) {

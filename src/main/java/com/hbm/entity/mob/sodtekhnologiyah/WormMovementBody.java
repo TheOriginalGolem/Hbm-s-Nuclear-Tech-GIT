@@ -11,7 +11,7 @@ import net.minecraft.util.math.MathHelper;
 
 public class WormMovementBody {
 
-	private EntityWormBase user;
+	private final EntityWormBase user;
 
 	public WormMovementBody(EntityWormBase user) {
 		this.user = user;
@@ -55,12 +55,12 @@ public class WormMovementBody {
 			if(segment.getUniqueWormID() == this.user.getUniqueWormID()) {
 				if(segment.getIsHead()) {
 					if(this.user.getPartID() == 0) {
-						this.user.targetedEntity = ((Entity) segment);
+						this.user.targetedEntity = segment;
 					}
-					this.user.followed = ((EntityLivingBase) segment);
+					this.user.followed = segment;
 
 				} else if(segment.getPartID() == this.user.getPartID() - 1) {
-					this.user.targetedEntity = ((Entity) segment);
+					this.user.targetedEntity = segment;
 				}
 			}
 		}

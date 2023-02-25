@@ -22,7 +22,7 @@ import net.minecraft.util.math.MathHelper;
 public class GUINukeFstbmb extends GuiInfoContainer {
 
 	public static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/weapon/fstbmbSchematic.png");
-	private TileEntityNukeBalefire bomb;
+	private final TileEntityNukeBalefire bomb;
 	private GuiTextField timer;
 
 	public GUINukeFstbmb(InventoryPlayer invPlayer, TileEntityNukeBalefire bomb) {

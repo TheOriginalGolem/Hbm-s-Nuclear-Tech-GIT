@@ -72,7 +72,7 @@ public class RenderFireProjectile extends Render<EntityFire> {
 			item = ModItems.flame_3;
 		}
 
-		if(fx.ticksExisted < fx.maxAge / 10 * 2 && fx.ticksExisted >= fx.maxAge / 10 * 1)
+		if(fx.ticksExisted < fx.maxAge / 10 * 2 && fx.ticksExisted >= fx.maxAge / 10)
 		{
 			item = ModItems.flame_2;
 		}

@@ -85,12 +85,12 @@ public class MachineFluidTank extends BlockContainer implements IMultiBlock {
 	
 	@Override
 	protected BlockStateContainer createBlockState() {
-		return new BlockStateContainer(this, new IProperty[] { FACING });
+		return new BlockStateContainer(this, FACING);
 	}
 	
 	@Override
 	public int getMetaFromState(IBlockState state) {
-		return ((EnumFacing) state.getValue(FACING)).getIndex();
+		return state.getValue(FACING).getIndex();
 	}
 
 	@Override
@@ -127,7 +127,7 @@ public class MachineFluidTank extends BlockContainer implements IMultiBlock {
 		TileEntity tileentity = worldIn.getTileEntity(pos);
 
 		if(tileentity instanceof TileEntityMachineFluidTank) {
-			InventoryHelper.dropInventoryItems(worldIn, pos, (TileEntityMachineFluidTank) tileentity);
+			InventoryHelper.dropInventoryItems(worldIn, pos, tileentity);
 			worldIn.updateComparatorOutputLevel(pos, this);
 		}
 		super.breakBlock(worldIn, pos, state);

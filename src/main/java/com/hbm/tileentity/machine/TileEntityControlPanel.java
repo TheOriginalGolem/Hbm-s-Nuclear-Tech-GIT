@@ -1,6 +1,7 @@
 package com.hbm.tileentity.machine;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import org.lwjgl.opengl.GL11;
@@ -110,7 +111,7 @@ public class TileEntityControlPanel extends TileEntity implements ITickable, ICo
 
 	@Override
 	public List<String> getInEvents(){
-		return Arrays.asList("tick");
+		return Collections.singletonList("tick");
 	}
 
 	@Override

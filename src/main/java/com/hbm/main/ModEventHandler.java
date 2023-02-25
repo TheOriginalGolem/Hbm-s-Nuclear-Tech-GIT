@@ -480,7 +480,7 @@ public class ModEventHandler {
 
 			String[] msg = message.split(" ");
 
-			String m = msg[0].substring(1, msg[0].length()).toLowerCase();
+			String m = msg[0].substring(1).toLowerCase();
 
 			if("gv".equals(m)) {
 
@@ -533,7 +533,7 @@ public class ModEventHandler {
 		if(event.world != null && !event.world.isRemote && event.world.provider.isSurfaceWorld() && GeneralConfig.enableMeteorStrikes) {
 			if(event.world.rand.nextInt(meteorShower > 0 ? WorldConfig.meteorShowerChance : WorldConfig.meteorStrikeChance) == 0) {
 				if(!event.world.playerEntities.isEmpty()) {
-					EntityPlayer p = (EntityPlayer) event.world.playerEntities.get(event.world.rand.nextInt(event.world.playerEntities.size()));
+					EntityPlayer p = event.world.playerEntities.get(event.world.rand.nextInt(event.world.playerEntities.size()));
 					if(p != null && p.dimension == 0) {
 						EntityMeteor meteor = new EntityMeteor(event.world);
 						meteor.posX = p.posX + event.world.rand.nextInt(201) - 100;
@@ -761,7 +761,7 @@ public class ModEventHandler {
 		
 		/// V1 ///
 		if(EntityDamageUtil.wasAttackedByV1(e.getSource())) {
-			EntityPlayer attacker = (EntityPlayer) ((EntityDamageSource)e.getSource()).getImmediateSource();
+			EntityPlayer attacker = (EntityPlayer) e.getSource().getImmediateSource();
 					
 			NBTTagCompound data = new NBTTagCompound();
 			data.setString("type", "vanillaburst");
@@ -992,8 +992,8 @@ public class ModEventHandler {
 		
 		if(!event.getEntityLiving().world.isRemote) {
 			
-			if(event.getSource() instanceof EntityDamageSource && ((EntityDamageSource)event.getSource()).getTrueSource() instanceof EntityPlayer
-					 && !(((EntityDamageSource)event.getSource()).getTrueSource() instanceof FakePlayer)) {
+			if(event.getSource() instanceof EntityDamageSource && event.getSource().getTrueSource() instanceof EntityPlayer
+					 && !(event.getSource().getTrueSource() instanceof FakePlayer)) {
 				
 				if(event.getEntityLiving() instanceof EntitySpider && event.getEntityLiving().getRNG().nextInt(500) == 0) {
 					event.getEntityLiving().dropItem(ModItems.spider_milk, 1);
@@ -1077,7 +1077,7 @@ public class ModEventHandler {
 			
 			entity.world.playSound(null, entity.posX, entity.posY, entity.posZ, SoundEvents.ENTITY_ZOMBIE_BREAK_DOOR_WOOD, SoundCategory.HOSTILE, 2.0F, 0.95F + entity.world.rand.nextFloat() * 0.2F);
 			
-			EntityPlayer attacker = (EntityPlayer) ((EntityDamageSource)event.getSource()).getImmediateSource();
+			EntityPlayer attacker = (EntityPlayer) event.getSource().getImmediateSource();
 			
 			if(attacker.getDistanceSq(entity) < 100) {
 				attacker.heal(entity.getMaxHealth() * 0.25F);

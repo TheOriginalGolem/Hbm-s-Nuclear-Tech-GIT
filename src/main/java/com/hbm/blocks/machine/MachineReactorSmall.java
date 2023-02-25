@@ -82,7 +82,7 @@ public class MachineReactorSmall extends BlockContainer implements IMultiBlock {
 
         if (tileentity instanceof TileEntityMachineReactorSmall)
         {
-            InventoryHelper.dropInventoryItems(world, pos, (TileEntityMachineReactorSmall)tileentity);
+            InventoryHelper.dropInventoryItems(world, pos, tileentity);
             
             world.updateComparatorOutputLevel(pos, this);
         }

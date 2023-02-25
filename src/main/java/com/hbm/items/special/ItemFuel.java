@@ -12,7 +12,7 @@ import net.minecraft.world.World;
 
 public class ItemFuel extends Item {
 
-	private int burntime;
+	private final int burntime;
 	
 	public ItemFuel(String s, int burntime){
 		this.setUnlocalizedName(s);

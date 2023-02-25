@@ -16,7 +16,7 @@ import net.minecraft.util.ResourceLocation;
 public class GUICrystallizer extends GuiInfoContainer {
 
 	public static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/processing/gui_crystallizer.png");
-	private TileEntityMachineCrystallizer acidomatic;
+	private final TileEntityMachineCrystallizer acidomatic;
 
 	public GUICrystallizer(InventoryPlayer invPlayer, TileEntityMachineCrystallizer acidomatic) {
 		super(new ContainerCrystallizer(invPlayer, acidomatic));

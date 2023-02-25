@@ -21,8 +21,8 @@ import net.minecraft.util.ResourceLocation;
 
 public class GUIMachineBattery extends GuiInfoContainer {
 
-	private static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/storage/gui_battery.png");
-	private TileEntityMachineBattery battery;
+	private static final ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/storage/gui_battery.png");
+	private final TileEntityMachineBattery battery;
 	private long prevDelta;
 	private long powerDelta;
 

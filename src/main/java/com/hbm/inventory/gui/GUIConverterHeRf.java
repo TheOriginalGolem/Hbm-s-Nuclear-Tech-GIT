@@ -13,8 +13,8 @@ import net.minecraft.util.ResourceLocation;
 
 public class GUIConverterHeRf extends GuiContainer {
 
-	private static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/gui_he_rf_converter.png");
-	private TileEntityConverterHeRf diFurnace;
+	private static final ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/gui_he_rf_converter.png");
+	private final TileEntityConverterHeRf diFurnace;
 
 	public GUIConverterHeRf(EntityPlayer invPlayer, TileEntityConverterHeRf tedf) {
 		super(new ContainerConverterHeRf(invPlayer, tedf));

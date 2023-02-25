@@ -13,7 +13,7 @@ import net.minecraftforge.items.SlotItemHandler;
 
 public class ContainerMachinePress extends Container {
 
-	private TileEntityMachinePress nukeBoy;
+	private final TileEntityMachinePress nukeBoy;
 
 	private int power;
 	private int progress;
@@ -65,7 +65,7 @@ public class ContainerMachinePress extends Container {
     public ItemStack transferStackInSlot(EntityPlayer p_82846_1_, int par2)
     {
 		ItemStack var3 = ItemStack.EMPTY;
-		Slot var4 = (Slot) this.inventorySlots.get(par2);
+		Slot var4 = this.inventorySlots.get(par2);
 		
 		if (var4 != null && var4.getHasStack())
 		{
@@ -85,7 +85,7 @@ public class ContainerMachinePress extends Container {
 			
 			if (var5.getCount() == 0)
 			{
-				var4.putStack((ItemStack) ItemStack.EMPTY);
+				var4.putStack(ItemStack.EMPTY);
 			}
 			else
 			{
@@ -107,7 +107,7 @@ public class ContainerMachinePress extends Container {
 		
 		for(int i = 0; i < this.listeners.size(); i++)
 		{
-			IContainerListener par1 = (IContainerListener)this.listeners.get(i);
+			IContainerListener par1 = this.listeners.get(i);
 			
 			if(this.power != this.nukeBoy.power)
 			{

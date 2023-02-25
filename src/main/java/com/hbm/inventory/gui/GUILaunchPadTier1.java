@@ -13,8 +13,8 @@ import net.minecraft.util.ResourceLocation;
 
 public class GUILaunchPadTier1 extends GuiInfoContainer {
 
-	private static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/gui_launch_pad.png");
-	private TileEntityLaunchPad diFurnace;
+	private static final ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/gui_launch_pad.png");
+	private final TileEntityLaunchPad diFurnace;
 
 	public GUILaunchPadTier1(InventoryPlayer invPlayer, TileEntityLaunchPad tedf) {
 		super(new ContainerLaunchPadTier1(invPlayer, tedf));

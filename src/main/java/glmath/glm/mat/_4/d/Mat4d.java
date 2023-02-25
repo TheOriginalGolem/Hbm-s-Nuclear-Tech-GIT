@@ -729,7 +729,7 @@ public class Mat4d {
     }
 
     public double[] toFa(double[] res, int index) {
-        res[index + 0] = m00;
+        res[index] = m00;
         res[index + 1] = m01;
         res[index + 2] = m02;
         res[index + 3] = m03;
@@ -757,7 +757,7 @@ public class Mat4d {
     }
 
     public ByteBuffer toDbb(ByteBuffer res, int index) {
-        res.putDouble(index + 0, m00);
+        res.putDouble(index, m00);
         res.putDouble(index + 1, m01);
         res.putDouble(index + 2, m02);
         res.putDouble(index + 3, m03);

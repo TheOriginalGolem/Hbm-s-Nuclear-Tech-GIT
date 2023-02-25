@@ -1,9 +1,6 @@
 package com.hbm.inventory;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 
 //i love you
 import static com.hbm.items.ModItems.*;
@@ -720,8 +717,8 @@ public class OreDictManager {
 	
 	public static class DictGroup {
 		
-		private String groupName;
-		private HashSet<String> names = new HashSet();
+		private final String groupName;
+		private final HashSet<String> names = new HashSet();
 		
 		public DictGroup(String groupName) {
 			this.groupName = groupName;
@@ -736,7 +733,7 @@ public class OreDictManager {
 		}
 		
 		public DictGroup addNames(String... names) {
-			for(String mat : names) this.names.add(mat);
+            Collections.addAll(this.names, names);
 			return this;
 		}
 		public DictGroup addFrames(DictFrame... frames) {

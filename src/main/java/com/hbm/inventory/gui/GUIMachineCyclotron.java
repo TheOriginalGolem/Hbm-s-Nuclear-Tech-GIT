@@ -21,8 +21,8 @@ import net.minecraft.util.ResourceLocation;
 
 public class GUIMachineCyclotron extends GuiInfoContainer {
 
-	private static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/machine/gui_cyclotron.png");
-	private TileEntityMachineCyclotron cyclotron;
+	private static final ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/machine/gui_cyclotron.png");
+	private final TileEntityMachineCyclotron cyclotron;
 
 	public GUIMachineCyclotron(InventoryPlayer invPlayer, TileEntityMachineCyclotron tile) {
 		super(new ContainerMachineCyclotron(invPlayer, tile));

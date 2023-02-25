@@ -15,8 +15,8 @@ import net.minecraft.util.ResourceLocation;
 
 public class GUINukeN2 extends GuiContainer {
 	
-	private static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/n2Schematic.png");
-	private TileEntityNukeN2 testNuke;
+	private static final ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/n2Schematic.png");
+	private final TileEntityNukeN2 testNuke;
 	
 	public GUINukeN2(InventoryPlayer invPlayer, TileEntityNukeN2 tedf) {
 		super(new ContainerNukeN2(invPlayer, tedf));

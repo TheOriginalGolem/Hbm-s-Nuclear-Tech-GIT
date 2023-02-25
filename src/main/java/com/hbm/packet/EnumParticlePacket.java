@@ -11,6 +11,8 @@ import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import java.util.Objects;
+
 public class EnumParticlePacket implements IMessage {
 
 	EnumHbmParticles particle;
@@ -61,13 +63,9 @@ public class EnumParticlePacket implements IMessage {
 		@SideOnly(Side.CLIENT)
 		public IMessage onMessage(EnumParticlePacket message, MessageContext ctx) {
 			Minecraft.getMinecraft().addScheduledTask(() -> {
-				switch(message.particle){
-				case PARTICLES:
-					ParticleManager.spawnParticles(message.x, message.y, message.z, message.count);
-					break;
-				default:
-					break;
-				}
+                if (Objects.requireNonNull(message.particle) == EnumHbmParticles.PARTICLES) {
+                    ParticleManager.spawnParticles(message.x, message.y, message.z, message.count);
+                }
 			});
 			return null;
 		}

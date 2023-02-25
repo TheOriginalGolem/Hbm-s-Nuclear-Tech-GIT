@@ -24,7 +24,7 @@ abstract class funcGeometric extends funcExponential {
     }
     
     public static float length(float x) {
-        return (float)Math.abs(x);
+        return Math.abs(x);
     }
     
     public static float dot(Vec4 v0, Vec4 v1) {

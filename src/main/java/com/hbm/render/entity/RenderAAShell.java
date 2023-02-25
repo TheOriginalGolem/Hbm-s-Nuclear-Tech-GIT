@@ -17,8 +17,8 @@ public class RenderAAShell extends Render<EntityAAShell> {
 	public static final IRenderFactory<EntityAAShell> FACTORY = (RenderManager man) -> {return new RenderAAShell(man);};
 	
 	private static final ResourceLocation objTesterModelRL = new ResourceLocation(/*"/assets/" + */RefStrings.MODID, "models/Mirv.obj");
-	private IModelCustom boyModel;
-    private ResourceLocation boyTexture;
+	private final IModelCustom boyModel;
+    private final ResourceLocation boyTexture;
 	
 	protected RenderAAShell(RenderManager renderManager) {
 		super(renderManager);

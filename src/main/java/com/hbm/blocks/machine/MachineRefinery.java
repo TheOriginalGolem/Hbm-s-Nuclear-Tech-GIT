@@ -96,7 +96,7 @@ public class MachineRefinery extends BlockContainer implements IMultiBlock {
 		TileEntity tileentity = world.getTileEntity(pos);
 
 		if(tileentity instanceof TileEntityMachineAssembler) {
-			InventoryHelper.dropInventoryItems(world, pos, (TileEntityMachineAssembler) tileentity);
+			InventoryHelper.dropInventoryItems(world, pos, tileentity);
 
 			world.updateComparatorOutputLevel(pos, this);
 		}

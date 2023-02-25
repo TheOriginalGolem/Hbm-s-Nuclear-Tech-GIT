@@ -13,8 +13,8 @@ import net.minecraft.world.World;
 
 public class MachineTransformer extends BlockContainer {
 
-	private long buffer;
-	private int delay;
+	private final long buffer;
+	private final int delay;
 	
 	public MachineTransformer(Material materialIn, long b, int d, String s) {
 		super(materialIn);

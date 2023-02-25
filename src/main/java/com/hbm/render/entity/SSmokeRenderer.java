@@ -22,7 +22,7 @@ import net.minecraft.util.ResourceLocation;
 public class SSmokeRenderer extends Render<EntitySSmokeFX> {
 
 	private Item item;
-	private int meta;
+	private final int meta;
 
 	public SSmokeRenderer(RenderManager manager, Item p_i1259_1_, int p_i1259_2_) {
 		super(manager);
@@ -71,7 +71,7 @@ public class SSmokeRenderer extends Render<EntitySSmokeFX> {
 				item = ModItems.smoke3;
 			}
 
-			if (fx.particleAge < fx.maxAge / 8 * 2 && fx.particleAge >= fx.maxAge / 8 * 1) {
+			if (fx.particleAge < fx.maxAge / 8 * 2 && fx.particleAge >= fx.maxAge / 8) {
 				item = ModItems.smoke2;
 			}
 

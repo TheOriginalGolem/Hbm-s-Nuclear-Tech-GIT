@@ -47,7 +47,7 @@ public class Mat4 extends matrixQuery {
 
     public Mat4(float[] f, int offset) {
         this(
-                f[offset + 0], f[offset + 1], f[offset + 2], f[offset + 3],
+                f[offset], f[offset + 1], f[offset + 2], f[offset + 3],
                 f[offset + 4], f[offset + 5], f[offset + 6], f[offset + 7],
                 f[offset + 8], f[offset + 9], f[offset + 10], f[offset + 11],
                 f[offset + 12], f[offset + 13], f[offset + 14], f[offset + 15]);
@@ -184,7 +184,7 @@ public class Mat4 extends matrixQuery {
 
     public Mat4 set(float[] f, int offset) {
         set(
-                f[offset + 0], f[offset + 1], f[offset + 2], f[offset + 3],
+                f[offset], f[offset + 1], f[offset + 2], f[offset + 3],
                 f[offset + 4], f[offset + 5], f[offset + 6], f[offset + 7],
                 f[offset + 8], f[offset + 9], f[offset + 10], f[offset + 11],
                 f[offset + 12], f[offset + 13], f[offset + 14], f[offset + 15]);
@@ -453,7 +453,7 @@ public class Mat4 extends matrixQuery {
      * @return
      */
     public float[] toFa(float[] res, int index) {
-        res[index + 0] = m00;
+        res[index] = m00;
         res[index + 1] = m01;
         res[index + 2] = m02;
         res[index + 3] = m03;
@@ -481,8 +481,8 @@ public class Mat4 extends matrixQuery {
     }
 
     public ByteBuffer toDbb(ByteBuffer res, int index) {
-        res.putFloat(index + 0 * Float.BYTES, m00);
-        res.putFloat(index + 1 * Float.BYTES, m01);
+        res.putFloat(index, m00);
+        res.putFloat(index + Float.BYTES, m01);
         res.putFloat(index + 2 * Float.BYTES, m02);
         res.putFloat(index + 3 * Float.BYTES, m03);
         res.putFloat(index + 4 * Float.BYTES, m10);
@@ -509,7 +509,7 @@ public class Mat4 extends matrixQuery {
     }
 
     public FloatBuffer toDfb(FloatBuffer res, int index) {
-        res.put(index + 0, m00);
+        res.put(index, m00);
         res.put(index + 1, m01);
         res.put(index + 2, m02);
         res.put(index + 3, m03);

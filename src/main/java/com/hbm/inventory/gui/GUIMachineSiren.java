@@ -15,8 +15,8 @@ import net.minecraft.util.ResourceLocation;
 
 public class GUIMachineSiren extends GuiContainer {
 	
-	private static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/gui_siren.png");
-	private TileEntityMachineSiren siren;
+	private static final ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/gui_siren.png");
+	private final TileEntityMachineSiren siren;
 
 	public GUIMachineSiren(InventoryPlayer invPlayer, TileEntityMachineSiren tedf) {
 		super(new ContainerMachineSiren(invPlayer, tedf));

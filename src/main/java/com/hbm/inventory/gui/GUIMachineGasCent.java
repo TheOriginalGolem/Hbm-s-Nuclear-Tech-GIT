@@ -15,7 +15,7 @@ import net.minecraft.util.ResourceLocation;
 public class GUIMachineGasCent extends GuiInfoContainer {
 
 	public static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/centrifuge_gas.png");
-	private TileEntityMachineGasCent diFurnace;
+	private final TileEntityMachineGasCent diFurnace;
 	
 	public GUIMachineGasCent(InventoryPlayer invPlayer, TileEntityMachineGasCent tedf) {
 		super(new ContainerMachineGasCent(invPlayer, tedf));
@@ -31,7 +31,7 @@ public class GUIMachineGasCent extends GuiInfoContainer {
 
 		FFUtils.renderTankInfo(this, mouseX, mouseY, guiLeft + 53, guiTop + 69 - 52, 16, 52, diFurnace.tank);
 		
-		this.drawCustomInfoStat(mouseX, mouseY, guiLeft + 98, guiTop + 30, 6, 32, mouseX, mouseY, new String[] {String.valueOf((int)((double)diFurnace.progress / (double)TileEntityMachineGasCent.processingSpeed * 100D)) + "%"});
+		this.drawCustomInfoStat(mouseX, mouseY, guiLeft + 98, guiTop + 30, 6, 32, mouseX, mouseY, new String[] {(int) ((double) diFurnace.progress / (double) TileEntityMachineGasCent.processingSpeed * 100D) + "%"});
 		
 		this.drawElectricityInfo(this, mouseX, mouseY, guiLeft + 8, guiTop + 51 - 34, 16, 34, diFurnace.power, TileEntityMachineGasCent.maxPower);
 		super.renderHoveredToolTip(mouseX, mouseY);
@@ -55,7 +55,7 @@ public class GUIMachineGasCent extends GuiInfoContainer {
 		int i = (int)diFurnace.getPowerRemainingScaled(34);
 		drawTexturedModalRect(guiLeft + 8, guiTop + 51 - i, 176, 34 - i, 16, i);
 
-		int j = (int)diFurnace.getCentrifugeProgressScaled(33);
+		int j = diFurnace.getCentrifugeProgressScaled(33);
 		drawTexturedModalRect(guiLeft + 98, guiTop + 63 - j, 192, 32 - j, 6, j);
 		
 

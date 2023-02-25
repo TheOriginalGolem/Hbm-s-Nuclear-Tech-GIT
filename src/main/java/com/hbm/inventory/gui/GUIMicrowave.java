@@ -18,7 +18,7 @@ import net.minecraft.util.ResourceLocation;
 public class GUIMicrowave extends GuiInfoContainer {
 
 	public static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/processing/gui_microwave.png");
-	private TileEntityMicrowave microwave;
+	private final TileEntityMicrowave microwave;
 
 	public GUIMicrowave(InventoryPlayer invPlayer, TileEntityMicrowave microwave) {
 		super(new ContainerMicrowave(invPlayer, microwave));

@@ -14,8 +14,8 @@ import net.minecraft.util.ResourceLocation;
 
 public class GUINukePrototype extends GuiContainer {
 	
-	private static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/gui_prototype.png");
-	private TileEntityNukePrototype testNuke;
+	private static final ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/gui_prototype.png");
+	private final TileEntityNukePrototype testNuke;
 	
 	public GUINukePrototype(InventoryPlayer invPlayer, TileEntityNukePrototype tedf) {
 		super(new ContainerNukePrototype(invPlayer, tedf));

@@ -126,8 +126,8 @@ public class ParticleBFGBeam extends Particle {
         	int offset = i*100;
         	int texFlip = i % 2 == 1 ? 1 : 0;
         	
-        	buf.pos(point1.xCoord, point1.yCoord, 0-offset).tex(0+texFlip+time, 0).endVertex();
-        	buf.pos(point2.xCoord, point2.yCoord, 0-offset).tex(0+texFlip+time, 1).endVertex();
+        	buf.pos(point1.xCoord, point1.yCoord, -offset).tex(0+texFlip+time, 0).endVertex();
+        	buf.pos(point2.xCoord, point2.yCoord, -offset).tex(0+texFlip+time, 1).endVertex();
         	buf.pos(point2.xCoord, point2.yCoord, -100-offset).tex(1+texFlip+time, 1).endVertex();
         	buf.pos(point1.xCoord, point1.yCoord, -100-offset).tex(1+texFlip+time, 0).endVertex();
         }

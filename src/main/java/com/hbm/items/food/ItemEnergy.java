@@ -286,9 +286,9 @@ public class ItemEnergy extends Item {
 		if(!(this == ModItems.can_creature || this == ModItems.can_mrsugar || this == ModItems.can_overcharge || this == ModItems.can_redbomb || this == ModItems.can_smart || this == ModItems.chocolate_milk || 
 				this == ModItems.can_luna || this == ModItems.can_bepis || this == ModItems.can_breen))
 			if(!Library.hasInventoryItem(player.inventory, ModItems.bottle_opener))
-				return ActionResult.<ItemStack> newResult(EnumActionResult.PASS, player.getHeldItem(hand));
+				return ActionResult.newResult(EnumActionResult.PASS, player.getHeldItem(hand));
 		player.setActiveHand(hand);
-		return ActionResult.<ItemStack> newResult(EnumActionResult.SUCCESS, player.getHeldItem(hand));
+		return ActionResult.newResult(EnumActionResult.SUCCESS, player.getHeldItem(hand));
 	}
 
 	@Override

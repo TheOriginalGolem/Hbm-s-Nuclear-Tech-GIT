@@ -16,8 +16,8 @@ import net.minecraft.util.ResourceLocation;
 
 public class GUICoreReceiver extends GuiInfoContainer {
 
-	private static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/dfc/gui_receiver.png");
-	private TileEntityCoreReceiver receiver;
+	private static final ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/dfc/gui_receiver.png");
+	private final TileEntityCoreReceiver receiver;
 	
 	public GUICoreReceiver(EntityPlayer invPlayer, TileEntityCoreReceiver tedf) {
 		super(new ContainerCoreReceiver(invPlayer, tedf));

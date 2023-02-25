@@ -14,8 +14,8 @@ import net.minecraft.util.ResourceLocation;
 
 public class GUIMachineSelenium extends GuiInfoContainer {
 	
-	private static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/gui_selenium.png");
-	private TileEntityMachineSeleniumEngine diFurnace;
+	private static final ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/gui_selenium.png");
+	private final TileEntityMachineSeleniumEngine diFurnace;
 
 	public GUIMachineSelenium(InventoryPlayer invPlayer, TileEntityMachineSeleniumEngine tedf) {
 		super(new ContainerMachineSelenium(invPlayer, tedf));
@@ -86,7 +86,7 @@ public class GUIMachineSelenium extends GuiInfoContainer {
 		if(diFurnace.power > 0) {
 			int i = (int)diFurnace.getPowerScaled(160);
 			
-			i = (int) Math.min(i, 160);
+			i = Math.min(i, 160);
 			
 			drawTexturedModalRect(guiLeft + 8, guiTop + 108, 0, 222, i, 16);
 		}

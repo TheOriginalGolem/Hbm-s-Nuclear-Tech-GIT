@@ -12,7 +12,7 @@ import net.minecraftforge.items.SlotItemHandler;
 
 public class ContainerElectricFurnace extends Container {
 	
-	private TileEntityMachineElectricFurnace diFurnace;
+	private final TileEntityMachineElectricFurnace diFurnace;
 	
 	public ContainerElectricFurnace(InventoryPlayer invPlayer, TileEntityMachineElectricFurnace tedf) {
 		
@@ -40,7 +40,7 @@ public class ContainerElectricFurnace extends Container {
     public ItemStack transferStackInSlot(EntityPlayer p_82846_1_, int par2)
     {
 		ItemStack var3 = ItemStack.EMPTY;
-		Slot var4 = (Slot) this.inventorySlots.get(par2);
+		Slot var4 = this.inventorySlots.get(par2);
 		
 		if (var4 != null && var4.getHasStack())
 		{

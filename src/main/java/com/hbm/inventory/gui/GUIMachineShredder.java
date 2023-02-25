@@ -13,8 +13,8 @@ import net.minecraft.util.ResourceLocation;
 
 public class GUIMachineShredder extends GuiInfoContainer {
 
-	private static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/gui_shredder.png");
-	private TileEntityMachineShredder diFurnace;
+	private static final ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/gui_shredder.png");
+	private final TileEntityMachineShredder diFurnace;
 
 	public GUIMachineShredder(InventoryPlayer invPlayer, TileEntityMachineShredder tedf) {
 		super(new ContainerMachineShredder(invPlayer, tedf));
@@ -30,12 +30,9 @@ public class GUIMachineShredder extends GuiInfoContainer {
 
 		this.drawElectricityInfo(this, mouseX, mouseY, guiLeft + 8, guiTop + 106 - 88, 16, 88, diFurnace.power, TileEntityMachineShredder.maxPower);
 		
-		boolean flag = false;
+		boolean flag = diFurnace.getGearLeft() == 0 || diFurnace.getGearLeft() == 3;
 
-		if(diFurnace.getGearLeft() == 0 || diFurnace.getGearLeft() == 3)
-			flag = true;
-		
-		if(diFurnace.getGearRight() == 0 || diFurnace.getGearRight() == 3)
+        if(diFurnace.getGearRight() == 0 || diFurnace.getGearRight() == 3)
 			flag = true;
 		
 		if(flag) {

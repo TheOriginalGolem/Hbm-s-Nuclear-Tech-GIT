@@ -129,8 +129,7 @@ public class TileEntityCableBase extends TileEntity implements IEnergyTransmitte
 		if(otherNetworks.isEmpty()) {
 			network = new EnergyNetwork();
 			network.tryAdd(this, null);
-			return;
-		} else {
+        } else {
 			EnergyNetwork net = otherNetworks.remove(0);
 			while(otherNetworks.size() > 0)
 				net = EnergyNetwork.mergeNetworks(net, otherNetworks.remove(0));

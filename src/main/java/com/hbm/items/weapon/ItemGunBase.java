@@ -425,8 +425,7 @@ public class ItemGunBase extends Item implements IHoldableWeapon, IItemHUD {
 		} else {
 
 			Item ammo = BulletConfigSyncingUtil.pullConfig(mainConfig.config.get(getMagType(stack))).ammo;
-			if(Library.hasInventoryItem(player.inventory, ammo))
-				return true;
+            return Library.hasInventoryItem(player.inventory, ammo);
 		}
 
 		return false;

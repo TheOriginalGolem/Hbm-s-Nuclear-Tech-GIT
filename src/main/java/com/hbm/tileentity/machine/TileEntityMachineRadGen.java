@@ -60,7 +60,7 @@ public class TileEntityMachineRadGen extends TileEntity implements ITickable, IS
 		};
 	}
 
-	private static int[] accessibleSlots = new int[]{0};
+	private static final int[] accessibleSlots = new int[]{0};
 
 	public String getInventoryName() {
 		return this.hasCustomInventoryName() ? this.customName : "container.radGen";
@@ -433,12 +433,8 @@ public class TileEntityMachineRadGen extends TileEntity implements ITickable, IS
 
 	@Override
 	public boolean getTact() {
-		if (age >= 0 && age < 10) {
-			return true;
-		}
-
-		return false;
-	}
+        return age >= 0 && age < 10;
+    }
 	
 	@Override
 	public long getSPower() {

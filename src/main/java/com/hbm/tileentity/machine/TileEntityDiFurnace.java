@@ -85,14 +85,9 @@ public class TileEntityDiFurnace extends TileEntityMachineBase implements ITicka
 
 		if(!world.isRemote)
 		{
-			boolean trigger = true;
-			
-			if(flag && canProcess() && this.dualCookTime == 0)
-			{
-				trigger = false;
-			}
+			boolean trigger = !flag || !canProcess() || this.dualCookTime != 0;
 
-			if (!inventory.getStackInSlot(2).isEmpty() && inventory.getStackInSlot(2).getItem() == ModItems.pellet_rtg) {
+            if (!inventory.getStackInSlot(2).isEmpty() && inventory.getStackInSlot(2).getItem() == ModItems.pellet_rtg) {
 				if(this.dualPower != maxPower){
 					this.dualPower = maxPower;
 				}
@@ -147,11 +142,8 @@ public class TileEntityDiFurnace extends TileEntityMachineBase implements ITicka
 	
 	@Override
 	public boolean isItemValidForSlot(int i, ItemStack stack) {
-		if(i == 3){
-			return false;
-		}
-		return true;
-	}
+        return i != 3;
+    }
 	
 	@Override
 	public boolean canInsertItem(int slot, ItemStack itemStack, int amount) {

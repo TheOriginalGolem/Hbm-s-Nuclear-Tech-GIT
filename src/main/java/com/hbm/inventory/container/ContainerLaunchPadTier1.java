@@ -12,7 +12,7 @@ import net.minecraftforge.items.SlotItemHandler;
 public class ContainerLaunchPadTier1 extends Container {
 
 	
-private TileEntityLaunchPad diFurnace;
+private final TileEntityLaunchPad diFurnace;
 	
 	public ContainerLaunchPadTier1(InventoryPlayer invPlayer, TileEntityLaunchPad tedf) {
 		
@@ -40,7 +40,7 @@ private TileEntityLaunchPad diFurnace;
     public ItemStack transferStackInSlot(EntityPlayer p_82846_1_, int par2)
     {
 		ItemStack var3 = ItemStack.EMPTY;
-		Slot var4 = (Slot) this.inventorySlots.get(par2);
+		Slot var4 = this.inventorySlots.get(par2);
 		
 		if (var4 != null && var4.getHasStack())
 		{

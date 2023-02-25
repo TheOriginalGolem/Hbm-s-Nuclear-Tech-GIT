@@ -14,8 +14,8 @@ import net.minecraft.util.ResourceLocation;
 
 public class GUIAMSLimiter extends GuiInfoContainer {
 
-	private static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/gui_ams_limiter.png");
-	private TileEntityAMSLimiter limiter;
+	private static final ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/gui_ams_limiter.png");
+	private final TileEntityAMSLimiter limiter;
 	
 	public GUIAMSLimiter(InventoryPlayer invPlayer, TileEntityAMSLimiter tedf) {
 		super(new ContainerAMSLimiter(invPlayer, tedf));

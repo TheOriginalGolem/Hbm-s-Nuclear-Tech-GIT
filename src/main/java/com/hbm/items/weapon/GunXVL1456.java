@@ -166,7 +166,7 @@ public class GunXVL1456 extends Item {
 					
 					world.createExplosion(player, player.posX, player.posY, player.posZ, 10.0F, true);
 					player.attackEntityFrom(ModDamageSource.tauBlast, 1000F);
-					((EntityPlayer) player).dropItem(false);
+					player.dropItem(false);
 				}
 			}
 		}

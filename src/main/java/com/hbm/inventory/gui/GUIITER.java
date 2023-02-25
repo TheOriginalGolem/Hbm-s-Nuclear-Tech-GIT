@@ -21,7 +21,7 @@ import net.minecraft.util.ResourceLocation;
 public class GUIITER extends GuiInfoContainer {
 
 	public static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/reactors/gui_fusion_multiblock.png");
-	private TileEntityITER iter;
+	private final TileEntityITER iter;
 
 	public GUIITER(InventoryPlayer invPlayer, TileEntityITER laser) {
 		super(new ContainerITER(invPlayer, laser));

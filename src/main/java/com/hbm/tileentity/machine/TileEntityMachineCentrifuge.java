@@ -122,17 +122,12 @@ public class TileEntityMachineCentrifuge extends TileEntityMachineBase implement
 		{
 			return true;
 		}
-		
-		if((inventory.getStackInSlot(2).isEmpty() || (itemStack[0] != null && inventory.getStackInSlot(2).isItemEqual(itemStack[0]) && inventory.getStackInSlot(2).getCount() + itemStack[0].getCount() <= itemStack[0].getMaxStackSize())) && 
-				(inventory.getStackInSlot(3).isEmpty() || (itemStack[1] != null && inventory.getStackInSlot(3).isItemEqual(itemStack[1]) && inventory.getStackInSlot(3).getCount() + itemStack[1].getCount() <= itemStack[1].getMaxStackSize())) && 
-				(inventory.getStackInSlot(4).isEmpty() || (itemStack[2] != null && inventory.getStackInSlot(4).isItemEqual(itemStack[2]) && inventory.getStackInSlot(4).getCount() + itemStack[2].getCount() <= itemStack[2].getMaxStackSize())) && 
-				(inventory.getStackInSlot(5).isEmpty() || (itemStack[3] != null && inventory.getStackInSlot(5).isItemEqual(itemStack[3]) && inventory.getStackInSlot(5).getCount() + itemStack[3].getCount() <= itemStack[3].getMaxStackSize())))
-		{
-			return true;
-		}
-		
-		return false;
-	}
+
+        return (inventory.getStackInSlot(2).isEmpty() || (itemStack[0] != null && inventory.getStackInSlot(2).isItemEqual(itemStack[0]) && inventory.getStackInSlot(2).getCount() + itemStack[0].getCount() <= itemStack[0].getMaxStackSize())) &&
+                (inventory.getStackInSlot(3).isEmpty() || (itemStack[1] != null && inventory.getStackInSlot(3).isItemEqual(itemStack[1]) && inventory.getStackInSlot(3).getCount() + itemStack[1].getCount() <= itemStack[1].getMaxStackSize())) &&
+                (inventory.getStackInSlot(4).isEmpty() || (itemStack[2] != null && inventory.getStackInSlot(4).isItemEqual(itemStack[2]) && inventory.getStackInSlot(4).getCount() + itemStack[2].getCount() <= itemStack[2].getMaxStackSize())) &&
+                (inventory.getStackInSlot(5).isEmpty() || (itemStack[3] != null && inventory.getStackInSlot(5).isItemEqual(itemStack[3]) && inventory.getStackInSlot(5).getCount() + itemStack[3].getCount() <= itemStack[3].getMaxStackSize()));
+    }
 	
 	private void processItem() {
 		if(canProcess()) {
@@ -208,13 +203,8 @@ public class TileEntityMachineCentrifuge extends TileEntityMachineBase implement
 					this.power = 0;
 				}
 			}
-			
-			if(hasPower() && canProcess())
-			{
-				isProgressing = true;
-			} else {
-				isProgressing = false;
-			}
+
+            isProgressing = hasPower() && canProcess();
 			
 			
 			PacketDispatcher.wrapper.sendToAllAround(new LoopedSoundPacket(pos.getX(), pos.getY(), pos.getZ()), new TargetPoint(world.provider.getDimension(), pos.getX(), pos.getY(), pos.getZ(), 200));

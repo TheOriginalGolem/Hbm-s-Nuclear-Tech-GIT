@@ -50,7 +50,7 @@ public class EntityBuilding extends EntityThrowable {
     		ExplosionLarge.spawnShock(world, posX, posY + 1, posZ, 24, 3);
     		ExplosionLarge.spawnShock(world, posX, posY + 1, posZ, 24, 3);
     			
-    		List<Entity> list = (List<Entity>)world.getEntitiesWithinAABBExcludingEntity(null, 
+    		List<Entity> list = world.getEntitiesWithinAABBExcludingEntity(null,
     				new AxisAlignedBB(posX - 8, posY - 8, posZ - 8, posX + 8, posY + 8, posZ + 8));
     			
     		for(Entity e : list) {

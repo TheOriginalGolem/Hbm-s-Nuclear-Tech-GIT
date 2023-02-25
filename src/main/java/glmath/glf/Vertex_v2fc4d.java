@@ -28,10 +28,10 @@ public class Vertex_v2fc4d {
 
     public ByteBuffer toBB(ByteBuffer bb, int index) {
         return bb
-                .putFloat(index * SIZE + 0 * Float.BYTES, position.x)
-                .putFloat(index * SIZE + 1 * Float.BYTES, position.y)
-                .putDouble(index * SIZE + 2 * Float.BYTES + 0 * Double.BYTES, color.x)
-                .putDouble(index * SIZE + 2 * Float.BYTES + 1 * Double.BYTES, color.y)
+                .putFloat(index * SIZE, position.x)
+                .putFloat(index * SIZE + Float.BYTES, position.y)
+                .putDouble(index * SIZE + 2 * Float.BYTES, color.x)
+                .putDouble(index * SIZE + 2 * Float.BYTES + Double.BYTES, color.y)
                 .putDouble(index * SIZE + 2 * Float.BYTES + 2 * Double.BYTES, color.z)
                 .putDouble(index * SIZE + 2 * Float.BYTES + 3 * Double.BYTES, color.w);
     }

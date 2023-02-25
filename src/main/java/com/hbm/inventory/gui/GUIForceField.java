@@ -20,7 +20,7 @@ import net.minecraft.util.ResourceLocation;
 public class GUIForceField extends GuiInfoContainer {
 
 	public static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/gui_field.png");
-	private TileEntityForceField diFurnace;
+	private final TileEntityForceField diFurnace;
 	
 	public GUIForceField(InventoryPlayer invPlayer, TileEntityForceField tedf) {
 		super(new ContainerForceField(invPlayer, tedf));

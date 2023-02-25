@@ -29,8 +29,8 @@ import net.minecraft.world.biome.Biome;
 
 public class RenderFallout extends Render<EntityFalloutRain> {
 
-	private Minecraft mc;
-	private Random random = new Random();
+	private final Minecraft mc;
+	private final Random random = new Random();
 	float[] rainXCoords;
 	float[] rainYCoords;
 	private int rendererUpdateCount;
@@ -173,7 +173,7 @@ public class RenderFallout extends Render<EntityFalloutRain> {
  
                         if (l1 != i2) {
                             pos.setY(l1);
-                            this.random.setSeed(i1 * i1 * 3121 + i1 * 45238971 ^ l * l * 418711 + l * 13761);
+                            this.random.setSeed((long) i1 * i1 * 3121 + i1 * 45238971L ^ (long) l * l * 418711 + l * 13761L);
                             biomegenbase.getTemperature(pos);
                             float f10;
                             double d4;
@@ -228,7 +228,7 @@ public class RenderFallout extends Render<EntityFalloutRain> {
                                     }
                                     b1 = 1;
                                     this.mc.getTextureManager().bindTexture(RenderFallout.falloutTexture);
-                                    tessellator.getBuffer().begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX_COLOR);;
+                                    tessellator.getBuffer().begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX_COLOR);
                                 }
  
                                 f10 = ((this.rendererUpdateCount & 511) + p_78474_1_) / 512.0F;
@@ -241,11 +241,11 @@ public class RenderFallout extends Render<EntityFalloutRain> {
                                 BufferBuilder buf = tessellator.getBuffer();
                                 worldclient.getLightBrightness(pos.setPos(i1, j2, l));
                             //  buf.putBrightness4(bright, bright, bright, bright);
-                                buf.setTranslation(-d0 * 1.0D, -d1 * 1.0D, -d2 * 1.0D);
+                                buf.setTranslation(-d0, -d1, -d2);
                                
                                 buf.pos(i1 - f6 + 0.5D, l1, l - f7 + 0.5D).tex(0.0F * f8 + f16, l1 * f8 / 4.0F + f10 * f8 + f11).color(f15, f15, f15, ((1.0F - f14 * f14) * 0.3F + 0.5F) * f1).endVertex();
-                                buf.pos(i1 + f6 + 0.5D, l1, l + f7 + 0.5D).tex(1.0F * f8 + f16, l1 * f8 / 4.0F + f10 * f8 + f11).color(f15, f15, f15, ((1.0F - f14 * f14) * 0.3F + 0.5F) * f1).endVertex();
-                                buf.pos(i1 + f6 + 0.5D, i2, l + f7 + 0.5D).tex(1.0F * f8 + f16, i2 * f8 / 4.0F + f10 * f8 + f11).color(f15, f15, f15, ((1.0F - f14 * f14) * 0.3F + 0.5F) * f1).endVertex();
+                                buf.pos(i1 + f6 + 0.5D, l1, l + f7 + 0.5D).tex(f8 + f16, l1 * f8 / 4.0F + f10 * f8 + f11).color(f15, f15, f15, ((1.0F - f14 * f14) * 0.3F + 0.5F) * f1).endVertex();
+                                buf.pos(i1 + f6 + 0.5D, i2, l + f7 + 0.5D).tex(f8 + f16, i2 * f8 / 4.0F + f10 * f8 + f11).color(f15, f15, f15, ((1.0F - f14 * f14) * 0.3F + 0.5F) * f1).endVertex();
                                 buf.pos(i1 - f6 + 0.5D, i2, l - f7 + 0.5D).tex(0.0F * f8 + f16, i2 * f8 / 4.0F + f10 * f8 + f11).color(f15, f15, f15, ((1.0F - f14 * f14) * 0.3F + 0.5F) * f1).endVertex();
                                 buf.setTranslation(0.0D, 0.0D, 0.0D);
                             }

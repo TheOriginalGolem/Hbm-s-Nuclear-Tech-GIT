@@ -185,7 +185,7 @@ public class TileEntityMachineRefinery extends TileEntity implements ITickable, 
 	}
 	
 	private long detectPower;
-	private FluidTank[] detectTanks = new FluidTank[]{null, null, null, null, null};
+	private final FluidTank[] detectTanks = new FluidTank[]{null, null, null, null, null};
 	
 	private void detectAndSendChanges() {
 		boolean mark = false;
@@ -329,8 +329,7 @@ public class TileEntityMachineRefinery extends TileEntity implements ITickable, 
 	@Override
 	public void recievePacket(NBTTagCompound[] tags) {
 		if(tags.length != 5){
-			return;
-		} else {
+        } else {
 			tanks[0].readFromNBT(tags[0]);
 			tanks[1].readFromNBT(tags[1]);
 			tanks[2].readFromNBT(tags[2]);

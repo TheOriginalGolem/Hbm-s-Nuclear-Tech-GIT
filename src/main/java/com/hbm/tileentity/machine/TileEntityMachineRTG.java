@@ -51,10 +51,8 @@ public class TileEntityMachineRTG extends TileEntity implements ITickable, ISour
 			
 			@Override
 			public boolean isItemValid(int slot, ItemStack itemStack) {
-				if(itemStack != null && (itemStack.getItem() instanceof ItemRTGPellet))
-					return true;
-				return false;
-			}
+                return itemStack != null && (itemStack.getItem() instanceof ItemRTGPellet);
+            }
 			@Override
 			public ItemStack insertItem(int slot, ItemStack stack, boolean simulate) {
 				if(isItemValid(slot, stack))
@@ -82,7 +80,7 @@ public class TileEntityMachineRTG extends TileEntity implements ITickable, ISour
 			if(heat > heatMax)
 				heat = heatMax;
 			
-			power += heat*5;
+			power += heat* 5L;
 			if(power > powerMax)
 				power = powerMax;
 			
@@ -165,13 +163,8 @@ public class TileEntityMachineRTG extends TileEntity implements ITickable, ISour
 	
 	@Override
 	public boolean getTact() {
-		if(age >= 0 && age < 10)
-		{
-			return true;
-		}
-		
-		return false;
-	}
+        return age >= 0 && age < 10;
+    }
 
 	@Override
 	public long getSPower() {

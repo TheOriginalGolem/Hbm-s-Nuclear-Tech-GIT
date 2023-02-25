@@ -13,8 +13,8 @@ import net.minecraft.util.ResourceLocation;
 
 public class GUICoreInjector extends GuiInfoContainer {
 
-	private static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/dfc/gui_injector.png");
-	private TileEntityCoreInjector injector;
+	private static final ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/dfc/gui_injector.png");
+	private final TileEntityCoreInjector injector;
 	
 	public GUICoreInjector(InventoryPlayer invPlayer, TileEntityCoreInjector tedf) {
 		super(new ContainerCoreInjector(invPlayer, tedf));

@@ -105,10 +105,10 @@ public class ParticleRadiationFog extends Particle {
 	        float pY = (float) ((this.prevPosY + (this.posY - this.prevPosY) * (double)partialTicks - interpPosY) + rand.nextGaussian() * 0.5);
 	        float pZ = (float) ((this.prevPosZ + (this.posZ - this.prevPosZ) * (double)partialTicks - interpPosZ) + rand.nextGaussian() * 0.5);
 			
-	        buffer.pos((double)(pX - rotationX * size - rotationXY * size) + dX, (double)(pY - rotationZ * size) + dY, (double)(pZ - rotationYZ * size - rotationXZ * size) + dZ).tex(particleTexture.getMaxU(), particleTexture.getMaxV()).color(particleRed, particleGreen, particleBlue, particleAlpha).lightmap(k, l).endVertex();
-	        buffer.pos((double)(pX - rotationX * size + rotationXY * size) + dX, (double)(pY + rotationZ * size) + dY, (double)(pZ - rotationYZ * size + rotationXZ * size) + dZ).tex(particleTexture.getMaxU(), particleTexture.getMinV()).color(particleRed, particleGreen, particleBlue, particleAlpha).lightmap(k, l).endVertex();
-	        buffer.pos((double)(pX + rotationX * size + rotationXY * size) + dX, (double)(pY + rotationZ * size) + dY, (double)(pZ + rotationYZ * size + rotationXZ * size) + dZ).tex(particleTexture.getMinU(), particleTexture.getMinV()).color(particleRed, particleGreen, particleBlue, particleAlpha).lightmap(k, l).endVertex();
-	        buffer.pos((double)(pX + rotationX * size - rotationXY * size) + dX, (double)(pY - rotationZ * size) + dY, (double)(pZ + rotationYZ * size - rotationXZ * size) + dZ).tex(particleTexture.getMinU(), particleTexture.getMaxV()).color(particleRed, particleGreen, particleBlue, particleAlpha).lightmap(k, l).endVertex();
+	        buffer.pos((pX - rotationX * size - rotationXY * size) + dX, (pY - rotationZ * size) + dY, (pZ - rotationYZ * size - rotationXZ * size) + dZ).tex(particleTexture.getMaxU(), particleTexture.getMaxV()).color(particleRed, particleGreen, particleBlue, particleAlpha).lightmap(k, l).endVertex();
+	        buffer.pos(pX - rotationX * size + rotationXY * size + dX, pY + rotationZ * size + dY, pZ - rotationYZ * size + rotationXZ * size + dZ).tex(particleTexture.getMaxU(), particleTexture.getMinV()).color(particleRed, particleGreen, particleBlue, particleAlpha).lightmap(k, l).endVertex();
+	        buffer.pos(pX + rotationX * size + rotationXY * size + dX, pY + rotationZ * size + dY, pZ + rotationYZ * size + rotationXZ * size + dZ).tex(particleTexture.getMinU(), particleTexture.getMinV()).color(particleRed, particleGreen, particleBlue, particleAlpha).lightmap(k, l).endVertex();
+	        buffer.pos((pX + rotationX * size - rotationXY * size) + dX, (pY - rotationZ * size) + dY, (pZ + rotationYZ * size - rotationXZ * size) + dZ).tex(particleTexture.getMinU(), particleTexture.getMaxV()).color(particleRed, particleGreen, particleBlue, particleAlpha).lightmap(k, l).endVertex();
 		}
 		
 	}

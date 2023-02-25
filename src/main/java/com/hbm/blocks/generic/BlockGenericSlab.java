@@ -21,9 +21,9 @@ import net.minecraft.world.World;
 
 public class BlockGenericSlab extends BlockSlab {
 
-	public static final PropertyEnum<Variant> VARIANT = PropertyEnum.<Variant>create("variant", Variant.class);
+	public static final PropertyEnum<Variant> VARIANT = PropertyEnum.create("variant", Variant.class);
 	
-	private boolean isDouble;
+	private final boolean isDouble;
 	
 	public BlockGenericSlab(Material materialIn, boolean isDouble, String s) {
 		super(materialIn);
@@ -95,10 +95,10 @@ public class BlockGenericSlab extends BlockSlab {
 	@Override
 	protected BlockStateContainer createBlockState()
     {
-        return this.isDouble() ? new BlockStateContainer(this, new IProperty[] {VARIANT}) : new BlockStateContainer(this, new IProperty[] {HALF, VARIANT});
+        return this.isDouble() ? new BlockStateContainer(this, VARIANT) : new BlockStateContainer(this, HALF, VARIANT);
     }
 	
-	public static enum Variant implements IStringSerializable
+	public enum Variant implements IStringSerializable
     {
         DEFAULT;
 

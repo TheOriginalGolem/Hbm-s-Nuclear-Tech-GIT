@@ -14,8 +14,8 @@ import net.minecraft.util.ResourceLocation;
 
 public class GUICrateDesh extends GuiContainer {
 	
-	private static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/gui_crate_desh.png");
-	private TileEntityCrateDesh diFurnace;
+	private static final ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/gui_crate_desh.png");
+	private final TileEntityCrateDesh diFurnace;
 
 	public GUICrateDesh(InventoryPlayer invPlayer, TileEntityCrateDesh tedf) {
 		super(new ContainerCrateDesh(invPlayer, tedf));

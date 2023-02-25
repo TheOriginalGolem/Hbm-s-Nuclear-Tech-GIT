@@ -30,7 +30,7 @@ import net.minecraft.world.World;
 public class BlockDoorGeneric extends BlockDummyable  implements IRadResistantBlock{
 
 	public DoorDecl type;
-	private boolean isRadResistant;
+	private final boolean isRadResistant;
 	
 	public BlockDoorGeneric(Material materialIn, DoorDecl type, boolean isRadResistant, String s){
 		super(materialIn, s);
@@ -72,10 +72,8 @@ public class BlockDoorGeneric extends BlockDummyable  implements IRadResistantBl
 				return door.tryToggle(playerIn);
 			}
 		}
-		if(!playerIn.isSneaking())
-			return true;
-		return false;
-	}
+        return !playerIn.isSneaking();
+    }
 	
 	@Override
 	public boolean isLadder(IBlockState state, IBlockAccess world, BlockPos pos, EntityLivingBase entity){

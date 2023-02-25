@@ -1,9 +1,6 @@
 package com.hbm.inventory;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 import java.util.Map.Entry;
 
 import com.hbm.blocks.ModBlocks;
@@ -23,7 +20,7 @@ import net.minecraftforge.oredict.OreDictionary;
 public class CrystallizerRecipes {
 
 	//'Object' is either a ComparableStack or the key for the ore dict
-	private static HashMap<Object, ItemStack> recipes = new HashMap<Object, ItemStack>();
+	private static final HashMap<Object, ItemStack> recipes = new HashMap<Object, ItemStack>();
 	private static List<IRecipeWrapper> jeiRecipes = null;
 
 	public static void register() {
@@ -146,7 +143,7 @@ public class CrystallizerRecipes {
 		@Override
 		public void getIngredients(IIngredients ingredients) {
 			if(inputs != null){
-				ingredients.setInputLists(VanillaTypes.ITEM, Arrays.asList(inputs));
+				ingredients.setInputLists(VanillaTypes.ITEM, Collections.singletonList(inputs));
 			} else {
 				ingredients.setInput(VanillaTypes.ITEM, input);
 			}

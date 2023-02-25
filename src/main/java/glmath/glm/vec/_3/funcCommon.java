@@ -320,9 +320,9 @@ abstract class funcCommon extends ArithmeticOperators {
     }
 
     public static Vec3 mod(Vec3 x, Vec3 y, Vec3 result) {
-        result.x = (float) (x.x - y.x * Glm.floor(x.x / y.x));
-        result.y = (float) (x.y - y.y * Glm.floor(x.y / y.y));
-        result.z = (float) (x.z - y.z * Glm.floor(x.z / y.z));
+        result.x = x.x - y.x * Glm.floor(x.x / y.x);
+        result.y = x.y - y.y * Glm.floor(x.y / y.y);
+        result.z = x.z - y.z * Glm.floor(x.z / y.z);
         return result;
     }
 
@@ -401,9 +401,9 @@ abstract class funcCommon extends ArithmeticOperators {
         float ltY = x.y < edge.y ? 1f : 0f;
         float ltZ = x.z < edge.z ? 1f : 0f;
         // mix(1, 0, glm::lessThan(x, edge));
-        result.x = 1 + ltX * (0 - 1);
-        result.y = 1 + ltY * (0 - 1);
-        result.z = 1 + ltZ * (0 - 1);
+        result.x = 1 + ltX * (-1);
+        result.y = 1 + ltY * (-1);
+        result.z = 1 + ltZ * (-1);
         return result;
     }
 

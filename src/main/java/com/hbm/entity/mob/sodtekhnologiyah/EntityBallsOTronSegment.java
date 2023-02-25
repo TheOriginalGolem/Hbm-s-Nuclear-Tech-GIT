@@ -15,7 +15,7 @@ public class EntityBallsOTronSegment extends EntityBallsOTronBase {
 
 	public static final DataParameter<Boolean> SHIELD = EntityDataManager.createKey(EntityBallsOTronSegment.class, DataSerializers.BOOLEAN);
 	
-	private WormMovementBody movement = new WormMovementBody(this);
+	private final WormMovementBody movement = new WormMovementBody(this);
 	
 	public EntityBallsOTronSegment(World world) {
 		super(world);

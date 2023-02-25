@@ -14,10 +14,10 @@ import net.minecraftforge.common.capabilities.ICapabilityProvider;
 
 public class ItemFuelRod extends ItemHazard {
 	
-	private int lifeTime;
-	private int heat;
-	private float irad;
-	private boolean iblind;
+	private final int lifeTime;
+	private final int heat;
+	private final float irad;
+	private final boolean iblind;
 
 	public ItemFuelRod(float radiation, boolean blinding, int life, int heat, String s) {
 		super(radiation, false, blinding, s);

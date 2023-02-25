@@ -40,7 +40,7 @@ public class ItemRenderXVL1456 extends TEISRBase {
 		float f = 0;
 		if(this.entity instanceof EntityPlayer){
 			EntityPlayer player = (EntityPlayer) this.entity;
-			f = ((EntityPlayer)this.entity).getActiveItemStack().getItemUseAction() == EnumAction.BOW ? 0.05F : 0F;
+			f = this.entity.getActiveItemStack().getItemUseAction() == EnumAction.BOW ? 0.05F : 0F;
 			if(f == 0.05F && player.getHeldItemMainhand().getItem() == itemStackIn.getItem() && player.getHeldItemOffhand().getItem() == itemStackIn.getItem()){
 				f = 0.025F;
 			}

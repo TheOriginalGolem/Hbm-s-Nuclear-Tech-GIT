@@ -113,10 +113,10 @@ public class ParticleMukeFlash extends Particle {
 			float pY = (float) (dY + rand.nextDouble() * 7.5 - 3.75);
 			float pZ = (float) (dZ + rand.nextDouble() * 15 - 7.5);
 
-			buffer.pos((double) (pX - x * scale - tx * scale), (double) (pY - y * scale), (double) (pZ - z * scale - tz * scale)).tex(1, 1).color(1.0F, 0.9F, 0.75F, this.particleAlpha * 0.5F).lightmap(240, 240).endVertex();
-			buffer.pos((double) (pX - x * scale + tx * scale), (double) (pY + y * scale), (double) (pZ - z * scale + tz * scale)).tex(1, 0).color(1.0F, 0.9F, 0.75F, this.particleAlpha * 0.5F).lightmap(240, 240).endVertex();
-			buffer.pos((double) (pX + x * scale + tx * scale), (double) (pY + y * scale), (double) (pZ + z * scale + tz * scale)).tex(0, 0).color(1.0F, 0.9F, 0.75F, this.particleAlpha * 0.5F).lightmap(240, 240).endVertex();
-			buffer.pos((double) (pX + x * scale - tx * scale), (double) (pY - y * scale), (double) (pZ + z * scale - tz * scale)).tex(0, 1).color(1.0F, 0.9F, 0.75F, this.particleAlpha * 0.5F).lightmap(240, 240).endVertex();
+			buffer.pos(pX - x * scale - tx * scale, pY - y * scale, pZ - z * scale - tz * scale).tex(1, 1).color(1.0F, 0.9F, 0.75F, this.particleAlpha * 0.5F).lightmap(240, 240).endVertex();
+			buffer.pos(pX - x * scale + tx * scale, pY + y * scale, pZ - z * scale + tz * scale).tex(1, 0).color(1.0F, 0.9F, 0.75F, this.particleAlpha * 0.5F).lightmap(240, 240).endVertex();
+			buffer.pos(pX + x * scale + tx * scale, pY + y * scale, pZ + z * scale + tz * scale).tex(0, 0).color(1.0F, 0.9F, 0.75F, this.particleAlpha * 0.5F).lightmap(240, 240).endVertex();
+			buffer.pos(pX + x * scale - tx * scale, pY - y * scale, pZ + z * scale - tz * scale).tex(0, 1).color(1.0F, 0.9F, 0.75F, this.particleAlpha * 0.5F).lightmap(240, 240).endVertex();
 		}
 		Tessellator.getInstance().draw();
 

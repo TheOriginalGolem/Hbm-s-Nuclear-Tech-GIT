@@ -26,7 +26,7 @@ public class TileEntityObjTester extends TileEntity implements ITickable {
 	public void update() {
 		RayTraceResult r = Library.rayTraceIncludeEntities(world, new Vec3d(this.pos).addVector(0, 2, 0.5), new Vec3d(this.pos).addVector(12, 2, 0.5), null);
 		if(world.isRemote) {
-			if(world.getTotalWorldTime() %1 == 0){
+			if(0L == 0){
 				if(r != null && r.hitVec != null){
 					ParticleGluonFlare flare = new ParticleGluonFlare(world, r.hitVec.x-0.1, r.hitVec.y, r.hitVec.z);
 					Minecraft.getMinecraft().effectRenderer.addEffect(flare);

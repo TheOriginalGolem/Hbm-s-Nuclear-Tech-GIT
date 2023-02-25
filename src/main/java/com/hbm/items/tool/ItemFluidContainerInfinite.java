@@ -10,7 +10,7 @@ import net.minecraftforge.common.capabilities.ICapabilityProvider;
 
 public class ItemFluidContainerInfinite extends Item {
 
-	private int maxDrain;
+	private final int maxDrain;
 	
 	public ItemFluidContainerInfinite(int maxDrain, String s) {
 		this.setUnlocalizedName(s);

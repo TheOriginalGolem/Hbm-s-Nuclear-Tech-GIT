@@ -171,7 +171,7 @@ public class Quat {
         quat.z = cross.z;
 
 //        quat.w = (float) (Math.sqrt(Math.pow(v1.length(), 2) * Math.pow(v2.length(), 2)) + v1.dot(v2));
-        quat.w = (float) (v1.length() * v2.length() + v1.dot(v2));
+        quat.w = v1.length() * v2.length() + v1.dot(v2);
 
         return quat;
     }
@@ -450,10 +450,7 @@ public class Quat {
      * @return true if empty, false otherwise
      */
     public boolean isEmpty() {
-        if (w == 1 && x == 0 && y == 0 && z == 0) {
-            return true;
-        }
-        return false;
+        return w == 1 && x == 0 && y == 0 && z == 0;
     }
 
     /**
@@ -462,10 +459,7 @@ public class Quat {
      * @return true if it is an identity rep., false otherwise
      */
     public boolean isIdentity() {
-        if (w == 0 && x == 0 && y == 0 && z == 0) {
-            return true;
-        }
-        return false;
+        return w == 0 && x == 0 && y == 0 && z == 0;
     }
 
     /**

@@ -31,7 +31,7 @@ public class TileEntityFireworks extends TileEntity implements ITickable {
 				if(delay <= 0) {
 					delay = 30;
 
-					int c = (int)(message.charAt(index));
+					int c = message.charAt(index);
 
 					int mod = index % 9;
 

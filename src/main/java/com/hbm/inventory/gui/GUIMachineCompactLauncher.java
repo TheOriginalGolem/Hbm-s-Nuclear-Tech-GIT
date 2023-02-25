@@ -18,8 +18,8 @@ import net.minecraft.util.ResourceLocation;
 
 public class GUIMachineCompactLauncher extends GuiInfoContainer {
 
-	private static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/gui_launch_table_small.png");
-	private TileEntityCompactLauncher launcher;
+	private static final ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/gui_launch_table_small.png");
+	private final TileEntityCompactLauncher launcher;
 	
 	public GUIMachineCompactLauncher(InventoryPlayer invPlayer, TileEntityCompactLauncher tedf) {
 		super(new ContainerCompactLauncher(invPlayer, tedf));
@@ -65,7 +65,7 @@ public class GUIMachineCompactLauncher extends GuiInfoContainer {
 		int i = (int)launcher.getPowerScaled(34);
 		drawTexturedModalRect(guiLeft + 134, guiTop + 113, 176, 96, i, 6);
 		
-		int j = (int)launcher.getSolidScaled(52);
+		int j = launcher.getSolidScaled(52);
 		drawTexturedModalRect(guiLeft + 152, guiTop + 88 - j, 176, 96 - j, 16, j);
 		
 		if(launcher.isMissileValid())

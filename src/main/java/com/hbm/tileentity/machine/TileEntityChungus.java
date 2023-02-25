@@ -76,7 +76,7 @@ public class TileEntityChungus extends TileEntity implements ITickable, IFluidHa
 			tanks[0].drain((Integer)outs[2] * cycles, true);
 			tanks[1].fill(new FluidStack(types[1], (Integer)outs[1] * cycles), true);
 			
-			power += (Integer)outs[3] * cycles;
+			power += (long) (Integer) outs[3] * cycles;
 			
 			if(power > maxPower)
 				power = maxPower;

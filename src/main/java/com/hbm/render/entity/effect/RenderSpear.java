@@ -37,7 +37,7 @@ public class RenderSpear extends Render<EntitySpear> {
 		GL11.glRotated(180, 1, 0, 0);
 		GL11.glScaled(2, 2, 2);
 		
-		EntitySpear spear = (EntitySpear) entity;
+		EntitySpear spear = entity;
 		
 		GlStateManager.shadeModel(GL11.GL_SMOOTH);
 		bindTexture(ResourceManager.lance_tex);
@@ -107,7 +107,7 @@ public class RenderSpear extends Render<EntitySpear> {
 			buf.pos(0, 0, 0).color(1.0F, 0.6F, 0.6F, (float) (intensity * intensity) * 2F).endVertex();
 			buf.pos(-0.866D * vert2, vert1, -0.5F * vert2).color(1.0F, 0.6F, 0.6F, 0.0F).endVertex();
 			buf.pos(0.866D * vert2, vert1, -0.5F * vert2).color(1.0F, 0.6F, 0.6F, 0.0F).endVertex();
-			buf.pos(0.0D, vert1, 1.0F * vert2).color(1.0F, 0.6F, 0.6F, 0.0F).endVertex();
+			buf.pos(0.0D, vert1, vert2).color(1.0F, 0.6F, 0.6F, 0.0F).endVertex();
 			buf.pos(-0.866D * vert2, vert1, -0.5F * vert2).color(1.0F, 0.6F, 0.6F, 0.0F).endVertex();
 			tessellator.draw();
 		}

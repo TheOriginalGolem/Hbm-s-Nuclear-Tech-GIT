@@ -15,8 +15,8 @@ import net.minecraft.util.ResourceLocation;
 
 public class GUIRBMKRod extends GuiContainer {
 	
-	private static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/reactors/gui_rbmk_element.png");
-	private TileEntityRBMKRod rod;
+	private static final ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/reactors/gui_rbmk_element.png");
+	private final TileEntityRBMKRod rod;
 
 	public GUIRBMKRod(InventoryPlayer invPlayer, TileEntityRBMKRod tedf) {
 		super(new ContainerRBMKRod(invPlayer, tedf));

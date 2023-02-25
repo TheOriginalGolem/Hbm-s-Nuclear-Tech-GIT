@@ -13,8 +13,8 @@ import net.minecraft.util.ResourceLocation;
 
 public class GUIMachineArcFurnace extends GuiInfoContainer {
 	
-	private static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/gui_arc.png");
-	private TileEntityMachineArcFurnace diFurnace;
+	private static final ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/gui_arc.png");
+	private final TileEntityMachineArcFurnace diFurnace;
 
 	public GUIMachineArcFurnace(InventoryPlayer invPlayer, TileEntityMachineArcFurnace tedf) {
 		super(new ContainerMachineArcFurnace(invPlayer, tedf));

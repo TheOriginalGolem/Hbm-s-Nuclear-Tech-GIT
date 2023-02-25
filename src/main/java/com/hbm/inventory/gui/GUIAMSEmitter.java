@@ -14,8 +14,8 @@ import net.minecraft.util.ResourceLocation;
 
 public class GUIAMSEmitter extends GuiInfoContainer {
 
-	private static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/gui_ams_emitter.png");
-	private TileEntityAMSEmitter emitter;
+	private static final ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/gui_ams_emitter.png");
+	private final TileEntityAMSEmitter emitter;
 	
 	public GUIAMSEmitter(InventoryPlayer invPlayer, TileEntityAMSEmitter tedf) {
 		super(new ContainerAMSEmitter(invPlayer, tedf));

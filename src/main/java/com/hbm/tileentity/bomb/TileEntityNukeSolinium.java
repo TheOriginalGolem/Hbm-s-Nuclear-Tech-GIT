@@ -64,22 +64,17 @@ public class TileEntityNukeSolinium extends TileEntity {
 	}
 	
 	public boolean isReady() {
-		
-			if(inventory.getStackInSlot(0).getItem() == ModItems.solinium_igniter && 
-			inventory.getStackInSlot(1).getItem() == ModItems.solinium_propellant && 
-			inventory.getStackInSlot(2).getItem() == ModItems.solinium_propellant && 
-			inventory.getStackInSlot(3).getItem() == ModItems.solinium_igniter && 
-			inventory.getStackInSlot(4).getItem() == ModItems.solinium_core && 
-			inventory.getStackInSlot(5).getItem() == ModItems.solinium_igniter && 
-			inventory.getStackInSlot(6).getItem() == ModItems.solinium_propellant && 
-			inventory.getStackInSlot(7).getItem() == ModItems.solinium_propellant && 
-			inventory.getStackInSlot(8).getItem() == ModItems.solinium_igniter)
-			{
-				return true;
-			}
-		
-		return false;
-	}
+
+        return inventory.getStackInSlot(0).getItem() == ModItems.solinium_igniter &&
+                inventory.getStackInSlot(1).getItem() == ModItems.solinium_propellant &&
+                inventory.getStackInSlot(2).getItem() == ModItems.solinium_propellant &&
+                inventory.getStackInSlot(3).getItem() == ModItems.solinium_igniter &&
+                inventory.getStackInSlot(4).getItem() == ModItems.solinium_core &&
+                inventory.getStackInSlot(5).getItem() == ModItems.solinium_igniter &&
+                inventory.getStackInSlot(6).getItem() == ModItems.solinium_propellant &&
+                inventory.getStackInSlot(7).getItem() == ModItems.solinium_propellant &&
+                inventory.getStackInSlot(8).getItem() == ModItems.solinium_igniter;
+    }
 	
 	public void clearSlots() {
 		for(int i = 0; i < inventory.getSlots(); i++)

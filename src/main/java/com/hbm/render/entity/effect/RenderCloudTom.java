@@ -39,7 +39,7 @@ public class RenderCloudTom extends Render<EntityCloudTom> {
         GlStateManager.depthMask(false);
         GlStateManager.tryBlendFuncSeparate(SourceFactor.SRC_ALPHA, DestFactor.ONE_MINUS_SRC_ALPHA, SourceFactor.ONE, DestFactor.ZERO);
 
-		EntityCloudTom blast = (EntityCloudTom)entity;
+		EntityCloudTom blast = entity;
 
 		double scale = blast.age + partialTicks;
 
@@ -104,9 +104,9 @@ public class RenderCloudTom extends Render<EntityCloudTom> {
         GlStateManager.disableBlend();
         GlStateManager.enableLighting();
 		GL11.glPopMatrix();
-	};
-	
-	@Override
+	}
+
+    @Override
 	protected ResourceLocation getEntityTexture(EntityCloudTom entity) {
 		return ResourceManager.tomblast;
 	}

@@ -33,7 +33,7 @@ public class RenderIGenerator extends TileEntitySpecialRenderer<TileEntityMachin
 		case 5: GL11.glRotatef(0, 0F, 1F, 0F); break;
 		}
 		
-		TileEntityMachineIGenerator igen = (TileEntityMachineIGenerator)te;
+		TileEntityMachineIGenerator igen = te;
 
         GlStateManager.enableLighting();
         GlStateManager.disableCull();

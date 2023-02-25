@@ -263,7 +263,7 @@ public class TileEntityRBMKConsole extends TileEntityMachineBase implements ICon
 		}
 	}
 	
-	public static enum ColumnType {
+	public enum ColumnType {
 		BLANK(0),
 		FUEL(10),
 		FUEL_SIM(90),
@@ -279,7 +279,7 @@ public class TileEntityRBMKConsole extends TileEntityMachineBase implements ICon
 		
 		public int offset;
 		
-		private ColumnType(int offset) {
+		ColumnType(int offset) {
 			this.offset = offset;
 		}
 	}

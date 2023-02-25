@@ -97,13 +97,13 @@ public class CrashedVertibird extends WorldGenerator
 		}
 		MutableBlockPos pos = new BlockPos.MutableBlockPos();
 
-		world.setBlockState(pos.setPos(x + 4, y + 0 - yOffset, z + 1), Block1.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 5, y + 0 - yOffset, z + 1), Block1.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 6, y + 0 - yOffset, z + 1), Block1.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 5, y + 0 - yOffset, z + 2), Block2.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 4, y + 1 - yOffset, z + 0), Block1.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 5, y + 1 - yOffset, z + 0), Block1.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 6, y + 1 - yOffset, z + 0), Block1.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x + 4, y - yOffset, z + 1), Block1.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x + 5, y - yOffset, z + 1), Block1.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x + 6, y - yOffset, z + 1), Block1.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x + 5, y - yOffset, z + 2), Block2.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x + 4, y + 1 - yOffset, z), Block1.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x + 5, y + 1 - yOffset, z), Block1.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x + 6, y + 1 - yOffset, z), Block1.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 1 - yOffset, z + 1), Block1.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 7, y + 1 - yOffset, z + 1), Block1.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 4, y + 1 - yOffset, z + 2), Block1.getDefaultState(), 3);
@@ -114,8 +114,8 @@ public class CrashedVertibird extends WorldGenerator
 		world.setBlockState(pos.setPos(x + 5, y + 1 - yOffset, z + 3), Block1.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 6, y + 1 - yOffset, z + 3), Block1.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 7, y + 1 - yOffset, z + 3), Block2.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 4, y + 2 - yOffset, z + 0), Block3.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 5, y + 2 - yOffset, z + 0), Block3.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x + 4, y + 2 - yOffset, z), Block3.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x + 5, y + 2 - yOffset, z), Block3.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 2 - yOffset, z + 1), Block3.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 7, y + 2 - yOffset, z + 1), Block3.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 2 - yOffset, z + 2), Block1.getDefaultState(), 3);
@@ -135,9 +135,9 @@ public class CrashedVertibird extends WorldGenerator
 		world.setBlockState(pos.setPos(x + 7, y + 2 - yOffset, z + 5), Block2.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 4, y + 2 - yOffset, z + 7), Block2.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 6, y + 2 - yOffset, z + 7), Block2.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 4, y + 3 - yOffset, z + 0), Block1.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 5, y + 3 - yOffset, z + 0), Block1.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 6, y + 3 - yOffset, z + 0), Block1.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x + 4, y + 3 - yOffset, z), Block1.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x + 5, y + 3 - yOffset, z), Block1.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x + 6, y + 3 - yOffset, z), Block1.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 3 - yOffset, z + 1), Block3.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 4, y + 3 - yOffset, z + 1), Block1.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 5, y + 3 - yOffset, z + 1), Block1.getDefaultState(), 3);
@@ -172,7 +172,7 @@ public class CrashedVertibird extends WorldGenerator
 		world.setBlockState(pos.setPos(x + 6, y + 4 - yOffset, z + 7), Blocks.CHEST.getDefaultState().withProperty(BlockChest.FACING, EnumFacing.NORTH), 3);
 		if(world.getBlockState(pos.setPos(x + 6, y + 4 - yOffset, z + 7)).getBlock() == Blocks.CHEST)
 		{
-			WeightedRandomChestContentFrom1710.generateChestContents(rand, HbmChestContents.getLoot(6), (TileEntityChest)world.getTileEntity(pos.setPos(x + 6, y + 4 - yOffset, z + 7)), 8);
+			WeightedRandomChestContentFrom1710.generateChestContents(rand, HbmChestContents.getLoot(6), world.getTileEntity(pos.setPos(x + 6, y + 4 - yOffset, z + 7)), 8);
 		}
 		world.setBlockState(pos.setPos(x + 7, y + 4 - yOffset, z + 7), Block1.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 4, y + 4 - yOffset, z + 8), Block1.getDefaultState(), 3);
@@ -212,7 +212,7 @@ public class CrashedVertibird extends WorldGenerator
 		world.setBlockState(pos.setPos(x + 6, y + 6 - yOffset, z + 4), Block1.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 7, y + 6 - yOffset, z + 4), Block1.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 14, y + 6 - yOffset, z + 4), Block1.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 6 - yOffset, z + 5), Block1.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 6 - yOffset, z + 5), Block1.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 6 - yOffset, z + 5), Block1.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 6 - yOffset, z + 5), Block1.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 6 - yOffset, z + 5), Block1.getDefaultState(), 3);
@@ -301,7 +301,7 @@ public class CrashedVertibird extends WorldGenerator
 		world.setBlockState(pos.setPos(x + 5, y + 8 - yOffset, z + 6), Blocks.CHEST.getDefaultState().withProperty(BlockChest.FACING, EnumFacing.NORTH), 3);
 		if(world.getBlockState(pos.setPos(x + 5, y + 8 - yOffset, z + 6)).getBlock() == Blocks.CHEST)
 		{
-			WeightedRandomChestContentFrom1710.generateChestContents(rand, HbmChestContents.getLoot(3), (TileEntityChest)world.getTileEntity(pos.setPos(x + 5, y + 8 - yOffset, z + 6)), 8);
+			WeightedRandomChestContentFrom1710.generateChestContents(rand, HbmChestContents.getLoot(3), world.getTileEntity(pos.setPos(x + 5, y + 8 - yOffset, z + 6)), 8);
 		}
 		world.setBlockState(pos.setPos(x + 6, y + 8 - yOffset, z + 6), Block1.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 7, y + 8 - yOffset, z + 6), Block1.getDefaultState(), 3);

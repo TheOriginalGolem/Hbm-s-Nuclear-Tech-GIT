@@ -14,7 +14,7 @@ public interface IGasMask {
 	 * @param entity
 	 * @return an empty list if there's no blacklist
 	 */
-	public ArrayList<HazardClass> getBlacklist(ItemStack stack, EntityLivingBase entity);
+    ArrayList<HazardClass> getBlacklist(ItemStack stack, EntityLivingBase entity);
 	
 	/**
 	 * Returns the loaded filter, if there is any
@@ -22,7 +22,7 @@ public interface IGasMask {
 	 * @param entity
 	 * @return null if no filter is installed
 	 */
-	public ItemStack getFilter(ItemStack stack, EntityLivingBase entity);
+    ItemStack getFilter(ItemStack stack, EntityLivingBase entity);
 	
 	/**
 	 * Checks whether the provided filter can be screwed into the mask, does not take already applied filters into account (those get ejected)
@@ -31,7 +31,7 @@ public interface IGasMask {
 	 * @param filter
 	 * @return
 	 */
-	public boolean isFilterApplicable(ItemStack stack, EntityLivingBase entity, ItemStack filter);
+    boolean isFilterApplicable(ItemStack stack, EntityLivingBase entity, ItemStack filter);
 	
 	/**
 	 * This will write the filter to the stack's NBT, it ignores any previously installed filter and won't eject those
@@ -39,7 +39,7 @@ public interface IGasMask {
 	 * @param entity
 	 * @param filter
 	 */
-	public void installFilter(ItemStack stack, EntityLivingBase entity, ItemStack filter);
+    void installFilter(ItemStack stack, EntityLivingBase entity, ItemStack filter);
 	
 	/**
 	 * Damages the installed filter, if there is one
@@ -47,5 +47,5 @@ public interface IGasMask {
 	 * @param entity
 	 * @param damage
 	 */
-	public void damageFilter(ItemStack stack, EntityLivingBase entity, int damage);
+    void damageFilter(ItemStack stack, EntityLivingBase entity, int damage);
 }

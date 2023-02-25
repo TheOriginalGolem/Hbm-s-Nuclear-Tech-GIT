@@ -109,7 +109,7 @@ public class TileEntityMachineMiningLaser extends TileEntityMachineBase implemen
 				fillFluidInit();
 			
 			power = Library.chargeTEFromItems(inventory, 0, power, maxPower);
-			PacketDispatcher.wrapper.sendToAllAround(new FluidTankPacket(pos, new FluidTank[]{tank}), new TargetPoint(world.provider.getDimension(), pos.getX(), pos.getY(), pos.getZ(), 10));
+			PacketDispatcher.wrapper.sendToAllAround(new FluidTankPacket(pos, tank), new TargetPoint(world.provider.getDimension(), pos.getX(), pos.getY(), pos.getZ(), 10));
 
 			//reset progress if the position changes
 			if(lastTargetX != targetX ||
@@ -321,18 +321,16 @@ public class TileEntityMachineMiningLaser extends TileEntityMachineBase implemen
 		breakProgress = 0;
 	}
 
-	private static final Set<Item> bad = Sets.newHashSet(new Item[] {
-			Item.getItemFromBlock(Blocks.DIRT),
-			Item.getItemFromBlock(Blocks.STONE),
-			Item.getItemFromBlock(Blocks.COBBLESTONE),
-			Item.getItemFromBlock(Blocks.SAND),
-			Item.getItemFromBlock(Blocks.SANDSTONE),
-			Item.getItemFromBlock(Blocks.GRAVEL),
-			Item.getItemFromBlock(ModBlocks.stone_gneiss),
-			Items.FLINT,
-			Items.SNOWBALL,
-			Items.WHEAT_SEEDS
-			});
+	private static final Set<Item> bad = Sets.newHashSet(Item.getItemFromBlock(Blocks.DIRT),
+            Item.getItemFromBlock(Blocks.STONE),
+            Item.getItemFromBlock(Blocks.COBBLESTONE),
+            Item.getItemFromBlock(Blocks.SAND),
+            Item.getItemFromBlock(Blocks.SANDSTONE),
+            Item.getItemFromBlock(Blocks.GRAVEL),
+            Item.getItemFromBlock(ModBlocks.stone_gneiss),
+            Items.FLINT,
+            Items.SNOWBALL,
+            Items.WHEAT_SEEDS);
 
 	//hahahahahahahaha he said "suck"
 	private void suckDrops() {

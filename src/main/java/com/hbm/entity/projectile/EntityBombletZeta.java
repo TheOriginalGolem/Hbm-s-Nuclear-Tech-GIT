@@ -60,19 +60,19 @@ public class EntityBombletZeta extends EntityThrowable implements IConstantRende
     		{
     			if(type == 0) {
     				ExplosionLarge.explode(world, this.posX + 0.5F, this.posY + 0.5F, this.posZ + 0.5F, 5.0F, true, false, false);
-    	        	world.playSound((double)(posX + 0.5F), (double)(posY + 0.5F), (double)(posZ + 0.5F), HBMSoundHandler.bombDet, SoundCategory.HOSTILE, 25.0F, 0.8F + rand.nextFloat() * 0.4F, true);
+    	        	world.playSound(posX + 0.5F, posY + 0.5F, posZ + 0.5F, HBMSoundHandler.bombDet, SoundCategory.HOSTILE, 25.0F, 0.8F + rand.nextFloat() * 0.4F, true);
     			}
     			if(type == 1) {
     				ExplosionLarge.explode(world, this.posX + 0.5F, this.posY + 0.5F, this.posZ + 0.5F, 2.5F, false, false, false);
     				ExplosionChaos.burn(world, pos, 9);
     				ExplosionChaos.flameDeath(world, pos, 14);
-    	        	world.playSound((double)(posX + 0.5F), (double)(posY + 0.5F), (double)(posZ + 0.5F), HBMSoundHandler.bombDet, SoundCategory.HOSTILE, 25.0F, 1.0F, true);
+    	        	world.playSound(posX + 0.5F, posY + 0.5F, posZ + 0.5F, HBMSoundHandler.bombDet, SoundCategory.HOSTILE, 25.0F, 1.0F, true);
     	        	
     	        	for(int i = 0; i < 5; i++)
     	        		ExplosionLarge.spawnBurst(world, this.posX + 0.5F, this.posY + 1.0F, this.posZ + 0.5F, rand.nextInt(10) + 15, rand.nextFloat() * 2 + 2);
     			}
     			if(type == 2) {
-    	        	world.playSound((double)(posX + 0.5F), (double)(posY + 0.5F), (double)(posZ + 0.5F), SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.HOSTILE, 5.0F, 2.6F + (rand.nextFloat() - rand.nextFloat()) * 0.8F, true);
+    	        	world.playSound(posX + 0.5F, posY + 0.5F, posZ + 0.5F, SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.HOSTILE, 5.0F, 2.6F + (rand.nextFloat() - rand.nextFloat()) * 0.8F, true);
     				ExplosionChaos.spawnChlorine(world, this.posX + 0.5F - motionX, this.posY + 0.5F - motionY, this.posZ + 0.5F - motionZ, 75, 2, 0);
     			}
     			if(type == 4) {
@@ -95,7 +95,6 @@ public class EntityBombletZeta extends EntityThrowable implements IConstantRende
 
         for (this.rotationPitch = (float)(Math.atan2(this.motionY, f2) * 180.0D / Math.PI) - 90; this.rotationPitch - this.prevRotationPitch < -180.0F; this.prevRotationPitch -= 360.0F)
         {
-            ;
         }
 
         while (this.rotationPitch - this.prevRotationPitch >= 180.0F)

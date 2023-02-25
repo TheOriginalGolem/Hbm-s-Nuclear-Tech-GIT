@@ -25,7 +25,7 @@ public class EntityDamageUtil {
 				if(lastDamage == null)
 					lastDamage = ReflectionHelper.findField(EntityLivingBase.class, "lastDamage", "field_110153_bc");
 				
-				float dmg = (float) damage + lastDamage.getFloat(victim);
+				float dmg = damage + lastDamage.getFloat(victim);
 				
 				return victim.attackEntityFrom(src, dmg);
 			} catch (Exception x) {
@@ -51,7 +51,7 @@ public class EntityDamageUtil {
 	public static boolean wasAttackedByV1(DamageSource source) {
 
 		if(source instanceof EntityDamageSource) {
-			Entity attacker = ((EntityDamageSource) source).getImmediateSource();
+			Entity attacker = source.getImmediateSource();
 			
 			if(attacker instanceof EntityPlayer) {
 				EntityPlayer player = (EntityPlayer) attacker;
@@ -59,10 +59,8 @@ public class EntityDamageUtil {
 				
 				if(chestplate != null && ArmorModHandler.hasMods(chestplate)) {
 					ItemStack[] mods = ArmorModHandler.pryMods(chestplate);
-					
-					if(mods[ArmorModHandler.extra] != null && mods[ArmorModHandler.extra].getItem() == ModItems.v1) {
-						return true;
-					}
+
+                    return mods[ArmorModHandler.extra] != null && mods[ArmorModHandler.extra].getItem() == ModItems.v1;
 				}
 			}
 		}

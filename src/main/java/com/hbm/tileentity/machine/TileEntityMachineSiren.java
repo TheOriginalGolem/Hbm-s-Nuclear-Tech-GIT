@@ -1,6 +1,7 @@
 package com.hbm.tileentity.machine;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import com.hbm.inventory.control_panel.ControlEvent;
@@ -137,7 +138,7 @@ public class TileEntityMachineSiren extends TileEntity implements ITickable, ICo
 
 	@Override
 	public List<String> getInEvents(){
-		return Arrays.asList("siren_set_state");
+		return Collections.singletonList("siren_set_state");
 	}
 
 	@Override

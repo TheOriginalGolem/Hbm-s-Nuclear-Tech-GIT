@@ -295,7 +295,7 @@ public class AuxGaugePacket implements IMessage {
 						else if(m.id == 5)
 							core.heat = m.value;
 					} else if(te instanceof TileEntitySlidingBlastDoor){
-						((TileEntitySlidingBlastDoor) te).shouldUseBB = m.value == 1 ? true : false;
+						((TileEntitySlidingBlastDoor) te).shouldUseBB = m.value == 1;
 					}
 				} catch(Exception x) {
 				}

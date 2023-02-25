@@ -75,7 +75,7 @@ public class ContainerBook extends Container {
     @Override
     public ItemStack transferStackInSlot(EntityPlayer p_82846_1_, int p_82846_2_) {
     	ItemStack itemstack = ItemStack.EMPTY;
-        Slot slot = (Slot)this.inventorySlots.get(p_82846_2_);
+        Slot slot = this.inventorySlots.get(p_82846_2_);
 
         if (slot != null && slot.getHasStack())
         {

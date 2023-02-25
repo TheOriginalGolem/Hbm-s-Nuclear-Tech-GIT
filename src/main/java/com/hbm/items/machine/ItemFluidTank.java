@@ -34,7 +34,7 @@ public class ItemFluidTank extends Item implements IHasCustomModel {
 	public static final ModelResourceLocation fluidBarrelModel = new ModelResourceLocation(
 			RefStrings.MODID + ":fluid_barrel_full", "inventory");
 
-	private int cap;
+	private final int cap;
 
 	public ItemFluidTank(String s, int cap) {
 		this.setUnlocalizedName(s);
@@ -153,37 +153,26 @@ public class ItemFluidTank extends Item implements IHasCustomModel {
 			if(f == null)
 				return true;
 			return f.amount == 1000 || f.amount == 0;
-		} else if(stack.getItem() == ModItems.fluid_barrel_full || stack.getItem() == ModItems.fluid_tank_full){
-			return true;
-		}
-		return false;
-	}
+		} else return stack.getItem() == ModItems.fluid_barrel_full || stack.getItem() == ModItems.fluid_tank_full;
+    }
 
 	public static boolean isEmptyTank(ItemStack out) {
-		if(out.getItem() == ModItems.fluid_tank_full && FluidUtil.getFluidContained(out) == null)
-			return true;
-		return false;
-	}
+        return out.getItem() == ModItems.fluid_tank_full && FluidUtil.getFluidContained(out) == null;
+    }
 
 	public static boolean isFullTank(ItemStack stack, Fluid fluid) {
 		FluidStack f = FluidUtil.getFluidContained(stack);
-		if(stack.getItem() == ModItems.fluid_tank_full && f != null && f.getFluid() == fluid && f.amount == 1000)
-			return true;
-		return false;
-	}
+        return stack.getItem() == ModItems.fluid_tank_full && f != null && f.getFluid() == fluid && f.amount == 1000;
+    }
 	
 	public static boolean isEmptyBarrel(ItemStack out) {
-		if(out.getItem() == ModItems.fluid_barrel_full && FluidUtil.getFluidContained(out) == null)
-			return true;
-		return false;
-	}
+        return out.getItem() == ModItems.fluid_barrel_full && FluidUtil.getFluidContained(out) == null;
+    }
 
 	public static boolean isFullBarrel(ItemStack stack, Fluid fluid) {
 		FluidStack f = FluidUtil.getFluidContained(stack);
-		if(stack.getItem() == ModItems.fluid_barrel_full && f != null && f.getFluid() == fluid && f.amount == 16000)
-			return true;
-		return false;
-	}
+        return stack.getItem() == ModItems.fluid_barrel_full && f != null && f.getFluid() == fluid && f.amount == 16000;
+    }
 
 
 }

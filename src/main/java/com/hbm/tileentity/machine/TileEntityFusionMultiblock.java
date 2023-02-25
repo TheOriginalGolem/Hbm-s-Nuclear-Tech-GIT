@@ -45,7 +45,7 @@ public class TileEntityFusionMultiblock extends TileEntity implements ITickable,
 	public ItemStackHandler inventory;
 	public int age = 0;
 	public List<IConsumer> list = new ArrayList<IConsumer>();
-	public FluidTank tanks[];
+	public FluidTank[] tanks;
 	public Fluid[] tankTypes;
 	public boolean needsUpdate;
 	
@@ -83,12 +83,7 @@ public class TileEntityFusionMultiblock extends TileEntity implements ITickable,
 	}
 	
 	public boolean isUseableByPlayer(EntityPlayer player) {
-		if(world.getTileEntity(pos) != this)
-		{
-			return false;
-		}else{
-			return true;
-		}
+        return world.getTileEntity(pos) == this;
 	}
 	
 	@Override
@@ -226,7 +221,7 @@ public class TileEntityFusionMultiblock extends TileEntity implements ITickable,
 			
 			power = Library.chargeItemsFromTE(inventory, 1, power, maxPower);
 
-			PacketDispatcher.wrapper.sendToAllAround(new FluidTankPacket(pos, new FluidTank[] {tanks[0], tanks[1], tanks[2]}), new TargetPoint(world.provider.getDimension(), pos.getX(), pos.getY(), pos.getZ(), 20));
+			PacketDispatcher.wrapper.sendToAllAround(new FluidTankPacket(pos, tanks[0], tanks[1], tanks[2]), new TargetPoint(world.provider.getDimension(), pos.getX(), pos.getY(), pos.getZ(), 20));
 			PacketDispatcher.wrapper.sendToAllAround(new AuxElectricityPacket(pos, power), new TargetPoint(world.provider.getDimension(), pos.getX(), pos.getY(), pos.getZ(), 20));
 			
 			if(prevTank0Amount != tanks[0].getFluidAmount() || prevTank1Amount != tanks[1].getFluidAmount() || prevTank2Amount != tanks[2].getFluidAmount() || prevPower != power)
@@ -244,621 +239,616 @@ public class TileEntityFusionMultiblock extends TileEntity implements ITickable,
 		int x = pos.getX();
 		int y = pos.getY();
 		int z = pos.getZ();
-		
-		if(world.getBlockState(mPos.setPos(x + 5, y - 2, z - 3)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 5, y - 2, z - 2)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 5, y - 2, z - 1)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 5, y - 2, z + 0)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 5, y - 2, z + 1)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 5, y - 2, z + 2)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 5, y - 2, z + 3)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 5, y - 2, z - 3)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 5, y - 2, z - 2)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 5, y - 2, z - 1)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 5, y - 2, z + 0)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 5, y - 2, z + 1)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 5, y - 2, z + 2)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 5, y - 2, z + 3)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 4, y - 2, z - 4)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 4, y - 2, z - 3)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 4, y - 2, z - 2)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 4, y - 2, z - 1)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 4, y - 2, z + 0)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 4, y - 2, z + 1)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 4, y - 2, z + 2)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 4, y - 2, z + 3)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 4, y - 2, z + 4)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 4, y - 2, z - 4)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 4, y - 2, z - 3)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 4, y - 2, z - 2)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 4, y - 2, z - 1)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 4, y - 2, z + 0)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 4, y - 2, z + 1)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 4, y - 2, z + 2)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 4, y - 2, z + 3)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 4, y - 2, z + 4)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 3, y - 2, z - 5)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 3, y - 2, z - 4)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 3, y - 2, z - 3)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 3, y - 2, z - 2)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 3, y - 2, z - 1)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 3, y - 2, z + 0)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 3, y - 2, z + 1)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 3, y - 2, z + 2)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 3, y - 2, z + 3)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 3, y - 2, z + 4)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 3, y - 2, z + 5)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 3, y - 2, z - 5)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 3, y - 2, z - 4)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 3, y - 2, z - 3)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 3, y - 2, z - 2)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 3, y - 2, z - 1)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 3, y - 2, z + 0)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 3, y - 2, z + 1)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 3, y - 2, z + 2)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 3, y - 2, z + 3)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 3, y - 2, z + 4)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 3, y - 2, z + 5)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 2, y - 2, z + 5)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 1, y - 2, z + 5)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 0, y - 2, z + 5)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 1, y - 2, z + 5)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 2, y - 2, z + 5)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 2, y - 2, z + 4)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 1, y - 2, z + 4)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 0, y - 2, z + 4)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 1, y - 2, z + 4)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 2, y - 2, z + 4)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 2, y - 2, z + 3)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 1, y - 2, z + 3)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 0, y - 2, z + 3)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 1, y - 2, z + 3)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 2, y - 2, z + 3)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 2, y - 2, z - 5)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 1, y - 2, z - 5)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 0, y - 2, z - 5)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 1, y - 2, z - 5)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 2, y - 2, z - 5)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 2, y - 2, z - 4)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 1, y - 2, z - 4)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 0, y - 2, z - 4)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 1, y - 2, z - 4)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 2, y - 2, z - 4)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 2, y - 2, z - 3)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 1, y - 2, z - 3)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 0, y - 2, z - 3)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 1, y - 2, z - 3)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 2, y - 2, z - 3)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 8, y - 2, z - 1)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x + 8, y - 2, z + 0)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x + 8, y - 2, z + 1)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x + 7, y - 2, z - 1)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x + 7, y - 2, z + 0)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x + 7, y - 2, z + 1)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x - 8, y - 2, z - 1)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x - 8, y - 2, z + 0)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x - 8, y - 2, z + 1)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x - 7, y - 2, z - 1)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x - 7, y - 2, z + 0)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x - 7, y - 2, z + 1)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x - 1, y - 2, z + 8)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x + 0, y - 2, z + 8)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x + 1, y - 2, z + 8)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x - 1, y - 2, z + 7)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x + 0, y - 2, z + 7)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x + 1, y - 2, z + 7)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x - 1, y - 2, z - 8)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x + 0, y - 2, z - 8)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x + 1, y - 2, z - 8)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x - 1, y - 2, z - 7)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x + 0, y - 2, z - 7)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x + 1, y - 2, z - 7)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x + 1, y - 2, z + 1)).getBlock() == ModBlocks.fusion_motor &&
-				world.getBlockState(mPos.setPos(x + 1, y - 2, z + 0)).getBlock() == ModBlocks.fusion_motor &&
-				world.getBlockState(mPos.setPos(x + 1, y - 2, z - 1)).getBlock() == ModBlocks.fusion_motor &&
-				world.getBlockState(mPos.setPos(x + 0, y - 2, z + 1)).getBlock() == ModBlocks.fusion_motor &&
-				world.getBlockState(mPos.setPos(x + 0, y - 2, z + 0)).getBlock() == ModBlocks.fusion_center &&
-				world.getBlockState(mPos.setPos(x + 0, y - 2, z - 1)).getBlock() == ModBlocks.fusion_motor &&
-				world.getBlockState(mPos.setPos(x - 1, y - 2, z + 1)).getBlock() == ModBlocks.fusion_motor &&
-				world.getBlockState(mPos.setPos(x - 1, y - 2, z + 0)).getBlock() == ModBlocks.fusion_motor &&
-				world.getBlockState(mPos.setPos(x - 1, y - 2, z - 1)).getBlock() == ModBlocks.fusion_motor &&
-				
-				world.getBlockState(mPos.setPos(x + 5, y + 2, z - 3)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 5, y + 2, z - 2)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 5, y + 2, z - 1)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 5, y + 2, z + 0)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 5, y + 2, z + 1)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 5, y + 2, z + 2)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 5, y + 2, z + 3)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 5, y + 2, z - 3)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 5, y + 2, z - 2)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 5, y + 2, z - 1)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 5, y + 2, z + 0)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 5, y + 2, z + 1)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 5, y + 2, z + 2)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 5, y + 2, z + 3)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 4, y + 2, z - 4)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 4, y + 2, z - 3)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 4, y + 2, z - 2)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 4, y + 2, z - 1)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 4, y + 2, z + 0)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 4, y + 2, z + 1)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 4, y + 2, z + 2)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 4, y + 2, z + 3)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 4, y + 2, z + 4)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 4, y + 2, z - 4)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 4, y + 2, z - 3)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 4, y + 2, z - 2)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 4, y + 2, z - 1)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 4, y + 2, z + 0)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 4, y + 2, z + 1)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 4, y + 2, z + 2)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 4, y + 2, z + 3)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 4, y + 2, z + 4)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 3, y + 2, z - 5)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 3, y + 2, z - 4)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 3, y + 2, z - 3)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 3, y + 2, z - 2)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 3, y + 2, z - 1)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 3, y + 2, z + 0)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 3, y + 2, z + 1)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 3, y + 2, z + 2)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 3, y + 2, z + 3)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 3, y + 2, z + 4)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 3, y + 2, z + 5)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 3, y + 2, z - 5)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 3, y + 2, z - 4)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 3, y + 2, z - 3)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 3, y + 2, z - 2)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 3, y + 2, z - 1)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 3, y + 2, z + 0)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 3, y + 2, z + 1)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 3, y + 2, z + 2)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 3, y + 2, z + 3)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 3, y + 2, z + 4)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 3, y + 2, z + 5)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 2, y + 2, z + 5)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 1, y + 2, z + 5)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 0, y + 2, z + 5)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 1, y + 2, z + 5)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 2, y + 2, z + 5)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 2, y + 2, z + 4)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 1, y + 2, z + 4)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 0, y + 2, z + 4)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 1, y + 2, z + 4)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 2, y + 2, z + 4)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 2, y + 2, z + 3)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 1, y + 2, z + 3)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 0, y + 2, z + 3)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 1, y + 2, z + 3)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 2, y + 2, z + 3)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 2, y + 2, z - 5)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 1, y + 2, z - 5)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 0, y + 2, z - 5)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 1, y + 2, z - 5)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 2, y + 2, z - 5)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 2, y + 2, z - 4)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 1, y + 2, z - 4)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 0, y + 2, z - 4)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 1, y + 2, z - 4)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 2, y + 2, z - 4)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 2, y + 2, z - 3)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 1, y + 2, z - 3)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 0, y + 2, z - 3)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 1, y + 2, z - 3)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 2, y + 2, z - 3)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 8, y + 2, z - 1)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x + 8, y + 2, z + 0)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x + 8, y + 2, z + 1)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x + 7, y + 2, z - 1)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x + 7, y + 2, z + 0)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x + 7, y + 2, z + 1)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x - 8, y + 2, z - 1)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x - 8, y + 2, z + 0)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x - 8, y + 2, z + 1)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x - 7, y + 2, z - 1)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x - 7, y + 2, z + 0)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x - 7, y + 2, z + 1)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x - 1, y + 2, z + 8)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x + 0, y + 2, z + 8)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x + 1, y + 2, z + 8)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x - 1, y + 2, z + 7)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x + 0, y + 2, z + 7)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x + 1, y + 2, z + 7)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x - 1, y + 2, z - 8)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x + 0, y + 2, z - 8)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x + 1, y + 2, z - 8)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x - 1, y + 2, z - 7)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x + 0, y + 2, z - 7)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x + 1, y + 2, z - 7)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x + 1, y + 2, z + 1)).getBlock() == ModBlocks.fusion_motor &&
-				world.getBlockState(mPos.setPos(x + 1, y + 2, z + 0)).getBlock() == ModBlocks.fusion_motor &&
-				world.getBlockState(mPos.setPos(x + 1, y + 2, z - 1)).getBlock() == ModBlocks.fusion_motor &&
-				world.getBlockState(mPos.setPos(x + 0, y + 2, z + 1)).getBlock() == ModBlocks.fusion_motor &&
-				world.getBlockState(mPos.setPos(x + 0, y + 2, z + 0)).getBlock() == ModBlocks.fusion_center &&
-				world.getBlockState(mPos.setPos(x + 0, y + 2, z - 1)).getBlock() == ModBlocks.fusion_motor &&
-				world.getBlockState(mPos.setPos(x - 1, y + 2, z + 1)).getBlock() == ModBlocks.fusion_motor &&
-				world.getBlockState(mPos.setPos(x - 1, y + 2, z + 0)).getBlock() == ModBlocks.fusion_motor &&
-				world.getBlockState(mPos.setPos(x - 1, y + 2, z - 1)).getBlock() == ModBlocks.fusion_motor &&
-				
-				world.getBlockState(mPos.setPos(x + 6, y - 1, z - 3)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 6, y - 1, z - 2)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 6, y - 1, z - 1)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 6, y - 1, z + 0)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 6, y - 1, z + 1)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 6, y - 1, z + 2)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 6, y - 1, z + 3)).getBlock() == ModBlocks.fusion_conductor &&
 
-				world.getBlockState(mPos.setPos(x - 6, y - 1, z - 3)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 6, y - 1, z - 2)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 6, y - 1, z - 1)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 6, y - 1, z + 0)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 6, y - 1, z + 1)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 6, y - 1, z + 2)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 6, y - 1, z + 3)).getBlock() == ModBlocks.fusion_conductor &&
+        return world.getBlockState(mPos.setPos(x + 5, y - 2, z - 3)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 5, y - 2, z - 2)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 5, y - 2, z - 1)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 5, y - 2, z)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 5, y - 2, z + 1)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 5, y - 2, z + 2)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 5, y - 2, z + 3)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 5, y - 2, z - 3)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 5, y - 2, z - 2)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 5, y - 2, z - 1)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 5, y - 2, z)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 5, y - 2, z + 1)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 5, y - 2, z + 2)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 5, y - 2, z + 3)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 4, y - 2, z - 4)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 4, y - 2, z - 3)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 4, y - 2, z - 2)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 4, y - 2, z - 1)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 4, y - 2, z)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 4, y - 2, z + 1)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 4, y - 2, z + 2)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 4, y - 2, z + 3)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 4, y - 2, z + 4)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 4, y - 2, z - 4)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 4, y - 2, z - 3)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 4, y - 2, z - 2)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 4, y - 2, z - 1)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 4, y - 2, z)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 4, y - 2, z + 1)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 4, y - 2, z + 2)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 4, y - 2, z + 3)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 4, y - 2, z + 4)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 3, y - 2, z - 5)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 3, y - 2, z - 4)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 3, y - 2, z - 3)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 3, y - 2, z - 2)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 3, y - 2, z - 1)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 3, y - 2, z)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 3, y - 2, z + 1)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 3, y - 2, z + 2)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 3, y - 2, z + 3)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 3, y - 2, z + 4)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 3, y - 2, z + 5)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 3, y - 2, z - 5)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 3, y - 2, z - 4)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 3, y - 2, z - 3)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 3, y - 2, z - 2)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 3, y - 2, z - 1)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 3, y - 2, z)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 3, y - 2, z + 1)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 3, y - 2, z + 2)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 3, y - 2, z + 3)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 3, y - 2, z + 4)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 3, y - 2, z + 5)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 2, y - 2, z + 5)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 1, y - 2, z + 5)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x, y - 2, z + 5)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 1, y - 2, z + 5)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 2, y - 2, z + 5)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 2, y - 2, z + 4)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 1, y - 2, z + 4)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x, y - 2, z + 4)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 1, y - 2, z + 4)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 2, y - 2, z + 4)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 2, y - 2, z + 3)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 1, y - 2, z + 3)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x, y - 2, z + 3)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 1, y - 2, z + 3)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 2, y - 2, z + 3)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 2, y - 2, z - 5)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 1, y - 2, z - 5)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x, y - 2, z - 5)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 1, y - 2, z - 5)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 2, y - 2, z - 5)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 2, y - 2, z - 4)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 1, y - 2, z - 4)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x, y - 2, z - 4)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 1, y - 2, z - 4)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 2, y - 2, z - 4)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 2, y - 2, z - 3)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 1, y - 2, z - 3)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x, y - 2, z - 3)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 1, y - 2, z - 3)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 2, y - 2, z - 3)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 8, y - 2, z - 1)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x + 8, y - 2, z)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x + 8, y - 2, z + 1)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x + 7, y - 2, z - 1)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x + 7, y - 2, z)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x + 7, y - 2, z + 1)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x - 8, y - 2, z - 1)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x - 8, y - 2, z)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x - 8, y - 2, z + 1)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x - 7, y - 2, z - 1)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x - 7, y - 2, z)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x - 7, y - 2, z + 1)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x - 1, y - 2, z + 8)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x, y - 2, z + 8)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x + 1, y - 2, z + 8)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x - 1, y - 2, z + 7)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x, y - 2, z + 7)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x + 1, y - 2, z + 7)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x - 1, y - 2, z - 8)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x, y - 2, z - 8)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x + 1, y - 2, z - 8)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x - 1, y - 2, z - 7)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x, y - 2, z - 7)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x + 1, y - 2, z - 7)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x + 1, y - 2, z + 1)).getBlock() == ModBlocks.fusion_motor &&
+                world.getBlockState(mPos.setPos(x + 1, y - 2, z)).getBlock() == ModBlocks.fusion_motor &&
+                world.getBlockState(mPos.setPos(x + 1, y - 2, z - 1)).getBlock() == ModBlocks.fusion_motor &&
+                world.getBlockState(mPos.setPos(x, y - 2, z + 1)).getBlock() == ModBlocks.fusion_motor &&
+                world.getBlockState(mPos.setPos(x, y - 2, z)).getBlock() == ModBlocks.fusion_center &&
+                world.getBlockState(mPos.setPos(x, y - 2, z - 1)).getBlock() == ModBlocks.fusion_motor &&
+                world.getBlockState(mPos.setPos(x - 1, y - 2, z + 1)).getBlock() == ModBlocks.fusion_motor &&
+                world.getBlockState(mPos.setPos(x - 1, y - 2, z)).getBlock() == ModBlocks.fusion_motor &&
+                world.getBlockState(mPos.setPos(x - 1, y - 2, z - 1)).getBlock() == ModBlocks.fusion_motor &&
 
-				world.getBlockState(mPos.setPos(x - 3, y - 1, z + 6)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 2, y - 1, z + 6)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 1, y - 1, z + 6)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 0, y - 1, z + 6)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 1, y - 1, z + 6)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 2, y - 1, z + 6)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 3, y - 1, z + 6)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 5, y + 2, z - 3)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 5, y + 2, z - 2)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 5, y + 2, z - 1)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 5, y + 2, z)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 5, y + 2, z + 1)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 5, y + 2, z + 2)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 5, y + 2, z + 3)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 5, y + 2, z - 3)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 5, y + 2, z - 2)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 5, y + 2, z - 1)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 5, y + 2, z)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 5, y + 2, z + 1)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 5, y + 2, z + 2)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 5, y + 2, z + 3)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 4, y + 2, z - 4)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 4, y + 2, z - 3)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 4, y + 2, z - 2)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 4, y + 2, z - 1)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 4, y + 2, z)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 4, y + 2, z + 1)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 4, y + 2, z + 2)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 4, y + 2, z + 3)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 4, y + 2, z + 4)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 4, y + 2, z - 4)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 4, y + 2, z - 3)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 4, y + 2, z - 2)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 4, y + 2, z - 1)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 4, y + 2, z)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 4, y + 2, z + 1)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 4, y + 2, z + 2)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 4, y + 2, z + 3)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 4, y + 2, z + 4)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 3, y + 2, z - 5)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 3, y + 2, z - 4)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 3, y + 2, z - 3)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 3, y + 2, z - 2)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 3, y + 2, z - 1)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 3, y + 2, z)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 3, y + 2, z + 1)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 3, y + 2, z + 2)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 3, y + 2, z + 3)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 3, y + 2, z + 4)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 3, y + 2, z + 5)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 3, y + 2, z - 5)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 3, y + 2, z - 4)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 3, y + 2, z - 3)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 3, y + 2, z - 2)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 3, y + 2, z - 1)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 3, y + 2, z)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 3, y + 2, z + 1)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 3, y + 2, z + 2)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 3, y + 2, z + 3)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 3, y + 2, z + 4)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 3, y + 2, z + 5)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 2, y + 2, z + 5)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 1, y + 2, z + 5)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x, y + 2, z + 5)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 1, y + 2, z + 5)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 2, y + 2, z + 5)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 2, y + 2, z + 4)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 1, y + 2, z + 4)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x, y + 2, z + 4)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 1, y + 2, z + 4)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 2, y + 2, z + 4)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 2, y + 2, z + 3)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 1, y + 2, z + 3)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x, y + 2, z + 3)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 1, y + 2, z + 3)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 2, y + 2, z + 3)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 2, y + 2, z - 5)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 1, y + 2, z - 5)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x, y + 2, z - 5)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 1, y + 2, z - 5)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 2, y + 2, z - 5)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 2, y + 2, z - 4)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 1, y + 2, z - 4)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x, y + 2, z - 4)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 1, y + 2, z - 4)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 2, y + 2, z - 4)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 2, y + 2, z - 3)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 1, y + 2, z - 3)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x, y + 2, z - 3)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 1, y + 2, z - 3)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 2, y + 2, z - 3)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 8, y + 2, z - 1)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x + 8, y + 2, z)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x + 8, y + 2, z + 1)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x + 7, y + 2, z - 1)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x + 7, y + 2, z)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x + 7, y + 2, z + 1)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x - 8, y + 2, z - 1)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x - 8, y + 2, z)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x - 8, y + 2, z + 1)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x - 7, y + 2, z - 1)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x - 7, y + 2, z)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x - 7, y + 2, z + 1)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x - 1, y + 2, z + 8)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x, y + 2, z + 8)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x + 1, y + 2, z + 8)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x - 1, y + 2, z + 7)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x, y + 2, z + 7)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x + 1, y + 2, z + 7)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x - 1, y + 2, z - 8)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x, y + 2, z - 8)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x + 1, y + 2, z - 8)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x - 1, y + 2, z - 7)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x, y + 2, z - 7)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x + 1, y + 2, z - 7)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x + 1, y + 2, z + 1)).getBlock() == ModBlocks.fusion_motor &&
+                world.getBlockState(mPos.setPos(x + 1, y + 2, z)).getBlock() == ModBlocks.fusion_motor &&
+                world.getBlockState(mPos.setPos(x + 1, y + 2, z - 1)).getBlock() == ModBlocks.fusion_motor &&
+                world.getBlockState(mPos.setPos(x, y + 2, z + 1)).getBlock() == ModBlocks.fusion_motor &&
+                world.getBlockState(mPos.setPos(x, y + 2, z)).getBlock() == ModBlocks.fusion_center &&
+                world.getBlockState(mPos.setPos(x, y + 2, z - 1)).getBlock() == ModBlocks.fusion_motor &&
+                world.getBlockState(mPos.setPos(x - 1, y + 2, z + 1)).getBlock() == ModBlocks.fusion_motor &&
+                world.getBlockState(mPos.setPos(x - 1, y + 2, z)).getBlock() == ModBlocks.fusion_motor &&
+                world.getBlockState(mPos.setPos(x - 1, y + 2, z - 1)).getBlock() == ModBlocks.fusion_motor &&
 
-				world.getBlockState(mPos.setPos(x - 3, y - 1, z - 6)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 2, y - 1, z - 6)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 1, y - 1, z - 6)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 0, y - 1, z - 6)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 1, y - 1, z - 6)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 2, y - 1, z - 6)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 3, y - 1, z - 6)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 6, y - 1, z - 3)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 6, y - 1, z - 2)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 6, y - 1, z - 1)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 6, y - 1, z)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 6, y - 1, z + 1)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 6, y - 1, z + 2)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 6, y - 1, z + 3)).getBlock() == ModBlocks.fusion_conductor &&
 
-				world.getBlockState(mPos.setPos(x + 5, y - 1, z - 4)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 5, y - 1, z - 3)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 5, y - 1, z - 2)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 5, y - 1, z - 1)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 5, y - 1, z + 0)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 5, y - 1, z + 1)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 5, y - 1, z + 2)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 5, y - 1, z + 3)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 5, y - 1, z + 4)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 6, y - 1, z - 3)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 6, y - 1, z - 2)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 6, y - 1, z - 1)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 6, y - 1, z)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 6, y - 1, z + 1)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 6, y - 1, z + 2)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 6, y - 1, z + 3)).getBlock() == ModBlocks.fusion_conductor &&
 
-				world.getBlockState(mPos.setPos(x - 5, y - 1, z - 4)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 5, y - 1, z - 3)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 5, y - 1, z - 2)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 5, y - 1, z - 1)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 5, y - 1, z + 0)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 5, y - 1, z + 1)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 5, y - 1, z + 2)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 5, y - 1, z + 3)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 5, y - 1, z + 4)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 3, y - 1, z + 6)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 2, y - 1, z + 6)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 1, y - 1, z + 6)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x, y - 1, z + 6)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 1, y - 1, z + 6)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 2, y - 1, z + 6)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 3, y - 1, z + 6)).getBlock() == ModBlocks.fusion_conductor &&
 
-				world.getBlockState(mPos.setPos(x - 4, y - 1, z + 5)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 3, y - 1, z + 5)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 2, y - 1, z + 5)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 1, y - 1, z + 5)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 0, y - 1, z + 5)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 1, y - 1, z + 5)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 2, y - 1, z + 5)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 3, y - 1, z + 5)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 4, y - 1, z + 5)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 3, y - 1, z - 6)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 2, y - 1, z - 6)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 1, y - 1, z - 6)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x, y - 1, z - 6)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 1, y - 1, z - 6)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 2, y - 1, z - 6)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 3, y - 1, z - 6)).getBlock() == ModBlocks.fusion_conductor &&
 
-				world.getBlockState(mPos.setPos(x - 4, y - 1, z - 5)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 3, y - 1, z - 5)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 2, y - 1, z - 5)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 1, y - 1, z - 5)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 0, y - 1, z - 5)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 1, y - 1, z - 5)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 2, y - 1, z - 5)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 3, y - 1, z - 5)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 4, y - 1, z - 5)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 5, y - 1, z - 4)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 5, y - 1, z - 3)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 5, y - 1, z - 2)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 5, y - 1, z - 1)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 5, y - 1, z)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 5, y - 1, z + 1)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 5, y - 1, z + 2)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 5, y - 1, z + 3)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 5, y - 1, z + 4)).getBlock() == ModBlocks.fusion_conductor &&
 
-				world.getBlockState(mPos.setPos(x + 4, y - 1, z + 4)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 4, y - 1, z - 4)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 4, y - 1, z + 4)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 4, y - 1, z - 4)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 5, y - 1, z - 4)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 5, y - 1, z - 3)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 5, y - 1, z - 2)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 5, y - 1, z - 1)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 5, y - 1, z)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 5, y - 1, z + 1)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 5, y - 1, z + 2)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 5, y - 1, z + 3)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 5, y - 1, z + 4)).getBlock() == ModBlocks.fusion_conductor &&
 
-				world.getBlockState(mPos.setPos(x + 3, y - 1, z - 2)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 3, y - 1, z - 1)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 3, y - 1, z + 0)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 3, y - 1, z + 1)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 3, y - 1, z + 2)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 4, y - 1, z + 5)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 3, y - 1, z + 5)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 2, y - 1, z + 5)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 1, y - 1, z + 5)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x, y - 1, z + 5)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 1, y - 1, z + 5)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 2, y - 1, z + 5)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 3, y - 1, z + 5)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 4, y - 1, z + 5)).getBlock() == ModBlocks.fusion_conductor &&
 
-				world.getBlockState(mPos.setPos(x - 3, y - 1, z - 2)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 3, y - 1, z - 1)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 3, y - 1, z + 0)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 3, y - 1, z + 1)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 3, y - 1, z + 2)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 4, y - 1, z - 5)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 3, y - 1, z - 5)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 2, y - 1, z - 5)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 1, y - 1, z - 5)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x, y - 1, z - 5)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 1, y - 1, z - 5)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 2, y - 1, z - 5)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 3, y - 1, z - 5)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 4, y - 1, z - 5)).getBlock() == ModBlocks.fusion_conductor &&
 
-				world.getBlockState(mPos.setPos(x - 2, y - 1, z + 3)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 1, y - 1, z + 3)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 0, y - 1, z + 3)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 1, y - 1, z + 3)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 2, y - 1, z + 3)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 4, y - 1, z + 4)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 4, y - 1, z - 4)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 4, y - 1, z + 4)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 4, y - 1, z - 4)).getBlock() == ModBlocks.fusion_conductor &&
 
-				world.getBlockState(mPos.setPos(x - 2, y - 1, z - 3)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 1, y - 1, z - 3)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 0, y - 1, z - 3)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 1, y - 1, z - 3)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 2, y - 1, z - 3)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 3, y - 1, z - 2)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 3, y - 1, z - 1)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 3, y - 1, z)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 3, y - 1, z + 1)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 3, y - 1, z + 2)).getBlock() == ModBlocks.fusion_conductor &&
 
-				world.getBlockState(mPos.setPos(x + 2, y - 1, z - 2)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 2, y - 1, z - 1)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 2, y - 1, z + 0)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 2, y - 1, z + 1)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 2, y - 1, z + 2)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 1, y - 1, z + 2)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 0, y - 1, z + 2)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 1, y - 1, z + 2)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 2, y - 1, z + 2)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 2, y - 1, z + 1)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 2, y - 1, z + 0)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 2, y - 1, z - 1)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 2, y - 1, z - 2)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 1, y - 1, z - 2)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 0, y - 1, z - 2)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 1, y - 1, z - 2)).getBlock() == ModBlocks.fusion_conductor &&
-				
-				world.getBlockState(mPos.setPos(x + 6, y + 1, z - 3)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 6, y + 1, z - 2)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 6, y + 1, z - 1)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 6, y + 1, z + 0)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 6, y + 1, z + 1)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 6, y + 1, z + 2)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 6, y + 1, z + 3)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 3, y - 1, z - 2)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 3, y - 1, z - 1)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 3, y - 1, z)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 3, y - 1, z + 1)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 3, y - 1, z + 2)).getBlock() == ModBlocks.fusion_conductor &&
 
-				world.getBlockState(mPos.setPos(x - 6, y + 1, z - 3)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 6, y + 1, z - 2)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 6, y + 1, z - 1)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 6, y + 1, z + 0)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 6, y + 1, z + 1)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 6, y + 1, z + 2)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 6, y + 1, z + 3)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 2, y - 1, z + 3)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 1, y - 1, z + 3)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x, y - 1, z + 3)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 1, y - 1, z + 3)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 2, y - 1, z + 3)).getBlock() == ModBlocks.fusion_conductor &&
 
-				world.getBlockState(mPos.setPos(x - 3, y + 1, z + 6)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 2, y + 1, z + 6)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 1, y + 1, z + 6)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 0, y + 1, z + 6)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 1, y + 1, z + 6)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 2, y + 1, z + 6)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 3, y + 1, z + 6)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 2, y - 1, z - 3)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 1, y - 1, z - 3)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x, y - 1, z - 3)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 1, y - 1, z - 3)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 2, y - 1, z - 3)).getBlock() == ModBlocks.fusion_conductor &&
 
-				world.getBlockState(mPos.setPos(x - 3, y + 1, z - 6)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 2, y + 1, z - 6)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 1, y + 1, z - 6)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 0, y + 1, z - 6)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 1, y + 1, z - 6)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 2, y + 1, z - 6)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 3, y + 1, z - 6)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 2, y - 1, z - 2)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 2, y - 1, z - 1)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 2, y - 1, z)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 2, y - 1, z + 1)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 2, y - 1, z + 2)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 1, y - 1, z + 2)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x, y - 1, z + 2)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 1, y - 1, z + 2)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 2, y - 1, z + 2)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 2, y - 1, z + 1)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 2, y - 1, z)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 2, y - 1, z - 1)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 2, y - 1, z - 2)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 1, y - 1, z - 2)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x, y - 1, z - 2)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 1, y - 1, z - 2)).getBlock() == ModBlocks.fusion_conductor &&
 
-				world.getBlockState(mPos.setPos(x + 5, y + 1, z - 4)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 5, y + 1, z - 3)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 5, y + 1, z - 2)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 5, y + 1, z - 1)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 5, y + 1, z + 0)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 5, y + 1, z + 1)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 5, y + 1, z + 2)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 5, y + 1, z + 3)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 5, y + 1, z + 4)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 6, y + 1, z - 3)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 6, y + 1, z - 2)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 6, y + 1, z - 1)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 6, y + 1, z)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 6, y + 1, z + 1)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 6, y + 1, z + 2)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 6, y + 1, z + 3)).getBlock() == ModBlocks.fusion_conductor &&
 
-				world.getBlockState(mPos.setPos(x - 5, y + 1, z - 4)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 5, y + 1, z - 3)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 5, y + 1, z - 2)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 5, y + 1, z - 1)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 5, y + 1, z + 0)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 5, y + 1, z + 1)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 5, y + 1, z + 2)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 5, y + 1, z + 3)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 5, y + 1, z + 4)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 6, y + 1, z - 3)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 6, y + 1, z - 2)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 6, y + 1, z - 1)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 6, y + 1, z)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 6, y + 1, z + 1)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 6, y + 1, z + 2)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 6, y + 1, z + 3)).getBlock() == ModBlocks.fusion_conductor &&
 
-				world.getBlockState(mPos.setPos(x - 4, y + 1, z + 5)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 3, y + 1, z + 5)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 2, y + 1, z + 5)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 1, y + 1, z + 5)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 0, y + 1, z + 5)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 1, y + 1, z + 5)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 2, y + 1, z + 5)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 3, y + 1, z + 5)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 4, y + 1, z + 5)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 3, y + 1, z + 6)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 2, y + 1, z + 6)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 1, y + 1, z + 6)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x, y + 1, z + 6)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 1, y + 1, z + 6)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 2, y + 1, z + 6)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 3, y + 1, z + 6)).getBlock() == ModBlocks.fusion_conductor &&
 
-				world.getBlockState(mPos.setPos(x - 4, y + 1, z - 5)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 3, y + 1, z - 5)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 2, y + 1, z - 5)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 1, y + 1, z - 5)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 0, y + 1, z - 5)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 1, y + 1, z - 5)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 2, y + 1, z - 5)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 3, y + 1, z - 5)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 4, y + 1, z - 5)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 3, y + 1, z - 6)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 2, y + 1, z - 6)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 1, y + 1, z - 6)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x, y + 1, z - 6)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 1, y + 1, z - 6)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 2, y + 1, z - 6)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 3, y + 1, z - 6)).getBlock() == ModBlocks.fusion_conductor &&
 
-				world.getBlockState(mPos.setPos(x + 4, y + 1, z + 4)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 4, y + 1, z - 4)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 4, y + 1, z + 4)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 4, y + 1, z - 4)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 5, y + 1, z - 4)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 5, y + 1, z - 3)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 5, y + 1, z - 2)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 5, y + 1, z - 1)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 5, y + 1, z)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 5, y + 1, z + 1)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 5, y + 1, z + 2)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 5, y + 1, z + 3)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 5, y + 1, z + 4)).getBlock() == ModBlocks.fusion_conductor &&
 
-				world.getBlockState(mPos.setPos(x + 3, y + 1, z - 2)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 3, y + 1, z - 1)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 3, y + 1, z + 0)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 3, y + 1, z + 1)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 3, y + 1, z + 2)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 5, y + 1, z - 4)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 5, y + 1, z - 3)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 5, y + 1, z - 2)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 5, y + 1, z - 1)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 5, y + 1, z)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 5, y + 1, z + 1)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 5, y + 1, z + 2)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 5, y + 1, z + 3)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 5, y + 1, z + 4)).getBlock() == ModBlocks.fusion_conductor &&
 
-				world.getBlockState(mPos.setPos(x - 3, y + 1, z - 2)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 3, y + 1, z - 1)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 3, y + 1, z + 0)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 3, y + 1, z + 1)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 3, y + 1, z + 2)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 4, y + 1, z + 5)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 3, y + 1, z + 5)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 2, y + 1, z + 5)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 1, y + 1, z + 5)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x, y + 1, z + 5)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 1, y + 1, z + 5)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 2, y + 1, z + 5)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 3, y + 1, z + 5)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 4, y + 1, z + 5)).getBlock() == ModBlocks.fusion_conductor &&
 
-				world.getBlockState(mPos.setPos(x - 2, y + 1, z + 3)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 1, y + 1, z + 3)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 0, y + 1, z + 3)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 1, y + 1, z + 3)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 2, y + 1, z + 3)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 4, y + 1, z - 5)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 3, y + 1, z - 5)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 2, y + 1, z - 5)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 1, y + 1, z - 5)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x, y + 1, z - 5)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 1, y + 1, z - 5)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 2, y + 1, z - 5)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 3, y + 1, z - 5)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 4, y + 1, z - 5)).getBlock() == ModBlocks.fusion_conductor &&
 
-				world.getBlockState(mPos.setPos(x - 2, y + 1, z - 3)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 1, y + 1, z - 3)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 0, y + 1, z - 3)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 1, y + 1, z - 3)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 2, y + 1, z - 3)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 4, y + 1, z + 4)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 4, y + 1, z - 4)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 4, y + 1, z + 4)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 4, y + 1, z - 4)).getBlock() == ModBlocks.fusion_conductor &&
 
-				world.getBlockState(mPos.setPos(x + 2, y + 1, z - 2)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 2, y + 1, z - 1)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 2, y + 1, z + 0)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 2, y + 1, z + 1)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 2, y + 1, z + 2)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 1, y + 1, z + 2)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 0, y + 1, z + 2)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 1, y + 1, z + 2)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 2, y + 1, z + 2)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 2, y + 1, z + 1)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 2, y + 1, z + 0)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 2, y + 1, z - 1)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 2, y + 1, z - 2)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 1, y + 1, z - 2)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 0, y + 1, z - 2)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 1, y + 1, z - 2)).getBlock() == ModBlocks.fusion_conductor &&
-				
-				world.getBlockState(mPos.setPos(x + 8, y + 1, z - 1)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x + 8, y + 1, z + 0)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x + 8, y + 1, z + 1)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x + 7, y + 1, z - 1)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x + 7, y + 1, z + 0)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x + 7, y + 1, z + 1)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x - 8, y + 1, z - 1)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x - 8, y + 1, z + 0)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x - 8, y + 1, z + 1)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x - 7, y + 1, z - 1)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x - 7, y + 1, z + 0)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x - 7, y + 1, z + 1)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x - 1, y + 1, z + 8)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x + 0, y + 1, z + 8)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x + 1, y + 1, z + 8)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x - 1, y + 1, z + 7)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x + 0, y + 1, z + 7)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x + 1, y + 1, z + 7)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x - 1, y + 1, z - 8)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x + 0, y + 1, z - 8)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x + 1, y + 1, z - 8)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x - 1, y + 1, z - 7)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x + 0, y + 1, z - 7)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x + 1, y + 1, z - 7)).getBlock() == ModBlocks.fusion_heater &&
-				
-				world.getBlockState(mPos.setPos(x + 8, y - 1, z - 1)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x + 8, y - 1, z + 0)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x + 8, y - 1, z + 1)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x + 7, y - 1, z - 1)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x + 7, y - 1, z + 0)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x + 7, y - 1, z + 1)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x - 8, y - 1, z - 1)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x - 8, y - 1, z + 0)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x - 8, y - 1, z + 1)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x - 7, y - 1, z - 1)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x - 7, y - 1, z + 0)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x - 7, y - 1, z + 1)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x - 1, y - 1, z + 8)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x + 0, y - 1, z + 8)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x + 1, y - 1, z + 8)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x - 1, y - 1, z + 7)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x + 0, y - 1, z + 7)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x + 1, y - 1, z + 7)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x - 1, y - 1, z - 8)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x + 0, y - 1, z - 8)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x + 1, y - 1, z - 8)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x - 1, y - 1, z - 7)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x + 0, y - 1, z - 7)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x + 1, y - 1, z - 7)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x + 3, y + 1, z - 2)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 3, y + 1, z - 1)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 3, y + 1, z)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 3, y + 1, z + 1)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 3, y + 1, z + 2)).getBlock() == ModBlocks.fusion_conductor &&
 
-				world.getBlockState(mPos.setPos(x, y + 1, z)).getBlock() == ModBlocks.fusion_center &&
-				world.getBlockState(mPos.setPos(x, y - 1, z)).getBlock() == ModBlocks.fusion_center &&
-				world.getBlockState(mPos.setPos(x + 6, y, z - 3)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 6, y, z - 2)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 6, y, z - 1)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 6, y, z + 0)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 6, y, z + 1)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 6, y, z + 2)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 6, y, z + 3)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 3, y + 1, z - 2)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 3, y + 1, z - 1)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 3, y + 1, z)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 3, y + 1, z + 1)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 3, y + 1, z + 2)).getBlock() == ModBlocks.fusion_conductor &&
 
-				world.getBlockState(mPos.setPos(x - 6, y, z - 3)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 6, y, z - 2)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 6, y, z - 1)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 6, y, z + 0)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 6, y, z + 1)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 6, y, z + 2)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 6, y, z + 3)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 2, y + 1, z + 3)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 1, y + 1, z + 3)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x, y + 1, z + 3)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 1, y + 1, z + 3)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 2, y + 1, z + 3)).getBlock() == ModBlocks.fusion_conductor &&
 
-				world.getBlockState(mPos.setPos(x - 3, y, z + 6)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 2, y, z + 6)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 1, y, z + 6)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 0, y, z + 6)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 1, y, z + 6)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 2, y, z + 6)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 3, y, z + 6)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 2, y + 1, z - 3)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 1, y + 1, z - 3)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x, y + 1, z - 3)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 1, y + 1, z - 3)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 2, y + 1, z - 3)).getBlock() == ModBlocks.fusion_conductor &&
 
-				world.getBlockState(mPos.setPos(x - 3, y, z - 6)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 2, y, z - 6)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 1, y, z - 6)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 0, y, z - 6)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 1, y, z - 6)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 2, y, z - 6)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 3, y, z - 6)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 2, y + 1, z - 2)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 2, y + 1, z - 1)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 2, y + 1, z)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 2, y + 1, z + 1)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 2, y + 1, z + 2)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 1, y + 1, z + 2)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x, y + 1, z + 2)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 1, y + 1, z + 2)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 2, y + 1, z + 2)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 2, y + 1, z + 1)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 2, y + 1, z)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 2, y + 1, z - 1)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 2, y + 1, z - 2)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 1, y + 1, z - 2)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x, y + 1, z - 2)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 1, y + 1, z - 2)).getBlock() == ModBlocks.fusion_conductor &&
 
-				world.getBlockState(mPos.setPos(x + 5, y, z - 4)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 4, y, z - 5)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 5, y, z - 4)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 4, y, z - 5)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 5, y, z + 4)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 4, y, z + 5)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 5, y, z + 4)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 4, y, z + 5)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 8, y + 1, z - 1)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x + 8, y + 1, z)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x + 8, y + 1, z + 1)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x + 7, y + 1, z - 1)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x + 7, y + 1, z)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x + 7, y + 1, z + 1)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x - 8, y + 1, z - 1)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x - 8, y + 1, z)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x - 8, y + 1, z + 1)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x - 7, y + 1, z - 1)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x - 7, y + 1, z)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x - 7, y + 1, z + 1)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x - 1, y + 1, z + 8)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x, y + 1, z + 8)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x + 1, y + 1, z + 8)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x - 1, y + 1, z + 7)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x, y + 1, z + 7)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x + 1, y + 1, z + 7)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x - 1, y + 1, z - 8)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x, y + 1, z - 8)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x + 1, y + 1, z - 8)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x - 1, y + 1, z - 7)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x, y + 1, z - 7)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x + 1, y + 1, z - 7)).getBlock() == ModBlocks.fusion_heater &&
 
-				world.getBlockState(mPos.setPos(x + 2, y, z - 2)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 2, y, z - 1)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 2, y, z)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 2, y, z + 1)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 2, y, z + 2)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 1, y, z + 2)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x, y, z + 2)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 1, y, z + 2)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 2, y, z + 2)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 2, y, z + 1)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 2, y, z)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 2, y, z - 1)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 2, y, z - 2)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x - 1, y, z - 2)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x, y, z - 2)).getBlock() == ModBlocks.fusion_conductor &&
-				world.getBlockState(mPos.setPos(x + 1, y, z - 2)).getBlock() == ModBlocks.fusion_conductor &&
-				
-				world.getBlockState(mPos.setPos(x + 8, y, z - 1)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x + 8, y, z + 0)).getBlock() == ModBlocks.fusion_hatch &&
-				world.getBlockState(mPos.setPos(x + 8, y, z + 1)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x + 7, y, z - 1)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x + 7, y, z + 0)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x + 7, y, z + 1)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x - 8, y, z - 1)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x - 8, y, z + 0)).getBlock() == ModBlocks.fusion_hatch &&
-				world.getBlockState(mPos.setPos(x - 8, y, z + 1)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x - 7, y, z - 1)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x - 7, y, z + 0)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x - 7, y, z + 1)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x - 1, y, z + 8)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x + 0, y, z + 8)).getBlock() == ModBlocks.fusion_hatch &&
-				world.getBlockState(mPos.setPos(x + 1, y, z + 8)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x - 1, y, z + 7)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x + 0, y, z + 7)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x + 1, y, z + 7)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x - 1, y, z - 8)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x + 0, y, z - 8)).getBlock() == ModBlocks.fusion_hatch &&
-				world.getBlockState(mPos.setPos(x + 1, y, z - 8)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x - 1, y, z - 7)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x + 0, y, z - 7)).getBlock() == ModBlocks.fusion_heater &&
-				world.getBlockState(mPos.setPos(x + 1, y, z - 7)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x + 8, y - 1, z - 1)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x + 8, y - 1, z)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x + 8, y - 1, z + 1)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x + 7, y - 1, z - 1)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x + 7, y - 1, z)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x + 7, y - 1, z + 1)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x - 8, y - 1, z - 1)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x - 8, y - 1, z)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x - 8, y - 1, z + 1)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x - 7, y - 1, z - 1)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x - 7, y - 1, z)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x - 7, y - 1, z + 1)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x - 1, y - 1, z + 8)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x, y - 1, z + 8)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x + 1, y - 1, z + 8)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x - 1, y - 1, z + 7)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x, y - 1, z + 7)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x + 1, y - 1, z + 7)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x - 1, y - 1, z - 8)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x, y - 1, z - 8)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x + 1, y - 1, z - 8)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x - 1, y - 1, z - 7)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x, y - 1, z - 7)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x + 1, y - 1, z - 7)).getBlock() == ModBlocks.fusion_heater &&
 
-				world.getBlockState(mPos.setPos(x, y, z)).getBlock() == ModBlocks.fusion_core)
-		{
-			return true;
-		}
-		
-		return false;
-	}
+                world.getBlockState(mPos.setPos(x, y + 1, z)).getBlock() == ModBlocks.fusion_center &&
+                world.getBlockState(mPos.setPos(x, y - 1, z)).getBlock() == ModBlocks.fusion_center &&
+                world.getBlockState(mPos.setPos(x + 6, y, z - 3)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 6, y, z - 2)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 6, y, z - 1)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 6, y, z)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 6, y, z + 1)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 6, y, z + 2)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 6, y, z + 3)).getBlock() == ModBlocks.fusion_conductor &&
+
+                world.getBlockState(mPos.setPos(x - 6, y, z - 3)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 6, y, z - 2)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 6, y, z - 1)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 6, y, z)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 6, y, z + 1)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 6, y, z + 2)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 6, y, z + 3)).getBlock() == ModBlocks.fusion_conductor &&
+
+                world.getBlockState(mPos.setPos(x - 3, y, z + 6)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 2, y, z + 6)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 1, y, z + 6)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x, y, z + 6)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 1, y, z + 6)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 2, y, z + 6)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 3, y, z + 6)).getBlock() == ModBlocks.fusion_conductor &&
+
+                world.getBlockState(mPos.setPos(x - 3, y, z - 6)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 2, y, z - 6)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 1, y, z - 6)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x, y, z - 6)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 1, y, z - 6)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 2, y, z - 6)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 3, y, z - 6)).getBlock() == ModBlocks.fusion_conductor &&
+
+                world.getBlockState(mPos.setPos(x + 5, y, z - 4)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 4, y, z - 5)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 5, y, z - 4)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 4, y, z - 5)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 5, y, z + 4)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 4, y, z + 5)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 5, y, z + 4)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 4, y, z + 5)).getBlock() == ModBlocks.fusion_conductor &&
+
+                world.getBlockState(mPos.setPos(x + 2, y, z - 2)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 2, y, z - 1)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 2, y, z)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 2, y, z + 1)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 2, y, z + 2)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 1, y, z + 2)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x, y, z + 2)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 1, y, z + 2)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 2, y, z + 2)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 2, y, z + 1)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 2, y, z)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 2, y, z - 1)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 2, y, z - 2)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x - 1, y, z - 2)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x, y, z - 2)).getBlock() == ModBlocks.fusion_conductor &&
+                world.getBlockState(mPos.setPos(x + 1, y, z - 2)).getBlock() == ModBlocks.fusion_conductor &&
+
+                world.getBlockState(mPos.setPos(x + 8, y, z - 1)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x + 8, y, z)).getBlock() == ModBlocks.fusion_hatch &&
+                world.getBlockState(mPos.setPos(x + 8, y, z + 1)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x + 7, y, z - 1)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x + 7, y, z)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x + 7, y, z + 1)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x - 8, y, z - 1)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x - 8, y, z)).getBlock() == ModBlocks.fusion_hatch &&
+                world.getBlockState(mPos.setPos(x - 8, y, z + 1)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x - 7, y, z - 1)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x - 7, y, z)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x - 7, y, z + 1)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x - 1, y, z + 8)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x, y, z + 8)).getBlock() == ModBlocks.fusion_hatch &&
+                world.getBlockState(mPos.setPos(x + 1, y, z + 8)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x - 1, y, z + 7)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x, y, z + 7)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x + 1, y, z + 7)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x - 1, y, z - 8)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x, y, z - 8)).getBlock() == ModBlocks.fusion_hatch &&
+                world.getBlockState(mPos.setPos(x + 1, y, z - 8)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x - 1, y, z - 7)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x, y, z - 7)).getBlock() == ModBlocks.fusion_heater &&
+                world.getBlockState(mPos.setPos(x + 1, y, z - 7)).getBlock() == ModBlocks.fusion_heater &&
+
+                world.getBlockState(mPos.setPos(x, y, z)).getBlock() == ModBlocks.fusion_core;
+    }
 
 	@Override
 	public boolean isCoatingValid(World world) {
@@ -867,132 +857,127 @@ public class TileEntityFusionMultiblock extends TileEntity implements ITickable,
 		int x = pos.getX();
 		int y = pos.getY();
 		int z = pos.getZ();
-		
-		if(world.getBlockState(mPos.setPos(x + 4, y - 1, z - 3)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x + 4, y - 1, z - 2)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x + 4, y - 1, z - 1)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x + 4, y - 1, z)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x + 4, y - 1, z + 1)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x + 4, y - 1, z + 2)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x + 4, y - 1, z + 3)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x - 4, y - 1, z - 3)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x - 4, y - 1, z - 2)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x - 4, y - 1, z - 1)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x - 4, y - 1, z)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x - 4, y - 1, z + 1)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x - 4, y - 1, z + 2)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x - 4, y - 1, z + 3)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x - 3, y - 1, z + 4)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x - 2, y - 1, z + 4)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x - 1, y - 1, z + 4)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x, y - 1, z + 4)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x + 1, y - 1, z + 4)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x + 2, y - 1, z + 4)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x + 3, y - 1, z + 4)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x - 3, y - 1, z - 4)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x - 2, y - 1, z - 4)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x - 1, y - 1, z - 4)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x, y - 1, z - 4)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x + 1, y - 1, z - 4)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x + 2, y - 1, z - 4)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x + 3, y - 1, z - 4)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x + 3, y - 1, z + 3)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x + 3, y - 1, z - 3)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x - 3, y - 1, z + 3)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x - 3, y - 1, z - 3)).getBlock() == ModBlocks.block_tungsten &&
-				
-				world.getBlockState(mPos.setPos(x + 4, y + 1, z - 3)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x + 4, y + 1, z - 2)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x + 4, y + 1, z - 1)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x + 4, y + 1, z)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x + 4, y + 1, z + 1)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x + 4, y + 1, z + 2)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x + 4, y + 1, z + 3)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x - 4, y + 1, z - 3)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x - 4, y + 1, z - 2)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x - 4, y + 1, z - 1)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x - 4, y + 1, z)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x - 4, y + 1, z + 1)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x - 4, y + 1, z + 2)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x - 4, y + 1, z + 3)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x - 3, y + 1, z + 4)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x - 2, y + 1, z + 4)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x - 1, y + 1, z + 4)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x, y + 1, z + 4)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x + 1, y + 1, z + 4)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x + 2, y + 1, z + 4)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x + 3, y + 1, z + 4)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x - 3, y + 1, z - 4)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x - 2, y + 1, z - 4)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x - 1, y + 1, z - 4)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x, y + 1, z - 4)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x + 1, y + 1, z - 4)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x + 2, y + 1, z - 4)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x + 3, y + 1, z - 4)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x + 3, y + 1, z + 3)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x + 3, y + 1, z - 3)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x - 3, y + 1, z + 3)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x - 3, y + 1, z - 3)).getBlock() == ModBlocks.block_tungsten &&
-				
-				world.getBlockState(mPos.setPos(x + 3, y, z - 2)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x + 3, y, z - 1)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x + 3, y, z)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x + 3, y, z + 1)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x + 3, y, z + 2)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x - 3, y, z - 2)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x - 3, y, z - 1)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x - 3, y, z)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x - 3, y, z + 1)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x - 3, y, z + 2)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x - 2, y, z + 3)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x - 1, y, z + 3)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x, y, z + 3)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x + 1, y, z + 3)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x + 2, y, z + 3)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x - 2, y, z - 3)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x - 1, y, z - 3)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x, y, z - 3)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x + 1, y, z - 3)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x + 2, y, z - 3)).getBlock() == ModBlocks.block_tungsten &&
-				
-				world.getBlockState(mPos.setPos(x + 5, y, z - 3)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x + 5, y, z - 2)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x + 5, y, z - 1)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x + 5, y, z + 0)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x + 5, y, z + 1)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x + 5, y, z + 2)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x + 5, y, z + 3)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x - 5, y, z - 3)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x - 5, y, z - 2)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x - 5, y, z - 1)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x - 5, y, z + 0)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x - 5, y, z + 1)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x - 5, y, z + 2)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x - 5, y, z + 3)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x - 3, y, z + 5)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x - 2, y, z + 5)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x - 1, y, z + 5)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x + 0, y, z + 5)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x + 1, y, z + 5)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x + 2, y, z + 5)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x + 3, y, z + 5)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x - 3, y, z - 5)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x - 2, y, z - 5)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x - 1, y, z - 5)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x + 0, y, z - 5)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x + 1, y, z - 5)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x + 2, y, z - 5)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x + 3, y, z - 5)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x + 4, y, z + 4)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x + 4, y, z - 4)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x - 4, y, z + 4)).getBlock() == ModBlocks.block_tungsten &&
-				world.getBlockState(mPos.setPos(x - 4, y, z - 4)).getBlock() == ModBlocks.block_tungsten)
-		{
-			return true;
-		}
-		
-		return false;
-	}
+
+        return world.getBlockState(mPos.setPos(x + 4, y - 1, z - 3)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x + 4, y - 1, z - 2)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x + 4, y - 1, z - 1)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x + 4, y - 1, z)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x + 4, y - 1, z + 1)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x + 4, y - 1, z + 2)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x + 4, y - 1, z + 3)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x - 4, y - 1, z - 3)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x - 4, y - 1, z - 2)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x - 4, y - 1, z - 1)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x - 4, y - 1, z)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x - 4, y - 1, z + 1)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x - 4, y - 1, z + 2)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x - 4, y - 1, z + 3)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x - 3, y - 1, z + 4)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x - 2, y - 1, z + 4)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x - 1, y - 1, z + 4)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x, y - 1, z + 4)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x + 1, y - 1, z + 4)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x + 2, y - 1, z + 4)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x + 3, y - 1, z + 4)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x - 3, y - 1, z - 4)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x - 2, y - 1, z - 4)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x - 1, y - 1, z - 4)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x, y - 1, z - 4)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x + 1, y - 1, z - 4)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x + 2, y - 1, z - 4)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x + 3, y - 1, z - 4)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x + 3, y - 1, z + 3)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x + 3, y - 1, z - 3)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x - 3, y - 1, z + 3)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x - 3, y - 1, z - 3)).getBlock() == ModBlocks.block_tungsten &&
+
+                world.getBlockState(mPos.setPos(x + 4, y + 1, z - 3)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x + 4, y + 1, z - 2)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x + 4, y + 1, z - 1)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x + 4, y + 1, z)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x + 4, y + 1, z + 1)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x + 4, y + 1, z + 2)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x + 4, y + 1, z + 3)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x - 4, y + 1, z - 3)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x - 4, y + 1, z - 2)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x - 4, y + 1, z - 1)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x - 4, y + 1, z)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x - 4, y + 1, z + 1)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x - 4, y + 1, z + 2)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x - 4, y + 1, z + 3)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x - 3, y + 1, z + 4)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x - 2, y + 1, z + 4)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x - 1, y + 1, z + 4)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x, y + 1, z + 4)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x + 1, y + 1, z + 4)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x + 2, y + 1, z + 4)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x + 3, y + 1, z + 4)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x - 3, y + 1, z - 4)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x - 2, y + 1, z - 4)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x - 1, y + 1, z - 4)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x, y + 1, z - 4)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x + 1, y + 1, z - 4)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x + 2, y + 1, z - 4)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x + 3, y + 1, z - 4)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x + 3, y + 1, z + 3)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x + 3, y + 1, z - 3)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x - 3, y + 1, z + 3)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x - 3, y + 1, z - 3)).getBlock() == ModBlocks.block_tungsten &&
+
+                world.getBlockState(mPos.setPos(x + 3, y, z - 2)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x + 3, y, z - 1)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x + 3, y, z)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x + 3, y, z + 1)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x + 3, y, z + 2)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x - 3, y, z - 2)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x - 3, y, z - 1)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x - 3, y, z)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x - 3, y, z + 1)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x - 3, y, z + 2)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x - 2, y, z + 3)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x - 1, y, z + 3)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x, y, z + 3)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x + 1, y, z + 3)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x + 2, y, z + 3)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x - 2, y, z - 3)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x - 1, y, z - 3)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x, y, z - 3)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x + 1, y, z - 3)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x + 2, y, z - 3)).getBlock() == ModBlocks.block_tungsten &&
+
+                world.getBlockState(mPos.setPos(x + 5, y, z - 3)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x + 5, y, z - 2)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x + 5, y, z - 1)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x + 5, y, z)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x + 5, y, z + 1)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x + 5, y, z + 2)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x + 5, y, z + 3)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x - 5, y, z - 3)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x - 5, y, z - 2)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x - 5, y, z - 1)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x - 5, y, z)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x - 5, y, z + 1)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x - 5, y, z + 2)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x - 5, y, z + 3)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x - 3, y, z + 5)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x - 2, y, z + 5)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x - 1, y, z + 5)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x, y, z + 5)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x + 1, y, z + 5)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x + 2, y, z + 5)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x + 3, y, z + 5)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x - 3, y, z - 5)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x - 2, y, z - 5)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x - 1, y, z - 5)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x, y, z - 5)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x + 1, y, z - 5)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x + 2, y, z - 5)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x + 3, y, z - 5)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x + 4, y, z + 4)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x + 4, y, z - 4)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x - 4, y, z + 4)).getBlock() == ModBlocks.block_tungsten &&
+                world.getBlockState(mPos.setPos(x - 4, y, z - 4)).getBlock() == ModBlocks.block_tungsten;
+    }
 
 	@Override
 	public boolean hasFuse() {
@@ -1024,45 +1009,41 @@ public class TileEntityFusionMultiblock extends TileEntity implements ITickable,
 		int x = pos.getX();
 		int y = pos.getY();
 		int z = pos.getZ();
-		
-		if(hasFuse() && (
-				world.getBlockState(mPos.setPos(x + 4, y, z - 3)).getBlock() == ModBlocks.plasma ||
-				world.getBlockState(mPos.setPos(x + 4, y, z - 2)).getBlock() == ModBlocks.plasma ||
-				world.getBlockState(mPos.setPos(x + 4, y, z - 1)).getBlock() == ModBlocks.plasma ||
-				world.getBlockState(mPos.setPos(x + 4, y, z + 0)).getBlock() == ModBlocks.plasma ||
-				world.getBlockState(mPos.setPos(x + 4, y, z + 1)).getBlock() == ModBlocks.plasma ||
-				world.getBlockState(mPos.setPos(x + 4, y, z + 2)).getBlock() == ModBlocks.plasma ||
-				world.getBlockState(mPos.setPos(x + 4, y, z + 3)).getBlock() == ModBlocks.plasma ||
-				world.getBlockState(mPos.setPos(x - 4, y, z - 3)).getBlock() == ModBlocks.plasma ||
-				world.getBlockState(mPos.setPos(x - 4, y, z - 2)).getBlock() == ModBlocks.plasma ||
-				world.getBlockState(mPos.setPos(x - 4, y, z - 1)).getBlock() == ModBlocks.plasma ||
-				world.getBlockState(mPos.setPos(x - 4, y, z + 0)).getBlock() == ModBlocks.plasma ||
-				world.getBlockState(mPos.setPos(x - 4, y, z + 1)).getBlock() == ModBlocks.plasma ||
-				world.getBlockState(mPos.setPos(x - 4, y, z + 2)).getBlock() == ModBlocks.plasma ||
-				world.getBlockState(mPos.setPos(x - 4, y, z + 3)).getBlock() == ModBlocks.plasma ||
-				world.getBlockState(mPos.setPos(x - 3, y, z + 4)).getBlock() == ModBlocks.plasma ||
-				world.getBlockState(mPos.setPos(x - 2, y, z + 4)).getBlock() == ModBlocks.plasma ||
-				world.getBlockState(mPos.setPos(x - 1, y, z + 4)).getBlock() == ModBlocks.plasma ||
-				world.getBlockState(mPos.setPos(x + 0, y, z + 4)).getBlock() == ModBlocks.plasma ||
-				world.getBlockState(mPos.setPos(x + 1, y, z + 4)).getBlock() == ModBlocks.plasma ||
-				world.getBlockState(mPos.setPos(x + 2, y, z + 4)).getBlock() == ModBlocks.plasma ||
-				world.getBlockState(mPos.setPos(x + 3, y, z + 4)).getBlock() == ModBlocks.plasma ||
-				world.getBlockState(mPos.setPos(x - 3, y, z - 4)).getBlock() == ModBlocks.plasma ||
-				world.getBlockState(mPos.setPos(x - 2, y, z - 4)).getBlock() == ModBlocks.plasma ||
-				world.getBlockState(mPos.setPos(x - 1, y, z - 4)).getBlock() == ModBlocks.plasma ||
-				world.getBlockState(mPos.setPos(x + 0, y, z - 4)).getBlock() == ModBlocks.plasma ||
-				world.getBlockState(mPos.setPos(x + 1, y, z - 4)).getBlock() == ModBlocks.plasma ||
-				world.getBlockState(mPos.setPos(x + 2, y, z - 4)).getBlock() == ModBlocks.plasma ||
-				world.getBlockState(mPos.setPos(x + 3, y, z - 4)).getBlock() == ModBlocks.plasma ||
-				world.getBlockState(mPos.setPos(x + 3, y, z + 3)).getBlock() == ModBlocks.plasma ||
-				world.getBlockState(mPos.setPos(x + 3, y, z - 3)).getBlock() == ModBlocks.plasma ||
-				world.getBlockState(mPos.setPos(x - 3, y, z + 3)).getBlock() == ModBlocks.plasma ||
-				world.getBlockState(mPos.setPos(x - 3, y, z - 3)).getBlock() == ModBlocks.plasma))
-		{
-			return true;
-		}
-		return false;
-	}
+
+        return hasFuse() && (
+                world.getBlockState(mPos.setPos(x + 4, y, z - 3)).getBlock() == ModBlocks.plasma ||
+                        world.getBlockState(mPos.setPos(x + 4, y, z - 2)).getBlock() == ModBlocks.plasma ||
+                        world.getBlockState(mPos.setPos(x + 4, y, z - 1)).getBlock() == ModBlocks.plasma ||
+                        world.getBlockState(mPos.setPos(x + 4, y, z)).getBlock() == ModBlocks.plasma ||
+                        world.getBlockState(mPos.setPos(x + 4, y, z + 1)).getBlock() == ModBlocks.plasma ||
+                        world.getBlockState(mPos.setPos(x + 4, y, z + 2)).getBlock() == ModBlocks.plasma ||
+                        world.getBlockState(mPos.setPos(x + 4, y, z + 3)).getBlock() == ModBlocks.plasma ||
+                        world.getBlockState(mPos.setPos(x - 4, y, z - 3)).getBlock() == ModBlocks.plasma ||
+                        world.getBlockState(mPos.setPos(x - 4, y, z - 2)).getBlock() == ModBlocks.plasma ||
+                        world.getBlockState(mPos.setPos(x - 4, y, z - 1)).getBlock() == ModBlocks.plasma ||
+                        world.getBlockState(mPos.setPos(x - 4, y, z)).getBlock() == ModBlocks.plasma ||
+                        world.getBlockState(mPos.setPos(x - 4, y, z + 1)).getBlock() == ModBlocks.plasma ||
+                        world.getBlockState(mPos.setPos(x - 4, y, z + 2)).getBlock() == ModBlocks.plasma ||
+                        world.getBlockState(mPos.setPos(x - 4, y, z + 3)).getBlock() == ModBlocks.plasma ||
+                        world.getBlockState(mPos.setPos(x - 3, y, z + 4)).getBlock() == ModBlocks.plasma ||
+                        world.getBlockState(mPos.setPos(x - 2, y, z + 4)).getBlock() == ModBlocks.plasma ||
+                        world.getBlockState(mPos.setPos(x - 1, y, z + 4)).getBlock() == ModBlocks.plasma ||
+                        world.getBlockState(mPos.setPos(x, y, z + 4)).getBlock() == ModBlocks.plasma ||
+                        world.getBlockState(mPos.setPos(x + 1, y, z + 4)).getBlock() == ModBlocks.plasma ||
+                        world.getBlockState(mPos.setPos(x + 2, y, z + 4)).getBlock() == ModBlocks.plasma ||
+                        world.getBlockState(mPos.setPos(x + 3, y, z + 4)).getBlock() == ModBlocks.plasma ||
+                        world.getBlockState(mPos.setPos(x - 3, y, z - 4)).getBlock() == ModBlocks.plasma ||
+                        world.getBlockState(mPos.setPos(x - 2, y, z - 4)).getBlock() == ModBlocks.plasma ||
+                        world.getBlockState(mPos.setPos(x - 1, y, z - 4)).getBlock() == ModBlocks.plasma ||
+                        world.getBlockState(mPos.setPos(x, y, z - 4)).getBlock() == ModBlocks.plasma ||
+                        world.getBlockState(mPos.setPos(x + 1, y, z - 4)).getBlock() == ModBlocks.plasma ||
+                        world.getBlockState(mPos.setPos(x + 2, y, z - 4)).getBlock() == ModBlocks.plasma ||
+                        world.getBlockState(mPos.setPos(x + 3, y, z - 4)).getBlock() == ModBlocks.plasma ||
+                        world.getBlockState(mPos.setPos(x + 3, y, z + 3)).getBlock() == ModBlocks.plasma ||
+                        world.getBlockState(mPos.setPos(x + 3, y, z - 3)).getBlock() == ModBlocks.plasma ||
+                        world.getBlockState(mPos.setPos(x - 3, y, z + 3)).getBlock() == ModBlocks.plasma ||
+                        world.getBlockState(mPos.setPos(x - 3, y, z - 3)).getBlock() == ModBlocks.plasma);
+    }
 	
 	public void fillPlasma() {
 		MutableBlockPos mPos = new BlockPos.MutableBlockPos();
@@ -1073,28 +1054,28 @@ public class TileEntityFusionMultiblock extends TileEntity implements ITickable,
 		setPlasma(mPos.setPos(x + 4, y, z - 3));
 		setPlasma(mPos.setPos(x + 4, y, z - 2));
 		setPlasma(mPos.setPos(x + 4, y, z - 1));
-		setPlasma(mPos.setPos(x + 4, y, z + 0));
+		setPlasma(mPos.setPos(x + 4, y, z));
 		setPlasma(mPos.setPos(x + 4, y, z + 1));
 		setPlasma(mPos.setPos(x + 4, y, z + 2));
 		setPlasma(mPos.setPos(x + 4, y, z + 3));
 		setPlasma(mPos.setPos(x - 4, y, z - 3));
 		setPlasma(mPos.setPos(x - 4, y, z - 2));
 		setPlasma(mPos.setPos(x - 4, y, z - 1));
-		setPlasma(mPos.setPos(x - 4, y, z + 0));
+		setPlasma(mPos.setPos(x - 4, y, z));
 		setPlasma(mPos.setPos(x - 4, y, z + 1));
 		setPlasma(mPos.setPos(x - 4, y, z + 2));
 		setPlasma(mPos.setPos(x - 4, y, z + 3));
 		setPlasma(mPos.setPos(x - 3, y, z + 4));
 		setPlasma(mPos.setPos(x - 2, y, z + 4));
 		setPlasma(mPos.setPos(x - 1, y, z + 4));
-		setPlasma(mPos.setPos(x + 0, y, z + 4));
+		setPlasma(mPos.setPos(x, y, z + 4));
 		setPlasma(mPos.setPos(x + 1, y, z + 4));
 		setPlasma(mPos.setPos(x + 2, y, z + 4));
 		setPlasma(mPos.setPos(x + 3, y, z + 4));
 		setPlasma(mPos.setPos(x - 3, y, z - 4));
 		setPlasma(mPos.setPos(x - 2, y, z - 4));
 		setPlasma(mPos.setPos(x - 1, y, z - 4));
-		setPlasma(mPos.setPos(x + 0, y, z - 4));
+		setPlasma(mPos.setPos(x, y, z - 4));
 		setPlasma(mPos.setPos(x + 1, y, z - 4));
 		setPlasma(mPos.setPos(x + 2, y, z - 4));
 		setPlasma(mPos.setPos(x + 3, y, z - 4));
@@ -1113,28 +1094,28 @@ public class TileEntityFusionMultiblock extends TileEntity implements ITickable,
 		removePlasma(mPos.setPos(x + 4, y, z - 3));
 		removePlasma(mPos.setPos(x + 4, y, z - 2));
 		removePlasma(mPos.setPos(x + 4, y, z - 1));
-		removePlasma(mPos.setPos(x + 4, y, z + 0));
+		removePlasma(mPos.setPos(x + 4, y, z));
 		removePlasma(mPos.setPos(x + 4, y, z + 1));
 		removePlasma(mPos.setPos(x + 4, y, z + 2));
 		removePlasma(mPos.setPos(x + 4, y, z + 3));
 		removePlasma(mPos.setPos(x - 4, y, z - 3));
 		removePlasma(mPos.setPos(x - 4, y, z - 2));
 		removePlasma(mPos.setPos(x - 4, y, z - 1));
-		removePlasma(mPos.setPos(x - 4, y, z + 0));
+		removePlasma(mPos.setPos(x - 4, y, z));
 		removePlasma(mPos.setPos(x - 4, y, z + 1));
 		removePlasma(mPos.setPos(x - 4, y, z + 2));
 		removePlasma(mPos.setPos(x - 4, y, z + 3));
 		removePlasma(mPos.setPos(x - 3, y, z + 4));
 		removePlasma(mPos.setPos(x - 2, y, z + 4));
 		removePlasma(mPos.setPos(x - 1, y, z + 4));
-		removePlasma(mPos.setPos(x + 0, y, z + 4));
+		removePlasma(mPos.setPos(x, y, z + 4));
 		removePlasma(mPos.setPos(x + 1, y, z + 4));
 		removePlasma(mPos.setPos(x + 2, y, z + 4));
 		removePlasma(mPos.setPos(x + 3, y, z + 4));
 		removePlasma(mPos.setPos(x - 3, y, z - 4));
 		removePlasma(mPos.setPos(x - 2, y, z - 4));
 		removePlasma(mPos.setPos(x - 1, y, z - 4));
-		removePlasma(mPos.setPos(x + 0, y, z - 4));
+		removePlasma(mPos.setPos(x, y, z - 4));
 		removePlasma(mPos.setPos(x + 1, y, z - 4));
 		removePlasma(mPos.setPos(x + 2, y, z - 4));
 		removePlasma(mPos.setPos(x + 3, y, z - 4));
@@ -1156,9 +1137,7 @@ public class TileEntityFusionMultiblock extends TileEntity implements ITickable,
 
 	protected boolean inputValidForTank(int tank, int slot){
 		if(!inventory.getStackInSlot(slot).isEmpty() && tanks[tank] != null){
-			if(isValidFluidForTank(tank, FluidUtil.getFluidContained(inventory.getStackInSlot(slot)))){
-				return true;
-			}
+            return isValidFluidForTank(tank, FluidUtil.getFluidContained(inventory.getStackInSlot(slot)));
 		}
 		return false;
 	}
@@ -1183,13 +1162,8 @@ public class TileEntityFusionMultiblock extends TileEntity implements ITickable,
 	
 	@Override
 	public boolean getTact() {
-		if(age >= 0 && age < 10)
-		{
-			return true;
-		}
-		
-		return false;
-	}
+        return age >= 0 && age < 10;
+    }
 
 	@Override
 	public long getSPower() {
@@ -1247,8 +1221,7 @@ public class TileEntityFusionMultiblock extends TileEntity implements ITickable,
 	@Override
 	public void recievePacket(NBTTagCompound[] tags) {
 		if(tags.length != 3){
-			return;
-		} else {
+        } else {
 			tanks[0].readFromNBT(tags[0]);
 			tanks[1].readFromNBT(tags[1]);
 			tanks[2].readFromNBT(tags[2]);

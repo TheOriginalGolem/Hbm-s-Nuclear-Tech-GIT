@@ -46,7 +46,7 @@ public class Mats {
 	public static final int _AS = 30;
 	
 	//Vanilla and vanilla-like
-	public static final NTMMaterial MAT_STONE		= makeSmeltable(_VS + 00,	df("Stone"), 0x4D2F23).omitAutoGen();
+	public static final NTMMaterial MAT_STONE		= makeSmeltable(_VS,	df("Stone"), 0x4D2F23).omitAutoGen();
 	public static final NTMMaterial MAT_CARBON		= makeAdditive(	1499, 		df("Carbon"), 0x404040).omitAutoGen();
 	public static final NTMMaterial MAT_COAL		= make(			1400, 		COAL)		.setConversion(MAT_CARBON,  2, 1).omitAutoGen();
 	public static final NTMMaterial MAT_LIGNITE		= make(			1401, 		LIGNITE)	.setConversion(MAT_CARBON,  3, 1);
@@ -105,7 +105,7 @@ public class Mats {
 	public static final NTMMaterial MAT_BORON		= makeSmeltable(500,		B,			0xAD72AE).setShapes(DUSTTINY, INGOT, DUST, BLOCK);
 	
 	//Alloys
-	public static final NTMMaterial MAT_STEEL		= makeSmeltable(_AS + 0,	STEEL,		0x4A4A4A).setShapes(DUSTTINY, INGOT, DUST, PLATE, BLOCK);
+	public static final NTMMaterial MAT_STEEL		= makeSmeltable(_AS,	STEEL,		0x4A4A4A).setShapes(DUSTTINY, INGOT, DUST, PLATE, BLOCK);
 	public static final NTMMaterial MAT_MINGRADE	= makeSmeltable(_AS + 1,	MINGRADE,	0xE44C0F).setShapes(WIRE, INGOT, DUST, BLOCK);
 	public static final NTMMaterial MAT_ALLOY		= makeSmeltable(_AS + 2,	ALLOY,		0xFF7318).setShapes(WIRE, INGOT, DUST, PLATE, BLOCK);
 	public static final NTMMaterial MAT_DURA		= makeSmeltable(_AS + 3,	DURA,		0x376373).setShapes(INGOT, DUST, BLOCK);
@@ -147,7 +147,7 @@ public class Mats {
 				
 				if(oreEntries != null) {
 					list.addAll(oreEntries);
-					break outer;
+					break;
 				}
 				
 				for(Entry<String, MaterialShapes> prefixEntry : prefixByName.entrySet()) {
@@ -184,7 +184,7 @@ public class Mats {
 	public static List<MaterialStack> getSmeltingMaterialsFromItem(ItemStack stack) {
 		List<MaterialStack> baseMats = getMaterialsFromItem(stack);
 		List<MaterialStack> smelting = new ArrayList();
-		baseMats.forEach(x -> smelting.add(new MaterialStack(x.material.smeltsInto, (int) (x.amount * x.material.convOut / x.material.convIn))));
+		baseMats.forEach(x -> smelting.add(new MaterialStack(x.material.smeltsInto, x.amount * x.material.convOut / x.material.convIn)));
 		return smelting;
 	}
 	

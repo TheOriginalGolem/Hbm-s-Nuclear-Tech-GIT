@@ -207,7 +207,7 @@ public class TileEntityMachineTurbofan extends TileEntity implements ITickable, 
 						}
 					
 					//Exhaust push
-					List<Entity> list = (List<Entity>)world.getEntitiesWithinAABBExcludingEntity(null, 
+					List<Entity> list = world.getEntitiesWithinAABBExcludingEntity(null,
 							new AxisAlignedBB(posX - 1.5, posY, posZ + 4.5, posX + 1.5, posY + 3, posZ + 12));
 					
 					for(Entity e : list) {
@@ -217,7 +217,7 @@ public class TileEntityMachineTurbofan extends TileEntity implements ITickable, 
 					}
 					
 					//Intake pull
-					list = (List<Entity>)world.getEntitiesWithinAABBExcludingEntity(null, 
+					list = world.getEntitiesWithinAABBExcludingEntity(null,
 							new AxisAlignedBB(posX - 1.5, posY, posZ - 12, posX + 1.5, posY + 3, posZ - 4.5));
 					
 					for(Entity e : list) {
@@ -225,7 +225,7 @@ public class TileEntityMachineTurbofan extends TileEntity implements ITickable, 
 					}
 					
 					//Intake kill
-					list = (List<Entity>)world.getEntitiesWithinAABBExcludingEntity(null, 
+					list = world.getEntitiesWithinAABBExcludingEntity(null,
 							new AxisAlignedBB(posX - 1.5, posY, posZ - 5.5, posX + 1.5, posY + 3, posZ - 4.5));
 					
 					for(Entity e : list) {
@@ -259,7 +259,7 @@ public class TileEntityMachineTurbofan extends TileEntity implements ITickable, 
 						}
 
 					//Exhaust push
-					List<Entity> list = (List<Entity>)world.getEntitiesWithinAABBExcludingEntity(null, 
+					List<Entity> list = world.getEntitiesWithinAABBExcludingEntity(null,
 							new AxisAlignedBB(posX - 1.5, posY, posZ - 12, posX + 1.5, posY + 3, posZ - 4.5));
 					
 					for(Entity e : list) {
@@ -269,7 +269,7 @@ public class TileEntityMachineTurbofan extends TileEntity implements ITickable, 
 					}
 
 					//Intake pull
-					list = (List<Entity>)world.getEntitiesWithinAABBExcludingEntity(null, 
+					list = world.getEntitiesWithinAABBExcludingEntity(null,
 							new AxisAlignedBB(posX - 1.5, posY, posZ + 4.5, posX + 1.5, posY + 3, posZ + 12));
 					
 					for(Entity e : list) {
@@ -277,7 +277,7 @@ public class TileEntityMachineTurbofan extends TileEntity implements ITickable, 
 					}
 
 					//Intake kill
-					list = (List<Entity>)world.getEntitiesWithinAABBExcludingEntity(null, 
+					list = world.getEntitiesWithinAABBExcludingEntity(null,
 							new AxisAlignedBB(posX - 1.5, posY, posZ + 4.5, posX + 1.5, posY + 3, posZ + 5.5));
 					
 					for(Entity e : list) {
@@ -311,7 +311,7 @@ public class TileEntityMachineTurbofan extends TileEntity implements ITickable, 
 						}
 					
 					//Exhaust push
-					List<Entity> list = (List<Entity>)world.getEntitiesWithinAABBExcludingEntity(null, 
+					List<Entity> list = world.getEntitiesWithinAABBExcludingEntity(null,
 							new AxisAlignedBB(posX + 4.5, posY, posZ - 1.5, posX + 12, posY + 3, posZ + 1.5));
 					
 					for(Entity e : list) {
@@ -321,7 +321,7 @@ public class TileEntityMachineTurbofan extends TileEntity implements ITickable, 
 					}
 					
 					//Intake pull
-					list = (List<Entity>)world.getEntitiesWithinAABBExcludingEntity(null, 
+					list = world.getEntitiesWithinAABBExcludingEntity(null,
 							new AxisAlignedBB(posX - 12, posY, posZ - 1.5, posX - 4.5, posY + 3, posZ + 1.5));
 					
 					for(Entity e : list) {
@@ -329,7 +329,7 @@ public class TileEntityMachineTurbofan extends TileEntity implements ITickable, 
 					}
 					
 					//Intake kill
-					list = (List<Entity>)world.getEntitiesWithinAABBExcludingEntity(null, 
+					list = world.getEntitiesWithinAABBExcludingEntity(null,
 							new AxisAlignedBB(posX - 5.5, posY, posZ - 1.5, posX - 4.5, posY + 3, posZ + 1.5));
 					
 					for(Entity e : list) {
@@ -363,7 +363,7 @@ public class TileEntityMachineTurbofan extends TileEntity implements ITickable, 
 						}
 					
 					//Exhaust push
-					List<Entity> list = (List<Entity>)world.getEntitiesWithinAABBExcludingEntity(null, 
+					List<Entity> list = world.getEntitiesWithinAABBExcludingEntity(null,
 							new AxisAlignedBB(posX - 12, posY, posZ - 1.5, posX - 4.5, posY + 3, posZ + 1.5));
 					
 					for(Entity e : list) {
@@ -373,7 +373,7 @@ public class TileEntityMachineTurbofan extends TileEntity implements ITickable, 
 					}
 					
 					//Intake pull
-					list = (List<Entity>)world.getEntitiesWithinAABBExcludingEntity(null, 
+					list = world.getEntitiesWithinAABBExcludingEntity(null,
 							new AxisAlignedBB(posX + 4.5, posY, posZ - 1.5, posX + 12, posY + 3, posZ + 1.5));
 					
 					for(Entity e : list) {
@@ -381,7 +381,7 @@ public class TileEntityMachineTurbofan extends TileEntity implements ITickable, 
 					}
 					
 					//Intake kill
-					list = (List<Entity>)world.getEntitiesWithinAABBExcludingEntity(null, 
+					list = world.getEntitiesWithinAABBExcludingEntity(null,
 							new AxisAlignedBB(posX + 4.5, posY, posZ - 1.5, posX + 5.5, posY + 3, posZ + 1.5));
 					
 					for(Entity e : list) {
@@ -398,15 +398,13 @@ public class TileEntityMachineTurbofan extends TileEntity implements ITickable, 
 			PacketDispatcher.wrapper.sendToAllAround(new TETurbofanPacket(pos.getX(), pos.getY(), pos.getZ(), spin, isRunning), new TargetPoint(world.provider.getDimension(), pos.getX(), pos.getY(), pos.getZ(), 50));
 			PacketDispatcher.wrapper.sendToAllAround(new LoopedSoundPacket(pos), new TargetPoint(world.provider.getDimension(), pos.getX(), pos.getY(), pos.getZ(), 50));
 			PacketDispatcher.wrapper.sendToAllAround(new AuxElectricityPacket(pos, power), new TargetPoint(world.provider.getDimension(), pos.getX(), pos.getY(), pos.getZ(), 10));
-			PacketDispatcher.wrapper.sendToAllAround(new FluidTankPacket(pos, new FluidTank[] {tank}), new TargetPoint(world.provider.getDimension(), pos.getX(), pos.getY(), pos.getZ(), 10));
+			PacketDispatcher.wrapper.sendToAllAround(new FluidTankPacket(pos, tank), new TargetPoint(world.provider.getDimension(), pos.getX(), pos.getY(), pos.getZ(), 10));
 		}
 	}
 	
 	protected boolean inputValidForTank(int tank, int slot){
 		if(!inventory.getStackInSlot(slot).isEmpty()){
-			if(isValidFluid(FluidUtil.getFluidContained(inventory.getStackInSlot(slot)))){
-				return true;	
-			}
+            return isValidFluid(FluidUtil.getFluidContained(inventory.getStackInSlot(slot)));
 		}
 		return false;
 	}
@@ -437,12 +435,8 @@ public class TileEntityMachineTurbofan extends TileEntity implements ITickable, 
 
 	@Override
 	public boolean getTact() {
-		if (age >= 0 && age < 10) {
-			return true;
-		}
-
-		return false;
-	}
+        return age >= 0 && age < 10;
+    }
 
 	@Override
 	public long getSPower() {
@@ -504,8 +498,7 @@ public class TileEntityMachineTurbofan extends TileEntity implements ITickable, 
 	@Override
 	public void recievePacket(NBTTagCompound[] tags) {
 		if(tags.length != 1){
-			return;
-		} else {
+        } else {
 			tank.readFromNBT(tags[0]);
 		}
 	}

@@ -14,7 +14,7 @@ import net.minecraft.util.ResourceLocation;
 public class GUIMachineReactor extends GuiInfoContainer {
 
 	public static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/processing/gui_breeder.png");
-	private TileEntityMachineReactor breeder;
+	private final TileEntityMachineReactor breeder;
 
 	public GUIMachineReactor(InventoryPlayer invPlayer, TileEntityMachineReactor tedf) {
 		super(new ContainerReactor(invPlayer, tedf));

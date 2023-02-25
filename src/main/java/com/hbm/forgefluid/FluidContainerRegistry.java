@@ -14,8 +14,8 @@ import net.minecraftforge.fluids.FluidStack;
 //good as the forge one, but it'll sure fix that one terrible override in FFUtils.
 public class FluidContainerRegistry {
 	
-	private static Map<Item, FluidContainerData> containers = new HashMap<>();
-	private static Map<Pair<Item, Fluid>, Item> containerToItem = new HashMap<>();
+	private static final Map<Item, FluidContainerData> containers = new HashMap<>();
+	private static final Map<Pair<Item, Fluid>, Item> containerToItem = new HashMap<>();
 	
 	public static void registerContainer(Item item, Item container, FluidStack fluid){
 		containers.put(item, new FluidContainerData(container, fluid));

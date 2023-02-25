@@ -252,8 +252,7 @@ public class ModelRendererUtil {
 		float f;
 		
 		for(f = yawOffset - prevYawOffset; f < -180.0F; f += 360.0F) {
-			;
-		}
+        }
 
 		while(f >= 180.0F) {
 			f -= 360.0F;
@@ -269,8 +268,8 @@ public class ModelRendererUtil {
 			int i1 = vertices.positionIndices[i+1];
 			int i2 = vertices.positionIndices[i+2];
 			float[] tex = new float[6];
-			tex[0] = vertices.texCoords[(i+0)*2];
-			tex[1] = vertices.texCoords[(i+0)*2+1];
+			tex[0] = vertices.texCoords[(i)*2];
+			tex[1] = vertices.texCoords[(i)*2+1];
 			tex[2] = vertices.texCoords[(i+1)*2];
 			tex[3] = vertices.texCoords[(i+1)*2+1];
 			tex[4] = vertices.texCoords[(i+2)*2];
@@ -311,7 +310,7 @@ public class ModelRendererUtil {
 				vertices.add(tri.p3.pos);
 			}
 			
-			texCoords[i*6+0] = tri.p1.texX;
+			texCoords[i * 6] = tri.p1.texX;
 			texCoords[i*6+1] = tri.p1.texY;
 			texCoords[i*6+2] = tri.p2.texX;
 			texCoords[i*6+3] = tri.p2.texY;
@@ -545,9 +544,7 @@ public class ModelRendererUtil {
 			List<Triangle> tris = new ArrayList<>();
 			for(CutModelData d : top){
 				if(d.cap != null)
-					for(Triangle t : decompress(d.cap)){
-						tris.add(t);
-					}
+                    Collections.addAll(tris, decompress(d.cap));
 			}
 			capConsumer.accept(tris);
 		}
@@ -728,13 +725,13 @@ public class ModelRendererUtil {
 					}
 					if(normal){
 						Vec3d norm = b.subtract(a).crossProduct(c.subtract(a)).normalize();
-						buf.pos(a.x, a.y, a.z).tex(texCoords[i*2+0], texCoords[i*2+1]).normal((float)norm.x, (float)norm.y, (float)norm.z).endVertex();
-						buf.pos(b.x, b.y, b.z).tex(texCoords[(i+tOB)*2+0], texCoords[(i+tOB)*2+1]).normal((float)norm.x, (float)norm.y, (float)norm.z).endVertex();
-						buf.pos(c.x, c.y, c.z).tex(texCoords[(i+tOC)*2+0], texCoords[(i+tOC)*2+1]).normal((float)norm.x, (float)norm.y, (float)norm.z).endVertex();
+						buf.pos(a.x, a.y, a.z).tex(texCoords[i * 2], texCoords[i*2+1]).normal((float)norm.x, (float)norm.y, (float)norm.z).endVertex();
+						buf.pos(b.x, b.y, b.z).tex(texCoords[(i + tOB) * 2], texCoords[(i+tOB)*2+1]).normal((float)norm.x, (float)norm.y, (float)norm.z).endVertex();
+						buf.pos(c.x, c.y, c.z).tex(texCoords[(i + tOC) * 2], texCoords[(i+tOC)*2+1]).normal((float)norm.x, (float)norm.y, (float)norm.z).endVertex();
 					} else {
-						buf.pos(a.x, a.y, a.z).tex(texCoords[i*2+0], texCoords[i*2+1]).endVertex();
-						buf.pos(b.x, b.y, b.z).tex(texCoords[(i+tOB)*2+0], texCoords[(i+tOB)*2+1]).endVertex();
-						buf.pos(c.x, c.y, c.z).tex(texCoords[(i+tOC)*2+0], texCoords[(i+tOC)*2+1]).endVertex();
+						buf.pos(a.x, a.y, a.z).tex(texCoords[i * 2], texCoords[i*2+1]).endVertex();
+						buf.pos(b.x, b.y, b.z).tex(texCoords[(i + tOB) * 2], texCoords[(i+tOB)*2+1]).endVertex();
+						buf.pos(c.x, c.y, c.z).tex(texCoords[(i + tOC) * 2], texCoords[(i+tOC)*2+1]).endVertex();
 					}
 					
 				}

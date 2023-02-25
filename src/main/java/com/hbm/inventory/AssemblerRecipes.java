@@ -78,7 +78,7 @@ public class AssemblerRecipes {
 
 		template = dir;
 
-		List<File> files = Arrays.asList(dir.listFiles());
+		File[] files = dir.listFiles();
 		for(File file : files) {
 			if(file.getName().equals("hbmAssembler.json")) {
 				config = file;
@@ -826,9 +826,8 @@ public class AssemblerRecipes {
 		if(ins != null) {
 			
 			AStack[] news = new AStack[ins.length + 1];
-			
-			for(int i = 0; i < ins.length; i++)
-				news[i] = ins[i];
+
+            System.arraycopy(ins, 0, news, 0, ins.length);
 			
 			news[news.length - 1] = new ComparableStack(ModItems.circuit_tantalium, amount);
 			

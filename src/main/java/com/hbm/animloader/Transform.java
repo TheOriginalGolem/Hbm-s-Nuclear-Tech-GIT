@@ -25,7 +25,7 @@ public class Transform {
 		auxGLMatrix.put(matrix);
 		auxGLMatrix.rewind();
 		rotation = new Quaternion().setFromMatrix((Matrix4f) new Matrix4f().load(auxGLMatrix));
-		translation = Vec3.createVectorHelper(matrix[0*4+3], matrix[1*4+3], matrix[2*4+3]);
+		translation = Vec3.createVectorHelper(matrix[3], matrix[4 +3], matrix[2*4+3]);
 		auxGLMatrix.rewind();
 	}
 	

@@ -245,8 +245,8 @@ public class GunNPCFactory {
 		
 		bullet.bUpdate = new IBulletUpdateBehavior() {
 			
-			double angle = 90;
-			double range = 100;
+			final double angle = 90;
+			final double range = 100;
 
 			@Override
 			public void behaveUpdate(EntityBulletBase bullet) {

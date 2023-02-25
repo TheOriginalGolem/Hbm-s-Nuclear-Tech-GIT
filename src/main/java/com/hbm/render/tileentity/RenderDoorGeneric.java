@@ -47,7 +47,7 @@ public class RenderDoorGeneric extends TileEntitySpecialRenderer<TileEntityDoorG
 		GL11.glTranslated(x+0.5, y, z+0.5);
 		
 		switch(te.getBlockMetadata() - BlockDummyable.offset) {
-		case 2: GL11.glRotatef(0+90, 0F, 1F, 0F); break;
+		case 2: GL11.glRotatef(90, 0F, 1F, 0F); break;
 		case 4: GL11.glRotatef(90+90, 0F, 1F, 0F); break;
 		case 3: GL11.glRotatef(180+90, 0F, 1F, 0F); break;
 		case 5: GL11.glRotatef(270+90, 0F, 1F, 0F); break;
@@ -83,7 +83,7 @@ public class RenderDoorGeneric extends TileEntitySpecialRenderer<TileEntityDoorG
 			WavefrontObjDisplayList model = door.getModel();
 			
 			long ms = System.currentTimeMillis()-te.animStartTime;
-			float openTicks = MathHelper.clamp(te.state == 2 || te.state == 0 ? door.timeToOpen()*50-ms : ms, 0, door.timeToOpen()*50)*0.02F;
+			float openTicks = MathHelper.clamp(te.state == 2 || te.state == 0 ? door.timeToOpen()* 50L -ms : ms, 0, door.timeToOpen()*50)*0.02F;
 			for(Pair<String, Integer> p : model.nameToCallList){
 				if(!door.doesRender(p.getLeft(), false))
 					continue;

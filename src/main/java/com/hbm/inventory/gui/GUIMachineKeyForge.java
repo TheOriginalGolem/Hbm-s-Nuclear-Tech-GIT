@@ -13,8 +13,8 @@ import net.minecraft.util.ResourceLocation;
 
 public class GUIMachineKeyForge extends GuiInfoContainer {
 	
-	private static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/gui_keyforge.png");
-	private TileEntityMachineKeyForge siren;
+	private static final ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/gui_keyforge.png");
+	private final TileEntityMachineKeyForge siren;
 
 	public GUIMachineKeyForge(InventoryPlayer invPlayer, TileEntityMachineKeyForge tedf) {
 		super(new ContainerMachineKeyForge(invPlayer, tedf));

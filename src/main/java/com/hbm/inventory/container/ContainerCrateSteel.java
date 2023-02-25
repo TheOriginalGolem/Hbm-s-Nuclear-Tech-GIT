@@ -11,7 +11,7 @@ import net.minecraftforge.items.SlotItemHandler;
 
 public class ContainerCrateSteel extends Container {
 	
-	private TileEntityCrateSteel diFurnace;
+	private final TileEntityCrateSteel diFurnace;
 	
 	public ContainerCrateSteel(InventoryPlayer invPlayer, TileEntityCrateSteel tedf) {
 		diFurnace = tedf;
@@ -42,7 +42,7 @@ public class ContainerCrateSteel extends Container {
     public ItemStack transferStackInSlot(EntityPlayer p_82846_1_, int par2)
     {
 		ItemStack var3 = ItemStack.EMPTY;
-		Slot var4 = (Slot) this.inventorySlots.get(par2);
+		Slot var4 = this.inventorySlots.get(par2);
 		
 		if (var4 != null && var4.getHasStack())
 		{

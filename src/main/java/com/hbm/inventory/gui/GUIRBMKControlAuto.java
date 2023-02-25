@@ -24,10 +24,10 @@ import net.minecraft.util.math.MathHelper;
 
 public class GUIRBMKControlAuto extends GuiInfoContainer {
 	
-	private static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/reactors/gui_rbmk_control_auto.png");
-	private TileEntityRBMKControlAuto rod;
+	private static final ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/reactors/gui_rbmk_control_auto.png");
+	private final TileEntityRBMKControlAuto rod;
 	
-	private GuiTextField[] fields;
+	private final GuiTextField[] fields;
 
 	public GUIRBMKControlAuto(InventoryPlayer invPlayer, TileEntityRBMKControlAuto tedf) {
 		super(new ContainerRBMKControlAuto(invPlayer, tedf));

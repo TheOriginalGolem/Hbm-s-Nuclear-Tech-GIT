@@ -15,7 +15,7 @@ public class ItemRendererMachine extends TEISRBase {
 
 	///// THIS IS A TEST CLASS. CARVE THIS INTO A BASE CLASS FOR LESS CRAPPY BLOCK ITEM RENDERERS IN THE FUTURE ////
 	double scale = 1.0D;
-	private ModelBroadcaster broadcaster;
+	private final ModelBroadcaster broadcaster;
 	private static final ResourceLocation broadcasterTex = new ResourceLocation(RefStrings.MODID + ":" + "textures/models/ModelRadioReceiver.png");
 	
 	public ItemRendererMachine(double scale) {

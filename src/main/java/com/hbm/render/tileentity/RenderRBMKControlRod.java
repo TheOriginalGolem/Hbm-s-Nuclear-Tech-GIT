@@ -16,7 +16,7 @@ import net.minecraft.util.math.BlockPos;
 
 public class RenderRBMKControlRod extends TileEntitySpecialRenderer<TileEntityRBMKControl>{
 
-	private ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/blocks/rbmk/rbmk_control.png");
+	private final ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/blocks/rbmk/rbmk_control.png");
 	
 	@Override
 	public boolean isGlobalRenderer(TileEntityRBMKControl te){

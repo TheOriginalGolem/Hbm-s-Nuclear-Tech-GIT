@@ -11,7 +11,7 @@ import net.minecraft.entity.ai.EntityAIBase;
 
 public class EntityAIMaskmanMinigun extends EntityAIBase {
 
-	private EntityCreature owner;
+	private final EntityCreature owner;
     private EntityLivingBase target;
     int delay;
     int timer;

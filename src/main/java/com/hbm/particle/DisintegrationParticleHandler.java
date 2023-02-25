@@ -258,7 +258,7 @@ public class DisintegrationParticleHandler {
 			matrix[14] = 0;
 			ParticleGluonDisintegration p = new ParticleGluonDisintegration(world, pX, pY, pZ, cube, matrix, tex, cubeMidX, cubeMidY, cubeMidZ, scale);
 			Vec3d motion = new Vec3d(x, y + ent.getEyeHeight()/2, z).subtract(new Vec3d(pX, pY, pZ)).normalize().scale(0.25)
-					.add(new Vec3d(world.rand.nextFloat()*1F-0.5F, world.rand.nextFloat()*1F-0.5F, world.rand.nextFloat()*1F-0.5F));
+					.add(new Vec3d(world.rand.nextFloat() -0.5F, world.rand.nextFloat() -0.5F, world.rand.nextFloat() -0.5F));
 			p.motion(motion);
 			Minecraft.getMinecraft().effectRenderer.addEffect(p);
 		}
@@ -331,8 +331,7 @@ public class DisintegrationParticleHandler {
 		float f;
 		
 		for(f = yawOffset - prevYawOffset; f < -180.0F; f += 360.0F) {
-			;
-		}
+        }
 
 		while(f >= 180.0F) {
 			f -= 360.0F;

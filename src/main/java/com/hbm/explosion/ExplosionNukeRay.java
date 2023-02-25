@@ -14,8 +14,8 @@ import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
 
 public class ExplosionNukeRay {
-	private int maxSamples;
-	private float phi;
+	private final int maxSamples;
+	private final float phi;
 	public boolean isContained=true;
 	
 	World world;
@@ -26,7 +26,7 @@ public class ExplosionNukeRay {
 	int processed;
 	int currentSample;
 
-	private List<FloatTriplet> affectedBlocks = new ArrayList<FloatTriplet>();
+	private final List<FloatTriplet> affectedBlocks = new ArrayList<FloatTriplet>();
 	public boolean isAusf3Complete = false;
 	public Random rand = new Random();
 	
@@ -55,9 +55,9 @@ public class ExplosionNukeRay {
 			FloatTriplet direction = getNormalFibVec(s);
 			float rayEnergy = (float)radius * 0.7F;
 			for(int l = 0; l < this.radius+1; l++){
-				float x0 = (float) (posX + direction.xCoord * l);
-				float y0 = (float) (posY + direction.yCoord * l);
-				float z0 = (float) (posZ + direction.zCoord * l);
+				float x0 = posX + direction.xCoord * l;
+				float y0 = posY + direction.yCoord * l;
+				float z0 = posZ + direction.zCoord * l;
 				if(y0 < 1 || y0 > 256){
 					if(affectedBlocks.size() < Integer.MAX_VALUE - 100) {
 						affectedBlocks.add(new FloatTriplet(lastPos.xCoord, lastPos.yCoord, lastPos.zCoord));
@@ -73,7 +73,7 @@ public class ExplosionNukeRay {
 				}
 				
 				if(rayEnergy <= 0 || l == this.radius) {
-					if(isContained==true){
+					if(isContained){
 						if(l == this.radius){
 							isContained = false;
 						}

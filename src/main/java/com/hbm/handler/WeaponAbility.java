@@ -214,7 +214,7 @@ public abstract class WeaponAbility {
 
 					for(int i = 0; i < count; i++) {
 
-						living.dropItem(((WeightedRandomObject)WeightedRandom.getRandomItem(living.getRNG(), Arrays.asList(ammo))).asItem(), 1);
+						living.dropItem(WeightedRandom.getRandomItem(living.getRNG(), Arrays.asList(ammo)).asItem(), 1);
 						world.spawnEntity(new EntityXPOrb(world, living.posX, living.posY, living.posZ, 1));
 					}
 
@@ -265,7 +265,7 @@ public abstract class WeaponAbility {
 
 					ItemStack head = new ItemStack(Items.SKULL, 1, 3);
 					head.setTagCompound(new NBTTagCompound());
-					head.getTagCompound().setString("SkullOwner", ((EntityPlayer) living).getDisplayName().getUnformattedText());
+					head.getTagCompound().setString("SkullOwner", living.getDisplayName().getUnformattedText());
 					living.entityDropItem(head, 0.0F);
 				} else {
 					living.entityDropItem(new ItemStack(Items.ROTTEN_FLESH, 3, 0), 0.0F);

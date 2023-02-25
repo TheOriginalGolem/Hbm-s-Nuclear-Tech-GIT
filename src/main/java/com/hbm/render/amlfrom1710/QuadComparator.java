@@ -8,10 +8,10 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class QuadComparator implements Comparator<Object>
 {
-    private float field_147630_a;
-    private float field_147628_b;
-    private float field_147629_c;
-    private int[] field_147627_d;
+    private final float field_147630_a;
+    private final float field_147628_b;
+    private final float field_147629_c;
+    private final int[] field_147627_d;
 
     public QuadComparator(int[] p_i45077_1_, float p_i45077_2_, float p_i45077_3_, float p_i45077_4_)
     {

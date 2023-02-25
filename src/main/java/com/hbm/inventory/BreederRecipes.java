@@ -16,8 +16,8 @@ import net.minecraft.util.text.TextFormatting;
 
 public class BreederRecipes {
 
-	private static HashMap<ComparableStack, BreederRecipe> recipes = new HashMap<>();
-	private static HashMap<ComparableStack, int[]> fuels = new HashMap<>();
+	private static final HashMap<ComparableStack, BreederRecipe> recipes = new HashMap<>();
+	private static final HashMap<ComparableStack, int[]> fuels = new HashMap<>();
 	//for the int array: [0] => level (1-4) [1] => amount of operations
 	
 	public static void registerRecipes() {

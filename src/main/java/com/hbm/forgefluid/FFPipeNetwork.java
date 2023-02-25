@@ -162,11 +162,7 @@ public class FFPipeNetwork implements IFluidHandler {
 			}
 			merge.Destroy();
 			return net;
-		} else if(net != null) {
-			return net;
-		} else {
-			return null;
-		}
+		} else return net;
 	}
 
 	/**
@@ -249,8 +245,8 @@ public class FFPipeNetwork implements IFluidHandler {
 					//consumers.addAll(nextPipe[1]);
 					//networks.addAll(nextPipe[2]);
 				} else if (next != null && next.hasCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, null) && !(next instanceof IFluidPipe)) {
-					if(!consumers.contains((ICapabilityProvider)next)){
-						consumers.add((ICapabilityProvider) next);
+					if(!consumers.contains(next)){
+						consumers.add(next);
 						
 					}
 					

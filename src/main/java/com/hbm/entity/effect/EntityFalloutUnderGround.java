@@ -56,7 +56,7 @@ public class EntityFalloutUnderGround extends Entity implements IConstantRendere
 	private double s5;
 	private double s6;
 
-	private double phi;
+	private final double phi;
 
 	public EntityFalloutUnderGround(World p_i1582_1_) {
 		super(p_i1582_1_);
@@ -284,7 +284,7 @@ public class EntityFalloutUnderGround extends Entity implements IConstantRendere
 
 			} else if(bblock == ModBlocks.ore_uranium) {
 				if(l <= s6){
-					if (rand.nextInt((int)(1+VersatileConfig.getSchrabOreChance())) == 0)
+					if (rand.nextInt(1+VersatileConfig.getSchrabOreChance()) == 0)
 						world.setBlockState(pos, ModBlocks.ore_schrabidium.getDefaultState());
 					else
 						world.setBlockState(pos, ModBlocks.ore_uranium_scorched.getDefaultState());
@@ -293,7 +293,7 @@ public class EntityFalloutUnderGround extends Entity implements IConstantRendere
 
 			} else if(bblock == ModBlocks.ore_nether_uranium) {
 				if(l <= s5){
-					if(rand.nextInt((int)(1+VersatileConfig.getSchrabOreChance())) == 0)
+					if(rand.nextInt(1+VersatileConfig.getSchrabOreChance()) == 0)
 						world.setBlockState(pos, ModBlocks.ore_nether_schrabidium.getDefaultState());
 					else
 						world.setBlockState(pos, ModBlocks.ore_nether_uranium_scorched.getDefaultState());
@@ -302,7 +302,7 @@ public class EntityFalloutUnderGround extends Entity implements IConstantRendere
 
 			} else if(bblock == ModBlocks.ore_gneiss_uranium) {
 				if(l <= s4){
-					if(rand.nextInt((int)(1+VersatileConfig.getSchrabOreChance()/2)) == 0)
+					if(rand.nextInt(1+VersatileConfig.getSchrabOreChance()/2) == 0)
 						world.setBlockState(pos, ModBlocks.ore_gneiss_schrabidium.getDefaultState());
 					else
 						world.setBlockState(pos, ModBlocks.ore_gneiss_uranium_scorched.getDefaultState());

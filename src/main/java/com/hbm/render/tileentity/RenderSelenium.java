@@ -37,7 +37,7 @@ public class RenderSelenium extends TileEntitySpecialRenderer<TileEntityMachineS
         
         GL11.glTranslated(0.0D, 1.0D, 0.0D);
         
-        int count = ((TileEntityMachineSeleniumEngine)te).pistonCount;
+        int count = te.pistonCount;
         
         float rot = 360F / count;
 
@@ -47,7 +47,7 @@ public class RenderSelenium extends TileEntitySpecialRenderer<TileEntityMachineS
     		GL11.glRotatef(rot, 0, 0, 1);
         }
 		
-        if(count > 2 && ((TileEntityMachineSeleniumEngine)te).hasAcceptableFuel() && ((TileEntityMachineSeleniumEngine)te).tank.getFluidAmount() > 0)
+        if(count > 2 && te.hasAcceptableFuel() && te.tank.getFluidAmount() > 0)
         	GL11.glRotatef((System.currentTimeMillis() / 2) % 360, 0F, 0F, -1F);
 
         bindTexture(ResourceManager.selenium_rotor_tex);

@@ -270,7 +270,7 @@ public class EntityRainbow extends Entity implements IProjectile {
 			float f1;
 
 			for (i = 0; i < list.size(); ++i) {
-				Entity entity1 = (Entity) list.get(i);
+				Entity entity1 = list.get(i);
 
 				if (entity1.canBeCollidedWith() && (entity1 != this.shootingEntity || this.ticksInAir >= 5)) {
 					f1 = 0.3F;
@@ -494,8 +494,8 @@ public class EntityRainbow extends Entity implements IProjectile {
 	}
 
 	public void randomizeColor() {
-		this.getDataManager().set(RED, rand.nextInt(2) == 1 ? true : false);
-		this.getDataManager().set(GREEN, rand.nextInt(2) == 1 ? true : false);
-		this.getDataManager().set(BLUE, rand.nextInt(2) == 1 ? true : false);
+		this.getDataManager().set(RED, rand.nextInt(2) == 1);
+		this.getDataManager().set(GREEN, rand.nextInt(2) == 1);
+		this.getDataManager().set(BLUE, rand.nextInt(2) == 1);
 	}
 }

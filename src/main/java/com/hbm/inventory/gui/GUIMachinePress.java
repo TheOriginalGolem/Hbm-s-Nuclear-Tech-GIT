@@ -12,8 +12,8 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 
 public class GUIMachinePress extends GuiContainer {
-	private static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/gui_press.png");
-	private TileEntityMachinePress assembler;
+	private static final ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/gui_press.png");
+	private final TileEntityMachinePress assembler;
 	
 	public GUIMachinePress(InventoryPlayer invPlayer, TileEntityMachinePress tedf) {
 		super(new ContainerMachinePress(invPlayer, tedf));

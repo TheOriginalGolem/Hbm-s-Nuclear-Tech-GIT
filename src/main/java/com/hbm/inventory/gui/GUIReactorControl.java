@@ -20,8 +20,8 @@ import net.minecraft.util.ResourceLocation;
 
 public class GUIReactorControl extends GuiInfoContainer {
 
-	private static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/gui_reactor_control.png");
-	private TileEntityReactorControl control;
+	private static final ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/gui_reactor_control.png");
+	private final TileEntityReactorControl control;
 	
 	public GUIReactorControl(InventoryPlayer invPlayer, TileEntityReactorControl tedf) {
 		super(new ContainerReactorControl(invPlayer, tedf));
@@ -119,7 +119,7 @@ public class GUIReactorControl extends GuiInfoContainer {
 		if(control.hullHeat > 0) {
 			int i = (control.hullHeat * 88 / 100000);
 			
-			i = (int) Math.min(i, 160);
+			i = Math.min(i, 160);
 			
 			drawTexturedModalRect(guiLeft + 80, guiTop + 59, 0, 166, i, 4);
 		}
@@ -127,7 +127,7 @@ public class GUIReactorControl extends GuiInfoContainer {
 		if(control.coreHeat > 0) {
 			int i = (control.coreHeat * 88 / 50000);
 			
-			i = (int) Math.min(i, 160);
+			i = Math.min(i, 160);
 			
 			drawTexturedModalRect(guiLeft + 80, guiTop + 65, 0, 170, i, 4);
 		}
@@ -135,7 +135,7 @@ public class GUIReactorControl extends GuiInfoContainer {
 		if(control.steam > 0) {
 			int i = (control.steam * 88 / control.maxSteam);
 			
-			i = (int) Math.min(i, 160);
+			i = Math.min(i, 160);
 			
 			drawTexturedModalRect(guiLeft + 80, guiTop + 53, 0, 174 + 4 * control.compression, i, 4);
 		}
@@ -143,7 +143,7 @@ public class GUIReactorControl extends GuiInfoContainer {
 		if(control.cool > 0) {
 			int i = (control.cool * 88 / control.maxCool);
 			
-			i = (int) Math.min(i, 160);
+			i = Math.min(i, 160);
 			
 			drawTexturedModalRect(guiLeft + 80, guiTop + 47, 0, 194, i, 4);
 		}
@@ -151,7 +151,7 @@ public class GUIReactorControl extends GuiInfoContainer {
 		if(control.water > 0) {
 			int i = (control.water * 88 / control.maxWater);
 			
-			i = (int) Math.min(i, 160);
+			i = Math.min(i, 160);
 			
 			drawTexturedModalRect(guiLeft + 80, guiTop + 41, 0, 190, i, 4);
 		}
@@ -159,7 +159,7 @@ public class GUIReactorControl extends GuiInfoContainer {
 		if(control.fuel > 0) {
 			int i = (control.fuel * 88 / 100);
 			
-			i = (int) Math.min(i, 160);
+			i = Math.min(i, 160);
 			
 			drawTexturedModalRect(guiLeft + 80, guiTop + 35, 0, 186, i, 4);
 		}

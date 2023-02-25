@@ -78,9 +78,7 @@ public class SchrabidicBlock extends BlockFluidClassic {
 	
 	public boolean reactToBlocks(World world, int x, int y, int z) {
 		if(world.getBlockState(new BlockPos(x, y, z)).getMaterial() != ModBlocks.fluidschrabidic) {
-			if(world.getBlockState(new BlockPos(x, y, z)).getMaterial().isLiquid()) {
-				return true;
-			}
+            return world.getBlockState(new BlockPos(x, y, z)).getMaterial().isLiquid();
 		}
 		return false;
 	}

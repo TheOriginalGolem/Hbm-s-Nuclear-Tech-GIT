@@ -21,7 +21,7 @@ import net.minecraft.world.World;
 
 public class EntityShrapnel extends EntityThrowable {
 	
-	public static final DataParameter<Byte> TRAIL = EntityDataManager.<Byte>createKey(EntityShrapnel.class, DataSerializers.BYTE);
+	public static final DataParameter<Byte> TRAIL = EntityDataManager.createKey(EntityShrapnel.class, DataSerializers.BYTE);
 
     public EntityShrapnel(World p_i1773_1_)
     {

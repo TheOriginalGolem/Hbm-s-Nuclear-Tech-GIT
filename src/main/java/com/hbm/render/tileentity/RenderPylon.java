@@ -17,7 +17,7 @@ public class RenderPylon extends TileEntitySpecialRenderer<TileEntityPylonRedWir
 
 	private static final ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":" + "textures/models/ModelPylon.png");
 
-	private ModelPylon pylon;
+	private final ModelPylon pylon;
 
 	public RenderPylon() {
 		this.pylon = new ModelPylon();

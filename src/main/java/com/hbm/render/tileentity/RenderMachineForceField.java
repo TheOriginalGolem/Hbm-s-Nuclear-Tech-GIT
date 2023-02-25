@@ -30,7 +30,7 @@ public class RenderMachineForceField extends TileEntitySpecialRenderer<TileEntit
         
         ResourceManager.radar_body.renderAll();
         
-        TileEntityForceField ff = (TileEntityForceField)te;
+        TileEntityForceField ff = te;
 
         GL11.glTranslated(0, 0.5D, 0);
         

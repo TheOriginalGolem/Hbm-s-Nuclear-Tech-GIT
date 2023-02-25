@@ -51,7 +51,7 @@ public class EntityUFO extends EntityFlying implements IMob, IRadiationImmune {
 	public static final DataParameter<Boolean> BEAM = EntityDataManager.createKey(EntityUFO.class, DataSerializers.BOOLEAN);
 	public static final DataParameter<BlockPos> WAYPOINT = EntityDataManager.createKey(EntityUFO.class, DataSerializers.BLOCK_POS);
 	
-	private final BossInfoServer bossInfo = (BossInfoServer)(new BossInfoServer(this.getDisplayName(), BossInfo.Color.PURPLE, BossInfo.Overlay.PROGRESS));
+	private final BossInfoServer bossInfo = new BossInfoServer(this.getDisplayName(), BossInfo.Color.PURPLE, BossInfo.Overlay.PROGRESS);
 	
 	public int courseChangeCooldown;
 	public int scanCooldown;
@@ -61,7 +61,7 @@ public class EntityUFO extends EntityFlying implements IMob, IRadiationImmune {
 	public int hurtCooldown;
 	public int beamTimer;
 	private Entity target;
-	private List<Entity> secondaries = new ArrayList<>();
+	private final List<Entity> secondaries = new ArrayList<>();
 	
 	public EntityUFO(World p_i1587_1_) {
 		super(p_i1587_1_);

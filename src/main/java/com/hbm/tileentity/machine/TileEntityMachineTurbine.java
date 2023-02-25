@@ -233,12 +233,8 @@ public class TileEntityMachineTurbine extends TileEntity implements ITickable, I
 
 	@Override
 	public boolean getTact() {
-		if(age == 0) {
-			return true;
-		}
-
-		return false;
-	}
+        return age == 0;
+    }
 
 	@Override
 	public void ffgeuaInit() {
@@ -283,8 +279,7 @@ public class TileEntityMachineTurbine extends TileEntity implements ITickable, I
 	@Override
 	public void recievePacket(NBTTagCompound[] tags) {
 		if(tags.length != 2) {
-			return;
-		} else {
+        } else {
 			tanks[0].readFromNBT(tags[0]);
 			tanks[1].readFromNBT(tags[1]);
 		}
@@ -334,8 +329,8 @@ public class TileEntityMachineTurbine extends TileEntity implements ITickable, I
 	}
 
 	private long detectPower;
-	private FluidTank[] detectTanks = new FluidTank[] { null, null };
-	private Fluid[] detectFluids = new Fluid[] { null, null };
+	private final FluidTank[] detectTanks = new FluidTank[] { null, null };
+	private final Fluid[] detectFluids = new Fluid[] { null, null };
 
 	private void detectAndSendChanges() {
 

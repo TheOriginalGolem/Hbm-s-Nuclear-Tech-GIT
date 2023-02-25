@@ -13,8 +13,8 @@ import net.minecraft.util.ResourceLocation;
 
 public class GUIMachineMiningDrill extends GuiInfoContainer {
 	
-	private static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/gui_drill.png");
-	private TileEntityMachineMiningDrill diFurnace;
+	private static final ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/gui_drill.png");
+	private final TileEntityMachineMiningDrill diFurnace;
 
 	public GUIMachineMiningDrill(InventoryPlayer invPlayer, TileEntityMachineMiningDrill tedf) {
 		super(new ContainerMachineMiningDrill(invPlayer, tedf));

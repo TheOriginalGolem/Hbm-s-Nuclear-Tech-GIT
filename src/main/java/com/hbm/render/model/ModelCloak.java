@@ -25,11 +25,7 @@ public class ModelCloak extends ModelBiped {
 	@Override
 	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity) {
 		EntityPlayer player = (EntityPlayer) entity;
-		if(player.isSneaking()) {
-			this.isSneak = true;
-		} else {
-			this.isSneak = false;
-		}
+        this.isSneak = player.isSneaking();
 		super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
 	}
 
@@ -45,8 +41,8 @@ public class ModelCloak extends ModelBiped {
             double d1 = player.prevChasingPosY + (player.chasingPosY - player.prevChasingPosY) * (double)partialTicks - (player.prevPosY + (player.posY - player.prevPosY) * (double)partialTicks);
             double d2 = player.prevChasingPosZ + (player.chasingPosZ - player.prevChasingPosZ) * (double)partialTicks - (player.prevPosZ + (player.posZ - player.prevPosZ) * (double)partialTicks);
             float f = player.prevRenderYawOffset + (player.renderYawOffset - player.prevRenderYawOffset) * partialTicks;
-            double d3 = (double)MathHelper.sin(f * 0.017453292F);
-            double d4 = (double)(-MathHelper.cos(f * 0.017453292F));
+            double d3 = MathHelper.sin(f * 0.017453292F);
+            double d4 = -MathHelper.cos(f * 0.017453292F);
             float f1 = (float)d1 * 10.0F;
             f1 = MathHelper.clamp(f1, -6.0F, 32.0F);
             float f2 = (float)(d0 * d3 + d2 * d4) * 100.0F;

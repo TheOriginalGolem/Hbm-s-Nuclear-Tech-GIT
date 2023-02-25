@@ -1,6 +1,7 @@
 package com.hbm.tileentity.machine;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import com.hbm.blocks.ModBlocks;
@@ -354,12 +355,12 @@ public class TileEntityBlastDoor extends TileEntityLockableBase implements ITick
 	
 	@Override
 	public List<String> getInEvents(){
-		return Arrays.asList("door_toggle");
+		return Collections.singletonList("door_toggle");
 	}
 	
 	@Override
 	public List<String> getOutEvents(){
-		return Arrays.asList("door_open_state");
+		return Collections.singletonList("door_open_state");
 	}
 	
 	@Override

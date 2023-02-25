@@ -14,8 +14,8 @@ import net.minecraft.util.ResourceLocation;
 
 public class GUIMachinePumpjack extends GuiInfoContainer {
 
-	private static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/gui_well_large.png");
-	private TileEntityMachinePumpjack derrick;
+	private static final ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/gui_well_large.png");
+	private final TileEntityMachinePumpjack derrick;
 	
 	public GUIMachinePumpjack(InventoryPlayer invPlayer, TileEntityMachinePumpjack tedf) {
 		super(new ContainerMachinePumpjack(invPlayer, tedf));

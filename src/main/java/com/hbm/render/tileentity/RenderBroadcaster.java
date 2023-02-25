@@ -13,7 +13,7 @@ import net.minecraft.util.ResourceLocation;
 public class RenderBroadcaster extends TileEntitySpecialRenderer<TileEntityBroadcaster> {
 
 	private static final ResourceLocation texture6 = new ResourceLocation(RefStrings.MODID + ":" + "textures/models/ModelBroadcaster.png");
-	private ModelBroadcaster model6;
+	private final ModelBroadcaster model6;
 	
 	public RenderBroadcaster() {
 		this.model6 = new ModelBroadcaster();

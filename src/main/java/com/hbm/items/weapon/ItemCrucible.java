@@ -194,7 +194,7 @@ public class ItemCrucible extends ItemSwordCutter implements IPostRender {
 	
 	@Override
 	public Multimap<String, AttributeModifier> getAttributeModifiers(EntityEquipmentSlot slot, ItemStack stack){
-		Multimap<String, AttributeModifier> map = HashMultimap.<String, AttributeModifier> create();
+		Multimap<String, AttributeModifier> map = HashMultimap.create();
 		boolean charged = getCharges(stack) > 0;
 		if(slot == EntityEquipmentSlot.MAINHAND) {
 			map.put(SharedMonsterAttributes.MOVEMENT_SPEED.getName(), new AttributeModifier(UUID.fromString("91AEAA56-376B-4498-935B-2F7F68070635"), "Tool modifier", charged ? movement : movement*0.8F, 1));

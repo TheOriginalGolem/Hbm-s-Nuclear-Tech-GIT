@@ -20,7 +20,7 @@ import net.minecraftforge.fluids.Fluid;
 
 public class ToxicBlock extends BlockFluidClassic {
 
-	private DamageSource damageSource;
+	private final DamageSource damageSource;
 	
 	public ToxicBlock(Fluid fluid, Material material, DamageSource source, String s) {
 		super(fluid, material);
@@ -78,9 +78,7 @@ public class ToxicBlock extends BlockFluidClassic {
 	
 	public boolean reactToBlocks(World world, BlockPos pos) {
 		if(world.getBlockState(pos).getMaterial() != ModBlocks.fluidtoxic) {
-			if(world.getBlockState(pos).getMaterial().isLiquid()) {
-				return true;
-			}
+            return world.getBlockState(pos).getMaterial().isLiquid();
 		}
 		return false;
 	}

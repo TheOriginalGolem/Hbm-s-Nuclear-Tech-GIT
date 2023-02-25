@@ -14,7 +14,7 @@ import net.minecraft.util.ResourceLocation;
 
 public class GUITestDiFurnace extends GuiContainer {
 	public static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/GUIDiFurnace.png");
-	private TileEntityDiFurnace diFurnace;
+	private final TileEntityDiFurnace diFurnace;
 
 	public GUITestDiFurnace(InventoryPlayer invPlayer, TileEntityDiFurnace tedf) {
 		super(new ContainerDiFurnace(invPlayer, tedf));

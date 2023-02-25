@@ -14,8 +14,8 @@ import net.minecraft.util.ResourceLocation;
 
 public class GUIFusionMultiblock extends GuiInfoContainer {
 	
-	private static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/gui_fusion_multiblock.png");
-	private TileEntityFusionMultiblock diFurnace;
+	private static final ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/gui_fusion_multiblock.png");
+	private final TileEntityFusionMultiblock diFurnace;
 
 	public GUIFusionMultiblock(InventoryPlayer invPlayer, TileEntityFusionMultiblock tedf) {
 		super(new ContainerFusionMultiblock(invPlayer, tedf));

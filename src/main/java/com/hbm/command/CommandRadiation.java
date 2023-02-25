@@ -1,6 +1,7 @@
 package com.hbm.command;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import com.hbm.capability.HbmLivingCapability;
@@ -42,8 +43,7 @@ public class CommandRadiation extends CommandBase {
 		} else if (args.length == 2 && (args[0].equals("clearall") || args[0].equals("reset") || args[0].equals("resetplayers"))) {
 			
 		} else if(args.length == 2 && args[0].equals("player")){
-			for(String s : server.getOnlinePlayerNames())
-				list.add(s);
+            Collections.addAll(list, server.getOnlinePlayerNames());
 		} else if (args.length == 2 && args[0].equals("set")){
 			list.add(String.valueOf(sender.getPosition().getX()));
 		} else if (args.length == 3 && args[0].equals("set")){
@@ -97,7 +97,7 @@ public class CommandRadiation extends CommandBase {
 		} else if(args.length == 3 && args[0].equals("player")){
 			EntityPlayerMP player = getPlayer(server, args[1]);
 			if(player == null){
-				throw new CommandException("Cannot find player '" + args[1] + "'!", new Object[0]);
+				throw new CommandException("Cannot find player '" + args[1] + "'!");
 			}
 			if(!isFloat(args[2]))
 				throw new CommandException("New rad value is not a number!");
@@ -121,7 +121,7 @@ public class CommandRadiation extends CommandBase {
 			sender.sendMessage(new TextComponentTranslation("Successfully cleared radiation for all online players!"));
 			return;
 		}
-		throw new CommandException(this.getUsage(sender), new Object[0]);
+		throw new CommandException(this.getUsage(sender));
 	}
 
 	public boolean isInteger(String s) {
@@ -129,10 +129,8 @@ public class CommandRadiation extends CommandBase {
 			Integer.parseInt(s);
 			return true;
 		} catch (NumberFormatException e) {
-			if (s.equals("~"))
-				return true;
-			return false;
-		}
+            return s.equals("~");
+        }
 	}
 	
 	public boolean isFloat(String s){

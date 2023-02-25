@@ -32,8 +32,8 @@ public class EntityRubble extends EntityThrowable {
 
     @Override
 	public void entityInit() {
-        this.dataManager.register(BLOCKID, (int)Integer.valueOf(0));
-        this.dataManager.register(BLOCKMETA, (int)Integer.valueOf(0));
+        this.dataManager.register(BLOCKID, Integer.valueOf(0));
+        this.dataManager.register(BLOCKMETA, Integer.valueOf(0));
     }
 
     public EntityRubble(World p_i1775_1_, double p_i1775_2_, double p_i1775_4_, double p_i1775_6_)

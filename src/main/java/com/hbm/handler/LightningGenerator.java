@@ -17,7 +17,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class LightningGenerator {
 
-	private static Random rand = new Random();
+	private static final Random rand = new Random();
 	
 	public static LightningNode generateLightning(Vec3d from, Vec3d to, LightningGenInfo info){
 		rand.setSeed(Minecraft.getMinecraft().world.getTotalWorldTime());

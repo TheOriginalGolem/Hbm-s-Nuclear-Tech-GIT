@@ -128,7 +128,7 @@ public class RenderSpinnyLight extends TileEntitySpecialRenderer<TileEntitySpinn
             }
             buf.pos(vertices[0], vertices[1], vertices[2]).color(r, g, b, alpha).endVertex();
             buf.pos(vertices[sides*3]*m, vertices[sides*3+1], vertices[sides*3+2]).color(r, g, b, 0).endVertex();
-            buf.pos(vertices[1*3]*m, vertices[1*3+1], vertices[1*3+2]).color(r, g, b, 0).endVertex();
+            buf.pos(vertices[3]*m, vertices[3 +1], vertices[3 +2]).color(r, g, b, 0).endVertex();
         }
         tes.draw();
         

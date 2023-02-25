@@ -14,7 +14,7 @@ import net.minecraft.util.ResourceLocation;
 public class GUISatDock extends GuiInfoContainer {
 
 	public static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/gui_dock.png");
-	private TileEntityMachineSatDock diFurnace;
+	private final TileEntityMachineSatDock diFurnace;
 	
 	public GUISatDock(InventoryPlayer invPlayer, TileEntityMachineSatDock tedf) {
 		super(new ContainerSatDock(invPlayer, tedf));

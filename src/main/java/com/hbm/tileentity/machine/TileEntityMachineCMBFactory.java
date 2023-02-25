@@ -76,8 +76,7 @@ public class TileEntityMachineCMBFactory extends TileEntityMachineBase implement
 			if (itemStack.getItem() instanceof IBatteryItem && ((IBatteryItem)itemStack.getItem()).getCharge(itemStack) == 0)
 				return true;
 		if(i == 2)
-			if(FFUtils.containsFluid(itemStack, ModForgeFluids.watz))
-				return true;
+            return FFUtils.containsFluid(itemStack, ModForgeFluids.watz);
 		return false;
 	}
 	
@@ -216,7 +215,7 @@ public class TileEntityMachineCMBFactory extends TileEntityMachineBase implement
 			}
 
 			PacketDispatcher.wrapper.sendToAllAround(new AuxElectricityPacket(pos, power), new TargetPoint(world.provider.getDimension(), pos.getX(), pos.getY(), pos.getZ(), 10));
-			PacketDispatcher.wrapper.sendToAllAround(new FluidTankPacket(pos, new FluidTank[] {tank}), new TargetPoint(world.provider.getDimension(), pos.getX(), pos.getY(), pos.getZ(), 10));
+			PacketDispatcher.wrapper.sendToAllAround(new FluidTankPacket(pos, tank), new TargetPoint(world.provider.getDimension(), pos.getX(), pos.getY(), pos.getZ(), 10));
 			if(prevPower != power || prevAmount != tank.getFluidAmount()){
 				markDirty();
 			}
@@ -225,9 +224,7 @@ public class TileEntityMachineCMBFactory extends TileEntityMachineBase implement
 	
 	protected boolean inputValidForTank(int tank, int slot){
 		if(!inventory.getStackInSlot(slot).isEmpty()){
-			if(isValidFluid(FluidUtil.getFluidContained(inventory.getStackInSlot(slot)))){
-				return true;	
-			}
+            return isValidFluid(FluidUtil.getFluidContained(inventory.getStackInSlot(slot)));
 		}
 		return false;
 	}
@@ -283,8 +280,7 @@ public class TileEntityMachineCMBFactory extends TileEntityMachineBase implement
 	@Override
 	public void recievePacket(NBTTagCompound[] tags) {
 		if(tags.length != 1) {
-			return;
-		} else {
+        } else {
 			tank.readFromNBT(tags[0]);
 		}
 	}

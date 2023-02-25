@@ -81,7 +81,7 @@ public class BlockGeysir extends BlockContainer {
 	
 	@Override
 	protected BlockStateContainer createBlockState() {
-		return new BlockStateContainer(this, new IProperty[]{ACTIVE});
+		return new BlockStateContainer(this, ACTIVE);
 	}
 	
 	@Override

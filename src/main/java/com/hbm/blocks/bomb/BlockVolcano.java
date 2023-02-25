@@ -86,7 +86,7 @@ public class BlockVolcano extends Block {
 
 	private void blastMagmaChannel(World world, int x, int y, int z, Random rand) {
 		
-		List<ExAttrib> attribs = Arrays.asList(new ExAttrib[] {ExAttrib.NODROP, ExAttrib.LAVA_V, ExAttrib.NOSOUND, ExAttrib.ALLMOD, ExAttrib.NOHURT});
+		List<ExAttrib> attribs = Arrays.asList(ExAttrib.NODROP, ExAttrib.LAVA_V, ExAttrib.NOSOUND, ExAttrib.ALLMOD, ExAttrib.NOHURT);
 		
 		ExplosionNT explosion = new ExplosionNT(world, null, x + 0.5, y + rand.nextInt(15) + 1.5, z + 0.5, 7);
 		explosion.addAllAttrib(attribs);

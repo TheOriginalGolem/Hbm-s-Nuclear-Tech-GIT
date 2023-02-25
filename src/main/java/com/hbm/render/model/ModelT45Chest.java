@@ -200,11 +200,7 @@ public class ModelT45Chest extends ModelBiped {
 		public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity) {
 			if (entity instanceof EntityPlayer) {
 				EntityPlayer player = (EntityPlayer) entity;
-				if (player.isSneaking()) {
-					this.isSneak = true;
-				} else {
-					this.isSneak = false;
-				}
+                this.isSneak = player.isSneaking();
 				
 				
 				//This is done automatically now

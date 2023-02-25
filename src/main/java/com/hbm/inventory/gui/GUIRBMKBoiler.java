@@ -22,8 +22,8 @@ import net.minecraft.util.ResourceLocation;
 
 public class GUIRBMKBoiler extends GuiInfoContainer {
 	
-	private static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/reactors/gui_rbmk_boiler.png");
-	private TileEntityRBMKBoiler boiler;
+	private static final ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/reactors/gui_rbmk_boiler.png");
+	private final TileEntityRBMKBoiler boiler;
 
 	public GUIRBMKBoiler(InventoryPlayer invPlayer, TileEntityRBMKBoiler tedf) {
 		super(new ContainerRBMKBoiler(invPlayer, tedf));

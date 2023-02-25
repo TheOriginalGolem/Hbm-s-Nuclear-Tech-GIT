@@ -314,7 +314,7 @@ public class BlockOre extends Block {
 		if(this == ModBlocks.block_meteor_molten) {
         	if(!worldIn.isRemote)
         		worldIn.setBlockState(pos, ModBlocks.block_meteor_cobble.getDefaultState());
-        	worldIn.playSound(null, (double)((float)pos.getX() + 0.5F), (double)((float)pos.getY() + 0.5F), (double)((float)pos.getZ() + 0.5F), SoundEvents.BLOCK_LAVA_EXTINGUISH, SoundCategory.BLOCKS, 0.5F, 2.6F + (worldIn.rand.nextFloat() - worldIn.rand.nextFloat()) * 0.8F);
+        	worldIn.playSound(null, (float)pos.getX() + 0.5F, (float)pos.getY() + 0.5F, (float)pos.getZ() + 0.5F, SoundEvents.BLOCK_LAVA_EXTINGUISH, SoundCategory.BLOCKS, 0.5F, 2.6F + (worldIn.rand.nextFloat() - worldIn.rand.nextFloat()) * 0.8F);
         	return;
         }
 		if(this.radIn > 0){

@@ -42,7 +42,7 @@ public class TileEntityFWatzCore extends TileEntity implements ITickable, IReact
 	public final static long maxPower = 10000000000L;
 	public boolean cooldown = false;
 
-	public FluidTank tanks[];
+	public FluidTank[] tanks;
 	public Fluid[] tankTypes;
 	public boolean needsUpdate;
 
@@ -86,11 +86,7 @@ public class TileEntityFWatzCore extends TileEntity implements ITickable, IReact
 	}
 
 	public boolean isUseableByPlayer(EntityPlayer player) {
-		if(world.getTileEntity(pos) != this) {
-			return false;
-		} else {
-			return true;
-		}
+        return world.getTileEntity(pos) == this;
 	}
 
 	@Override
@@ -214,7 +210,7 @@ public class TileEntityFWatzCore extends TileEntity implements ITickable, IReact
 			if(!this.isRunning() && tanks[1].getFluidAmount() >= 100 && tanks[2].getFluidAmount() >= 100 && hasFuse() && getSingularityType() > 0 && !cooldown && this.isStructureValid(world))
 				this.fillPlasma();
 
-			PacketDispatcher.wrapper.sendToAllAround(new FluidTankPacket(pos, new FluidTank[] { tanks[0], tanks[1], tanks[2] }), new TargetPoint(world.provider.getDimension(), pos.getX(), pos.getY(), pos.getZ(), 25));
+			PacketDispatcher.wrapper.sendToAllAround(new FluidTankPacket(pos, tanks[0], tanks[1], tanks[2]), new TargetPoint(world.provider.getDimension(), pos.getX(), pos.getY(), pos.getZ(), 25));
 			PacketDispatcher.wrapper.sendToAllAround(new AuxElectricityPacket(pos, power), new TargetPoint(world.provider.getDimension(), pos.getX(), pos.getY(), pos.getZ(), 25));
 
 		}
@@ -292,9 +288,7 @@ public class TileEntityFWatzCore extends TileEntity implements ITickable, IReact
 
 	protected boolean inputValidForTank(int tank, int slot) {
 		if(tanks[tank] != null) {
-			if(inventory.getStackInSlot(slot).getItem() == ModItems.fluid_barrel_infinite || isValidFluidForTank(tank, FluidUtil.getFluidContained(inventory.getStackInSlot(slot)))) {
-				return true;
-			}
+            return inventory.getStackInSlot(slot).getItem() == ModItems.fluid_barrel_infinite || isValidFluidForTank(tank, FluidUtil.getFluidContained(inventory.getStackInSlot(slot)));
 		}
 		return false;
 	}
@@ -321,12 +315,8 @@ public class TileEntityFWatzCore extends TileEntity implements ITickable, IReact
 
 	@Override
 	public boolean getTact() {
-		if(age >= 0 && age < 10) {
-			return true;
-		}
-
-		return false;
-	}
+        return age >= 0 && age < 10;
+    }
 
 	@Override
 	public long getSPower() {
@@ -384,8 +374,7 @@ public class TileEntityFWatzCore extends TileEntity implements ITickable, IReact
 	@Override
 	public void recievePacket(NBTTagCompound[] tags) {
 		if(tags.length != 3) {
-			return;
-		} else {
+        } else {
 			tanks[0].readFromNBT(tags[0]);
 			tanks[1].readFromNBT(tags[1]);
 			tanks[2].readFromNBT(tags[2]);

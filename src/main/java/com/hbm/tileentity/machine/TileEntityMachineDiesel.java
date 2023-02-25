@@ -120,7 +120,7 @@ public class TileEntityMachineDiesel extends TileEntityMachineBase implements IT
 			data.setInteger("powerCap", (int) powerCap);
 			this.networkPack(data, 50);
 			
-			PacketDispatcher.wrapper.sendToAllAround(new FluidTankPacket(pos, new FluidTank[] {tank}), new TargetPoint(world.provider.getDimension(), pos.getX(), pos.getY(), pos.getZ(), 10));
+			PacketDispatcher.wrapper.sendToAllAround(new FluidTankPacket(pos, tank), new TargetPoint(world.provider.getDimension(), pos.getX(), pos.getY(), pos.getZ(), 10));
 		}
 	}
 	
@@ -172,9 +172,7 @@ public class TileEntityMachineDiesel extends TileEntityMachineBase implements IT
 	}
 	protected boolean inputValidForTank(int tank, int slot){
 		if(!inventory.getStackInSlot(slot).isEmpty()){
-			if(isValidFluid(FluidUtil.getFluidContained(inventory.getStackInSlot(slot)))){
-				return true;	
-			}
+            return isValidFluid(FluidUtil.getFluidContained(inventory.getStackInSlot(slot)));
 		}
 		return false;
 	}
@@ -203,12 +201,8 @@ public class TileEntityMachineDiesel extends TileEntityMachineBase implements IT
 
 	@Override
 	public boolean getTact() {
-		if (age >= 0 && age < 10) {
-			return true;
-		}
-
-		return false;
-	}
+        return age >= 0 && age < 10;
+    }
 
 	@Override
 	public long getSPower() {
@@ -256,8 +250,7 @@ public class TileEntityMachineDiesel extends TileEntityMachineBase implements IT
 	@Override
 	public void recievePacket(NBTTagCompound[] tags) {
 		if(tags.length != 1){
-			return;
-		} else {
+        } else {
 			tank.readFromNBT(tags[0]);
 		}
 	}

@@ -52,7 +52,7 @@ public class WeightedRandomChestContentFrom1710 extends WeightedRandom.Item
     {
         for (int j = 0; j < p_76293_3_; ++j)
         {
-            WeightedRandomChestContentFrom1710 weightedrandomchestcontent = (WeightedRandomChestContentFrom1710)WeightedRandom.getRandomItem(p_76293_0_, Arrays.asList(p_76293_1_));
+            WeightedRandomChestContentFrom1710 weightedrandomchestcontent = WeightedRandom.getRandomItem(p_76293_0_, Arrays.asList(p_76293_1_));
             ItemStack[] stacks = weightedrandomchestcontent.generateChestContent(p_76293_0_, p_76293_2_);
 
             for (ItemStack item : stacks)

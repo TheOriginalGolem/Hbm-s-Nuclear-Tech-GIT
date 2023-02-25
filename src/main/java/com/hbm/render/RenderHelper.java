@@ -72,10 +72,10 @@ public class RenderHelper {
 	public static Field r_viewFrustum;
 	public static Method r_getRenderChunk;
 	
-	private static FloatBuffer MODELVIEW = GLAllocation.createDirectFloatBuffer(16);
-	private static FloatBuffer PROJECTION = GLAllocation.createDirectFloatBuffer(16);
-	private static IntBuffer VIEWPORT = GLAllocation.createDirectIntBuffer(16);
-	private static FloatBuffer POSITION = GLAllocation.createDirectFloatBuffer(4);
+	private static final FloatBuffer MODELVIEW = GLAllocation.createDirectFloatBuffer(16);
+	private static final FloatBuffer PROJECTION = GLAllocation.createDirectFloatBuffer(16);
+	private static final IntBuffer VIEWPORT = GLAllocation.createDirectIntBuffer(16);
+	private static final FloatBuffer POSITION = GLAllocation.createDirectFloatBuffer(4);
 	
 	public static boolean useFullPost = true;
 	public static boolean flashlightInit = false;
@@ -105,7 +105,7 @@ public class RenderHelper {
 	//Render them here
 	private static boolean flashlightLock = false;
 	//List of future flashlights to render;
-	private static List<Runnable> flashlightQueue = new ArrayList<>();
+	private static final List<Runnable> flashlightQueue = new ArrayList<>();
 	
 	/**
 	 * 
@@ -246,12 +246,12 @@ public class RenderHelper {
 	}
 	
 	public static void addVertexColor(double x, double y, double z, int red, int green, int blue, int alpha){
-		Tessellator.getInstance().getBuffer().pos(x, y, z).color(red, green, blue, alpha).endVertex();;
-	}
+		Tessellator.getInstance().getBuffer().pos(x, y, z).color(red, green, blue, alpha).endVertex();
+    }
 	
 	public static void addVertexColor(double x, double y, double z, float red, float green, float blue, float alpha){
-		Tessellator.getInstance().getBuffer().pos(x, y, z).color(red, green, blue, alpha).endVertex();;
-	}
+		Tessellator.getInstance().getBuffer().pos(x, y, z).color(red, green, blue, alpha).endVertex();
+    }
 
 	public static void renderAll(IBakedModel boxcar) {
 		Tessellator tes = Tessellator.getInstance();
@@ -896,7 +896,7 @@ public class RenderHelper {
         }
         buf.pos(0, 0, 0).endVertex();
         buf.pos(vertices[sides*3], vertices[sides*3+1], vertices[sides*3+2]).endVertex();
-        buf.pos(vertices[1*3], vertices[1*3+1], vertices[1*3+2]).endVertex();
+        buf.pos(vertices[3], vertices[3 +1], vertices[3 +2]).endVertex();
 		
         for(int i = 1; i < sides-1; i ++){
         	buf.pos(vertices[3], vertices[3+1], vertices[3+2]).endVertex();

@@ -56,17 +56,12 @@ public class ItemGasCanister extends Item implements IHasCustomModel {
 				return true;
 			return f.amount == 4000 || f.amount == 0;
 			
-		} else if(stack.getItem() == ModItems.gas_canister){
-			return true;
-		}
-		return false;
-	}
+		} else return stack.getItem() == ModItems.gas_canister;
+    }
 	
 	public static boolean isEmptyCanister(ItemStack out) {
-		if(out.getItem() == ModItems.gas_canister && FluidUtil.getFluidContained(out) == null)
-			return true;
-		return false;
-	}
+        return out.getItem() == ModItems.gas_canister && FluidUtil.getFluidContained(out) == null;
+    }
 	
 	@Override
 	@SideOnly(Side.CLIENT)
@@ -112,8 +107,7 @@ public class ItemGasCanister extends Item implements IHasCustomModel {
 	
 	public static boolean isFullCanister(ItemStack stack, Fluid fluid){
 		if(stack != null){
-			if(stack.getItem() instanceof ItemGasCanister && FluidUtil.getFluidContained(stack) != null && FluidUtil.getFluidContained(stack).getFluid() == fluid && FluidUtil.getFluidContained(stack).amount == ((ItemGasCanister)stack.getItem()).cap)
-				return true;
+            return stack.getItem() instanceof ItemGasCanister && FluidUtil.getFluidContained(stack) != null && FluidUtil.getFluidContained(stack).getFluid() == fluid && FluidUtil.getFluidContained(stack).amount == ((ItemGasCanister) stack.getItem()).cap;
 		}
 		return false;
 	}
@@ -121,7 +115,7 @@ public class ItemGasCanister extends Item implements IHasCustomModel {
 	public static ItemStack getFullCanister(Fluid f){
 		ItemStack stack = new ItemStack(ModItems.gas_canister, 1, 0);
 		stack.setTagCompound(new NBTTagCompound());
-		if(f != null && EnumGasCanister.contains(f))
+		if(EnumGasCanister.contains(f))
 			stack.getTagCompound().setTag(HbmFluidHandlerGasCanister.FLUID_NBT_KEY, new FluidStack(f, 4000).writeToNBT(new NBTTagCompound()));
 		return stack;
 	}

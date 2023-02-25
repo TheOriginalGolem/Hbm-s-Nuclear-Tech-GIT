@@ -80,7 +80,7 @@ public  class  RenderFlare <E extends Entity> extends Render<E> {
             //tessellator.setColorRGBA_I(16711935, 0);
             buf.pos(-0.866D * f4, f3, -0.5F * f4).color(0.53725490196F, 0.54509803921F, 0.27843137254F, 0.0F).endVertex();
             buf.pos(0.866D * f4, f3, -0.5F * f4).color(0.53725490196F, 0.54509803921F, 0.27843137254F, 0.0F).endVertex();
-            buf.pos(0.0D, f3, 1.0F * f4).color(0.53725490196F, 0.54509803921F, 0.27843137254F, 0.0F).endVertex();
+            buf.pos(0.0D, f3, f4).color(0.53725490196F, 0.54509803921F, 0.27843137254F, 0.0F).endVertex();
             buf.pos(-0.866D * f4, f3, -0.5F * f4).color(0.53725490196F, 0.54509803921F, 0.27843137254F, 0.0F).endVertex();
     		GL11.glScalef(0.99F, 0.99F, 0.99F);
     		tessellator.draw();

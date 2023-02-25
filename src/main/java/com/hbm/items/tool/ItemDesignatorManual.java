@@ -36,8 +36,8 @@ public class ItemDesignatorManual extends Item {
 		if(stack.getTagCompound() != null)
 		{
 			tooltip.add("§aTarget Coordinates§r");
-			tooltip.add("§aX: " + String.valueOf(stack.getTagCompound().getInteger("xCoord"))+"§r");
-			tooltip.add("§aZ: " + String.valueOf(stack.getTagCompound().getInteger("zCoord"))+"§r");
+			tooltip.add("§aX: " + stack.getTagCompound().getInteger("xCoord") +"§r");
+			tooltip.add("§aZ: " + stack.getTagCompound().getInteger("zCoord") +"§r");
 		} else {
 			tooltip.add("§ePlease select a target.§r");
 		}

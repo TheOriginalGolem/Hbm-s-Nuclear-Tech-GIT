@@ -140,17 +140,17 @@ public class Radiobox extends BlockContainer {
 
 	@Override
 	protected BlockStateContainer createBlockState() {
-		return new BlockStateContainer(this, new IProperty[] { FACING, STATE });
+		return new BlockStateContainer(this, FACING, STATE);
 	}
 
 	@Override
 	public int getMetaFromState(IBlockState state) {
-		return (((EnumFacing) state.getValue(FACING)).getIndex() << 1) + (state.getValue(STATE) == true ? 1 : 0);
+		return (state.getValue(FACING).getIndex() << 1) + (state.getValue(STATE) ? 1 : 0);
 	}
 
 	@Override
 	public IBlockState getStateFromMeta(int meta) {
-		boolean state = (meta & 1) == 1 ? true : false;
+		boolean state = (meta & 1) == 1;
 		meta = meta >> 1;
 		EnumFacing enumfacing = EnumFacing.getFront(meta);
 
@@ -163,12 +163,12 @@ public class Radiobox extends BlockContainer {
 
 	@Override
 	public IBlockState withRotation(IBlockState state, Rotation rot) {
-		return state.withProperty(FACING, rot.rotate((EnumFacing) state.getValue(FACING)));
+		return state.withProperty(FACING, rot.rotate(state.getValue(FACING)));
 	}
 
 	@Override
 	public IBlockState withMirror(IBlockState state, Mirror mirrorIn) {
-		return state.withRotation(mirrorIn.toRotation((EnumFacing) state.getValue(FACING)));
+		return state.withRotation(mirrorIn.toRotation(state.getValue(FACING)));
 	}
 
 	

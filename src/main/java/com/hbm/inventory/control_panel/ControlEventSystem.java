@@ -18,12 +18,12 @@ import net.minecraftforge.fml.common.gameevent.TickEvent.WorldTickEvent;
 @Mod.EventBusSubscriber(modid = RefStrings.MODID)
 public class ControlEventSystem {
 
-	private static Map<World, ControlEventSystem> systems = new HashMap<>();
+	private static final Map<World, ControlEventSystem> systems = new HashMap<>();
 	
-	private Set<IControllable> allControllables = new HashSet<>();
-	private Set<IControllable> tickables = new HashSet<>();
-	private Map<String, Map<BlockPos, IControllable>> controllablesByEventName = new HashMap<>();
-	private Map<BlockPos, Set<IControllable>> positionSubscriptions = new HashMap<>();
+	private final Set<IControllable> allControllables = new HashSet<>();
+	private final Set<IControllable> tickables = new HashSet<>();
+	private final Map<String, Map<BlockPos, IControllable>> controllablesByEventName = new HashMap<>();
+	private final Map<BlockPos, Set<IControllable>> positionSubscriptions = new HashMap<>();
 	
 	public void addControllable(IControllable c){
 		if(allControllables.contains(c))
@@ -68,8 +68,7 @@ public class ControlEventSystem {
 		if(!positionSubscriptions.containsKey(target)){
 			positionSubscriptions.put(target, new HashSet<>());
 		}
-		if(!positionSubscriptions.get(target).contains(subscriber))
-			positionSubscriptions.get(target).add(subscriber);
+        positionSubscriptions.get(target).add(subscriber);
 	}
 	
 	public void unsubscribeFrom(IControllable subscriber, IControllable target){

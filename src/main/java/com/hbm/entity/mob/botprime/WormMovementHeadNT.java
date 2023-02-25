@@ -5,7 +5,7 @@ import net.minecraft.util.math.MathHelper;
 
 public class WormMovementHeadNT {
 
-	private EntityWormBaseNT user;
+	private final EntityWormBaseNT user;
 
 	public WormMovementHeadNT(EntityWormBaseNT user) {
 		this.user = user;

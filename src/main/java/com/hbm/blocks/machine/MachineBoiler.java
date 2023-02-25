@@ -85,7 +85,7 @@ public class MachineBoiler extends BlockContainer {
 			IBlockState iblockstate1 = worldIn.getBlockState(pos.south());
 			IBlockState iblockstate2 = worldIn.getBlockState(pos.west());
 			IBlockState iblockstate3 = worldIn.getBlockState(pos.east());
-			EnumFacing enumfacing = (EnumFacing) state.getValue(FACING);
+			EnumFacing enumfacing = state.getValue(FACING);
 
 			if (enumfacing == EnumFacing.NORTH && iblockstate.isFullBlock() && !iblockstate1.isFullBlock()) {
 				enumfacing = EnumFacing.SOUTH;
@@ -197,15 +197,15 @@ public class MachineBoiler extends BlockContainer {
 		TileEntity tileentity = worldIn.getTileEntity(pos);
 		if (!keepInventory) {
 			if (tileentity instanceof TileEntityMachineBoiler) {
-				InventoryHelper.dropInventoryItems(worldIn, pos, (TileEntityMachineBoiler) tileentity);
+				InventoryHelper.dropInventoryItems(worldIn, pos, tileentity);
 				worldIn.updateComparatorOutputLevel(pos, this);
 			}
 			if (tileentity instanceof TileEntityMachineBoilerElectric) {
-				InventoryHelper.dropInventoryItems(worldIn, pos, (TileEntityMachineBoilerElectric) tileentity);
+				InventoryHelper.dropInventoryItems(worldIn, pos, tileentity);
 				worldIn.updateComparatorOutputLevel(pos, this);
 			}
 			if (tileentity instanceof TileEntityMachineBoilerRTG) {
-				InventoryHelper.dropInventoryItems(worldIn, pos, (TileEntityMachineBoilerRTG) tileentity);
+				InventoryHelper.dropInventoryItems(worldIn, pos, tileentity);
 				worldIn.updateComparatorOutputLevel(pos, this);
 			}
 			
@@ -218,14 +218,14 @@ public class MachineBoiler extends BlockContainer {
 	public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand) {
 		if (this.isActive) {
 			if (this == ModBlocks.machine_boiler_on) {
-				EnumFacing enumfacing = (EnumFacing) stateIn.getValue(FACING);
+				EnumFacing enumfacing = stateIn.getValue(FACING);
 				double d0 = (double) pos.getX() + 0.5D;
 				double d1 = (double) pos.getY() + rand.nextDouble() * 6.0D / 16.0D;
 				double d2 = (double) pos.getZ() + 0.5D;
 				double d4 = rand.nextDouble() * 0.6D - 0.3D;
 
 				if (rand.nextDouble() < 0.1D) {
-					worldIn.playSound((double) pos.getX() + 0.5D, (double) pos.getY(), (double) pos.getZ() + 0.5D, SoundEvents.BLOCK_FURNACE_FIRE_CRACKLE, SoundCategory.BLOCKS, 1.0F, 1.0F, false);
+					worldIn.playSound((double) pos.getX() + 0.5D, pos.getY(), (double) pos.getZ() + 0.5D, SoundEvents.BLOCK_FURNACE_FIRE_CRACKLE, SoundCategory.BLOCKS, 1.0F, 1.0F, false);
 				}
 
 				switch (enumfacing) {
@@ -249,7 +249,7 @@ public class MachineBoiler extends BlockContainer {
 					break;
 				}
 			} else if(this == ModBlocks.machine_boiler_electric_on){
-				EnumFacing enumfacing = (EnumFacing) stateIn.getValue(FACING);
+				EnumFacing enumfacing = stateIn.getValue(FACING);
 				double d0 = (double) pos.getX() + 0.5D;
 				double d1 = (double) pos.getY() + 0.25 + rand.nextDouble() * 6.0D / 16.0D;
 				double d2 = (double) pos.getZ() + 0.5D;
@@ -298,12 +298,12 @@ public class MachineBoiler extends BlockContainer {
 
 	@Override
 	protected BlockStateContainer createBlockState() {
-		return new BlockStateContainer(this, new IProperty[] { FACING });
+		return new BlockStateContainer(this, FACING);
 	}
 
 	@Override
 	public int getMetaFromState(IBlockState state) {
-		return ((EnumFacing) state.getValue(FACING)).getIndex();
+		return state.getValue(FACING).getIndex();
 	}
 
 	@Override
@@ -319,11 +319,11 @@ public class MachineBoiler extends BlockContainer {
 
 	@Override
 	public IBlockState withRotation(IBlockState state, Rotation rot) {
-		return state.withProperty(FACING, rot.rotate((EnumFacing) state.getValue(FACING)));
+		return state.withProperty(FACING, rot.rotate(state.getValue(FACING)));
 	}
 
 	@Override
 	public IBlockState withMirror(IBlockState state, Mirror mirrorIn) {
-		return state.withRotation(mirrorIn.toRotation((EnumFacing) state.getValue(FACING)));
+		return state.withRotation(mirrorIn.toRotation(state.getValue(FACING)));
 	}
 }

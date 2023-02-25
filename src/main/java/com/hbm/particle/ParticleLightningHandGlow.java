@@ -37,8 +37,7 @@ public class ParticleLightningHandGlow extends Particle {
 		this.particleAge ++;
 		if(particleAge >= particleMaxAge){
 			setExpired();
-			return;
-		}
+        }
 	}
 
 	@Override
@@ -81,7 +80,7 @@ public class ParticleLightningHandGlow extends Particle {
 		GL11.glLoadMatrix(ClientProxy.AUX_GL_BUFFER);
 
 		
-		float ageN = (float)(this.particleAge+partialTicks)/(float)this.particleMaxAge;
+		float ageN = (this.particleAge+partialTicks) /(float)this.particleMaxAge;
 		float scale = MathHelper.clamp(ageN*2, 0, 1)* MathHelper.clamp(2-ageN*2+0.1F, 0, 1);
 		float f4 = 0.1F * this.particleScale * scale;
         

@@ -67,7 +67,7 @@ public class Vec2i extends FuncRelational {
 
     public IntBuffer toDib(IntBuffer ib, int index) {
         return ib
-                .put(index + 0, x)
+                .put(index, x)
                 .put(index + 1, y);
     }
 
@@ -81,8 +81,8 @@ public class Vec2i extends FuncRelational {
 
     public ByteBuffer toDbb(ByteBuffer bb, int index) {
         return bb
-                .putInt(index + 0 * Integer.BYTES, x)
-                .putInt(index + 1 * Integer.BYTES, y);
+                .putInt(index, x)
+                .putInt(index + Integer.BYTES, y);
     }
 
     @Override

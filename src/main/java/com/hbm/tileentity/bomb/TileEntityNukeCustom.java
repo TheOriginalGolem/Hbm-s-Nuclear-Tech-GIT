@@ -285,7 +285,7 @@ public class TileEntityNukeCustom extends TileEntity implements ITickable {
 		return 65536.0D;
 	}
 	
-	public static enum EnumBombType {
+	public enum EnumBombType {
 		TNT("TNT"),
 		NUKE("Nuclear"),
 		HYDRO("Hydrogen"),
@@ -306,7 +306,7 @@ public class TileEntityNukeCustom extends TileEntity implements ITickable {
 		}
 	}
 
-	public static enum EnumEntryType {
+	public enum EnumEntryType {
 		ADD,
 		MULT
 	}

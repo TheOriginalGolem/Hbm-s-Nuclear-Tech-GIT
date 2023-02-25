@@ -113,7 +113,7 @@ public class ParticlePhysicsBlocks extends Particle {
 		GlStateManager.enableTexture2D();
         GL11.glPopMatrix();
         for(Contact c : body.contacts.contacts){
-			if(c != null && false){
+			if(false){
 				Tessellator tes = Tessellator.getInstance();
 				BufferBuilder buf = tes.getBuffer();
 				buf.begin(GL11.GL_LINES, DefaultVertexFormats.POSITION_COLOR);

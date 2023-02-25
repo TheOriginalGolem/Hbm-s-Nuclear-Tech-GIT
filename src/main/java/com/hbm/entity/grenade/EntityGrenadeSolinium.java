@@ -16,7 +16,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
 
 public class EntityGrenadeSolinium extends EntityGrenadeBouncyBase {
-    private static Random rand = new Random();
+    private static final Random rand = new Random();
 
     public EntityGrenadeSolinium(World p_i1773_1_)
     {
@@ -46,7 +46,7 @@ public class EntityGrenadeSolinium extends EntityGrenadeBouncyBase {
             entity.posX = posX;
             entity.posY = posY;
             entity.posZ = posZ;
-            entity.destructionRange = (int)BombConfig.soliniumRadius/10;
+            entity.destructionRange = BombConfig.soliniumRadius /10;
             entity.speed = BombConfig.blastSpeed;
             entity.coefficient = 1.0F;
             entity.waste = false;
@@ -54,7 +54,7 @@ public class EntityGrenadeSolinium extends EntityGrenadeBouncyBase {
 
             world.spawnEntity(entity);
 
-            EntityCloudSolinium cloud = new EntityCloudSolinium(world, (int)BombConfig.soliniumRadius/10);
+            EntityCloudSolinium cloud = new EntityCloudSolinium(world, BombConfig.soliniumRadius /10);
             cloud.posX = posX;
             cloud.posY = posY;
             cloud.posZ = posZ;

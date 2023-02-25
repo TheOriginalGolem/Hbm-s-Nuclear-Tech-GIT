@@ -1,5 +1,6 @@
 package com.hbm.packet;
 
+import java.util.Collections;
 import java.util.List;
 
 import com.hbm.tileentity.machine.TileEntityMachineRadar;
@@ -76,9 +77,7 @@ public class TERadarPacket implements IMessage {
 
 						TileEntityMachineRadar radar = (TileEntityMachineRadar) te;
 						radar.nearbyMissiles.clear();
-						for(int[] i : m.missiles2){
-							radar.nearbyMissiles.add(i);
-						}
+                        Collections.addAll(radar.nearbyMissiles, m.missiles2);
 					}
 				} catch (Exception x) {
 				}

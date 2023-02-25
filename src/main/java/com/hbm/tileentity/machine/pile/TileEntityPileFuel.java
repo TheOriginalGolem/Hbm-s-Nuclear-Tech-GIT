@@ -43,9 +43,9 @@ public class TileEntityPileFuel extends TileEntityPileBase implements IPileNeutr
 		int reaction = (int) (this.neutrons * (1D - ((double)this.heat / (double)maxHeat) * 0.5D)); //max heat reduces reaction by 50% due to thermal expansion
 		
 		this.lastNeutrons = this.neutrons;
-		this.neutrons = 0;;
-		
-		this.progress += reaction;
+		this.neutrons = 0;
+
+        this.progress += reaction;
 		
 		if(reaction <= 0)
 			return;

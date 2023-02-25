@@ -1,6 +1,7 @@
 package com.hbm.tileentity.deco;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import com.hbm.blocks.machine.BlockSpinnyLight;
@@ -90,7 +91,7 @@ public class TileEntitySpinnyLight extends TileEntity implements IControllable {
 	
 	@Override
 	public List<String> getInEvents(){
-		return Arrays.asList("spinny_light_power");
+		return Collections.singletonList("spinny_light_power");
 	}
 
 	@Override

@@ -32,7 +32,7 @@ public class RenderRBMKDebris extends Render<EntityRBMKDebris> {
 		GL11.glPushMatrix();
 		GL11.glTranslated(x, y + 0.125D, z);
 		
-		EntityRBMKDebris debris = (EntityRBMKDebris)entity;
+		EntityRBMKDebris debris = entity;
 
 		GL11.glRotatef(debris.getEntityId() % 360, 0, 1, 0); //rotate based on entity ID to add unique randomness
 		GL11.glRotatef(debris.lastRot + (debris.rot - debris.lastRot) * partialTicks, 1, 1, 1);

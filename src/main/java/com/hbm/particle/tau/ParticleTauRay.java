@@ -36,8 +36,7 @@ public class ParticleTauRay extends Particle {
 		this.particleAge ++;
 		if(this.particleAge >= this.particleMaxAge){
 			this.setExpired();
-			return;
-		}
+        }
 	}
 	
 	@Override
@@ -62,9 +61,9 @@ public class ParticleTauRay extends Particle {
 		net.minecraft.client.renderer.RenderHelper.enableStandardItemLighting();
 		Minecraft.getMinecraft().getTextureManager().bindTexture(ResourceManager.bfg_core_lightning);
 		GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_LINEAR);
-		float lifeN = (float)(particleAge+partialTicks)/(float)particleMaxAge;
+		float lifeN = (particleAge+partialTicks) /(float)particleMaxAge;
 		float fade = MathHelper.clamp(2.5F-lifeN*2.5F, 0, 1);
-		GlStateManager.color(1.0F, 0.7F, 0.1F, 1F*fade);
+		GlStateManager.color(1.0F, 0.7F, 0.1F, fade);
 		
 		ResourceManager.tau_ray.use();
 		

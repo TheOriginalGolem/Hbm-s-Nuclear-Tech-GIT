@@ -1119,7 +1119,7 @@ public class ClientProxy extends ServerProxy {
 	}
 	//version 2, now with strings!
 	@Override
-	public void spawnParticle(double x, double y, double z, String type, float args[]) {
+	public void spawnParticle(double x, double y, double z, String type, float[] args) {
 		World world = Minecraft.getMinecraft().world;
 		TextureManager man = Minecraft.getMinecraft().renderEngine;
 		
@@ -1690,7 +1690,7 @@ public class ClientProxy extends ServerProxy {
 				
 				fx = new ParticleExplosionLarge.Factory().createParticle(-1, world, x, y, z, data.getFloat("size"), 0.0F, 0.0F);
 				float r = 1.0F - rand.nextFloat() * 0.2F;
-				fx.setRBGColorF(1F * r, 0.9F * r, 0.5F * r);
+				fx.setRBGColorF(r, 0.9F * r, 0.5F * r);
 				
 				for(int i = 0; i < data.getByte("count"); i++) {
 					ParticleExplosion sec = (ParticleExplosion)new ParticleExplosion.Factory().createParticle(-1, world, x, y, z, 0.0F, 0.0F, 0.0F);
@@ -1704,7 +1704,7 @@ public class ClientProxy extends ServerProxy {
 			if("townaura".equals(data.getString("mode"))) {
 				fx = new ParticleSuspendedTown.Factory().createParticle(-1, world, x, y, z, 0, 0, 0);
 				float color = 0.5F + rand.nextFloat() * 0.5F;
-				fx.setRBGColorF(0.8F * color, 0.9F * color, 1.0F * color);
+				fx.setRBGColorF(0.8F * color, 0.9F * color, color);
 				HbmParticleUtility.setMotion(fx, mX, mY, mZ);
 			}
 
@@ -2147,7 +2147,7 @@ public class ClientProxy extends ServerProxy {
 		
 	}
 	
-	private HashMap<Integer, Long> vanished = new HashMap<>();
+	private final HashMap<Integer, Long> vanished = new HashMap<>();
 	
 	public void vanish(int ent) {
 		vanished.put(ent, System.currentTimeMillis() + 2000);
@@ -2202,7 +2202,7 @@ public class ClientProxy extends ServerProxy {
 
 			float momentum = base * world.rand.nextFloat();
 			float sway = (pow - i) / (float)pow;
-			Vec3 vec = Vec3.createVectorHelper(((Vec3)payload).xCoord, ((Vec3)payload).yCoord, ((Vec3)payload).zCoord);
+			Vec3 vec = Vec3.createVectorHelper(payload.xCoord, payload.yCoord, payload.zCoord);
 			vec.rotateAroundZ((float) (angle * world.rand.nextGaussian() * sway * Math.PI / 180D));
 			vec.rotateAroundY((float) (angle * world.rand.nextGaussian() * sway * Math.PI / 180D));
 			

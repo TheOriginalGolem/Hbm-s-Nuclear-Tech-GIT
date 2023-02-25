@@ -47,7 +47,7 @@ import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
 public class RadiationSystemNT {
 
 	/**Per world radiation storage data*/
-	private static Map<World, WorldRadiationData> worldMap = new HashMap<>();
+	private static final Map<World, WorldRadiationData> worldMap = new HashMap<>();
 	/**A tick counter so radiation only updates once every second.*/
 	private static int ticks;
 	
@@ -169,11 +169,8 @@ public class RadiationSystemNT {
 		}
 		//Finally, check if the chunk has a sub chunk at the specified y level
 		SubChunkRadiationStorage sc = st.getForYLevel(pos.getY());
-		if(sc == null){
-			return false;
-		}
-		return true;
-	}
+        return sc != null;
+    }
 	
 	/**
 	 * Gets the sub chunk from the specified pos. Loads it if it doesn't exist
@@ -586,7 +583,7 @@ public class RadiationSystemNT {
 	}
 	
 	//To reduce a lot of reallocations
-	private static Queue<BlockPos> stack = new ArrayDeque<>(1024);
+	private static final Queue<BlockPos> stack = new ArrayDeque<>(1024);
 	
 	/**
 	 * Builds a pocket using a flood fill.
@@ -808,11 +805,11 @@ public class RadiationSystemNT {
 	public static class ChunkRadiationStorage {
 		//Half a megabyte is good enough isn't it? Right?
 		//This is going to come back to bite me later, isn't it.
-		private static ByteBuffer buf = ByteBuffer.allocate(524288);
+		private static final ByteBuffer buf = ByteBuffer.allocate(524288);
 		
 		public WorldRadiationData parent;
-		private Chunk chunk;
-		private SubChunkRadiationStorage[] chunks = new SubChunkRadiationStorage[16];
+		private final Chunk chunk;
+		private final SubChunkRadiationStorage[] chunks = new SubChunkRadiationStorage[16];
 		
 		public ChunkRadiationStorage(WorldRadiationData parent, Chunk chunk) {
 			this.parent = parent;
@@ -958,7 +955,7 @@ public class RadiationSystemNT {
 			ByteBuffer data = ByteBuffer.wrap(tag.getByteArray("chunkRadData"));
 			//For each chunk, try to deserialize it
 			for(int i = 0; i < chunks.length; i ++){
-				boolean subChunkExists = data.get() == 1 ? true : false;
+				boolean subChunkExists = data.get() == 1;
 				if(subChunkExists){
 					//Y level could be implicitly defined with i, but this works too
 					int yLevel = data.getShort();
@@ -974,7 +971,7 @@ public class RadiationSystemNT {
 							parent.activePockets.add(st.pockets[j]);
 						}
 					}
-					boolean perBlockDataExists = data.get() == 1 ? true : false;
+					boolean perBlockDataExists = data.get() == 1;
 					if(perBlockDataExists){
 						//If the per block data exists, read indices sequentially and set each array slot to the rad pocket at that index
 						st.pocketsByBlock = new RadPocket[16*16*16];
@@ -1018,8 +1015,8 @@ public class RadiationSystemNT {
 	public static class WorldRadiationData {
 		public World world;
 		//Keep two lists to avoid concurrent modification. If one is being iterated over, mark it dirty in the other set.
-		private Set<BlockPos> dirtyChunks = new HashSet<>();
-		private Set<BlockPos> dirtyChunks2 = new HashSet<>();
+		private final Set<BlockPos> dirtyChunks = new HashSet<>();
+		private final Set<BlockPos> dirtyChunks2 = new HashSet<>();
 		private boolean iteratingDirty = false;
 		
 		//Active pockets are the pockets that have radiation in them and so then need to be updated

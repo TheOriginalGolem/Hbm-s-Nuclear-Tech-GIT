@@ -60,17 +60,17 @@ public class CableSwitch extends BlockContainer {
 	
 	@Override
 	protected BlockStateContainer createBlockState() {
-		return new BlockStateContainer(this, new IProperty[] { STATE });
+		return new BlockStateContainer(this, STATE);
 	}
 	
 	@Override
 	public int getMetaFromState(IBlockState state) {
-		return state.getValue(STATE).booleanValue() == true ? 1 : 0;
+		return state.getValue(STATE).booleanValue() ? 1 : 0;
 	}
 
 	@Override
 	public IBlockState getStateFromMeta(int meta) {
-		return this.getDefaultState().withProperty(STATE, meta == 1 ? true : false);
+		return this.getDefaultState().withProperty(STATE, meta == 1);
 	}
 	
 	@Override

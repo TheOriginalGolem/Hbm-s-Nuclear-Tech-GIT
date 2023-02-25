@@ -56,7 +56,7 @@ public class MachineTurbine extends BlockContainer {
 		TileEntity tileentity = worldIn.getTileEntity(pos);
 
 		if (tileentity instanceof TileEntityMachineTurbine) {
-			InventoryHelper.dropInventoryItems(worldIn, pos, (TileEntityMachineTurbine) tileentity);
+			InventoryHelper.dropInventoryItems(worldIn, pos, tileentity);
 			worldIn.updateComparatorOutputLevel(pos, this);
 		}
 		super.breakBlock(worldIn, pos, state);

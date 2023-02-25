@@ -1,9 +1,6 @@
 package com.hbm.tileentity;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import com.hbm.blocks.BlockDummyable;
 import com.hbm.blocks.generic.BlockDoorGeneric;
@@ -292,10 +289,7 @@ public class TileEntityDoorGeneric extends TileEntityLockableBase implements ITi
 	//Ah yes piggy backing on this packet
 	@Override
 	public void setTextureState(byte tex){
-		if(tex > 0)
-			shouldUseBB = true;
-		else
-			shouldUseBB = false;
+        shouldUseBB = tex > 0;
 	}
 
 	@Override
@@ -355,12 +349,12 @@ public class TileEntityDoorGeneric extends TileEntityLockableBase implements ITi
 	
 	@Override
 	public List<String> getInEvents(){
-		return Arrays.asList("door_toggle");
+		return Collections.singletonList("door_toggle");
 	}
 	
 	@Override
 	public List<String> getOutEvents(){
-		return Arrays.asList("door_open_state");
+		return Collections.singletonList("door_open_state");
 	}
 	
 	@Override

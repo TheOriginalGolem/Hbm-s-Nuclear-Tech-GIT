@@ -23,7 +23,7 @@ public class Test {
 
     public void out(final long maxTimeNS) {
       final double percent = ((double) timeNS) / ((double) maxTimeNS) * 100.0;
-      System.out.println(String.format("%-29s %15d ns %#6.2f%%", new Object[]{this.description, this.timeNS, percent}));
+      System.out.printf("%-29s %15d ns %#6.2f%%%n", this.description, this.timeNS, percent);
     }
   }
   protected final static int SIZE = 16;
@@ -47,7 +47,7 @@ public class Test {
       throw new RuntimeException("Non-direct buffer is direct!");
     }
     final FloatBuffer bufferD = ByteBuffer.allocateDirect(SIZE * 4).asFloatBuffer();
-    if (bufferD.isDirect() == false) {
+    if (!bufferD.isDirect()) {
       throw new RuntimeException("Direct buffer is non-direct!");
     }
     final float[] helper = new float[SIZE];

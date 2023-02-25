@@ -14,14 +14,14 @@ import net.minecraft.util.math.AxisAlignedBB;
 
 public class EntityAI_MLPF extends EntityAIBase {
 
-	private Class targetClass;
+	private final Class targetClass;
     private EntityLivingBase target;
-	private EntityLiving mover;
+	private final EntityLiving mover;
     private final Sorter theNearestAttackableTargetSorter;
-	private int range;
-	private int distance;
+	private final int range;
+	private final int distance;
 	private static final int vertical = 10;
-    private double speed;
+    private final double speed;
 
 	public EntityAI_MLPF(EntityLiving entity, Class targetClass, int range, double speed, int distance)
 	{

@@ -38,11 +38,9 @@ public class ChunkRenderContainerClassTransformer implements IClassTransformer {
 			ClassReader classReader = new ClassReader(classBeingTransformed);
 			classReader.accept(classNode, 0);
 
-			switch (index) {
-			case 0:
-				transformProfiler(classNode, isObfuscated);
-				break;
-			}
+            if (index == 0) {
+                transformProfiler(classNode, isObfuscated);
+            }
 
 			ClassWriter classWriter = new ClassWriter(ClassWriter.COMPUTE_MAXS | ClassWriter.COMPUTE_FRAMES);
 			classNode.accept(classWriter);

@@ -52,7 +52,7 @@ public class Vec2ui extends FuncRelational {
 
     public Vec2ui(Vec4 v) {
         x.value = (int) v.x;
-        y.value = (int) v.y;;
+        y.value = (int) v.y;
     }
 
     public Vec2ui set(int i) {
@@ -99,8 +99,8 @@ public class Vec2ui extends FuncRelational {
 
     public IntBuffer toDib(IntBuffer ib, int index) {
         return ib
-                .put(index + 0, (int) x.value)
-                .put(index + 1, (int) y.value);
+                .put(index, x.value)
+                .put(index + 1, y.value);
     }
 
     public ByteBuffer toDbb_() {
@@ -113,8 +113,8 @@ public class Vec2ui extends FuncRelational {
 
     public ByteBuffer toDbb(ByteBuffer bb, int index) {
         return bb
-                .putInt(index + 0 * Integer.BYTES, (int) x.value)
-                .putInt(index + 1 * Integer.BYTES, (int) y.value);
+                .putInt(index, x.value)
+                .putInt(index + Integer.BYTES, y.value);
     }
 
     @Override

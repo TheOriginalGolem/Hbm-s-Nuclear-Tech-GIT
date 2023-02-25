@@ -89,8 +89,8 @@ public class EntityMissileCustom extends Entity implements IChunkLoader, IRadarD
 		
 		velocity = 0.0;
 
-		ItemMissile fuselage = (ItemMissile) template.fuselage;
-		ItemMissile thruster = (ItemMissile) template.thruster;
+		ItemMissile fuselage = template.fuselage;
+		ItemMissile thruster = template.thruster;
 
 		this.fuel = (Float)fuselage.attributes[1];
 		this.consumption = (Float)thruster.attributes[1];
@@ -266,7 +266,6 @@ public class EntityMissileCustom extends Entity implements IChunkLoader, IRadarD
 
         for (this.rotationPitch = (float)(Math.atan2(this.motionY, f2) * 180.0D / Math.PI) - 90; this.rotationPitch - this.prevRotationPitch < -180.0F; this.prevRotationPitch -= 360.0F)
         {
-            ;
         }
 
         while (this.rotationPitch - this.prevRotationPitch >= 180.0F)
@@ -292,8 +291,8 @@ public class EntityMissileCustom extends Entity implements IChunkLoader, IRadarD
 		if(world.isRemote)
 			template = this.getDataManager().get(TEMPLATE);
 
-		WarheadType type1 = (WarheadType)template.warhead.attributes[0];;
-		this.setLocationAndAngles(posX + this.motionX * velocity, posY + this.motionY * velocity, posZ + this.motionZ * velocity, 0, 0);
+		WarheadType type1 = (WarheadType)template.warhead.attributes[0];
+        this.setLocationAndAngles(posX + this.motionX * velocity, posY + this.motionY * velocity, posZ + this.motionZ * velocity, 0, 0);
 
 		this.rotation();
 		

@@ -15,7 +15,7 @@ import net.minecraft.util.ResourceLocation;
 public class GUIMachineCoal extends GuiInfoContainer {
 
 	private static final ResourceLocation TEXTURE = new ResourceLocation(RefStrings.MODID + ":textures/gui/GUICoal.png");
-	private TileEntityMachineCoal diFurnace;
+	private final TileEntityMachineCoal diFurnace;
 	
 	public GUIMachineCoal(InventoryPlayer invPlayer, TileEntityMachineCoal tedf) {
 		super(new ContainerMachineCoal(invPlayer, tedf));
@@ -53,7 +53,7 @@ public class GUIMachineCoal extends GuiInfoContainer {
 			this.drawCustomInfoStat(mouseX, mouseY, guiLeft - 16, guiTop + 36 + 32, 16, 16, guiLeft - 8, guiTop + 36 + 16 + 32, text2);
 		}
 		
-		this.drawCustomInfoStat(mouseX, mouseY, guiLeft + 79, guiTop + 34, 18, 18, mouseX, mouseY, new String[] { String.valueOf((int)(Math.ceil((double)diFurnace.burnTime / 20D))) + "s"});
+		this.drawCustomInfoStat(mouseX, mouseY, guiLeft + 79, guiTop + 34, 18, 18, mouseX, mouseY, new String[] {(int) (Math.ceil((double) diFurnace.burnTime / 20D)) + "s"});
 		super.renderHoveredToolTip(mouseX, mouseY);
 	}
 	

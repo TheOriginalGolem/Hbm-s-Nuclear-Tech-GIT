@@ -17,7 +17,7 @@ public class RenderBeam4 extends Render<EntitySparkBeam> {
 
 	public static final IRenderFactory<EntitySparkBeam> FACTORY = (RenderManager man) -> {return new RenderBeam4(man);};
 	
-	private ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/models/PlasmaBeam.png");
+	private final ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/models/PlasmaBeam.png");
 	
 	protected RenderBeam4(RenderManager renderManager) {
 		super(renderManager);
@@ -52,23 +52,23 @@ public class RenderBeam4 extends Render<EntitySparkBeam> {
 			buf.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_COLOR);
 			buf.pos(0 + o, 0 - o, 0).color(red ? 1 : color, green ? 1 : color, blue ? 1 : color, 1f).endVertex();
 			buf.pos(0 + o, 0 + o, 0).color(red ? 1 : color, green ? 1 : color, blue ? 1 : color, 1f).endVertex();
-			buf.pos(0 + o, 0 + o, 0 + distance).color(red ? 1 : color, green ? 1 : color, blue ? 1 : color, 1f).endVertex();
-			buf.pos(0 + o, 0 - o, 0 + distance).color(red ? 1 : color, green ? 1 : color, blue ? 1 : color, 1f).endVertex();
+			buf.pos(0 + o, 0 + o, distance).color(red ? 1 : color, green ? 1 : color, blue ? 1 : color, 1f).endVertex();
+			buf.pos(0 + o, 0 - o, distance).color(red ? 1 : color, green ? 1 : color, blue ? 1 : color, 1f).endVertex();
 			
 			buf.pos(0 - o, 0 - o, 0).color(red ? 1 : color, green ? 1 : color, blue ? 1 : color, 1f).endVertex();
 			buf.pos(0 + o, 0 - o, 0).color(red ? 1 : color, green ? 1 : color, blue ? 1 : color, 1f).endVertex();
-			buf.pos(0 + o, 0 - o, 0 + distance).color(red ? 1 : color, green ? 1 : color, blue ? 1 : color, 1f).endVertex();
-			buf.pos(0 - o, 0 - o, 0 + distance).color(red ? 1 : color, green ? 1 : color, blue ? 1 : color, 1f).endVertex();
+			buf.pos(0 + o, 0 - o, distance).color(red ? 1 : color, green ? 1 : color, blue ? 1 : color, 1f).endVertex();
+			buf.pos(0 - o, 0 - o, distance).color(red ? 1 : color, green ? 1 : color, blue ? 1 : color, 1f).endVertex();
 			
 			buf.pos(0 - o, 0 + o, 0).color(red ? 1 : color, green ? 1 : color, blue ? 1 : color, 1f).endVertex();
 			buf.pos(0 - o, 0 - o, 0).color(red ? 1 : color, green ? 1 : color, blue ? 1 : color, 1f).endVertex();
-			buf.pos(0 - o, 0 - o, 0 + distance).color(red ? 1 : color, green ? 1 : color, blue ? 1 : color, 1f).endVertex();
-			buf.pos(0 - o, 0 + o, 0 + distance).color(red ? 1 : color, green ? 1 : color, blue ? 1 : color, 1f).endVertex();
+			buf.pos(0 - o, 0 - o, distance).color(red ? 1 : color, green ? 1 : color, blue ? 1 : color, 1f).endVertex();
+			buf.pos(0 - o, 0 + o, distance).color(red ? 1 : color, green ? 1 : color, blue ? 1 : color, 1f).endVertex();
 			
 			buf.pos(0 + o, 0 + o, 0).color(red ? 1 : color, green ? 1 : color, blue ? 1 : color, 1f).endVertex();
 			buf.pos(0 - o, 0 + o, 0).color(red ? 1 : color, green ? 1 : color, blue ? 1 : color, 1f).endVertex();
-			buf.pos(0 - o, 0 + o, 0 + distance).color(red ? 1 : color, green ? 1 : color, blue ? 1 : color, 1f).endVertex();
-			buf.pos(0 + o, 0 + o, 0 + distance).color(red ? 1 : color, green ? 1 : color, blue ? 1 : color, 1f).endVertex();
+			buf.pos(0 - o, 0 + o, distance).color(red ? 1 : color, green ? 1 : color, blue ? 1 : color, 1f).endVertex();
+			buf.pos(0 + o, 0 + o, distance).color(red ? 1 : color, green ? 1 : color, blue ? 1 : color, 1f).endVertex();
 			tessellator.draw();
 		}
 		GL11.glDisable(GL11.GL_BLEND);

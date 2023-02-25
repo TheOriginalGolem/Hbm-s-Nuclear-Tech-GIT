@@ -108,7 +108,7 @@ public class RBMKDebrisRadiating extends RBMKDebrisBurning {
 				res = 1;
 			
 			float eRads = rads;
-			eRads /= (float)res;
+			eRads /= res;
 			eRads /= (float)(len * len);
 			
 			ContaminationUtil.contaminate(e, HazardType.RADIATION, ContaminationType.CREATIVE, eRads);
@@ -132,7 +132,7 @@ public class RBMKDebrisRadiating extends RBMKDebrisBurning {
 	
 	@Override
 	protected BlockStateContainer createBlockState() {
-		return new BlockStateContainer(this, new IProperty[]{META});
+		return new BlockStateContainer(this, META);
 	}
 	
 	@Override

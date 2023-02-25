@@ -261,7 +261,7 @@ public static int getProcessTime(ItemStack stack) {
         case SAS3:
         	return 200;
         case DYN_SCHRAB:
-        	return 1*60*20;
+        	return 60 * 20;
         case DYN_EUPH:
         	return 3*60*20;
         case DYN_DNT:

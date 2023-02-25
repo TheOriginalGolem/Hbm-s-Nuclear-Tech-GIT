@@ -22,8 +22,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class TileEntitySolarBoiler extends TileEntity implements ITickable, IFluidHandler, ITankPacketAcceptor {
 
-	private FluidTank water;
-	private FluidTank steam;
+	private final FluidTank water;
+	private final FluidTank steam;
 	public int heat;
 	
 	public TileEntitySolarBoiler() {
@@ -65,7 +65,7 @@ public class TileEntitySolarBoiler extends TileEntity implements ITickable, IFlu
 	
 	@Override
 	public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
-		return capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY ? true : super.hasCapability(capability, facing);
+		return capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY || super.hasCapability(capability, facing);
 	}
 	
 	@Override

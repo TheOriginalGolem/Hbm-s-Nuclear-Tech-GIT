@@ -77,7 +77,7 @@ public class ArmorSchrabidium extends ItemArmor implements ISpecialArmor {
 
 	@Override
 	public void damageArmor(EntityLivingBase entity, ItemStack stack, DamageSource source, int damage, int slot) {
-		stack.damageItem(damage * 1, entity);
+		stack.damageItem(damage, entity);
 	}
 	
 	@Override

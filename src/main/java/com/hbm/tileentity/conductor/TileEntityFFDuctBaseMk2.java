@@ -211,8 +211,7 @@ public class TileEntityFFDuctBaseMk2 extends TileEntity implements IFluidPipeMk2
 		if(otherNetworks.isEmpty()) {
 			network = new FFPipeNetworkMk2(this);
 			network.tryAdd(this);
-			return;
-		} else {
+        } else {
 			FFPipeNetworkMk2 net = otherNetworks.remove(0);
 			while(otherNetworks.size() > 0)
 				net = FFPipeNetworkMk2.mergeNetworks(net, otherNetworks.remove(0));

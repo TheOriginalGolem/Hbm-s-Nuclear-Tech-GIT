@@ -14,8 +14,8 @@ import net.minecraft.util.ResourceLocation;
 
 public class GUIMachineTeleporter extends GuiContainer {
 
-	private static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/gui_teleporter.png");
-	private TileEntityMachineTeleporter diFurnace;
+	private static final ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/gui_teleporter.png");
+	private final TileEntityMachineTeleporter diFurnace;
 
 	public GUIMachineTeleporter(EntityPlayer invPlayer, TileEntityMachineTeleporter tedf) {
 		super(new ContainerMachineTeleporter(invPlayer, tedf));

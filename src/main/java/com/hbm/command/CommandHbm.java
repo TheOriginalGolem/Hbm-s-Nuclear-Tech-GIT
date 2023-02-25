@@ -89,11 +89,9 @@ public class CommandHbm extends CommandBase {
 		} else if(args.length > 0) {
 			if("subcommands".equals(args[0])) {
 				doSubcommandCommand(server, sender, args);
-				return;
-			} else if("gen".equals(args[0])) {
+            } else if("gen".equals(args[0])) {
 				doGenCommand(server, sender, args);
-				return;
-			} else if("reloadCollada".equals(args[0])){
+            } else if("reloadCollada".equals(args[0])){
 				if(FMLCommonHandler.instance().getSide() == Side.CLIENT){
 					Minecraft.getMinecraft().addScheduledTask(() -> {
 						ResourceManager.loadAnimatedModels();
@@ -260,8 +258,7 @@ public class CommandHbm extends CommandBase {
 					});
 					
 				}
-				return;
-			}
+            }
 		}
 	}
 
@@ -282,13 +279,12 @@ public class CommandHbm extends CommandBase {
 		} else if(args.length > 1){
 			//If a subcommand is specified, try to give info about that command. If it doesn't exist, send an error message.
 			if("gen".equals(args[1])){
-				StringBuilder builder = new StringBuilder();
-				builder.append("Info for command: gen\n\n");
-				builder.append("Generates a structure at the block under your current position. Generation can be forced.\n\n");
-				builder.append("Available structures:\n\n");
-				builder.append("antenna      relay\ndud           silo\nfactory      barrel\nvertibird     vertibird_crashed\nsatellite      spaceship\nsellafield     radio\nbunker       desert_atom\nlibrary      geysir_water\ngeysir_vapor      geysir_chlorine");
+                String builder = "Info for command: gen\n\n" +
+                        "Generates a structure at the block under your current position. Generation can be forced.\n\n" +
+                        "Available structures:\n\n" +
+                        "antenna      relay\ndud           silo\nfactory      barrel\nvertibird     vertibird_crashed\nsatellite      spaceship\nsellafield     radio\nbunker       desert_atom\nlibrary      geysir_water\ngeysir_vapor      geysir_chlorine";
 				//builder.delete(builder.length() - 1, builder.length());
-				sender.sendMessage(new TextComponentTranslation(builder.toString()));
+				sender.sendMessage(new TextComponentTranslation(builder));
 			} else {
 				sender.sendMessage(new TextComponentTranslation("Unknown command: " + args[1]));
 			}

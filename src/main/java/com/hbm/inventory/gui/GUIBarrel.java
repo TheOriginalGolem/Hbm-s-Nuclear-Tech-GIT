@@ -20,8 +20,8 @@ import net.minecraft.util.ResourceLocation;
 
 public class GUIBarrel extends GuiInfoContainer {
 	
-	private static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/storage/gui_barrel.png");
-	private TileEntityBarrel tank;
+	private static final ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/storage/gui_barrel.png");
+	private final TileEntityBarrel tank;
 
 	public GUIBarrel(InventoryPlayer invPlayer, TileEntityBarrel tedf) {
 		super(new ContainerBarrel(invPlayer, tedf));

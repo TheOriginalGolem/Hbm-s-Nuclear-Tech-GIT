@@ -47,7 +47,7 @@ public class InstancedParticleRenderer {
 	private static ByteBuffer particleBuffer = GLAllocation.createDirectByteBuffer(0);
 	
 	protected static ArrayDeque<ParticleInstanced> particles = Queues.newArrayDeque();
-	private static final Queue<ParticleInstanced> queue = Queues.<ParticleInstanced> newArrayDeque();
+	private static final Queue<ParticleInstanced> queue = Queues.newArrayDeque();
 	
 	public static void addParticle(ParticleInstanced p) {
 		if(p != null)

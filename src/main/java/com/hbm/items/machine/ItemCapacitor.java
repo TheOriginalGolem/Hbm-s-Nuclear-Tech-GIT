@@ -18,7 +18,7 @@ import net.minecraft.world.World;
 
 public class ItemCapacitor extends Item {
 
-	private int dura;
+	private final int dura;
 	
 	public ItemCapacitor(int dura, String s) {
 		this.setUnlocalizedName(s);

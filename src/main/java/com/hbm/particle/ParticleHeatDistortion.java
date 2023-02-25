@@ -73,7 +73,7 @@ public class ParticleHeatDistortion extends Particle {
 		GL11.glPushMatrix();
 		float timeScale = (this.particleAge+partialTicks)/(float)this.particleMaxAge;
 		
-		float f4 = (float) (0.1F * this.particleScale);
+		float f4 = 0.1F * this.particleScale;
 		GlStateManager.depthMask(false);
         
 		if(local){
@@ -112,7 +112,7 @@ public class ParticleHeatDistortion extends Particle {
         
         
         
-        Vec3d[] avec3d = new Vec3d[] {new Vec3d((double)(-rotationX * f4 - rotationXY * f4), (double)(-rotationZ * f4), (double)(-rotationYZ * f4 - rotationXZ * f4)), new Vec3d((double)(-rotationX * f4 + rotationXY * f4), (double)(rotationZ * f4), (double)(-rotationYZ * f4 + rotationXZ * f4)), new Vec3d((double)(rotationX * f4 + rotationXY * f4), (double)(rotationZ * f4), (double)(rotationYZ * f4 + rotationXZ * f4)), new Vec3d((double)(rotationX * f4 - rotationXY * f4), (double)(-rotationZ * f4), (double)(rotationYZ * f4 - rotationXZ * f4))};
+        Vec3d[] avec3d = new Vec3d[] {new Vec3d(-rotationX * f4 - rotationXY * f4, -rotationZ * f4, -rotationYZ * f4 - rotationXZ * f4), new Vec3d(-rotationX * f4 + rotationXY * f4, rotationZ * f4, -rotationYZ * f4 + rotationXZ * f4), new Vec3d(rotationX * f4 + rotationXY * f4, rotationZ * f4, rotationYZ * f4 + rotationXZ * f4), new Vec3d(rotationX * f4 - rotationXY * f4, -rotationZ * f4, rotationYZ * f4 - rotationXZ * f4)};
         
         Minecraft.getMinecraft().getTextureManager().bindTexture(ResourceManager.fresnel_ms);
         float heat_fade = MathHelper.clamp(1-BobMathUtil.remap((float)MathHelper.clamp(timeScale, 0.8, 1), 0.8F, 1F, 0F, 1.1F), 0, 1);

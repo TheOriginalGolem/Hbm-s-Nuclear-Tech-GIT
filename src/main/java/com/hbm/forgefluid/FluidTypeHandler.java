@@ -1,9 +1,6 @@
 package com.hbm.forgefluid;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import com.hbm.render.misc.EnumSymbol;
 
@@ -13,7 +10,7 @@ import net.minecraftforge.fluids.FluidStack;
 
 public class FluidTypeHandler {
 
-	private static Map<String, FluidProperties> fluidProperties = new HashMap<String, FluidProperties>();
+	private static final Map<String, FluidProperties> fluidProperties = new HashMap<String, FluidProperties>();
 	public static final FluidProperties NONE = new FluidProperties(0, 0, 0, EnumSymbol.NONE);
 	
 	public static FluidProperties getProperties(Fluid f){
@@ -143,16 +140,15 @@ public class FluidTypeHandler {
 			this.flammability = f;
 			this.reactivity = r;
 			this.symbol = symbol;
-			for(FluidTrait trait : traits)
-				this.traits.add(trait);
+            Collections.addAll(this.traits, traits);
 		}
 	}
 	
-	public static enum FluidTrait {
+	public enum FluidTrait {
 		AMAT,
 		CORROSIVE,
 		CORROSIVE_2,
 		NO_CONTAINER,
-		NO_ID;
-	}
+		NO_ID
+    }
 }

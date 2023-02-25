@@ -11,8 +11,8 @@ import net.minecraft.world.World;
 public class ParticleRocketFlameInstanced extends ParticleInstanced {
 
 	private int age;
-	private int maxAge;
-	private float[] vals = new float[10*5];
+	private final int maxAge;
+	private final float[] vals = new float[10*5];
 	
 	public ParticleRocketFlameInstanced(World worldIn, double posXIn, double posYIn, double posZIn) {
 		super(worldIn, posXIn, posYIn, posZIn);
@@ -80,7 +80,7 @@ public class ParticleRocketFlameInstanced extends ParticleInstanced {
 			buf.putFloat(this.particleTexture.getMaxV()-this.particleTexture.getMinV());
 			
 			float add = vals[ii*5+4];
-			float dark = 1 - Math.min(((float)(age) / (float)(maxAge * 0.25F)), 1);
+			float dark = 1 - Math.min(((float)(age) / (maxAge * 0.25F)), 1);
 			
 	        this.particleRed = MathHelper.clamp(dark + add, 0, 1);
 	        this.particleGreen = MathHelper.clamp(0.6F * dark + add, 0, 1);

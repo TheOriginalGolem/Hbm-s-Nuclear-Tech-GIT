@@ -12,7 +12,7 @@ public class RenderTurretJeremy extends RenderTurretBase<TileEntityTurretJeremy>
 
 	@Override
 	public void render(TileEntityTurretJeremy te, double x, double y, double z, float partialTicks, int destroyStage, float alpha){
-		TileEntityTurretJeremy turret = (TileEntityTurretJeremy)te;
+		TileEntityTurretJeremy turret = te;
 		Vec3d pos = turret.getHorizontalOffset();
 
 		GL11.glPushMatrix();

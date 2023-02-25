@@ -124,7 +124,7 @@ public class RenderAssembler extends TileEntitySpecialRenderer<TileEntityMachine
         if(offset > 500)
         	offset = 500 - (offset - 500);
         
-        TileEntityMachineAssembler assembler = (TileEntityMachineAssembler) tileEntity;
+        TileEntityMachineAssembler assembler = tileEntity;
         
         if(assembler.isProgressing)
         	GL11.glTranslated(offset * 0.003 - 0.75, 0, 0);
@@ -172,7 +172,7 @@ public class RenderAssembler extends TileEntitySpecialRenderer<TileEntityMachine
 
         int rotation = (int) (System.currentTimeMillis() % (360 * 5)) / 5;
         
-        TileEntityMachineAssembler assembler = (TileEntityMachineAssembler) tileEntity;
+        TileEntityMachineAssembler assembler = tileEntity;
 
         if(!assembler.isProgressing)
         	rotation = 0;

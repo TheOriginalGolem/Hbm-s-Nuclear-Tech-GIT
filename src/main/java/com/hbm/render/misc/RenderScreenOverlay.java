@@ -77,7 +77,7 @@ public class RenderScreenOverlay {
 		if(radiation > 1000) {
 			Minecraft.getMinecraft().fontRenderer.drawString(">1000 RAD/s", posX, posY - 8, 0xFF0000);
 		} else if(radiation >= 1) {
-			Minecraft.getMinecraft().fontRenderer.drawString(((int)Math.round(radiation)) + " RAD/s", posX, posY - 8, 0xFF0000);
+			Minecraft.getMinecraft().fontRenderer.drawString(Math.round(radiation) + " RAD/s", posX, posY - 8, 0xFF0000);
 		} else if(radiation > 0) {
 			Minecraft.getMinecraft().fontRenderer.drawString("<1 RAD/s", posX, posY - 8, 0xFF0000);
 		}
@@ -193,7 +193,7 @@ public class RenderScreenOverlay {
 		public int y;
 		public int size;
 		
-		private Crosshair(int x, int y, int size) {
+		Crosshair(int x, int y, int size) {
 			this.x = x;
 			this.y = y;
 			this.size = size;

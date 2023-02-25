@@ -13,8 +13,8 @@ import net.minecraft.util.ResourceLocation;
 
 public class GUICore extends GuiInfoContainer {
 
-	private static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/dfc/gui_core.png");
-	private TileEntityCore core;
+	private static final ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/dfc/gui_core.png");
+	private final TileEntityCore core;
 	
 	public GUICore(InventoryPlayer invPlayer, TileEntityCore tedf) {
 		super(new ContainerCore(invPlayer, tedf));

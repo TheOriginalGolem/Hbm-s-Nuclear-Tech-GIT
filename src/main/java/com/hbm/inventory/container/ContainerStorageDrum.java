@@ -11,7 +11,7 @@ import net.minecraftforge.items.SlotItemHandler;
 
 public class ContainerStorageDrum extends Container {
 
-	private TileEntityStorageDrum drum;
+	private final TileEntityStorageDrum drum;
 
 	public ContainerStorageDrum(InventoryPlayer invPlayer, TileEntityStorageDrum drum) {
 		this.drum = drum;
@@ -41,7 +41,7 @@ public class ContainerStorageDrum extends Container {
 	@Override
 	public ItemStack transferStackInSlot(EntityPlayer p_82846_1_, int par2) {
 		ItemStack var3 = ItemStack.EMPTY;
-		Slot var4 = (Slot) this.inventorySlots.get(par2);
+		Slot var4 = this.inventorySlots.get(par2);
 		
 		if(var4 != null && var4.getHasStack()) {
 			ItemStack var5 = var4.getStack();

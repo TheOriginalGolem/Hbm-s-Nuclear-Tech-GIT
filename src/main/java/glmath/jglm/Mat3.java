@@ -53,8 +53,8 @@ public class Mat3 extends Mat {
 
         this();
 
-        c0 = new Vec3(fs, order * 0);
-        c1 = new Vec3(fs, order * 1);
+        c0 = new Vec3(fs, 0);
+        c1 = new Vec3(fs, order);
         c2 = new Vec3(fs, order * 2);
     }
 

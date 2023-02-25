@@ -72,9 +72,9 @@ public class ItemCustomMissile extends Item {
 			ItemMissile thruster = (ItemMissile) Item.getItemById(readFromNBT(stack, "thruster"));
 
 			tooltip.add(TextFormatting.BOLD + "Warhead: " + TextFormatting.GRAY + warhead.getWarhead((WarheadType) warhead.attributes[0]));
-			tooltip.add(TextFormatting.BOLD + "Strength: " + TextFormatting.GRAY + (Float) warhead.attributes[1]);
+			tooltip.add(TextFormatting.BOLD + "Strength: " + TextFormatting.GRAY + warhead.attributes[1]);
 			tooltip.add(TextFormatting.BOLD + "Fuel Type: " + TextFormatting.GRAY + fuselage.getFuel((FuelType) fuselage.attributes[0]));
-			tooltip.add(TextFormatting.BOLD + "Fuel amount: " + TextFormatting.GRAY + (Float) fuselage.attributes[1] + "l");
+			tooltip.add(TextFormatting.BOLD + "Fuel amount: " + TextFormatting.GRAY + fuselage.attributes[1] + "l");
 			tooltip.add(TextFormatting.BOLD + "Chip inaccuracy: " + TextFormatting.GRAY + (Float) chip.attributes[0] * 100 + "%");
 
 			if(stability != null)
@@ -91,8 +91,7 @@ public class ItemCustomMissile extends Item {
 			tooltip.add(TextFormatting.BOLD + "Health: " + TextFormatting.GRAY + health + "HP");
 		} catch(ClassCastException x) {
 			//Drillgon200: Why is this even necessary, JEI?
-			return;
-		}
+        }
 	}
 
 	public static MissileStruct getStruct(ItemStack stack) {

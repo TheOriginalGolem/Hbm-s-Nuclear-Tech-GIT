@@ -21,7 +21,7 @@ public class DigammaMatter extends Block {
 	
 	public static final PropertyInteger META = BlockDummyable.META;
 	
-	private static Random rand = new Random(); 
+	private static final Random rand = new Random();
 
 	public DigammaMatter(String s) {
 		super(Material.PORTAL);
@@ -95,7 +95,7 @@ public class DigammaMatter extends Block {
 	
 	@Override
 	protected BlockStateContainer createBlockState() {
-		return new BlockStateContainer(this, new IProperty[]{META});
+		return new BlockStateContainer(this, META);
 	}
 	
 	@Override

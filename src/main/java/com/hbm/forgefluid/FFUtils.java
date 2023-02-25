@@ -270,7 +270,7 @@ public class FFUtils {
 
 		if(slots.getStackInSlot(slot1).getItem() == ModItems.fluid_barrel_infinite && tank.getFluid() != null) {
 
-			return tank.fill(new FluidStack(tank.getFluid(), Integer.MAX_VALUE), true) > 0 ? true : false;
+			return tank.fill(new FluidStack(tank.getFluid(), Integer.MAX_VALUE), true) > 0;
 		}
 		if(FluidUtil.getFluidContained(slots.getStackInSlot(slot1)) == null) {
 
@@ -413,8 +413,7 @@ public class FFUtils {
 			return true;
 		if(FluidContainerRegistry.hasFluid(stack.getItem())) {
 			fluid = FluidContainerRegistry.getFluidFromItem(stack.getItem());
-			if(fluid != null && fluidRestrictor.apply(fluid))
-				return true;
+            return fluid != null && fluidRestrictor.apply(fluid);
 		}
 		return false;
 	}
@@ -763,8 +762,7 @@ public class FFUtils {
 			return true;
 		if(FluidContainerRegistry.hasFluid(stack.getItem())) {
 			contained = FluidContainerRegistry.getFluidFromItem(stack.getItem());
-			if(contained != null && contained.getFluid() == fluid)
-				return true;
+            return contained != null && contained.getFluid() == fluid;
 		}
 		return false;
 	}
@@ -833,11 +831,8 @@ public class FFUtils {
 		if(tank1.getFluid() == null ^ tank2.getFluid() == null) {
 			return false;
 		}
-		if(tank1.getFluid().amount == tank2.getFluid().amount && tank1.getFluid().getFluid() == tank2.getFluid().getFluid() && tank1.getCapacity() == tank2.getCapacity()) {
-			return true;
-		}
-		return false;
-	}
+        return tank1.getFluid().amount == tank2.getFluid().amount && tank1.getFluid().getFluid() == tank2.getFluid().getFluid() && tank1.getCapacity() == tank2.getCapacity();
+    }
 
 	public static FluidTank copyTank(FluidTank tank){
 		if(tank == null)
@@ -849,12 +844,8 @@ public class FFUtils {
 		TileEntity tileentity = world.getTileEntity(pos);
 		if(tileentity != null && tileentity instanceof IFluidPipe && ((IFluidPipe)tileentity).getNetworkTrue() == net)
 			return true;
-		if(tileentity != null && !(tileentity instanceof IFluidPipe) && tileentity.hasCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, null)) {
-
-			return true;
-		}
-		return false;
-	}
+        return tileentity != null && !(tileentity instanceof IFluidPipe) && tileentity.hasCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, null);
+    }
 
 	public static boolean checkFluidConnectablesMk2(World world, BlockPos pos, Fluid type){
 		TileEntity tileentity = world.getTileEntity(pos);

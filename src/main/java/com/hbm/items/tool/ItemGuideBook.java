@@ -63,7 +63,7 @@ public class ItemGuideBook extends Item {
 		public float titleScale;
 		public String title;
 		
-		private BookType(String title, float titleScale, List<GuidePage> pages) {
+		BookType(String title, float titleScale, List<GuidePage> pages) {
 			this.title = title;
 			this.titleScale = titleScale;
 			this.pages = pages;

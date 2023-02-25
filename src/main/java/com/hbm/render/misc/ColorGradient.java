@@ -4,7 +4,7 @@ import com.hbm.util.BobMathUtil;
 
 public class ColorGradient {
 
-	private float[][] colors;
+	private final float[][] colors;
 	
 	/**
 	 * @param colors - float arrays of colors and times. Should be formatted as R,G,B,A,T where T is the time that color setting gets.

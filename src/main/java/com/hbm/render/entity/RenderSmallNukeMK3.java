@@ -17,11 +17,11 @@ public class RenderSmallNukeMK3 extends Render<EntityNukeCloudSmall> {
 		//what the fuck is all this, i thought you made the resource manager
 		//Drillgon200: ^^ To whom is he talking, I wonder.
 		private static final ResourceLocation objTesterModelRL = new ResourceLocation(/*"/assets/" + */RefStrings.MODID, "models/mush.hmf");
-		private IModelCustom blastModel;
+		private final IModelCustom blastModel;
 		private static final ResourceLocation ringModelRL = new ResourceLocation(/*"/assets/" + */RefStrings.MODID, "models/Ring.obj");
-		private IModelCustom ringModel;
+		private final IModelCustom ringModel;
 		private static final ResourceLocation ringBigModelRL = new ResourceLocation(/*"/assets/" + */RefStrings.MODID, "models/RingBig.obj");
-		private IModelCustom ringBigModel;
+		private final IModelCustom ringBigModel;
 	    public float scale = 0;
 	    public float ring = 0;
 	    

@@ -20,8 +20,8 @@ public class HbmFluidHandlerCanister implements ICapabilityProvider, IFluidHandl
 	public static final String FLUID_NBT_KEY = "HbmFluidKey";
 	
 	@Nonnull
-	private ItemStack container;
-	private int cap;
+	private final ItemStack container;
+	private final int cap;
 	
 	public HbmFluidHandlerCanister(ItemStack stack, int i){
 		container = stack;

@@ -18,8 +18,8 @@ public class RenderCloudSolinium extends Render<EntityCloudSolinium> {
 	public static final IRenderFactory<EntityCloudSolinium> FACTORY = (RenderManager man) -> {return new RenderCloudSolinium(man);};
 	
 	private static final ResourceLocation objTesterModelRL = new ResourceLocation(/*"/assets/" + */RefStrings.MODID, "models/Sphere.obj");
-	private IModelCustom blastModel;
-    private ResourceLocation blastTexture;
+	private final IModelCustom blastModel;
+    private final ResourceLocation blastTexture;
     public float scale = 0;
     public float ring = 0;
     

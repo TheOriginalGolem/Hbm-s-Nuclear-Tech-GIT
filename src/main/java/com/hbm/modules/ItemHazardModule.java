@@ -110,14 +110,14 @@ public class ItemHazardModule {
 			if(!ArmorRegistry.hasProtection(entity, EntityEquipmentSlot.HEAD, HazardClass.PARTICLE_FINE))
 				HbmLivingProps.incrementAsbestos(entity, (int) (this.asbestos * Math.min(mod, 10)));
 			else
-				ArmorUtil.damageGasMaskFilter(entity, (int) (this.asbestos));
+				ArmorUtil.damageGasMaskFilter(entity, this.asbestos);
 		}
 
 		if(this.coal > 0) {
 			if(!ArmorRegistry.hasProtection(entity, EntityEquipmentSlot.HEAD, HazardClass.PARTICLE_COARSE))
 				HbmLivingProps.incrementBlackLung(entity, (int) (this.coal * Math.min(mod, 10)));
 			else
-				ArmorUtil.damageGasMaskFilter(entity, (int) (this.coal));
+				ArmorUtil.damageGasMaskFilter(entity, this.coal);
 		}
 
 		if(this.hydro && currentItem) {
@@ -147,7 +147,7 @@ public class ItemHazardModule {
 		}
 
 		if(this.blinding && !ArmorRegistry.hasProtection(entity, EntityEquipmentSlot.HEAD, HazardClass.LIGHT)) {
-			((EntityLivingBase) entity).addPotionEffect(new PotionEffect(MobEffects.BLINDNESS, 100, 0));
+			entity.addPotionEffect(new PotionEffect(MobEffects.BLINDNESS, 100, 0));
 		}
 	}
 

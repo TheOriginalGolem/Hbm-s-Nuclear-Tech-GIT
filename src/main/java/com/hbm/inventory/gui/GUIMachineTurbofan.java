@@ -14,8 +14,8 @@ import net.minecraft.util.ResourceLocation;
 
 public class GUIMachineTurbofan extends GuiInfoContainer {
 	
-	private static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/gui_turbofan.png");
-	private TileEntityMachineTurbofan diFurnace;
+	private static final ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/gui_turbofan.png");
+	private final TileEntityMachineTurbofan diFurnace;
 
 	public GUIMachineTurbofan(InventoryPlayer invPlayer, TileEntityMachineTurbofan tedf) {
 		super(new ContainerMachineTurbofan(invPlayer, tedf));

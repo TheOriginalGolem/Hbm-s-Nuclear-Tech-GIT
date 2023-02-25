@@ -14,7 +14,7 @@ import net.minecraft.util.ResourceLocation;
 public class GUIMachineCentrifuge extends GuiInfoContainer {
 
 	public static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/centrifuge.png");
-	private TileEntityMachineCentrifuge centrifuge;
+	private final TileEntityMachineCentrifuge centrifuge;
 	
 	public GUIMachineCentrifuge(InventoryPlayer invPlayer, TileEntityMachineCentrifuge tedf) {
 		super(new ContainerCentrifuge(invPlayer, tedf));

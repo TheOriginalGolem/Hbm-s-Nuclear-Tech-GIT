@@ -15,8 +15,8 @@ import net.minecraft.util.ResourceLocation;
 
 public class GUINukeFleija extends GuiContainer {
 
-	private static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/fleijaSchematic.png");
-	private TileEntityNukeFleija testNuke;
+	private static final ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/fleijaSchematic.png");
+	private final TileEntityNukeFleija testNuke;
 	
 	public GUINukeFleija(InventoryPlayer invPlayer, TileEntityNukeFleija tedf) {
 		super(new ContainerNukeFleija(invPlayer, tedf));

@@ -21,7 +21,7 @@ import net.minecraft.util.ResourceLocation;
 public class GUIMiningLaser extends GuiInfoContainer {
 
 	public static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/machine/gui_laser_miner.png");
-	private TileEntityMachineMiningLaser laser;
+	private final TileEntityMachineMiningLaser laser;
 
 	public GUIMiningLaser(InventoryPlayer invPlayer, TileEntityMachineMiningLaser laser) {
 		super(new ContainerMiningLaser(invPlayer, laser));

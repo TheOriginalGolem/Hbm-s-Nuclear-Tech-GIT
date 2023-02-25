@@ -401,7 +401,7 @@ public class RenderBlackHole extends Render<EntityBlackHole> {
 			setColorNone(entity, color);
 			buf.pos(-0.866D * f4, f3, -0.5F * f4).color(color[0], color[1], color[2], color[3]).endVertex();
 			buf.pos(0.866D * f4, f3, -0.5F * f4).color(color[0], color[1], color[2], color[3]).endVertex();
-			buf.pos(0.0D, f3, 1.0F * f4).color(color[0], color[1], color[2], color[3]).endVertex();
+			buf.pos(0.0D, f3, f4).color(color[0], color[1], color[2], color[3]).endVertex();
 			buf.pos(-0.866D * f4, f3, -0.5F * f4).color(color[0], color[1], color[2], color[3]).endVertex();
 			tes.draw();
 		}

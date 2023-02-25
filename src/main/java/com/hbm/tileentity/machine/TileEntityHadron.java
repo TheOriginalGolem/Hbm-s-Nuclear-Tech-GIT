@@ -634,7 +634,7 @@ public class TileEntityHadron extends TileEntityMachineBase implements ITickable
 	 */
 	private List<ForgeDirection> getRandomDirs() {
 
-		List<Integer> rands = Arrays.asList(new Integer[] {0, 1, 2, 3, 4, 5} );
+		List<Integer> rands = Arrays.asList(0, 1, 2, 3, 4, 5);
 		Collections.shuffle(rands);
 		List<ForgeDirection> dirs = new ArrayList<>();
 		for(Integer i : rands) {
@@ -666,7 +666,7 @@ public class TileEntityHadron extends TileEntityMachineBase implements ITickable
 				b == ModBlocks.hadron_analysis_glass;
 	}
 	
-	public static enum EnumHadronState {
+	public enum EnumHadronState {
 		IDLE(0x8080ff),
 		PROGRESS(0xffff00),
 		ANALYSIS(0xffff00),
@@ -676,7 +676,7 @@ public class TileEntityHadron extends TileEntityMachineBase implements ITickable
 
 		public int color;
 
-		private EnumHadronState(int color) {
+		EnumHadronState(int color) {
 			this.color = color;
 		}
 	}

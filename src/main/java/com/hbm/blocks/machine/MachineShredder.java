@@ -60,7 +60,7 @@ public class MachineShredder extends BlockContainer {
 		TileEntity tileentity = worldIn.getTileEntity(pos);
 
 		if(tileentity instanceof TileEntityMachineShredder) {
-			InventoryHelper.dropInventoryItems(worldIn, pos, (TileEntityMachineShredder) tileentity);
+			InventoryHelper.dropInventoryItems(worldIn, pos, tileentity);
 			worldIn.updateComparatorOutputLevel(pos, this);
 		}
 		super.breakBlock(worldIn, pos, state);

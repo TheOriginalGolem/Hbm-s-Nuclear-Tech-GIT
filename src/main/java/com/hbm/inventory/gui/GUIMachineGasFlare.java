@@ -14,8 +14,8 @@ import net.minecraft.util.ResourceLocation;
 
 public class GUIMachineGasFlare extends GuiInfoContainer {
 
-	private static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/gui_gasFlare.png");
-	private TileEntityMachineGasFlare flare;
+	private static final ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/gui_gasFlare.png");
+	private final TileEntityMachineGasFlare flare;
 	
 	public GUIMachineGasFlare(InventoryPlayer invPlayer, TileEntityMachineGasFlare tedf) {
 		super(new ContainerMachineGasFlare(invPlayer, tedf));

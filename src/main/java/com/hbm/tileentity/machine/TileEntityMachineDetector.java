@@ -28,7 +28,7 @@ public class TileEntityMachineDetector extends TileEntity implements ITickable, 
 			}
 
 			if(meta != state) {
-				PowerDetector.updateBlockState(state==1 ? true: false, world, pos);
+				PowerDetector.updateBlockState(state == 1, world, pos);
 				this.markDirty();
 			}
 		}

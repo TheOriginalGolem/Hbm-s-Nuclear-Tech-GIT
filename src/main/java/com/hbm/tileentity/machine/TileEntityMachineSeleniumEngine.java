@@ -219,9 +219,7 @@ public class TileEntityMachineSeleniumEngine extends TileEntity implements ITick
 
 	protected boolean inputValidForTank(int tank, int slot){
 		if(this.tank != null){
-			if(isValidFluidForTank(tank, FluidUtil.getFluidContained(inventory.getStackInSlot(slot)))){
-				return true;
-			}
+            return isValidFluidForTank(tank, FluidUtil.getFluidContained(inventory.getStackInSlot(slot)));
 		}
 		return false;
 	}
@@ -246,12 +244,8 @@ public class TileEntityMachineSeleniumEngine extends TileEntity implements ITick
 
 	@Override
 	public boolean getTact() {
-		if (age >= 0 && age < 10) {
-			return true;
-		}
-
-		return false;
-	}
+        return age >= 0 && age < 10;
+    }
 
 	@Override
 	public long getSPower() {
@@ -301,8 +295,7 @@ public class TileEntityMachineSeleniumEngine extends TileEntity implements ITick
 	@Override
 	public void recievePacket(NBTTagCompound[] tags) {
 		if(tags.length != 1){
-			return;
-		} else {
+        } else {
 			tank.readFromNBT(tags[0]);
 		}
 	}

@@ -185,7 +185,7 @@ public class TileEntityMachineAssembler extends TileEntityMachineBase implements
 			tryExchangeTemplates(te, te2);
 
 			if(te != null && te instanceof ICapabilityProvider) {
-				ICapabilityProvider capte = (ICapabilityProvider) te;
+				ICapabilityProvider capte = te;
 				if(capte.hasCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, MultiblockHandler.intToEnumFacing(meta).rotateY())) {
 					IItemHandler cap = capte.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, MultiblockHandler.intToEnumFacing(meta).rotateY());
 					tryFillContainerCap(cap, 5);
@@ -193,7 +193,7 @@ public class TileEntityMachineAssembler extends TileEntityMachineBase implements
 			}
 
 			if(te2 != null && te2 instanceof ICapabilityProvider) {
-				ICapabilityProvider capte = (ICapabilityProvider) te2;
+				ICapabilityProvider capte = te2;
 				if(capte.hasCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, MultiblockHandler.intToEnumFacing(meta).rotateY())) {
 					IItemHandler cap = capte.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, MultiblockHandler.intToEnumFacing(meta).rotateY());
 					int[] slots;
@@ -308,10 +308,8 @@ public class TileEntityMachineAssembler extends TileEntityMachineBase implements
 	}
 
 	private boolean validateTe(TileEntity te) {
-		if(te != null && te.hasCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null) && te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null) instanceof IItemHandlerModifiable)
-			return true;
-		return false;
-	}
+        return te != null && te.hasCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null) && te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null) instanceof IItemHandlerModifiable;
+    }
 
 	//I can't believe that worked.
 	public ItemStackHandler cloneItemStackProper(IItemHandlerModifiable array) {
@@ -322,9 +320,8 @@ public class TileEntityMachineAssembler extends TileEntityMachineBase implements
 				stack.setStackInSlot(i, array.getStackInSlot(i).copy());
 			else
 				stack.setStackInSlot(i, ItemStack.EMPTY);
-		;
 
-		return stack;
+        return stack;
 	}
 
 	//Unloads output into chests
@@ -368,9 +365,8 @@ public class TileEntityMachineAssembler extends TileEntityMachineBase implements
 			if(inv.getStackInSlot(i) == null && sta2 != null) {
 				sta2.setCount(1);
 				inventory.getStackInSlot(slot).shrink(1);
-				;
 
-				if(inventory.getStackInSlot(slot).isEmpty())
+                if(inventory.getStackInSlot(slot).isEmpty())
 					inventory.setStackInSlot(slot, ItemStack.EMPTY);
 
 				inv.setInventorySlotContents(i, sta2);
@@ -423,9 +419,8 @@ public class TileEntityMachineAssembler extends TileEntityMachineBase implements
 			if(inv.getStackInSlot(i).getItem() == Items.AIR && sta2 != null) {
 				sta2.setCount(1);
 				inventory.getStackInSlot(slot).shrink(1);
-				;
 
-				if(inventory.getStackInSlot(slot).isEmpty())
+                if(inventory.getStackInSlot(slot).isEmpty())
 					inventory.setStackInSlot(slot, ItemStack.EMPTY);
 
 				inv.insertItem(i, sta2, false);

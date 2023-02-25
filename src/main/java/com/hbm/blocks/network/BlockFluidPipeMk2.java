@@ -144,7 +144,7 @@ public class BlockFluidPipeMk2 extends BlockContainer implements IToolable {
 	
 	@Override
 	protected BlockStateContainer createBlockState() {
-		return new BlockStateContainer(this, new IProperty[]{ EXTRACTS });
+		return new BlockStateContainer(this, EXTRACTS);
 	}
 	
 	@Override

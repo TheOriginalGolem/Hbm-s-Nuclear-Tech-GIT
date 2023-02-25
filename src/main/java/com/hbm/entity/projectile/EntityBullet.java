@@ -357,7 +357,7 @@ public class EntityBullet extends Entity implements IProjectile {
 			float f1;
 
 			for (i = 0; i < list.size(); ++i) {
-				Entity entity1 = (Entity) list.get(i);
+				Entity entity1 = list.get(i);
 				if(entity1 instanceof EntityBullet){
 					if(((EntityBullet)entity1).shootingEntity == this.shootingEntity){
 						continue;
@@ -464,7 +464,7 @@ public class EntityBullet extends Entity implements IProjectile {
 									} else if (entitylivingbase instanceof EntityLivingBase && !(entitylivingbase instanceof EntityNuclearCreeper) && !(entitylivingbase instanceof EntityMooshroom) && !(entitylivingbase instanceof EntityZombie)) {
 										entitylivingbase.addPotionEffect(new PotionEffect(MobEffects.POISON, 2 * 60 * 20, 2));
 										entitylivingbase.addPotionEffect(new PotionEffect(MobEffects.WITHER, 20, 4));
-										entitylivingbase.addPotionEffect(new PotionEffect(MobEffects.SLOWNESS, 1 * 60 * 20, 1));
+										entitylivingbase.addPotionEffect(new PotionEffect(MobEffects.SLOWNESS, 60 * 20, 1));
 									}
 								}
 
@@ -591,8 +591,7 @@ public class EntityBullet extends Entity implements IProjectile {
 			// this.prevRotationPitch < -180.0F; this.prevRotationPitch -=
 			// 360.0F)
 			{
-				;
-			}
+            }
 
 			/*
 			 * while (this.rotationPitch - this.prevRotationPitch >= 180.0F) {

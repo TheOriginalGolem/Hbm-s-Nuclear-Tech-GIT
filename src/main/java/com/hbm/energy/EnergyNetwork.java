@@ -50,7 +50,7 @@ public class EnergyNetwork implements IEnergyStorage{
 		
 		//Drillgon200: Extra hacky compensation
 		int intRoundingCompensation = maxReceive-part*storages.size();
-		rand.setSeed(((TileEntity)this.fillables.get(0)).getWorld().getWorldTime());
+		rand.setSeed(this.fillables.get(0).getWorld().getWorldTime());
 		int randomFillIndex = rand.nextInt(storages.size());
 		
 		for(int i = 0; i < storages.size(); i++){

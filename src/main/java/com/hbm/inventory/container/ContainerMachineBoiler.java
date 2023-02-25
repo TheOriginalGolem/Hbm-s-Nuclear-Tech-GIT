@@ -12,7 +12,7 @@ import net.minecraftforge.items.SlotItemHandler;
 
 public class ContainerMachineBoiler extends Container {
 
-private TileEntityMachineBoiler diFurnace;
+private final TileEntityMachineBoiler diFurnace;
 	
 	public ContainerMachineBoiler(InventoryPlayer invPlayer, TileEntityMachineBoiler tedf) {
 		
@@ -50,7 +50,7 @@ private TileEntityMachineBoiler diFurnace;
     public ItemStack transferStackInSlot(EntityPlayer p_82846_1_, int par2)
     {
 		ItemStack var3 = ItemStack.EMPTY;
-		Slot var4 = (Slot) this.inventorySlots.get(par2);
+		Slot var4 = this.inventorySlots.get(par2);
 		
 		if (var4 != null && var4.getHasStack())
 		{

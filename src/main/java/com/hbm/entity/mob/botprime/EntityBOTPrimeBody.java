@@ -16,7 +16,7 @@ public class EntityBOTPrimeBody extends EntityBOTPrimeBase {
 
 	public static final DataParameter<Boolean> SHIELD = EntityDataManager.createKey(EntityBOTPrimeBody.class, DataSerializers.BOOLEAN);
 	
-	private WormMovementBodyNT movement = new WormMovementBodyNT(this);
+	private final WormMovementBodyNT movement = new WormMovementBodyNT(this);
 
 	public EntityBOTPrimeBody(World world) {
 		super(world);

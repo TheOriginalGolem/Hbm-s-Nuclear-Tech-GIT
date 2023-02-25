@@ -185,7 +185,7 @@ public class ItemGunEgon extends ItemGunBase {
 	}
 	
 	public static float[] getBeamDirectionOffset(float time){
-		float sinval = MathHelper.sin(time*1.2F)+MathHelper.sin(time*0.8F-10)+MathHelper.sin(time*1.0F+10);
+		float sinval = MathHelper.sin(time*1.2F)+MathHelper.sin(time*0.8F-10)+MathHelper.sin(time +10);
 		sinval/=3;
 		float sinval2 = MathHelper.sin(time*0.6F)+MathHelper.sin(time*0.2F+20)+MathHelper.sin(time*0.1F+20);
 		sinval/=3;

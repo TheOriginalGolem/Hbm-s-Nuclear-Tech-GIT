@@ -214,7 +214,7 @@ public class ItemRBMKRod extends Item implements IItemHazard {
 		return ret;
 	}
 	
-	public static enum EnumBurnFunc {
+	public enum EnumBurnFunc {
 		PASSIVE(TextFormatting.DARK_GREEN + "SAFE / PASSIVE"),			//const, no reactivity
 		LOG_TEN(TextFormatting.YELLOW + "MEDIUM / LOGARITHMIC"),		//log10(x + 1) * reactivity * 50
 		PLATEU(TextFormatting.GREEN + "SAFE / EULER"),					//(1 - e^(-x/25)) * reactivity * 100
@@ -226,7 +226,7 @@ public class ItemRBMKRod extends Item implements IItemHazard {
 		
 		public String title = "";
 		
-		private EnumBurnFunc(String title) {
+		EnumBurnFunc(String title) {
 			this.title = title;
 		}
 	}

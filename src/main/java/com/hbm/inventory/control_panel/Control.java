@@ -43,11 +43,15 @@ public abstract class Control {
 		this.panel = panel;
 	}
 	
-	public void renderBatched(){};
-	public void render(){};
-	public List<String> getOutEvents(){return Collections.emptyList();};
-	public List<String> getInEvents(){return Arrays.asList("tick", "initialize");};
-	@SideOnly(Side.CLIENT)
+	public void renderBatched(){}
+
+    public void render(){}
+
+    public List<String> getOutEvents(){return Collections.emptyList();}
+
+    public List<String> getInEvents(){return Arrays.asList("tick", "initialize");}
+
+    @SideOnly(Side.CLIENT)
 	public abstract IModelCustom getModel();
 	@SideOnly(Side.CLIENT)
 	public abstract ResourceLocation getGuiTexture();

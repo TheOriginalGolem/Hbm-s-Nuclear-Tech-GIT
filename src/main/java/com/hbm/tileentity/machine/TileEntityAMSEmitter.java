@@ -251,7 +251,7 @@ public class TileEntityAMSEmitter extends TileEntity implements ITickable, ICons
 			PacketDispatcher.wrapper.sendToAllAround(new AuxElectricityPacket(pos, power), new TargetPoint(world.provider.getDimension(), pos.getX(), pos.getY(), pos.getZ(), 15));
 			PacketDispatcher.wrapper.sendToAllTracking(new AuxGaugePacket(pos, locked ? 1 : 0, 0), new TargetPoint(world.provider.getDimension(), pos.getX(), pos.getY(), pos.getZ(), 15));
 			PacketDispatcher.wrapper.sendToAllTracking(new AuxGaugePacket(pos, efficiency, 1), new TargetPoint(world.provider.getDimension(), pos.getX(), pos.getY(), pos.getZ(), 15));
-			PacketDispatcher.wrapper.sendToAllAround(new FluidTankPacket(pos, new FluidTank[]{tank}), new TargetPoint(world.provider.getDimension(), pos.getX(), pos.getY(), pos.getZ(), 15));
+			PacketDispatcher.wrapper.sendToAllAround(new FluidTankPacket(pos, tank), new TargetPoint(world.provider.getDimension(), pos.getX(), pos.getY(), pos.getZ(), 15));
 		}
 	}
 	
@@ -309,10 +309,8 @@ public class TileEntityAMSEmitter extends TileEntity implements ITickable, ICons
 	}
 	
 	public boolean isValidFluid(Fluid fluid){
-		if(fluid != null && (fluid == FluidRegistry.WATER || fluid == ModForgeFluids.coolant || fluid == ModForgeFluids.cryogel))
-			return true;
-		return false;
-	}
+        return fluid != null && (fluid == FluidRegistry.WATER || fluid == ModForgeFluids.coolant || fluid == ModForgeFluids.cryogel);
+    }
 
 	@Override
 	public IFluidTankProperties[] getTankProperties() {
@@ -343,8 +341,7 @@ public class TileEntityAMSEmitter extends TileEntity implements ITickable, ICons
 	@Override
 	public void recievePacket(NBTTagCompound[] tags) {
 		if(tags.length != 1){
-			return;
-		} else {
+        } else {
 			tank.readFromNBT(tags[0]);
 		}
 	}

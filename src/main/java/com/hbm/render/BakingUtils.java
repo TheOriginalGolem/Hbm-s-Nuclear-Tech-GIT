@@ -9,7 +9,7 @@ public class BakingUtils {
 
 	public void putVertex(TextureAtlasSprite sprite, int[] data, int offset, float x, float y, float z, float texU, float texV, int normal){
         // Position
-        data[offset + 0] = Float.floatToIntBits(x);
+        data[offset] = Float.floatToIntBits(x);
         data[offset + 1] = Float.floatToIntBits(y);
         data[offset + 2] = Float.floatToIntBits(z);
         // Color (set to all white)

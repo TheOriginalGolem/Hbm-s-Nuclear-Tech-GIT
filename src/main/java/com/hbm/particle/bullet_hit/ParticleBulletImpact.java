@@ -97,8 +97,7 @@ public class ParticleBulletImpact extends ParticleLayerBase {
 		this.particleAge ++;
 		if(particleAge >= particleMaxAge){
 			setExpired();
-			return;
-		}
+        }
 	}
 	
 	@Override

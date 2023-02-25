@@ -66,7 +66,7 @@ public class ItemModBathwater extends ItemArmorMod {
 			
 			if(event.getSource() instanceof EntityDamageSource) {
 				
-				Entity attacker = ((EntityDamageSource)event.getSource()).getImmediateSource();
+				Entity attacker = event.getSource().getImmediateSource();
 				
 				if(attacker instanceof EntityLivingBase) {
 					

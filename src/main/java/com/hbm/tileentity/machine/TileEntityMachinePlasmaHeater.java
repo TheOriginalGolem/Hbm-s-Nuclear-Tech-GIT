@@ -79,7 +79,7 @@ public class TileEntityMachinePlasmaHeater extends TileEntityMachineBase impleme
 				tanks[1].drain(convert, true);
 
 				plasma.fill(new FluidStack(plasmaType, convert*2), true);
-				power -= convert * powerReq;
+				power -= (long) convert * powerReq;
 				this.markDirty();
 			}
 			/// END Managing all the internal stuff ///
@@ -122,7 +122,7 @@ public class TileEntityMachinePlasmaHeater extends TileEntityMachineBase impleme
 			/// END Loading plasma into the ITER ///
 
 			/// START Notif packets ///
-			PacketDispatcher.wrapper.sendToAllAround(new FluidTankPacket(pos, new FluidTank[]{tanks[0], tanks[1], plasma}), new TargetPoint(world.provider.getDimension(), pos.getX(), pos.getY(), pos.getZ(), 20)); 
+			PacketDispatcher.wrapper.sendToAllAround(new FluidTankPacket(pos, tanks[0], tanks[1], plasma), new TargetPoint(world.provider.getDimension(), pos.getX(), pos.getY(), pos.getZ(), 20));
 			NBTTagCompound data = new NBTTagCompound();
 			data.setLong("power", power);
 			this.networkPack(data, 50);

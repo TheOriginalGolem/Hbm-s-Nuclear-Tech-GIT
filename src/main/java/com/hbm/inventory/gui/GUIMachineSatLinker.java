@@ -13,8 +13,8 @@ import net.minecraft.util.ResourceLocation;
 
 public class GUIMachineSatLinker extends GuiInfoContainer {
 	
-	private static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/gui_linker.png");
-	private TileEntityMachineSatLinker siren;
+	private static final ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/gui_linker.png");
+	private final TileEntityMachineSatLinker siren;
 
 	public GUIMachineSatLinker(InventoryPlayer invPlayer, TileEntityMachineSatLinker tedf) {
 		super(new ContainerMachineSatLinker(invPlayer, tedf));

@@ -22,8 +22,8 @@ import net.minecraft.util.ResourceLocation;
 
 public class GUISoyuzLauncher extends GuiInfoContainer {
 
-	private static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/gui_soyuz.png");
-	private TileEntitySoyuzLauncher launcher;
+	private static final ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/gui_soyuz.png");
+	private final TileEntitySoyuzLauncher launcher;
 	
 	public GUISoyuzLauncher(InventoryPlayer invPlayer, TileEntitySoyuzLauncher tedf) {
 		super(new ContainerSoyuzLauncher(invPlayer, tedf));

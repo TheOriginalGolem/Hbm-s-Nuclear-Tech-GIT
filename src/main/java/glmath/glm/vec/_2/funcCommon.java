@@ -304,8 +304,8 @@ abstract class funcCommon extends BooleanOperators {
     }
 
     public static Vec2 mod(Vec2 x, Vec2 y, Vec2 result) {
-        result.x = (float) (x.x - y.x * Glm.floor(x.x / y.x));
-        result.y = (float) (x.y - y.y * Glm.floor(x.y / y.y));
+        result.x = x.x - y.x * Glm.floor(x.x / y.x);
+        result.y = x.y - y.y * Glm.floor(x.y / y.y);
         return result;
     }
 

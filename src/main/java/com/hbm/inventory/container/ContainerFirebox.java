@@ -34,7 +34,7 @@ public class ContainerFirebox extends Container {
 	@Override
 	public ItemStack transferStackInSlot(EntityPlayer player, int index) {
 		ItemStack stack = ItemStack.EMPTY;
-		Slot slot = (Slot) this.inventorySlots.get(index);
+		Slot slot = this.inventorySlots.get(index);
 		ItemStack originalStack = slot.getStack();
 		
 		if(slot != null && slot.getHasStack() && originalStack != ItemStack.EMPTY) {

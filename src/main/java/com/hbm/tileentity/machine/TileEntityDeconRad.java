@@ -17,7 +17,7 @@ public class TileEntityDeconRad extends TileEntity implements ITickable {
 	private static float radRemove;
 	public TileEntityDeconRad(float rad) {
 		super();
-		this.radRemove = rad;
+		radRemove = rad;
 	}
 
 	@Override
@@ -28,8 +28,8 @@ public class TileEntityDeconRad extends TileEntity implements ITickable {
 			if(!entities.isEmpty()) {
 				for(Entity e : entities) {
 					if(e.hasCapability(EntityHbmPropsProvider.ENT_HBM_PROPS_CAP, null)){
-						if(this.radRemove > 0.0F){
-							e.getCapability(EntityHbmPropsProvider.ENT_HBM_PROPS_CAP, null).decreaseRads(this.radRemove);
+						if(radRemove > 0.0F){
+							e.getCapability(EntityHbmPropsProvider.ENT_HBM_PROPS_CAP, null).decreaseRads(radRemove);
 						}
 					}
 				}

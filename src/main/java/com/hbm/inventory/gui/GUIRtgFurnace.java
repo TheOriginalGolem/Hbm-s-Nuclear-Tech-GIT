@@ -14,8 +14,8 @@ import net.minecraft.util.ResourceLocation;
 
 public class GUIRtgFurnace extends GuiContainer {
 	
-	private static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/RTGfurnace.png");
-	private TileEntityRtgFurnace diFurnace;
+	private static final ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/RTGfurnace.png");
+	private final TileEntityRtgFurnace diFurnace;
 
 	public GUIRtgFurnace(InventoryPlayer invPlayer, TileEntityRtgFurnace tedf) {
 		super(new ContainerRtgFurnace(invPlayer, tedf));

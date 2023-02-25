@@ -27,10 +27,10 @@ import net.minecraftforge.event.entity.living.LivingHurtEvent;
 
 public class ItemModInsert extends ItemArmorMod implements IItemHazard {
 
-	private float damageMod;
-	private float projectileMod;
-	private float explosionMod;
-	private float speed;
+	private final float damageMod;
+	private final float projectileMod;
+	private final float explosionMod;
+	private final float speed;
 	
 	public ItemModInsert(int durability, float damageMod, float projectileMod, float explosionMod, float speed, String s){
 		super(ArmorModHandler.kevlar, false, true, false, false, s);

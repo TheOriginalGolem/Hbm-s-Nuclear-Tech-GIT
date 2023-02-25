@@ -78,7 +78,7 @@ public class DetCord extends Block implements IBomb {
 			tooltip.add(" §eRadius: "+BombConfig.missileRadius+"m§r");
 			if(!BombConfig.disableNuclear){
 				tooltip.add("§2[Fallout]§r");
-				tooltip.add(" §aRadius: "+(int)BombConfig.missileRadius*(1+BombConfig.falloutRange/100)+"m§r");
+				tooltip.add(" §aRadius: "+ BombConfig.missileRadius *(1+BombConfig.falloutRange/100)+"m§r");
 			}
 		}
 	}

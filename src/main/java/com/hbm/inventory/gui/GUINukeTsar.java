@@ -14,8 +14,8 @@ import net.minecraft.util.ResourceLocation;
 
 public class GUINukeTsar extends GuiInfoContainer {
 	
-	private static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/tsarBombaSchematic.png");
-	private TileEntityNukeTsar testNuke;
+	private static final ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/tsarBombaSchematic.png");
+	private final TileEntityNukeTsar testNuke;
 	
 	public GUINukeTsar(InventoryPlayer invPlayer, TileEntityNukeTsar tedf) {
 		super(new ContainerNukeTsar(invPlayer, tedf));
@@ -37,13 +37,13 @@ public class GUINukeTsar extends GuiInfoContainer {
 		super.drawScreen(mouseX, mouseY, partialTicks);
 		String[] info = null;
 		if(testNuke.isStage3Filled())
-			info = new String[] { "Nuke Radius: "+ (int)BombConfig.tsarRadius +"m"};
+			info = new String[] { "Nuke Radius: "+ BombConfig.tsarRadius +"m"};
 		else if(testNuke.isStage1Filled())
-			info = new String[] { "Nuke Radius: "+ (int)BombConfig.tsarRadius/2 + "m"};
+			info = new String[] { "Nuke Radius: "+ BombConfig.tsarRadius /2 + "m"};
 		else if(testNuke.isStage2Filled())
-			info = new String[] { "Nuke Radius: "+ (int)BombConfig.tsarRadius/3 + "m"};
+			info = new String[] { "Nuke Radius: "+ BombConfig.tsarRadius /3 + "m"};
 		else if(testNuke.isReady())
-			info = new String[] { "Nuke Radius: "+ (int)BombConfig.tsarRadius/5 + "m"};
+			info = new String[] { "Nuke Radius: "+ BombConfig.tsarRadius /5 + "m"};
 		if(info != null)
 			this.drawCustomInfoStat(mouseX, mouseY, guiLeft + 40, guiTop + 17, 176, 60, mouseX, mouseY, info);
 		super.renderHoveredToolTip(mouseX, mouseY);

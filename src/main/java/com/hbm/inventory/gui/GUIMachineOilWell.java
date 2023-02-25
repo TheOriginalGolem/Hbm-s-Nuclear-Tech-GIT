@@ -14,8 +14,8 @@ import net.minecraft.util.ResourceLocation;
 
 public class GUIMachineOilWell extends GuiInfoContainer {
 
-	private static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/gui_well_large.png");
-	private TileEntityMachineOilWell derrick;
+	private static final ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/gui_well_large.png");
+	private final TileEntityMachineOilWell derrick;
 	
 	public GUIMachineOilWell(InventoryPlayer invPlayer, TileEntityMachineOilWell tedf) {
 		super(new ContainerMachineOilWell(invPlayer, tedf));

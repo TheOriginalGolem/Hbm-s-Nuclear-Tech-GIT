@@ -11,9 +11,9 @@ import net.minecraft.world.World;
 public class ParticleContrailInstanced extends ParticleInstanced {
 
 	private int age = 0;
-	private int maxAge;
-	private float scale;
-	private float[] vals = new float[4*6];
+	private final int maxAge;
+	private final float scale;
+	private final float[] vals = new float[4*6];
 
 	
 	public ParticleContrailInstanced(World worldIn, double posXIn, double posYIn, double posZIn) {
@@ -60,8 +60,7 @@ public class ParticleContrailInstanced extends ParticleInstanced {
 
 		if (this.age == this.maxAge) {
 			this.setExpired();
-			;
-		}
+        }
 	}
 	
 	@Override

@@ -51,39 +51,39 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ItemToolAbility extends ItemTool implements IItemAbility, IDepthRockTool {
 
-	private EnumToolType toolType;
+	private final EnumToolType toolType;
 	private EnumRarity rarity = EnumRarity.COMMON;
 	//was there a reason for this to be private?
     protected float damage;
     protected double movement;
-    private List<ToolAbility> breakAbility = new ArrayList<ToolAbility>() {
+    private final List<ToolAbility> breakAbility = new ArrayList<ToolAbility>() {
 		private static final long serialVersionUID = 153867601249309418L;
 	{ add(null); }};
-    private List<WeaponAbility> hitAbility = new ArrayList<WeaponAbility>();
+    private final List<WeaponAbility> hitAbility = new ArrayList<WeaponAbility>();
 	
-	public static enum EnumToolType {
+	public enum EnumToolType {
 		
 		PICKAXE(
-				Sets.newHashSet(new Material[] { Material.IRON, Material.ANVIL, Material.ROCK }),
+				Sets.newHashSet(Material.IRON, Material.ANVIL, Material.ROCK),
 				Sets.newHashSet(Blocks.ACTIVATOR_RAIL, Blocks.COAL_ORE, Blocks.COBBLESTONE, Blocks.DETECTOR_RAIL, Blocks.DIAMOND_BLOCK, Blocks.DIAMOND_ORE, Blocks.DOUBLE_STONE_SLAB, Blocks.GOLDEN_RAIL, Blocks.GOLD_BLOCK, Blocks.GOLD_ORE, Blocks.ICE, Blocks.IRON_BLOCK, Blocks.IRON_ORE, Blocks.LAPIS_BLOCK, Blocks.LAPIS_ORE, Blocks.LIT_REDSTONE_ORE, Blocks.MOSSY_COBBLESTONE, Blocks.NETHERRACK, Blocks.PACKED_ICE, Blocks.RAIL, Blocks.REDSTONE_ORE, Blocks.SANDSTONE, Blocks.RED_SANDSTONE, Blocks.STONE, Blocks.STONE_SLAB, Blocks.STONE_BUTTON, Blocks.STONE_PRESSURE_PLATE)
 		),
 		AXE(
-				Sets.newHashSet(new Material[] { Material.WOOD, Material.PLANTS, Material.VINE }),
+				Sets.newHashSet(Material.WOOD, Material.PLANTS, Material.VINE),
 				Sets.newHashSet(Blocks.PLANKS, Blocks.BOOKSHELF, Blocks.LOG, Blocks.LOG2, Blocks.CHEST, Blocks.PUMPKIN, Blocks.LIT_PUMPKIN, Blocks.MELON_BLOCK, Blocks.LADDER, Blocks.WOODEN_BUTTON, Blocks.WOODEN_PRESSURE_PLATE)
 		),
 		SHOVEL(
-				Sets.newHashSet(new Material[] { Material.CLAY, Material.SAND, Material.GROUND, Material.SNOW, Material.CRAFTED_SNOW }),
+				Sets.newHashSet(Material.CLAY, Material.SAND, Material.GROUND, Material.SNOW, Material.CRAFTED_SNOW),
 				Sets.newHashSet(Blocks.CLAY, Blocks.DIRT, Blocks.FARMLAND, Blocks.GRASS, Blocks.GRAVEL, Blocks.MYCELIUM, Blocks.SAND, Blocks.SNOW, Blocks.SNOW_LAYER, Blocks.SOUL_SAND, Blocks.GRASS_PATH, Blocks.CONCRETE_POWDER)
 		),
 		MINER(
-				Sets.newHashSet(new Material[] { Material.GRASS, Material.IRON, Material.ANVIL, Material.ROCK, Material.CLAY, Material.SAND, Material.GROUND, Material.SNOW, Material.CRAFTED_SNOW })
+				Sets.newHashSet(Material.GRASS, Material.IRON, Material.ANVIL, Material.ROCK, Material.CLAY, Material.SAND, Material.GROUND, Material.SNOW, Material.CRAFTED_SNOW)
 		);
 		
-		private EnumToolType(Set<Material> materials) {
+		EnumToolType(Set<Material> materials) {
 			this.materials = materials;
 		}
 		
-		private EnumToolType(Set<Material> materials, Set<Block> blocks) {
+		EnumToolType(Set<Material> materials, Set<Block> blocks) {
 			this.materials = materials;
 			this.blocks = blocks;
 		}
@@ -177,10 +177,10 @@ public class ItemToolAbility extends ItemTool implements IItemAbility, IDepthRoc
 	
 	@Override
 	public Multimap<String, AttributeModifier> getItemAttributeModifiers(EntityEquipmentSlot slot) {
-		Multimap<String, AttributeModifier> map = HashMultimap.<String, AttributeModifier>create();
+		Multimap<String, AttributeModifier> map = HashMultimap.create();
 		if(slot == EntityEquipmentSlot.MAINHAND){
 			map.put(SharedMonsterAttributes.MOVEMENT_SPEED.getName(), new AttributeModifier(UUID.fromString("91AEAA56-376B-4498-935B-2F7F68070635"), "Tool modifier", movement, 1));
-			map.put(SharedMonsterAttributes.ATTACK_DAMAGE.getName(), new AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Tool modifier", (double)this.damage, 0));
+			map.put(SharedMonsterAttributes.ATTACK_DAMAGE.getName(), new AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Tool modifier", this.damage, 0));
 		}
         return map;
 	}
@@ -265,7 +265,7 @@ public class ItemToolAbility extends ItemTool implements IItemAbility, IDepthRoc
     @Override
     @SideOnly(Side.CLIENT)
     public boolean hasEffect(ItemStack stack) {
-    	return getCurrentAbility(stack) != null ? true : super.hasEffect(stack);
+    	return getCurrentAbility(stack) != null || super.hasEffect(stack);
     }
     
     @Override
@@ -335,7 +335,7 @@ public class ItemToolAbility extends ItemTool implements IItemAbility, IDepthRoc
 
     		player.sendMessage(
     				new TextComponentString("[Ability ")
-    				.appendSibling(new TextComponentTranslation(getCurrentAbility(stack).getName(), new Object[0]))
+    				.appendSibling(new TextComponentTranslation(getCurrentAbility(stack).getName()))
     				.appendSibling(new TextComponentString(getCurrentAbility(stack).getExtension() + " is blacklisted!]"))
     				.setStyle(new Style().setColor(TextFormatting.RED)));
 

@@ -39,7 +39,7 @@ public class ItemSwordAbility extends ItemSword implements IItemAbility {
 	//was there a reason for this to be private?
 	protected float damage;
 	protected double movement;
-	private List<WeaponAbility> hitAbility = new ArrayList<>();
+	private final List<WeaponAbility> hitAbility = new ArrayList<>();
 
 	public ItemSwordAbility(float damage, double movement, ToolMaterial material, String s) {
 		super(material);
@@ -86,10 +86,10 @@ public class ItemSwordAbility extends ItemSword implements IItemAbility {
 
 	@Override
 	public Multimap<String, AttributeModifier> getItemAttributeModifiers(EntityEquipmentSlot slot) {
-		Multimap<String, AttributeModifier> map = HashMultimap.<String, AttributeModifier> create();
+		Multimap<String, AttributeModifier> map = HashMultimap.create();
 		if(slot == EntityEquipmentSlot.MAINHAND) {
 			map.put(SharedMonsterAttributes.MOVEMENT_SPEED.getName(), new AttributeModifier(UUID.fromString("91AEAA56-376B-4498-935B-2F7F68070635"), "Tool modifier", movement, 1));
-			map.put(SharedMonsterAttributes.ATTACK_DAMAGE.getName(), new AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Tool modifier", (double) this.damage, 0));
+			map.put(SharedMonsterAttributes.ATTACK_DAMAGE.getName(), new AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Tool modifier", this.damage, 0));
 		}
 		return map;
 	}

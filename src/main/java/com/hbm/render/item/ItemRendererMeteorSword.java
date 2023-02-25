@@ -85,10 +85,10 @@ public class ItemRendererMeteorSword extends TEISRBase {
 	            
 	            for (EnumFacing enumfacing : EnumFacing.values())
 	            {
-	            	 Minecraft.getMinecraft().getRenderItem().renderQuads(bufferbuilder, itemModel.getQuads((IBlockState)null, enumfacing, 0L), color, stack);
+	            	 Minecraft.getMinecraft().getRenderItem().renderQuads(bufferbuilder, itemModel.getQuads(null, enumfacing, 0L), color, stack);
 	            }
 
-	            Minecraft.getMinecraft().getRenderItem().renderQuads(bufferbuilder, itemModel.getQuads((IBlockState)null, (EnumFacing)null, 0L), color, stack);
+	            Minecraft.getMinecraft().getRenderItem().renderQuads(bufferbuilder, itemModel.getQuads(null, null, 0L), color, stack);
 	            tessellator.draw();
 	            
 	            GL11.glPopMatrix();

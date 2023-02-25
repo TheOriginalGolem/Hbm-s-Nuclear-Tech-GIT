@@ -194,7 +194,7 @@ public class BlockMarker extends BlockContainer {
         }
         else
         {
-            EnumFacing enumfacing = (EnumFacing)state.getValue(FACING);
+            EnumFacing enumfacing = state.getValue(FACING);
             EnumFacing.Axis enumfacing$axis = enumfacing.getAxis();
             EnumFacing enumfacing1 = enumfacing.getOpposite();
             BlockPos blockpos = pos.offset(enumfacing1);
@@ -224,7 +224,7 @@ public class BlockMarker extends BlockContainer {
 
     protected boolean checkForDrop(World worldIn, BlockPos pos, IBlockState state)
     {
-        if (state.getBlock() == this && this.canPlaceAt(worldIn, pos, (EnumFacing)state.getValue(FACING)))
+        if (state.getBlock() == this && this.canPlaceAt(worldIn, pos, state.getValue(FACING)))
         {
             return true;
         }
@@ -270,7 +270,7 @@ public class BlockMarker extends BlockContainer {
     {
         int i = 0;
 
-        switch ((EnumFacing)state.getValue(FACING))
+        switch (state.getValue(FACING))
         {
             case EAST:
                 i = i | 1;
@@ -295,17 +295,17 @@ public class BlockMarker extends BlockContainer {
 
     public IBlockState withRotation(IBlockState state, Rotation rot)
     {
-        return state.withProperty(FACING, rot.rotate((EnumFacing)state.getValue(FACING)));
+        return state.withProperty(FACING, rot.rotate(state.getValue(FACING)));
     }
 
     public IBlockState withMirror(IBlockState state, Mirror mirrorIn)
     {
-        return state.withRotation(mirrorIn.toRotation((EnumFacing)state.getValue(FACING)));
+        return state.withRotation(mirrorIn.toRotation(state.getValue(FACING)));
     }
 
     protected BlockStateContainer createBlockState()
     {
-        return new BlockStateContainer(this, new IProperty[] {FACING});
+        return new BlockStateContainer(this, FACING);
     }
 
 

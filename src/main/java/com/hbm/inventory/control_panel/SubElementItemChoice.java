@@ -65,12 +65,10 @@ public class SubElementItemChoice extends SubElement {
 			currentPage = Math.min(numPages, currentPage + 1);
 			recalculateVisibleButtons();
 		} else {
-			switch(button.id){
-			case 1000:
-				gui.currentEditControl = ControlRegistry.getNew("button", gui.control.panel);
-				gui.pushElement(gui.linker);
-				break;
-			}
+            if (button.id == 1000) {
+                gui.currentEditControl = ControlRegistry.getNew("button", gui.control.panel);
+                gui.pushElement(gui.linker);
+            }
 		}
 	}
 	

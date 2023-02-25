@@ -54,23 +54,23 @@ public class RenderBeam2 extends Render<EntityLaserBeam> {
 				color = 0;
 			buf.pos(0 + o, 0 - o, 0).color(red ? 1 : color, green ? 1 : color, blue ? 1 : color, 1f).endVertex();
 			buf.pos(0 + o, 0 + o, 0).color(red ? 1 : color, green ? 1 : color, blue ? 1 : color, 1f).endVertex();
-			buf.pos(0 + o, 0 + o, 0 + distance).color(red ? 1 : color, green ? 1 : color, blue ? 1 : color, 1f).endVertex();
-			buf.pos(0 + o, 0 - o, 0 + distance).color(red ? 1 : color, green ? 1 : color, blue ? 1 : color, 1f).endVertex();
+			buf.pos(0 + o, 0 + o, distance).color(red ? 1 : color, green ? 1 : color, blue ? 1 : color, 1f).endVertex();
+			buf.pos(0 + o, 0 - o, distance).color(red ? 1 : color, green ? 1 : color, blue ? 1 : color, 1f).endVertex();
 			
 			buf.pos(0 - o, 0 - o, 0).color(red ? 1 : color, green ? 1 : color, blue ? 1 : color, 1f).endVertex();
 			buf.pos(0 + o, 0 - o, 0).color(red ? 1 : color, green ? 1 : color, blue ? 1 : color, 1f).endVertex();
-			buf.pos(0 + o, 0 - o, 0 + distance).color(red ? 1 : color, green ? 1 : color, blue ? 1 : color, 1f).endVertex();
-			buf.pos(0 - o, 0 - o, 0 + distance).color(red ? 1 : color, green ? 1 : color, blue ? 1 : color, 1f).endVertex();
+			buf.pos(0 + o, 0 - o, distance).color(red ? 1 : color, green ? 1 : color, blue ? 1 : color, 1f).endVertex();
+			buf.pos(0 - o, 0 - o, distance).color(red ? 1 : color, green ? 1 : color, blue ? 1 : color, 1f).endVertex();
 			
 			buf.pos(0 - o, 0 + o, 0).color(red ? 1 : color, green ? 1 : color, blue ? 1 : color, 1f).endVertex();
 			buf.pos(0 - o, 0 - o, 0).color(red ? 1 : color, green ? 1 : color, blue ? 1 : color, 1f).endVertex();
-			buf.pos(0 - o, 0 - o, 0 + distance).color(red ? 1 : color, green ? 1 : color, blue ? 1 : color, 1f).endVertex();
-			buf.pos(0 - o, 0 + o, 0 + distance).color(red ? 1 : color, green ? 1 : color, blue ? 1 : color, 1f).endVertex();
+			buf.pos(0 - o, 0 - o, distance).color(red ? 1 : color, green ? 1 : color, blue ? 1 : color, 1f).endVertex();
+			buf.pos(0 - o, 0 + o, distance).color(red ? 1 : color, green ? 1 : color, blue ? 1 : color, 1f).endVertex();
 			
 			buf.pos(0 + o, 0 + o, 0).color(red ? 1 : color, green ? 1 : color, blue ? 1 : color, 1f).endVertex();
 			buf.pos(0 - o, 0 + o, 0).color(red ? 1 : color, green ? 1 : color, blue ? 1 : color, 1f).endVertex();
-			buf.pos(0 - o, 0 + o, 0 + distance).color(red ? 1 : color, green ? 1 : color, blue ? 1 : color, 1f).endVertex();
-			buf.pos(0 + o, 0 + o, 0 + distance).color(red ? 1 : color, green ? 1 : color, blue ? 1 : color, 1f).endVertex();
+			buf.pos(0 - o, 0 + o, distance).color(red ? 1 : color, green ? 1 : color, blue ? 1 : color, 1f).endVertex();
+			buf.pos(0 + o, 0 + o, distance).color(red ? 1 : color, green ? 1 : color, blue ? 1 : color, 1f).endVertex();
 		}
 		tessellator.draw();
 		GlStateManager.disableBlend();

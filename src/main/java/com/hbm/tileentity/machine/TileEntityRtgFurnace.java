@@ -164,14 +164,9 @@ public class TileEntityRtgFurnace extends TileEntity implements ITickable {
 			}else{
 				dualCookTime = 0;
 			}
-			boolean trigger = true;
-			
-			if(hasPower() && canProcess() && this.dualCookTime == 0)
-			{
-				trigger = false;
-			}
-			
-			if(trigger)
+			boolean trigger = !hasPower() || !canProcess() || this.dualCookTime != 0;
+
+            if(trigger)
             {
                 flag1 = true;
                 MachineRtgFurnace.updateBlockState(this.dualCookTime > 0, this.world, pos);

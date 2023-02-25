@@ -13,8 +13,8 @@ import net.minecraft.util.ResourceLocation;
 
 public class GUIMachineRadGen extends GuiInfoContainer {
 	
-	private static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/gui_radgen.png");
-	private TileEntityMachineRadGen radgen;
+	private static final ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/gui_radgen.png");
+	private final TileEntityMachineRadGen radgen;
 
 	public GUIMachineRadGen(InventoryPlayer invPlayer, TileEntityMachineRadGen tedf) {
 		super(new ContainerMachineRadGen(invPlayer, tedf));

@@ -70,8 +70,7 @@ public class TileEntityMachineShredder extends TileEntityMachineBase implements 
 		if(slot >= 9 && slot <= 26)
 			return true;
 		if(slot >= 27 && slot <= 29){
-			if(itemStack.getItemDamage() == itemStack.getMaxDamage() && itemStack.getMaxDamage() > 0)
-				return true;
+            return itemStack.getItemDamage() == itemStack.getMaxDamage() && itemStack.getMaxDamage() > 0;
 		}
 		return false;
 	}
@@ -144,14 +143,9 @@ public class TileEntityMachineShredder extends TileEntityMachineBase implements 
 				progress = 0;
 			}
 			
-			boolean trigger = true;
-			
-			if(hasPower() && canProcess() && this.progress == 0)
-			{
-				trigger = false;
-			}
-			
-			if(trigger)
+			boolean trigger = !hasPower() || !canProcess() || this.progress != 0;
+
+            if(trigger)
             {
                 flag1 = true;
             }

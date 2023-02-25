@@ -85,7 +85,7 @@ public class MachineChemplant extends BlockContainer implements IMultiBlock {
 	
 	@Override
 	protected BlockStateContainer createBlockState() {
-		return new BlockStateContainer(this, new IProperty[] { FACING });
+		return new BlockStateContainer(this, FACING);
 	}
 	
 	@Override
@@ -278,7 +278,7 @@ public class MachineChemplant extends BlockContainer implements IMultiBlock {
 
             if (tileentity instanceof TileEntityMachineChemplant)
             {
-                InventoryHelper.dropInventoryItems(world, pos, (TileEntityMachineChemplant)tileentity);
+                InventoryHelper.dropInventoryItems(world, pos, tileentity);
                 
                 world.updateComparatorOutputLevel(pos, this);
             }

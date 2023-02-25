@@ -13,7 +13,7 @@ import net.minecraft.util.math.BlockPos;
 
 public class ContainerMachineTeleporter extends Container {
 	
-	private TileEntityMachineTeleporter diFurnace;
+	private final TileEntityMachineTeleporter diFurnace;
 	
 	BlockPos detectTarget = null;
 	EntityPlayerMP player;

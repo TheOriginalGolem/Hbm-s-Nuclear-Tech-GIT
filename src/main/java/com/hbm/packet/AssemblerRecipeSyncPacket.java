@@ -2,6 +2,7 @@ package com.hbm.packet;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -70,7 +71,7 @@ public class AssemblerRecipeSyncPacket implements IMessage {
 					int len = buf.readInt();
 					byte[] bytes = new byte[len];
 					buf.readBytes(bytes);
-					String name = new String(bytes, Charset.forName("ascii"));
+					String name = new String(bytes, StandardCharsets.US_ASCII);
 					inputs[j] = new OreDictStack(name, count);
 				} else if(type == 2){
 					int count = buf.readInt();
@@ -151,7 +152,7 @@ public class AssemblerRecipeSyncPacket implements IMessage {
 					OreDictStack oStack = (OreDictStack) stack;
 					buf.writeByte(1);
 					buf.writeInt(oStack.count());
-					byte[] bytes = oStack.name.getBytes(Charset.forName("ascii"));
+					byte[] bytes = oStack.name.getBytes(StandardCharsets.US_ASCII);
 					buf.writeInt(bytes.length);
 					buf.writeBytes(bytes);
 				} else if(stack instanceof ComparableStack){

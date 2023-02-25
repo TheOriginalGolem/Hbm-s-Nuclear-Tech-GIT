@@ -1,5 +1,6 @@
 package com.hbm.items.special;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -43,9 +44,7 @@ public class ItemCustomLore extends Item {
 
 			String[] locs = loc.split("\\$");
 
-			for(String s : locs) {
-				list.add(s);
-			}
+            Collections.addAll(list, locs);
 		}
 		if(this == ModItems.powder_asbestos)
 		{
@@ -316,7 +315,7 @@ public class ItemCustomLore extends Item {
 			list.add(" §eRadius: "+BombConfig.fatmanRadius+"m§r");
 			if(!BombConfig.disableNuclear){
 				list.add("§2[Fallout]§r");
-				list.add(" §aRadius: "+(int)BombConfig.fatmanRadius*(1+BombConfig.falloutRange/100)+"m§r");
+				list.add(" §aRadius: "+ BombConfig.fatmanRadius *(1+BombConfig.falloutRange/100)+"m§r");
 			}
 		}
 		if(this == ModItems.missile_nuclear)
@@ -325,7 +324,7 @@ public class ItemCustomLore extends Item {
 			list.add(" §eRadius: "+BombConfig.missileRadius+"m§r");
 			if(!BombConfig.disableNuclear){
 				list.add("§2[Fallout]§r");
-				list.add(" §aRadius: "+(int)BombConfig.missileRadius*(1+BombConfig.falloutRange/100)+"m§r");
+				list.add(" §aRadius: "+ BombConfig.missileRadius *(1+BombConfig.falloutRange/100)+"m§r");
 			}
 		}
 		if(this == ModItems.missile_nuclear_cluster)
@@ -334,7 +333,7 @@ public class ItemCustomLore extends Item {
 			list.add(" §eRadius: "+BombConfig.missileRadius*2+"m§r");
 			if(!BombConfig.disableNuclear){
 				list.add("§2[Fallout]§r");
-				list.add(" §aRadius: "+(int)BombConfig.missileRadius*2*(1+BombConfig.falloutRange/100)+"m§r");
+				list.add(" §aRadius: "+ BombConfig.missileRadius *2*(1+BombConfig.falloutRange/100)+"m§r");
 			}
 		}
 		if(this == ModItems.undefined && world != null) {

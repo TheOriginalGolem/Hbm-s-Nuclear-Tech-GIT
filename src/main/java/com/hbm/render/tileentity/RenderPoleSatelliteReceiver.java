@@ -13,7 +13,7 @@ public class RenderPoleSatelliteReceiver extends TileEntitySpecialRenderer<TileE
 
 	private static final ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":" + "textures/models/PoleSatelliteReceiver.png");
 	
-	private ModelSatelliteReceiver model;
+	private final ModelSatelliteReceiver model;
 	
 	public RenderPoleSatelliteReceiver() {
 		this.model = new ModelSatelliteReceiver();

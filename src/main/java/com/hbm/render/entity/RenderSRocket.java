@@ -16,7 +16,7 @@ public class RenderSRocket extends Render<EntityRocketHoming> {
 	public static final IRenderFactory<EntityRocketHoming> FACTORY = (RenderManager man) -> {return new RenderSRocket(man);};
 	
 	private static final ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/models/ModelSRocket.png");
-	private ModelSRocket missile;
+	private final ModelSRocket missile;
 	
 	protected RenderSRocket(RenderManager renderManager) {
 		super(renderManager);

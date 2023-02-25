@@ -59,11 +59,7 @@ public class ParticleSpark extends Particle {
 			setExpired();
 			return;
 		}
-		if(this.particleAge < 4){
-			this.canCollide = false;
-		} else {
-			this.canCollide = true;
-		}
+        this.canCollide = this.particleAge >= 4;
 		this.prevPosX = this.posX;
 		this.prevPosY = this.posY;
 		this.prevPosZ = this.posZ;
@@ -82,7 +78,7 @@ public class ParticleSpark extends Particle {
 
         if (this.canCollide)
         {
-            List<AxisAlignedBB> list = this.world.getCollisionBoxes((Entity)null, this.getBoundingBox().expand(x, y, z));
+            List<AxisAlignedBB> list = this.world.getCollisionBoxes(null, this.getBoundingBox().expand(x, y, z));
 
             for (AxisAlignedBB axisalignedbb : list)
             {

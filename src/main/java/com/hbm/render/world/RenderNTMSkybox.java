@@ -25,7 +25,7 @@ public class RenderNTMSkybox extends IRenderHandler { //why an abstract class us
 	 * We make out own renderer, grab any existing renderers that are already occupying the slot, doing what is effectively chainloading while adding our own garbage.
 	 * If somebody does the exact same thing as we do we might be screwed due to increasingly long recursive loops but we can fix that too, no worries.
 	 */
-	private IRenderHandler parent;
+	private final IRenderHandler parent;
 
 	private static final ResourceLocation digammaStar = new ResourceLocation("hbm:textures/misc/star_digamma.png");
 	private static final ResourceLocation bobmazonSat = new ResourceLocation("hbm:textures/misc/sat_bobmazon.png");
@@ -74,7 +74,7 @@ public class RenderNTMSkybox extends IRenderHandler { //why an abstract class us
 		FMLClientHandler.instance().getClient().renderEngine.bindTexture(digammaStar);
 		
 		float digamma = HbmLivingProps.getDigamma(Minecraft.getMinecraft().player);
-		float var12 = 1F * (1 + digamma * 0.25F);
+		float var12 = (1 + digamma * 0.25F);
 		double dist = 100D - digamma * 2.5;
 		
 		Tessellator tessellator = Tessellator.getInstance();

@@ -1,6 +1,7 @@
 package com.hbm.inventory;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import com.hbm.lib.Library;
@@ -74,7 +75,7 @@ public class RecipesCommon {
 		public boolean isApplicable(ComparableStack comp) {
 			
 			if(this instanceof ComparableStack) {
-				return ((ComparableStack)this).equals(comp);
+				return this.equals(comp);
 			}
 
 			if(this instanceof OreDictStack) {
@@ -176,7 +177,7 @@ public class RecipesCommon {
 		
 		@Override
 		public List<ItemStack> getStackList(){
-			return Arrays.asList(getStack());
+			return Collections.singletonList(getStack());
 		}
 		
 		public String[] getDictKeys() {
@@ -237,10 +238,8 @@ public class RecipesCommon {
 				return false;
 			if (meta != OreDictionary.WILDCARD_VALUE && other.meta != OreDictionary.WILDCARD_VALUE && meta != other.meta)
 				return false;
-			if (stacksize != other.stacksize)
-				return false;
-			return true;
-		}
+            return stacksize == other.stacksize;
+        }
 
 		@Override
 		public int compareTo(AStack stack) {
@@ -283,12 +282,9 @@ public class RecipesCommon {
 			
 			if(this.meta != OreDictionary.WILDCARD_VALUE && stack.getItemDamage() != this.meta)
 				return false;
-			
-			if(!ignoreSize && stack.getCount() < this.stacksize)
-				return false;
-			
-			return true;
-		}
+
+            return ignoreSize || stack.getCount() >= this.stacksize;
+        }
 		
 		@Override
 		public AStack copy() {

@@ -49,7 +49,7 @@ public class ItemColtanCompass extends Item {
                 else
                 {
                     boolean flag = entityIn != null;
-                    Entity entity = (Entity)(flag ? entityIn : stack.getItemFrame());
+                    Entity entity = flag ? entityIn : stack.getItemFrame();
 
                     if (worldIn == null)
                     {
@@ -96,7 +96,7 @@ public class ItemColtanCompass extends Item {
             @SideOnly(Side.CLIENT)
             private double getFrameRotation(EntityItemFrame p_185094_1_)
             {
-                return (double)MathHelper.wrapDegrees(180 + p_185094_1_.facingDirection.getHorizontalIndex() * 90);
+                return MathHelper.wrapDegrees(180 + p_185094_1_.facingDirection.getHorizontalIndex() * 90);
             }
             @SideOnly(Side.CLIENT)
             private double getColtToAngle(World p_185092_1_, Entity p_185092_2_)
@@ -104,9 +104,9 @@ public class ItemColtanCompass extends Item {
             	if(ItemColtanCompass.this.lease < System.currentTimeMillis()){
             		return Math.random() * Math.PI * 2.0D;
             	}
-            	double d4 = (double) ItemColtanCompass.this.lastX;
-				double d5 = (double) ItemColtanCompass.this.lastZ;
-                return Math.atan2((double)d5 - p_185092_2_.posZ, (double)d4 - p_185092_2_.posX);
+            	double d4 = ItemColtanCompass.this.lastX;
+				double d5 = ItemColtanCompass.this.lastZ;
+                return Math.atan2(d5 - p_185092_2_.posZ, d4 - p_185092_2_.posX);
             }
 			
 		});

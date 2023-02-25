@@ -264,7 +264,7 @@ public class TileEntityAMSBase extends TileEntity implements ITickable, ISource,
 							tanks[2].getFluidAmount() > 0 && tanks[3].getFluidAmount() > 0) {
 
 						power += (powerBase * powerMod * gauss(1, (heat - (maxHeat / 2)) / maxHeat)) / 1000 * getFuelPower(tanks[2].getFluid()) * getFuelPower(tanks[3].getFluid());
-						heat += (heatBase * heatMod) / (float)(this.field / 100F);
+						heat += (heatBase * heatMod) / (this.field / 100F);
 						tanks[2].drain((int)(fuelBase * fuelMod), true);
 						tanks[3].drain((int)(fuelBase * fuelMod), true);
 						
@@ -306,7 +306,7 @@ public class TileEntityAMSBase extends TileEntity implements ITickable, ISource,
 			PacketDispatcher.wrapper.sendToAllTracking(new AuxGaugePacket(pos, color, 1), new TargetPoint(world.provider.getDimension(), pos.getX(), pos.getY(), pos.getZ(), 15));
 			PacketDispatcher.wrapper.sendToAllTracking(new AuxGaugePacket(pos, efficiency, 2), new TargetPoint(world.provider.getDimension(), pos.getX(), pos.getY(), pos.getZ(), 15));
 			PacketDispatcher.wrapper.sendToAllTracking(new AuxGaugePacket(pos, field, 3), new TargetPoint(world.provider.getDimension(), pos.getX(), pos.getY(), pos.getZ(), 15));
-			PacketDispatcher.wrapper.sendToAllTracking(new FluidTankPacket(pos, new FluidTank[] {tanks[0], tanks[1], tanks[2], tanks[3]}), new TargetPoint(world.provider.getDimension(), pos.getX(), pos.getY(), pos.getZ(), 15));
+			PacketDispatcher.wrapper.sendToAllTracking(new FluidTankPacket(pos, tanks[0], tanks[1], tanks[2], tanks[3]), new TargetPoint(world.provider.getDimension(), pos.getX(), pos.getY(), pos.getZ(), 15));
 		}
 	}
 	
@@ -477,13 +477,8 @@ public class TileEntityAMSBase extends TileEntity implements ITickable, ISource,
 	
 	@Override
 	public boolean getTact() {
-		if(age >= 0 && age < 10)
-		{
-			return true;
-		}
-		
-		return false;
-	}
+        return age >= 0 && age < 10;
+    }
 
 	@Override
 	public long getSPower() {
@@ -557,8 +552,7 @@ public class TileEntityAMSBase extends TileEntity implements ITickable, ISource,
 	@Override
 	public void recievePacket(NBTTagCompound[] tags) {
 		if(tags.length != 4){
-			return;
-		} else {
+        } else {
 			tanks[0].readFromNBT(tags[0]);
 			tanks[1].readFromNBT(tags[1]);
 			tanks[2].readFromNBT(tags[2]);

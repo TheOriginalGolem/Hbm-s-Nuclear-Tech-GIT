@@ -15,8 +15,8 @@ import net.minecraft.util.ResourceLocation;
 
 public class GUIStorageDrum extends GuiInfoContainer {
 	
-	private static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/processing/gui_drum.png");
-	private TileEntityStorageDrum drum;
+	private static final ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/processing/gui_drum.png");
+	private final TileEntityStorageDrum drum;
 
 	public GUIStorageDrum(InventoryPlayer invPlayer, TileEntityStorageDrum tedf) {
 		super(new ContainerStorageDrum(invPlayer, tedf));

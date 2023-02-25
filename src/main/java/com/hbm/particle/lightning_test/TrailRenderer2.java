@@ -98,7 +98,7 @@ public class TrailRenderer2 {
 			if(!fadeEnd2)
 				bruh = 1;
 			cross = tangent.crossProduct(playerPos.subtract(last)).normalize().scale(scale*Math.max(bruh, 0.1));
-			float uMiddle = (float)(i-0.5F)/(float)(points.size()-1);
+			float uMiddle = (i-0.5F) /(float)(points.size()-1);
 			if(c != null){
 				color = c.color(uMiddle);
 			}
@@ -116,11 +116,11 @@ public class TrailRenderer2 {
 		
 		for(int i = 0; i < points.size()-1; i ++){
 			int offset = i*3;
-			aux_buf.putInt(0+offset);
+			aux_buf.putInt(offset);
 			aux_buf.putInt(2+offset);
 			aux_buf.putInt(1+offset);
 			
-			aux_buf.putInt(0+offset);
+			aux_buf.putInt(offset);
 			aux_buf.putInt(3+offset);
 			aux_buf.putInt(2+offset);
 			
@@ -165,7 +165,7 @@ public class TrailRenderer2 {
 		aux_buf.put((byte)(color[3]*255));
 	}
 	
-	public static interface IColorGetter {
-		public float[] color(float position);
+	public interface IColorGetter {
+		float[] color(float position);
 	}
 }

@@ -92,7 +92,7 @@ public class RenderLaunchTable extends TileEntitySpecialRenderer<TileEntityLaunc
 				emptyM.renderAll();
 			} else {
 				
-				if(launcher.load != null && launcher.load.fuselage != null && ((ItemMissile)launcher.load.fuselage).top == launcher.padSize) {
+				if(launcher.load != null && launcher.load.fuselage != null && launcher.load.fuselage.top == launcher.padSize) {
 					bindTexture(connector);
 					connectorM.renderAll();
 				} else {

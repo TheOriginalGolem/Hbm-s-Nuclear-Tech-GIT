@@ -118,7 +118,7 @@ public class HbmPotion extends Potion {
 			} 
 		}
 		if(this == radiation) {
-			ContaminationUtil.contaminate(entity, HazardType.RADIATION, ContaminationType.CREATIVE, (float)(level + 1F) * 0.05F);
+			ContaminationUtil.contaminate(entity, HazardType.RADIATION, ContaminationType.CREATIVE, (level + 1F) * 0.05F);
 		}
 		if(this == radaway) {
 			if(entity.hasCapability(HbmLivingCapability.EntityHbmPropsProvider.ENT_HBM_PROPS_CAP, null))
@@ -173,7 +173,7 @@ public class HbmPotion extends Potion {
 		if(this == lead) {
 
 			int k = 60;
-	        return k > 0 ? par1 % k == 0 : true;
+	        return k <= 0 || par1 % k == 0;
 		}
 		
 		return false;

@@ -72,7 +72,7 @@ public class BlockMachineBase extends BlockContainer {
 	@Override
 	protected BlockStateContainer createBlockState() {
 		if(rotatable()){
-			return new BlockStateContainer(this, new IProperty[]{BlockHorizontal.FACING});
+			return new BlockStateContainer(this, BlockHorizontal.FACING);
 		}
 		return super.createBlockState();
 	}
@@ -81,7 +81,7 @@ public class BlockMachineBase extends BlockContainer {
 	public int getMetaFromState(IBlockState state) {
 		if(!rotatable())
 			return 0;
-		return ((EnumFacing)state.getValue(BlockHorizontal.FACING)).getIndex();
+		return state.getValue(BlockHorizontal.FACING).getIndex();
 	}
 	
 	@Override

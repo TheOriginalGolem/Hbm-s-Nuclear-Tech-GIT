@@ -63,7 +63,7 @@ public class BlockClorine extends Block {
 			((EntityLivingBase) entity)
 					.addPotionEffect(new PotionEffect(MobEffects.POISON, 20 * 20, 2));
 			((EntityLivingBase) entity)
-					.addPotionEffect(new PotionEffect(MobEffects.WITHER, 1 * 20, 1));
+					.addPotionEffect(new PotionEffect(MobEffects.WITHER, 20, 1));
 			((EntityLivingBase) entity)
 					.addPotionEffect(new PotionEffect(MobEffects.SLOWNESS, 30 * 20, 1));
 			((EntityLivingBase) entity)

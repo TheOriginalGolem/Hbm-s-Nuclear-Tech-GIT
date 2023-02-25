@@ -269,7 +269,7 @@ public class RenderSmallNukeMK4 extends Render<EntityNukeCloudSmall> {
     	
     	double height = Math.max(20 - 1000 / (cloud.age + interp - 13), 0);
     	boolean balefire = cloud.getDataManager().get(EntityNukeCloudSmall.TYPE) == 1;
-    	float percentageAge = maxage > 0 ? (float)(cloud.age+interp)/maxage : 0F;
+    	float percentageAge = maxage > 0 ? (cloud.age+interp) /maxage : 0F;
     	double raise_speed = 0.014F * Math.pow(0.02, percentageAge) + 0.005F;
 
 
@@ -403,7 +403,7 @@ public class RenderSmallNukeMK4 extends Render<EntityNukeCloudSmall> {
             buf.pos(0, 0, 0).color(1.0F, 1.0F, 1.0F, (float) inverse).endVertex();
             buf.pos(-0.866D * vert2, vert1, -0.5F * vert2).color(1.0F, 1.0F, 1.0F, 0.0F).endVertex();
             buf.pos(0.866D * vert2, vert1, -0.5F * vert2).color(1.0F, 1.0F, 1.0F, 0.0F).endVertex();
-            buf.pos(0.0D, vert1, 1.0F * vert2).color(1.0F, 1.0F, 1.0F, 0.0F).endVertex();
+            buf.pos(0.0D, vert1, vert2).color(1.0F, 1.0F, 1.0F, 0.0F).endVertex();
             buf.pos(-0.866D * vert2, vert1, -0.5F * vert2).color(1.0F, 1.0F, 1.0F, 0.0F).endVertex();
             tessellator.draw();
         }
@@ -520,10 +520,10 @@ public class RenderSmallNukeMK4 extends Render<EntityNukeCloudSmall> {
         }
         a = MathHelper.clamp(a, 0, 1);
 
-		buf.pos((double)(posX - f1 * scale - f3 * scale), (double)(posY - f5 * scale), (double)(posZ - f2 * scale - f4 * scale)).tex(1, 1).color(r, g, b, a).endVertex();
-		buf.pos((double)(posX - f1 * scale + f3 * scale), (double)(posY + f5 * scale), (double)(posZ - f2 * scale + f4 * scale)).tex(1, 0).color(r, g, b, a).endVertex();
-		buf.pos((double)(posX + f1 * scale + f3 * scale), (double)(posY + f5 * scale), (double)(posZ + f2 * scale + f4 * scale)).tex(0, 0).color(r, g, b, a).endVertex();
-		buf.pos((double)(posX + f1 * scale - f3 * scale), (double)(posY - f5 * scale), (double)(posZ + f2 * scale - f4 * scale)).tex(0, 1).color(r, g, b, a).endVertex();
+		buf.pos(posX - f1 * scale - f3 * scale, posY - f5 * scale, posZ - f2 * scale - f4 * scale).tex(1, 1).color(r, g, b, a).endVertex();
+		buf.pos(posX - f1 * scale + f3 * scale, posY + f5 * scale, posZ - f2 * scale + f4 * scale).tex(1, 0).color(r, g, b, a).endVertex();
+		buf.pos(posX + f1 * scale + f3 * scale, posY + f5 * scale, posZ + f2 * scale + f4 * scale).tex(0, 0).color(r, g, b, a).endVertex();
+		buf.pos(posX + f1 * scale - f3 * scale, posY - f5 * scale, posZ + f2 * scale - f4 * scale).tex(0, 1).color(r, g, b, a).endVertex();
 	}
 	
 }

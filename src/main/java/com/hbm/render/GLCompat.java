@@ -707,22 +707,22 @@ public class GLCompat {
 		return "";
 	}
 	
-	public static enum VAOType {
+	public enum VAOType {
 		NORMAL,
 		ARB,
-		APPLE;
-	}
+		APPLE
+    }
 	
-	public static enum FBOType {
+	public enum FBOType {
 		NORMAL,
 		ARB,
-		EXT;
-	}
+		EXT
+    }
 	
-	public static enum InstancingType {
+	public enum InstancingType {
 		NORMAL,
 		ARB,
-		EXT;
-	}
+		EXT
+    }
 
 }

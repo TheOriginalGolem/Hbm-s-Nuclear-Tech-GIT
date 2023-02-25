@@ -15,7 +15,7 @@ import net.minecraft.util.ResourceLocation;
 public class GUIMachineBoilerRTG extends GuiInfoContainer {
 
 	public static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/gui_boiler_rtg.png");
-	private TileEntityMachineBoilerRTG rtgBoiler;
+	private final TileEntityMachineBoilerRTG rtgBoiler;
 	
 	public GUIMachineBoilerRTG(InventoryPlayer invPlayer, TileEntityMachineBoilerRTG tedf) {
 		super(new ContainerMachineBoilerRTG(invPlayer, tedf));
@@ -36,7 +36,7 @@ public class GUIMachineBoilerRTG extends GuiInfoContainer {
 		FFUtils.renderTankInfo(this, mouseX, mouseY, guiLeft + 44, guiTop + 69 - 52, 16, 52, dud.tanks[0]);
 		FFUtils.renderTankInfo(this, mouseX, mouseY, guiLeft + 116, guiTop + 69 - 52, 16, 52, dud.tanks[1]);
 
-		this.drawCustomInfoStat(mouseX, mouseY, guiLeft + 84, guiTop + 16, 8, 18, mouseX, mouseY, new String[] { String.valueOf((int)((double)dud.heat / 100D)) + "°C"});
+		this.drawCustomInfoStat(mouseX, mouseY, guiLeft + 84, guiTop + 16, 8, 18, mouseX, mouseY, new String[] {(int) ((double) dud.heat / 100D) + "°C"});
 		this.drawCustomInfoStat(mouseX, mouseY, guiLeft + 79, guiTop + 34, 18, 18, mouseX, mouseY, new String[] { "RTG Heat: "+dud.rtgPower });
 
 		
@@ -79,7 +79,7 @@ public class GUIMachineBoilerRTG extends GuiInfoContainer {
 		if(dud.rtgPower > 0)
 			drawTexturedModalRect(guiLeft + 79, guiTop + 35, 176, 0, 18, 18);
 
-		int j = (int)dud.getHeatScaled(17);
+		int j = dud.getHeatScaled(17);
 		drawTexturedModalRect(guiLeft + 85, guiTop + 33 - j, 194, 16 - j, 6, j);
 
 		this.drawInfoPanel(guiLeft - 16, guiTop + 36, 16, 16, 2);

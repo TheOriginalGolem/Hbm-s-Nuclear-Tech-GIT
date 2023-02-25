@@ -151,7 +151,7 @@ public class TileEntityMachineGasFlare extends TileEntity implements ITickable, 
 			power = Library.chargeItemsFromTE(inventory, 0, power, maxPower);
 
 			PacketDispatcher.wrapper.sendToAllAround(new AuxElectricityPacket(pos, power), new TargetPoint(world.provider.getDimension(), pos.getX(), pos.getY(), pos.getZ(), 15));
-			PacketDispatcher.wrapper.sendToAllAround(new FluidTankPacket(pos, new FluidTank[] {tank}), new TargetPoint(world.provider.getDimension(), pos.getX(), pos.getY(), pos.getZ(), 15));
+			PacketDispatcher.wrapper.sendToAllAround(new FluidTankPacket(pos, tank), new TargetPoint(world.provider.getDimension(), pos.getX(), pos.getY(), pos.getZ(), 15));
 			if(prevPower != power || prevAmount != tank.getFluidAmount()){
 				markDirty();
 			}
@@ -160,9 +160,7 @@ public class TileEntityMachineGasFlare extends TileEntity implements ITickable, 
 	
 	protected boolean inputValidForTank(int tank, int slot){
 		if(!inventory.getStackInSlot(slot).isEmpty()){
-			if(isValidFluid(FluidUtil.getFluidContained(inventory.getStackInSlot(slot)))){
-				return true;	
-			}
+            return isValidFluid(FluidUtil.getFluidContained(inventory.getStackInSlot(slot)));
 		}
 		return false;
 	}
@@ -187,12 +185,8 @@ public class TileEntityMachineGasFlare extends TileEntity implements ITickable, 
 
 	@Override
 	public boolean getTact() {
-		if (age >= 0 && age < 10) {
-			return true;
-		}
-
-		return false;
-	}
+        return age >= 0 && age < 10;
+    }
 
 	@Override
 	public void clearList() {
@@ -254,8 +248,7 @@ public class TileEntityMachineGasFlare extends TileEntity implements ITickable, 
 	@Override
 	public void recievePacket(NBTTagCompound[] tags) {
 		if(tags.length != 1) {
-			return;
-		} else {
+        } else {
 			tank.readFromNBT(tags[0]);
 		}
 	}

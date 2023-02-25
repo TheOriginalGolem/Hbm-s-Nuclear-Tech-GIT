@@ -13,7 +13,7 @@ public class RenderTestRender extends TileEntitySpecialRenderer<TileEntityTestRe
 
 	private static final ResourceLocation texture = new ResourceLocation(RefStrings.MODID, "textures/models/modeltestrender.png");
 	
-	private ModelTestRender model;
+	private final ModelTestRender model;
 	
 	public RenderTestRender(){
 		this.model = new ModelTestRender();

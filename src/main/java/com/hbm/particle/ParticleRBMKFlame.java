@@ -87,10 +87,10 @@ public class ParticleRBMKFlame extends Particle {
 		GL11.glTranslatef(pX + rotationX, pY + rotationZ, pZ + rotationYZ);
 		GL11.glRotatef(-Minecraft.getMinecraft().getRenderManager().playerViewY, 0.0F, 1.0F, 0.0F);
 
-		buf.pos((double) (-this.particleScale - 1), (double) (-this.particleScale * 2), (double) (0)).tex(uMax, vMax).endVertex();
-		buf.pos((double) (-this.particleScale - 1), (double) (this.particleScale * 2), (double) 0).tex(uMax, vMin).endVertex();
-		buf.pos((double) (this.particleScale - 1), (double) (this.particleScale * 2), (double) (0)).tex(uMin, vMin).endVertex();
-		buf.pos((double) (this.particleScale - 1), (double) (-this.particleScale * 2), (double) (0)).tex(uMin, vMax).endVertex();
+		buf.pos(-this.particleScale - 1, -this.particleScale * 2, 0).tex(uMax, vMax).endVertex();
+		buf.pos(-this.particleScale - 1, this.particleScale * 2, 0).tex(uMax, vMin).endVertex();
+		buf.pos(this.particleScale - 1, this.particleScale * 2, 0).tex(uMin, vMin).endVertex();
+		buf.pos(this.particleScale - 1, -this.particleScale * 2, 0).tex(uMin, vMax).endVertex();
 		
 		tes.draw();
 		

@@ -70,8 +70,7 @@ public class BlockTaint extends Block {
 
 	private static boolean checkAttachment(World world, BlockPos pos){
 		if(!world.isAirBlock(pos)){
-    		if(world.getBlockState(pos).getBlock() != ModBlocks.taint)
-    			return true;
+            return world.getBlockState(pos).getBlock() != ModBlocks.taint;
     	}
     	return false;
     }

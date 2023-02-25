@@ -14,8 +14,8 @@ import net.minecraft.util.ResourceLocation;
 
 public class GUIRBMKOutgasser extends GuiInfoContainer {
 	
-	private static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/reactors/gui_rbmk_outgasser.png");
-	private TileEntityRBMKOutgasser rod;
+	private static final ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/reactors/gui_rbmk_outgasser.png");
+	private final TileEntityRBMKOutgasser rod;
 
 	public GUIRBMKOutgasser(InventoryPlayer invPlayer, TileEntityRBMKOutgasser tedf) {
 		super(new ContainerRBMKOutgasser(invPlayer, tedf));
@@ -69,7 +69,7 @@ public class GUIRBMKOutgasser extends GuiInfoContainer {
 		int progress = (int) (rod.progress * 45 / rod.duration);
 		drawTexturedModalRect(guiLeft + 66, guiTop + 58, 190, 0, progress, 6);
 		
-		int gas = (int) (rod.gas.getFluidAmount() * 58 / rod.gas.getCapacity());
+		int gas = rod.gas.getFluidAmount() * 58 / rod.gas.getCapacity();
 		drawTexturedModalRect(guiLeft + 143, guiTop + 82 - gas, 176, 58 - gas, 14, gas);
 	}
 }

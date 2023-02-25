@@ -238,17 +238,17 @@ public class BlockSeal extends Block implements IBomb {
 	
 	@Override
 	protected BlockStateContainer createBlockState() {
-		return new BlockStateContainer(this, new IProperty[]{FACING, ACTIVATED});
+		return new BlockStateContainer(this, FACING, ACTIVATED);
 	}
 	
 	@Override
 	public int getMetaFromState(IBlockState state) {
-		return (((EnumFacing)state.getValue(FACING)).getIndex() << 1) + (state.getValue(ACTIVATED) == true ? 1 : 0);
+		return (state.getValue(FACING).getIndex() << 1) + (state.getValue(ACTIVATED) ? 1 : 0);
 	}
 	
 	@Override
 	public IBlockState getStateFromMeta(int meta) {
-		boolean activated = (meta & 1) == 1 ? true : false;
+		boolean activated = (meta & 1) == 1;
 		meta = meta >> 1;
 		EnumFacing enumfacing = EnumFacing.getFront(meta);
 
@@ -264,13 +264,13 @@ public class BlockSeal extends Block implements IBomb {
 	
 	@Override
 	public IBlockState withRotation(IBlockState state, Rotation rot) {
-		return state.withProperty(FACING, rot.rotate((EnumFacing)state.getValue(FACING)));
+		return state.withProperty(FACING, rot.rotate(state.getValue(FACING)));
 	}
 	
 	@Override
 	public IBlockState withMirror(IBlockState state, Mirror mirrorIn)
 	{
-	   return state.withRotation(mirrorIn.toRotation((EnumFacing)state.getValue(FACING)));
+	   return state.withRotation(mirrorIn.toRotation(state.getValue(FACING)));
 	}
 
 }

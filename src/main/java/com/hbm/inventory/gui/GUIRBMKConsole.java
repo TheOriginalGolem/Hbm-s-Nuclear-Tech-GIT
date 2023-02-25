@@ -32,8 +32,8 @@ import net.minecraftforge.fluids.FluidRegistry;
 
 public class GUIRBMKConsole extends GuiScreen {
 	
-	private static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/reactors/gui_rbmk_console.png");
-	private TileEntityRBMKConsole console;
+	private static final ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/reactors/gui_rbmk_console.png");
+	private final TileEntityRBMKConsole console;
 	protected int guiLeft;
 	protected int guiTop;
 	protected int xSize;

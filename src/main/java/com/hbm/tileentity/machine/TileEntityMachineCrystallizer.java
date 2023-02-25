@@ -94,7 +94,7 @@ public class TileEntityMachineCrystallizer extends TileEntityMachineBase impleme
 				}
 			}
 
-			PacketDispatcher.wrapper.sendToAllAround(new FluidTankPacket(pos, new FluidTank[]{tank}), new TargetPoint(world.provider.getDimension(), pos.getX(), pos.getY(), pos.getZ(), 10));
+			PacketDispatcher.wrapper.sendToAllAround(new FluidTankPacket(pos, tank), new TargetPoint(world.provider.getDimension(), pos.getX(), pos.getY(), pos.getZ(), 10));
 
 			NBTTagCompound data = new NBTTagCompound();
 			data.setShort("progress", progress);
@@ -162,11 +162,8 @@ public class TileEntityMachineCrystallizer extends TileEntityMachineBase impleme
 		if(!inventory.getStackInSlot(2).isEmpty() && (inventory.getStackInSlot(2).getItem() != result.getItem() || inventory.getStackInSlot(2).getItemDamage() != result.getItemDamage()))
 			return false;
 		//Or is the output slot already full?
-		if(inventory.getStackInSlot(2).getCount() >= inventory.getStackInSlot(2).getMaxStackSize())
-			return false;
-
-		return true;
-	}
+        return inventory.getStackInSlot(2).getCount() < inventory.getStackInSlot(2).getMaxStackSize();
+    }
 
 	public int getRequiredAcid() {
 
@@ -233,7 +230,7 @@ public class TileEntityMachineCrystallizer extends TileEntityMachineBase impleme
 				consumption += 3000;
 		}
 
-		return (int) (demand + Math.min(consumption, 3000));
+		return demand + Math.min(consumption, 3000);
 	}
 
 	public float getCycleCount() {

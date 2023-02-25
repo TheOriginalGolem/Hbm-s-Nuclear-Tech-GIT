@@ -15,7 +15,7 @@ import net.minecraft.util.ResourceLocation;
 public class GUIMachineGenerator extends GuiInfoContainer {
 
 	private static final ResourceLocation TEXTURE = new ResourceLocation(RefStrings.MODID + ":textures/gui/gui_generator.png");
-	private TileEntityMachineGenerator diFurnace;
+	private final TileEntityMachineGenerator diFurnace;
 	
 	public GUIMachineGenerator(EntityPlayer invPlayer, TileEntityMachineGenerator tedf) {
 		super(new ContainerMachineGenerator(invPlayer, tedf));

@@ -22,8 +22,8 @@ import net.minecraft.util.ResourceLocation;
 
 public class GUIMachineRadar extends GuiInfoContainer {
 	
-	private static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/gui_radar.png");
-	private TileEntityMachineRadar diFurnace;
+	private static final ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/gui_radar.png");
+	private final TileEntityMachineRadar diFurnace;
 
 	public GUIMachineRadar(InventoryPlayer invPlayer, TileEntityMachineRadar tedf) {
 		super(new ContainerMachineRadar(invPlayer, tedf));

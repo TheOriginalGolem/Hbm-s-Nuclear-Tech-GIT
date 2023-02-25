@@ -11,7 +11,7 @@ import net.minecraftforge.items.SlotItemHandler;
 
 public class ContainerMachineSiren extends Container {
 	
-	private TileEntityMachineSiren diFurnace;
+	private final TileEntityMachineSiren diFurnace;
 	
 	public ContainerMachineSiren(InventoryPlayer invPlayer, TileEntityMachineSiren tedf) {
 		
@@ -37,7 +37,7 @@ public class ContainerMachineSiren extends Container {
     public ItemStack transferStackInSlot(EntityPlayer p_82846_1_, int par2)
     {
 		ItemStack var3 = ItemStack.EMPTY;
-		Slot var4 = (Slot) this.inventorySlots.get(par2);
+		Slot var4 = this.inventorySlots.get(par2);
 		
 		if (var4 != null && var4.getHasStack())
 		{

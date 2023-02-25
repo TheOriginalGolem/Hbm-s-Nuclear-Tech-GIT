@@ -35,7 +35,7 @@ public class RenderTaintCrab extends RenderLiving<EntityTaintCrab> {
 		double sy = entity.posY + 1.25;
 		double sz = entity.posZ;
 
-		for(double[] target : ((EntityTaintCrab) entity).targets) {
+		for(double[] target : entity.targets) {
 
 			double length = Math.sqrt(Math.pow(target[0] - sx, 2) + Math.pow(target[1] - sy, 2) + Math.pow(target[2] - sz, 2));
 

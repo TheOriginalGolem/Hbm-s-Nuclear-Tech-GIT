@@ -171,12 +171,9 @@ public class TileEntityCore extends TileEntityMachineBase implements ITickable {
 		
 		if(tanks[0].getFluid() == null || tanks[1].getFluid() == null)
 			return false;
-		
-		if(getFuelEfficiency(tanks[0].getFluid().getFluid()) <= 0 || getFuelEfficiency(tanks[1].getFluid().getFluid()) <= 0)
-			return false;
-		
-		return true;
-	}
+
+        return !(getFuelEfficiency(tanks[0].getFluid().getFluid()) <= 0) && !(getFuelEfficiency(tanks[1].getFluid().getFluid()) <= 0);
+    }
 	
 	//100 emitter watt = 10000 joules = 1 heat = 10mB burned
 	public long burn(long joules) {

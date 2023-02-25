@@ -51,7 +51,7 @@ public class RenderRadGen extends TileEntitySpecialRenderer<TileEntityMachineRad
         GL11.glPushMatrix();
 	        if(te.fuel > 0){
 	        	GL11.glTranslated(0D, 1.5D, 0D);
-				GL11.glRotatef((System.currentTimeMillis() * te.strength/te.maxStrength) % 360, 1F, 0F, 0F);
+				GL11.glRotatef((System.currentTimeMillis() * te.strength/ TileEntityMachineRadGen.maxStrength) % 360, 1F, 0F, 0F);
 				GL11.glTranslated(0D, -1.5D, 0D);
 			}
 	        ResourceManager.radgen_body.renderPart("Rotor");

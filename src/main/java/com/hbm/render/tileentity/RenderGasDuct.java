@@ -25,7 +25,7 @@ public class RenderGasDuct extends TileEntitySpecialRenderer<TileEntityFFGasDuct
 		GlStateManager.disableLighting();
 		this.bindTexture(texture);
 		drawCore(te);
-		TileEntityFFGasDuct cable = (TileEntityFFGasDuct) te;
+		TileEntityFFGasDuct cable = te;
 		for(int i = 0; i < cable.connections.length; i++)
 		{
 			if(cable.connections[i] != null)

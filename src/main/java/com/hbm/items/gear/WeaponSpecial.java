@@ -85,7 +85,7 @@ public class WeaponSpecial extends ItemSword {
 				if(i == 2)
 					target.addPotionEffect(new PotionEffect(MobEffects.MINING_FATIGUE, 5 * 60 * 20, 2));
 				if(i == 3)
-					target.addPotionEffect(new PotionEffect(MobEffects.NAUSEA, 1 * 60 * 20, 0));
+					target.addPotionEffect(new PotionEffect(MobEffects.NAUSEA, 60 * 20, 0));
         	}
         	target.playSound(SoundEvents.BLOCK_ANVIL_LAND, 3.0F, 1.0F);
 		}

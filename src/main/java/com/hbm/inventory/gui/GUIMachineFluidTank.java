@@ -20,8 +20,8 @@ import net.minecraft.util.ResourceLocation;
 
 public class GUIMachineFluidTank extends GuiInfoContainer {
 
-	private static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/storage/gui_tank.png");
-	private TileEntityMachineFluidTank tank;
+	private static final ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/storage/gui_tank.png");
+	private final TileEntityMachineFluidTank tank;
 
 	public GUIMachineFluidTank(InventoryPlayer invPlayer, TileEntityMachineFluidTank tedf) {
 		super(new ContainerMachineFluidTank(invPlayer, tedf));

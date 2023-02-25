@@ -138,7 +138,7 @@ public class ContaminationUtil {
 
 	public static void printDosimeterData(EntityPlayer player) {
 
-		double rads = (double)(ContaminationUtil.getPlayerRads(player));
+		double rads = ContaminationUtil.getPlayerRads(player);
 		boolean limit = false;
 		
 		if(rads > 3.6D) {
@@ -313,14 +313,14 @@ public class ContaminationUtil {
 			return HbmLivingProps.getDigamma(entity);
 		}
 	
-	public static enum HazardType {
+	public enum HazardType {
 		MONOXIDE,
 		RADIATION,
 		ASBESTOS,
 		DIGAMMA
 	}
 	
-	public static enum ContaminationType {
+	public enum ContaminationType {
 		GAS,				//filterable by gas mask
 		GAS_NON_REACTIVE,	//not filterable by gas mask
 		GOGGLES,			//preventable by goggles

@@ -49,8 +49,7 @@ public class ParticleTauBeam extends Particle {
 		this.particleAge ++;
 		if(this.particleAge >= this.particleMaxAge){
 			this.setExpired();
-			return;
-		}
+        }
 	}
 	
 	@Override
@@ -74,7 +73,7 @@ public class ParticleTauBeam extends Particle {
 		GlStateManager.blendFunc(SourceFactor.SRC_ALPHA, DestFactor.ONE);
 		Minecraft.getMinecraft().getTextureManager().bindTexture(ResourceManager.tau_beam_tex);
 		GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_LINEAR);
-		float lifeN = (float)(particleAge+partialTicks)/(float)particleMaxAge;
+		float lifeN = (particleAge+partialTicks) /(float)particleMaxAge;
 		float fade = MathHelper.clamp(2.5F-lifeN*2.5F, 0, 1);
 		GlStateManager.color(particleRed, particleGreen, particleBlue, particleAlpha*fade);
 		

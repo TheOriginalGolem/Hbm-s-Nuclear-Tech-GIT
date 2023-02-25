@@ -30,8 +30,8 @@ public class ModuleBurnTime {
 	private static final int modRocket = 6;
 	private static final int modBalefire = 7;
 
-	private double[] modTime = new double[8];
-	private double[] modHeat = new double[8];
+	private final double[] modTime = new double[8];
+	private final double[] modHeat = new double[8];
 	
 	public ModuleBurnTime() {
 		for(int i = 0; i < modTime.length; i++) {

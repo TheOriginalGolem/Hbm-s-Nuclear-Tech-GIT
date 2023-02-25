@@ -72,7 +72,7 @@ public class ArmorEuphemium extends ItemArmor implements ISpecialArmor {
 
 	@Override
 	public void damageArmor(EntityLivingBase entity, ItemStack stack, DamageSource source, int damage, int slot) {
-		stack.damageItem(damage * 0, entity);
+		stack.damageItem(0, entity);
 	}
 	
 	@Override

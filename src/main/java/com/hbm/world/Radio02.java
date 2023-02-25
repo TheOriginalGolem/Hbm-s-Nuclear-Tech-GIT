@@ -23,7 +23,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 16, z + 12), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 16, z + 12), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 16, z + 12), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 16, z + 13), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 16, z + 13), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 16, z + 13), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 16, z + 13), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 16, z + 13), Blocks.AIR.getDefaultState(), 3);
@@ -34,7 +34,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 16, z + 13), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 16, z + 13), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 16, z + 13), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 16, z + 14), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 16, z + 14), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 16, z + 14), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 16, z + 14), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 16, z + 14), Blocks.AIR.getDefaultState(), 3);
@@ -45,7 +45,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 16, z + 14), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 16, z + 14), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 16, z + 14), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 16, z + 15), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 16, z + 15), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 16, z + 15), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 16, z + 15), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 16, z + 15), Blocks.AIR.getDefaultState(), 3);
@@ -56,7 +56,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 16, z + 15), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 16, z + 15), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 16, z + 15), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 16, z + 16), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 16, z + 16), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 16, z + 16), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 16, z + 16), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 16, z + 16), Blocks.AIR.getDefaultState(), 3);
@@ -67,7 +67,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 16, z + 16), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 16, z + 16), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 16, z + 16), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 16, z + 17), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 16, z + 17), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 16, z + 17), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 16, z + 17), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 16, z + 17), Blocks.AIR.getDefaultState(), 3);
@@ -78,7 +78,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 16, z + 17), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 16, z + 17), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 16, z + 17), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 16, z + 18), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 16, z + 18), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 16, z + 18), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 16, z + 18), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 16, z + 18), Blocks.AIR.getDefaultState(), 3);
@@ -89,7 +89,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 16, z + 18), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 16, z + 18), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 16, z + 18), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 16, z + 19), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 16, z + 19), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 16, z + 19), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 16, z + 19), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 16, z + 19), Blocks.AIR.getDefaultState(), 3);
@@ -100,7 +100,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 16, z + 19), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 16, z + 19), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 16, z + 19), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 16, z + 20), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 16, z + 20), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 16, z + 20), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 16, z + 20), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 16, z + 20), Blocks.AIR.getDefaultState(), 3);
@@ -111,7 +111,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 16, z + 20), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 16, z + 20), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 16, z + 20), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 16, z + 21), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 16, z + 21), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 16, z + 21), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 16, z + 21), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 16, z + 21), Blocks.AIR.getDefaultState(), 3);
@@ -122,7 +122,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 16, z + 21), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 16, z + 21), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 16, z + 21), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 16, z + 22), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 16, z + 22), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 16, z + 22), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 16, z + 22), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 16, z + 22), Blocks.AIR.getDefaultState(), 3);
@@ -133,7 +133,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 16, z + 22), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 16, z + 22), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 16, z + 22), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 16, z + 23), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 16, z + 23), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 16, z + 23), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 16, z + 23), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 16, z + 23), Blocks.AIR.getDefaultState(), 3);
@@ -144,7 +144,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 16, z + 23), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 16, z + 23), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 16, z + 23), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 16, z + 24), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 16, z + 24), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 16, z + 24), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 16, z + 24), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 16, z + 24), Blocks.AIR.getDefaultState(), 3);
@@ -155,7 +155,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 16, z + 24), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 16, z + 24), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 16, z + 24), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 16, z + 25), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 16, z + 25), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 16, z + 25), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 16, z + 25), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 16, z + 25), Blocks.AIR.getDefaultState(), 3);
@@ -166,18 +166,18 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 16, z + 25), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 16, z + 25), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 16, z + 25), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 17, z + 0), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 1, y + 17, z + 0), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 2, y + 17, z + 0), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 3, y + 17, z + 0), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 4, y + 17, z + 0), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 5, y + 17, z + 0), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 6, y + 17, z + 0), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 7, y + 17, z + 0), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 8, y + 17, z + 0), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 9, y + 17, z + 0), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 10, y + 17, z + 0), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 17, z + 1), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 17, z), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x + 1, y + 17, z), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x + 2, y + 17, z), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x + 3, y + 17, z), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x + 4, y + 17, z), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x + 5, y + 17, z), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x + 6, y + 17, z), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x + 7, y + 17, z), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x + 8, y + 17, z), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x + 9, y + 17, z), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x + 10, y + 17, z), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 17, z + 1), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 17, z + 1), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 17, z + 1), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 17, z + 1), Blocks.AIR.getDefaultState(), 3);
@@ -188,7 +188,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 17, z + 1), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 17, z + 1), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 17, z + 1), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 17, z + 2), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 17, z + 2), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 17, z + 2), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 17, z + 2), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 17, z + 2), Blocks.AIR.getDefaultState(), 3);
@@ -199,7 +199,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 17, z + 2), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 17, z + 2), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 17, z + 2), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 17, z + 3), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 17, z + 3), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 17, z + 3), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 17, z + 3), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 17, z + 3), Blocks.AIR.getDefaultState(), 3);
@@ -210,7 +210,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 17, z + 3), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 17, z + 3), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 17, z + 3), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 17, z + 4), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 17, z + 4), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 17, z + 4), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 17, z + 4), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 17, z + 4), Blocks.AIR.getDefaultState(), 3);
@@ -221,7 +221,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 17, z + 4), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 17, z + 4), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 17, z + 4), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 17, z + 5), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 17, z + 5), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 17, z + 5), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 17, z + 5), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 17, z + 5), Blocks.AIR.getDefaultState(), 3);
@@ -232,7 +232,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 17, z + 5), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 17, z + 5), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 17, z + 5), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 17, z + 6), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 17, z + 6), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 17, z + 6), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 17, z + 6), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 17, z + 6), Blocks.AIR.getDefaultState(), 3);
@@ -243,7 +243,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 17, z + 6), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 17, z + 6), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 17, z + 6), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 17, z + 7), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 17, z + 7), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 17, z + 7), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 17, z + 7), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 17, z + 7), Blocks.AIR.getDefaultState(), 3);
@@ -254,7 +254,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 17, z + 7), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 17, z + 7), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 17, z + 7), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 17, z + 8), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 17, z + 8), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 17, z + 8), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 17, z + 8), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 17, z + 8), Blocks.AIR.getDefaultState(), 3);
@@ -265,7 +265,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 17, z + 8), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 17, z + 8), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 17, z + 8), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 17, z + 9), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 17, z + 9), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 17, z + 9), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 17, z + 9), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 17, z + 9), Blocks.AIR.getDefaultState(), 3);
@@ -276,7 +276,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 17, z + 9), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 17, z + 9), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 17, z + 9), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 17, z + 10), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 17, z + 10), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 17, z + 10), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 17, z + 10), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 17, z + 10), Blocks.AIR.getDefaultState(), 3);
@@ -287,7 +287,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 17, z + 10), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 17, z + 10), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 17, z + 10), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 17, z + 11), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 17, z + 11), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 17, z + 11), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 17, z + 11), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 17, z + 11), Blocks.AIR.getDefaultState(), 3);
@@ -298,7 +298,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 17, z + 11), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 17, z + 11), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 17, z + 11), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 17, z + 12), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 17, z + 12), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 17, z + 12), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 17, z + 12), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 17, z + 12), Blocks.AIR.getDefaultState(), 3);
@@ -309,7 +309,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 17, z + 12), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 17, z + 12), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 17, z + 12), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 17, z + 13), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 17, z + 13), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 17, z + 13), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 17, z + 13), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 17, z + 13), Blocks.AIR.getDefaultState(), 3);
@@ -320,7 +320,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 17, z + 13), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 17, z + 13), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 17, z + 13), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 17, z + 14), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 17, z + 14), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 17, z + 14), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 17, z + 14), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 17, z + 14), Blocks.AIR.getDefaultState(), 3);
@@ -331,7 +331,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 17, z + 14), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 17, z + 14), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 17, z + 14), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 17, z + 15), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 17, z + 15), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 17, z + 15), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 17, z + 15), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 17, z + 15), Blocks.AIR.getDefaultState(), 3);
@@ -342,7 +342,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 17, z + 15), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 17, z + 15), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 17, z + 15), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 17, z + 16), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 17, z + 16), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 17, z + 16), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 17, z + 16), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 17, z + 16), Blocks.AIR.getDefaultState(), 3);
@@ -353,7 +353,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 17, z + 16), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 17, z + 16), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 17, z + 16), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 17, z + 17), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 17, z + 17), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 17, z + 17), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 17, z + 17), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 17, z + 17), Blocks.AIR.getDefaultState(), 3);
@@ -364,7 +364,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 17, z + 17), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 17, z + 17), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 17, z + 17), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 17, z + 18), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 17, z + 18), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 17, z + 18), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 17, z + 18), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 17, z + 18), Blocks.AIR.getDefaultState(), 3);
@@ -375,7 +375,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 17, z + 18), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 17, z + 18), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 17, z + 18), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 17, z + 19), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 17, z + 19), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 17, z + 19), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 17, z + 19), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 17, z + 19), Blocks.AIR.getDefaultState(), 3);
@@ -386,7 +386,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 17, z + 19), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 17, z + 19), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 17, z + 19), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 17, z + 20), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 17, z + 20), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 17, z + 20), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 17, z + 20), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 17, z + 20), Blocks.AIR.getDefaultState(), 3);
@@ -397,7 +397,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 17, z + 20), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 17, z + 20), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 17, z + 20), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 17, z + 21), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 17, z + 21), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 17, z + 21), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 17, z + 21), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 17, z + 21), Blocks.AIR.getDefaultState(), 3);
@@ -408,7 +408,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 17, z + 21), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 17, z + 21), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 17, z + 21), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 17, z + 22), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 17, z + 22), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 17, z + 22), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 17, z + 22), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 17, z + 22), Blocks.AIR.getDefaultState(), 3);
@@ -419,7 +419,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 17, z + 22), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 17, z + 22), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 17, z + 22), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 17, z + 23), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 17, z + 23), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 17, z + 23), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 17, z + 23), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 17, z + 23), Blocks.AIR.getDefaultState(), 3);
@@ -430,7 +430,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 17, z + 23), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 17, z + 23), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 17, z + 23), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 17, z + 24), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 17, z + 24), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 17, z + 24), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 17, z + 24), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 17, z + 24), Blocks.AIR.getDefaultState(), 3);
@@ -441,7 +441,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 17, z + 24), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 17, z + 24), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 17, z + 24), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 17, z + 25), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 17, z + 25), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 17, z + 25), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 17, z + 25), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 17, z + 25), Blocks.AIR.getDefaultState(), 3);
@@ -452,18 +452,18 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 17, z + 25), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 17, z + 25), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 17, z + 25), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 18, z + 0), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 1, y + 18, z + 0), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 2, y + 18, z + 0), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 3, y + 18, z + 0), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 4, y + 18, z + 0), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 5, y + 18, z + 0), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 6, y + 18, z + 0), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 7, y + 18, z + 0), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 8, y + 18, z + 0), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 9, y + 18, z + 0), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 10, y + 18, z + 0), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 18, z + 1), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 18, z), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x + 1, y + 18, z), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x + 2, y + 18, z), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x + 3, y + 18, z), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x + 4, y + 18, z), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x + 5, y + 18, z), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x + 6, y + 18, z), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x + 7, y + 18, z), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x + 8, y + 18, z), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x + 9, y + 18, z), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x + 10, y + 18, z), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 18, z + 1), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 18, z + 1), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 18, z + 1), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 18, z + 1), Blocks.AIR.getDefaultState(), 3);
@@ -474,7 +474,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 18, z + 1), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 18, z + 1), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 18, z + 1), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 18, z + 2), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 18, z + 2), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 18, z + 2), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 18, z + 2), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 18, z + 2), Blocks.AIR.getDefaultState(), 3);
@@ -485,7 +485,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 18, z + 2), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 18, z + 2), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 18, z + 2), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 18, z + 3), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 18, z + 3), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 18, z + 3), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 18, z + 3), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 18, z + 3), Blocks.AIR.getDefaultState(), 3);
@@ -496,7 +496,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 18, z + 3), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 18, z + 3), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 18, z + 3), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 18, z + 4), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 18, z + 4), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 18, z + 4), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 18, z + 4), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 18, z + 4), Blocks.AIR.getDefaultState(), 3);
@@ -507,7 +507,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 18, z + 4), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 18, z + 4), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 18, z + 4), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 18, z + 5), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 18, z + 5), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 18, z + 5), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 18, z + 5), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 18, z + 5), Blocks.AIR.getDefaultState(), 3);
@@ -518,7 +518,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 18, z + 5), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 18, z + 5), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 18, z + 5), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 18, z + 6), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 18, z + 6), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 18, z + 6), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 18, z + 6), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 18, z + 6), Blocks.AIR.getDefaultState(), 3);
@@ -529,7 +529,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 18, z + 6), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 18, z + 6), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 18, z + 6), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 18, z + 7), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 18, z + 7), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 18, z + 7), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 18, z + 7), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 18, z + 7), Blocks.AIR.getDefaultState(), 3);
@@ -540,7 +540,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 18, z + 7), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 18, z + 7), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 18, z + 7), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 18, z + 8), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 18, z + 8), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 18, z + 8), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 18, z + 8), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 18, z + 8), Blocks.AIR.getDefaultState(), 3);
@@ -551,7 +551,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 18, z + 8), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 18, z + 8), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 18, z + 8), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 18, z + 9), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 18, z + 9), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 18, z + 9), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 18, z + 9), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 18, z + 9), Blocks.AIR.getDefaultState(), 3);
@@ -562,7 +562,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 18, z + 9), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 18, z + 9), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 18, z + 9), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 18, z + 10), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 18, z + 10), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 18, z + 10), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 18, z + 10), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 18, z + 10), Blocks.AIR.getDefaultState(), 3);
@@ -573,7 +573,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 18, z + 10), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 18, z + 10), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 18, z + 10), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 18, z + 11), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 18, z + 11), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 18, z + 11), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 18, z + 11), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 18, z + 11), Blocks.AIR.getDefaultState(), 3);
@@ -584,7 +584,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 18, z + 11), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 18, z + 11), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 18, z + 11), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 18, z + 12), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 18, z + 12), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 18, z + 12), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 18, z + 12), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 18, z + 12), Blocks.AIR.getDefaultState(), 3);
@@ -595,7 +595,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 18, z + 12), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 18, z + 12), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 18, z + 12), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 18, z + 13), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 18, z + 13), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 18, z + 13), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 18, z + 13), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 18, z + 13), Blocks.AIR.getDefaultState(), 3);
@@ -606,7 +606,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 18, z + 13), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 18, z + 13), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 18, z + 13), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 18, z + 14), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 18, z + 14), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 18, z + 14), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 18, z + 14), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 18, z + 14), Blocks.AIR.getDefaultState(), 3);
@@ -617,7 +617,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 18, z + 14), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 18, z + 14), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 18, z + 14), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 18, z + 15), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 18, z + 15), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 18, z + 15), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 18, z + 15), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 18, z + 15), Blocks.AIR.getDefaultState(), 3);
@@ -628,7 +628,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 18, z + 15), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 18, z + 15), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 18, z + 15), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 18, z + 16), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 18, z + 16), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 18, z + 16), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 18, z + 16), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 18, z + 16), Blocks.AIR.getDefaultState(), 3);
@@ -639,7 +639,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 18, z + 16), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 18, z + 16), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 18, z + 16), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 18, z + 17), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 18, z + 17), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 18, z + 17), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 18, z + 17), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 18, z + 17), Blocks.AIR.getDefaultState(), 3);
@@ -650,7 +650,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 18, z + 17), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 18, z + 17), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 18, z + 17), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 18, z + 18), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 18, z + 18), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 18, z + 18), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 18, z + 18), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 18, z + 18), Blocks.AIR.getDefaultState(), 3);
@@ -661,7 +661,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 18, z + 18), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 18, z + 18), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 18, z + 18), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 18, z + 19), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 18, z + 19), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 18, z + 19), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 18, z + 19), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 18, z + 19), Blocks.AIR.getDefaultState(), 3);
@@ -672,7 +672,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 18, z + 19), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 18, z + 19), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 18, z + 19), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 18, z + 20), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 18, z + 20), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 18, z + 20), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 18, z + 20), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 18, z + 20), Blocks.AIR.getDefaultState(), 3);
@@ -683,7 +683,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 18, z + 20), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 18, z + 20), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 18, z + 20), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 18, z + 21), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 18, z + 21), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 18, z + 21), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 18, z + 21), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 18, z + 21), Blocks.AIR.getDefaultState(), 3);
@@ -694,7 +694,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 18, z + 21), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 18, z + 21), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 18, z + 21), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 18, z + 22), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 18, z + 22), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 18, z + 22), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 18, z + 22), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 18, z + 22), Blocks.AIR.getDefaultState(), 3);
@@ -705,7 +705,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 18, z + 22), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 18, z + 22), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 18, z + 22), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 18, z + 23), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 18, z + 23), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 18, z + 23), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 18, z + 23), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 18, z + 23), Blocks.AIR.getDefaultState(), 3);
@@ -716,7 +716,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 18, z + 23), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 18, z + 23), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 18, z + 23), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 18, z + 24), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 18, z + 24), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 18, z + 24), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 18, z + 24), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 18, z + 24), Blocks.AIR.getDefaultState(), 3);
@@ -727,7 +727,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 18, z + 24), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 18, z + 24), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 18, z + 24), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 18, z + 25), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 18, z + 25), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 18, z + 25), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 18, z + 25), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 18, z + 25), Blocks.AIR.getDefaultState(), 3);
@@ -738,18 +738,18 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 18, z + 25), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 18, z + 25), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 18, z + 25), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 19, z + 0), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 1, y + 19, z + 0), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 2, y + 19, z + 0), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 3, y + 19, z + 0), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 4, y + 19, z + 0), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 5, y + 19, z + 0), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 6, y + 19, z + 0), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 7, y + 19, z + 0), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 8, y + 19, z + 0), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 9, y + 19, z + 0), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 10, y + 19, z + 0), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 19, z + 1), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 19, z), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x + 1, y + 19, z), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x + 2, y + 19, z), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x + 3, y + 19, z), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x + 4, y + 19, z), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x + 5, y + 19, z), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x + 6, y + 19, z), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x + 7, y + 19, z), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x + 8, y + 19, z), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x + 9, y + 19, z), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x + 10, y + 19, z), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 19, z + 1), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 19, z + 1), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 19, z + 1), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 19, z + 1), Blocks.AIR.getDefaultState(), 3);
@@ -760,7 +760,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 19, z + 1), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 19, z + 1), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 19, z + 1), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 19, z + 2), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 19, z + 2), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 19, z + 2), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 19, z + 2), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 19, z + 2), Blocks.AIR.getDefaultState(), 3);
@@ -771,7 +771,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 19, z + 2), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 19, z + 2), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 19, z + 2), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 19, z + 3), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 19, z + 3), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 19, z + 3), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 19, z + 3), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 19, z + 3), Blocks.AIR.getDefaultState(), 3);
@@ -782,7 +782,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 19, z + 3), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 19, z + 3), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 19, z + 3), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 19, z + 4), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 19, z + 4), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 19, z + 4), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 19, z + 4), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 19, z + 4), Blocks.AIR.getDefaultState(), 3);
@@ -793,7 +793,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 19, z + 4), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 19, z + 4), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 19, z + 4), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 19, z + 5), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 19, z + 5), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 19, z + 5), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 19, z + 5), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 19, z + 5), Blocks.AIR.getDefaultState(), 3);
@@ -804,7 +804,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 19, z + 5), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 19, z + 5), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 19, z + 5), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 19, z + 6), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 19, z + 6), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 19, z + 6), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 19, z + 6), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 19, z + 6), Blocks.AIR.getDefaultState(), 3);
@@ -815,7 +815,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 19, z + 6), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 19, z + 6), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 19, z + 6), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 19, z + 7), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 19, z + 7), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 19, z + 7), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 19, z + 7), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 19, z + 7), Blocks.AIR.getDefaultState(), 3);
@@ -826,7 +826,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 19, z + 7), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 19, z + 7), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 19, z + 7), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 19, z + 8), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 19, z + 8), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 19, z + 8), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 19, z + 8), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 19, z + 8), Blocks.AIR.getDefaultState(), 3);
@@ -837,7 +837,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 19, z + 8), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 19, z + 8), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 19, z + 8), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 19, z + 9), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 19, z + 9), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 19, z + 9), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 19, z + 9), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 19, z + 9), Blocks.AIR.getDefaultState(), 3);
@@ -848,7 +848,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 19, z + 9), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 19, z + 9), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 19, z + 9), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 19, z + 10), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 19, z + 10), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 19, z + 10), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 19, z + 10), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 19, z + 10), Blocks.AIR.getDefaultState(), 3);
@@ -859,7 +859,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 19, z + 10), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 19, z + 10), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 19, z + 10), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 19, z + 11), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 19, z + 11), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 19, z + 11), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 19, z + 11), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 19, z + 11), Blocks.AIR.getDefaultState(), 3);
@@ -870,7 +870,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 19, z + 11), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 19, z + 11), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 19, z + 11), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 19, z + 12), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 19, z + 12), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 19, z + 12), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 19, z + 12), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 19, z + 12), Blocks.AIR.getDefaultState(), 3);
@@ -881,7 +881,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 19, z + 12), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 19, z + 12), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 19, z + 12), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 19, z + 13), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 19, z + 13), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 19, z + 13), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 19, z + 13), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 19, z + 13), Blocks.AIR.getDefaultState(), 3);
@@ -892,7 +892,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 19, z + 13), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 19, z + 13), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 19, z + 13), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 19, z + 14), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 19, z + 14), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 19, z + 14), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 19, z + 14), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 19, z + 14), Blocks.AIR.getDefaultState(), 3);
@@ -903,7 +903,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 19, z + 14), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 19, z + 14), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 19, z + 14), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 19, z + 15), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 19, z + 15), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 19, z + 15), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 19, z + 15), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 19, z + 15), Blocks.AIR.getDefaultState(), 3);
@@ -914,7 +914,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 19, z + 15), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 19, z + 15), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 19, z + 15), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 19, z + 16), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 19, z + 16), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 19, z + 16), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 19, z + 16), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 19, z + 16), Blocks.AIR.getDefaultState(), 3);
@@ -925,7 +925,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 19, z + 16), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 19, z + 16), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 19, z + 16), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 19, z + 17), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 19, z + 17), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 19, z + 17), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 19, z + 17), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 19, z + 17), Blocks.AIR.getDefaultState(), 3);
@@ -936,7 +936,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 19, z + 17), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 19, z + 17), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 19, z + 17), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 19, z + 18), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 19, z + 18), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 19, z + 18), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 19, z + 18), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 19, z + 18), Blocks.AIR.getDefaultState(), 3);
@@ -947,7 +947,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 19, z + 18), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 19, z + 18), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 19, z + 18), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 19, z + 19), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 19, z + 19), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 19, z + 19), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 19, z + 19), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 19, z + 19), Blocks.AIR.getDefaultState(), 3);
@@ -958,7 +958,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 19, z + 19), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 19, z + 19), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 19, z + 19), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 19, z + 20), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 19, z + 20), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 19, z + 20), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 19, z + 20), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 19, z + 20), Blocks.AIR.getDefaultState(), 3);
@@ -969,7 +969,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 19, z + 20), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 19, z + 20), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 19, z + 20), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 19, z + 21), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 19, z + 21), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 19, z + 21), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 19, z + 21), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 19, z + 21), Blocks.AIR.getDefaultState(), 3);
@@ -980,7 +980,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 19, z + 21), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 19, z + 21), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 19, z + 21), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 19, z + 22), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 19, z + 22), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 19, z + 22), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 19, z + 22), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 19, z + 22), Blocks.AIR.getDefaultState(), 3);
@@ -991,7 +991,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 19, z + 22), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 19, z + 22), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 19, z + 22), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 19, z + 23), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 19, z + 23), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 19, z + 23), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 19, z + 23), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 19, z + 23), Blocks.AIR.getDefaultState(), 3);
@@ -1002,7 +1002,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 19, z + 23), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 19, z + 23), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 19, z + 23), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 19, z + 24), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 19, z + 24), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 19, z + 24), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 19, z + 24), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 19, z + 24), Blocks.AIR.getDefaultState(), 3);
@@ -1013,7 +1013,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 19, z + 24), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 19, z + 24), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 19, z + 24), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 19, z + 25), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 19, z + 25), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 19, z + 25), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 19, z + 25), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 19, z + 25), Blocks.AIR.getDefaultState(), 3);
@@ -1024,18 +1024,18 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 19, z + 25), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 19, z + 25), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 19, z + 25), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 20, z + 0), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 1, y + 20, z + 0), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 2, y + 20, z + 0), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 3, y + 20, z + 0), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 4, y + 20, z + 0), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 5, y + 20, z + 0), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 6, y + 20, z + 0), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 7, y + 20, z + 0), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 8, y + 20, z + 0), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 9, y + 20, z + 0), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 10, y + 20, z + 0), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 20, z + 1), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 20, z), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x + 1, y + 20, z), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x + 2, y + 20, z), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x + 3, y + 20, z), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x + 4, y + 20, z), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x + 5, y + 20, z), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x + 6, y + 20, z), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x + 7, y + 20, z), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x + 8, y + 20, z), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x + 9, y + 20, z), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x + 10, y + 20, z), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 20, z + 1), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 20, z + 1), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 20, z + 1), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 20, z + 1), Blocks.AIR.getDefaultState(), 3);
@@ -1046,7 +1046,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 20, z + 1), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 20, z + 1), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 20, z + 1), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 20, z + 2), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 20, z + 2), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 20, z + 2), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 20, z + 2), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 20, z + 2), Blocks.AIR.getDefaultState(), 3);
@@ -1057,7 +1057,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 20, z + 2), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 20, z + 2), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 20, z + 2), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 20, z + 3), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 20, z + 3), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 20, z + 3), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 20, z + 3), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 20, z + 3), Blocks.AIR.getDefaultState(), 3);
@@ -1068,7 +1068,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 20, z + 3), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 20, z + 3), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 20, z + 3), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 20, z + 4), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 20, z + 4), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 20, z + 4), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 20, z + 4), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 20, z + 4), Blocks.AIR.getDefaultState(), 3);
@@ -1079,7 +1079,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 20, z + 4), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 20, z + 4), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 20, z + 4), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 20, z + 5), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 20, z + 5), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 20, z + 5), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 20, z + 5), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 20, z + 5), Blocks.AIR.getDefaultState(), 3);
@@ -1090,7 +1090,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 20, z + 5), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 20, z + 5), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 20, z + 5), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 20, z + 6), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 20, z + 6), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 20, z + 6), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 20, z + 6), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 20, z + 6), Blocks.AIR.getDefaultState(), 3);
@@ -1101,7 +1101,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 20, z + 6), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 20, z + 6), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 20, z + 6), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 20, z + 7), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 20, z + 7), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 20, z + 7), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 20, z + 7), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 20, z + 7), Blocks.AIR.getDefaultState(), 3);
@@ -1112,7 +1112,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 20, z + 7), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 20, z + 7), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 20, z + 7), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 20, z + 8), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 20, z + 8), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 20, z + 8), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 20, z + 8), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 20, z + 8), Blocks.AIR.getDefaultState(), 3);
@@ -1123,7 +1123,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 20, z + 8), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 20, z + 8), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 20, z + 8), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 20, z + 9), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 20, z + 9), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 20, z + 9), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 20, z + 9), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 20, z + 9), Blocks.AIR.getDefaultState(), 3);
@@ -1134,7 +1134,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 20, z + 9), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 20, z + 9), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 20, z + 9), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 20, z + 10), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 20, z + 10), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 20, z + 10), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 20, z + 10), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 20, z + 10), Blocks.AIR.getDefaultState(), 3);
@@ -1145,7 +1145,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 20, z + 10), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 20, z + 10), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 20, z + 10), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 20, z + 11), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 20, z + 11), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 20, z + 11), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 20, z + 11), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 20, z + 11), Blocks.AIR.getDefaultState(), 3);
@@ -1156,7 +1156,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 20, z + 11), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 20, z + 11), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 20, z + 11), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 20, z + 12), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 20, z + 12), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 20, z + 12), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 20, z + 12), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 20, z + 12), Blocks.AIR.getDefaultState(), 3);
@@ -1167,7 +1167,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 20, z + 12), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 20, z + 12), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 20, z + 12), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 20, z + 13), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 20, z + 13), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 20, z + 13), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 20, z + 13), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 20, z + 13), Blocks.AIR.getDefaultState(), 3);
@@ -1178,7 +1178,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 20, z + 13), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 20, z + 13), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 20, z + 13), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 20, z + 14), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 20, z + 14), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 20, z + 14), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 20, z + 14), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 20, z + 14), Blocks.AIR.getDefaultState(), 3);
@@ -1189,7 +1189,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 20, z + 14), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 20, z + 14), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 20, z + 14), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 20, z + 15), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 20, z + 15), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 20, z + 15), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 20, z + 15), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 20, z + 15), Blocks.AIR.getDefaultState(), 3);
@@ -1200,7 +1200,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 20, z + 15), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 20, z + 15), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 20, z + 15), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 20, z + 16), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 20, z + 16), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 20, z + 16), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 20, z + 16), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 20, z + 16), Blocks.AIR.getDefaultState(), 3);
@@ -1211,7 +1211,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 20, z + 16), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 20, z + 16), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 20, z + 16), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 20, z + 17), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 20, z + 17), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 20, z + 17), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 20, z + 17), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 20, z + 17), Blocks.AIR.getDefaultState(), 3);
@@ -1222,7 +1222,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 20, z + 17), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 20, z + 17), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 20, z + 17), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 20, z + 18), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 20, z + 18), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 20, z + 18), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 20, z + 18), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 20, z + 18), Blocks.AIR.getDefaultState(), 3);
@@ -1233,7 +1233,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 20, z + 18), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 20, z + 18), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 20, z + 18), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 20, z + 19), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 20, z + 19), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 20, z + 19), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 20, z + 19), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 20, z + 19), Blocks.AIR.getDefaultState(), 3);
@@ -1244,7 +1244,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 20, z + 19), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 20, z + 19), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 20, z + 19), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 20, z + 20), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 20, z + 20), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 20, z + 20), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 20, z + 20), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 20, z + 20), Blocks.AIR.getDefaultState(), 3);
@@ -1255,7 +1255,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 20, z + 20), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 20, z + 20), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 20, z + 20), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 20, z + 21), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 20, z + 21), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 20, z + 21), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 20, z + 21), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 20, z + 21), Blocks.AIR.getDefaultState(), 3);
@@ -1266,7 +1266,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 20, z + 21), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 20, z + 21), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 20, z + 21), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 20, z + 22), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 20, z + 22), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 20, z + 22), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 20, z + 22), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 20, z + 22), Blocks.AIR.getDefaultState(), 3);
@@ -1277,7 +1277,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 20, z + 22), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 20, z + 22), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 20, z + 22), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 20, z + 23), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 20, z + 23), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 20, z + 23), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 20, z + 23), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 20, z + 23), Blocks.AIR.getDefaultState(), 3);
@@ -1288,7 +1288,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 20, z + 23), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 20, z + 23), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 20, z + 23), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 20, z + 24), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 20, z + 24), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 20, z + 24), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 20, z + 24), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 20, z + 24), Blocks.AIR.getDefaultState(), 3);
@@ -1299,7 +1299,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 20, z + 24), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 20, z + 24), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 20, z + 24), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 20, z + 25), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 20, z + 25), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 20, z + 25), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 20, z + 25), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 20, z + 25), Blocks.AIR.getDefaultState(), 3);
@@ -1310,18 +1310,18 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 20, z + 25), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 20, z + 25), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 20, z + 25), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 21, z + 0), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 1, y + 21, z + 0), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 2, y + 21, z + 0), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 3, y + 21, z + 0), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 4, y + 21, z + 0), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 5, y + 21, z + 0), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 6, y + 21, z + 0), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 7, y + 21, z + 0), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 8, y + 21, z + 0), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 9, y + 21, z + 0), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 10, y + 21, z + 0), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 21, z + 1), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 21, z), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x + 1, y + 21, z), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x + 2, y + 21, z), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x + 3, y + 21, z), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x + 4, y + 21, z), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x + 5, y + 21, z), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x + 6, y + 21, z), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x + 7, y + 21, z), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x + 8, y + 21, z), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x + 9, y + 21, z), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x + 10, y + 21, z), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 21, z + 1), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 21, z + 1), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 21, z + 1), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 21, z + 1), Blocks.AIR.getDefaultState(), 3);
@@ -1332,7 +1332,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 21, z + 1), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 21, z + 1), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 21, z + 1), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 21, z + 2), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 21, z + 2), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 21, z + 2), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 21, z + 2), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 21, z + 2), Blocks.AIR.getDefaultState(), 3);
@@ -1343,7 +1343,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 21, z + 2), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 21, z + 2), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 21, z + 2), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 21, z + 3), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 21, z + 3), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 21, z + 3), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 21, z + 3), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 21, z + 3), Blocks.AIR.getDefaultState(), 3);
@@ -1354,7 +1354,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 21, z + 3), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 21, z + 3), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 21, z + 3), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 21, z + 4), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 21, z + 4), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 21, z + 4), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 21, z + 4), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 21, z + 4), Blocks.AIR.getDefaultState(), 3);
@@ -1365,7 +1365,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 21, z + 4), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 21, z + 4), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 21, z + 4), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 21, z + 5), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 21, z + 5), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 21, z + 5), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 21, z + 5), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 21, z + 5), Blocks.AIR.getDefaultState(), 3);
@@ -1376,7 +1376,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 21, z + 5), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 21, z + 5), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 21, z + 5), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 21, z + 6), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 21, z + 6), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 21, z + 6), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 21, z + 6), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 21, z + 6), Blocks.AIR.getDefaultState(), 3);
@@ -1387,7 +1387,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 21, z + 6), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 21, z + 6), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 21, z + 6), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 21, z + 7), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 21, z + 7), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 21, z + 7), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 21, z + 7), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 21, z + 7), Blocks.AIR.getDefaultState(), 3);
@@ -1398,7 +1398,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 21, z + 7), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 21, z + 7), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 21, z + 7), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 21, z + 8), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 21, z + 8), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 21, z + 8), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 21, z + 8), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 21, z + 8), Blocks.AIR.getDefaultState(), 3);
@@ -1409,7 +1409,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 21, z + 8), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 21, z + 8), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 21, z + 8), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 21, z + 9), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 21, z + 9), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 21, z + 9), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 21, z + 9), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 21, z + 9), Blocks.AIR.getDefaultState(), 3);
@@ -1420,7 +1420,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 21, z + 9), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 21, z + 9), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 21, z + 9), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 21, z + 10), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 21, z + 10), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 21, z + 10), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 21, z + 10), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 21, z + 10), Blocks.AIR.getDefaultState(), 3);
@@ -1431,7 +1431,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 21, z + 10), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 21, z + 10), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 21, z + 10), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 21, z + 11), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 21, z + 11), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 21, z + 11), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 21, z + 11), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 21, z + 11), Blocks.AIR.getDefaultState(), 3);
@@ -1442,7 +1442,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 21, z + 11), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 21, z + 11), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 21, z + 11), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 21, z + 12), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 21, z + 12), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 21, z + 12), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 21, z + 12), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 21, z + 12), Blocks.AIR.getDefaultState(), 3);
@@ -1453,7 +1453,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 21, z + 12), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 21, z + 12), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 21, z + 12), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 21, z + 13), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 21, z + 13), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 21, z + 13), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 21, z + 13), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 21, z + 13), Blocks.AIR.getDefaultState(), 3);
@@ -1464,7 +1464,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 21, z + 13), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 21, z + 13), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 21, z + 13), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 21, z + 14), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 21, z + 14), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 21, z + 14), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 21, z + 14), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 21, z + 14), Blocks.AIR.getDefaultState(), 3);
@@ -1475,7 +1475,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 21, z + 14), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 21, z + 14), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 21, z + 14), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 21, z + 15), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 21, z + 15), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 21, z + 15), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 21, z + 15), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 21, z + 15), Blocks.AIR.getDefaultState(), 3);
@@ -1486,7 +1486,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 21, z + 15), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 21, z + 15), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 21, z + 15), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 21, z + 16), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 21, z + 16), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 21, z + 16), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 21, z + 16), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 21, z + 16), Blocks.AIR.getDefaultState(), 3);
@@ -1497,7 +1497,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 21, z + 16), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 21, z + 16), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 21, z + 16), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 21, z + 17), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 21, z + 17), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 21, z + 17), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 21, z + 17), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 21, z + 17), Blocks.AIR.getDefaultState(), 3);
@@ -1508,7 +1508,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 21, z + 17), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 21, z + 17), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 21, z + 17), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 21, z + 18), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 21, z + 18), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 21, z + 18), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 21, z + 18), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 21, z + 18), Blocks.AIR.getDefaultState(), 3);
@@ -1527,7 +1527,7 @@ public class Radio02
 	{
 
 		world.setBlockState(pos.setPos(x + 10, y + 21, z + 18), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 21, z + 19), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 21, z + 19), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 21, z + 19), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 21, z + 19), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 21, z + 19), Blocks.AIR.getDefaultState(), 3);
@@ -1538,7 +1538,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 21, z + 19), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 21, z + 19), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 21, z + 19), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 21, z + 20), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 21, z + 20), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 21, z + 20), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 21, z + 20), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 21, z + 20), Blocks.AIR.getDefaultState(), 3);
@@ -1549,7 +1549,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 21, z + 20), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 21, z + 20), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 21, z + 20), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 21, z + 21), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 21, z + 21), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 21, z + 21), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 21, z + 21), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 21, z + 21), Blocks.AIR.getDefaultState(), 3);
@@ -1560,7 +1560,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 21, z + 21), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 21, z + 21), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 21, z + 21), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 21, z + 22), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 21, z + 22), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 21, z + 22), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 21, z + 22), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 21, z + 22), Blocks.AIR.getDefaultState(), 3);
@@ -1571,7 +1571,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 21, z + 22), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 21, z + 22), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 21, z + 22), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 21, z + 23), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 21, z + 23), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 21, z + 23), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 21, z + 23), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 21, z + 23), Blocks.AIR.getDefaultState(), 3);
@@ -1582,7 +1582,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 21, z + 23), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 21, z + 23), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 21, z + 23), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 21, z + 24), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 21, z + 24), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 21, z + 24), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 21, z + 24), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 21, z + 24), Blocks.AIR.getDefaultState(), 3);
@@ -1593,7 +1593,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 21, z + 24), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 21, z + 24), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 21, z + 24), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 21, z + 25), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 21, z + 25), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 21, z + 25), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 21, z + 25), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 21, z + 25), Blocks.AIR.getDefaultState(), 3);
@@ -1604,18 +1604,18 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 21, z + 25), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 21, z + 25), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 21, z + 25), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 22, z + 0), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 1, y + 22, z + 0), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 2, y + 22, z + 0), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 3, y + 22, z + 0), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 4, y + 22, z + 0), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 5, y + 22, z + 0), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 6, y + 22, z + 0), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 7, y + 22, z + 0), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 8, y + 22, z + 0), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 9, y + 22, z + 0), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 10, y + 22, z + 0), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 22, z + 1), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 22, z), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x + 1, y + 22, z), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x + 2, y + 22, z), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x + 3, y + 22, z), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x + 4, y + 22, z), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x + 5, y + 22, z), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x + 6, y + 22, z), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x + 7, y + 22, z), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x + 8, y + 22, z), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x + 9, y + 22, z), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x + 10, y + 22, z), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 22, z + 1), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 22, z + 1), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 22, z + 1), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 22, z + 1), Blocks.AIR.getDefaultState(), 3);
@@ -1626,7 +1626,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 22, z + 1), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 22, z + 1), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 22, z + 1), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 22, z + 2), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 22, z + 2), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 22, z + 2), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 22, z + 2), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 22, z + 2), Blocks.AIR.getDefaultState(), 3);
@@ -1637,7 +1637,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 22, z + 2), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 22, z + 2), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 22, z + 2), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 22, z + 3), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 22, z + 3), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 22, z + 3), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 22, z + 3), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 22, z + 3), Blocks.AIR.getDefaultState(), 3);
@@ -1648,7 +1648,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 22, z + 3), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 22, z + 3), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 22, z + 3), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 22, z + 4), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 22, z + 4), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 22, z + 4), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 22, z + 4), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 22, z + 4), Blocks.AIR.getDefaultState(), 3);
@@ -1659,7 +1659,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 22, z + 4), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 22, z + 4), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 22, z + 4), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 22, z + 5), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 22, z + 5), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 22, z + 5), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 22, z + 5), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 22, z + 5), Blocks.AIR.getDefaultState(), 3);
@@ -1670,7 +1670,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 22, z + 5), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 22, z + 5), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 22, z + 5), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 22, z + 6), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 22, z + 6), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 22, z + 6), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 22, z + 6), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 22, z + 6), Blocks.AIR.getDefaultState(), 3);
@@ -1681,7 +1681,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 22, z + 6), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 22, z + 6), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 22, z + 6), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 22, z + 7), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 22, z + 7), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 22, z + 7), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 22, z + 7), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 22, z + 7), Blocks.AIR.getDefaultState(), 3);
@@ -1692,7 +1692,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 22, z + 7), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 22, z + 7), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 22, z + 7), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 22, z + 8), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 22, z + 8), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 22, z + 8), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 22, z + 8), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 22, z + 8), Blocks.AIR.getDefaultState(), 3);
@@ -1703,7 +1703,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 22, z + 8), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 22, z + 8), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 22, z + 8), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 22, z + 9), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 22, z + 9), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 22, z + 9), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 22, z + 9), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 22, z + 9), Blocks.AIR.getDefaultState(), 3);
@@ -1714,7 +1714,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 22, z + 9), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 22, z + 9), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 22, z + 9), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 22, z + 10), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 22, z + 10), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 22, z + 10), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 22, z + 10), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 22, z + 10), Blocks.AIR.getDefaultState(), 3);
@@ -1725,7 +1725,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 22, z + 10), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 22, z + 10), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 22, z + 10), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 22, z + 11), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 22, z + 11), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 22, z + 11), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 22, z + 11), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 22, z + 11), Blocks.AIR.getDefaultState(), 3);
@@ -1736,7 +1736,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 22, z + 11), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 22, z + 11), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 22, z + 11), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 22, z + 12), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 22, z + 12), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 22, z + 12), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 22, z + 12), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 22, z + 12), Blocks.AIR.getDefaultState(), 3);
@@ -1747,7 +1747,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 22, z + 12), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 22, z + 12), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 22, z + 12), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 22, z + 13), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 22, z + 13), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 22, z + 13), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 22, z + 13), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 22, z + 13), Blocks.AIR.getDefaultState(), 3);
@@ -1758,7 +1758,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 22, z + 13), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 22, z + 13), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 22, z + 13), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 22, z + 14), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 22, z + 14), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 22, z + 14), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 22, z + 14), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 22, z + 14), Blocks.AIR.getDefaultState(), 3);
@@ -1769,7 +1769,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 22, z + 14), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 22, z + 14), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 22, z + 14), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 22, z + 15), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 22, z + 15), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 22, z + 15), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 22, z + 15), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 22, z + 15), Blocks.AIR.getDefaultState(), 3);
@@ -1780,7 +1780,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 22, z + 15), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 22, z + 15), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 22, z + 15), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 22, z + 16), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 22, z + 16), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 22, z + 16), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 22, z + 16), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 22, z + 16), Blocks.AIR.getDefaultState(), 3);
@@ -1791,7 +1791,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 22, z + 16), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 22, z + 16), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 22, z + 16), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 22, z + 17), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 22, z + 17), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 22, z + 17), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 22, z + 17), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 22, z + 17), Blocks.AIR.getDefaultState(), 3);
@@ -1802,7 +1802,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 22, z + 17), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 22, z + 17), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 22, z + 17), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 22, z + 18), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 22, z + 18), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 22, z + 18), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 22, z + 18), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 22, z + 18), Blocks.AIR.getDefaultState(), 3);
@@ -1813,7 +1813,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 22, z + 18), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 22, z + 18), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 22, z + 18), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 22, z + 19), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 22, z + 19), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 22, z + 19), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 22, z + 19), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 22, z + 19), Blocks.AIR.getDefaultState(), 3);
@@ -1824,7 +1824,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 22, z + 19), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 22, z + 19), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 22, z + 19), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 22, z + 20), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 22, z + 20), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 22, z + 20), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 22, z + 20), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 22, z + 20), Blocks.AIR.getDefaultState(), 3);
@@ -1835,7 +1835,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 22, z + 20), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 22, z + 20), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 22, z + 20), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 22, z + 21), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 22, z + 21), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 22, z + 21), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 22, z + 21), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 22, z + 21), Blocks.AIR.getDefaultState(), 3);
@@ -1846,7 +1846,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 22, z + 21), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 22, z + 21), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 22, z + 21), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 22, z + 22), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 22, z + 22), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 22, z + 22), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 22, z + 22), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 22, z + 22), Blocks.AIR.getDefaultState(), 3);
@@ -1857,7 +1857,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 22, z + 22), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 22, z + 22), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 22, z + 22), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 22, z + 23), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 22, z + 23), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 22, z + 23), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 22, z + 23), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 22, z + 23), Blocks.AIR.getDefaultState(), 3);
@@ -1868,7 +1868,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 22, z + 23), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 22, z + 23), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 22, z + 23), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 22, z + 24), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 22, z + 24), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 22, z + 24), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 22, z + 24), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 22, z + 24), Blocks.AIR.getDefaultState(), 3);
@@ -1879,7 +1879,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 22, z + 24), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 22, z + 24), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 22, z + 24), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 22, z + 25), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 22, z + 25), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 22, z + 25), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 22, z + 25), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 22, z + 25), Blocks.AIR.getDefaultState(), 3);
@@ -1890,18 +1890,18 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 22, z + 25), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 22, z + 25), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 22, z + 25), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 23, z + 0), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 1, y + 23, z + 0), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 2, y + 23, z + 0), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 3, y + 23, z + 0), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 4, y + 23, z + 0), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 5, y + 23, z + 0), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 6, y + 23, z + 0), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 7, y + 23, z + 0), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 8, y + 23, z + 0), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 9, y + 23, z + 0), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 10, y + 23, z + 0), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 23, z + 1), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 23, z), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x + 1, y + 23, z), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x + 2, y + 23, z), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x + 3, y + 23, z), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x + 4, y + 23, z), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x + 5, y + 23, z), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x + 6, y + 23, z), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x + 7, y + 23, z), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x + 8, y + 23, z), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x + 9, y + 23, z), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x + 10, y + 23, z), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 23, z + 1), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 23, z + 1), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 23, z + 1), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 23, z + 1), Blocks.AIR.getDefaultState(), 3);
@@ -1912,7 +1912,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 23, z + 1), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 23, z + 1), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 23, z + 1), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 23, z + 2), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 23, z + 2), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 23, z + 2), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 23, z + 2), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 23, z + 2), Blocks.AIR.getDefaultState(), 3);
@@ -1923,7 +1923,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 23, z + 2), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 23, z + 2), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 23, z + 2), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 23, z + 3), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 23, z + 3), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 23, z + 3), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 23, z + 3), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 23, z + 3), Blocks.AIR.getDefaultState(), 3);
@@ -1934,7 +1934,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 23, z + 3), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 23, z + 3), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 23, z + 3), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 23, z + 4), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 23, z + 4), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 23, z + 4), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 23, z + 4), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 23, z + 4), Blocks.AIR.getDefaultState(), 3);
@@ -1945,7 +1945,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 23, z + 4), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 23, z + 4), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 23, z + 4), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 23, z + 5), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 23, z + 5), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 23, z + 5), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 23, z + 5), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 23, z + 5), Blocks.AIR.getDefaultState(), 3);
@@ -1956,7 +1956,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 23, z + 5), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 23, z + 5), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 23, z + 5), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 23, z + 6), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 23, z + 6), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 23, z + 6), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 23, z + 6), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 23, z + 6), Blocks.AIR.getDefaultState(), 3);
@@ -1967,7 +1967,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 23, z + 6), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 23, z + 6), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 23, z + 6), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 23, z + 7), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 23, z + 7), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 23, z + 7), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 23, z + 7), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 23, z + 7), Blocks.AIR.getDefaultState(), 3);
@@ -1978,7 +1978,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 23, z + 7), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 23, z + 7), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 23, z + 7), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 23, z + 8), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 23, z + 8), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 23, z + 8), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 23, z + 8), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 23, z + 8), Blocks.AIR.getDefaultState(), 3);
@@ -1989,7 +1989,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 23, z + 8), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 23, z + 8), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 23, z + 8), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 23, z + 9), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 23, z + 9), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 23, z + 9), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 23, z + 9), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 23, z + 9), Blocks.AIR.getDefaultState(), 3);
@@ -2000,7 +2000,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 23, z + 9), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 23, z + 9), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 23, z + 9), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 23, z + 10), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 23, z + 10), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 23, z + 10), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 23, z + 10), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 23, z + 10), Blocks.AIR.getDefaultState(), 3);
@@ -2011,7 +2011,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 23, z + 10), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 23, z + 10), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 23, z + 10), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 23, z + 11), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 23, z + 11), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 23, z + 11), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 23, z + 11), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 23, z + 11), Blocks.AIR.getDefaultState(), 3);
@@ -2022,7 +2022,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 23, z + 11), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 23, z + 11), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 23, z + 11), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 23, z + 12), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 23, z + 12), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 23, z + 12), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 23, z + 12), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 23, z + 12), Blocks.AIR.getDefaultState(), 3);
@@ -2033,7 +2033,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 23, z + 12), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 23, z + 12), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 23, z + 12), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 23, z + 13), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 23, z + 13), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 23, z + 13), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 23, z + 13), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 23, z + 13), Blocks.AIR.getDefaultState(), 3);
@@ -2044,7 +2044,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 23, z + 13), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 23, z + 13), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 23, z + 13), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 23, z + 14), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 23, z + 14), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 23, z + 14), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 23, z + 14), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 23, z + 14), Blocks.AIR.getDefaultState(), 3);
@@ -2055,7 +2055,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 23, z + 14), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 23, z + 14), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 23, z + 14), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 23, z + 15), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 23, z + 15), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 23, z + 15), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 23, z + 15), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 23, z + 15), Blocks.AIR.getDefaultState(), 3);
@@ -2066,7 +2066,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 23, z + 15), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 23, z + 15), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 23, z + 15), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 23, z + 16), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 23, z + 16), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 23, z + 16), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 23, z + 16), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 23, z + 16), Blocks.AIR.getDefaultState(), 3);
@@ -2077,7 +2077,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 23, z + 16), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 23, z + 16), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 23, z + 16), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 23, z + 17), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 23, z + 17), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 23, z + 17), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 23, z + 17), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 23, z + 17), Blocks.AIR.getDefaultState(), 3);
@@ -2088,7 +2088,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 23, z + 17), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 23, z + 17), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 23, z + 17), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 23, z + 18), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 23, z + 18), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 23, z + 18), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 23, z + 18), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 23, z + 18), Blocks.AIR.getDefaultState(), 3);
@@ -2099,7 +2099,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 23, z + 18), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 23, z + 18), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 23, z + 18), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 23, z + 19), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 23, z + 19), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 23, z + 19), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 23, z + 19), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 23, z + 19), Blocks.AIR.getDefaultState(), 3);
@@ -2110,7 +2110,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 23, z + 19), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 23, z + 19), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 23, z + 19), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 23, z + 20), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 23, z + 20), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 23, z + 20), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 23, z + 20), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 23, z + 20), Blocks.AIR.getDefaultState(), 3);
@@ -2121,7 +2121,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 23, z + 20), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 23, z + 20), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 23, z + 20), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 23, z + 21), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 23, z + 21), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 23, z + 21), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 23, z + 21), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 23, z + 21), Blocks.AIR.getDefaultState(), 3);
@@ -2132,7 +2132,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 23, z + 21), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 23, z + 21), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 23, z + 21), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 23, z + 22), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 23, z + 22), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 23, z + 22), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 23, z + 22), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 23, z + 22), Blocks.AIR.getDefaultState(), 3);
@@ -2143,7 +2143,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 23, z + 22), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 23, z + 22), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 23, z + 22), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 23, z + 23), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 23, z + 23), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 23, z + 23), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 23, z + 23), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 23, z + 23), Blocks.AIR.getDefaultState(), 3);
@@ -2154,7 +2154,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 23, z + 23), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 23, z + 23), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 23, z + 23), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 23, z + 24), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 23, z + 24), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 23, z + 24), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 23, z + 24), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 23, z + 24), Blocks.AIR.getDefaultState(), 3);
@@ -2165,7 +2165,7 @@ public class Radio02
 		world.setBlockState(pos.setPos(x + 8, y + 23, z + 24), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 9, y + 23, z + 24), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 10, y + 23, z + 24), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(pos.setPos(x + 0, y + 23, z + 25), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(pos.setPos(x, y + 23, z + 25), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 1, y + 23, z + 25), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 2, y + 23, z + 25), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(pos.setPos(x + 3, y + 23, z + 25), Blocks.AIR.getDefaultState(), 3);

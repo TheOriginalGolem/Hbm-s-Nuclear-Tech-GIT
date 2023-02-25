@@ -21,7 +21,7 @@ import net.minecraft.world.World;
 
 public class ItemFusionCore extends Item {
 
-	private int charge;
+	private final int charge;
 	
 	public ItemFusionCore(int charge, String s) {
 		this.setUnlocalizedName(s);

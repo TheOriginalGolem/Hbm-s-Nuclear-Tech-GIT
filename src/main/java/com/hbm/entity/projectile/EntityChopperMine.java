@@ -86,7 +86,7 @@ public class EntityChopperMine extends Entity implements IProjectile {
 		float f1;
 
 		for (i = 0; i < list.size(); ++i) {
-			Entity entity1 = (Entity) list.get(i);
+			Entity entity1 = list.get(i);
 
 			if (entity1.canBeCollidedWith() && (entity1 != this.shooter)) {
 				f1 = 0.3F;

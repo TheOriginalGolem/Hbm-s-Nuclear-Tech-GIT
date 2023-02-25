@@ -12,7 +12,7 @@ import net.minecraftforge.items.SlotItemHandler;
 
 public class ContainerMachineMiningDrill extends Container {
 
-	private TileEntityMachineMiningDrill nukeBoy;
+	private final TileEntityMachineMiningDrill nukeBoy;
 
 	private int warning;
 
@@ -51,7 +51,7 @@ public class ContainerMachineMiningDrill extends Container {
 	@Override
 	public ItemStack transferStackInSlot(EntityPlayer p_82846_1_, int par2) {
 		ItemStack var3 = ItemStack.EMPTY;
-		Slot var4 = (Slot) this.inventorySlots.get(par2);
+		Slot var4 = this.inventorySlots.get(par2);
 
 		if(var4 != null && var4.getHasStack()) {
 			ItemStack var5 = var4.getStack();
@@ -91,7 +91,7 @@ public class ContainerMachineMiningDrill extends Container {
 		super.detectAndSendChanges();
 
 		for(int i = 0; i < this.listeners.size(); i++) {
-			IContainerListener par1 = (IContainerListener) this.listeners.get(i);
+			IContainerListener par1 = this.listeners.get(i);
 
 			if(this.warning != this.nukeBoy.warning) {
 				par1.sendWindowProperty(this, 1, this.nukeBoy.warning);

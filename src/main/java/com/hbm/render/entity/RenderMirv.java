@@ -17,8 +17,8 @@ public class RenderMirv extends Render<EntityMIRV> {
 	public static final IRenderFactory<EntityMIRV> FACTORY = (RenderManager man) -> {return new RenderMirv(man);};
 	
 	private static final ResourceLocation objTesterModelRL = new ResourceLocation(/*"/assets/" + */RefStrings.MODID, "models/Mirv.obj");
-	private IModelCustom boyModel;
-    private ResourceLocation boyTexture;
+	private final IModelCustom boyModel;
+    private final ResourceLocation boyTexture;
 	
 	protected RenderMirv(RenderManager renderManager) {
 		super(renderManager);

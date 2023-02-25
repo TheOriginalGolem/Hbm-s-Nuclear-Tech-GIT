@@ -16,8 +16,8 @@ import net.minecraftforge.fml.client.registry.IRenderFactory;
 public class RenderCloudFleija extends Render<EntityCloudFleija> {
 
 	private static final ResourceLocation objTesterModelRL = new ResourceLocation(/*"/assets/" + */RefStrings.MODID, "models/Sphere.obj");
-	private IModelCustom blastModel;
-    private ResourceLocation blastTexture;
+	private final IModelCustom blastModel;
+    private final ResourceLocation blastTexture;
     public float scale = 0;
     public float ring = 0;
     

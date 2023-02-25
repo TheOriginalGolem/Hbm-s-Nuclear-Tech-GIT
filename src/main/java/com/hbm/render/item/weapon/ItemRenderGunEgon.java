@@ -115,7 +115,7 @@ public class ItemRenderGunEgon extends TEISRBase {
 		sinval/=3;
 		float sinval2 = MathHelper.sin(time*0.1F)+MathHelper.sin(time*0.05F+20)+MathHelper.sin(time*0.13F+20);
 		sinval/=3;
-		return new float[]{BobMathUtil.remap((float) Library.smoothstep(sinval, -1, 1), 0, 1, -2, 1.5F), BobMathUtil.remap(sinval2, -1, 1, -0.03F, 0.05F)};
+		return new float[]{BobMathUtil.remap(Library.smoothstep(sinval, -1, 1), 0, 1, -2, 1.5F), BobMathUtil.remap(sinval2, -1, 1, -0.03F, 0.05F)};
 	}
 	
 	public static float[] getJitter(float time){

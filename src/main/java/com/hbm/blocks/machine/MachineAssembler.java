@@ -242,7 +242,7 @@ public class MachineAssembler extends BlockContainer implements IMultiBlock {
 			TileEntity tileentity = world.getTileEntity(pos);
 
 			if(tileentity instanceof TileEntityMachineAssembler) {
-				InventoryHelper.dropInventoryItems(world, pos, (TileEntityMachineAssembler) tileentity);
+				InventoryHelper.dropInventoryItems(world, pos, tileentity);
 
 				world.updateComparatorOutputLevel(pos, this);
 			}
@@ -253,7 +253,7 @@ public class MachineAssembler extends BlockContainer implements IMultiBlock {
 
 	@Override
 	protected BlockStateContainer createBlockState() {
-		return new BlockStateContainer(this, new IProperty[] { FACING });
+		return new BlockStateContainer(this, FACING);
 	}
 
 	@Override

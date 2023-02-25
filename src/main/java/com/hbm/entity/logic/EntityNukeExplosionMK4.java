@@ -109,7 +109,7 @@ public class EntityNukeExplosionMK4 extends Entity implements IChunkLoader {
 					falloutBall.posX = this.posX;
 					falloutBall.posY = this.posY;
 					falloutBall.posZ = this.posZ;
-					falloutBall.setScale((int) (this.radius * (BombConfig.falloutRange / 100) + falloutAdd));
+					falloutBall.setScale(this.radius * (BombConfig.falloutRange / 100) + falloutAdd);
 					this.world.spawnEntity(falloutBall);
 				}
 				if(falloutBall.done){
@@ -160,7 +160,7 @@ public class EntityNukeExplosionMK4 extends Entity implements IChunkLoader {
 						rainDrop.posX = this.posX;
 						rainDrop.posY = this.posY;
 						rainDrop.posZ = this.posZ;
-						rainDrop.setScale((int)this.radius+16);
+						rainDrop.setScale(this.radius +16);
 						this.world.spawnEntity(rainDrop);
 						this.setDead();
 					}
@@ -169,7 +169,7 @@ public class EntityNukeExplosionMK4 extends Entity implements IChunkLoader {
 					rainDrop.posX = this.posX;
 					rainDrop.posY = this.posY;
 					rainDrop.posZ = this.posZ;
-					rainDrop.setScale((int)this.radius+16);
+					rainDrop.setScale(this.radius +16);
 					this.world.spawnEntity(rainDrop);
 					this.setDead();
 				}
@@ -251,8 +251,8 @@ public class EntityNukeExplosionMK4 extends Entity implements IChunkLoader {
 			r = 25;
 
 		EntityNukeExplosionMK4 mk4 = new EntityNukeExplosionMK4(world);
-		mk4.radius = (int) (r);
-		mk4.speed = (int) 1000*BombConfig.mk4/r;
+		mk4.radius = r;
+		mk4.speed = 1000 *BombConfig.mk4/r;
 		mk4.setPosition(x, y, z);
 		mk4.floodPlease = isWet(world, new BlockPos(x, y, z));
 		if(BombConfig.disableNuclear)
@@ -266,8 +266,8 @@ public class EntityNukeExplosionMK4 extends Entity implements IChunkLoader {
 			MainRegistry.logger.log(Level.INFO, "[NUKE] Initialized eX explosion at " + x + " / " + y + " / " + z + " with radius " + r + "!");
 
 		EntityNukeExplosionMK4 mk4 = new EntityNukeExplosionMK4(world);
-		mk4.radius = (int) (r);
-		mk4.speed = (int) 1000*BombConfig.mk4/r;
+		mk4.radius = r;
+		mk4.speed = 1000 *BombConfig.mk4/r;
 		mk4.setPosition(x, y, z);
 		mk4.floodPlease = isWet(world, new BlockPos(x, y, z));
 		if(BombConfig.disableNuclear)
@@ -281,8 +281,8 @@ public class EntityNukeExplosionMK4 extends Entity implements IChunkLoader {
 			MainRegistry.logger.log(Level.INFO, "[NUKE] Initialized nR explosion at " + x + " / " + y + " / " + z + " with radius " + r + "!");
 
 		EntityNukeExplosionMK4 mk4 = new EntityNukeExplosionMK4(world);
-		mk4.radius = (int) (r);
-		mk4.speed = (int) 1000*BombConfig.mk4/r;
+		mk4.radius = r;
+		mk4.speed = 1000 *BombConfig.mk4/r;
 		mk4.setPosition(x, y, z);
 		mk4.floodPlease = isWet(world, new BlockPos(x, y, z));
 		mk4.fallout = false;

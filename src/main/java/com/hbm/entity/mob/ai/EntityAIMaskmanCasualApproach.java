@@ -72,10 +72,8 @@ public class EntityAIMaskmanCasualApproach extends EntityAIBase {
 	public boolean shouldContinueExecuting() {
 		EntityLivingBase entitylivingbase = this.attacker.getAttackTarget();
 
-		return entitylivingbase == null ? false
-				: (!entitylivingbase.isEntityAlive() ? false
-				: (!this.longMemory ? !this.attacker.getNavigator().noPath()
-				: this.attacker.isWithinHomeDistanceFromPosition(new BlockPos(MathHelper.floor(entitylivingbase.posX), MathHelper.floor(entitylivingbase.posY), MathHelper.floor(entitylivingbase.posZ)))));
+		return entitylivingbase != null && (entitylivingbase.isEntityAlive() && (!this.longMemory ? !this.attacker.getNavigator().noPath()
+                : this.attacker.isWithinHomeDistanceFromPosition(new BlockPos(MathHelper.floor(entitylivingbase.posX), MathHelper.floor(entitylivingbase.posY), MathHelper.floor(entitylivingbase.posZ)))));
 	}
 	
 	@Override
@@ -94,7 +92,7 @@ public class EntityAIMaskmanCasualApproach extends EntityAIBase {
 		EntityLivingBase entitylivingbase = this.attacker.getAttackTarget();
 		this.attacker.getLookHelper().setLookPositionWithEntity(entitylivingbase, 30.0F, 30.0F);
 		double d0 = this.attacker.getDistanceSq(entitylivingbase.posX, entitylivingbase.getEntityBoundingBox().minY, entitylivingbase.posZ);
-		double d1 = (double) (this.attacker.width * 2.0F * this.attacker.width * 2.0F + entitylivingbase.width);
+		double d1 = this.attacker.width * 2.0F * this.attacker.width * 2.0F + entitylivingbase.width;
 
 		this.pathTimer--;
 

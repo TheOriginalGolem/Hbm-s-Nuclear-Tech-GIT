@@ -98,7 +98,7 @@ public class TileEntityRBMKControlManual extends TileEntityRBMKControl implement
 		return nbt;
 	}
 	
-	public static enum RBMKColor {
+	public enum RBMKColor {
 		RED,
 		YELLOW,
 		GREEN,

@@ -23,8 +23,8 @@ import net.minecraft.util.ResourceLocation;
 public class MultiCloudRenderer extends Render<EntityModFX> {
 
 	private TextureAtlasSprite tex;
-	private Item[] textureItems;
-	private int meta;
+	private final Item[] textureItems;
+	private final int meta;
 	
 	public MultiCloudRenderer(Item[] items, RenderManager renderManager) {
 		super(renderManager);
@@ -113,7 +113,7 @@ public class MultiCloudRenderer extends Render<EntityModFX> {
 			item = textureItems[2];
 		}
 
-		if (fx.particleAge < fx.maxAge / 8 * 2 && fx.particleAge >= fx.maxAge / 8 * 1) {
+		if (fx.particleAge < fx.maxAge / 8 * 2 && fx.particleAge >= fx.maxAge / 8) {
 			item = textureItems[1];
 		}
 

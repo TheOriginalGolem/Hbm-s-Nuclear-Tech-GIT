@@ -94,12 +94,7 @@ public class TileEntityWatzCore extends TileEntity implements ITickable, IReacto
 	}
 	
 	public boolean isUseableByPlayer(EntityPlayer player) {
-		if(world.getTileEntity(pos) != this)
-		{
-			return false;
-		}else{
-			return true;
-		}
+        return world.getTileEntity(pos) == this;
 	}
 	
 	@Override
@@ -191,7 +186,7 @@ public class TileEntityWatzCore extends TileEntity implements ITickable, IReacto
 				needsUpdate = false;
 			}
 			
-			PacketDispatcher.wrapper.sendToAllAround(new FluidTankPacket(pos, new FluidTank[]{tank}), new TargetPoint(world.provider.getDimension(), pos.getX(), pos.getY(), pos.getZ(), 20));
+			PacketDispatcher.wrapper.sendToAllAround(new FluidTankPacket(pos, tank), new TargetPoint(world.provider.getDimension(), pos.getX(), pos.getY(), pos.getZ(), 20));
 			PacketDispatcher.wrapper.sendToAllAround(new AuxElectricityPacket(pos, power), new TargetPoint(world.provider.getDimension(), pos.getX(), pos.getY(), pos.getZ(), 20));
 		}
 	}
@@ -283,22 +278,22 @@ public class TileEntityWatzCore extends TileEntity implements ITickable, IReacto
 		
 		for(int i = -5; i <= 5; i++)
 		{
-			if(world.getBlockState(mPos.setPos(x + 0, y + i, z - 2)).getBlock() != ModBlocks.watz_control)
+			if(world.getBlockState(mPos.setPos(x, y + i, z - 2)).getBlock() != ModBlocks.watz_control)
 				return false;
 		}
 		for(int i = -5; i <= 5; i++)
 		{
-			if(world.getBlockState(mPos.setPos(x + 0, y + i, z - 1)).getBlock() != ModBlocks.watz_cooler)
+			if(world.getBlockState(mPos.setPos(x, y + i, z - 1)).getBlock() != ModBlocks.watz_cooler)
 				return false;
 		}
 		for(int i = -5; i <= 5; i++)
 		{
-			if(world.getBlockState(mPos.setPos(x + 0, y + i, z + 1)).getBlock() != ModBlocks.watz_cooler)
+			if(world.getBlockState(mPos.setPos(x, y + i, z + 1)).getBlock() != ModBlocks.watz_cooler)
 				return false;
 		}
 		for(int i = -5; i <= 5; i++)
 		{
-			if(world.getBlockState(mPos.setPos(x + 0, y + i, z + 2)).getBlock() != ModBlocks.watz_control)
+			if(world.getBlockState(mPos.setPos(x, y + i, z + 2)).getBlock() != ModBlocks.watz_control)
 				return false;
 		}
 		
@@ -603,13 +598,8 @@ public class TileEntityWatzCore extends TileEntity implements ITickable, IReacto
 	
 	@Override
 	public boolean getTact() {
-		if(age >= 0 && age < 10)
-		{
-			return true;
-		}
-		
-		return false;
-	}
+        return age >= 0 && age < 10;
+    }
 
 	@Override
 	public long getSPower() {
@@ -671,8 +661,7 @@ public class TileEntityWatzCore extends TileEntity implements ITickable, IReacto
 	@Override
 	public void recievePacket(NBTTagCompound[] tags) {
 		if(tags.length != 1){
-			return;
-		} else {
+        } else {
 			tank.readFromNBT(tags[0]);
 		}
 	}

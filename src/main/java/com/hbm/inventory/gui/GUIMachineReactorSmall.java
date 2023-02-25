@@ -21,9 +21,9 @@ import net.minecraft.util.ResourceLocation;
 
 public class GUIMachineReactorSmall extends GuiInfoContainer {
 
-	private static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/gui_reactor_experimental.png");
-	private static ResourceLocation overlay = new ResourceLocation(RefStrings.MODID + ":textures/gui/gui_reactor_overlay_experimental.png");
-	private TileEntityMachineReactorSmall diFurnace;
+	private static final ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/gui_reactor_experimental.png");
+	private static final ResourceLocation overlay = new ResourceLocation(RefStrings.MODID + ":textures/gui/gui_reactor_overlay_experimental.png");
+	private final TileEntityMachineReactorSmall diFurnace;
 	private boolean toggleOverlay = false;
 
 	public GUIMachineReactorSmall(InventoryPlayer invPlayer, TileEntityMachineReactorSmall tedf) {
@@ -153,7 +153,7 @@ public class GUIMachineReactorSmall extends GuiInfoContainer {
 		if(diFurnace.hasCoreHeat()) {
 			int i = diFurnace.getCoreHeatScaled(88);
 			
-			i = (int) Math.min(i, 88);
+			i = Math.min(i, 88);
 			
 			drawTexturedModalRect(guiLeft + 42, guiTop + 94 - i, 176, 124-i, 4, i);
 		}
@@ -161,7 +161,7 @@ public class GUIMachineReactorSmall extends GuiInfoContainer {
 		if(diFurnace.hasHullHeat()) {
 			int i = diFurnace.getHullHeatScaled(88);
 			
-			i = (int) Math.min(i, 88);
+			i = Math.min(i, 88);
 			
 			drawTexturedModalRect(guiLeft + 48, guiTop + 94 - i, 180, 124-i, 4, i);
 		}

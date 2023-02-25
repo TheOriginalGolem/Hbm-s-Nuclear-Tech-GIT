@@ -66,7 +66,7 @@ public class RBMKDebrisDigamma extends RBMKDebris {
 				res = 1;
 			
 			float eRads = rads;
-			eRads /= (float)res;
+			eRads /= res;
 			eRads /= (float)(len * len);
 			
 			ContaminationUtil.contaminate(e, HazardType.DIGAMMA, ContaminationType.DIGAMMA, eRads);

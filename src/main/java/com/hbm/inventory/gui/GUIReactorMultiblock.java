@@ -22,8 +22,8 @@ import net.minecraft.util.math.MathHelper;
 
 public class GUIReactorMultiblock extends GuiInfoContainer {
 	
-	private static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/gui_reactor_large_experimental.png");
-	private TileEntityMachineReactorLarge diFurnace;
+	private static final ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/gui_reactor_large_experimental.png");
+	private final TileEntityMachineReactorLarge diFurnace;
 	private boolean barGrabbed = false;
 
 	public GUIReactorMultiblock(InventoryPlayer invPlayer, TileEntityMachineReactorLarge tedf) {
@@ -219,7 +219,7 @@ public class GUIReactorMultiblock extends GuiInfoContainer {
 		if(diFurnace.hasCoreHeat()) {
 			int i = diFurnace.getCoreHeatScaled(88);
 			
-			i = (int) Math.min(i, 88);
+			i = Math.min(i, 88);
 			
 			drawTexturedModalRect(guiLeft + 42, guiTop + 94 - i, 176, 124-i, 4, i);
 		}
@@ -227,7 +227,7 @@ public class GUIReactorMultiblock extends GuiInfoContainer {
 		if(diFurnace.hasHullHeat()) {
 			int i = diFurnace.getHullHeatScaled(88);
 			
-			i = (int) Math.min(i, 88);
+			i = Math.min(i, 88);
 			
 			drawTexturedModalRect(guiLeft + 48, guiTop + 94 - i, 180, 124-i, 4, i);
 		}

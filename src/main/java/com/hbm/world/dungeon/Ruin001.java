@@ -76,24 +76,24 @@ public class Ruin001 extends WorldGenerator {
 		//	return false;
 		}
 
-		world.setBlockState(new BlockPos(x + 1, y + 0, z + 5), Block1.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 1, y + 0, z + 6), Block1.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 2, y + 0, z + 6), Block1.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 3, y + 0, z + 6), Block1.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 4, y + 0, z + 6), Block1.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 5, y + 0, z + 6), Block1.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 6, y + 0, z + 6), Block1.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 7, y + 0, z + 6), Block1.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 8, y + 0, z + 6), Block1.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 3, y + 0, z + 7), Block1.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 1, y + 0, z + 8), Block1.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 2, y + 0, z + 8), Block1.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 3, y + 0, z + 8), Block1.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 1, y + 0, z + 9), Blocks.LIT_FURNACE.getDefaultState().withProperty(BlockFurnace.FACING, EnumFacing.SOUTH), 3);
-		world.setBlockState(new BlockPos(x + 2, y + 0, z + 9), Block1.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 1, y + 0, z + 10), Block1.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x + 1, y, z + 5), Block1.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x + 1, y, z + 6), Block1.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x + 2, y, z + 6), Block1.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x + 3, y, z + 6), Block1.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x + 4, y, z + 6), Block1.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x + 5, y, z + 6), Block1.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x + 6, y, z + 6), Block1.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x + 7, y, z + 6), Block1.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x + 8, y, z + 6), Block1.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x + 3, y, z + 7), Block1.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x + 1, y, z + 8), Block1.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x + 2, y, z + 8), Block1.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x + 3, y, z + 8), Block1.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x + 1, y, z + 9), Blocks.LIT_FURNACE.getDefaultState().withProperty(BlockFurnace.FACING, EnumFacing.SOUTH), 3);
+		world.setBlockState(new BlockPos(x + 2, y, z + 9), Block1.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x + 1, y, z + 10), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 1, z + 4), Block1.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 1, z + 5), Block1.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 1, z + 5), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 1, z + 5), Blocks.VINE.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 1, z + 5), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 1, z + 5), Block1.getDefaultState(), 3);
@@ -102,7 +102,7 @@ public class Ruin001 extends WorldGenerator {
 		world.setBlockState(new BlockPos(x + 6, y + 1, z + 5), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 7, y + 1, z + 5), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 8, y + 1, z + 5), Block1.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 1, z + 6), Block1.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 1, z + 6), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 9, y + 1, z + 6), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 1, z + 7), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 1, z + 7), Block1.getDefaultState(), 3);
@@ -112,21 +112,21 @@ public class Ruin001 extends WorldGenerator {
 		world.setBlockState(new BlockPos(x + 6, y + 1, z + 7), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 7, y + 1, z + 7), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 8, y + 1, z + 7), Block1.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 1, z + 8), Block1.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 1, z + 8), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 1, z + 8), Blocks.VINE.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 1, z + 8), Blocks.VINE.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 1, z + 8), Blocks.VINE.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 4, y + 1, z + 8), Block1.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 1, z + 9), Block1.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 1, z + 9), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 1, z + 9), Blocks.VINE.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 1, z + 9), Blocks.WATER.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 1, z + 9), Block1.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 1, z + 10), Block1.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 1, z + 10), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 1, z + 10), Blocks.VINE.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 1, z + 10), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 1, z + 11), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 2, z + 4), Block1.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 2, z + 5), Block1.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 2, z + 5), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 2, z + 5), Blocks.VINE.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 2, z + 5), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 2, z + 5), Block1.getDefaultState(), 3);
@@ -138,7 +138,7 @@ public class Ruin001 extends WorldGenerator {
 		world.setBlockState(new BlockPos(x + 9, y + 2, z + 5), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 10, y + 2, z + 5), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 11, y + 2, z + 5), Block1.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 2, z + 6), Block1.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 2, z + 6), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 2, z + 6), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 2, z + 6), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 2, z + 6), Block1.getDefaultState(), 3);
@@ -150,7 +150,7 @@ public class Ruin001 extends WorldGenerator {
 		world.setBlockState(new BlockPos(x + 9, y + 2, z + 6), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 10, y + 2, z + 6), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 11, y + 2, z + 6), Block1.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 2, z + 7), Block1.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 2, z + 7), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 2, z + 7), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 2, z + 7), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 2, z + 7), Block1.getDefaultState(), 3);
@@ -162,7 +162,7 @@ public class Ruin001 extends WorldGenerator {
 		world.setBlockState(new BlockPos(x + 9, y + 2, z + 7), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 10, y + 2, z + 7), Block3.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 11, y + 2, z + 7), Block3.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 2, z + 8), Block1.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 2, z + 8), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 2, z + 8), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 2, z + 8), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 2, z + 8), Block2.getDefaultState(), 3);
@@ -174,7 +174,7 @@ public class Ruin001 extends WorldGenerator {
 		world.setBlockState(new BlockPos(x + 9, y + 2, z + 8), Block3.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 10, y + 2, z + 8), Block2.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 11, y + 2, z + 8), Block1.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 2, z + 9), Block1.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 2, z + 9), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 2, z + 9), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 2, z + 9), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 2, z + 9), Block1.getDefaultState(), 3);
@@ -186,7 +186,7 @@ public class Ruin001 extends WorldGenerator {
 		world.setBlockState(new BlockPos(x + 9, y + 2, z + 9), Block3.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 10, y + 2, z + 9), Block3.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 11, y + 2, z + 9), Block1.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 2, z + 10), Block1.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 2, z + 10), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 2, z + 10), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 2, z + 10), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 2, z + 10), Blocks.NETHERRACK.getDefaultState(), 3);
@@ -198,7 +198,7 @@ public class Ruin001 extends WorldGenerator {
 		world.setBlockState(new BlockPos(x + 9, y + 2, z + 10), Block3.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 10, y + 2, z + 10), Blocks.NETHERRACK.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 11, y + 2, z + 10), Block1.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 2, z + 11), Block1.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 2, z + 11), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 2, z + 11), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 2, z + 11), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 2, z + 11), Block1.getDefaultState(), 3);
@@ -210,7 +210,7 @@ public class Ruin001 extends WorldGenerator {
 		world.setBlockState(new BlockPos(x + 9, y + 2, z + 11), Blocks.NETHERRACK.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 10, y + 2, z + 11), Blocks.NETHERRACK.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 11, y + 2, z + 11), Block1.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 2, z + 12), Block1.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 2, z + 12), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 2, z + 12), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 2, z + 12), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 2, z + 12), Block1.getDefaultState(), 3);
@@ -222,7 +222,7 @@ public class Ruin001 extends WorldGenerator {
 		world.setBlockState(new BlockPos(x + 9, y + 2, z + 12), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 10, y + 2, z + 12), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 11, y + 2, z + 12), Block1.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 2, z + 13), Block1.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 2, z + 13), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 2, z + 13), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 2, z + 13), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 2, z + 13), Block1.getDefaultState(), 3);
@@ -245,7 +245,7 @@ public class Ruin001 extends WorldGenerator {
 		world.setBlockState(new BlockPos(x + 9, y + 2, z + 14), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 10, y + 2, z + 14), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 11, y + 2, z + 14), Block1.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 3, z + 4), Block1.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 3, z + 4), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 3, z + 4), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 3, z + 4), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 3, z + 4), Block1.getDefaultState(), 3);
@@ -258,7 +258,7 @@ public class Ruin001 extends WorldGenerator {
 		world.setBlockState(new BlockPos(x + 10, y + 3, z + 4), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 11, y + 3, z + 4), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 12, y + 3, z + 4), Block1.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 3, z + 5), Block1.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 3, z + 5), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 3, z + 5), Blocks.REEDS.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 3, z + 5), Blocks.WATERLILY.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 3, z + 5), Blocks.WATERLILY.getDefaultState(), 3);
@@ -268,7 +268,7 @@ public class Ruin001 extends WorldGenerator {
 		world.setBlockState(new BlockPos(x + 7, y + 3, z + 5), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 8, y + 3, z + 5), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 12, y + 3, z + 5), Block1.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 3, z + 6), Block1.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 3, z + 6), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 3, z + 6), ModBlocks.red_cable.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 3, z + 6), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 3, z + 6), Blocks.AIR.getDefaultState(), 3);
@@ -280,7 +280,7 @@ public class Ruin001 extends WorldGenerator {
 		world.setBlockState(new BlockPos(x + 9, y + 3, z + 6), Blocks.STONE.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 11, y + 3, z + 6), Blocks.STONE.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 12, y + 3, z + 6), Block1.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 3, z + 7), Block1.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 3, z + 7), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 3, z + 7), Blocks.NETHER_WART.getDefaultState().withProperty(BlockNetherWart.AGE, 5), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 3, z + 7), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 3, z + 7), Blocks.AIR.getDefaultState(), 3);
@@ -291,7 +291,7 @@ public class Ruin001 extends WorldGenerator {
 		world.setBlockState(new BlockPos(x + 8, y + 3, z + 7), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 10, y + 3, z + 7), Blocks.ENDER_CHEST.getDefaultState().withProperty(BlockEnderChest.FACING, EnumFacing.NORTH), 3);
 		world.setBlockState(new BlockPos(x + 12, y + 3, z + 7), Block1.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 3, z + 8), Block1.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 3, z + 8), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 3, z + 8), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 3, z + 8), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 3, z + 8), Blocks.AIR.getDefaultState(), 3);
@@ -303,7 +303,7 @@ public class Ruin001 extends WorldGenerator {
 		world.setBlockState(new BlockPos(x + 9, y + 3, z + 8), Blocks.STONE.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 11, y + 3, z + 8), Blocks.STONE.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 12, y + 3, z + 8), Block1.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 3, z + 9), Block1.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 3, z + 9), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 3, z + 9), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 3, z + 9), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 3, z + 9), Blocks.AIR.getDefaultState(), 3);
@@ -313,7 +313,7 @@ public class Ruin001 extends WorldGenerator {
 		world.setBlockState(new BlockPos(x + 7, y + 3, z + 9), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 8, y + 3, z + 9), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 12, y + 3, z + 9), Block1.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 3, z + 10), Block1.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 3, z + 10), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 3, z + 10), ModBlocks.machine_shredder.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 3, z + 10), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 3, z + 10), Blocks.AIR.getDefaultState(), 3);
@@ -326,7 +326,7 @@ public class Ruin001 extends WorldGenerator {
 		world.setBlockState(new BlockPos(x + 10, y + 3, z + 10), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 11, y + 3, z + 10), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 12, y + 3, z + 10), Block1.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 3, z + 11), Block1.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 3, z + 11), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 3, z + 11), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 3, z + 11), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 3, z + 11), Blocks.AIR.getDefaultState(), 3);
@@ -339,7 +339,7 @@ public class Ruin001 extends WorldGenerator {
 		world.setBlockState(new BlockPos(x + 10, y + 3, z + 11), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 11, y + 3, z + 11), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 12, y + 3, z + 11), Block1.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 3, z + 12), Block1.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 3, z + 12), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 3, z + 12), Blocks.WEB.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 3, z + 12), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 3, z + 12), Blocks.AIR.getDefaultState(), 3);
@@ -351,7 +351,7 @@ public class Ruin001 extends WorldGenerator {
 		world.setBlockState(new BlockPos(x + 9, y + 3, z + 12), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 11, y + 3, z + 12), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 12, y + 3, z + 12), Block1.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 3, z + 13), Block1.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 3, z + 13), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 3, z + 13), Blocks.WEB.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 3, z + 13), Blocks.WEB.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 3, z + 13), Blocks.AIR.getDefaultState(), 3);
@@ -375,7 +375,7 @@ public class Ruin001 extends WorldGenerator {
 		world.setBlockState(new BlockPos(x + 9, y + 3, z + 14), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 10, y + 3, z + 14), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 11, y + 3, z + 14), Block1.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 4, z + 4), Block1.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 4, z + 4), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 4, z + 4), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 4, z + 4), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 4, z + 4), Block1.getDefaultState(), 3);
@@ -388,7 +388,7 @@ public class Ruin001 extends WorldGenerator {
 		world.setBlockState(new BlockPos(x + 10, y + 4, z + 4), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 11, y + 4, z + 4), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 12, y + 4, z + 4), Block1.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 4, z + 5), Block1.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 4, z + 5), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 4, z + 5), Blocks.WATERLILY.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 4, z + 5), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 4, y + 4, z + 5), Blocks.AIR.getDefaultState(), 3);
@@ -397,7 +397,7 @@ public class Ruin001 extends WorldGenerator {
 		world.setBlockState(new BlockPos(x + 7, y + 4, z + 5), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 8, y + 4, z + 5), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 12, y + 4, z + 5), Block1.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 4, z + 6), Block1.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 4, z + 6), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 4, z + 6), ModBlocks.red_cable.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 4, z + 6), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 4, z + 6), Blocks.AIR.getDefaultState(), 3);
@@ -407,7 +407,7 @@ public class Ruin001 extends WorldGenerator {
 		world.setBlockState(new BlockPos(x + 7, y + 4, z + 6), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 8, y + 4, z + 6), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 12, y + 4, z + 6), Block1.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 4, z + 7), Block1.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 4, z + 7), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 4, z + 7), Blocks.NETHER_WART.getDefaultState().withProperty(BlockNetherWart.AGE, 5), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 4, z + 7), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 4, z + 7), Blocks.AIR.getDefaultState(), 3);
@@ -417,7 +417,7 @@ public class Ruin001 extends WorldGenerator {
 		world.setBlockState(new BlockPos(x + 7, y + 4, z + 7), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 8, y + 4, z + 7), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 12, y + 4, z + 7), Block1.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 4, z + 8), Block1.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 4, z + 8), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 4, z + 8), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 4, z + 8), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 4, z + 8), Blocks.AIR.getDefaultState(), 3);
@@ -427,7 +427,7 @@ public class Ruin001 extends WorldGenerator {
 		world.setBlockState(new BlockPos(x + 7, y + 4, z + 8), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 8, y + 4, z + 8), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 12, y + 4, z + 8), Block1.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 4, z + 9), Block1.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 4, z + 9), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 4, z + 9), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 4, z + 9), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 4, z + 9), Blocks.AIR.getDefaultState(), 3);
@@ -437,7 +437,7 @@ public class Ruin001 extends WorldGenerator {
 		world.setBlockState(new BlockPos(x + 7, y + 4, z + 9), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 8, y + 4, z + 9), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 12, y + 4, z + 9), Block1.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 4, z + 10), Block1.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 4, z + 10), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 4, z + 10), ModBlocks.red_cable.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 4, z + 10), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 4, z + 10), Blocks.AIR.getDefaultState(), 3);
@@ -450,7 +450,7 @@ public class Ruin001 extends WorldGenerator {
 		world.setBlockState(new BlockPos(x + 10, y + 4, z + 10), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 11, y + 4, z + 10), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 12, y + 4, z + 10), Block1.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 4, z + 11), Block1.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 4, z + 11), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 4, z + 11), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 4, z + 11), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 4, z + 11), Blocks.AIR.getDefaultState(), 3);
@@ -463,7 +463,7 @@ public class Ruin001 extends WorldGenerator {
 		world.setBlockState(new BlockPos(x + 10, y + 4, z + 11), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 11, y + 4, z + 11), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 12, y + 4, z + 11), Block1.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 4, z + 12), Block1.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 4, z + 12), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 4, z + 12), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 4, z + 12), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 4, z + 12), Blocks.AIR.getDefaultState(), 3);
@@ -475,7 +475,7 @@ public class Ruin001 extends WorldGenerator {
 		world.setBlockState(new BlockPos(x + 9, y + 4, z + 12), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 11, y + 4, z + 12), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 12, y + 4, z + 12), Block1.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 4, z + 13), Block1.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 4, z + 13), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 4, z + 13), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 4, z + 13), Blocks.WEB.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 4, z + 13), Blocks.AIR.getDefaultState(), 3);

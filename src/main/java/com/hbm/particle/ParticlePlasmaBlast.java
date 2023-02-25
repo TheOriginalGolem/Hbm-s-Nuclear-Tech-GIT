@@ -22,8 +22,8 @@ public class ParticlePlasmaBlast extends Particle {
 
 	private static final ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/particle/shockwave.png");
 	
-	private float rotationPitch;
-	private float rotationYaw;
+	private final float rotationPitch;
+	private final float rotationYaw;
 	
 	public ParticlePlasmaBlast(World worldIn, double posXIn, double posYIn, double posZIn, float r, float g, float b, float pitch, float yaw){
 		super(worldIn, posXIn, posYIn, posZIn);
@@ -79,10 +79,10 @@ public class ParticlePlasmaBlast extends Particle {
 		GlStateManager.color(this.particleRed, this.particleGreen, this.particleBlue, this.particleAlpha);
 		
 		buf.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
-		buf.pos((double)(- 1 * scale), (double)(- 0.25), (double)(- 1 * scale)).tex(1, 1).endVertex();
-		buf.pos((double)(- 1 * scale), (double)(- 0.25), (double)(+ 1 * scale)).tex(1, 0).endVertex();
-		buf.pos((double)(+ 1 * scale), (double)(- 0.25), (double)(+ 1 * scale)).tex(0, 0).endVertex();
-		buf.pos((double)(+ 1 * scale), (double)(- 0.25), (double)(- 1 * scale)).tex(0, 1).endVertex();
+		buf.pos(- 1 * scale, - 0.25, - 1 * scale).tex(1, 1).endVertex();
+		buf.pos(- 1 * scale, - 0.25, + 1 * scale).tex(1, 0).endVertex();
+		buf.pos(+ 1 * scale, - 0.25, + 1 * scale).tex(0, 0).endVertex();
+		buf.pos(+ 1 * scale, - 0.25, - 1 * scale).tex(0, 1).endVertex();
 		tes.draw();
 		
 		GlStateManager.color(1, 1, 1, 1);

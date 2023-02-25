@@ -15,8 +15,8 @@ public class HbmFluidHandlerItemStack implements IFluidHandlerItem, ICapabilityP
 
 	public static final String FLUID_NBT_KEY = "HbmFluidKey";
 
-	private ItemStack container;
-	private int cap;
+	private final ItemStack container;
+	private final int cap;
 	
 	public HbmFluidHandlerItemStack(ItemStack stack, int cap){
 		container = stack;

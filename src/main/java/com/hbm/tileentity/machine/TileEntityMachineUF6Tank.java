@@ -99,9 +99,7 @@ public class TileEntityMachineUF6Tank extends TileEntity implements ITickable, I
 	
 	protected boolean inputValidForTank(int irrelevant, int slot){
 		if(!inventory.getStackInSlot(slot).isEmpty() && tank != null){
-			if(isValidFluidForTank(FluidUtil.getFluidContained(inventory.getStackInSlot(slot)))){
-				return true;
-			}
+            return isValidFluidForTank(FluidUtil.getFluidContained(inventory.getStackInSlot(slot)));
 		}
 		return false;
 	}
@@ -126,8 +124,7 @@ public class TileEntityMachineUF6Tank extends TileEntity implements ITickable, I
 	@Override
 	public void recievePacket(NBTTagCompound[] tags) {
 		if(tags.length != 1){
-			return;
-		} else {
+        } else {
 			tank.readFromNBT(tags[0]);
 		}
 	}

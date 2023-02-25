@@ -16,7 +16,7 @@ import net.minecraft.util.ResourceLocation;
 public class GUIMachineLargeTurbine extends GuiInfoContainer {
 
 	public static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/generators/gui_turbine_large.png");
-	private TileEntityMachineLargeTurbine turbine;
+	private final TileEntityMachineLargeTurbine turbine;
 
 	public GUIMachineLargeTurbine(InventoryPlayer invPlayer, TileEntityMachineLargeTurbine tedf) {
 		super(new ContainerMachineLargeTurbine(invPlayer, tedf));

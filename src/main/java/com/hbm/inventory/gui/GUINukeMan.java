@@ -14,8 +14,8 @@ import net.minecraft.util.ResourceLocation;
 
 public class GUINukeMan extends GuiContainer {
 
-	private static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/fatManSchematic.png");
-	private TileEntityNukeMan testNuke;
+	private static final ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/fatManSchematic.png");
+	private final TileEntityNukeMan testNuke;
 	
 	public GUINukeMan(InventoryPlayer invPlayer, TileEntityNukeMan tedf) {
 		super(new ContainerNukeMan(invPlayer, tedf));

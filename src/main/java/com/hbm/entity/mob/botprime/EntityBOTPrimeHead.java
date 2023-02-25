@@ -31,7 +31,7 @@ public class EntityBOTPrimeHead extends EntityBOTPrimeBase {
 	
 	//TODO: clean-room implementation of the movement behavior classes (again)
 
-	private final BossInfoServer bossInfo = (BossInfoServer)(new BossInfoServer(this.getDisplayName(), BossInfo.Color.PURPLE, BossInfo.Overlay.PROGRESS));
+	private final BossInfoServer bossInfo = new BossInfoServer(this.getDisplayName(), BossInfo.Color.PURPLE, BossInfo.Overlay.PROGRESS);
 	private final WormMovementHeadNT movement = new WormMovementHeadNT(this);
 	
 	public EntityBOTPrimeHead(World world) {

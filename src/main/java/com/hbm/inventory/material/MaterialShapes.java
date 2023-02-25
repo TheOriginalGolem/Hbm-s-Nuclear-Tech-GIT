@@ -42,7 +42,7 @@ public class MaterialShapes {
 	}
 	*/
 	
-	private int quantity;
+	private final int quantity;
 	public final String[] prefixes;
 	
 	private MaterialShapes(int quantity, String... prefixes) {

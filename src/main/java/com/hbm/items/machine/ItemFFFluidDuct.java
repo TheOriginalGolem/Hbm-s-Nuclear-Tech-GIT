@@ -79,7 +79,7 @@ public class ItemFFFluidDuct extends Item {
         {
             world.setBlockState(pos, ModBlocks.fluid_duct_mk2.getDefaultState());
             if(world.getTileEntity(pos) instanceof TileEntityFFFluidDuctMk2) {
-            	((TileEntityFFFluidDuctMk2)world.getTileEntity(pos)).setType(getFluidFromStack(stack));;
+            	((TileEntityFFFluidDuctMk2)world.getTileEntity(pos)).setType(getFluidFromStack(stack));
             }
             stack.shrink(1);
             world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), HBMSoundHandler.pipePlaced, SoundCategory.PLAYERS, 1.0F, 0.65F + world.rand.nextFloat() * 0.2F);

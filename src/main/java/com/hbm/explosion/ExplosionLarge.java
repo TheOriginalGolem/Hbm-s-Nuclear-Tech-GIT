@@ -234,7 +234,7 @@ public class ExplosionLarge {
 	}
 	
 	public static void explodeFire(World world, double x, double y, double z, float strength, boolean cloud, boolean rubble, boolean shrapnel) {
-		world.newExplosion((Entity)null, (float)x, (float)y, (float)z, strength, true, true);
+		world.newExplosion(null, (float)x, (float)y, (float)z, strength, true, true);
 		if(cloud)
 			spawnParticles(world, x, y, z, cloudFunction((int)strength));
 		if(rubble)
@@ -263,7 +263,7 @@ public class ExplosionLarge {
 		
 		for(int i = 0; i < depth; i += 2) {
 			
-			world.createExplosion((Entity)null, x + vector.xCoord * i, y + vector.yCoord * i, z + vector.zCoord * i, strength, true);
+			world.createExplosion(null, x + vector.xCoord * i, y + vector.yCoord * i, z + vector.zCoord * i, strength, true);
 		}
 	}
 }

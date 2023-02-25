@@ -9,7 +9,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class ParticleManager {
 
-	private static Random rand = new Random();
+	private static final Random rand = new Random();
 	
 	public static void spawnParticles(double x, double y, double z, int count) {
 		for (int i = 0; i < count; i++) {

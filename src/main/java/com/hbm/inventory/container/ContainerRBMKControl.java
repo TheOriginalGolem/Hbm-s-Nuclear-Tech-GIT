@@ -10,7 +10,7 @@ import net.minecraft.item.ItemStack;
 
 public class ContainerRBMKControl extends Container {
 
-	private TileEntityRBMKControlManual rbmk;
+	private final TileEntityRBMKControlManual rbmk;
 
 	public ContainerRBMKControl(InventoryPlayer invPlayer, TileEntityRBMKControlManual tedf) {
 		rbmk = tedf;

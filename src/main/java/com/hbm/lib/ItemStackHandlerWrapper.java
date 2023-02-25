@@ -6,8 +6,8 @@ import net.minecraftforge.items.ItemStackHandler;
 
 public class ItemStackHandlerWrapper implements IItemHandlerModifiable {
 
-	private ItemStackHandler handle;
-	private int[] validSlots;
+	private final ItemStackHandler handle;
+	private final int[] validSlots;
 	
 	public ItemStackHandlerWrapper(ItemStackHandler handle) {
 		this.handle = handle;

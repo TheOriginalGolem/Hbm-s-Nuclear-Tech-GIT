@@ -172,7 +172,7 @@ public class TileEntityStorageDrum extends TileEntityMachineBase implements ITic
 				res = 1;
 			
 			float eRads = rads;
-			eRads /= (float)res;
+			eRads /= res;
 			eRads /= (float)(len * len);
 			
 			ContaminationUtil.contaminate(e, HazardType.RADIATION, ContaminationType.CREATIVE, eRads);
@@ -183,16 +183,13 @@ public class TileEntityStorageDrum extends TileEntityMachineBase implements ITic
 	public boolean isItemValidForSlot(int i, ItemStack itemStack) {
 		
 		Item item = itemStack.getItem();
-		
-		if(item == ModItems.nuclear_waste_long || 
-				item == ModItems.nuclear_waste_long_tiny || 
-				item == ModItems.nuclear_waste_short || 
-				item == ModItems.nuclear_waste_short_tiny || 
-				item == ModItems.nugget_au198)
-			return true;
-		
-		return false;
-	}
+
+        return item == ModItems.nuclear_waste_long ||
+                item == ModItems.nuclear_waste_long_tiny ||
+                item == ModItems.nuclear_waste_short ||
+                item == ModItems.nuclear_waste_short_tiny ||
+                item == ModItems.nugget_au198;
+    }
 
 	@Override
 	public boolean canInsertItem(int i, ItemStack itemStack, int j) {
@@ -203,16 +200,13 @@ public class TileEntityStorageDrum extends TileEntityMachineBase implements ITic
 	public boolean canExtractItem(int i, ItemStack itemStack, int j) {
 
 		Item item = itemStack.getItem();
-		
-		if(item == ModItems.nuclear_waste_long_depleted || 
-				item == ModItems.nuclear_waste_long_depleted_tiny || 
-				item == ModItems.nuclear_waste_short_depleted || 
-				item == ModItems.nuclear_waste_short_depleted_tiny || 
-				item == ModItems.nugget_mercury)
-			return true;
-		
-		return false;
-	}
+
+        return item == ModItems.nuclear_waste_long_depleted ||
+                item == ModItems.nuclear_waste_long_depleted_tiny ||
+                item == ModItems.nuclear_waste_short_depleted ||
+                item == ModItems.nuclear_waste_short_depleted_tiny ||
+                item == ModItems.nugget_mercury;
+    }
 
 	@Override
 	public int[] getAccessibleSlotsFromSide(EnumFacing side) {

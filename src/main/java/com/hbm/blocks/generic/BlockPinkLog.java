@@ -37,6 +37,6 @@ public class BlockPinkLog extends BlockLog {
 	@Override
 	protected BlockStateContainer createBlockState()
     {
-        return new BlockStateContainer(this, new IProperty[] {LOG_AXIS});
+        return new BlockStateContainer(this, LOG_AXIS);
     }
 }

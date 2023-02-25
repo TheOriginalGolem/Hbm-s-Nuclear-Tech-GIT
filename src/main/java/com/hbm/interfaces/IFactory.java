@@ -7,9 +7,9 @@ public interface IFactory {
 	
 	boolean isStructureValid(World world);
 	
-	public long getPowerScaled(long i);
+	long getPowerScaled(long i);
 	
-	public int getProgressScaled(int i);
+	int getProgressScaled(int i);
 	
-	public boolean isProcessable(ItemStack item);
+	boolean isProcessable(ItemStack item);
 }

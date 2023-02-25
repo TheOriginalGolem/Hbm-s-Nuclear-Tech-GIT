@@ -30,11 +30,11 @@ public class SpecialContainerFillLists {
 		LIGHTOIL(ModForgeFluids.lightoil, new ModelResourceLocation(RefStrings.MODID + ":canister_lightoil", "inventory")),
 		GASOLINE(ModForgeFluids.gasoline, new ModelResourceLocation(RefStrings.MODID + ":canister_gasoline", "inventory"));
 		
-		private Fluid fluid;
-		private Pair<ModelResourceLocation, IBakedModel> renderPair;
-		private String translateKey;
+		private final Fluid fluid;
+		private final Pair<ModelResourceLocation, IBakedModel> renderPair;
+		private final String translateKey;
 		
-		private EnumCanister(Fluid f, ModelResourceLocation r){
+		EnumCanister(Fluid f, ModelResourceLocation r){
 			this.fluid = f;
 			this.renderPair = MutablePair.of(r, null);
 			this.translateKey = "item." + r.getResourcePath() + ".name";
@@ -92,11 +92,11 @@ public class SpecialContainerFillLists {
 		SAS3(ModForgeFluids.sas3, new ModelResourceLocation(RefStrings.MODID + ":cell_sas3", "inventory")),
 		ANTISCHRABIDIUM(ModForgeFluids.aschrab, new ModelResourceLocation(RefStrings.MODID + ":cell_anti_schrabidium", "inventory"));
 		
-		private Fluid fluid;
-		private Pair<ModelResourceLocation, IBakedModel> renderPair;
-		private String translateKey;
+		private final Fluid fluid;
+		private final Pair<ModelResourceLocation, IBakedModel> renderPair;
+		private final String translateKey;
 		
-		private EnumCell(Fluid f, ModelResourceLocation r){
+		EnumCell(Fluid f, ModelResourceLocation r){
 			this.fluid = f;
 			this.renderPair = MutablePair.of(r, null);
 			this.translateKey = "item." + r.getResourcePath() + ".name";
@@ -150,11 +150,11 @@ public class SpecialContainerFillLists {
 		PETROLEUM(ModForgeFluids.petroleum, new ModelResourceLocation(RefStrings.MODID + ":gas_petroleum", "inventory")),
 		BIOGAS(ModForgeFluids.biogas, new ModelResourceLocation(RefStrings.MODID + ":gas_biogas", "inventory"));
 		
-		private Fluid fluid;
-		private Pair<ModelResourceLocation, IBakedModel> renderPair;
-		private String translateKey;
+		private final Fluid fluid;
+		private final Pair<ModelResourceLocation, IBakedModel> renderPair;
+		private final String translateKey;
 		
-		private EnumGasCanister(Fluid f, ModelResourceLocation r){
+		EnumGasCanister(Fluid f, ModelResourceLocation r){
 			this.fluid = f;
 			this.renderPair = MutablePair.of(r, null);
 			this.translateKey = "item." + r.getResourcePath() + ".name";

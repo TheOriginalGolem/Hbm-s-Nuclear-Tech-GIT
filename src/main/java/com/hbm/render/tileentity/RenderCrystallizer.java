@@ -29,7 +29,7 @@ public class RenderCrystallizer extends TileEntitySpecialRenderer<TileEntityMach
 		case 5: GL11.glRotatef(0, 0F, 1F, 0F); break;
 		}
 
-		TileEntityMachineCrystallizer crys = (TileEntityMachineCrystallizer)te;
+		TileEntityMachineCrystallizer crys = te;
 
 		GlStateManager.shadeModel(GL11.GL_SMOOTH);
         bindTexture(ResourceManager.crystallizer_tex);

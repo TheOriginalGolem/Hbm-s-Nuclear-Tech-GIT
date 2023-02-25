@@ -77,7 +77,7 @@ public class ParticleVortexBeam extends Particle {
 		GlStateManager.enableBlend();
 		GlStateManager.blendFunc(SourceFactor.SRC_ALPHA, DestFactor.ONE);
 		float timeScale = (this.particleAge+partialTicks)/(float)this.particleMaxAge;
-		this.particleAlpha = MathHelper.clamp(1-BobMathUtil.remap((float)MathHelper.clamp(timeScale, 0, 1), 0F, 1F, 0F, 2F), 0, 1)*2;
+		this.particleAlpha = MathHelper.clamp(1-BobMathUtil.remap(MathHelper.clamp(timeScale, 0, 1), 0F, 1F, 0F, 2F), 0, 1)*2;
 		
         float f5 = (float)(this.prevPosX + (this.posX - this.prevPosX) * (double)partialTicks - interpPosX);
         float f6 = (float)(this.prevPosY + (this.posY - this.prevPosY) * (double)partialTicks - interpPosY);

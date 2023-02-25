@@ -54,7 +54,7 @@ public class Vec3i extends FuncRelational {
     }
 
     public Vec3i(int[] fa, int i) {
-        x = fa[i + 0];
+        x = fa[i];
         y = fa[i + 1];
         z = fa[i + 2];
     }
@@ -141,7 +141,7 @@ public class Vec3i extends FuncRelational {
 
     public IntBuffer toDib(IntBuffer ib, int index) {
         return ib
-                .put(index + 0, x)
+                .put(index, x)
                 .put(index + 1, y)
                 .put(index + 2, z);
     }
@@ -156,8 +156,8 @@ public class Vec3i extends FuncRelational {
 
     public ByteBuffer toDbb(ByteBuffer bb, int index) {
         return bb
-                .putInt(index + 0 * Integer.BYTES, x)
-                .putInt(index + 1 * Integer.BYTES, y)
+                .putInt(index, x)
+                .putInt(index + Integer.BYTES, y)
                 .putInt(index + 2 * Integer.BYTES, z);
     }
 

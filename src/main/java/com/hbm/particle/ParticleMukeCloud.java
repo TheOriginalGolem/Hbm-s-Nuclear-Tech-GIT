@@ -26,7 +26,7 @@ public class ParticleMukeCloud extends Particle {
 
 	private static final ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/particle/explosion.png");
 	
-	private float friction;
+	private final float friction;
 	
 	public ParticleMukeCloud(World world, double x, double y, double z, double mx, double my, double mz) {
 		super(world, x, y, z);
@@ -108,7 +108,7 @@ public class ParticleMukeCloud extends Particle {
 		
 		this.particleAlpha = 1F;
 		this.particleScale = 3;
-		Vec3d[] avec3d = new Vec3d[] {new Vec3d((double)(-rotationX * particleScale - rotationXY * particleScale), (double)(-rotationZ * particleScale), (double)(-rotationYZ * particleScale - rotationXZ * particleScale)), new Vec3d((double)(-rotationX * particleScale + rotationXY * particleScale), (double)(rotationZ * particleScale), (double)(-rotationYZ * particleScale + rotationXZ * particleScale)), new Vec3d((double)(rotationX * particleScale + rotationXY * particleScale), (double)(rotationZ * particleScale), (double)(rotationYZ * particleScale + rotationXZ * particleScale)), new Vec3d((double)(rotationX * particleScale - rotationXY * particleScale), (double)(-rotationZ * particleScale), (double)(rotationYZ * particleScale - rotationXZ * particleScale))};
+		Vec3d[] avec3d = new Vec3d[] {new Vec3d(-rotationX * particleScale - rotationXY * particleScale, -rotationZ * particleScale, -rotationYZ * particleScale - rotationXZ * particleScale), new Vec3d(-rotationX * particleScale + rotationXY * particleScale, rotationZ * particleScale, -rotationYZ * particleScale + rotationXZ * particleScale), new Vec3d(rotationX * particleScale + rotationXY * particleScale, rotationZ * particleScale, rotationYZ * particleScale + rotationXZ * particleScale), new Vec3d(rotationX * particleScale - rotationXY * particleScale, -rotationZ * particleScale, rotationYZ * particleScale - rotationXZ * particleScale)};
 
         if (this.particleAngle != 0.0F)
         {
@@ -117,11 +117,11 @@ public class ParticleMukeCloud extends Particle {
             float f10 = MathHelper.sin(f8 * 0.5F) * (float)cameraViewDir.x;
             float f11 = MathHelper.sin(f8 * 0.5F) * (float)cameraViewDir.y;
             float f12 = MathHelper.sin(f8 * 0.5F) * (float)cameraViewDir.z;
-            Vec3d vec3d = new Vec3d((double)f10, (double)f11, (double)f12);
+            Vec3d vec3d = new Vec3d(f10, f11, f12);
 
             for (int l = 0; l < 4; ++l)
             {
-                avec3d[l] = vec3d.scale(2.0D * avec3d[l].dotProduct(vec3d)).add(avec3d[l].scale((double)(f9 * f9) - vec3d.dotProduct(vec3d))).add(vec3d.crossProduct(avec3d[l]).scale((double)(2.0F * f9)));
+                avec3d[l] = vec3d.scale(2.0D * avec3d[l].dotProduct(vec3d)).add(avec3d[l].scale((double)(f9 * f9) - vec3d.dotProduct(vec3d))).add(vec3d.crossProduct(avec3d[l]).scale(2.0F * f9));
             }
         }
         Tessellator tes = Tessellator.getInstance();

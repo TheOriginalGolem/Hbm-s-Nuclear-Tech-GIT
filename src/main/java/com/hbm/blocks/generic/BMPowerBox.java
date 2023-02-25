@@ -106,19 +106,19 @@ public class BMPowerBox extends BlockContainer {
 
 	@Override
 	protected BlockStateContainer createBlockState() {
-		return new BlockStateContainer(this, new IProperty[] { FACING, IS_ON });
+		return new BlockStateContainer(this, FACING, IS_ON);
 	}
 
 	@Override
 	public int getMetaFromState(IBlockState state) {
-		int meta = ((EnumFacing) state.getValue(FACING)).getIndex() << 1;
+		int meta = state.getValue(FACING).getIndex() << 1;
 		meta += state.getValue(IS_ON) ? 1 : 0;
 		return meta;
 	}
 
 	@Override
 	public IBlockState getStateFromMeta(int meta) {
-		boolean on = (meta & 1) == 1 ? true : false;
+		boolean on = (meta & 1) == 1;
 		meta = meta >> 1;
 		EnumFacing enumfacing = EnumFacing.getFront(meta);
 
@@ -131,12 +131,12 @@ public class BMPowerBox extends BlockContainer {
 
 	@Override
 	public IBlockState withRotation(IBlockState state, Rotation rot) {
-		return state.withProperty(FACING, rot.rotate((EnumFacing) state.getValue(FACING)));
+		return state.withProperty(FACING, rot.rotate(state.getValue(FACING)));
 	}
 
 	@Override
 	public IBlockState withMirror(IBlockState state, Mirror mirrorIn) {
-		return state.withRotation(mirrorIn.toRotation((EnumFacing) state.getValue(FACING)));
+		return state.withRotation(mirrorIn.toRotation(state.getValue(FACING)));
 	}
 	
 }

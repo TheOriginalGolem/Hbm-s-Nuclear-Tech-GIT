@@ -16,7 +16,7 @@ import net.minecraftforge.items.SlotItemHandler;
 
 public class ContainerMachineCyclotron extends Container {
 
-	private TileEntityMachineCyclotron cyclotron;
+	private final TileEntityMachineCyclotron cyclotron;
 	
 	public ContainerMachineCyclotron(InventoryPlayer invPlayer, TileEntityMachineCyclotron tile) {
 		cyclotron = tile;
@@ -65,7 +65,7 @@ public class ContainerMachineCyclotron extends Container {
     public ItemStack transferStackInSlot(EntityPlayer player, int index)
     {
 		ItemStack var3 = ItemStack.EMPTY;
-		Slot slot = (Slot) this.inventorySlots.get(index);
+		Slot slot = this.inventorySlots.get(index);
 
 		if(slot != null && slot.getHasStack()) {
 			ItemStack stack = slot.getStack();

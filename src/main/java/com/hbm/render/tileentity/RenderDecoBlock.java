@@ -22,9 +22,9 @@ public class RenderDecoBlock extends TileEntitySpecialRenderer<TileEntityDecoBlo
 	private static final ResourceLocation texture2 = new ResourceLocation(RefStrings.MODID + ":" + "textures/models/SteelCorner.png");
 	private static final ResourceLocation texture3 = new ResourceLocation(RefStrings.MODID + ":" + "textures/models/SteelRoof.png");
 
-	private ModelSteelWall model1;
-	private ModelSteelCorner model2;
-	private ModelSteelRoof model3;
+	private final ModelSteelWall model1;
+	private final ModelSteelCorner model2;
+	private final ModelSteelRoof model3;
 
 	public RenderDecoBlock() {
 		this.model1 = new ModelSteelWall();

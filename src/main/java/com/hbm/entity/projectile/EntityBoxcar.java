@@ -58,7 +58,7 @@ public class EntityBoxcar extends EntityThrowable implements IConstantRenderer {
     		ExplosionLarge.spawnShock(world, posX, posY + 1, posZ, 24, 1.5);
     		ExplosionLarge.spawnShock(world, posX, posY + 1, posZ, 24, 1);
     			
-    		List<Entity> list = (List<Entity>)world.getEntitiesWithinAABBExcludingEntity(null, new AxisAlignedBB(posX - 2, posY - 2, posZ - 2, posX + 2, posY + 2, posZ + 2));
+    		List<Entity> list = world.getEntitiesWithinAABBExcludingEntity(null, new AxisAlignedBB(posX - 2, posY - 2, posZ - 2, posX + 2, posY + 2, posZ + 2));
     			
     		for(Entity e : list) {
     			e.attackEntityFrom(ModDamageSource.boxcar, 1000);

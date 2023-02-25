@@ -136,7 +136,7 @@ public class ModDamageSource extends DamageSource {
     public static boolean getIsBullet(DamageSource source) {
     	if(source instanceof EntityDamageSourceIndirect)
     	{
-    		return ((EntityDamageSourceIndirect)source).damageType.equals("revolverBullet");
+    		return source.damageType.equals("revolverBullet");
     	}
     	return false;
     }
@@ -144,7 +144,7 @@ public class ModDamageSource extends DamageSource {
     public static boolean getIsEmplacer(DamageSource source) {
     	if(source instanceof EntityDamageSourceIndirect)
     	{
-    		return ((EntityDamageSourceIndirect)source).damageType.equals("chopperBullet");
+    		return source.damageType.equals("chopperBullet");
     	}
     	return false;
     }
@@ -152,7 +152,7 @@ public class ModDamageSource extends DamageSource {
     public static boolean getIsTau(DamageSource source) {
     	if(source instanceof EntityDamageSourceIndirect)
     	{
-    		return ((EntityDamageSourceIndirect)source).damageType.equals("tau");
+    		return source.damageType.equals("tau");
     	}
     	return false;
     }
@@ -160,7 +160,7 @@ public class ModDamageSource extends DamageSource {
     public static boolean getIsPoison(DamageSource source) {
     	if(source instanceof EntityDamageSourceIndirect)
     	{
-    		return ((EntityDamageSourceIndirect)source).damageType.equals("euthanized");
+    		return source.damageType.equals("euthanized");
     	}
     	return false;
     }
@@ -168,7 +168,7 @@ public class ModDamageSource extends DamageSource {
     public static boolean getIsCmb(DamageSource source) {
     	if(source instanceof EntityDamageSourceIndirect)
     	{
-    		return ((EntityDamageSourceIndirect)source).damageType.equals("cmb");
+    		return source.damageType.equals("cmb");
     	}
     	return false;
     }
@@ -176,7 +176,7 @@ public class ModDamageSource extends DamageSource {
     public static boolean getIsSubatomic(DamageSource source) {
     	if(source instanceof EntityDamageSourceIndirect)
     	{
-    		String s = ((EntityDamageSourceIndirect)source).damageType;
+    		String s = source.damageType;
     		return s.equals("subAtomic") || s.equals("subAtomic2") || s.equals("subAtomic3") || s.equals("subAtomic4") || s.equals("subAtomic5");
     	}
     	return false;
@@ -185,7 +185,7 @@ public class ModDamageSource extends DamageSource {
     public static boolean getIsDischarge(DamageSource source) {
     	if(source instanceof EntityDamageSourceIndirect)
     	{
-    		return ((EntityDamageSourceIndirect)source).damageType.equals("electrified");
+    		return source.damageType.equals("electrified");
     	}
     	return false;
     }
@@ -193,7 +193,7 @@ public class ModDamageSource extends DamageSource {
     public static boolean getIsFire(DamageSource source) {
     	if(source instanceof EntityDamageSourceIndirect)
     	{
-    		return ((EntityDamageSourceIndirect)source).damageType.equals("flamethrower");
+    		return source.damageType.equals("flamethrower");
     	}
     	return false;
     }
@@ -201,7 +201,7 @@ public class ModDamageSource extends DamageSource {
     public static boolean getIsPlasma(DamageSource source) {
     	if(source instanceof EntityDamageSourceIndirect)
     	{
-    		return ((EntityDamageSourceIndirect)source).damageType.equals("plasma");
+    		return source.damageType.equals("plasma");
     	}
     	return false;
     }
@@ -209,7 +209,7 @@ public class ModDamageSource extends DamageSource {
     public static boolean getIsLiquidNitrogen(DamageSource source) {
     	if(source instanceof EntityDamageSourceIndirect)
     	{
-    		return ((EntityDamageSourceIndirect)source).damageType.equals("ice");
+    		return source.damageType.equals("ice");
     	}
     	return false;
     }
@@ -217,7 +217,7 @@ public class ModDamageSource extends DamageSource {
     public static boolean getIsLaser(DamageSource source) {
     	if(source instanceof EntityDamageSourceIndirect)
     	{
-    		return ((EntityDamageSourceIndirect)source).damageType.equals("laser");
+    		return source.damageType.equals("laser");
     	}
     	return false;
     }

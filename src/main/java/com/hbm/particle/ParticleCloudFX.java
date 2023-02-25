@@ -146,7 +146,7 @@ public class ParticleCloudFX extends Particle {
 			item = textureItems[2];
 		}
 
-		if (this.particleAge < this.particleMaxAge / 8 * 2 && this.particleAge >= this.particleMaxAge / 8 * 1) {
+		if (this.particleAge < this.particleMaxAge / 8 * 2 && this.particleAge >= this.particleMaxAge / 8) {
 			item = textureItems[1];
 		}
 

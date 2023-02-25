@@ -130,10 +130,8 @@ public class ItemRenderJShotgun extends TEISRBase {
 						if(diff > reload.anim.length)
 							done = true;
 					}
-					if(done && (modelName.startsWith("rightArm") || modelName.startsWith("leftArm") || modelName.startsWith("Boolet")))
-						return true;
-					return false;
-				}
+                    return done && (modelName.startsWith("rightArm") || modelName.startsWith("leftArm") || modelName.startsWith("Boolet"));
+                }
 			});
 			if(time > 0 && time < timeMax){
 				HbmShaderManager2.releaseShader();

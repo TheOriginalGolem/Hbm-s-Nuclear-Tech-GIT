@@ -51,23 +51,23 @@ public class RenderBeam extends Render<EntityPlasmaBeam> {
 				color = 0;
 			buf.pos(0 + o, 0 - o, 0).color(color, 1.0F, color, 1.0F).endVertex();
 			buf.pos(0 + o, 0 + o, 0).color(color, 1.0F, color, 1.0F).endVertex();
-			buf.pos(0 + o, 0 + o, 0 + distance).color(color, 1.0F, color, 1.0F).endVertex();
-			buf.pos(0 + o, 0 - o, 0 + distance).color(color, 1.0F, color, 1.0F).endVertex();
+			buf.pos(0 + o, 0 + o, distance).color(color, 1.0F, color, 1.0F).endVertex();
+			buf.pos(0 + o, 0 - o, distance).color(color, 1.0F, color, 1.0F).endVertex();
 			
 			buf.pos(0 - o, 0 - o, 0).color(color, 1.0F, color, 1.0F).endVertex();
 			buf.pos(0 + o, 0 - o, 0).color(color, 1.0F, color, 1.0F).endVertex();
-			buf.pos(0 + o, 0 - o, 0 + distance).color(color, 1.0F, color, 1.0F).endVertex();
-			buf.pos(0 - o, 0 - o, 0 + distance).color(color, 1.0F, color, 1.0F).endVertex();
+			buf.pos(0 + o, 0 - o, distance).color(color, 1.0F, color, 1.0F).endVertex();
+			buf.pos(0 - o, 0 - o, distance).color(color, 1.0F, color, 1.0F).endVertex();
 			
 			buf.pos(0 - o, 0 + o, 0).color(color, 1.0F, color, 1.0F).endVertex();
 			buf.pos(0 - o, 0 - o, 0).color(color, 1.0F, color, 1.0F).endVertex();
-			buf.pos(0 - o, 0 - o, 0 + distance).color(color, 1.0F, color, 1.0F).endVertex();
-			buf.pos(0 - o, 0 + o, 0 + distance).color(color, 1.0F, color, 1.0F).endVertex();
+			buf.pos(0 - o, 0 - o, distance).color(color, 1.0F, color, 1.0F).endVertex();
+			buf.pos(0 - o, 0 + o, distance).color(color, 1.0F, color, 1.0F).endVertex();
 			
 			buf.pos(0 + o, 0 + o, 0).color(color, 1.0F, color, 1.0F).endVertex();
 			buf.pos(0 - o, 0 + o, 0).color(color, 1.0F, color, 1.0F).endVertex();
-			buf.pos(0 - o, 0 + o, 0 + distance).color(color, 1.0F, color, 1.0F).endVertex();
-			buf.pos(0 + o, 0 + o, 0 + distance).color(color, 1.0F, color, 1.0F).endVertex();
+			buf.pos(0 - o, 0 + o, distance).color(color, 1.0F, color, 1.0F).endVertex();
+			buf.pos(0 + o, 0 + o, distance).color(color, 1.0F, color, 1.0F).endVertex();
 		}
 		tessellator.draw();
 		GL11.glDisable(GL11.GL_BLEND);

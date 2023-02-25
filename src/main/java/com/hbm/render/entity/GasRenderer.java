@@ -67,7 +67,7 @@ public class GasRenderer extends Render<EntityGasFX> {
 			renderItem = ModItems.gas3;
 		}
 
-		if (fx.particleAge < fx.maxAge / 8 * 2 && fx.particleAge >= fx.maxAge / 8 * 1) {
+		if (fx.particleAge < fx.maxAge / 8 * 2 && fx.particleAge >= fx.maxAge / 8) {
 			renderItem = ModItems.gas2;
 		}
 

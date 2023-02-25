@@ -17,16 +17,16 @@ import net.minecraftforge.oredict.OreDictionary;
 
 public class CyclotronRecipes {
 
-	private static HashMap<Object, ItemStack> lithium = new HashMap<>();
-	private static HashMap<Object, ItemStack> beryllium = new HashMap<>();
-	private static HashMap<Object, ItemStack> carbon = new HashMap<>();
-	private static HashMap<Object, ItemStack> copper = new HashMap<>();
-	private static HashMap<Object, ItemStack> plutonium = new HashMap<>();
-	private static HashMap<Object, Integer> liAmat = new HashMap<>();
-	private static HashMap<Object, Integer> beAmat = new HashMap<>();
-	private static HashMap<Object, Integer> caAmat = new HashMap<>();
-	private static HashMap<Object, Integer> coAmat = new HashMap<>();
-	private static HashMap<Object, Integer> plAmat = new HashMap<>();
+	private static final HashMap<Object, ItemStack> lithium = new HashMap<>();
+	private static final HashMap<Object, ItemStack> beryllium = new HashMap<>();
+	private static final HashMap<Object, ItemStack> carbon = new HashMap<>();
+	private static final HashMap<Object, ItemStack> copper = new HashMap<>();
+	private static final HashMap<Object, ItemStack> plutonium = new HashMap<>();
+	private static final HashMap<Object, Integer> liAmat = new HashMap<>();
+	private static final HashMap<Object, Integer> beAmat = new HashMap<>();
+	private static final HashMap<Object, Integer> caAmat = new HashMap<>();
+	private static final HashMap<Object, Integer> coAmat = new HashMap<>();
+	private static final HashMap<Object, Integer> plAmat = new HashMap<>();
 
 	public static void register() {
 

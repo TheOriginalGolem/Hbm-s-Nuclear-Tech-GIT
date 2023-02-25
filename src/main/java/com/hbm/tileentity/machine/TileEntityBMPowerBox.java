@@ -1,6 +1,7 @@
 package com.hbm.tileentity.machine;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import com.hbm.inventory.control_panel.ControlEvent;
@@ -51,7 +52,7 @@ public class TileEntityBMPowerBox extends TileEntity implements IControllable {
 
 	@Override
 	public List<String> getOutEvents(){
-		return Arrays.asList("lever_toggle");
+		return Collections.singletonList("lever_toggle");
 	}
 	
 	@Override

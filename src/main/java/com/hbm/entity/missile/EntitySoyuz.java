@@ -36,7 +36,7 @@ public class EntitySoyuz extends Entity {
 	public int targetZ;
 	boolean memed = false;
 
-	private ItemStack[] payload;
+	private final ItemStack[] payload;
 	
 	public EntitySoyuz(World worldIn) {
 		super(worldIn);

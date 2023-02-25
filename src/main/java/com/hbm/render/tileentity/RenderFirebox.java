@@ -31,7 +31,7 @@ public class RenderFirebox extends TileEntitySpecialRenderer<TileEntityHeaterFir
 		}
 		GL11.glRotatef(-90, 0F, 1F, 0F);
 		
-		TileEntityHeaterFirebox firebox = (TileEntityHeaterFirebox) tile;
+		TileEntityHeaterFirebox firebox = tile;
 		
 		bindTexture(ResourceManager.heater_firebox_tex);
 		ResourceManager.heater_firebox.renderPart("Main");

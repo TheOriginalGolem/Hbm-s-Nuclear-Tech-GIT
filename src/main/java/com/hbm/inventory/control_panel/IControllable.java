@@ -8,11 +8,11 @@ import net.minecraft.world.World;
 
 public interface IControllable {
 
-	public default List<String> getInEvents(){return Collections.emptyList();}
-	public default List<String> getOutEvents(){return Collections.emptyList();}
+	default List<String> getInEvents(){return Collections.emptyList();}
+	default List<String> getOutEvents(){return Collections.emptyList();}
 	
-	public void receiveEvent(BlockPos from, ControlEvent e);
+	void receiveEvent(BlockPos from, ControlEvent e);
 	
-	public BlockPos getControlPos();
-	public World getControlWorld();
+	BlockPos getControlPos();
+	World getControlWorld();
 }

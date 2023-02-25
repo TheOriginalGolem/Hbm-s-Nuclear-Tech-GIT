@@ -17,7 +17,7 @@ import net.minecraft.util.ResourceLocation;
 
 public class GUIFirebox extends GuiInfoContainer {
 	
-	private TileEntityFireboxBase firebox;
+	private final TileEntityFireboxBase firebox;
 	private final ResourceLocation texture;
 
 	public GUIFirebox(InventoryPlayer invPlayer, TileEntityFireboxBase tedf, ResourceLocation texture) {
@@ -36,7 +36,7 @@ public class GUIFirebox extends GuiInfoContainer {
 		if(this.mc.player.inventory.getItemStack() == null) {
 			
 			for(int i = 0; i < 2; ++i) {
-				Slot slot = (Slot) this.inventorySlots.inventorySlots.get(i);
+				Slot slot = this.inventorySlots.inventorySlots.get(i);
 				
 				if(this.isMouseOverSlot(slot, slot.xPos, slot.yPos) && !slot.getHasStack()) {
 					

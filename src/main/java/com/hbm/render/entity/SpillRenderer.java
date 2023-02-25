@@ -66,7 +66,7 @@ public class SpillRenderer extends Render<EntityOilSpillFX> {
 			renderItem = ModItems.spill3;
 		}
 
-		if (fx.particleAge < fx.maxAge / 8 * 2 && fx.particleAge >= fx.maxAge / 8 * 1) {
+		if (fx.particleAge < fx.maxAge / 8 * 2 && fx.particleAge >= fx.maxAge / 8) {
 			renderItem = ModItems.spill2;
 		}
 

@@ -77,7 +77,7 @@ public class MachineArcFurnace extends BlockContainer {
 			IBlockState iblockstate1 = worldIn.getBlockState(pos.south());
 			IBlockState iblockstate2 = worldIn.getBlockState(pos.west());
 			IBlockState iblockstate3 = worldIn.getBlockState(pos.east());
-			EnumFacing enumfacing = (EnumFacing) state.getValue(FACING);
+			EnumFacing enumfacing = state.getValue(FACING);
 
 			if(enumfacing == EnumFacing.NORTH && iblockstate.isFullBlock() && !iblockstate1.isFullBlock()) {
 				enumfacing = EnumFacing.SOUTH;
@@ -212,19 +212,19 @@ public class MachineArcFurnace extends BlockContainer {
 
 	@Override
 	protected BlockStateContainer createBlockState() {
-		return new BlockStateContainer(this, new IProperty[] { FACING, RODS });
+		return new BlockStateContainer(this, FACING, RODS);
 	}
 
 	@Override
 	public int getMetaFromState(IBlockState state) {
-		int meta = ((EnumFacing) state.getValue(FACING)).getIndex() << 1;
+		int meta = state.getValue(FACING).getIndex() << 1;
 		meta += state.getValue(RODS) ? 1 : 0;
 		return meta;
 	}
 
 	@Override
 	public IBlockState getStateFromMeta(int meta) {
-		boolean rods = (meta & 1) == 1 ? true : false;
+		boolean rods = (meta & 1) == 1;
 		meta = meta >> 1;
 		EnumFacing enumfacing = EnumFacing.getFront(meta);
 
@@ -237,12 +237,12 @@ public class MachineArcFurnace extends BlockContainer {
 
 	@Override
 	public IBlockState withRotation(IBlockState state, Rotation rot) {
-		return state.withProperty(FACING, rot.rotate((EnumFacing) state.getValue(FACING)));
+		return state.withProperty(FACING, rot.rotate(state.getValue(FACING)));
 	}
 
 	@Override
 	public IBlockState withMirror(IBlockState state, Mirror mirrorIn) {
-		return state.withRotation(mirrorIn.toRotation((EnumFacing) state.getValue(FACING)));
+		return state.withRotation(mirrorIn.toRotation(state.getValue(FACING)));
 	}
 
 }

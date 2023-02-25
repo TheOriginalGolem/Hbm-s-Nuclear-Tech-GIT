@@ -8,7 +8,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class ParticleNT extends Particle {
 
-	private ParticleDefinition definition;
+	private final ParticleDefinition definition;
 	
 	protected ParticleNT(World worldIn, double posXIn, double posYIn, double posZIn, ParticleDefinition definition) {
 		super(worldIn, posXIn, posYIn, posZIn);

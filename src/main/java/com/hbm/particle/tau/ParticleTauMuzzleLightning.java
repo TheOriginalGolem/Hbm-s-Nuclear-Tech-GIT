@@ -88,7 +88,7 @@ public class ParticleTauMuzzleLightning extends ParticleFirstPerson {
 		GlStateManager.blendFunc(SourceFactor.SRC_ALPHA, DestFactor.ONE);
 		Minecraft.getMinecraft().getTextureManager().bindTexture(ResourceManager.bfg_core_lightning);
 		GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_LINEAR);
-		float lifeN = (float)(particleAge+partialTicks)/(float)particleMaxAge;
+		float lifeN = (particleAge+partialTicks) /(float)particleMaxAge;
 		float fade = MathHelper.clamp(2.5F-lifeN*2.5F, 0, 1);
 		
 		buffer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX_COLOR);

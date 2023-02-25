@@ -98,12 +98,8 @@ public class TileEntityCoreReceiver extends TileEntityMachineBase implements ITi
 
 	@Override
 	public boolean getTact() {
-		if(age >= 0 && age < 10) {
-			return true;
-		}
-
-		return false;
-	}
+        return age >= 0 && age < 10;
+    }
 
 	@Override
 	public long getSPower() {

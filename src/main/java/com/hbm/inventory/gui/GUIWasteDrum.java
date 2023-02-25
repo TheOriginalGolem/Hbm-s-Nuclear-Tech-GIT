@@ -13,8 +13,8 @@ import net.minecraft.util.ResourceLocation;
 
 public class GUIWasteDrum extends GuiInfoContainer {
 	
-	private static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/gui_waste_drum.png");
-	private TileEntityWasteDrum diFurnace;
+	private static final ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/gui_waste_drum.png");
+	private final TileEntityWasteDrum diFurnace;
 
 	public GUIWasteDrum(InventoryPlayer invPlayer, TileEntityWasteDrum tedf) {
 		super(new ContainerWasteDrum(invPlayer, tedf));

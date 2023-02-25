@@ -36,7 +36,7 @@ public class Ruin002 {
 
 	public boolean generate_r00(World world, Random rand, int x, int y, int z) {
 
-		world.setBlockState(new BlockPos(x + 0, y + 5, z + 4), Block1.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 5, z + 4), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 5, z + 4), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 5, z + 4), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 5, z + 4), Block1.getDefaultState(), 3);
@@ -49,7 +49,7 @@ public class Ruin002 {
 		world.setBlockState(new BlockPos(x + 10, y + 5, z + 4), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 11, y + 5, z + 4), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 12, y + 5, z + 4), Block1.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 5, z + 5), Block1.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 5, z + 5), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 5, z + 5), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 5, z + 5), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 5, z + 5), Blocks.AIR.getDefaultState(), 3);
@@ -59,7 +59,7 @@ public class Ruin002 {
 		world.setBlockState(new BlockPos(x + 7, y + 5, z + 5), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 8, y + 5, z + 5), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 12, y + 5, z + 5), Block1.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 5, z + 6), Block1.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 5, z + 6), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 5, z + 6), ModBlocks.red_cable.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 5, z + 6), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 5, z + 6), Blocks.AIR.getDefaultState(), 3);
@@ -69,7 +69,7 @@ public class Ruin002 {
 		world.setBlockState(new BlockPos(x + 7, y + 5, z + 6), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 8, y + 5, z + 6), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 12, y + 5, z + 6), Block1.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 5, z + 7), Block1.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 5, z + 7), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 5, z + 7), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 5, z + 7), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 5, z + 7), Blocks.AIR.getDefaultState(), 3);
@@ -79,7 +79,7 @@ public class Ruin002 {
 		world.setBlockState(new BlockPos(x + 7, y + 5, z + 7), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 8, y + 5, z + 7), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 12, y + 5, z + 7), Block1.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 5, z + 8), Block1.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 5, z + 8), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 5, z + 8), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 5, z + 8), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 5, z + 8), Blocks.AIR.getDefaultState(), 3);
@@ -89,7 +89,7 @@ public class Ruin002 {
 		world.setBlockState(new BlockPos(x + 7, y + 5, z + 8), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 8, y + 5, z + 8), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 12, y + 5, z + 8), Block1.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 5, z + 9), Block1.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 5, z + 9), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 5, z + 9), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 5, z + 9), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 5, z + 9), Blocks.AIR.getDefaultState(), 3);
@@ -99,7 +99,7 @@ public class Ruin002 {
 		world.setBlockState(new BlockPos(x + 7, y + 5, z + 9), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 8, y + 5, z + 9), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 12, y + 5, z + 9), Block1.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 5, z + 10), Block1.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 5, z + 10), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 5, z + 10), ModBlocks.red_cable.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 5, z + 10), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 5, z + 10), Blocks.AIR.getDefaultState(), 3);
@@ -112,7 +112,7 @@ public class Ruin002 {
 		world.setBlockState(new BlockPos(x + 10, y + 5, z + 10), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 11, y + 5, z + 10), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 12, y + 5, z + 10), Block1.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 5, z + 11), Block1.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 5, z + 11), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 5, z + 11), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 5, z + 11), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 5, z + 11), Blocks.AIR.getDefaultState(), 3);
@@ -125,7 +125,7 @@ public class Ruin002 {
 		world.setBlockState(new BlockPos(x + 10, y + 5, z + 11), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 11, y + 5, z + 11), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 12, y + 5, z + 11), Block1.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 5, z + 12), Block1.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 5, z + 12), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 5, z + 12), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 5, z + 12), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 5, z + 12), Blocks.AIR.getDefaultState(), 3);
@@ -137,7 +137,7 @@ public class Ruin002 {
 		world.setBlockState(new BlockPos(x + 9, y + 5, z + 12), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 11, y + 5, z + 12), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 12, y + 5, z + 12), Block1.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 5, z + 13), Block1.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 5, z + 13), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 5, z + 13), Blocks.WEB.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 5, z + 13), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 5, z + 13), Blocks.AIR.getDefaultState(), 3);
@@ -161,7 +161,7 @@ public class Ruin002 {
 		world.setBlockState(new BlockPos(x + 9, y + 5, z + 14), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 10, y + 5, z + 14), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 11, y + 5, z + 14), Block1.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 6, z + 4), Block1.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 6, z + 4), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 6, z + 4), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 6, z + 4), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 6, z + 4), Block1.getDefaultState(), 3);
@@ -174,7 +174,7 @@ public class Ruin002 {
 		world.setBlockState(new BlockPos(x + 10, y + 6, z + 4), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 11, y + 6, z + 4), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 12, y + 6, z + 4), Block1.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 6, z + 5), Block1.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 6, z + 5), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 6, z + 5), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 6, z + 5), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 6, z + 5), Blocks.AIR.getDefaultState(), 3);
@@ -187,7 +187,7 @@ public class Ruin002 {
 		world.setBlockState(new BlockPos(x + 10, y + 6, z + 5), Blocks.WEB.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 11, y + 6, z + 5), Blocks.WEB.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 12, y + 6, z + 5), Block1.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 6, z + 6), Block1.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 6, z + 6), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 6, z + 6), ModBlocks.red_cable.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 6, z + 6), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 6, z + 6), Blocks.AIR.getDefaultState(), 3);
@@ -200,7 +200,7 @@ public class Ruin002 {
 		world.setBlockState(new BlockPos(x + 10, y + 6, z + 6), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 11, y + 6, z + 6), Blocks.WEB.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 12, y + 6, z + 6), Block1.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 6, z + 7), Block1.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 6, z + 7), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 6, z + 7), ModBlocks.red_cable.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 6, z + 7), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 6, z + 7), Blocks.AIR.getDefaultState(), 3);
@@ -213,7 +213,7 @@ public class Ruin002 {
 		world.setBlockState(new BlockPos(x + 10, y + 6, z + 7), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 11, y + 6, z + 7), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 12, y + 6, z + 7), Block1.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 6, z + 8), Block1.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 6, z + 8), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 6, z + 8), ModBlocks.red_cable.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 6, z + 8), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 6, z + 8), Blocks.AIR.getDefaultState(), 3);
@@ -226,7 +226,7 @@ public class Ruin002 {
 		world.setBlockState(new BlockPos(x + 10, y + 6, z + 8), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 11, y + 6, z + 8), Blocks.WEB.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 12, y + 6, z + 8), Block1.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 6, z + 9), Block1.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 6, z + 9), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 6, z + 9), ModBlocks.cable_switch.getDefaultState().withProperty(CableSwitch.STATE, true), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 6, z + 9), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 6, z + 9), Blocks.AIR.getDefaultState(), 3);
@@ -239,7 +239,7 @@ public class Ruin002 {
 		world.setBlockState(new BlockPos(x + 10, y + 6, z + 9), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 11, y + 6, z + 9), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 12, y + 6, z + 9), Block1.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 6, z + 10), Block1.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 6, z + 10), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 6, z + 10), ModBlocks.red_cable.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 6, z + 10), ModBlocks.red_cable.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 6, z + 10), Blocks.AIR.getDefaultState(), 3);
@@ -252,7 +252,7 @@ public class Ruin002 {
 		world.setBlockState(new BlockPos(x + 10, y + 6, z + 10), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 11, y + 6, z + 10), Blocks.WEB.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 12, y + 6, z + 10), Block1.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 6, z + 11), Block1.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 6, z + 11), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 6, z + 11), ModBlocks.red_cable.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 6, z + 11), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 6, z + 11), Blocks.AIR.getDefaultState(), 3);
@@ -265,7 +265,7 @@ public class Ruin002 {
 		world.setBlockState(new BlockPos(x + 10, y + 6, z + 11), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 11, y + 6, z + 11), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 12, y + 6, z + 11), Block1.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 6, z + 12), Block1.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 6, z + 12), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 6, z + 12), ModBlocks.red_cable.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 6, z + 12), ModBlocks.red_cable.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 6, z + 12), Blocks.AIR.getDefaultState(), 3);
@@ -277,7 +277,7 @@ public class Ruin002 {
 		world.setBlockState(new BlockPos(x + 9, y + 6, z + 12), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 11, y + 6, z + 12), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 12, y + 6, z + 12), Block1.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 6, z + 13), Block1.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 6, z + 13), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 6, z + 13), Blocks.WEB.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 6, z + 13), Blocks.WEB.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 6, z + 13), Blocks.AIR.getDefaultState(), 3);
@@ -301,7 +301,7 @@ public class Ruin002 {
 		world.setBlockState(new BlockPos(x + 9, y + 6, z + 14), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 10, y + 6, z + 14), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 11, y + 6, z + 14), Block1.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 7, z + 4), Block1.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 7, z + 4), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 7, z + 4), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 7, z + 4), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 7, z + 4), Block1.getDefaultState(), 3);
@@ -313,7 +313,7 @@ public class Ruin002 {
 		world.setBlockState(new BlockPos(x + 9, y + 7, z + 4), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 10, y + 7, z + 4), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 11, y + 7, z + 4), Block1.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 7, z + 5), Block1.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 7, z + 5), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 7, z + 5), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 7, z + 5), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 7, z + 5), Block1.getDefaultState(), 3);
@@ -325,7 +325,7 @@ public class Ruin002 {
 		world.setBlockState(new BlockPos(x + 9, y + 7, z + 5), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 10, y + 7, z + 5), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 11, y + 7, z + 5), Block1.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 7, z + 6), Block1.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 7, z + 6), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 7, z + 6), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 7, z + 6), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 7, z + 6), Block1.getDefaultState(), 3);
@@ -337,7 +337,7 @@ public class Ruin002 {
 		world.setBlockState(new BlockPos(x + 9, y + 7, z + 6), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 10, y + 7, z + 6), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 11, y + 7, z + 6), Block1.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 7, z + 7), Block1.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 7, z + 7), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 7, z + 7), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 7, z + 7), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 7, z + 7), Block1.getDefaultState(), 3);
@@ -349,7 +349,7 @@ public class Ruin002 {
 		world.setBlockState(new BlockPos(x + 9, y + 7, z + 7), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 10, y + 7, z + 7), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 11, y + 7, z + 7), Block1.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 7, z + 8), Block1.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 7, z + 8), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 7, z + 8), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 7, z + 8), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 7, z + 8), Block1.getDefaultState(), 3);
@@ -361,7 +361,7 @@ public class Ruin002 {
 		world.setBlockState(new BlockPos(x + 9, y + 7, z + 8), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 10, y + 7, z + 8), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 11, y + 7, z + 8), Block1.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 7, z + 9), Block1.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 7, z + 9), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 7, z + 9), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 7, z + 9), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 7, z + 9), Block1.getDefaultState(), 3);
@@ -373,7 +373,7 @@ public class Ruin002 {
 		world.setBlockState(new BlockPos(x + 9, y + 7, z + 9), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 10, y + 7, z + 9), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 11, y + 7, z + 9), Block1.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 7, z + 10), Block1.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 7, z + 10), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 7, z + 10), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 7, z + 10), ModBlocks.red_cable.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 7, z + 10), Block1.getDefaultState(), 3);
@@ -385,7 +385,7 @@ public class Ruin002 {
 		world.setBlockState(new BlockPos(x + 9, y + 7, z + 10), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 10, y + 7, z + 10), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 11, y + 7, z + 10), Block1.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 7, z + 11), Block1.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 7, z + 11), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 7, z + 11), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 7, z + 11), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 7, z + 11), Block1.getDefaultState(), 3);
@@ -397,7 +397,7 @@ public class Ruin002 {
 		world.setBlockState(new BlockPos(x + 9, y + 7, z + 11), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 10, y + 7, z + 11), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 11, y + 7, z + 11), Block1.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 7, z + 12), Block1.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 7, z + 12), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 7, z + 12), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 7, z + 12), ModBlocks.red_cable.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 7, z + 12), Block1.getDefaultState(), 3);
@@ -408,7 +408,7 @@ public class Ruin002 {
 		world.setBlockState(new BlockPos(x + 8, y + 7, z + 12), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 9, y + 7, z + 12), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 11, y + 7, z + 12), Block1.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 7, z + 13), Block1.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 7, z + 13), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 7, z + 13), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 7, z + 13), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 7, z + 13), Block1.getDefaultState(), 3);
@@ -431,7 +431,7 @@ public class Ruin002 {
 		world.setBlockState(new BlockPos(x + 9, y + 7, z + 14), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 10, y + 7, z + 14), Block1.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 11, y + 7, z + 14), Block1.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 8, z + 1), Blocks.STONE_STAIRS.getDefaultState().withProperty(BlockStairs.HALF, BlockStairs.EnumHalf.BOTTOM).withProperty(BlockStairs.FACING, EnumFacing.SOUTH), 3);
+		world.setBlockState(new BlockPos(x, y + 8, z + 1), Blocks.STONE_STAIRS.getDefaultState().withProperty(BlockStairs.HALF, BlockStairs.EnumHalf.BOTTOM).withProperty(BlockStairs.FACING, EnumFacing.SOUTH), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 8, z + 1), Blocks.STONE_STAIRS.getDefaultState().withProperty(BlockStairs.HALF, BlockStairs.EnumHalf.BOTTOM).withProperty(BlockStairs.FACING, EnumFacing.SOUTH), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 8, z + 1), Blocks.STONE_STAIRS.getDefaultState().withProperty(BlockStairs.HALF, BlockStairs.EnumHalf.BOTTOM).withProperty(BlockStairs.FACING, EnumFacing.SOUTH), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 8, z + 1), Blocks.STONE_STAIRS.getDefaultState().withProperty(BlockStairs.HALF, BlockStairs.EnumHalf.BOTTOM).withProperty(BlockStairs.FACING, EnumFacing.SOUTH), 3);
@@ -443,7 +443,7 @@ public class Ruin002 {
 		world.setBlockState(new BlockPos(x + 9, y + 8, z + 1), Blocks.STONE_STAIRS.getDefaultState().withProperty(BlockStairs.HALF, BlockStairs.EnumHalf.BOTTOM).withProperty(BlockStairs.FACING, EnumFacing.SOUTH), 3);
 		world.setBlockState(new BlockPos(x + 10, y + 8, z + 1), Blocks.STONE_STAIRS.getDefaultState().withProperty(BlockStairs.HALF, BlockStairs.EnumHalf.BOTTOM).withProperty(BlockStairs.FACING, EnumFacing.SOUTH), 3);
 		world.setBlockState(new BlockPos(x + 11, y + 8, z + 1), Blocks.STONE_STAIRS.getDefaultState().withProperty(BlockStairs.HALF, BlockStairs.EnumHalf.BOTTOM).withProperty(BlockStairs.FACING, EnumFacing.SOUTH), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 8, z + 2), Blocks.STONE_STAIRS.getDefaultState().withProperty(BlockStairs.HALF, BlockStairs.EnumHalf.BOTTOM).withProperty(BlockStairs.FACING, EnumFacing.EAST), 3);
+		world.setBlockState(new BlockPos(x, y + 8, z + 2), Blocks.STONE_STAIRS.getDefaultState().withProperty(BlockStairs.HALF, BlockStairs.EnumHalf.BOTTOM).withProperty(BlockStairs.FACING, EnumFacing.EAST), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 8, z + 2), Blocks.COBBLESTONE.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 8, z + 2), Blocks.COBBLESTONE.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 8, z + 2), Blocks.MOSSY_COBBLESTONE.getDefaultState(), 3);
@@ -455,7 +455,7 @@ public class Ruin002 {
 		world.setBlockState(new BlockPos(x + 9, y + 8, z + 2), Blocks.COBBLESTONE.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 10, y + 8, z + 2), Blocks.COBBLESTONE.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 11, y + 8, z + 2), Blocks.COBBLESTONE.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 8, z + 3), Blocks.STONE_STAIRS.getDefaultState().withProperty(BlockStairs.HALF, BlockStairs.EnumHalf.BOTTOM).withProperty(BlockStairs.FACING, EnumFacing.EAST), 3);
+		world.setBlockState(new BlockPos(x, y + 8, z + 3), Blocks.STONE_STAIRS.getDefaultState().withProperty(BlockStairs.HALF, BlockStairs.EnumHalf.BOTTOM).withProperty(BlockStairs.FACING, EnumFacing.EAST), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 8, z + 3), Blocks.MOSSY_COBBLESTONE.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 8, z + 3), Blocks.COBBLESTONE.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 8, z + 3), Blocks.MOSSY_COBBLESTONE.getDefaultState(), 3);
@@ -467,7 +467,7 @@ public class Ruin002 {
 		world.setBlockState(new BlockPos(x + 9, y + 8, z + 3), Blocks.COBBLESTONE.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 10, y + 8, z + 3), Blocks.STONE_STAIRS.getDefaultState().withProperty(BlockStairs.HALF, BlockStairs.EnumHalf.BOTTOM).withProperty(BlockStairs.FACING, EnumFacing.NORTH), 3);
 		world.setBlockState(new BlockPos(x + 11, y + 8, z + 3), Blocks.COBBLESTONE.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 8, z + 4), Blocks.STONE_STAIRS.getDefaultState().withProperty(BlockStairs.HALF, BlockStairs.EnumHalf.BOTTOM).withProperty(BlockStairs.FACING, EnumFacing.EAST), 3);
+		world.setBlockState(new BlockPos(x, y + 8, z + 4), Blocks.STONE_STAIRS.getDefaultState().withProperty(BlockStairs.HALF, BlockStairs.EnumHalf.BOTTOM).withProperty(BlockStairs.FACING, EnumFacing.EAST), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 8, z + 4), Blocks.COBBLESTONE.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 8, z + 4), Blocks.COBBLESTONE.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 8, z + 4), Blocks.COBBLESTONE.getDefaultState(), 3);
@@ -479,7 +479,7 @@ public class Ruin002 {
 		world.setBlockState(new BlockPos(x + 9, y + 8, z + 4), Blocks.COBBLESTONE.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 10, y + 8, z + 4), Blocks.COBBLESTONE.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 11, y + 8, z + 4), Blocks.COBBLESTONE.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 8, z + 5), Blocks.DIRT.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 8, z + 5), Blocks.DIRT.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 8, z + 5), Blocks.COBBLESTONE.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 8, z + 5), Blocks.COBBLESTONE.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 8, z + 5), Blocks.COBBLESTONE.getDefaultState(), 3);
@@ -491,7 +491,7 @@ public class Ruin002 {
 		world.setBlockState(new BlockPos(x + 9, y + 8, z + 5), Blocks.COBBLESTONE.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 10, y + 8, z + 5), Blocks.COBBLESTONE.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 11, y + 8, z + 5), Blocks.COBBLESTONE.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 8, z + 6), Blocks.DIRT.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 8, z + 6), Blocks.DIRT.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 8, z + 6), Blocks.COBBLESTONE.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 8, z + 6), Blocks.STAINED_HARDENED_CLAY.getDefaultState().withProperty(BlockStainedHardenedClay.COLOR, EnumDyeColor.byMetadata(15)), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 8, z + 6), Blocks.STAINED_HARDENED_CLAY.getDefaultState().withProperty(BlockStainedHardenedClay.COLOR, EnumDyeColor.byMetadata(0)), 3);
@@ -503,7 +503,7 @@ public class Ruin002 {
 		world.setBlockState(new BlockPos(x + 9, y + 8, z + 6), Blocks.SPRUCE_STAIRS.getDefaultState().withProperty(BlockStairs.HALF, BlockStairs.EnumHalf.BOTTOM).withProperty(BlockStairs.FACING, EnumFacing.NORTH), 3);
 		world.setBlockState(new BlockPos(x + 10, y + 8, z + 6), Blocks.SPRUCE_STAIRS.getDefaultState().withProperty(BlockStairs.HALF, BlockStairs.EnumHalf.BOTTOM).withProperty(BlockStairs.FACING, EnumFacing.NORTH), 3);
 		world.setBlockState(new BlockPos(x + 11, y + 8, z + 6), Blocks.COBBLESTONE.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 8, z + 7), Blocks.DIRT.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 8, z + 7), Blocks.DIRT.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 8, z + 7), Blocks.COBBLESTONE.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 8, z + 7), Blocks.STAINED_HARDENED_CLAY.getDefaultState().withProperty(BlockStainedHardenedClay.COLOR, EnumDyeColor.byMetadata(0)), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 8, z + 7), Blocks.STAINED_HARDENED_CLAY.getDefaultState().withProperty(BlockStainedHardenedClay.COLOR, EnumDyeColor.byMetadata(15)), 3);
@@ -515,7 +515,7 @@ public class Ruin002 {
 		world.setBlockState(new BlockPos(x + 9, y + 8, z + 7), Blocks.SPRUCE_STAIRS.getDefaultState().withProperty(BlockStairs.HALF, BlockStairs.EnumHalf.BOTTOM).withProperty(BlockStairs.FACING, EnumFacing.EAST), 3);
 		world.setBlockState(new BlockPos(x + 10, y + 8, z + 7), Blocks.SPRUCE_STAIRS.getDefaultState().withProperty(BlockStairs.HALF, BlockStairs.EnumHalf.BOTTOM).withProperty(BlockStairs.FACING, EnumFacing.EAST), 3);
 		world.setBlockState(new BlockPos(x + 11, y + 8, z + 7), Blocks.SPRUCE_STAIRS.getDefaultState().withProperty(BlockStairs.HALF, BlockStairs.EnumHalf.TOP).withProperty(BlockStairs.FACING, EnumFacing.EAST), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 8, z + 8), Blocks.DIRT.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 8, z + 8), Blocks.DIRT.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 8, z + 8), Blocks.COBBLESTONE.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 8, z + 8), Blocks.STAINED_HARDENED_CLAY.getDefaultState().withProperty(BlockStainedHardenedClay.COLOR, EnumDyeColor.byMetadata(15)), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 8, z + 8), Blocks.STAINED_HARDENED_CLAY.getDefaultState().withProperty(BlockStainedHardenedClay.COLOR, EnumDyeColor.byMetadata(0)), 3);
@@ -527,7 +527,7 @@ public class Ruin002 {
 		world.setBlockState(new BlockPos(x + 9, y + 8, z + 8), Blocks.PLANKS.getDefaultState().withProperty(BlockPlanks.VARIANT, BlockPlanks.EnumType.SPRUCE), 3);
 		world.setBlockState(new BlockPos(x + 10, y + 8, z + 8), Blocks.WOODEN_SLAB.getDefaultState().withProperty(BlockHalfWoodSlab.HALF, BlockSlab.EnumBlockHalf.BOTTOM).withProperty(BlockHalfWoodSlab.VARIANT, BlockPlanks.EnumType.byMetadata(1)), 3);
 		world.setBlockState(new BlockPos(x + 11, y + 8, z + 8), Blocks.COBBLESTONE.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 8, z + 9), Blocks.GRASS.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 8, z + 9), Blocks.GRASS.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 8, z + 9), Blocks.COBBLESTONE.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 8, z + 9), Blocks.STAINED_HARDENED_CLAY.getDefaultState().withProperty(BlockStainedHardenedClay.COLOR, EnumDyeColor.byMetadata(0)), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 8, z + 9), Blocks.STAINED_HARDENED_CLAY.getDefaultState().withProperty(BlockStainedHardenedClay.COLOR, EnumDyeColor.byMetadata(15)), 3);
@@ -539,7 +539,7 @@ public class Ruin002 {
 		world.setBlockState(new BlockPos(x + 9, y + 8, z + 9), Blocks.PLANKS.getDefaultState().withProperty(BlockPlanks.VARIANT, BlockPlanks.EnumType.SPRUCE), 3);
 		world.setBlockState(new BlockPos(x + 10, y + 8, z + 9), Blocks.PLANKS.getDefaultState().withProperty(BlockPlanks.VARIANT, BlockPlanks.EnumType.SPRUCE), 3);
 		world.setBlockState(new BlockPos(x + 11, y + 8, z + 9), Blocks.COBBLESTONE.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 8, z + 10), Blocks.GRASS.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 8, z + 10), Blocks.GRASS.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 8, z + 10), Blocks.COBBLESTONE.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 8, z + 10), ModBlocks.red_cable.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 8, z + 10), Blocks.STAINED_HARDENED_CLAY.getDefaultState().withProperty(BlockStainedHardenedClay.COLOR, EnumDyeColor.byMetadata(0)), 3);
@@ -551,7 +551,7 @@ public class Ruin002 {
 		world.setBlockState(new BlockPos(x + 9, y + 8, z + 10), Blocks.PLANKS.getDefaultState().withProperty(BlockPlanks.VARIANT, BlockPlanks.EnumType.SPRUCE), 3);
 		world.setBlockState(new BlockPos(x + 10, y + 8, z + 10), Blocks.PLANKS.getDefaultState().withProperty(BlockPlanks.VARIANT, BlockPlanks.EnumType.SPRUCE), 3);
 		world.setBlockState(new BlockPos(x + 11, y + 8, z + 10), Blocks.SPRUCE_STAIRS.getDefaultState().withProperty(BlockStairs.HALF, BlockStairs.EnumHalf.BOTTOM).withProperty(BlockStairs.FACING, EnumFacing.WEST), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 8, z + 11), Blocks.GRASS.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 8, z + 11), Blocks.GRASS.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 8, z + 11), Blocks.COBBLESTONE.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 8, z + 11), Blocks.STAINED_HARDENED_CLAY.getDefaultState().withProperty(BlockStainedHardenedClay.COLOR, EnumDyeColor.byMetadata(0)), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 8, z + 11), Blocks.STAINED_HARDENED_CLAY.getDefaultState().withProperty(BlockStainedHardenedClay.COLOR, EnumDyeColor.byMetadata(15)), 3);
@@ -563,7 +563,7 @@ public class Ruin002 {
 		world.setBlockState(new BlockPos(x + 9, y + 8, z + 11), Blocks.PLANKS.getDefaultState().withProperty(BlockPlanks.VARIANT, BlockPlanks.EnumType.SPRUCE), 3);
 		world.setBlockState(new BlockPos(x + 10, y + 8, z + 11), Blocks.PLANKS.getDefaultState().withProperty(BlockPlanks.VARIANT, BlockPlanks.EnumType.SPRUCE), 3);
 		world.setBlockState(new BlockPos(x + 11, y + 8, z + 11), Blocks.COBBLESTONE.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 8, z + 12), Blocks.GRASS.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 8, z + 12), Blocks.GRASS.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 8, z + 12), Blocks.COBBLESTONE.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 8, z + 12), ModBlocks.red_cable.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 8, z + 12), Blocks.STAINED_HARDENED_CLAY.getDefaultState().withProperty(BlockStainedHardenedClay.COLOR, EnumDyeColor.byMetadata(0)), 3);
@@ -575,7 +575,7 @@ public class Ruin002 {
 		world.setBlockState(new BlockPos(x + 9, y + 8, z + 12), Blocks.PLANKS.getDefaultState().withProperty(BlockPlanks.VARIANT, BlockPlanks.EnumType.SPRUCE), 3);
 		world.setBlockState(new BlockPos(x + 10, y + 8, z + 12), Blocks.TRAPDOOR.getDefaultState().withProperty(BlockTrapDoor.FACING, EnumFacing.SOUTH).withProperty(BlockTrapDoor.OPEN, true).withProperty(BlockTrapDoor.HALF, BlockTrapDoor.DoorHalf.TOP), 3);
 		world.setBlockState(new BlockPos(x + 11, y + 8, z + 12), Blocks.COBBLESTONE.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 8, z + 13), Blocks.DIRT.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 8, z + 13), Blocks.DIRT.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 8, z + 13), Blocks.COBBLESTONE.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 8, z + 13), Blocks.COBBLESTONE.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 8, z + 13), Blocks.MOSSY_COBBLESTONE.getDefaultState(), 3);
@@ -597,7 +597,7 @@ public class Ruin002 {
 		world.setBlockState(new BlockPos(x + 9, y + 8, z + 14), Blocks.DIRT.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 10, y + 8, z + 14), Blocks.DIRT.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 11, y + 8, z + 14), Blocks.DIRT.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 9, z + 1), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 9, z + 1), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 9, z + 1), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 9, z + 1), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 9, z + 1), Blocks.AIR.getDefaultState(), 3);
@@ -609,7 +609,7 @@ public class Ruin002 {
 		world.setBlockState(new BlockPos(x + 9, y + 9, z + 1), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 10, y + 9, z + 1), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 11, y + 9, z + 1), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 9, z + 2), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 9, z + 2), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 9, z + 2), Blocks.OAK_FENCE.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 9, z + 2), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 9, z + 2), Blocks.WOODEN_SLAB.getDefaultState().withProperty(BlockHalfWoodSlab.HALF, BlockSlab.EnumBlockHalf.BOTTOM).withProperty(BlockHalfWoodSlab.VARIANT, BlockPlanks.EnumType.byMetadata(1)), 3);
@@ -621,7 +621,7 @@ public class Ruin002 {
 		world.setBlockState(new BlockPos(x + 9, y + 9, z + 2), Blocks.WOODEN_SLAB.getDefaultState().withProperty(BlockHalfWoodSlab.HALF, BlockSlab.EnumBlockHalf.BOTTOM).withProperty(BlockHalfWoodSlab.VARIANT, BlockPlanks.EnumType.byMetadata(1)), 3);
 		world.setBlockState(new BlockPos(x + 10, y + 9, z + 2), Blocks.WOODEN_SLAB.getDefaultState().withProperty(BlockHalfWoodSlab.HALF, BlockSlab.EnumBlockHalf.BOTTOM).withProperty(BlockHalfWoodSlab.VARIANT, BlockPlanks.EnumType.byMetadata(1)), 3);
 		world.setBlockState(new BlockPos(x + 11, y + 9, z + 2), Blocks.OAK_FENCE.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 9, z + 3), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 9, z + 3), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 9, z + 3), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 9, z + 3), Blocks.WOODEN_SLAB.getDefaultState().withProperty(BlockHalfWoodSlab.HALF, BlockSlab.EnumBlockHalf.BOTTOM).withProperty(BlockHalfWoodSlab.VARIANT, BlockPlanks.EnumType.byMetadata(1)), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 9, z + 3), Blocks.DOUBLE_WOODEN_SLAB.getDefaultState().withProperty(BlockHalfWoodSlab.VARIANT, BlockPlanks.EnumType.byMetadata(1)), 3);
@@ -634,7 +634,7 @@ public class Ruin002 {
 		world.setBlockState(new BlockPos(x + 10, y + 9, z + 3), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 11, y + 9, z + 3), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 12, y + 9, z + 3), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 9, z + 4), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 9, z + 4), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 9, z + 4), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 9, z + 4), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 9, z + 4), Blocks.AIR.getDefaultState(), 3);
@@ -647,7 +647,7 @@ public class Ruin002 {
 		world.setBlockState(new BlockPos(x + 10, y + 9, z + 4), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 11, y + 9, z + 4), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 12, y + 9, z + 4), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 9, z + 5), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 9, z + 5), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 9, z + 5), Blocks.MOSSY_COBBLESTONE.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 9, z + 5), Blocks.COBBLESTONE.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 9, z + 5), Blocks.COBBLESTONE.getDefaultState(), 3);
@@ -661,7 +661,7 @@ public class Ruin002 {
 		world.setBlockState(new BlockPos(x + 10, y + 9, z + 5), Blocks.COBBLESTONE.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 11, y + 9, z + 5), Blocks.COBBLESTONE.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 12, y + 9, z + 5), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 9, z + 6), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 9, z + 6), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 9, z + 6), Blocks.MOSSY_COBBLESTONE.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 9, z + 6), Blocks.IRON_BLOCK.getDefaultState(), 3);
 		//Drillgon200: I hate doors.
@@ -675,7 +675,7 @@ public class Ruin002 {
 		world.setBlockState(new BlockPos(x + 10, y + 9, z + 6), Blocks.CHEST.getDefaultState().withProperty(BlockChest.FACING, EnumFacing.WEST), 3);
 		world.setBlockState(new BlockPos(x + 11, y + 9, z + 6), Blocks.MOSSY_COBBLESTONE.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 12, y + 9, z + 6), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 9, z + 7), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 9, z + 7), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 9, z + 7), Blocks.MOSSY_COBBLESTONE.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 9, z + 7), Block4.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 9, z + 7), Blocks.AIR.getDefaultState(), 3);
@@ -688,7 +688,7 @@ public class Ruin002 {
 		world.setBlockState(new BlockPos(x + 10, y + 9, z + 7), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 11, y + 9, z + 7), Blocks.COBBLESTONE.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 12, y + 9, z + 7), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 9, z + 8), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 9, z + 8), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 9, z + 8), Blocks.COBBLESTONE.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 9, z + 8), Blocks.CAULDRON.getDefaultState().withProperty(BlockCauldron.LEVEL, 3), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 9, z + 8), Blocks.AIR.getDefaultState(), 3);
@@ -749,7 +749,7 @@ public class Ruin002 {
 		world.setBlockState(new BlockPos(x + 10, y + 9, z + 12), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 11, y + 9, z + 12), Blocks.SPRUCE_STAIRS.getDefaultState().withProperty(BlockStairs.HALF, BlockStairs.EnumHalf.TOP).withProperty(BlockStairs.FACING, EnumFacing.EAST), 3);
 		world.setBlockState(new BlockPos(x + 12, y + 9, z + 12), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 9, z + 13), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 9, z + 13), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 9, z + 13), Blocks.COBBLESTONE.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 9, z + 13), Blocks.COBBLESTONE.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 9, z + 13), Blocks.COBBLESTONE.getDefaultState(), 3);
@@ -771,7 +771,7 @@ public class Ruin002 {
 		world.setBlockState(new BlockPos(x + 9, y + 9, z + 14), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 10, y + 9, z + 14), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 11, y + 9, z + 14), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 10, z + 1), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 10, z + 1), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 10, z + 1), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 10, z + 1), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 10, z + 1), Blocks.AIR.getDefaultState(), 3);
@@ -783,7 +783,7 @@ public class Ruin002 {
 		world.setBlockState(new BlockPos(x + 9, y + 10, z + 1), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 10, y + 10, z + 1), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 11, y + 10, z + 1), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 10, z + 2), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 10, z + 2), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 10, z + 2), Blocks.OAK_FENCE.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 10, z + 2), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 10, z + 2), Blocks.AIR.getDefaultState(), 3);
@@ -795,7 +795,7 @@ public class Ruin002 {
 		world.setBlockState(new BlockPos(x + 9, y + 10, z + 2), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 10, y + 10, z + 2), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 11, y + 10, z + 2), Blocks.OAK_FENCE.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 10, z + 3), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 10, z + 3), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 10, z + 3), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 10, z + 3), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 10, z + 3), Blocks.AIR.getDefaultState(), 3);
@@ -808,7 +808,7 @@ public class Ruin002 {
 		world.setBlockState(new BlockPos(x + 10, y + 10, z + 3), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 11, y + 10, z + 3), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 12, y + 10, z + 3), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 10, z + 4), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 10, z + 4), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 10, z + 4), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 10, z + 4), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 10, z + 4), Blocks.AIR.getDefaultState(), 3);
@@ -821,7 +821,7 @@ public class Ruin002 {
 		world.setBlockState(new BlockPos(x + 10, y + 10, z + 4), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 11, y + 10, z + 4), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 12, y + 10, z + 4), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 10, z + 5), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 10, z + 5), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 10, z + 5), Blocks.COBBLESTONE.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 10, z + 5), Blocks.STONE_STAIRS.getDefaultState().withProperty(BlockStairs.HALF, BlockStairs.EnumHalf.BOTTOM).withProperty(BlockStairs.FACING, EnumFacing.SOUTH), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 10, z + 5), Blocks.STONE_STAIRS.getDefaultState().withProperty(BlockStairs.HALF, BlockStairs.EnumHalf.BOTTOM).withProperty(BlockStairs.FACING, EnumFacing.SOUTH), 3);
@@ -834,7 +834,7 @@ public class Ruin002 {
 		world.setBlockState(new BlockPos(x + 10, y + 10, z + 5), Blocks.COBBLESTONE.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 11, y + 10, z + 5), Blocks.COBBLESTONE.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 12, y + 10, z + 5), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 10, z + 6), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 10, z + 6), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 10, z + 6), Blocks.COBBLESTONE.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 10, z + 6), Blocks.DISPENSER.getDefaultState().withProperty(BlockDispenser.FACING, EnumFacing.EAST).withProperty(BlockDispenser.TRIGGERED, false), 3);
 		//world.setBlock(x + 3, y + 10, z + 6, Blocks.iron_door, 8, 3);
@@ -847,7 +847,7 @@ public class Ruin002 {
 		world.setBlockState(new BlockPos(x + 10, y + 10, z + 6), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 11, y + 10, z + 6), Blocks.COBBLESTONE.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 12, y + 10, z + 6), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 10, z + 7), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 10, z + 7), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 10, z + 7), Blocks.COBBLESTONE.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 10, z + 7), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 4, y + 10, z + 7), Blocks.AIR.getDefaultState(), 3);
@@ -858,7 +858,7 @@ public class Ruin002 {
 		world.setBlockState(new BlockPos(x + 9, y + 10, z + 7), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 11, y + 10, z + 7), Blocks.COBBLESTONE.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 12, y + 10, z + 7), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 10, z + 8), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 10, z + 8), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 10, z + 8), Blocks.COBBLESTONE.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 10, z + 8), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 4, y + 10, z + 8), Blocks.AIR.getDefaultState(), 3);
@@ -870,7 +870,7 @@ public class Ruin002 {
 		world.setBlockState(new BlockPos(x + 10, y + 10, z + 8), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 11, y + 10, z + 8), Blocks.STONE_STAIRS.getDefaultState().withProperty(BlockStairs.HALF, BlockStairs.EnumHalf.TOP).withProperty(BlockStairs.FACING, EnumFacing.EAST), 3);
 		world.setBlockState(new BlockPos(x + 12, y + 10, z + 8), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 10, z + 9), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 10, z + 9), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 10, z + 9), Blocks.COBBLESTONE.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 10, z + 9), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 4, y + 10, z + 9), Blocks.AIR.getDefaultState(), 3);
@@ -894,7 +894,7 @@ public class Ruin002 {
 		world.setBlockState(new BlockPos(x + 10, y + 10, z + 10), Blocks.WOODEN_SLAB.getDefaultState().withProperty(BlockHalfWoodSlab.HALF, BlockSlab.EnumBlockHalf.BOTTOM).withProperty(BlockHalfWoodSlab.VARIANT, BlockPlanks.EnumType.byMetadata(1)), 3);
 		world.setBlockState(new BlockPos(x + 11, y + 10, z + 10), Blocks.STONE_STAIRS.getDefaultState().withProperty(BlockStairs.HALF, BlockStairs.EnumHalf.TOP).withProperty(BlockStairs.FACING, EnumFacing.EAST), 3);
 		world.setBlockState(new BlockPos(x + 12, y + 10, z + 10), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 10, z + 11), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 10, z + 11), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 10, z + 11), Blocks.COBBLESTONE.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 10, z + 11), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 10, z + 11), Blocks.AIR.getDefaultState(), 3);
@@ -907,7 +907,7 @@ public class Ruin002 {
 		world.setBlockState(new BlockPos(x + 10, y + 10, z + 11), Blocks.WOODEN_SLAB.getDefaultState().withProperty(BlockHalfWoodSlab.HALF, BlockSlab.EnumBlockHalf.BOTTOM).withProperty(BlockHalfWoodSlab.VARIANT, BlockPlanks.EnumType.byMetadata(1)), 3);
 		world.setBlockState(new BlockPos(x + 11, y + 10, z + 11), Blocks.COBBLESTONE.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 12, y + 10, z + 11), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 10, z + 12), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 10, z + 12), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 10, z + 12), Blocks.COBBLESTONE.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 10, z + 12), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 10, z + 12), Blocks.AIR.getDefaultState(), 3);
@@ -920,7 +920,7 @@ public class Ruin002 {
 		world.setBlockState(new BlockPos(x + 10, y + 10, z + 12), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 11, y + 10, z + 12), Blocks.STONE_SLAB.getDefaultState().withProperty(BlockStoneSlab.HALF, BlockSlab.EnumBlockHalf.BOTTOM).withProperty(BlockStoneSlab.VARIANT, BlockStoneSlab.EnumType.byMetadata(3)), 3);
 		world.setBlockState(new BlockPos(x + 12, y + 10, z + 12), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 10, z + 13), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 10, z + 13), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 10, z + 13), Blocks.COBBLESTONE.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 10, z + 13), Blocks.COBBLESTONE.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 10, z + 13), Blocks.STONE_STAIRS.getDefaultState().withProperty(BlockStairs.HALF, BlockStairs.EnumHalf.TOP).withProperty(BlockStairs.FACING, EnumFacing.NORTH), 3);
@@ -944,7 +944,7 @@ public class Ruin002 {
 		world.setBlockState(new BlockPos(x + 9, y + 10, z + 14), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 10, y + 10, z + 14), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 11, y + 10, z + 14), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 11, z + 1), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 11, z + 1), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 11, z + 1), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 11, z + 1), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 11, z + 1), Blocks.AIR.getDefaultState(), 3);
@@ -956,7 +956,7 @@ public class Ruin002 {
 		world.setBlockState(new BlockPos(x + 9, y + 11, z + 1), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 10, y + 11, z + 1), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 11, y + 11, z + 1), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 11, z + 2), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 11, z + 2), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 11, z + 2), Blocks.OAK_FENCE.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 11, z + 2), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 11, z + 2), Blocks.AIR.getDefaultState(), 3);
@@ -968,7 +968,7 @@ public class Ruin002 {
 		world.setBlockState(new BlockPos(x + 9, y + 11, z + 2), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 10, y + 11, z + 2), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 11, y + 11, z + 2), Blocks.OAK_FENCE.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 11, z + 3), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 11, z + 3), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 11, z + 3), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 11, z + 3), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 11, z + 3), Blocks.AIR.getDefaultState(), 3);
@@ -981,7 +981,7 @@ public class Ruin002 {
 		world.setBlockState(new BlockPos(x + 10, y + 11, z + 3), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 11, y + 11, z + 3), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 12, y + 11, z + 3), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 11, z + 4), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 11, z + 4), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 11, z + 4), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 11, z + 4), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 11, z + 4), Blocks.AIR.getDefaultState(), 3);
@@ -994,7 +994,7 @@ public class Ruin002 {
 		world.setBlockState(new BlockPos(x + 10, y + 11, z + 4), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 11, y + 11, z + 4), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 12, y + 11, z + 4), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 11, z + 5), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 11, z + 5), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 11, z + 5), Blocks.COBBLESTONE.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 11, z + 5), Blocks.COBBLESTONE.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 11, z + 5), Blocks.STONE_STAIRS.getDefaultState().withProperty(BlockStairs.HALF, BlockStairs.EnumHalf.TOP).withProperty(BlockStairs.FACING, EnumFacing.SOUTH), 3);
@@ -1007,7 +1007,7 @@ public class Ruin002 {
 		world.setBlockState(new BlockPos(x + 10, y + 11, z + 5), Blocks.COBBLESTONE.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 11, y + 11, z + 5), Blocks.COBBLESTONE.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 12, y + 11, z + 5), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 11, z + 6), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 11, z + 6), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 11, z + 6), Blocks.COBBLESTONE.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 11, z + 6), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 11, z + 6), Blocks.AIR.getDefaultState(), 3);
@@ -1020,7 +1020,7 @@ public class Ruin002 {
 		world.setBlockState(new BlockPos(x + 10, y + 11, z + 6), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 11, y + 11, z + 6), Blocks.STONE_SLAB.getDefaultState().withProperty(BlockStoneSlab.HALF, BlockSlab.EnumBlockHalf.BOTTOM).withProperty(BlockStoneSlab.VARIANT, BlockStoneSlab.EnumType.byMetadata(3)), 3);
 		world.setBlockState(new BlockPos(x + 12, y + 11, z + 6), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 11, z + 7), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 11, z + 7), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 11, z + 7), Blocks.COBBLESTONE.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 11, z + 7), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 11, z + 7), Blocks.AIR.getDefaultState(), 3);
@@ -1033,7 +1033,7 @@ public class Ruin002 {
 		world.setBlockState(new BlockPos(x + 10, y + 11, z + 7), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 11, y + 11, z + 7), Blocks.STONE_SLAB.getDefaultState().withProperty(BlockStoneSlab.HALF, BlockSlab.EnumBlockHalf.BOTTOM).withProperty(BlockStoneSlab.VARIANT, BlockStoneSlab.EnumType.byMetadata(3)), 3);
 		world.setBlockState(new BlockPos(x + 12, y + 11, z + 7), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 11, z + 8), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 11, z + 8), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 11, z + 8), Blocks.COBBLESTONE.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 11, z + 8), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 11, z + 8), Blocks.AIR.getDefaultState(), 3);
@@ -1046,7 +1046,7 @@ public class Ruin002 {
 		world.setBlockState(new BlockPos(x + 10, y + 11, z + 8), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 11, y + 11, z + 8), Blocks.COBBLESTONE.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 12, y + 11, z + 8), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 11, z + 9), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 11, z + 9), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 11, z + 9), Blocks.STONE_STAIRS.getDefaultState().withProperty(BlockStairs.HALF, BlockStairs.EnumHalf.BOTTOM).withProperty(BlockStairs.FACING, EnumFacing.EAST), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 11, z + 9), Blocks.TRAPPED_CHEST.getDefaultState().withProperty(BlockChest.FACING, EnumFacing.EAST), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 11, z + 9), Blocks.AIR.getDefaultState(), 3);
@@ -1059,7 +1059,7 @@ public class Ruin002 {
 		world.setBlockState(new BlockPos(x + 10, y + 11, z + 9), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 11, y + 11, z + 9), Blocks.COBBLESTONE.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 12, y + 11, z + 9), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 11, z + 10), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 11, z + 10), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 11, z + 10), Blocks.COBBLESTONE.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 11, z + 10), Blocks.CHEST.getDefaultState().withProperty(BlockChest.FACING, EnumFacing.EAST), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 11, z + 10), Blocks.AIR.getDefaultState(), 3);
@@ -1072,7 +1072,7 @@ public class Ruin002 {
 		world.setBlockState(new BlockPos(x + 10, y + 11, z + 10), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 11, y + 11, z + 10), Blocks.SPRUCE_STAIRS.getDefaultState().withProperty(BlockStairs.HALF, BlockStairs.EnumHalf.BOTTOM).withProperty(BlockStairs.FACING, EnumFacing.WEST), 3);
 		world.setBlockState(new BlockPos(x + 12, y + 11, z + 10), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 11, z + 11), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 11, z + 11), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 11, z + 11), Blocks.COBBLESTONE.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 11, z + 11), Blocks.TRAPPED_CHEST.getDefaultState().withProperty(BlockChest.FACING, EnumFacing.EAST), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 11, z + 11), Blocks.AIR.getDefaultState(), 3);
@@ -1085,7 +1085,7 @@ public class Ruin002 {
 		world.setBlockState(new BlockPos(x + 10, y + 11, z + 11), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 11, y + 11, z + 11), Blocks.COBBLESTONE.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 12, y + 11, z + 11), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 11, z + 12), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 11, z + 12), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 11, z + 12), Blocks.COBBLESTONE.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 11, z + 12), Blocks.CHEST.getDefaultState().withProperty(BlockChest.FACING, EnumFacing.EAST), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 11, z + 12), Blocks.AIR.getDefaultState(), 3);
@@ -1098,7 +1098,7 @@ public class Ruin002 {
 		world.setBlockState(new BlockPos(x + 10, y + 11, z + 12), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 11, y + 11, z + 12), Blocks.COBBLESTONE.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 12, y + 11, z + 12), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 11, z + 13), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 11, z + 13), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 11, z + 13), Blocks.COBBLESTONE.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 11, z + 13), Blocks.COBBLESTONE.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 11, z + 13), Blocks.COBBLESTONE.getDefaultState(), 3);
@@ -1122,7 +1122,7 @@ public class Ruin002 {
 		world.setBlockState(new BlockPos(x + 9, y + 11, z + 14), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 10, y + 11, z + 14), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 11, y + 11, z + 14), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 12, z + 1), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 12, z + 1), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 12, z + 1), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 12, z + 1), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 12, z + 1), Blocks.AIR.getDefaultState(), 3);
@@ -1134,7 +1134,7 @@ public class Ruin002 {
 		world.setBlockState(new BlockPos(x + 9, y + 12, z + 1), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 10, y + 12, z + 1), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 11, y + 12, z + 1), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 12, z + 2), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 12, z + 2), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 12, z + 2), Blocks.WOODEN_SLAB.getDefaultState().withProperty(BlockHalfWoodSlab.HALF, BlockSlab.EnumBlockHalf.BOTTOM).withProperty(BlockHalfWoodSlab.VARIANT, BlockPlanks.EnumType.byMetadata(1)), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 12, z + 2), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 12, z + 2), Blocks.AIR.getDefaultState(), 3);
@@ -1146,7 +1146,7 @@ public class Ruin002 {
 		world.setBlockState(new BlockPos(x + 9, y + 12, z + 2), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 10, y + 12, z + 2), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 11, y + 12, z + 2), Blocks.WOODEN_SLAB.getDefaultState().withProperty(BlockHalfWoodSlab.HALF, BlockSlab.EnumBlockHalf.BOTTOM).withProperty(BlockHalfWoodSlab.VARIANT, BlockPlanks.EnumType.byMetadata(1)), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 12, z + 3), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 12, z + 3), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 12, z + 3), Blocks.WOODEN_SLAB.getDefaultState().withProperty(BlockHalfWoodSlab.HALF, BlockSlab.EnumBlockHalf.BOTTOM).withProperty(BlockHalfWoodSlab.VARIANT, BlockPlanks.EnumType.byMetadata(1)), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 12, z + 3), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 12, z + 3), Blocks.AIR.getDefaultState(), 3);
@@ -1159,7 +1159,7 @@ public class Ruin002 {
 		world.setBlockState(new BlockPos(x + 10, y + 12, z + 3), Blocks.WOODEN_SLAB.getDefaultState().withProperty(BlockHalfWoodSlab.HALF, BlockSlab.EnumBlockHalf.BOTTOM).withProperty(BlockHalfWoodSlab.VARIANT, BlockPlanks.EnumType.byMetadata(1)), 3);
 		world.setBlockState(new BlockPos(x + 11, y + 12, z + 3), Blocks.WOODEN_SLAB.getDefaultState().withProperty(BlockHalfWoodSlab.HALF, BlockSlab.EnumBlockHalf.BOTTOM).withProperty(BlockHalfWoodSlab.VARIANT, BlockPlanks.EnumType.byMetadata(1)), 3);
 		world.setBlockState(new BlockPos(x + 12, y + 12, z + 3), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 12, z + 4), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 12, z + 4), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 12, z + 4), Blocks.WOODEN_SLAB.getDefaultState().withProperty(BlockHalfWoodSlab.HALF, BlockSlab.EnumBlockHalf.BOTTOM).withProperty(BlockHalfWoodSlab.VARIANT, BlockPlanks.EnumType.byMetadata(1)), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 12, z + 4), Blocks.WOODEN_SLAB.getDefaultState().withProperty(BlockHalfWoodSlab.HALF, BlockSlab.EnumBlockHalf.BOTTOM).withProperty(BlockHalfWoodSlab.VARIANT, BlockPlanks.EnumType.byMetadata(1)), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 12, z + 4), Blocks.WOODEN_SLAB.getDefaultState().withProperty(BlockHalfWoodSlab.HALF, BlockSlab.EnumBlockHalf.BOTTOM).withProperty(BlockHalfWoodSlab.VARIANT, BlockPlanks.EnumType.byMetadata(1)), 3);
@@ -1172,7 +1172,7 @@ public class Ruin002 {
 		world.setBlockState(new BlockPos(x + 10, y + 12, z + 4), Blocks.WOODEN_SLAB.getDefaultState().withProperty(BlockHalfWoodSlab.HALF, BlockSlab.EnumBlockHalf.BOTTOM).withProperty(BlockHalfWoodSlab.VARIANT, BlockPlanks.EnumType.byMetadata(1)), 3);
 		world.setBlockState(new BlockPos(x + 11, y + 12, z + 4), Blocks.WOODEN_SLAB.getDefaultState().withProperty(BlockHalfWoodSlab.HALF, BlockSlab.EnumBlockHalf.BOTTOM).withProperty(BlockHalfWoodSlab.VARIANT, BlockPlanks.EnumType.byMetadata(1)), 3);
 		world.setBlockState(new BlockPos(x + 12, y + 12, z + 4), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 12, z + 5), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 12, z + 5), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 12, z + 5), Blocks.DOUBLE_WOODEN_SLAB.getDefaultState().withProperty(BlockHalfWoodSlab.VARIANT, BlockPlanks.EnumType.byMetadata(1)), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 12, z + 5), Blocks.DOUBLE_WOODEN_SLAB.getDefaultState().withProperty(BlockHalfWoodSlab.VARIANT, BlockPlanks.EnumType.byMetadata(1)), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 12, z + 5), Blocks.DOUBLE_WOODEN_SLAB.getDefaultState().withProperty(BlockHalfWoodSlab.VARIANT, BlockPlanks.EnumType.byMetadata(1)), 3);
@@ -1185,7 +1185,7 @@ public class Ruin002 {
 		world.setBlockState(new BlockPos(x + 10, y + 12, z + 5), Blocks.DOUBLE_WOODEN_SLAB.getDefaultState().withProperty(BlockHalfWoodSlab.VARIANT, BlockPlanks.EnumType.byMetadata(1)), 3);
 		world.setBlockState(new BlockPos(x + 11, y + 12, z + 5), Blocks.DOUBLE_WOODEN_SLAB.getDefaultState().withProperty(BlockHalfWoodSlab.VARIANT, BlockPlanks.EnumType.byMetadata(1)), 3);
 		world.setBlockState(new BlockPos(x + 12, y + 12, z + 5), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 12, z + 6), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 12, z + 6), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 12, z + 6), Blocks.DOUBLE_WOODEN_SLAB.getDefaultState().withProperty(BlockHalfWoodSlab.VARIANT, BlockPlanks.EnumType.byMetadata(1)), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 12, z + 6), Blocks.DOUBLE_WOODEN_SLAB.getDefaultState().withProperty(BlockHalfWoodSlab.VARIANT, BlockPlanks.EnumType.byMetadata(1)), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 12, z + 6), Blocks.DOUBLE_WOODEN_SLAB.getDefaultState().withProperty(BlockHalfWoodSlab.VARIANT, BlockPlanks.EnumType.byMetadata(1)), 3);
@@ -1198,7 +1198,7 @@ public class Ruin002 {
 		world.setBlockState(new BlockPos(x + 10, y + 12, z + 6), Blocks.DOUBLE_WOODEN_SLAB.getDefaultState().withProperty(BlockHalfWoodSlab.VARIANT, BlockPlanks.EnumType.byMetadata(1)), 3);
 		world.setBlockState(new BlockPos(x + 11, y + 12, z + 6), Blocks.DOUBLE_WOODEN_SLAB.getDefaultState().withProperty(BlockHalfWoodSlab.VARIANT, BlockPlanks.EnumType.byMetadata(1)), 3);
 		world.setBlockState(new BlockPos(x + 12, y + 12, z + 6), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 12, z + 7), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 12, z + 7), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 12, z + 7), Blocks.DOUBLE_WOODEN_SLAB.getDefaultState().withProperty(BlockHalfWoodSlab.VARIANT, BlockPlanks.EnumType.byMetadata(1)), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 12, z + 7), Blocks.DOUBLE_WOODEN_SLAB.getDefaultState().withProperty(BlockHalfWoodSlab.VARIANT, BlockPlanks.EnumType.byMetadata(1)), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 12, z + 7), Blocks.DOUBLE_WOODEN_SLAB.getDefaultState().withProperty(BlockHalfWoodSlab.VARIANT, BlockPlanks.EnumType.byMetadata(1)), 3);
@@ -1211,7 +1211,7 @@ public class Ruin002 {
 		world.setBlockState(new BlockPos(x + 10, y + 12, z + 7), Blocks.DOUBLE_WOODEN_SLAB.getDefaultState().withProperty(BlockHalfWoodSlab.VARIANT, BlockPlanks.EnumType.byMetadata(1)), 3);
 		world.setBlockState(new BlockPos(x + 11, y + 12, z + 7), Blocks.DOUBLE_WOODEN_SLAB.getDefaultState().withProperty(BlockHalfWoodSlab.VARIANT, BlockPlanks.EnumType.byMetadata(1)), 3);
 		world.setBlockState(new BlockPos(x + 12, y + 12, z + 7), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 12, z + 8), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 12, z + 8), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 12, z + 8), Blocks.DOUBLE_WOODEN_SLAB.getDefaultState().withProperty(BlockHalfWoodSlab.VARIANT, BlockPlanks.EnumType.byMetadata(1)), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 12, z + 8), Blocks.DOUBLE_WOODEN_SLAB.getDefaultState().withProperty(BlockHalfWoodSlab.VARIANT, BlockPlanks.EnumType.byMetadata(1)), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 12, z + 8), Blocks.DOUBLE_WOODEN_SLAB.getDefaultState().withProperty(BlockHalfWoodSlab.VARIANT, BlockPlanks.EnumType.byMetadata(1)), 3);
@@ -1224,7 +1224,7 @@ public class Ruin002 {
 		world.setBlockState(new BlockPos(x + 10, y + 12, z + 8), Blocks.DOUBLE_WOODEN_SLAB.getDefaultState().withProperty(BlockHalfWoodSlab.VARIANT, BlockPlanks.EnumType.byMetadata(1)), 3);
 		world.setBlockState(new BlockPos(x + 11, y + 12, z + 8), Blocks.DOUBLE_WOODEN_SLAB.getDefaultState().withProperty(BlockHalfWoodSlab.VARIANT, BlockPlanks.EnumType.byMetadata(1)), 3);
 		world.setBlockState(new BlockPos(x + 12, y + 12, z + 8), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 12, z + 9), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 12, z + 9), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 12, z + 9), Blocks.DOUBLE_WOODEN_SLAB.getDefaultState().withProperty(BlockHalfWoodSlab.VARIANT, BlockPlanks.EnumType.byMetadata(1)), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 12, z + 9), Blocks.DOUBLE_WOODEN_SLAB.getDefaultState().withProperty(BlockHalfWoodSlab.VARIANT, BlockPlanks.EnumType.byMetadata(1)), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 12, z + 9), Blocks.WOODEN_SLAB.getDefaultState().withProperty(BlockHalfWoodSlab.HALF, BlockSlab.EnumBlockHalf.BOTTOM).withProperty(BlockHalfWoodSlab.VARIANT, BlockPlanks.EnumType.byMetadata(1)), 3);
@@ -1237,7 +1237,7 @@ public class Ruin002 {
 		world.setBlockState(new BlockPos(x + 10, y + 12, z + 9), Blocks.DOUBLE_WOODEN_SLAB.getDefaultState().withProperty(BlockHalfWoodSlab.VARIANT, BlockPlanks.EnumType.byMetadata(1)), 3);
 		world.setBlockState(new BlockPos(x + 11, y + 12, z + 9), Blocks.DOUBLE_WOODEN_SLAB.getDefaultState().withProperty(BlockHalfWoodSlab.VARIANT, BlockPlanks.EnumType.byMetadata(1)), 3);
 		world.setBlockState(new BlockPos(x + 12, y + 12, z + 9), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 12, z + 10), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 12, z + 10), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 12, z + 10), Blocks.DOUBLE_WOODEN_SLAB.getDefaultState().withProperty(BlockHalfWoodSlab.VARIANT, BlockPlanks.EnumType.byMetadata(1)), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 12, z + 10), Blocks.DOUBLE_WOODEN_SLAB.getDefaultState().withProperty(BlockHalfWoodSlab.VARIANT, BlockPlanks.EnumType.byMetadata(1)), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 12, z + 10), Blocks.WOODEN_SLAB.getDefaultState().withProperty(BlockHalfWoodSlab.HALF, BlockSlab.EnumBlockHalf.BOTTOM).withProperty(BlockHalfWoodSlab.VARIANT, BlockPlanks.EnumType.byMetadata(1)), 3);
@@ -1250,7 +1250,7 @@ public class Ruin002 {
 		world.setBlockState(new BlockPos(x + 10, y + 12, z + 10), Blocks.DOUBLE_WOODEN_SLAB.getDefaultState().withProperty(BlockHalfWoodSlab.VARIANT, BlockPlanks.EnumType.byMetadata(1)), 3);
 		world.setBlockState(new BlockPos(x + 11, y + 12, z + 10), Blocks.DOUBLE_WOODEN_SLAB.getDefaultState().withProperty(BlockHalfWoodSlab.VARIANT, BlockPlanks.EnumType.byMetadata(1)), 3);
 		world.setBlockState(new BlockPos(x + 12, y + 12, z + 10), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 12, z + 11), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 12, z + 11), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 12, z + 11), Blocks.DOUBLE_WOODEN_SLAB.getDefaultState().withProperty(BlockHalfWoodSlab.VARIANT, BlockPlanks.EnumType.byMetadata(1)), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 12, z + 11), Blocks.WOODEN_SLAB.getDefaultState().withProperty(BlockHalfWoodSlab.HALF, BlockSlab.EnumBlockHalf.BOTTOM).withProperty(BlockHalfWoodSlab.VARIANT, BlockPlanks.EnumType.byMetadata(1)), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 12, z + 11), Blocks.AIR.getDefaultState(), 3);
@@ -1263,7 +1263,7 @@ public class Ruin002 {
 		world.setBlockState(new BlockPos(x + 10, y + 12, z + 11), Blocks.DOUBLE_WOODEN_SLAB.getDefaultState().withProperty(BlockHalfWoodSlab.VARIANT, BlockPlanks.EnumType.byMetadata(1)), 3);
 		world.setBlockState(new BlockPos(x + 11, y + 12, z + 11), Blocks.DOUBLE_WOODEN_SLAB.getDefaultState().withProperty(BlockHalfWoodSlab.VARIANT, BlockPlanks.EnumType.byMetadata(1)), 3);
 		world.setBlockState(new BlockPos(x + 12, y + 12, z + 11), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 12, z + 12), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 12, z + 12), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 12, z + 12), Blocks.DOUBLE_WOODEN_SLAB.getDefaultState().withProperty(BlockHalfWoodSlab.VARIANT, BlockPlanks.EnumType.byMetadata(1)), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 12, z + 12), Blocks.DOUBLE_WOODEN_SLAB.getDefaultState().withProperty(BlockHalfWoodSlab.VARIANT, BlockPlanks.EnumType.byMetadata(1)), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 12, z + 12), Blocks.WOODEN_SLAB.getDefaultState().withProperty(BlockHalfWoodSlab.HALF, BlockSlab.EnumBlockHalf.BOTTOM).withProperty(BlockHalfWoodSlab.VARIANT, BlockPlanks.EnumType.byMetadata(1)), 3);
@@ -1284,7 +1284,7 @@ public class Ruin002 {
 		world.setBlockState(new BlockPos(x + 10, y + 12, z + 12), Blocks.DOUBLE_WOODEN_SLAB.getDefaultState().withProperty(BlockHalfWoodSlab.VARIANT, BlockPlanks.EnumType.byMetadata(1)), 3);
 		world.setBlockState(new BlockPos(x + 11, y + 12, z + 12), Blocks.DOUBLE_WOODEN_SLAB.getDefaultState().withProperty(BlockHalfWoodSlab.VARIANT, BlockPlanks.EnumType.byMetadata(1)), 3);
 		world.setBlockState(new BlockPos(x + 12, y + 12, z + 12), Blocks.AIR.getDefaultState(), 3);
-		world.setBlockState(new BlockPos(x + 0, y + 12, z + 13), Blocks.AIR.getDefaultState(), 3);
+		world.setBlockState(new BlockPos(x, y + 12, z + 13), Blocks.AIR.getDefaultState(), 3);
 		world.setBlockState(new BlockPos(x + 1, y + 12, z + 13), Blocks.DOUBLE_WOODEN_SLAB.getDefaultState().withProperty(BlockHalfWoodSlab.VARIANT, BlockPlanks.EnumType.byMetadata(1)), 3);
 		world.setBlockState(new BlockPos(x + 2, y + 12, z + 13), Blocks.DOUBLE_WOODEN_SLAB.getDefaultState().withProperty(BlockHalfWoodSlab.VARIANT, BlockPlanks.EnumType.byMetadata(1)), 3);
 		world.setBlockState(new BlockPos(x + 3, y + 12, z + 13), Blocks.DOUBLE_WOODEN_SLAB.getDefaultState().withProperty(BlockHalfWoodSlab.VARIANT, BlockPlanks.EnumType.byMetadata(1)), 3);

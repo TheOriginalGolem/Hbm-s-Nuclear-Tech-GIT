@@ -39,7 +39,7 @@ public class TileEntityFurnaceSteel extends TileEntityMachineBase implements IGU
 	private static final int[] slots_top = new int[] {1};
 	private static final int[] slots_bottom = new int[] {2, 0};
 	private static final int[] slots_side = new int[] {0};
-	private ItemStack[] lastItems = new ItemStack[3];
+	private final ItemStack[] lastItems = new ItemStack[3];
 	
 	public boolean wasOn = false;
 	 int xCoord = pos.getX();

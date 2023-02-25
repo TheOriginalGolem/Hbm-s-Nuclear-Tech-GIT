@@ -11,7 +11,7 @@ import net.minecraftforge.fluids.FluidTank;
 
 public class GUITurretFritz extends GUITurretBase {
 	
-	private static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/weapon/gui_turret_fritz.png");
+	private static final ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/weapon/gui_turret_fritz.png");
 
 	public GUITurretFritz(InventoryPlayer invPlayer, TileEntityTurretBaseNT tedf) {
 		super(invPlayer, tedf);

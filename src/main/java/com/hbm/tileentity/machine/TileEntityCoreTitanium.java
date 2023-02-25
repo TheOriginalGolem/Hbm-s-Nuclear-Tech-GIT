@@ -317,38 +317,34 @@ public class TileEntityCoreTitanium extends TileEntity implements ITickable, IFa
 		int x = pos.getX();
 		int y = pos.getY();
 		int z = pos.getZ();
-		if(world.getBlockState(mPos.setPos(x, y, z)).getBlock() == ModBlocks.factory_titanium_core &&
-				world.getBlockState(mPos.setPos(x - 1, y - 1, z - 1)).getBlock() == ModBlocks.factory_titanium_hull &&
-				world.getBlockState(mPos.setPos(x, y - 1, z - 1)).getBlock() == ModBlocks.factory_titanium_hull &&
-				world.getBlockState(mPos.setPos(x + 1, y - 1, z - 1)).getBlock() == ModBlocks.factory_titanium_hull &&
-				world.getBlockState(mPos.setPos(x - 1, y - 1, z)).getBlock() == ModBlocks.factory_titanium_hull &&
-				(world.getBlockState(mPos.setPos(x, y - 1, z)).getBlock() == ModBlocks.factory_titanium_conductor || world.getBlockState(mPos.setPos(x, y - 1, z)).getBlock() == ModBlocks.factory_titanium_hull) &&
-				world.getBlockState(mPos.setPos(x + 1, y - 1, z)).getBlock() == ModBlocks.factory_titanium_hull &&
-				world.getBlockState(mPos.setPos(x - 1, y - 1, z + 1)).getBlock() == ModBlocks.factory_titanium_hull &&
-				world.getBlockState(mPos.setPos(x, y - 1, z + 1)).getBlock() == ModBlocks.factory_titanium_hull &&
-				world.getBlockState(mPos.setPos(x + 1, y - 1, z + 1)).getBlock() == ModBlocks.factory_titanium_hull &&
-				world.getBlockState(mPos.setPos(x - 1, y, z - 1)).getBlock() == ModBlocks.factory_titanium_hull &&
-				world.getBlockState(mPos.setPos(x, y, z - 1)).getBlock() == ModBlocks.factory_titanium_furnace &&
-				world.getBlockState(mPos.setPos(x + 1, y, z - 1)).getBlock() == ModBlocks.factory_titanium_hull &&
-				world.getBlockState(mPos.setPos(x - 1, y, z)).getBlock() == ModBlocks.factory_titanium_furnace &&
-				world.getBlockState(mPos.setPos(x + 1, y, z)).getBlock() == ModBlocks.factory_titanium_furnace &&
-				world.getBlockState(mPos.setPos(x - 1, y, z + 1)).getBlock() == ModBlocks.factory_titanium_hull &&
-				world.getBlockState(mPos.setPos(x, y, z + 1)).getBlock() == ModBlocks.factory_titanium_furnace &&
-				world.getBlockState(mPos.setPos(x + 1, y, z + 1)).getBlock() == ModBlocks.factory_titanium_hull &&
-				world.getBlockState(mPos.setPos(x - 1, y + 1, z - 1)).getBlock() == ModBlocks.factory_titanium_hull &&
-				world.getBlockState(mPos.setPos(x, y + 1, z - 1)).getBlock() == ModBlocks.factory_titanium_hull &&
-				world.getBlockState(mPos.setPos(x + 1, y + 1, z - 1)).getBlock() == ModBlocks.factory_titanium_hull &&
-				world.getBlockState(mPos.setPos(x - 1, y + 1, z)).getBlock() == ModBlocks.factory_titanium_hull &&
-				(world.getBlockState(mPos.setPos(x, y + 1, z)).getBlock() == ModBlocks.factory_titanium_conductor || world.getBlockState(mPos.setPos(x, y + 1, z)).getBlock() == ModBlocks.factory_titanium_hull) &&
-				world.getBlockState(mPos.setPos(x + 1, y + 1, z)).getBlock() == ModBlocks.factory_titanium_hull &&
-				world.getBlockState(mPos.setPos(x - 1, y + 1, z + 1)).getBlock() == ModBlocks.factory_titanium_hull &&
-				world.getBlockState(mPos.setPos(x, y + 1, z + 1)).getBlock() == ModBlocks.factory_titanium_hull &&
-				world.getBlockState(mPos.setPos(x + 1, y + 1, z + 1)).getBlock() == ModBlocks.factory_titanium_hull)
-		{
-			return true;
-		}
-		return false;
-	}
+        return world.getBlockState(mPos.setPos(x, y, z)).getBlock() == ModBlocks.factory_titanium_core &&
+                world.getBlockState(mPos.setPos(x - 1, y - 1, z - 1)).getBlock() == ModBlocks.factory_titanium_hull &&
+                world.getBlockState(mPos.setPos(x, y - 1, z - 1)).getBlock() == ModBlocks.factory_titanium_hull &&
+                world.getBlockState(mPos.setPos(x + 1, y - 1, z - 1)).getBlock() == ModBlocks.factory_titanium_hull &&
+                world.getBlockState(mPos.setPos(x - 1, y - 1, z)).getBlock() == ModBlocks.factory_titanium_hull &&
+                (world.getBlockState(mPos.setPos(x, y - 1, z)).getBlock() == ModBlocks.factory_titanium_conductor || world.getBlockState(mPos.setPos(x, y - 1, z)).getBlock() == ModBlocks.factory_titanium_hull) &&
+                world.getBlockState(mPos.setPos(x + 1, y - 1, z)).getBlock() == ModBlocks.factory_titanium_hull &&
+                world.getBlockState(mPos.setPos(x - 1, y - 1, z + 1)).getBlock() == ModBlocks.factory_titanium_hull &&
+                world.getBlockState(mPos.setPos(x, y - 1, z + 1)).getBlock() == ModBlocks.factory_titanium_hull &&
+                world.getBlockState(mPos.setPos(x + 1, y - 1, z + 1)).getBlock() == ModBlocks.factory_titanium_hull &&
+                world.getBlockState(mPos.setPos(x - 1, y, z - 1)).getBlock() == ModBlocks.factory_titanium_hull &&
+                world.getBlockState(mPos.setPos(x, y, z - 1)).getBlock() == ModBlocks.factory_titanium_furnace &&
+                world.getBlockState(mPos.setPos(x + 1, y, z - 1)).getBlock() == ModBlocks.factory_titanium_hull &&
+                world.getBlockState(mPos.setPos(x - 1, y, z)).getBlock() == ModBlocks.factory_titanium_furnace &&
+                world.getBlockState(mPos.setPos(x + 1, y, z)).getBlock() == ModBlocks.factory_titanium_furnace &&
+                world.getBlockState(mPos.setPos(x - 1, y, z + 1)).getBlock() == ModBlocks.factory_titanium_hull &&
+                world.getBlockState(mPos.setPos(x, y, z + 1)).getBlock() == ModBlocks.factory_titanium_furnace &&
+                world.getBlockState(mPos.setPos(x + 1, y, z + 1)).getBlock() == ModBlocks.factory_titanium_hull &&
+                world.getBlockState(mPos.setPos(x - 1, y + 1, z - 1)).getBlock() == ModBlocks.factory_titanium_hull &&
+                world.getBlockState(mPos.setPos(x, y + 1, z - 1)).getBlock() == ModBlocks.factory_titanium_hull &&
+                world.getBlockState(mPos.setPos(x + 1, y + 1, z - 1)).getBlock() == ModBlocks.factory_titanium_hull &&
+                world.getBlockState(mPos.setPos(x - 1, y + 1, z)).getBlock() == ModBlocks.factory_titanium_hull &&
+                (world.getBlockState(mPos.setPos(x, y + 1, z)).getBlock() == ModBlocks.factory_titanium_conductor || world.getBlockState(mPos.setPos(x, y + 1, z)).getBlock() == ModBlocks.factory_titanium_hull) &&
+                world.getBlockState(mPos.setPos(x + 1, y + 1, z)).getBlock() == ModBlocks.factory_titanium_hull &&
+                world.getBlockState(mPos.setPos(x - 1, y + 1, z + 1)).getBlock() == ModBlocks.factory_titanium_hull &&
+                world.getBlockState(mPos.setPos(x, y + 1, z + 1)).getBlock() == ModBlocks.factory_titanium_hull &&
+                world.getBlockState(mPos.setPos(x + 1, y + 1, z + 1)).getBlock() == ModBlocks.factory_titanium_hull;
+    }
 
 	@Override
 	public long getPowerScaled(long i) {

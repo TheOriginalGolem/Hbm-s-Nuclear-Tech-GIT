@@ -74,7 +74,7 @@ public class EntityFBI extends EntityMob implements IRangedAttackMob {
 	
 	@Override
 	public boolean attackEntityFrom(DamageSource source, float amount) {
-		if(source instanceof EntityDamageSourceIndirect && ((EntityDamageSourceIndirect)source).getTrueSource() instanceof EntityFBI) {
+		if(source instanceof EntityDamageSourceIndirect && source.getTrueSource() instanceof EntityFBI) {
     		return false;
     	}
 		if(this.getItemStackFromSlot(EntityEquipmentSlot.HEAD) != null && this.getItemStackFromSlot(EntityEquipmentSlot.HEAD).getItem() == Item.getItemFromBlock(Blocks.GLASS)) {

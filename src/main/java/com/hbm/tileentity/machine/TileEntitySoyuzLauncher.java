@@ -145,10 +145,8 @@ public class TileEntitySoyuzLauncher extends TileEntityMachineBase implements IT
 		FluidStack f = FluidUtil.getFluidContained(stack);
 		if(f == null)
 			return false;
-		if((tank == 0 && f.getFluid() == ModForgeFluids.kerosene) || (tank == 1 && f.getFluid() == ModForgeFluids.oxygen))
-			return true;
-		return false;
-	}
+        return (tank == 0 && f.getFluid() == ModForgeFluids.kerosene) || (tank == 1 && f.getFluid() == ModForgeFluids.oxygen);
+    }
 	
 	@Override
 	public void networkUnpack(NBTTagCompound data) {

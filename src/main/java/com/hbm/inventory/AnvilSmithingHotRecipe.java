@@ -43,11 +43,11 @@ public class AnvilSmithingHotRecipe extends AnvilSmithingRecipe {
 	}
 	
 	public List<ItemStack> getLeft() {
-		return Arrays.asList(new ItemStack[] {getHot(left)});
+		return Arrays.asList(getHot(left));
 	}
 	
 	public List<ItemStack> getRight() {
-		return Arrays.asList(new ItemStack[] {getHot(right)});
+		return Arrays.asList(getHot(right));
 	}
 	
 	private ItemStack getHot(AStack stack) {

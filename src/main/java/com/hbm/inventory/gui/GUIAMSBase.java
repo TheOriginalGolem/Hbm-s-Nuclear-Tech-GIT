@@ -14,8 +14,8 @@ import net.minecraft.util.ResourceLocation;
 
 public class GUIAMSBase extends GuiInfoContainer {
 
-	private static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/gui_ams_base.png");
-	private TileEntityAMSBase base;
+	private static final ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/gui_ams_base.png");
+	private final TileEntityAMSBase base;
 	
 	public GUIAMSBase(InventoryPlayer invPlayer, TileEntityAMSBase tedf) {
 		super(new ContainerAMSBase(invPlayer, tedf));

@@ -92,7 +92,7 @@ public class ItemUnstable extends Item {
 		if(stack.getItemDamage() != 0)
     		return;
     	tooltip.add("§4[Unstable]§r");
-		tooltip.add("§cDecay Time: " + (int)timer/20 + "s - Explosion Radius: "+ radius+"m§r");
+		tooltip.add("§cDecay Time: " + timer /20 + "s - Explosion Radius: "+ radius+"m§r");
 		tooltip.add("§cDecay: " + (getTimer(stack) * 100 / timer) + "%§r");
 	}
 

@@ -17,7 +17,7 @@ import net.minecraftforge.fml.client.registry.IRenderFactory;
 public class RenderCloudRainbow extends Render<EntityCloudFleijaRainbow> {
 
 	private static final ResourceLocation objTesterModelRL = new ResourceLocation(/*"/assets/" + */RefStrings.MODID, "models/sphere.obj");
-	private IModelCustom blastModel;
+	private final IModelCustom blastModel;
     public float scale = 0;
     public float ring = 0;
 	//Drillgon200: Hey I figured out how to use a lambda!

@@ -16,8 +16,8 @@ public class RenderBombletSelena extends Render<EntityBombletSelena> {
 
 	public static final IRenderFactory<EntityBombletSelena> FACTORY = (RenderManager man) -> {return new RenderBombletSelena(man);};
 	private static final ResourceLocation objTesterModelRL = new ResourceLocation(/*"/assets/" + */RefStrings.MODID, "models/bombletSelena.obj");
-	private IModelCustom boyModel;
-    private ResourceLocation boyTexture;
+	private final IModelCustom boyModel;
+    private final ResourceLocation boyTexture;
 	
 	protected RenderBombletSelena(RenderManager renderManager) {
 		super(renderManager);

@@ -37,9 +37,9 @@ public class PotionConfig {
 		
 		String s = CommonConfig.createConfigString(config, CATEGORY_POTION, "8.S0_potionSickness", "Valid configs include \"NORMAL\" and \"TERRARIA\", otherwise potion sickness is turned off", "OFF");
 
-		if("normal".equals(s.toLowerCase()))
+		if("normal".equalsIgnoreCase(s))
 			potionSickness = 1;
-		if("terraria".equals(s.toLowerCase()))
+		if("terraria".equalsIgnoreCase(s))
 			potionSickness = 2;
 	}
 	

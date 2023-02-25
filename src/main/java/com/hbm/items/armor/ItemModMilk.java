@@ -38,7 +38,7 @@ public class ItemModMilk extends ItemArmorMod {
 		
 		List<Potion> pots = new ArrayList<>();
 
-		Iterator<PotionEffect> iterator = ((Collection<PotionEffect>) entity.getActivePotionEffects()).iterator();
+		Iterator<PotionEffect> iterator = entity.getActivePotionEffects().iterator();
 
 		while(iterator.hasNext()) {
 			PotionEffect eff = iterator.next();

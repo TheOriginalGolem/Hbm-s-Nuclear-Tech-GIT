@@ -152,22 +152,22 @@ public class VolcanicBlock extends BlockFluidClassic {
 		int z = pos.getZ();
 		if(world.getBlockState(pos.up()).getMaterial() == Material.AIR && !world.getBlockState(pos.up()).isOpaqueCube()) {
 			if(rand.nextInt(100) == 0) {
-				dx = (double) ((float) x + rand.nextFloat());
+				dx = (float) x + rand.nextFloat();
 				dy = (double) y + this.getBlockLiquidHeight(world, pos, state, this.blockMaterial);
-				dz = (double) ((float) z + rand.nextFloat());
+				dz = (float) z + rand.nextFloat();
 				world.spawnParticle(EnumParticleTypes.LAVA, dx, dy, dz, 0.0D, 0.0D, 0.0D);
 				world.playSound(null, dx, dy, dz, SoundEvents.BLOCK_LAVA_POP, SoundCategory.BLOCKS, 0.2F + rand.nextFloat() * 0.2F, 0.9F + rand.nextFloat() * 0.15F);
 			}
 
 			if(rand.nextInt(200) == 0) {
-				world.playSound(null, (double) x, (double) y, (double) z, SoundEvents.BLOCK_LAVA_AMBIENT, SoundCategory.BLOCKS, 0.2F + rand.nextFloat() * 0.2F, 0.9F + rand.nextFloat() * 0.15F);
+				world.playSound(null, x, y, z, SoundEvents.BLOCK_LAVA_AMBIENT, SoundCategory.BLOCKS, 0.2F + rand.nextFloat() * 0.2F, 0.9F + rand.nextFloat() * 0.15F);
 			}
 		}
 
 		if(rand.nextInt(10) == 0 && world.getBlockState(pos.down()).isSideSolid(world, pos.down(), EnumFacing.UP) && !world.getBlockState(pos.down(2)).getMaterial().blocksMovement()) {
-			dx = (double) ((float) x + rand.nextFloat());
+			dx = (float) x + rand.nextFloat();
 			dy = (double) y - 1.05D;
-			dz = (double) ((float) z + rand.nextFloat());
+			dz = (float) z + rand.nextFloat();
 			world.spawnParticle(EnumParticleTypes.DRIP_LAVA, dx, dy, dz, 0.0D, 0.0D, 0.0D);
 		}
 	}

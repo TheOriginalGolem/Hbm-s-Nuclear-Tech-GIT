@@ -17,8 +17,8 @@ public class RenderBombletTheta extends Render<EntityBombletTheta> {
 public static final IRenderFactory<EntityBombletTheta> FACTORY = (RenderManager man) -> {return new RenderBombletTheta(man);};
 	
 	private static final ResourceLocation objTesterModelRL = new ResourceLocation(/*"/assets/" + */RefStrings.MODID, "models/bombletTheta.obj");
-	private IModelCustom boyModel;
-    private ResourceLocation boyTexture;
+	private final IModelCustom boyModel;
+    private final ResourceLocation boyTexture;
 	
 	protected RenderBombletTheta(RenderManager renderManager) {
 		super(renderManager);

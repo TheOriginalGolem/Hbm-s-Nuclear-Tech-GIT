@@ -28,10 +28,10 @@ public class ConvexMeshCollider extends Collider {
 		int[] indc = new int[triangles.length*3];
 		float[] verts = new float[triangles.length*9];
 		for(int i = 0; i < triangles.length; i ++){
-			indc[i*3+0] = i*9+0;
+			indc[i * 3] = i * 9;
 			indc[i*3+1] = i*9+3;
 			indc[i*3+2] = i*9+6;
-			verts[i*9+0] = (float) triangles[i].p1.pos.x;
+			verts[i * 9] = (float) triangles[i].p1.pos.x;
 			verts[i*9+1] = (float) triangles[i].p1.pos.y;
 			verts[i*9+2] = (float) triangles[i].p1.pos.z;
 			verts[i*9+3] = (float) triangles[i].p2.pos.x;
@@ -74,9 +74,9 @@ public class ConvexMeshCollider extends Collider {
 		this.vertices = vertices;
 		triangles = new Triangle[indices.length/3];
 		for(int i = 0; i < indices.length; i += 3){
-			Vec3d p1 = new Vec3d(vertices[indices[i+0]*3+0], vertices[indices[i+0]*3+1], vertices[indices[i+0]*3+2]);
-			Vec3d p2 = new Vec3d(vertices[indices[i+1]*3+0], vertices[indices[i+1]*3+1], vertices[indices[i+1]*3+2]);
-			Vec3d p3 = new Vec3d(vertices[indices[i+2]*3+0], vertices[indices[i+2]*3+1], vertices[indices[i+2]*3+2]);
+			Vec3d p1 = new Vec3d(vertices[indices[i] * 3], vertices[indices[i]*3+1], vertices[indices[i]*3+2]);
+			Vec3d p2 = new Vec3d(vertices[indices[i + 1] * 3], vertices[indices[i+1]*3+1], vertices[indices[i+1]*3+2]);
+			Vec3d p3 = new Vec3d(vertices[indices[i + 2] * 3], vertices[indices[i+2]*3+1], vertices[indices[i+2]*3+2]);
 			triangles[i/3] = new Triangle(p1, p2, p3);
 		}
 		double maxX = support(RigidBody.cardinals[0]).xCoord;
@@ -162,8 +162,8 @@ public class ConvexMeshCollider extends Collider {
 		case 1:
 			vec.yCoord = val; return;
 		case 2:
-			vec.zCoord = val; return;
-		}
+			vec.zCoord = val;
+        }
 	}
 	
 	private static double val(Vec3 vec, int idx){

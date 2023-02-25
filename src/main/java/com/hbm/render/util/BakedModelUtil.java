@@ -40,14 +40,14 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class BakedModelUtil {
 
-	private static BufferBuilder buffer = new BufferBuilder(1024*16);
-	private static final int BYTES_PER_VERTEX = 4*3 + 4*1 + 4*2 + 2*2 + 2*2;
+	private static final BufferBuilder buffer = new BufferBuilder(1024*16);
+	private static final int BYTES_PER_VERTEX = 4*3 + 4 + 4*2 + 2*2 + 2*2;
 	
-	public static enum DecalType {
+	public enum DecalType {
 		REGULAR,
 		VBO,
-		FLOW;
-	}
+		FLOW
+    }
 	
 	public static int[] generateDecalMesh(World world, Vec3d normal, float scale, float offsetX, float offsetY, float offsetZ, DecalType type){
 		return generateDecalMesh(world, normal, scale, offsetX, offsetY, offsetZ, type, null);
@@ -499,7 +499,7 @@ public class BakedModelUtil {
 		
 		public Vertex(int[] vertexData, int offset, float oX, float oY, float oZ) {
 			offset *= 7;
-			float x = Float.intBitsToFloat(vertexData[0+offset])+oX;
+			float x = Float.intBitsToFloat(vertexData[offset])+oX;
 			float y = Float.intBitsToFloat(vertexData[1+offset])+oY;
 			float z = Float.intBitsToFloat(vertexData[2+offset])+oZ;
 			pos = new Vec3d(x, y, z);

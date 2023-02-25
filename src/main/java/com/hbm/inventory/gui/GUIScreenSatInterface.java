@@ -101,7 +101,7 @@ public class GUIScreenSatInterface extends GuiScreen {
 
     			int x = this.x - guiLeft + i - 8 - 100;
     			int z = this.z - guiTop + j - 8 - 100;
-    			drawHoveringText(Arrays.asList(new String[] { x + " / " + z }), i, j);
+    			drawHoveringText(Arrays.asList(x + " / " + z), i, j);
     		}
     	}
 	}
@@ -243,7 +243,7 @@ public class GUIScreenSatInterface extends GuiScreen {
 			
 			String s = OreDictionary.getOreName(ids[i]);
 			
-			if(s.length() > 3 && s.substring(0, 3).equals("ore"))
+			if(s.length() > 3 && s.startsWith("ore"))
 				return true;
 		}
 		

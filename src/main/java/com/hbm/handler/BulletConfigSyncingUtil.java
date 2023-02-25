@@ -30,7 +30,7 @@ import com.hbm.items.ModItems;
 
 public class BulletConfigSyncingUtil {
 
-private static HashMap<Integer, BulletConfiguration> configSet = new HashMap<Integer, BulletConfiguration>();
+private static final HashMap<Integer, BulletConfiguration> configSet = new HashMap<Integer, BulletConfiguration>();
 	
 	static int i = 0;
 	

@@ -259,13 +259,13 @@ public class EntityRBMKDebris extends Entity {
 		int j;
 
 		for(j = 0; j < list.size(); ++j) {
-			moX = ((AxisAlignedBB)list.get(j)).calculateXOffset(this.getEntityBoundingBox(), moX);
+			moX = list.get(j).calculateXOffset(this.getEntityBoundingBox(), moX);
 		}
 
 		this.setEntityBoundingBox(this.getEntityBoundingBox().offset(moX, 0.0D, 0.0D));
 
 		for(j = 0; j < list.size(); ++j) {
-			moZ = ((AxisAlignedBB)list.get(j)).calculateZOffset(this.getEntityBoundingBox(), moZ);
+			moZ = list.get(j).calculateZOffset(this.getEntityBoundingBox(), moZ);
 		}
 
 		this.setEntityBoundingBox(this.getEntityBoundingBox().offset(0.0D, 0.0D, moZ));
@@ -280,33 +280,33 @@ public class EntityRBMKDebris extends Entity {
 			d10 = moY;
 			d11 = moZ;
 			moX = initMoX;
-			moY = (double)this.stepHeight;
+			moY = this.stepHeight;
 			moZ = initMoZ;
 			AxisAlignedBB axisalignedbb1 = this.getEntityBoundingBox();
 			list = this.world.getCollisionBoxes(this, this.getEntityBoundingBox().expand(initMoX, moY, initMoZ));
 
 			for(k = 0; k < list.size(); ++k) {
-				moY = ((AxisAlignedBB)list.get(k)).calculateYOffset(this.getEntityBoundingBox(), moY);
+				moY = list.get(k).calculateYOffset(this.getEntityBoundingBox(), moY);
 			}
 
 			this.setEntityBoundingBox(this.getEntityBoundingBox().offset(0.0D, moY, 0.0D));
 
 			for(k = 0; k < list.size(); ++k) {
-				moX = ((AxisAlignedBB)list.get(k)).calculateXOffset(this.getEntityBoundingBox(), moX);
+				moX = list.get(k).calculateXOffset(this.getEntityBoundingBox(), moX);
 			}
 
 			this.setEntityBoundingBox(this.getEntityBoundingBox().offset(moX, 0.0D, 0.0D));
 
 			for(k = 0; k < list.size(); ++k) {
-				moZ = ((AxisAlignedBB)list.get(k)).calculateZOffset(this.getEntityBoundingBox(), moZ);
+				moZ = list.get(k).calculateZOffset(this.getEntityBoundingBox(), moZ);
 			}
 
 			this.setEntityBoundingBox(this.getEntityBoundingBox().offset(0.0D, 0.0D, moZ));
 
-			moY = (double)(-this.stepHeight);
+			moY = -this.stepHeight;
 
 			for(k = 0; k < list.size(); ++k) {
-				moY = ((AxisAlignedBB)list.get(k)).calculateYOffset(this.getEntityBoundingBox(), moY);
+				moY = list.get(k).calculateYOffset(this.getEntityBoundingBox(), moY);
 			}
 
 			this.setEntityBoundingBox(this.getEntityBoundingBox().offset(0.0D, moY, 0.0D));
@@ -322,7 +322,7 @@ public class EntityRBMKDebris extends Entity {
 		this.world.profiler.endSection();
 		this.world.profiler.startSection("rest");
 		this.posX = (this.getEntityBoundingBox().minX + this.getEntityBoundingBox().maxX) / 2.0D;
-		this.posY = this.getEntityBoundingBox().minY + (double)this.getYOffset();
+		this.posY = this.getEntityBoundingBox().minY + this.getYOffset();
 		this.posZ = (this.getEntityBoundingBox().minZ + this.getEntityBoundingBox().maxZ) / 2.0D;
 		this.collidedHorizontally = initMoX != moX || initMoZ != moZ;
 		this.collidedVertically = initMoY != moY;
@@ -370,12 +370,12 @@ public class EntityRBMKDebris extends Entity {
 		return dist < range * range;
 	}
 
-	public static enum DebrisType {
+	public enum DebrisType {
 		BLANK, //just a metal beam
 		ELEMENT, //the entire casing of a fuel assembly because fuck you
 		FUEL, //spicy
 		ROD, //solid boron rod
 		GRAPHITE, //spicy rock
-		LID; //the all destroying harbinger of annihilation
+		LID //the all destroying harbinger of annihilation
 	}
 }

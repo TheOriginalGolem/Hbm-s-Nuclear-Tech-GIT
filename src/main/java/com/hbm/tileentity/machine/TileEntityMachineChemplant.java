@@ -395,7 +395,7 @@ public class TileEntityMachineChemplant extends TileEntityMachineBase implements
 						filledContainer = tryFillContainerCap(iTe1, 4);
 						
 					}
-					if(filledContainer || existingTemplate == false){
+					if(filledContainer || !existingTemplate){
 						ItemStack copy = iTe2.getStackInSlot(i).copy();
 						iTe2.setStackInSlot(i, ItemStack.EMPTY);
 						this.inventory.setStackInSlot(4, copy);
@@ -479,23 +479,17 @@ public class TileEntityMachineChemplant extends TileEntityMachineBase implements
 	public boolean hasFluidsStored(FluidStack[] fluids) {
 		if(Library.isArrayEmpty(fluids))
 			return true;
-		
-		if((fluids[0] == null || fluids[0] != null && fluids[0].amount <= tanks[0].getFluidAmount()) && 
-				(fluids[1] == null || fluids[1] != null && fluids[1].amount <= tanks[1].getFluidAmount()))
-			return true;
-		
-		return false;
-	}
+
+        return (fluids[0] == null || fluids[0] != null && fluids[0].amount <= tanks[0].getFluidAmount()) &&
+                (fluids[1] == null || fluids[1] != null && fluids[1].amount <= tanks[1].getFluidAmount());
+    }
 	
 	public boolean hasSpaceForFluids(FluidStack[] fluids) {
 		if(Library.isArrayEmpty(fluids))
 			return true;
-		if(((fluids[0] == null || fluids[0] != null && tanks[2].fill(fluids[0], false) == fluids[0].amount) && 
-				(fluids[1] == null || fluids[1] != null && tanks[3].fill(fluids[1], false) == fluids[1].amount)))
-			return true;
-		
-		return false;
-	}
+        return (fluids[0] == null || fluids[0] != null && tanks[2].fill(fluids[0], false) == fluids[0].amount) &&
+                (fluids[1] == null || fluids[1] != null && tanks[3].fill(fluids[1], false) == fluids[1].amount);
+    }
 	
 	public void removeFluids(FluidStack[] fluids) {
 		if(Library.isArrayEmpty(fluids))
@@ -538,15 +532,12 @@ public class TileEntityMachineChemplant extends TileEntityMachineBase implements
 		ItemStack sta7 = Library.carefulCopy(stacks[3]);
 		if(sta7 != null)
 			sta7.setCount(1);
-		
-		if((inventory.getStackInSlot(5) == ItemStack.EMPTY || stacks[0] == null || (stacks[0] != null && isItemAcceptable(sta0, sta1) && inventory.getStackInSlot(5).getCount() + stacks[0].getCount() <= inventory.getStackInSlot(5).getMaxStackSize())) && 
-				(inventory.getStackInSlot(6) == ItemStack.EMPTY || stacks[1] == null || (stacks[1] != null && isItemAcceptable(sta2, sta3) && inventory.getStackInSlot(6).getCount() + stacks[1].getCount() <= inventory.getStackInSlot(6).getMaxStackSize())) && 
-				(inventory.getStackInSlot(7) == ItemStack.EMPTY || stacks[2] == null || (stacks[2] != null && isItemAcceptable(sta4, sta5) && inventory.getStackInSlot(7).getCount() + stacks[2].getCount() <= inventory.getStackInSlot(7).getMaxStackSize())) && 
-				(inventory.getStackInSlot(8) == ItemStack.EMPTY || stacks[3] == null || (stacks[3] != null && isItemAcceptable(sta6, sta7) && inventory.getStackInSlot(8).getCount() + stacks[3].getCount() <= inventory.getStackInSlot(8).getMaxStackSize())))
-			return true;
-			
-		return false;
-	}
+
+        return (inventory.getStackInSlot(5) == ItemStack.EMPTY || stacks[0] == null || (stacks[0] != null && isItemAcceptable(sta0, sta1) && inventory.getStackInSlot(5).getCount() + stacks[0].getCount() <= inventory.getStackInSlot(5).getMaxStackSize())) &&
+                (inventory.getStackInSlot(6) == ItemStack.EMPTY || stacks[1] == null || (stacks[1] != null && isItemAcceptable(sta2, sta3) && inventory.getStackInSlot(6).getCount() + stacks[1].getCount() <= inventory.getStackInSlot(6).getMaxStackSize())) &&
+                (inventory.getStackInSlot(7) == ItemStack.EMPTY || stacks[2] == null || (stacks[2] != null && isItemAcceptable(sta4, sta5) && inventory.getStackInSlot(7).getCount() + stacks[2].getCount() <= inventory.getStackInSlot(7).getMaxStackSize())) &&
+                (inventory.getStackInSlot(8) == ItemStack.EMPTY || stacks[3] == null || (stacks[3] != null && isItemAcceptable(sta6, sta7) && inventory.getStackInSlot(8).getCount() + stacks[3].getCount() <= inventory.getStackInSlot(8).getMaxStackSize()));
+    }
 	
 	public void addItems(ItemStack[] stacks) {
 		if(inventory.getStackInSlot(5) == ItemStack.EMPTY && stacks[0] != null)
@@ -587,9 +578,9 @@ public class TileEntityMachineChemplant extends TileEntityMachineBase implements
 			if(array.getStackInSlot(i) != null)
 				stack.setStackInSlot(i, array.getStackInSlot(i).copy());
 			else
-				stack.setStackInSlot(i, ItemStack.EMPTY);;
-		
-		return stack;
+				stack.setStackInSlot(i, ItemStack.EMPTY);
+
+        return stack;
 	}
 	
 	/**Unloads output into chests*/
@@ -687,9 +678,9 @@ public class TileEntityMachineChemplant extends TileEntityMachineBase implements
 				ItemStack sta2 = inventory.getStackInSlot(slot).copy();
 				if(inv.getStackInSlot(i).getItem() == Items.AIR && sta2 != null) {
 					sta2.setCount(1);
-					inventory.getStackInSlot(slot).shrink(1);;
-					
-					if(inventory.getStackInSlot(slot).isEmpty())
+					inventory.getStackInSlot(slot).shrink(1);
+
+                    if(inventory.getStackInSlot(slot).isEmpty())
 						inventory.setStackInSlot(slot, ItemStack.EMPTY);
 					
 					inv.insertItem(i, sta2, false);
@@ -832,12 +823,12 @@ public class TileEntityMachineChemplant extends TileEntityMachineBase implements
 					sta.setCount(1);
 				
 					if(sta != null && isItemAcceptable(sta, st) && array.getStackInSlot(i).getCount() > 0) {
-						array.getStackInSlot(i).shrink(1);;
-						
-						if(array.getStackInSlot(i).isEmpty())
-							array.setStackInSlot(i, ItemStack.EMPTY);;
-						
-						return true;
+						array.getStackInSlot(i).shrink(1);
+
+                        if(array.getStackInSlot(i).isEmpty())
+							array.setStackInSlot(i, ItemStack.EMPTY);
+
+                        return true;
 					}
 				}
 			}
@@ -897,7 +888,7 @@ public class TileEntityMachineChemplant extends TileEntityMachineBase implements
 	public void fillFluidInit(FluidTank tank) {
 		int meta = world.getBlockState(pos).getValue(MachineChemplant.FACING);
 		MutableBlockPos fill = new BlockPos.MutableBlockPos();
-		boolean update = false || needsUpdate;
+		boolean update = needsUpdate;
 		if(meta == 5) {
 			update = FFUtils.fillFluid(this, tank, world, fill.setPos(pos.getX()-2, pos.getY(), pos.getZ()), 2000) || update;
 			update = FFUtils.fillFluid(this, tank, world, fill.setPos(pos.getX()-2, pos.getY(), pos.getZ()+1), 2000) || update;
@@ -956,8 +947,7 @@ public class TileEntityMachineChemplant extends TileEntityMachineBase implements
 	@Override
 	public void recievePacket(NBTTagCompound[] tags) {
 		if(tags.length != 4){
-			return;
-		} else {
+        } else {
 			tanks[0].readFromNBT(tags[0]);
 			tanks[1].readFromNBT(tags[1]);
 			tanks[2].readFromNBT(tags[2]);
@@ -968,8 +958,8 @@ public class TileEntityMachineChemplant extends TileEntityMachineBase implements
 	
 	private class ChemplantFluidHandler implements IFluidHandler{
 
-		private FluidTank[] tanks;
-		private Fluid[] tankTypes;
+		private final FluidTank[] tanks;
+		private final Fluid[] tankTypes;
 		
 		public ChemplantFluidHandler(FluidTank[] tanks, Fluid[] tankTypes){
 			this.tanks = tanks;
@@ -1030,7 +1020,7 @@ public class TileEntityMachineChemplant extends TileEntityMachineBase implements
 	
 	private long detectPower;
 	private boolean detectIsProgressing;
-	private FluidTank[] detectTanks = new FluidTank[]{null, null, null, null};
+	private final FluidTank[] detectTanks = new FluidTank[]{null, null, null, null};
 	
 	private void detectAndSendChanges() {
 		

@@ -24,8 +24,8 @@ public class RenderNoCloud extends Render<EntityNukeCloudNoShroom> {
 	public static final IRenderFactory<EntityNukeCloudNoShroom> FACTORY = (RenderManager man) -> {return new RenderNoCloud(man);};
 	
 	private static final ResourceLocation ringModelRL = new ResourceLocation(/*"/assets/" + */RefStrings.MODID, "models/Ring.obj");
-	private IModelCustom ringModel;
-    private ResourceLocation ringTexture;
+	private final IModelCustom ringModel;
+    private final ResourceLocation ringTexture;
     public float scale = 0;
     public float ring = 0;
 	
@@ -110,7 +110,7 @@ public class RenderNoCloud extends Render<EntityNukeCloudNoShroom> {
             //tessellator.setColorRGBA_I(59345735, 0);
             buf.pos(-0.866D * f4, f3, -0.5F * f4).endVertex();
             buf.pos(0.866D * f4, f3, -0.5F * f4).endVertex();
-            buf.pos(0.0D, f3, 1.0F * f4).endVertex();
+            buf.pos(0.0D, f3, f4).endVertex();
             buf.pos(-0.866D * f4, f3, -0.5F * f4).endVertex();
             tessellator.draw();
         }

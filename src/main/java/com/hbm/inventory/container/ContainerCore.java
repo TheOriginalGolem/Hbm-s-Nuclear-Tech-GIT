@@ -11,7 +11,7 @@ import net.minecraftforge.items.SlotItemHandler;
 
 public class ContainerCore extends Container {
 
-	private TileEntityCore nukeBoy;
+	private final TileEntityCore nukeBoy;
 
 	public ContainerCore(InventoryPlayer invPlayer, TileEntityCore tedf) {
 
@@ -35,7 +35,7 @@ public class ContainerCore extends Container {
 	@Override
 	public ItemStack transferStackInSlot(EntityPlayer p_82846_1_, int par2) {
 		ItemStack var3 = ItemStack.EMPTY;
-		Slot var4 = (Slot) this.inventorySlots.get(par2);
+		Slot var4 = this.inventorySlots.get(par2);
 
 		if(var4 != null && var4.getHasStack()) {
 			ItemStack var5 = var4.getStack();

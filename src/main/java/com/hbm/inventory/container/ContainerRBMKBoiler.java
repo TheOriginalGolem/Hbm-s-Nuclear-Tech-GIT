@@ -10,7 +10,7 @@ import net.minecraft.item.ItemStack;
 
 public class ContainerRBMKBoiler extends Container {
 
-	private TileEntityRBMKBoiler rbmk;
+	private final TileEntityRBMKBoiler rbmk;
 
 	public ContainerRBMKBoiler(InventoryPlayer invPlayer, TileEntityRBMKBoiler tedf) {
 		rbmk = tedf;
@@ -29,7 +29,7 @@ public class ContainerRBMKBoiler extends Container {
 	@Override
 	public ItemStack transferStackInSlot(EntityPlayer p_82846_1_, int par2) {
 		ItemStack var3 = ItemStack.EMPTY;
-		Slot var4 = (Slot) this.inventorySlots.get(par2);
+		Slot var4 = this.inventorySlots.get(par2);
 
 		if(var4 != null && var4.getHasStack()) {
 			return ItemStack.EMPTY;

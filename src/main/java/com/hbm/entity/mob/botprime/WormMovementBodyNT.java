@@ -8,7 +8,7 @@ import net.minecraft.util.math.MathHelper;
 
 public class WormMovementBodyNT {
 
-	private EntityWormBaseNT user;
+	private final EntityWormBaseNT user;
 
 	public WormMovementBodyNT(EntityWormBaseNT user) {
 		this.user = user;
@@ -56,12 +56,12 @@ public class WormMovementBodyNT {
 			if(segment.getHeadID() == this.user.getHeadID()) {
 				if(segment.getIsHead()) {
 					if(this.user.getPartNumber() == 0) {
-						this.user.targetedEntity = ((Entity) segment);
+						this.user.targetedEntity = segment;
 					}
-					this.user.followed = ((EntityLivingBase) segment);
+					this.user.followed = segment;
 
 				} else if(segment.getPartNumber() == this.user.getPartNumber() - 1) {
-					this.user.targetedEntity = ((Entity) segment);
+					this.user.targetedEntity = segment;
 				}
 			}
 		}

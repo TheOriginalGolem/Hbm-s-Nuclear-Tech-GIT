@@ -18,8 +18,8 @@ public class RenderEMPBlast extends Render<EntityEMPBlast> {
 	public static final IRenderFactory<EntityEMPBlast> FACTORY = (RenderManager man) -> {return new RenderEMPBlast(man);};
 	
 	private static final ResourceLocation ringModelRL = new ResourceLocation(/*"/assets/" + */RefStrings.MODID, "models/Ring.obj");
-	private IModelCustom ringModel;
-    private ResourceLocation ringTexture;
+	private final IModelCustom ringModel;
+    private final ResourceLocation ringTexture;
 	
 	protected RenderEMPBlast(RenderManager renderManager) {
 		super(renderManager);

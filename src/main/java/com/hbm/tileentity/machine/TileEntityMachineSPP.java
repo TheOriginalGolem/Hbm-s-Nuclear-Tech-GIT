@@ -93,12 +93,8 @@ public class TileEntityMachineSPP extends TileEntity implements ITickable, ISour
 
 	@Override
 	public boolean getTact() {
-		if (age >= 0 && age < 10) {
-			return true;
-		}
-
-		return false;
-	}
+        return age >= 0 && age < 10;
+    }
 
 	@Override
 	public void clearList() {

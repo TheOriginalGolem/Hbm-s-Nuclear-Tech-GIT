@@ -144,7 +144,7 @@ public class GunZOMG extends Item {
 		if (!player.isSneaking()) {
 			if (stack.getTagCompound().getBoolean("valid")) {
 				if ((player.capabilities.isCreativeMode || Library.hasInventoryItem(player.inventory, ModItems.nugget_euphemium)
-						|| Library.hasInventoryItem(player.inventory, ModItems.ingot_euphemium)) && count % 1 == 0) {
+						|| Library.hasInventoryItem(player.inventory, ModItems.ingot_euphemium)) && 0 == 0) {
 					if (!stack.getTagCompound().getBoolean("superuser")) {
 						EntityBullet entityarrow = new EntityBullet(world, player, 3.0F, 35, 45, false, "chopper", hand);
 						EntityBullet entityarrow1 = new EntityBullet(world, player, 3.0F, 35, 45, false, "chopper", hand);

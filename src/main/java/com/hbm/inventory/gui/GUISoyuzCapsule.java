@@ -13,8 +13,8 @@ import net.minecraft.util.ResourceLocation;
 
 public class GUISoyuzCapsule extends GuiContainer {
 
-	private static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/gui_soyuz_capsule.png");
-	private TileEntitySoyuzCapsule diFurnace;
+	private static final ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/gui_soyuz_capsule.png");
+	private final TileEntitySoyuzCapsule diFurnace;
 	
 	public GUISoyuzCapsule(InventoryPlayer invPlayer, TileEntitySoyuzCapsule tedf) {
 		super(new ContainerSoyuzCapsule(invPlayer, tedf));

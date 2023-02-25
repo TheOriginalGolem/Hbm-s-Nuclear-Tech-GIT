@@ -76,8 +76,8 @@ public class ItemGrenade extends Item {
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
 		ItemStack stack = playerIn.getHeldItem(handIn);
 		if (!playerIn.capabilities.isCreativeMode) {
-			stack.shrink(1);;
-		}
+			stack.shrink(1);
+        }
 
 		worldIn.playSound(null, playerIn.posX, playerIn.posY, playerIn.posZ, SoundEvents.ENTITY_ARROW_SHOOT, SoundCategory.PLAYERS, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
 
@@ -307,13 +307,13 @@ public class ItemGrenade extends Item {
 		}
 		if (this == ModItems.grenade_solinium) {
 			list.add("§3[Solinium Grenade]§r");
-			list.add(" §eRadius: "+(int)BombConfig.soliniumRadius/10+"m§r");
+			list.add(" §eRadius: "+ BombConfig.soliniumRadius /10+"m§r");
 		}
 		if (this == ModItems.grenade_nuclear) {
 			list.add("§2[Nuclear Grenade]§r");
-			list.add(" §eRadius: "+(int)BombConfig.fatmanRadius/2+"m§r");
+			list.add(" §eRadius: "+ BombConfig.fatmanRadius /2+"m§r");
 			list.add("§2[Fallout]§r");
-			list.add(" §aRadius: "+(int)(BombConfig.fatmanRadius/2*(1+BombConfig.falloutRange/100))+"m§r");
+			list.add(" §aRadius: "+ (BombConfig.fatmanRadius/2*(1+BombConfig.falloutRange/100)) +"m§r");
 		}
 	}
 	

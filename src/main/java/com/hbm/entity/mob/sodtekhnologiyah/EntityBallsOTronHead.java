@@ -19,7 +19,7 @@ import net.minecraft.world.World;
 
 public class EntityBallsOTronHead extends EntityBallsOTronBase {
 
-	private final BossInfoServer bossInfo = (BossInfoServer)(new BossInfoServer(this.getDisplayName(), BossInfo.Color.PURPLE, BossInfo.Overlay.PROGRESS));
+	private final BossInfoServer bossInfo = new BossInfoServer(this.getDisplayName(), BossInfo.Color.PURPLE, BossInfo.Overlay.PROGRESS);
 	
 	/*   ___   _   _    _    ___           ___           _____ ___  ___ _  _
 	 *  | _ ) /_\ | |  | |  / __|   ___   |   |   ___   |_   _| _ )|   | \| |

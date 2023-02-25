@@ -20,7 +20,7 @@ public class RenderSoyuzLauncher extends TileEntitySpecialRenderer<TileEntitySoy
 		GL11.glPushMatrix();
 		GL11.glTranslatef((float) x + 0.5F, (float) y-4, (float) z + 0.5F);
 		
-		TileEntitySoyuzLauncher launcher = (TileEntitySoyuzLauncher)te;
+		TileEntitySoyuzLauncher launcher = te;
 		
 		double open = 45D;
 		int timer = 20;

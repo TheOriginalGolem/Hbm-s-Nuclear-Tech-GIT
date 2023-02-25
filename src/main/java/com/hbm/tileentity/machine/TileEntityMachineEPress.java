@@ -123,8 +123,8 @@ public class TileEntityMachineEPress extends TileEntityMachineBase implements IT
 							else
 								inventory.getStackInSlot(3).grow(stack.getCount());
 							
-							inventory.getStackInSlot(2).shrink(1);;
-							if(inventory.getStackInSlot(2).isEmpty())
+							inventory.getStackInSlot(2).shrink(1);
+                            if(inventory.getStackInSlot(2).isEmpty())
 								inventory.setStackInSlot(2, ItemStack.EMPTY);
 							
 							inventory.getStackInSlot(1).setItemDamage(inventory.getStackInSlot(1).getItemDamage() + 1);

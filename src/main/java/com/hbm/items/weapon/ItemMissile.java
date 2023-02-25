@@ -197,14 +197,14 @@ public class ItemMissile extends Item {
 			case WARHEAD:
 				list.add(TextFormatting.BOLD + "Size: " + TextFormatting.GRAY + getSize(bottom));
 				list.add(TextFormatting.BOLD + "Type: " + TextFormatting.GRAY + getWarhead((WarheadType)attributes[0]));
-				list.add(TextFormatting.BOLD + "Strength: " + TextFormatting.GRAY + (Float)attributes[1]);
-				list.add(TextFormatting.BOLD + "Weight: " + TextFormatting.GRAY + (Float)attributes[2] + "t");
+				list.add(TextFormatting.BOLD + "Strength: " + TextFormatting.GRAY + attributes[1]);
+				list.add(TextFormatting.BOLD + "Weight: " + TextFormatting.GRAY + attributes[2] + "t");
 				break;
 			case FUSELAGE:
 				list.add(TextFormatting.BOLD + "Top size: " + TextFormatting.GRAY + getSize(top));
 				list.add(TextFormatting.BOLD + "Bottom size: " + TextFormatting.GRAY + getSize(bottom));
 				list.add(TextFormatting.BOLD + "Fuel type: " + TextFormatting.GRAY + getFuel((FuelType)attributes[0]));
-				list.add(TextFormatting.BOLD + "Fuel amount: " + TextFormatting.GRAY + (Float)attributes[1] + "l");
+				list.add(TextFormatting.BOLD + "Fuel amount: " + TextFormatting.GRAY + attributes[1] + "l");
 				break;
 			case FINS:
 				list.add(TextFormatting.BOLD + "Size: " + TextFormatting.GRAY + getSize(top));
@@ -213,8 +213,8 @@ public class ItemMissile extends Item {
 			case THRUSTER:
 				list.add(TextFormatting.BOLD + "Size: " + TextFormatting.GRAY + getSize(top));
 				list.add(TextFormatting.BOLD + "Fuel type: " + TextFormatting.GRAY + getFuel((FuelType)attributes[0]));
-				list.add(TextFormatting.BOLD + "Fuel consumption: " + TextFormatting.GRAY + (Float)attributes[1] + "l/tick");
-				list.add(TextFormatting.BOLD + "Max. payload: " + TextFormatting.GRAY + (Float)attributes[2] + "t");
+				list.add(TextFormatting.BOLD + "Fuel consumption: " + TextFormatting.GRAY + attributes[1] + "l/tick");
+				list.add(TextFormatting.BOLD + "Max. payload: " + TextFormatting.GRAY + attributes[2] + "t");
 				break;
 			}
 		} catch(Exception ex) {

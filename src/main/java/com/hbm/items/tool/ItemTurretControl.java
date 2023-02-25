@@ -126,9 +126,9 @@ public class ItemTurretControl extends Item {
 	public void addInformation(ItemStack stack, World worldIn, List<String> list, ITooltipFlag flagIn) {
 		if (stack.getTagCompound() != null) {
 			list.add("Linked to:");
-			list.add("X: " + String.valueOf(stack.getTagCompound().getInteger("xCoord")));
-			list.add("Y: " + String.valueOf(stack.getTagCompound().getInteger("yCoord")));
-			list.add("Z: " + String.valueOf(stack.getTagCompound().getInteger("zCoord")));
+			list.add("X: " + stack.getTagCompound().getInteger("xCoord"));
+			list.add("Y: " + stack.getTagCompound().getInteger("yCoord"));
+			list.add("Z: " + stack.getTagCompound().getInteger("zCoord"));
 		} else {
 			list.add("Please select a turret.");
 		}

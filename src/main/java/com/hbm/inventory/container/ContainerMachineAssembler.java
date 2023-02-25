@@ -13,7 +13,7 @@ import net.minecraftforge.items.SlotItemHandler;
 
 public class ContainerMachineAssembler extends Container {
 
-	private TileEntityMachineAssembler assembler;
+	private final TileEntityMachineAssembler assembler;
 	
 	public ContainerMachineAssembler(InventoryPlayer invPlayer, TileEntityMachineAssembler te) {
 		assembler = te;
@@ -29,8 +29,8 @@ public class ContainerMachineAssembler extends Container {
 			@Override
 			public boolean isItemValid(ItemStack stack) {
 				return stack != null && stack.getItem() instanceof ItemAssemblyTemplate;
-			};
-		});
+			}
+        });
 		//Output
 		this.addSlotToContainer(new SlotMachineOutput(te.inventory, 5, 134, 90));
 		//Input
@@ -65,7 +65,7 @@ public class ContainerMachineAssembler extends Container {
     public ItemStack transferStackInSlot(EntityPlayer p_82846_1_, int par2)
     {
 		ItemStack var3 = ItemStack.EMPTY;
-		Slot var4 = (Slot) this.inventorySlots.get(par2);
+		Slot var4 = this.inventorySlots.get(par2);
 		
 		if (var4 != null && var4.getHasStack())
 		{

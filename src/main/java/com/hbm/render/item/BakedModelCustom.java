@@ -20,7 +20,7 @@ import net.minecraft.world.World;
 
 public class BakedModelCustom implements IBakedModel {
 
-	private TEISRBase renderer;
+	private final TEISRBase renderer;
 	
 	public BakedModelCustom(TEISRBase renderer) {
 		this.renderer = renderer;

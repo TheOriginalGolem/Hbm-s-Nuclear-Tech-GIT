@@ -53,9 +53,9 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class EntityNuclearCreeper extends EntityMob {
-	private static final DataParameter<Integer> STATE = EntityDataManager.<Integer> createKey(EntityNuclearCreeper.class, DataSerializers.VARINT);
-	public static final DataParameter<Boolean> POWERED = EntityDataManager.<Boolean> createKey(EntityNuclearCreeper.class, DataSerializers.BOOLEAN);
-	private static final DataParameter<Boolean> IGNITED = EntityDataManager.<Boolean> createKey(EntityNuclearCreeper.class, DataSerializers.BOOLEAN);
+	private static final DataParameter<Integer> STATE = EntityDataManager.createKey(EntityNuclearCreeper.class, DataSerializers.VARINT);
+	public static final DataParameter<Boolean> POWERED = EntityDataManager.createKey(EntityNuclearCreeper.class, DataSerializers.BOOLEAN);
+	private static final DataParameter<Boolean> IGNITED = EntityDataManager.createKey(EntityNuclearCreeper.class, DataSerializers.BOOLEAN);
 	/**
 	 * Time when this creeper was last in an active state (Messed up code here,
 	 * probably causes creeper animation to go weird)
@@ -145,7 +145,7 @@ public class EntityNuclearCreeper extends EntityMob {
 	public void writeEntityToNBT(NBTTagCompound compound){
 		super.writeEntityToNBT(compound);
 
-		if((Boolean) this.dataManager.get(POWERED)) {
+		if(this.dataManager.get(POWERED)) {
 			compound.setBoolean("powered", true);
 		}
 
@@ -229,7 +229,7 @@ public class EntityNuclearCreeper extends EntityMob {
 		List<Entity> list = this.world.getEntitiesWithinAABBExcludingEntity(null, new AxisAlignedBB(i, k, l, j, i2, j2));
 
 		for(int i1 = 0; i1 < list.size(); ++i1) {
-			Entity entity = (Entity)list.get(i1);
+			Entity entity = list.get(i1);
 			double d4 = entity.getDistance(this.posX, this.posY, this.posZ) / 4;
 
 			if(d4 <= 1.0D) {

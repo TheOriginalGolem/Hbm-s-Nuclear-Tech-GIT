@@ -86,10 +86,10 @@ public class RenderOverhead {
 			buf.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION);
 			int center = fontrenderer.getStringWidth(name) / 2;
 			GlStateManager.color(0.0F, 0.0F, 0.0F, 0.25F);
-			buf.pos((double) (-center - 1), (double) (-1 + heightOffset), 0.0D).endVertex();
-			buf.pos((double) (-center - 1), (double) (8 + heightOffset), 0.0D).endVertex();
-			buf.pos((double) (center + 1), (double) (8 + heightOffset), 0.0D).endVertex();
-			buf.pos((double) (center + 1), (double) (-1 + heightOffset), 0.0D).endVertex();
+			buf.pos(-center - 1, -1 + heightOffset, 0.0D).endVertex();
+			buf.pos(-center - 1, 8 + heightOffset, 0.0D).endVertex();
+			buf.pos(center + 1, 8 + heightOffset, 0.0D).endVertex();
+			buf.pos(center + 1, -1 + heightOffset, 0.0D).endVertex();
 			tessellator.draw();
 			GlStateManager.enableTexture2D();
 			fontrenderer.drawString(name, -fontrenderer.getStringWidth(name) / 2, heightOffset, 553648127);

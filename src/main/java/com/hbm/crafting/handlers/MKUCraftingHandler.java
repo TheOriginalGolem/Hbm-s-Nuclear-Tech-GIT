@@ -52,17 +52,15 @@ public class MKUCraftingHandler extends net.minecraftforge.registries.IForgeRegi
 		
 		lastSeed = world.getSeed();
 		
-		List<ItemStack> list = Arrays.asList(new ItemStack[] {
-				new ItemStack(ModItems.powder_iodine),
-				new ItemStack(ModItems.powder_fire),
-				new ItemStack(ModItems.dust),
-				new ItemStack(ModItems.nugget_mercury),
-				new ItemStack(ModItems.morning_glory),
-				new ItemStack(ModItems.syringe_metal_empty),
-				null,
-				null,
-				null
-		});
+		List<ItemStack> list = Arrays.asList(new ItemStack(ModItems.powder_iodine),
+                new ItemStack(ModItems.powder_fire),
+                new ItemStack(ModItems.dust),
+                new ItemStack(ModItems.nugget_mercury),
+                new ItemStack(ModItems.morning_glory),
+                new ItemStack(ModItems.syringe_metal_empty),
+                null,
+                null,
+                null);
 		
 		Collections.shuffle(list, rand);
 		

@@ -20,7 +20,7 @@ import net.minecraftforge.fluids.Fluid;
 
 public class RadWaterBlock extends BlockFluidClassic {
 
-	private DamageSource damageSource;
+	private final DamageSource damageSource;
 	
 	public RadWaterBlock(Fluid fluid, Material material, DamageSource source, String s) {
 		super(fluid, material);

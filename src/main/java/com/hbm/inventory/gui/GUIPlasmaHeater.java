@@ -15,7 +15,7 @@ import net.minecraft.util.ResourceLocation;
 public class GUIPlasmaHeater extends GuiInfoContainer {
 
 	public static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/reactors/gui_fusion_heater.png");
-	private TileEntityMachinePlasmaHeater microwave;
+	private final TileEntityMachinePlasmaHeater microwave;
 
 	public GUIPlasmaHeater(InventoryPlayer invPlayer, TileEntityMachinePlasmaHeater microwave) {
 		super(new ContainerPlasmaHeater(invPlayer, microwave));

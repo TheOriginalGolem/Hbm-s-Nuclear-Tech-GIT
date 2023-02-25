@@ -17,8 +17,8 @@ public class RenderFallingNuke extends Render<EntityFallingNuke> {
 	public static final IRenderFactory<EntityFallingNuke> FACTORY = (RenderManager man) -> {return new RenderFallingNuke(man);};
 	
 	private static final ResourceLocation objTesterModelRL = new ResourceLocation(/*"/assets/" + */RefStrings.MODID, "models/LilBoy1.obj");
-	private IModelCustom boyModel;
-    private ResourceLocation boyTexture;
+	private final IModelCustom boyModel;
+    private final ResourceLocation boyTexture;
     private static final ResourceLocation gadget_rl = new ResourceLocation(RefStrings.MODID +":textures/models/TheGadget3_.png");
 	
 	protected RenderFallingNuke(RenderManager renderManager) {

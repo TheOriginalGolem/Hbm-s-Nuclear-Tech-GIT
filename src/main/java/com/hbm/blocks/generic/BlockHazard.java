@@ -164,7 +164,7 @@ public class BlockHazard extends Block implements IItemHazard {
 			worldIn.scheduleUpdate(pos, this, this.tickRate(worldIn));
 	}
 	
-	public static enum ExtDisplayEffect {
+	public enum ExtDisplayEffect {
 		RADFOG,
 		SPARKS,
 		SCHRAB,

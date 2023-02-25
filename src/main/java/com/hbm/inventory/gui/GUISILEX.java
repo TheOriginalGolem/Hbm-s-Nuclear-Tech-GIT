@@ -29,7 +29,7 @@ import net.minecraft.util.ResourceLocation;
 public class GUISILEX extends GuiInfoContainer {
 
 	public static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/processing/gui_silex.png");
-	private TileEntitySILEX silex;
+	private final TileEntitySILEX silex;
 
 	public GUISILEX(InventoryPlayer invPlayer, TileEntitySILEX laser) {
 		super(new ContainerSILEX(invPlayer, laser));

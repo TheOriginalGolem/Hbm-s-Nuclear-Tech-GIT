@@ -51,10 +51,10 @@ public class Glm extends noise {
 
     public static Vec3 project(Vec3 obj, Mat4 model, Mat4 proj, Vec4 viewport, Vec3 res) {
         // tvec4<T, P> tmp = tvec4<T, P>(obj, T(1));		tmp = model * tmp;
-        float tX = model.m00 * obj.x + model.m10 * obj.y + model.m20 * obj.z + model.m30 * 1f;
-        float tY = model.m01 * obj.x + model.m11 * obj.y + model.m21 * obj.z + model.m31 * 1f;
-        float tZ = model.m02 * obj.x + model.m12 * obj.y + model.m22 * obj.z + model.m32 * 1f;
-        float tW = model.m03 * obj.x + model.m13 * obj.y + model.m23 * obj.z + model.m33 * 1f;
+        float tX = model.m00 * obj.x + model.m10 * obj.y + model.m20 * obj.z + model.m30;
+        float tY = model.m01 * obj.x + model.m11 * obj.y + model.m21 * obj.z + model.m31;
+        float tZ = model.m02 * obj.x + model.m12 * obj.y + model.m22 * obj.z + model.m32;
+        float tW = model.m03 * obj.x + model.m13 * obj.y + model.m23 * obj.z + model.m33;
         // tmp = proj * tmp;
         float tmpX = proj.m00 * tX + proj.m10 * tY + proj.m20 * tZ + proj.m30 * tW;
         float tmpY = proj.m01 * tX + proj.m11 * tY + proj.m21 * tZ + proj.m31 * tW;

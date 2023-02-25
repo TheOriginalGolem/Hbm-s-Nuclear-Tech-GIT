@@ -67,7 +67,7 @@ public class SoyuzCapsule extends BlockContainer {
 	
 	@Override
 	protected BlockStateContainer createBlockState() {
-		return new BlockStateContainer(this, new IProperty[]{RUSTY});
+		return new BlockStateContainer(this, RUSTY);
 	}
 	
 	@Override

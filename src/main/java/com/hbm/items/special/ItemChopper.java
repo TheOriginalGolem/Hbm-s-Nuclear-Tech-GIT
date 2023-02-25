@@ -60,7 +60,7 @@ public class ItemChopper extends Item {
 
 			if(entity != null) {
 				if(entity instanceof EntityLivingBase && stack.hasDisplayName()) {
-					((EntityLiving) entity).setCustomNameTag(stack.getDisplayName());
+					entity.setCustomNameTag(stack.getDisplayName());
 				}
 
 				if(!player.capabilities.isCreativeMode) {
@@ -102,7 +102,7 @@ public class ItemChopper extends Item {
 
 						if(entity != null) {
 							if(entity instanceof EntityLivingBase && stack.hasDisplayName()) {
-								((EntityLiving) entity).setCustomNameTag(stack.getDisplayName());
+								entity.setCustomNameTag(stack.getDisplayName());
 							}
 
 							if(!player.capabilities.isCreativeMode) {
@@ -138,7 +138,7 @@ public class ItemChopper extends Item {
 			entity.setLocationAndAngles(x, y, z, MathHelper.wrapDegrees(world.rand.nextFloat() * 360.0F), 0.0F);
 			entityliving.rotationYawHead = entityliving.rotationYaw;
 			entityliving.renderYawOffset = entityliving.rotationYaw;
-			entityliving.onInitialSpawn(world.getDifficultyForLocation(new BlockPos(x, y, z)), (IEntityLivingData) null);
+			entityliving.onInitialSpawn(world.getDifficultyForLocation(new BlockPos(x, y, z)), null);
 			world.spawnEntity(entity);
 		}
 

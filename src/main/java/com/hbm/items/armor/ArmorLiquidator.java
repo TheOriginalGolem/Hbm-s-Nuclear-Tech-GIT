@@ -32,7 +32,7 @@ public class ArmorLiquidator extends ArmorFSB {
 
 	@SideOnly(Side.CLIENT)
 	private ModelM65 model;
-	private ResourceLocation hazmatBlur = new ResourceLocation(RefStrings.MODID + ":textures/misc/overlay_dark.png");
+	private final ResourceLocation hazmatBlur = new ResourceLocation(RefStrings.MODID + ":textures/misc/overlay_dark.png");
 	
 	public ArmorLiquidator(ArmorMaterial materialIn, int renderIndexIn, EntityEquipmentSlot equipmentSlotIn, String texture, String name) {
 		super(materialIn, renderIndexIn, equipmentSlotIn, texture, name);
@@ -57,7 +57,7 @@ public class ArmorLiquidator extends ArmorFSB {
 		Multimap<String, AttributeModifier> map = super.getItemAttributeModifiers(equipmentSlot);
 		if(equipmentSlot == this.armorType){
 			map.put(SharedMonsterAttributes.KNOCKBACK_RESISTANCE.getName(), new AttributeModifier(ArmorModHandler.fixedUUIDs[this.armorType.getIndex()], "Armor modifier", 100D, 0));
-			map.put(SharedMonsterAttributes.MOVEMENT_SPEED.getName(), new AttributeModifier(ArmorModHandler.fixedUUIDs[this.armorType.getIndex()], "Armor modifier", (double) -0.1D, 1));
+			map.put(SharedMonsterAttributes.MOVEMENT_SPEED.getName(), new AttributeModifier(ArmorModHandler.fixedUUIDs[this.armorType.getIndex()], "Armor modifier", -0.1D, 1));
 		}
 		return map;
 	}
@@ -74,9 +74,9 @@ public class ArmorLiquidator extends ArmorFSB {
 		Tessellator tes = Tessellator.getInstance();
 		BufferBuilder buf = tes.getBuffer();
 		buf.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
-		buf.pos(0.0D, (double) resolution.getScaledHeight(), -90.0D).tex(0, 1).endVertex();
-		buf.pos((double) resolution.getScaledWidth(), (double) resolution.getScaledHeight(), -90.0D).tex(1, 1).endVertex();
-		buf.pos((double) resolution.getScaledWidth(), 0.0D, -90.0D).tex(1, 0).endVertex();
+		buf.pos(0.0D, resolution.getScaledHeight(), -90.0D).tex(0, 1).endVertex();
+		buf.pos(resolution.getScaledWidth(), resolution.getScaledHeight(), -90.0D).tex(1, 1).endVertex();
+		buf.pos(resolution.getScaledWidth(), 0.0D, -90.0D).tex(1, 0).endVertex();
 		buf.pos(0.0D, 0.0D, -90.0D).tex(0, 0).endVertex();
 		tes.draw();
 		GlStateManager.depthMask(true);

@@ -16,8 +16,8 @@ public class RenderBaleflare extends Render<EntityBaleflare> {
 
 	public static final IRenderFactory<EntityBaleflare> FACTORY = (RenderManager man) -> {return new RenderBaleflare(man);};
 	
-	private ModelBaleflare miniNuke;
-	private static ResourceLocation bale_rl = new ResourceLocation(RefStrings.MODID + ":textures/models/BaleFlare.png");
+	private final ModelBaleflare miniNuke;
+	private static final ResourceLocation bale_rl = new ResourceLocation(RefStrings.MODID + ":textures/models/BaleFlare.png");
 	
 	protected RenderBaleflare(RenderManager renderManager) {
 		super(renderManager);

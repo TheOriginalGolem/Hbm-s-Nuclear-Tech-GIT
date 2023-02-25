@@ -10,8 +10,8 @@ import com.hbm.inventory.control_panel.controls.Button;
 
 public class ControlRegistry {
 	
-	private static Map<String, Control> registry = new HashMap<>();
-	private static Map<Class<? extends Control>, String> classToName = new HashMap<>();
+	private static final Map<String, Control> registry = new HashMap<>();
+	private static final Map<Class<? extends Control>, String> classToName = new HashMap<>();
 	
 	private ControlRegistry(){
 	}

@@ -14,8 +14,8 @@ import net.minecraft.util.ResourceLocation;
 
 public class GUIBombMulti extends GuiContainer {
 	
-	private static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/bombGeneric.png");
-	private TileEntityBombMulti testNuke;
+	private static final ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/bombGeneric.png");
+	private final TileEntityBombMulti testNuke;
 	
 	public GUIBombMulti(InventoryPlayer invPlayer, TileEntityBombMulti tedf) {
 		super(new ContainerBombMulti(invPlayer, tedf));
@@ -50,9 +50,9 @@ public class GUIBombMulti extends GuiContainer {
 		switch(testNuke.return2type())
 		{
 		case 1:
-			drawTexturedModalRect(guiLeft + 124, guiTop + 34, 176, 0 * 18, 18, 18); break;
+			drawTexturedModalRect(guiLeft + 124, guiTop + 34, 176, 0, 18, 18); break;
 		case 2:
-			drawTexturedModalRect(guiLeft + 124, guiTop + 34, 176, 1 * 18, 18, 18); break;
+			drawTexturedModalRect(guiLeft + 124, guiTop + 34, 176, 18, 18, 18); break;
 		case 3:
 			drawTexturedModalRect(guiLeft + 124, guiTop + 34, 176, 2 * 18, 18, 18); break;
 		case 4:

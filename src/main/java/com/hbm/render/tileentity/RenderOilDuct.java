@@ -25,7 +25,7 @@ public class RenderOilDuct extends TileEntitySpecialRenderer<TileEntityFFOilDuct
 		GlStateManager.disableLighting();
 		this.bindTexture(texture);
 		drawCore(tileentity);
-		TileEntityFFOilDuct cable = (TileEntityFFOilDuct) tileentity;
+		TileEntityFFOilDuct cable = tileentity;
 		for(int i = 0; i < cable.connections.length; i++)
 		{
 			if(cable.connections[i] != null)

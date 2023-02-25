@@ -50,8 +50,7 @@ public class ArmorHEV extends ArmorFSBPowered {
     		if(event.getType() == ElementType.HEALTH) {
     			event.setCanceled(true);
     			renderOverlay(event, player);
-    			return;
-    		}
+            }
     	}
     }
 

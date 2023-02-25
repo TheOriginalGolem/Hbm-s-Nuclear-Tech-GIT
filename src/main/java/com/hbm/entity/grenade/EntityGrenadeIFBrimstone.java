@@ -35,7 +35,7 @@ public class EntityGrenadeIFBrimstone extends EntityGrenadeBouncyBase {
     		if(!world.isRemote) {
 	    		EntityBullet fragment;
 	
-	    		fragment = new EntityBullet(world, (EntityPlayer) this.thrower, 3.0F, 35, 45, false, "tauDay", EnumHand.MAIN_HAND);
+	    		fragment = new EntityBullet(world, this.thrower, 3.0F, 35, 45, false, "tauDay", EnumHand.MAIN_HAND);
 	    		fragment.setDamage(rand.nextInt(301) + 100);
 	
 	    		fragment.motionX = rand.nextGaussian();
@@ -66,7 +66,7 @@ public class EntityGrenadeIFBrimstone extends EntityGrenadeBouncyBase {
     		for(int i = 0; i < 100; i++) {
 	    		EntityBullet fragment;
 	
-	    		fragment = new EntityBullet(world, (EntityPlayer) this.thrower, 3.0F, 35, 45, false, "tauDay", EnumHand.MAIN_HAND);
+	    		fragment = new EntityBullet(world, this.thrower, 3.0F, 35, 45, false, "tauDay", EnumHand.MAIN_HAND);
 	    		fragment.setDamage(rand.nextInt(301) + 100);
 	
 	    		fragment.motionX = rand.nextGaussian() * 0.25;

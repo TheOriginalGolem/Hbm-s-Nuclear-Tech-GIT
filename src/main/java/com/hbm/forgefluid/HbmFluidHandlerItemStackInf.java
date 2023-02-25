@@ -17,8 +17,8 @@ public class HbmFluidHandlerItemStackInf implements IFluidHandlerItem, ICapabili
 
 	public static final String FLUID_NBT_KEY = "HbmFluidKey";
 
-	private ItemStack container;
-	private int maxDrainAmount;
+	private final ItemStack container;
+	private final int maxDrainAmount;
 	
 	public HbmFluidHandlerItemStackInf(ItemStack stack, int maxDrain){
 		container = stack;

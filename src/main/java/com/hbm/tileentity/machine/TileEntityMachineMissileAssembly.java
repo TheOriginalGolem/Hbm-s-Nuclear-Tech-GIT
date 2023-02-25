@@ -163,7 +163,7 @@ public class TileEntityMachineMissileAssembly extends TileEntity implements ITic
 			ItemMissile fuselage = (ItemMissile)inventory.getStackInSlot(2).getItem();
 			
 			if(part.type == PartType.THRUSTER && fuselage.type == PartType.FUSELAGE &&
-					part.top == fuselage.bottom && (FuelType)part.attributes[0] == (FuelType)fuselage.attributes[0]) {
+					part.top == fuselage.bottom && part.attributes[0] == fuselage.attributes[0]) {
 				return 1;
 			}
 		}

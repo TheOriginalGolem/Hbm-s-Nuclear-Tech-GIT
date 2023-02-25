@@ -24,8 +24,8 @@ public class RenderDecoBlockAlt extends TileEntitySpecialRenderer<TileEntityDeco
 	private static final ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":" + "textures/models/ModelStatue.png");
 	private static final ResourceLocation gunTexture = new ResourceLocation(RefStrings.MODID + ":" + "textures/models/ModelGun.png");
 
-	private ModelStatue model;
-	private ModelGun gun;
+	private final ModelStatue model;
+	private final ModelGun gun;
 
 	public RenderDecoBlockAlt() {
 		this.model = new ModelStatue();

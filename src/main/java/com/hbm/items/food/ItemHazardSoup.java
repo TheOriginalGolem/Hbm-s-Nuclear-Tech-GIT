@@ -73,7 +73,7 @@ public class ItemHazardSoup extends ItemSoup implements IItemHazard {
 			bf.posX = player.posX;
 			bf.posY = player.posX;
 			bf.posZ = player.posZ;
-			bf.destructionRange = (int) 25;
+			bf.destructionRange = 25;
 			worldIn.spawnEntity(bf);
 			worldIn.spawnEntity(EntityNukeCloudSmall.statFacBale(worldIn, player.posX, player.posY, player.posZ, 25));
 		}
@@ -86,7 +86,7 @@ public class ItemHazardSoup extends ItemSoup implements IItemHazard {
 			bf.posX = player.posX;
 			bf.posY = player.posX;
 			bf.posZ = player.posZ;
-			bf.destructionRange = (int) 50;
+			bf.destructionRange = 50;
 			worldIn.spawnEntity(bf);
 			worldIn.spawnEntity(EntityNukeCloudSmall.statFacBale(worldIn, player.posX, player.posY, player.posZ, 50));
 		}

@@ -78,7 +78,7 @@ public class RenderBAT9000 extends TileEntitySpecialRenderer<TileEntityMachineBA
 			
 			float lby = OpenGlHelper.lastBrightnessY;
 			float lbx = OpenGlHelper.lastBrightnessX;
-			OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, (int)(15*type.getLuminosity())+15, lby);
+			OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, (15*type.getLuminosity()) +15, lby);
 			
 			TextureAtlasSprite sprite = FFUtils.getTextureFromFluid(type);
 			float u = sprite.getMinU();

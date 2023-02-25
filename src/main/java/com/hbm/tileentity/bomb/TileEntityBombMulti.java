@@ -67,17 +67,12 @@ public class TileEntityBombMulti extends TileEntity {
 	}
 	
 	public boolean isLoaded(){
-		
-		if(inventory.getStackInSlot(0).getItem() == Item.getItemFromBlock(Blocks.TNT) && 
-				inventory.getStackInSlot(1).getItem() == Item.getItemFromBlock(Blocks.TNT) && 
-				inventory.getStackInSlot(3).getItem() == Item.getItemFromBlock(Blocks.TNT) && 
-				inventory.getStackInSlot(4).getItem() == Item.getItemFromBlock(Blocks.TNT))
-		{
-			return true;
-		}
-			
-		return false;
-	}
+
+        return inventory.getStackInSlot(0).getItem() == Item.getItemFromBlock(Blocks.TNT) &&
+                inventory.getStackInSlot(1).getItem() == Item.getItemFromBlock(Blocks.TNT) &&
+                inventory.getStackInSlot(3).getItem() == Item.getItemFromBlock(Blocks.TNT) &&
+                inventory.getStackInSlot(4).getItem() == Item.getItemFromBlock(Blocks.TNT);
+    }
 	
 	public int return2type() {
 

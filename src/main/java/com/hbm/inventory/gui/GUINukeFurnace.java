@@ -13,8 +13,8 @@ import net.minecraft.util.ResourceLocation;
 
 public class GUINukeFurnace extends GuiInfoContainer {
 	
-	private static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/processing/gui_nuke_furnace.png");
-	private TileEntityNukeFurnace furnace;
+	private static final ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/processing/gui_nuke_furnace.png");
+	private final TileEntityNukeFurnace furnace;
 
 	public GUINukeFurnace(InventoryPlayer invPlayer, TileEntityNukeFurnace tedf) {
 		super(new ContainerNukeFurnace(invPlayer, tedf));

@@ -33,7 +33,7 @@ public class ParticleBatchRenderer {
 	
 	public static List<ParticleRenderLayer> layers = new ArrayList<>();
 
-	private static final Queue<ParticleLayerBase> queue = Queues.<ParticleLayerBase> newArrayDeque();
+	private static final Queue<ParticleLayerBase> queue = Queues.newArrayDeque();
 
 	public static void registerRenderLayer(ParticleRenderLayer r){
 		layers.add(r);

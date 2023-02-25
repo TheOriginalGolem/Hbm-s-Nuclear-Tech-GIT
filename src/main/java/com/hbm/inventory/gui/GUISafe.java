@@ -14,8 +14,8 @@ import net.minecraft.util.ResourceLocation;
 
 public class GUISafe extends GuiContainer {
 
-	private static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/gui_safe.png");
-	private TileEntitySafe diFurnace;
+	private static final ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/gui_safe.png");
+	private final TileEntitySafe diFurnace;
 	
 	public GUISafe(InventoryPlayer invPlayer, TileEntitySafe tedf) {
 		super(new ContainerSafe(invPlayer, tedf));

@@ -13,7 +13,7 @@ import net.minecraft.util.ResourceLocation;
 public class RenderGeiger extends TileEntitySpecialRenderer<TileEntityGeiger> {
 
 	private static final ResourceLocation texture9 = new ResourceLocation(RefStrings.MODID + ":" + "textures/models/ModelGeiger.png");
-	private ModelGeiger model8;
+	private final ModelGeiger model8;
 	
 	public RenderGeiger() {
 		this.model8 = new ModelGeiger();

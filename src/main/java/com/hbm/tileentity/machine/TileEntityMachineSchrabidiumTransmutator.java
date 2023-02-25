@@ -78,8 +78,7 @@ public class TileEntityMachineSchrabidiumTransmutator extends TileEntityMachineB
 		}
 
 		if (i == 3) {
-			if (stack.getItem() instanceof IBatteryItem && ((IBatteryItem)stack.getItem()).getCharge(stack) == 0)
-				return true;
+            return stack.getItem() instanceof IBatteryItem && ((IBatteryItem) stack.getItem()).getCharge(stack) == 0;
 		}
 
 		return false;
@@ -178,15 +177,12 @@ public class TileEntityMachineSchrabidiumTransmutator extends TileEntityMachineB
 	}
 
 	public boolean canProcess() {
-		if (power >= 4990000 && MachineRecipes.mODE(inventory.getStackInSlot(0), "ingotUranium")
-				&& inventory.getStackInSlot(2).getItem() == ModItems.redcoil_capacitor
-				&& ItemCapacitor.getDura(inventory.getStackInSlot(2)) > 0
-				&& (inventory.getStackInSlot(1).isEmpty() || (inventory.getStackInSlot(1).getItem() == VersatileConfig.getTransmutatorItem()
-						&& inventory.getStackInSlot(1).getCount() < inventory.getStackInSlot(1).getMaxStackSize()))) {
-			return true;
-		}
-		return false;
-	}
+        return power >= 4990000 && MachineRecipes.mODE(inventory.getStackInSlot(0), "ingotUranium")
+                && inventory.getStackInSlot(2).getItem() == ModItems.redcoil_capacitor
+                && ItemCapacitor.getDura(inventory.getStackInSlot(2)) > 0
+                && (inventory.getStackInSlot(1).isEmpty() || (inventory.getStackInSlot(1).getItem() == VersatileConfig.getTransmutatorItem()
+                && inventory.getStackInSlot(1).getCount() < inventory.getStackInSlot(1).getMaxStackSize()));
+    }
 
 	public boolean isProcessing() {
 		return process > 0;

@@ -13,8 +13,8 @@ import net.minecraft.util.ResourceLocation;
 
 public class GUIMachineTeleLinker extends GuiInfoContainer {
 	
-	private static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/gui_telelinker.png");
-	private TileEntityMachineTeleLinker siren;
+	private static final ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/gui_telelinker.png");
+	private final TileEntityMachineTeleLinker siren;
 
 	public GUIMachineTeleLinker(InventoryPlayer invPlayer, TileEntityMachineTeleLinker tedf) {
 		super(new ContainerMachineTeleLinker(invPlayer, tedf));

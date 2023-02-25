@@ -15,7 +15,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 public class HazmatRegistry {
-	private static Map<Item, Double> entries = new HashMap<>();
+	private static final Map<Item, Double> entries = new HashMap<>();
 
 	public static void registerHazmat(Item item, double resistance) {
 

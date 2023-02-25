@@ -27,8 +27,8 @@ public class TileEntityRadiobox extends TileEntity implements ITickable, IConsum
 			}
 			int range = 15;
 			
-			world.getEntitiesWithinAABB(EntityMob.class, new AxisAlignedBB(pos.getX() - range, pos.getY() - range, pos.getZ() - range, pos.getX() + range, pos.getY() + range, pos.getZ() + range)).forEach(e -> e.attackEntityFrom(ModDamageSource.enervation, 20.0F));;
-		}
+			world.getEntitiesWithinAABB(EntityMob.class, new AxisAlignedBB(pos.getX() - range, pos.getY() - range, pos.getZ() - range, pos.getX() + range, pos.getY() + range, pos.getZ() + range)).forEach(e -> e.attackEntityFrom(ModDamageSource.enervation, 20.0F));
+        }
 	}
 
 	@Override

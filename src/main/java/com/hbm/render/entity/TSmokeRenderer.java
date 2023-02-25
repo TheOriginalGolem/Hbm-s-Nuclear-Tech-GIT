@@ -23,7 +23,7 @@ public class TSmokeRenderer extends Render<EntityTSmokeFX> {
 	public static final IRenderFactory<EntityTSmokeFX> FACTORY = (RenderManager man) -> {return new TSmokeRenderer(man);};
 	
 	private Item field_94151_a;
-	private Map<Item, TextureAtlasSprite> textures = new HashMap<Item, TextureAtlasSprite>();
+	private final Map<Item, TextureAtlasSprite> textures = new HashMap<Item, TextureAtlasSprite>();
 
 	protected TSmokeRenderer(RenderManager renderManager) {
 		super(renderManager);
@@ -67,7 +67,7 @@ public class TSmokeRenderer extends Render<EntityTSmokeFX> {
 			field_94151_a = ModItems.d_smoke3;
 		}
 
-		if (fx.particleAge < fx.maxAge / 8 * 2 && fx.particleAge >= fx.maxAge / 8 * 1) {
+		if (fx.particleAge < fx.maxAge / 8 * 2 && fx.particleAge >= fx.maxAge / 8) {
 			field_94151_a = ModItems.d_smoke2;
 		}
 

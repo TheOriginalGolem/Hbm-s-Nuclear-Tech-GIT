@@ -216,7 +216,7 @@ public class HbmShaderManager {
 
 			GlStateManager.matrixMode(5889);
 			GlStateManager.loadIdentity();
-			GlStateManager.ortho(0.0D, (double) width, (double) height, 0.0D, 1000.0D, 3000.0D);
+			GlStateManager.ortho(0.0D, width, height, 0.0D, 1000.0D, 3000.0D);
 			GlStateManager.matrixMode(5888);
 
 			GlStateManager.loadIdentity();
@@ -236,10 +236,10 @@ public class HbmShaderManager {
 			Tessellator tessellator = Tessellator.getInstance();
 			BufferBuilder bufferbuilder = tessellator.getBuffer();
 			bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX_COLOR);
-			bufferbuilder.pos(0.0D, (double) f1, 0.0D).tex(0.0D, 0.0D).color(255, 255, 255, 255).endVertex();
-			bufferbuilder.pos((double) f, (double) f1, 0.0D).tex((double) f2, 0.0D).color(255, 255, 255, 255).endVertex();
-			bufferbuilder.pos((double) f, 0.0D, 0.0D).tex((double) f2, (double) f3).color(255, 255, 255, 255).endVertex();
-			bufferbuilder.pos(0.0D, 0.0D, 0.0D).tex(0.0D, (double) f3).color(255, 255, 255, 255).endVertex();
+			bufferbuilder.pos(0.0D, f1, 0.0D).tex(0.0D, 0.0D).color(255, 255, 255, 255).endVertex();
+			bufferbuilder.pos(f, f1, 0.0D).tex(f2, 0.0D).color(255, 255, 255, 255).endVertex();
+			bufferbuilder.pos(f, 0.0D, 0.0D).tex(f2, f3).color(255, 255, 255, 255).endVertex();
+			bufferbuilder.pos(0.0D, 0.0D, 0.0D).tex(0.0D, f3).color(255, 255, 255, 255).endVertex();
 			tessellator.draw();
 			buf.unbindFramebufferTexture();
 			GlStateManager.depthMask(true);
@@ -456,14 +456,12 @@ public class HbmShaderManager {
 
 	}
 
-	public static interface FloatSupplier {
-		public float getAsFloat();
+	public interface FloatSupplier {
+		float getAsFloat();
 	}
 
 	public static boolean isActiveShader(int prog) {
-		if(GL11.glGetInteger(GL20.GL_CURRENT_PROGRAM) == prog)
-			return true;
-		return false;
-	}
+        return GL11.glGetInteger(GL20.GL_CURRENT_PROGRAM) == prog;
+    }
 
 }

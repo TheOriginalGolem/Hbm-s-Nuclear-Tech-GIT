@@ -141,9 +141,7 @@ public class TileEntityMachineBattery extends TileEntityMachineBase implements I
 			if(i == 0 && item.getCharge(itemStack) == 0) {
 				return true;
 			}
-			if(i == 1 && item.getCharge(itemStack) == item.getMaxCharge()) {
-				return true;
-			}
+            return i == 1 && item.getCharge(itemStack) == item.getMaxCharge();
 		}
 			
 		return false;
@@ -155,7 +153,7 @@ public class TileEntityMachineBattery extends TileEntityMachineBase implements I
 			
 			this.maxPower = ((MachineBattery)world.getBlockState(pos).getBlock()).getMaxPower();
 		
-			short mode = (short) this.getRelevantMode();
+			short mode = this.getRelevantMode();
 			
 			if(mode == 1 || mode == 2)
 			{
@@ -242,13 +240,8 @@ public class TileEntityMachineBattery extends TileEntityMachineBase implements I
 
 	@Override
 	public boolean getTact() {
-		if(age >= 0 && age < 10)
-		{
-			return true;
-		}
-		
-		return false;
-	}
+        return age >= 0 && age < 10;
+    }
 
 	@Override
 	public long getSPower() {

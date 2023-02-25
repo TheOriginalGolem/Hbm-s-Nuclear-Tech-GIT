@@ -13,8 +13,8 @@ import net.minecraft.util.ResourceLocation;
 
 public class GUIMachineSchrabidiumTransmutator extends GuiInfoContainer {
 
-	private static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/gui_transmutator.png");
-	private TileEntityMachineSchrabidiumTransmutator diFurnace;
+	private static final ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/gui_transmutator.png");
+	private final TileEntityMachineSchrabidiumTransmutator diFurnace;
 
 	public GUIMachineSchrabidiumTransmutator(InventoryPlayer invPlayer, TileEntityMachineSchrabidiumTransmutator tedf) {
 		super(new ContainerMachineSchrabidiumTransmutator(invPlayer, tedf));
@@ -37,7 +37,7 @@ public class GUIMachineSchrabidiumTransmutator extends GuiInfoContainer {
 		String name = this.diFurnace.hasCustomInventoryName() ? this.diFurnace.getName() : I18n.format(this.diFurnace.getName());
 		
 		this.fontRenderer.drawString(name, this.xSize / 2 - this.fontRenderer.getStringWidth(name) / 2, 6, 4210752);
-		this.fontRenderer.drawString(I18n.format(String.valueOf(diFurnace.getPower()) + " HE"), this.xSize / 2 - this.fontRenderer.getStringWidth(String.valueOf(diFurnace.getPower()) + " HE") / 2, 16, 4210752);
+		this.fontRenderer.drawString(I18n.format(diFurnace.getPower() + " HE"), this.xSize / 2 - this.fontRenderer.getStringWidth(diFurnace.getPower() + " HE") / 2, 16, 4210752);
 		this.fontRenderer.drawString(I18n.format("container.inventory"), 8, this.ySize - 96 + 2, 4210752);
 	}
 

@@ -43,7 +43,7 @@ public class TileEntityDecoBlockAlt extends TileEntity implements ITickable {
 
         for (int i1 = 0; i1 < list.size(); ++i1)
         {
-            Entity entity = (Entity)list.get(i1);
+            Entity entity = list.get(i1);
             double d4 = entity.getDistance(pos.getX(), pos.getY(), pos.getZ()) / 4;
 
             if (d4 <= 1.0D)

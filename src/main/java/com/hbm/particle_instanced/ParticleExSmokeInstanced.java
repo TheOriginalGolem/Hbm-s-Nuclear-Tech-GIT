@@ -10,8 +10,8 @@ import net.minecraft.world.World;
 public class ParticleExSmokeInstanced extends ParticleInstanced {
 
 	private int age;
-	private int maxAge;
-	private float[] vals = new float[6*5];
+	private final int maxAge;
+	private final float[] vals = new float[6*5];
 	
 	public ParticleExSmokeInstanced(World worldIn, double posXIn, double posYIn, double posZIn) {
 		super(worldIn, posXIn, posYIn, posZIn);

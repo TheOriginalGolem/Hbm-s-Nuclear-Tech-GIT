@@ -34,7 +34,7 @@ public class GUIScreenGuide extends GuiScreen {
 	protected int guiLeft;
 	protected int guiTop;
 	
-	private BookType type;
+	private final BookType type;
 	
 	int page;
 	int maxPage;

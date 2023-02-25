@@ -448,10 +448,10 @@ public class FWatz {
 			}
 		}		
 		
-		world.setBlockState(mPos.setPos(x + 0, y + 1, z + 9), ModBlocks.fwatz_hatch.getDefaultState().withProperty(BlockHorizontal.FACING, EnumFacing.WEST), 3);
+		world.setBlockState(mPos.setPos(x, y + 1, z + 9), ModBlocks.fwatz_hatch.getDefaultState().withProperty(BlockHorizontal.FACING, EnumFacing.WEST), 3);
 		world.setBlockState(mPos.setPos(x + 18, y + 1, z + 9), ModBlocks.fwatz_hatch.getDefaultState().withProperty(BlockHorizontal.FACING, EnumFacing.EAST), 3);
 		world.setBlockState(mPos.setPos(x + 9, y + 1, z + 18), ModBlocks.fwatz_hatch.getDefaultState().withProperty(BlockHorizontal.FACING, EnumFacing.SOUTH), 3);		
-		world.setBlockState(mPos.setPos(x + 9, y + 1, z + 0), ModBlocks.fwatz_hatch.getDefaultState().withProperty(BlockHorizontal.FACING, EnumFacing.NORTH), 3);
+		world.setBlockState(mPos.setPos(x + 9, y + 1, z), ModBlocks.fwatz_hatch.getDefaultState().withProperty(BlockHorizontal.FACING, EnumFacing.NORTH), 3);
 
 	}
 

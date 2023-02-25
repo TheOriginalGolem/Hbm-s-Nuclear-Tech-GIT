@@ -242,7 +242,7 @@ public class ExplosionThermo {
 		MutableBlockPos pos = new BlockPos.MutableBlockPos();
 
 		for (int i1 = 0; i1 < list.size(); ++i1) {
-			Entity entity = (Entity) list.get(i1);
+			Entity entity = list.get(i1);
 			double d4 = entity.getDistance(x, y, z) / bombStartStrength;
 
 			if (d4 <= 1.0D) {

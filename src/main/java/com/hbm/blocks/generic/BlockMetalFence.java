@@ -47,22 +47,22 @@ public class BlockMetalFence extends BlockFence {
 
         addCollisionBoxToList(pos, entityBox, collidingBoxes, PILLAR_SHORT_AABB);
 
-        if (((Boolean)state.getValue(NORTH)).booleanValue())
+        if (state.getValue(NORTH).booleanValue())
         {
             addCollisionBoxToList(pos, entityBox, collidingBoxes, NORTH_SHORT_AABB);
         }
 
-        if (((Boolean)state.getValue(EAST)).booleanValue())
+        if (state.getValue(EAST).booleanValue())
         {
             addCollisionBoxToList(pos, entityBox, collidingBoxes, EAST_SHORT_AABB);
         }
 
-        if (((Boolean)state.getValue(SOUTH)).booleanValue())
+        if (state.getValue(SOUTH).booleanValue())
         {
             addCollisionBoxToList(pos, entityBox, collidingBoxes, SOUTH_SHORT_AABB);
         }
 
-        if (((Boolean)state.getValue(WEST)).booleanValue())
+        if (state.getValue(WEST).booleanValue())
         {
             addCollisionBoxToList(pos, entityBox, collidingBoxes, WEST_SHORT_AABB);
         }

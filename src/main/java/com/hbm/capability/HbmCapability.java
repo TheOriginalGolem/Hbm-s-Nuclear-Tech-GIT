@@ -18,14 +18,14 @@ import net.minecraftforge.common.capabilities.ICapabilitySerializable;
 public class HbmCapability {
 
 	public interface IHBMData {
-		public boolean getKeyPressed(EnumKeybind key);
-		public void setKeyPressed(EnumKeybind key, boolean pressed);
-		public boolean getEnableBackpack();
-		public boolean getEnableHUD();
-		public void setEnableBackpack(boolean b);
-		public void setEnableHUD(boolean b);
+		boolean getKeyPressed(EnumKeybind key);
+		void setKeyPressed(EnumKeybind key, boolean pressed);
+		boolean getEnableBackpack();
+		boolean getEnableHUD();
+		void setEnableBackpack(boolean b);
+		void setEnableHUD(boolean b);
 		
-		public default boolean isJetpackActive() {
+		default boolean isJetpackActive() {
 			return getEnableBackpack() && getKeyPressed(EnumKeybind.JETPACK);
 		}
 	}
@@ -34,7 +34,7 @@ public class HbmCapability {
 
 		public static final Callable<IHBMData> FACTORY = () -> {return new HBMData();};
 		
-		private boolean[] keysPressed = new boolean[EnumKeybind.values().length];
+		private final boolean[] keysPressed = new boolean[EnumKeybind.values().length];
 		
 		public boolean enableBackpack = true;
 		public boolean enableHUD = true;
@@ -152,7 +152,7 @@ public class HbmCapability {
 		@CapabilityInject(IHBMData.class)
 		public static final Capability<IHBMData> HBM_CAP = null;
 		
-		private IHBMData instance = HBM_CAP.getDefaultInstance();
+		private final IHBMData instance = HBM_CAP.getDefaultInstance();
 		
 		@Override
 		public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
@@ -161,7 +161,7 @@ public class HbmCapability {
 
 		@Override
 		public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
-			return capability == HBM_CAP ? HBM_CAP.<T>cast(this.instance) : null;
+			return capability == HBM_CAP ? HBM_CAP.cast(this.instance) : null;
 		}
 
 		@Override

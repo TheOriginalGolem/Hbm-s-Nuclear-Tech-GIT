@@ -112,7 +112,7 @@ public class Vec2 extends FuncRelational {
 
     public FloatBuffer toDfb(FloatBuffer fb, int index) {
         return fb
-                .put(index + 0, x)
+                .put(index, x)
                 .put(index + 1, y);
     }
 
@@ -126,8 +126,8 @@ public class Vec2 extends FuncRelational {
 
     public ByteBuffer toDbb(ByteBuffer bb, int index) {
         return bb
-                .putFloat(index + 0 * Float.BYTES, x)
-                .putFloat(index + 1 * Float.BYTES, y);
+                .putFloat(index, x)
+                .putFloat(index + Float.BYTES, y);
     }
 
     /**

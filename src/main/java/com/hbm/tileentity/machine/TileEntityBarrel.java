@@ -63,7 +63,7 @@ public class TileEntityBarrel extends TileEntityMachineBase implements ITickable
 				checkFluidInteraction();
 			}
 			
-			PacketDispatcher.wrapper.sendToAllAround(new FluidTankPacket(pos, new FluidTank[]{tank}), new TargetPoint(world.provider.getDimension(), pos.getX(), pos.getY(), pos.getZ(), 100));
+			PacketDispatcher.wrapper.sendToAllAround(new FluidTankPacket(pos, tank), new TargetPoint(world.provider.getDimension(), pos.getX(), pos.getY(), pos.getZ(), 100));
 			if(!FFUtils.areTanksEqual(tank, compareTank))
 				markDirty();
 		}

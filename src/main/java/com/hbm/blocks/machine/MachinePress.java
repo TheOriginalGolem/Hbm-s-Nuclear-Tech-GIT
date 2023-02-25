@@ -70,7 +70,7 @@ public class MachinePress extends BlockContainer {
 		TileEntity tileentity = world.getTileEntity(pos);
 
 		if (tileentity instanceof TileEntityMachinePress) {
-			InventoryHelper.dropInventoryItems(world, pos, (TileEntityMachinePress) tileentity);
+			InventoryHelper.dropInventoryItems(world, pos, tileentity);
 
 			world.updateComparatorOutputLevel(pos, this);
 		}

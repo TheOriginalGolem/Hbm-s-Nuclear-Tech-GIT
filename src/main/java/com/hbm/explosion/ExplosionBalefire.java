@@ -129,7 +129,7 @@ public class ExplosionBalefire {
 				if(b == ModBlocks.block_schrabidium_cluster)
 					worldObj.setBlockState(new BlockPos(pX, y, pZ), ModBlocks.block_euphemium_cluster.getStateFromMeta(b.getMetaFromState(worldObj.getBlockState(new BlockPos(pX, y, pZ)))), 3);
 			}
-			int startDepth = (int)(6 - 6 * dist / radius);
+			int startDepth = 6 - 6 * dist / radius;
 			for(int i = 0; i <= startDepth; i++) {
 				if(worldObj.getBlockState(new BlockPos(pX, depth-i, pZ)).getBlock() == Blocks.STONE){
 					switch(startDepth-i){

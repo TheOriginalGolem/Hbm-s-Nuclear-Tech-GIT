@@ -71,15 +71,12 @@ public class ArmorUtil {
 		NonNullList<ItemStack> armor = player.inventory.armorInventory;
 		
 		if(armor.get(0).isEmpty() || armor.get(1).isEmpty() || armor.get(2).isEmpty() || armor.get(3).isEmpty()) return false;
-		
-		if(ArmorUtil.isFaradayArmor(armor.get(0)) &&
-				ArmorUtil.isFaradayArmor(armor.get(1)) &&
-				ArmorUtil.isFaradayArmor(armor.get(2)) &&
-				ArmorUtil.isFaradayArmor(armor.get(3)))
-			return true;
-		
-		return false;
-	}
+
+        return ArmorUtil.isFaradayArmor(armor.get(0)) &&
+                ArmorUtil.isFaradayArmor(armor.get(1)) &&
+                ArmorUtil.isFaradayArmor(armor.get(2)) &&
+                ArmorUtil.isFaradayArmor(armor.get(3));
+    }
 
 	public static boolean isFaradayArmor(ItemStack item) {
 		
@@ -161,52 +158,33 @@ public class ArmorUtil {
 	// Drillgon200: Is there a reason for this method? I don't know and I don't
 	// care to find out.
 	public static boolean checkForHaz2(EntityPlayer player) {
-	
-		if(checkArmor(player, ModItems.hazmat_paa_helmet, ModItems.hazmat_paa_plate, ModItems.hazmat_paa_legs, ModItems.hazmat_paa_boots) ||
-				checkArmor(player, ModItems.liquidator_helmet, ModItems.liquidator_plate, ModItems.liquidator_legs, ModItems.liquidator_boots) || 
-				checkArmor(player, ModItems.euphemium_helmet, ModItems.euphemium_plate, ModItems.euphemium_legs, ModItems.euphemium_boots)) {
-			return true;
-		}
-	
-		return false;
-	}
+
+        return checkArmor(player, ModItems.hazmat_paa_helmet, ModItems.hazmat_paa_plate, ModItems.hazmat_paa_legs, ModItems.hazmat_paa_boots) ||
+                checkArmor(player, ModItems.liquidator_helmet, ModItems.liquidator_plate, ModItems.liquidator_legs, ModItems.liquidator_boots) ||
+                checkArmor(player, ModItems.euphemium_helmet, ModItems.euphemium_plate, ModItems.euphemium_legs, ModItems.euphemium_boots);
+    }
 
 	public static boolean checkForHazmat(EntityPlayer player) {
 		if(ArmorUtil.checkArmor(player, ModItems.hazmat_helmet, ModItems.hazmat_plate, ModItems.hazmat_legs, ModItems.hazmat_boots) || ArmorUtil.checkArmor(player, ModItems.hazmat_helmet_red, ModItems.hazmat_plate_red, ModItems.hazmat_legs_red, ModItems.hazmat_boots_red) || ArmorUtil.checkArmor(player, ModItems.hazmat_helmet_grey, ModItems.hazmat_plate_grey, ModItems.hazmat_legs_grey, ModItems.hazmat_boots_grey) || ArmorUtil.checkArmor(player, ModItems.t45_helmet, ModItems.t45_plate, ModItems.t45_legs, ModItems.t45_boots) || ArmorUtil.checkArmor(player, ModItems.schrabidium_helmet, ModItems.schrabidium_plate, ModItems.schrabidium_legs, ModItems.schrabidium_boots) || checkForHaz2(player)) {
 	
 			return true;
 		}
-	
-		if(player.isPotionActive(HbmPotion.mutation))
-			return true;
-	
-		return false;
-	}
+
+        return player.isPotionActive(HbmPotion.mutation);
+    }
 
 	public static boolean checkForAsbestos(EntityPlayer player) {
-	
-		if(ArmorUtil.checkArmor(player, ModItems.asbestos_helmet, ModItems.asbestos_plate, ModItems.asbestos_legs, ModItems.asbestos_boots)) {
-			return true;
-		}
-	
-		return false;
-	}
+
+        return ArmorUtil.checkArmor(player, ModItems.asbestos_helmet, ModItems.asbestos_plate, ModItems.asbestos_legs, ModItems.asbestos_boots);
+    }
 
 	public static boolean checkArmor(EntityPlayer player, Item helm, Item chest, Item leg, Item shoe) {
-		if(player.inventory.armorInventory.get(0).getItem() == shoe && player.inventory.armorInventory.get(1).getItem() == leg && player.inventory.armorInventory.get(2).getItem() == chest && player.inventory.armorInventory.get(3).getItem() == helm) {
-			return true;
-		}
-	
-		return false;
-	}
+        return player.inventory.armorInventory.get(0).getItem() == shoe && player.inventory.armorInventory.get(1).getItem() == leg && player.inventory.armorInventory.get(2).getItem() == chest && player.inventory.armorInventory.get(3).getItem() == helm;
+    }
 
 	public static boolean checkArmorPiece(EntityPlayer player, Item armor, int slot) {
-		if(player.inventory.armorInventory.get(slot) != null && player.inventory.armorInventory.get(slot).getItem() == armor) {
-			return true;
-		}
-	
-		return false;
-	}
+        return player.inventory.armorInventory.get(slot) != null && player.inventory.armorInventory.get(slot).getItem() == armor;
+    }
 	
 	/*
 	 * Default implementations for IGasMask items
@@ -224,7 +202,7 @@ public class ArmorUtil {
 			
 			if(ArmorModHandler.hasMods(mask)) {
 				
-				ItemStack mods[] = ArmorModHandler.pryMods(mask);
+				ItemStack[] mods = ArmorModHandler.pryMods(mask);
 				
 				if(mods[ArmorModHandler.helmet_only] != null && mods[ArmorModHandler.helmet_only].getItem() instanceof IGasMask)
 					mask = mods[ArmorModHandler.helmet_only];
@@ -240,7 +218,7 @@ public class ArmorUtil {
 		
 		if(filter == null) {
 			if(ArmorModHandler.hasMods(mask)) {
-				ItemStack mods[] = ArmorModHandler.pryMods(mask);
+				ItemStack[] mods = ArmorModHandler.pryMods(mask);
 				
 				if(mods[ArmorModHandler.helmet_only] != null && mods[ArmorModHandler.helmet_only].getItem() instanceof IGasMask)
 					filter = getGasMaskFilter(mods[ArmorModHandler.helmet_only]);
@@ -326,23 +304,17 @@ public class ArmorUtil {
 		if(checkArmorPiece(player, ModItems.euphemium_helmet, 3)) {
 			return true;
 		}
-	
-		if(player.isPotionActive(HbmPotion.mutation))
-			return true;
-	
-		return false;
-	}
+
+        return player.isPotionActive(HbmPotion.mutation);
+    }
 	
 	public static boolean checkForDigamma(EntityPlayer player) {
 		
 		if(checkArmor(player, ModItems.fau_helmet, ModItems.fau_plate, ModItems.fau_legs, ModItems.fau_boots))
 			return true;
-		
-		if(player.isPotionActive(HbmPotion.stability))
-			return true; 
-		
-		return false;
-	}
+
+        return player.isPotionActive(HbmPotion.stability);
+    }
 	
 	public static boolean checkForMonoMask(EntityPlayer player) {
 
@@ -358,10 +330,9 @@ public class ArmorUtil {
 		ItemStack helmet = player.inventory.armorInventory.get(3);
 		if(helmet != null && ArmorModHandler.hasMods(helmet)) {
 			
-			ItemStack mods[] = ArmorModHandler.pryMods(helmet);
-			
-			if(mods[ArmorModHandler.helmet_only] != null && mods[ArmorModHandler.helmet_only].getItem() == ModItems.attachment_mask_mono)
-				return true;
+			ItemStack[] mods = ArmorModHandler.pryMods(helmet);
+
+            return mods[ArmorModHandler.helmet_only] != null && mods[ArmorModHandler.helmet_only].getItem() == ModItems.attachment_mask_mono;
 		}
 		
 		return false;
@@ -393,11 +364,6 @@ public class ArmorUtil {
 		{
 			return true;
 		}
-		if(checkArmorPiece(player, ModItems.hev_helmet, 3))
-		{
-			return true;
-		}
-		
-		return false;
-	}
+        return checkArmorPiece(player, ModItems.hev_helmet, 3);
+    }
 }

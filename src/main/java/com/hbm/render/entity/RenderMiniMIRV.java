@@ -16,8 +16,8 @@ public class RenderMiniMIRV extends Render<EntityMiniMIRV> {
 
 	public static final IRenderFactory<EntityMiniMIRV> FACTORY = (RenderManager man) -> {return new RenderMiniMIRV(man);};
 	
-	private ModelMIRV miniNuke;
-	private static ResourceLocation mirv_rl = new ResourceLocation(RefStrings.MODID + ":textures/models/Mirv.png");
+	private final ModelMIRV miniNuke;
+	private static final ResourceLocation mirv_rl = new ResourceLocation(RefStrings.MODID + ":textures/models/Mirv.png");
 	
 	protected RenderMiniMIRV(RenderManager renderManager) {
 		super(renderManager);

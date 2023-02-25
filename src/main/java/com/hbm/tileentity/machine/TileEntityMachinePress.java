@@ -68,7 +68,7 @@ public class TileEntityMachinePress extends TileEntityMachineBase implements ITi
 		isRetracting = nbt.getBoolean("ret");
 		detectIsRetracting = !isRetracting;
 		if(nbt.hasKey("inventory"))
-			((ItemStackHandler) inventory).deserializeNBT((NBTTagCompound) nbt.getTag("inventory"));
+			inventory.deserializeNBT((NBTTagCompound) nbt.getTag("inventory"));
 	}
 
 	@Override
@@ -81,7 +81,7 @@ public class TileEntityMachinePress extends TileEntityMachineBase implements ITi
 		nbt.setInteger("maxBurn", maxBurn);
 		nbt.setBoolean("ret", isRetracting);
 
-		nbt.setTag("inventory", ((ItemStackHandler) inventory).serializeNBT());
+		nbt.setTag("inventory", inventory.serializeNBT());
 
 		return nbt;
 	}
@@ -134,11 +134,9 @@ public class TileEntityMachinePress extends TileEntityMachineBase implements ITi
 									inventory.setStackInSlot(3, stack.copy());
 								else
 									inventory.getStackInSlot(3).grow(stack.getCount());
-								;
 
-								inventory.getStackInSlot(2).shrink(1);
-								;
-								if(inventory.getStackInSlot(2).getCount() <= 0)
+                                inventory.getStackInSlot(2).shrink(1);
+                                if(inventory.getStackInSlot(2).getCount() <= 0)
 									inventory.setStackInSlot(2, ItemStack.EMPTY);
 
 								inventory.getStackInSlot(1).setItemDamage(inventory.getStackInSlot(1).getItemDamage() + 1);

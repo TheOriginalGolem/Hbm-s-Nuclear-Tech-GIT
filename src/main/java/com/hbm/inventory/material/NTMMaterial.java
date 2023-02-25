@@ -72,7 +72,7 @@ public class NTMMaterial {
 		return this;
 	}
 	
-	public static enum SmeltingBehavior {
+	public enum SmeltingBehavior {
 		NOT_SMELTABLE,	//anything that can't be smelted or otherwise doesn't belong in a smelter, like diamond. may also include things that are smeltable but turn into a different type
 		VAPORIZES,		//can't be smelted because the material would skadoodle
 		BREAKS,			//can't be smelted because the material doesn't survive the temperatures

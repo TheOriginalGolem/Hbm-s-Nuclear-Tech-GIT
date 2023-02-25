@@ -17,8 +17,8 @@ import net.minecraft.util.ResourceLocation;
 public class GUIMachineChemplant extends GuiInfoContainer {
 
 	
-	private static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/gui_chemplant.png");
-	private TileEntityMachineChemplant chemplant;
+	private static final ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/gui_chemplant.png");
+	private final TileEntityMachineChemplant chemplant;
 	
 	public GUIMachineChemplant(InventoryPlayer invPlayer, TileEntityMachineChemplant tedf) {
 		super(new ContainerMachineChemplant(invPlayer, tedf));

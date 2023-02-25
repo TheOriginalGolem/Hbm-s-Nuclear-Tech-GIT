@@ -23,8 +23,8 @@ public class ParticleGiblet extends Particle {
 
 	private static final ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/particle/meat.png");
 	
-	private float momentumYaw;
-	private float momentumPitch;
+	private final float momentumYaw;
+	private final float momentumPitch;
 	
 	public ParticleGiblet(World worldIn, double posXIn, double posYIn, double posZIn, double mX, double mY, double mZ){
 		super(worldIn, posXIn, posYIn, posZIn);
@@ -77,10 +77,10 @@ public class ParticleGiblet extends Particle {
 		GlStateManager.glNormal3f(0, 1, 0);
 		OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240, 240);
 		buf.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
-		buf.pos((double) (f11 - rotationX * f10 - rotationXY * f10), (double) (f12 - rotationZ * f10), (double) (f13 - rotationYZ * f10 - rotationXZ * f10)).tex((double) 0, (double) 0).endVertex();
-		buf.pos((double) (f11 - rotationX * f10 + rotationXY * f10), (double) (f12 + rotationZ * f10), (double) (f13 - rotationYZ * f10 + rotationXZ * f10)).tex((double) 0, (double) 1).endVertex();
-		buf.pos((double) (f11 + rotationX * f10 + rotationXY * f10), (double) (f12 + rotationZ * f10), (double) (f13 + rotationYZ * f10 + rotationXZ * f10)).tex((double) 1, (double) 1).endVertex();
-		buf.pos((double) (f11 + rotationX * f10 - rotationXY * f10), (double) (f12 - rotationZ * f10), (double) (f13 + rotationYZ * f10 - rotationXZ * f10)).tex((double) 1, (double) 0).endVertex();
+		buf.pos(f11 - rotationX * f10 - rotationXY * f10, f12 - rotationZ * f10, f13 - rotationYZ * f10 - rotationXZ * f10).tex(0, 0).endVertex();
+		buf.pos(f11 - rotationX * f10 + rotationXY * f10, f12 + rotationZ * f10, f13 - rotationYZ * f10 + rotationXZ * f10).tex(0, 1).endVertex();
+		buf.pos(f11 + rotationX * f10 + rotationXY * f10, f12 + rotationZ * f10, f13 + rotationYZ * f10 + rotationXZ * f10).tex(1, 1).endVertex();
+		buf.pos(f11 + rotationX * f10 - rotationXY * f10, f12 - rotationZ * f10, f13 + rotationYZ * f10 - rotationXZ * f10).tex(1, 0).endVertex();
 		tes.draw();
 		GL11.glPopMatrix();
 	}

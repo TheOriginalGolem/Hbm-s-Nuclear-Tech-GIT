@@ -26,8 +26,8 @@ import net.minecraft.util.math.MathHelper;
 
 public class GUICoreEmitter extends GuiInfoContainer {
 
-	private static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/dfc/gui_emitter.png");
-	private TileEntityCoreEmitter emitter;
+	private static final ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/dfc/gui_emitter.png");
+	private final TileEntityCoreEmitter emitter;
     private GuiTextField field;
 	
 	public GUICoreEmitter(EntityPlayer invPlayer, TileEntityCoreEmitter tedf) {

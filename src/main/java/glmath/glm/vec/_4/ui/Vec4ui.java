@@ -34,7 +34,7 @@ public class Vec4ui extends FuncRelational {
     }
 
     public Vec4ui(int[] ia, int i) {
-        this(ia[i + 0], ia[i + 1], ia[i + 2], ia[i + 3]);
+        this(ia[i], ia[i + 1], ia[i + 2], ia[i + 3]);
     }
 
     public Vec4ui(long l) {
@@ -46,7 +46,7 @@ public class Vec4ui extends FuncRelational {
     }
 
     public Vec4ui(long[] la, int offset) { 
-        this(la[offset + 0], la[offset + 1], la[offset + 2], la[offset + 3]);
+        this(la[offset], la[offset + 1], la[offset + 2], la[offset + 3]);
     }
 
     public Vec4ui(ByteBuffer bb) {
@@ -54,7 +54,7 @@ public class Vec4ui extends FuncRelational {
     }
 
     public Vec4ui(ByteBuffer bb, int offset) {
-        this(bb.getInt(offset + 0 * Integer.BYTES), bb.getInt(offset + 1 * Integer.BYTES),
+        this(bb.getInt(offset), bb.getInt(offset + Integer.BYTES),
                 bb.getInt(offset + 2 * Integer.BYTES), bb.getInt(offset + 3 * Integer.BYTES));
     }
 
@@ -63,7 +63,7 @@ public class Vec4ui extends FuncRelational {
     }
 
     public Vec4ui(IntBuffer ib, int offset) {
-        this(ib.get(offset + 0), ib.get(offset + 1), ib.get(offset + 2), ib.get(offset + 3));
+        this(ib.get(offset), ib.get(offset + 1), ib.get(offset + 2), ib.get(offset + 3));
     }
 
 //    public Vec4ui(int f, Vec3 v) {
@@ -116,7 +116,7 @@ public class Vec4ui extends FuncRelational {
     }
 
     public Vec4ui set(int[] ia, int i) {
-        return set(ia[i + 0], ia[i + 1], ia[i + 2], ia[i + 3]);
+        return set(ia[i], ia[i + 1], ia[i + 2], ia[i + 3]);
     }
 
     public Vec4ui set(long l) {
@@ -128,7 +128,7 @@ public class Vec4ui extends FuncRelational {
     }
 
     public Vec4ui set(long[] la, int i) {
-        return set(la[i + 0], la[i + 1], la[i + 2], la[i + 3]);
+        return set(la[i], la[i + 1], la[i + 2], la[i + 3]);
     }
 
     public Vec4ui set(ByteBuffer bb) {
@@ -136,7 +136,7 @@ public class Vec4ui extends FuncRelational {
     }
 
     public Vec4ui set(ByteBuffer bb, int offset) {
-        return set(bb.getInt(offset + 0 * Integer.BYTES), bb.getInt(offset + 1 * Integer.BYTES),
+        return set(bb.getInt(offset), bb.getInt(offset + Integer.BYTES),
                 bb.getInt(offset + 2 * Integer.BYTES), bb.getInt(offset + 3 * Integer.BYTES));
     }
 
@@ -145,7 +145,7 @@ public class Vec4ui extends FuncRelational {
     }
 
     public Vec4ui set(IntBuffer ib, int offset) {
-        return set(ib.get(offset + 0), ib.get(offset + 1), ib.get(offset + 2), ib.get(offset + 3));
+        return set(ib.get(offset), ib.get(offset + 1), ib.get(offset + 2), ib.get(offset + 3));
     }
 
 //    public Vec4ui set(int i, Vec3 v) {
@@ -195,10 +195,10 @@ public class Vec4ui extends FuncRelational {
     }
 
     public int[] toIa(int[] ia) {
-        ia[0] = (int) x.value;
-        ia[1] = (int) y.value;
-        ia[2] = (int) z.value;
-        ia[3] = (int) w.value;
+        ia[0] = x.value;
+        ia[1] = y.value;
+        ia[2] = z.value;
+        ia[3] = w.value;
         return ia;
     }
 
@@ -212,10 +212,10 @@ public class Vec4ui extends FuncRelational {
 
     public IntBuffer toDib(IntBuffer ib, int index) {
         return ib
-                .put(index + 0, (int) x.value)
-                .put(index + 1, (int) y.value)
-                .put(index + 2, (int) z.value)
-                .put(index + 3, (int) w.value);
+                .put(index, x.value)
+                .put(index + 1, y.value)
+                .put(index + 2, z.value)
+                .put(index + 3, w.value);
     }
 
     public ByteBuffer toDbb_() {
@@ -228,10 +228,10 @@ public class Vec4ui extends FuncRelational {
 
     public ByteBuffer toDbb(ByteBuffer bb, int index) {
         return bb
-                .putInt(index + 0 * Float.BYTES, (int) x.value)
-                .putInt(index + 1 * Float.BYTES, (int) y.value)
-                .putInt(index + 2 * Float.BYTES, (int) z.value)
-                .putInt(index + 3 * Float.BYTES, (int) w.value);
+                .putInt(index, x.value)
+                .putInt(index + Float.BYTES, y.value)
+                .putInt(index + 2 * Float.BYTES, z.value)
+                .putInt(index + 3 * Float.BYTES, w.value);
     }
 
     @Override

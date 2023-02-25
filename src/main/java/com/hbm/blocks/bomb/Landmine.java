@@ -37,7 +37,7 @@ import net.minecraft.world.World;
 public class Landmine extends BlockContainer implements IBomb {
 
 	public static boolean safeMode = false;
-	private static Random rand = new Random();
+	private static final Random rand = new Random();
 	
 	public static final float f = 0.0625F;
 	public static final AxisAlignedBB AP_BOX = new AxisAlignedBB(6 * f, 0.0F, 6 * f, 10 * f, 2 * f, 10 * f);
@@ -90,13 +90,9 @@ public class Landmine extends BlockContainer implements IBomb {
         	explode(world, pos);
         }
         
-		boolean flag = false;
+		boolean flag = !world.getBlockState(pos.down()).isSideSolid(world, pos.down(), EnumFacing.UP) && !(world.getBlockState(pos.down()).getBlock() instanceof BlockFence);
 
-		if (!world.getBlockState(pos.down()).isSideSolid(world, pos.down(), EnumFacing.UP) && !(world.getBlockState(pos.down()).getBlock() instanceof BlockFence)) {
-			flag = true;
-		}
-
-		if (flag) {
+        if (flag) {
 			this.dropBlockAsItem(world, pos, world.getBlockState(pos), 0);
 			world.setBlockToAir(pos);
 		}
@@ -175,7 +171,7 @@ public class Landmine extends BlockContainer implements IBomb {
 			tooltip.add("§2[Nuclear Mine]§r");
 			tooltip.add(" §eRadius: "+BombConfig.fatmanRadius+"m§r");
 			tooltip.add("§2[Fallout]§r");
-			tooltip.add(" §aRadius: "+(int)BombConfig.fatmanRadius*(1+BombConfig.falloutRange/100)+"m§r");
+			tooltip.add(" §aRadius: "+ BombConfig.fatmanRadius *(1+BombConfig.falloutRange/100)+"m§r");
 		}
 	}
 

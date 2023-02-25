@@ -14,10 +14,10 @@ import net.minecraft.util.text.TextFormatting;
 
 public interface ITooltipProvider {
 
-	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean ext);
+	void addInformation(ItemStack stack, EntityPlayer player, List list, boolean ext);
 
 	@SuppressWarnings("unchecked")
-	public default void addStandardInfo(ItemStack stack, EntityPlayer player, List list, boolean ext) {
+    default void addStandardInfo(ItemStack stack, EntityPlayer player, List list, boolean ext) {
 		
 		if(Keyboard.isKeyDown(Keyboard.KEY_LSHIFT)) {
 			for(String s : I18nUtil.resolveKeyArray(((Block)this).getUnlocalizedName() + ".desc")) list.add(TextFormatting.YELLOW + s);
@@ -28,7 +28,7 @@ public interface ITooltipProvider {
 		}
 	}
 	
-	public default EnumRarity getRarity(ItemStack stack) {
+	default EnumRarity getRarity(ItemStack stack) {
 		return EnumRarity.COMMON;
 	}
 }

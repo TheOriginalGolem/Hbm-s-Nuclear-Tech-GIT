@@ -95,7 +95,7 @@ public class ContainerArmorTable extends Container {
 	@Override
 	public ItemStack transferStackInSlot(EntityPlayer p_82846_1_, int par2) {
 		ItemStack var3 = ItemStack.EMPTY;
-		Slot var4 = (Slot) this.inventorySlots.get(par2);
+		Slot var4 = this.inventorySlots.get(par2);
 
 		if(var4 != null && var4.getHasStack()) {
 			ItemStack var5 = var4.getStack();
@@ -116,7 +116,7 @@ public class ContainerArmorTable extends Container {
 					ItemArmorMod mod = (ItemArmorMod)var5.getItem();
 					int slot = mod.type;
 					
-					if(((Slot) this.inventorySlots.get(slot)).isItemValid(var5)) {
+					if(this.inventorySlots.get(slot).isItemValid(var5)) {
 						if(!this.mergeItemStack(var5, slot, slot + 1, false))
 							return ItemStack.EMPTY;
 					} else {
