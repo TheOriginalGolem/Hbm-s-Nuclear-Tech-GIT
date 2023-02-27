@@ -3,7 +3,6 @@ package com.hbm.items.weapon;
 import java.lang.reflect.Field;
 import java.util.List;
 
-import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 
 import com.hbm.config.GeneralConfig;

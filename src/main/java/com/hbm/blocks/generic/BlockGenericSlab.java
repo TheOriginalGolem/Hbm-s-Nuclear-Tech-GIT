@@ -1,7 +1,6 @@
 package com.hbm.blocks.generic;
 
 import java.util.List;
-import java.util.Random;
 
 import com.hbm.blocks.ModBlocks;
 
@@ -14,7 +13,6 @@ import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.world.World;

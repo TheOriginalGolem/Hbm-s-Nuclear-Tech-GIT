@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.hbm.interfaces.IConsumer;
 import com.hbm.interfaces.IFluidPipe;
-import com.hbm.interfaces.ISource;
+import com.hbm.interfaces.IEnergyHandler;
 import com.hbm.items.ModItems;
 import com.hbm.tileentity.machine.TileEntityDummy;
 import com.hbm.tileentity.machine.TileEntityLockableBase;
@@ -83,10 +83,10 @@ public class ItemAnalyzer extends Item {
 					
 					player.sendMessage(new TextComponentTranslation(
 							"Electricity: " + ((IConsumer)te).getPower() + " HE"));
-				} else if(te instanceof ISource) {
+				} else if(te instanceof IEnergyHandler) {
 					
 					player.sendMessage(new TextComponentTranslation(
-							"Electricity: " + ((ISource)te).getSPower() + " HE"));
+							"Electricity: " + ((IEnergyHandler)te).getSPower() + " HE"));
 				}
 				
 				/*if(te instanceof IFluidContainer) {

@@ -9,7 +9,6 @@ import com.hbm.tileentity.machine.TileEntityHeaterFirebox;
 
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
-import net.minecraft.tileentity.TileEntity;
 
 public class RenderFirebox extends TileEntitySpecialRenderer<TileEntityHeaterFirebox>{
 	@Override

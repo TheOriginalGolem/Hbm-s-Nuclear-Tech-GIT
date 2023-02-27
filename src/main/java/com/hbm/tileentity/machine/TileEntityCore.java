@@ -252,15 +252,15 @@ public class TileEntityCore extends TileEntityMachineBase implements ITickable {
 
 		int r1 = ((h1 & 0xFF0000) >> 16);
 		int g1 = ((h1 & 0x00FF00) >> 8);
-		int b1 = ((h1 & 0x0000FF) >> 0);
+		int b1 = ((h1 & 0x0000FF));
 		
 		int r2 = ((h2 & 0xFF0000) >> 16);
 		int g2 = ((h2 & 0x00FF00) >> 8);
-		int b2 = ((h2 & 0x0000FF) >> 0);
+		int b2 = ((h2 & 0x0000FF));
 
 		int r = (((r1 + r2) / 2) << 16);
 		int g = (((g1 + g2) / 2) << 8);
-		int b = (((b1 + b2) / 2) << 0);
+		int b = (((b1 + b2) / 2));
 		
 		return r | g | b;
 	}

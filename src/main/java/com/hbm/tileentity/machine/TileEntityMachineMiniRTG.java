@@ -5,14 +5,14 @@ import java.util.List;
 
 import com.hbm.blocks.ModBlocks;
 import com.hbm.interfaces.IConsumer;
-import com.hbm.interfaces.ISource;
+import com.hbm.interfaces.IEnergyHandler;
 import com.hbm.lib.Library;
 
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
 
-public class TileEntityMachineMiniRTG extends TileEntity implements ITickable, ISource {
+public class TileEntityMachineMiniRTG extends TileEntity implements ITickable, IEnergyHandler {
 
 	public List<IConsumer> list = new ArrayList<>();
 	public long power;

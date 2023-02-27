@@ -12,7 +12,6 @@ import javax.vecmath.Vector3f;
 
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
-import org.lwjgl.opengl.GL30;
 
 import com.hbm.handler.HbmShaderManager2;
 import com.hbm.main.ClientProxy;

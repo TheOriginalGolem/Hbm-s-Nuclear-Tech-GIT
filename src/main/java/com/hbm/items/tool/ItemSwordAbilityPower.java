@@ -68,14 +68,12 @@ public class ItemSwordAbilityPower extends ItemSwordAbility implements IBatteryI
 	@Override
     public long getCharge(ItemStack stack) {
     	if(stack.getItem() instanceof ItemSwordAbilityPower) {
-    		if(stack.hasTagCompound()) {
-    			return stack.getTagCompound().getLong("charge");
-    		} else {
-    			stack.setTagCompound(new NBTTagCompound());
-    			stack.getTagCompound().setLong("charge", ((ItemSwordAbilityPower)stack.getItem()).maxPower);
-    			return stack.getTagCompound().getLong("charge");
-    		}
-    	}
+			if (!stack.hasTagCompound()) {
+				stack.setTagCompound(new NBTTagCompound());
+				stack.getTagCompound().setLong("charge", ((ItemSwordAbilityPower) stack.getItem()).maxPower);
+			}
+			return stack.getTagCompound().getLong("charge");
+		}
 
     	return 0;
     }

@@ -90,7 +90,7 @@ public class RenderAMSBase extends TileEntitySpecialRenderer<TileEntityAMSBase> 
 		GL11.glScaled(scale, scale, scale);
 		
 		//GL11.glColor3ub((byte)((base.color & 0xFF0000) >> 16), (byte)((base.color & 0x00FF00) >> 8), (byte)((base.color & 0x0000FF) >> 0));
-        GlStateManager.color(((base.color & 0xFF0000) >> 16)/255F, ((base.color & 0x00FF00) >> 8)/255F, ((base.color & 0x0000FF) >> 0)/255F);
+        GlStateManager.color(((base.color & 0xFF0000) >> 16)/255F, ((base.color & 0x00FF00) >> 8)/255F, ((base.color & 0x0000FF))/255F);
         GlStateManager.disableTexture2D();
 		
 		int rot = (int) ((System.nanoTime()/100000000)%360) * 3;

@@ -7,7 +7,6 @@ import org.lwjgl.util.vector.Matrix4f;
 
 import com.hbm.lib.RefStrings;
 import com.hbm.main.ClientProxy;
-import com.hbm.main.ResourceManager;
 import com.hbm.render.RenderHelper;
 
 import net.minecraft.client.Minecraft;

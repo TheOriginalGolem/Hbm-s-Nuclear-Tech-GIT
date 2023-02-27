@@ -2,8 +2,6 @@ package com.hbm.entity.mob.botprime;
 
 import java.util.List;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.math.MathHelper;
 
 public class WormMovementBodyNT {

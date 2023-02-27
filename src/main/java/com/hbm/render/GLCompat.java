@@ -9,7 +9,6 @@ import org.lwjgl.opengl.ARBDepthTexture;
 import org.lwjgl.opengl.ARBDrawInstanced;
 import org.lwjgl.opengl.ARBFragmentShader;
 import org.lwjgl.opengl.ARBFramebufferObject;
-import org.lwjgl.opengl.ARBGeometryShader4;
 import org.lwjgl.opengl.ARBImaging;
 import org.lwjgl.opengl.ARBInstancedArrays;
 import org.lwjgl.opengl.ARBMultitexture;
@@ -25,14 +24,12 @@ import org.lwjgl.opengl.ContextCapabilities;
 import org.lwjgl.opengl.EXTDrawInstanced;
 import org.lwjgl.opengl.EXTFramebufferBlit;
 import org.lwjgl.opengl.EXTFramebufferObject;
-import org.lwjgl.opengl.EXTGeometryShader4;
 import org.lwjgl.opengl.GL13;
 import org.lwjgl.opengl.GL14;
 import org.lwjgl.opengl.GL15;
 import org.lwjgl.opengl.GL20;
 import org.lwjgl.opengl.GL30;
 import org.lwjgl.opengl.GL31;
-import org.lwjgl.opengl.GL32;
 import org.lwjgl.opengl.GL33;
 import org.lwjgl.opengl.GLContext;
 
@@ -666,14 +663,13 @@ public class GLCompat {
 			GL_LINK_STATUS = ARBShaderObjects.GL_OBJECT_LINK_STATUS_ARB;
 			GL_INFO_LOG_LENGTH = ARBShaderObjects.GL_OBJECT_INFO_LOG_LENGTH_ARB;
 			//Apparently the ARB thing doesn't have this, let's just hope it works
-			GL_CURRENT_PROGRAM = GL20.GL_CURRENT_PROGRAM;
 		} else {
 			GL_COMPILE_STATUS = GL20.GL_COMPILE_STATUS;
 			GL_LINK_STATUS = GL20.GL_LINK_STATUS;
 			GL_INFO_LOG_LENGTH = GL20.GL_INFO_LOG_LENGTH;
-			GL_CURRENT_PROGRAM = GL20.GL_CURRENT_PROGRAM;
 		}
-		
+		GL_CURRENT_PROGRAM = GL20.GL_CURRENT_PROGRAM;
+
 		if(arbVertexShader){
 			GL_VERTEX_SHADER = ARBVertexShader.GL_VERTEX_SHADER_ARB;
 		} else {

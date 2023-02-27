@@ -6,7 +6,6 @@ import com.hbm.items.ModItems;
 import com.hbm.main.MainRegistry;
 
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 

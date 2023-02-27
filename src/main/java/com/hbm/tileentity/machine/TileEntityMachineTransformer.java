@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.hbm.interfaces.IConsumer;
-import com.hbm.interfaces.ISource;
+import com.hbm.interfaces.IEnergyHandler;
 import com.hbm.lib.Library;
 
 import net.minecraft.nbt.NBTTagCompound;
@@ -12,7 +12,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
 
-public class TileEntityMachineTransformer extends TileEntity implements ITickable, ISource, IConsumer {
+public class TileEntityMachineTransformer extends TileEntity implements ITickable, IEnergyHandler, IConsumer {
 
 	public long power;
 	public long maxPower = 10000;

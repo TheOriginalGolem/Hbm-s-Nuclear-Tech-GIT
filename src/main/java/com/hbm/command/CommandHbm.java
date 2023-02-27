@@ -5,12 +5,9 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 
-import org.lwjgl.opengl.GL13;
-import org.lwjgl.opengl.GL20;
 import com.google.common.collect.Lists;
 import com.hbm.blocks.ModBlocks;
 import com.hbm.handler.HbmShaderManager2;
-import com.hbm.handler.HbmShaderManager2.Shader;
 import com.hbm.lib.RefStrings;
 import com.hbm.main.ModEventHandlerClient;
 import com.hbm.main.ResourceManager;

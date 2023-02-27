@@ -14,7 +14,6 @@ import com.hbm.packet.FluidTankPacket;
 import com.hbm.packet.PacketDispatcher;
 import com.hbm.tileentity.TileEntityMachineBase;
 import com.hbm.util.InventoryUtil;
-import com.hbm.util.WeightedRandomObject;
 import com.hbm.items.machine.ItemFELCrystal.EnumWavelengths;
 
 import net.minecraft.item.Item;

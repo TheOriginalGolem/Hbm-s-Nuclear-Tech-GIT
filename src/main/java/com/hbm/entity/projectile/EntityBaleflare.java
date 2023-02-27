@@ -358,14 +358,7 @@ public class EntityBaleflare extends Entity implements IProjectile {
 
                     DamageSource damagesource = null;
 
-                    if (this.shootingEntity == null)
-                    {
-                        damagesource = DamageSource.GENERIC;
-                    }
-                    else
-                    {
-                        damagesource = DamageSource.GENERIC;
-                    }
+                    damagesource = DamageSource.GENERIC;
 
                     if (this.isBurning() && !(movingobjectposition.entityHit instanceof EntityEnderman))
                     {

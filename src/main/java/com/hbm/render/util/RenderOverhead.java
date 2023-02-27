@@ -144,10 +144,12 @@ public class RenderOverhead {
 				r = 1; g = 1; b = 0.5F;
 			} else if(ent instanceof EntityXPOrb) {
 				if(player.ticksExisted % 10 < 5){
-					r = 1; g = 1; b = 0.5F;
+					r = 1;
 				} else {
-					r = 0.5F; g = 1; b = 0.5F;
+					r = 0.5F;
 				}
+				g = 1;
+				b = 0.5F;
 			} else {
 				continue;
 			}

@@ -7,7 +7,7 @@ import com.hbm.blocks.BlockDummyable;
 import com.hbm.forgefluid.FFUtils;
 import com.hbm.forgefluid.ModForgeFluids;
 import com.hbm.interfaces.IConsumer;
-import com.hbm.interfaces.ISource;
+import com.hbm.interfaces.IEnergyHandler;
 import com.hbm.interfaces.ITankPacketAcceptor;
 import com.hbm.interfaces.Untested;
 import com.hbm.inventory.MachineRecipes;
@@ -40,7 +40,7 @@ import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class TileEntityMachineLargeTurbine extends TileEntityMachineBase implements ITickable, ISource, IFluidHandler, ITankPacketAcceptor {
+public class TileEntityMachineLargeTurbine extends TileEntityMachineBase implements ITickable, IEnergyHandler, IFluidHandler, ITankPacketAcceptor {
 
 	public long power;
 	public static final long maxPower = 100000000;

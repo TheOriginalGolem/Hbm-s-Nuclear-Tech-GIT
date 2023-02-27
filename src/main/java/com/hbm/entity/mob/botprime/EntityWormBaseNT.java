@@ -162,7 +162,7 @@ public abstract class EntityWormBaseNT extends EntityBurrowingNT {
 	protected boolean entInsideOpaqueBlock(){
 		for (int i = 0; i < 8; ++i)
         {
-            float f = ((float)((i >> 0) % 2) - 0.5F) * this.width * 0.8F;
+            float f = ((float)((i) % 2) - 0.5F) * this.width * 0.8F;
             float f1 = ((float)((i >> 1) % 2) - 0.5F) * 0.1F;
             float f2 = ((float)((i >> 2) % 2) - 0.5F) * this.width * 0.8F;
             int j = MathHelper.floor(this.posX + (double)f);

@@ -107,26 +107,23 @@ public class TileEntityDiFurnace extends TileEntityMachineBase implements ITicka
 	}
 	
 	private static int getItemPower(ItemStack itemStack) {
-		if(itemStack == null)
-		{
-			return 0;
-		}else{
+		if (itemStack != null) {
 			Item item = itemStack.getItem();
-			
-			if(item == Items.COAL) return 200;
-			if(item == Item.getItemFromBlock(Blocks.COAL_BLOCK)) return 2000;
-			if(item == Items.LAVA_BUCKET) return 12800;
-			if(item == Items.BLAZE_ROD) return 1000;
-			if(item == Items.BLAZE_POWDER) return 300;
-			if(item == ModItems.lignite) return 150;
-			if(item == ModItems.powder_lignite) return 150;
-			if(item == ModItems.powder_coal) return 200;
-			if(item == ModItems.briquette_lignite) return 200;
-			if(MachineRecipes.mODE(itemStack, "fuelCoke")) return 400;
-			if(item == ModItems.solid_fuel) return 400;
-			
-			return 0;
+
+			if (item == Items.COAL) return 200;
+			if (item == Item.getItemFromBlock(Blocks.COAL_BLOCK)) return 2000;
+			if (item == Items.LAVA_BUCKET) return 12800;
+			if (item == Items.BLAZE_ROD) return 1000;
+			if (item == Items.BLAZE_POWDER) return 300;
+			if (item == ModItems.lignite) return 150;
+			if (item == ModItems.powder_lignite) return 150;
+			if (item == ModItems.powder_coal) return 200;
+			if (item == ModItems.briquette_lignite) return 200;
+			if (MachineRecipes.mODE(itemStack, "fuelCoke")) return 400;
+			if (item == ModItems.solid_fuel) return 400;
+
 		}
+		return 0;
 	}
 	
 	@Override

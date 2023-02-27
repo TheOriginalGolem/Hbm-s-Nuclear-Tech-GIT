@@ -1,13 +1,9 @@
 package com.hbm.tileentity.machine;
 
-import com.hbm.blocks.ModBlocks;
-import com.hbm.lib.Library;
 import com.hbm.saveddata.RadiationSavedData;
 
 import net.minecraft.util.EnumFacing;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockRedstoneWire;
-import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ITickable;
@@ -113,16 +109,14 @@ public class TileEntityRadSensor extends TileEntity implements ITickable {
 	public static int getRedstonePower(World world, BlockPos blockPos, EnumFacing side) {
 	    BlockPos offsetPos = blockPos.offset(side);
 	    int worldPower = world.getRedstonePower(offsetPos, side);
-	    if (worldPower >= 15) {
-	        return worldPower;
-	    } else {
-	        IBlockState offsetState = world.getBlockState(offsetPos);
-	        if(offsetState.getBlock() instanceof BlockRedstoneWire) {
-	            int wirePower = offsetState.getValue(BlockRedstoneWire.POWER);
-	            return Math.max(worldPower, wirePower);
-	        }
-	        return worldPower;
-	    }
+		if (worldPower < 15) {
+			IBlockState offsetState = world.getBlockState(offsetPos);
+			if (offsetState.getBlock() instanceof BlockRedstoneWire) {
+				int wirePower = offsetState.getValue(BlockRedstoneWire.POWER);
+				return Math.max(worldPower, wirePower);
+			}
+		}
+		return worldPower;
 	}
 		
 	@Override

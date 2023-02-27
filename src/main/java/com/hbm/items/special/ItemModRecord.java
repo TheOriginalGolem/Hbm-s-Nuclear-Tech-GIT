@@ -46,16 +46,14 @@ public class ItemModRecord extends ItemRecord {
 	@Override
 	public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 		if (worldIn.getBlockState(pos).getBlock() == Blocks.JUKEBOX && !worldIn.getBlockState(pos).getValue(BlockJukebox.HAS_RECORD).booleanValue()) {
-			if (worldIn.isRemote) {
-				return EnumActionResult.SUCCESS;
-			} else {
+			if (!worldIn.isRemote) {
 				ItemStack stack = player.getHeldItem(hand);
-				((BlockJukebox)Blocks.JUKEBOX).insertRecord(worldIn, pos, worldIn.getBlockState(pos), stack);
+				((BlockJukebox) Blocks.JUKEBOX).insertRecord(worldIn, pos, worldIn.getBlockState(pos), stack);
 				worldIn.playEvent(null, 1010, pos, Item.getIdFromItem(this));
 				stack.shrink(1);
 				player.addStat(StatList.RECORD_PLAYED);
-				return EnumActionResult.SUCCESS;
 			}
+			return EnumActionResult.SUCCESS;
 		} else {
 			return EnumActionResult.PASS;
 		}

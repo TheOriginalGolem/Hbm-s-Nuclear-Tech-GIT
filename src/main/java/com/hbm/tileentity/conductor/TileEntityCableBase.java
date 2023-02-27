@@ -10,11 +10,9 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.energy.IEnergyStorage;
-import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
 
 import com.hbm.energy.EnergyNetwork;
 import com.hbm.energy.IEnergyTransmitter;
-import com.hbm.packet.PacketDispatcher;
 
 
 public class TileEntityCableBase extends TileEntity implements IEnergyTransmitter, IEnergyStorage {

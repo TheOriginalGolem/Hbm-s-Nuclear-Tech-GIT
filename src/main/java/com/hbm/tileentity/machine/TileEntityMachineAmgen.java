@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.hbm.blocks.ModBlocks;
 import com.hbm.interfaces.IConsumer;
-import com.hbm.interfaces.ISource;
+import com.hbm.interfaces.IEnergyHandler;
 import com.hbm.lib.Library;
 import com.hbm.saveddata.RadiationSavedData;
 
@@ -16,7 +16,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
 
-public class TileEntityMachineAmgen extends TileEntity implements ITickable, ISource {
+public class TileEntityMachineAmgen extends TileEntity implements ITickable, IEnergyHandler {
 
 	public List<IConsumer> list = new ArrayList<IConsumer>();
 	public long power;

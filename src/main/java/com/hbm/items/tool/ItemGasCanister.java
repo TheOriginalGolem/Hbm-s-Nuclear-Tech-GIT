@@ -3,7 +3,6 @@ package com.hbm.items.tool;
 import java.util.List;
 
 import com.hbm.forgefluid.HbmFluidHandlerGasCanister;
-import com.hbm.forgefluid.HbmFluidHandlerItemStack;
 import com.hbm.forgefluid.SpecialContainerFillLists.EnumGasCanister;
 import com.hbm.interfaces.IHasCustomModel;
 import com.hbm.items.ModItems;

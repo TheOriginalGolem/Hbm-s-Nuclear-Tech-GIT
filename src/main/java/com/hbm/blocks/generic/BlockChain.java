@@ -104,7 +104,7 @@ public class BlockChain extends Block {
         if(facing.ordinal() == 5 && world.isSideSolid(pos.west(), EnumFacing.EAST))
             j1 = 5;
 
-        boolean end = (world.getBlockState(pos.down()).getBlock() != this || (j1 != 0) != world.getBlockState(pos.down()).getValue(WALL)) && !world.isSideSolid(pos.down(), EnumFacing.UP);
+        boolean end = (world.getBlockState(pos.down()).getBlock() != this || (j1 == 0) == world.getBlockState(pos.down()).getValue(WALL)) && !world.isSideSolid(pos.down(), EnumFacing.UP);
 
         if(j1 == 0) {
         	if(world.getBlockState(pos.up()).getBlock() == this)

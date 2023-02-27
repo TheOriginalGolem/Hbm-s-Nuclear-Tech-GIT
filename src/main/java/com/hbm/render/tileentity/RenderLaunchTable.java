@@ -2,7 +2,6 @@ package com.hbm.render.tileentity;
 
 import org.lwjgl.opengl.GL11;
 
-import com.hbm.items.weapon.ItemMissile;
 import com.hbm.items.weapon.ItemMissile.PartSize;
 import com.hbm.main.ResourceManager;
 import com.hbm.render.amlfrom1710.IModelCustom;

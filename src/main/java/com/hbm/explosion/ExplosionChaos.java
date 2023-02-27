@@ -644,7 +644,7 @@ public class ExplosionChaos {
 		
 			if (b == Blocks.sandstone || b == Blocks.sandstone_stairs)
 				world.setBlockState(pos, Blocks.sand);
-			else if (t != null && t instanceof ISource)
+			else if (t != null && t instanceof IEnergyHandler)
 				world.setBlockState(pos, ModBlocks.block_electrical_scrap);
 			else if (t != null && t instanceof IConductor)
 				world.setBlockState(pos, ModBlocks.block_electrical_scrap);

@@ -1,6 +1,5 @@
 package com.hbm.tileentity.machine;
 
-import com.hbm.items.ModItems;
 import com.hbm.handler.ArmorUtil;
 import com.hbm.items.ModItems;
 import com.hbm.items.tool.ItemKeyPin;

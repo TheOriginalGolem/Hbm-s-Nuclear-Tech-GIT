@@ -12,7 +12,6 @@ import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -37,14 +36,12 @@ public class ItemChopper extends Item {
 
 	@Override
 	public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-		if(world.isRemote) {
-			return EnumActionResult.SUCCESS;
-		} else {
+		if (!world.isRemote) {
 			ItemStack stack = player.getHeldItem(hand);
 			int x = pos.getX();
 			int y = pos.getY();
 			int z = pos.getZ();
-			
+
 			//IBlockState blockState = world.getBlockState(pos);
 
 			x += facing.getFrontOffsetX();
@@ -58,18 +55,18 @@ public class ItemChopper extends Item {
 
 			Entity entity = spawnCreature(world, stack.getItemDamage(), x + 0.5D, y + offset, z + 0.5D);
 
-			if(entity != null) {
-				if(entity instanceof EntityLivingBase && stack.hasDisplayName()) {
+			if (entity != null) {
+				if (entity instanceof EntityLivingBase && stack.hasDisplayName()) {
 					entity.setCustomNameTag(stack.getDisplayName());
 				}
 
-				if(!player.capabilities.isCreativeMode) {
+				if (!player.capabilities.isCreativeMode) {
 					stack.shrink(1);
 				}
 			}
 
-			return EnumActionResult.SUCCESS;
 		}
+		return EnumActionResult.SUCCESS;
 	}
 	
 	@Override
@@ -81,39 +78,37 @@ public class ItemChopper extends Item {
 		} else {
 			RayTraceResult movingobjectposition = this.rayTrace(world, player, true);
 
-			if(movingobjectposition == null || movingobjectposition.typeOfHit == Type.MISS) {
-				return ActionResult.newResult(EnumActionResult.PASS, stack);
-			} else {
-				if(movingobjectposition.typeOfHit == Type.BLOCK) {
+			if (movingobjectposition != null && movingobjectposition.typeOfHit != Type.MISS) {
+				if (movingobjectposition.typeOfHit == Type.BLOCK) {
 					int i = movingobjectposition.getBlockPos().getX();
 					int j = movingobjectposition.getBlockPos().getY();
 					int k = movingobjectposition.getBlockPos().getZ();
 
-					if(!world.canMineBlockBody(player, movingobjectposition.getBlockPos())) {
+					if (!world.canMineBlockBody(player, movingobjectposition.getBlockPos())) {
 						return ActionResult.newResult(EnumActionResult.PASS, stack);
 					}
 
-					if(!player.canPlayerEdit(movingobjectposition.getBlockPos(), movingobjectposition.sideHit, stack)) {
+					if (!player.canPlayerEdit(movingobjectposition.getBlockPos(), movingobjectposition.sideHit, stack)) {
 						return ActionResult.newResult(EnumActionResult.PASS, stack);
 					}
 
-					if(world.getBlockState(movingobjectposition.getBlockPos()).getBlock() instanceof BlockLiquid) {
+					if (world.getBlockState(movingobjectposition.getBlockPos()).getBlock() instanceof BlockLiquid) {
 						Entity entity = spawnCreature(world, stack.getItemDamage(), i, j, k);
 
-						if(entity != null) {
-							if(entity instanceof EntityLivingBase && stack.hasDisplayName()) {
+						if (entity != null) {
+							if (entity instanceof EntityLivingBase && stack.hasDisplayName()) {
 								entity.setCustomNameTag(stack.getDisplayName());
 							}
 
-							if(!player.capabilities.isCreativeMode) {
+							if (!player.capabilities.isCreativeMode) {
 								stack.shrink(1);
 							}
 						}
 					}
 				}
 
-				return ActionResult.newResult(EnumActionResult.PASS, stack);
 			}
+			return ActionResult.newResult(EnumActionResult.PASS, stack);
 		}
 	}
 	

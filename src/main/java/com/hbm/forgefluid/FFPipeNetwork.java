@@ -161,8 +161,8 @@ public class FFPipeNetwork implements IFluidHandler {
 
 			}
 			merge.Destroy();
-			return net;
-		} else return net;
+		}
+		return net;
 	}
 
 	/**

@@ -513,12 +513,11 @@ public class RenderSmallNukeMK4 extends Render<EntityNukeCloudSmall> {
         	r = 0.25F * alphaorig;
         	g = alphaorig - brightness * 0.5F;
         	b = 0.25F * alphaorig;
-        	a = alpha;
-        } else {
+		} else {
         	r = g = b = brightness;
-        	a = alpha;
-        }
-        a = MathHelper.clamp(a, 0, 1);
+		}
+		a = alpha;
+		a = MathHelper.clamp(a, 0, 1);
 
 		buf.pos(posX - f1 * scale - f3 * scale, posY - f5 * scale, posZ - f2 * scale - f4 * scale).tex(1, 1).color(r, g, b, a).endVertex();
 		buf.pos(posX - f1 * scale + f3 * scale, posY + f5 * scale, posZ - f2 * scale + f4 * scale).tex(1, 0).color(r, g, b, a).endVertex();

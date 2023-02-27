@@ -127,14 +127,12 @@ public class ItemBattery extends Item implements IBatteryItem {
     	if(stack.getItem() == ModItems.battery_creative)
 			return Long.MAX_VALUE;
     	if(stack.getItem() instanceof ItemBattery) {
-    		if(stack.hasTagCompound()) {
-    			return stack.getTagCompound().getLong("charge");
-    		} else {
-    			stack.setTagCompound(new NBTTagCompound());
-                stack.getTagCompound().setLong("charge", ((ItemBattery)stack.getItem()).maxCharge);
-    			return stack.getTagCompound().getLong("charge");
-    		}
-    	}
+			if (!stack.hasTagCompound()) {
+				stack.setTagCompound(new NBTTagCompound());
+				stack.getTagCompound().setLong("charge", ((ItemBattery) stack.getItem()).maxCharge);
+			}
+			return stack.getTagCompound().getLong("charge");
+		}
     	
     	return 0;
     }

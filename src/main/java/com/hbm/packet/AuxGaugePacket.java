@@ -11,8 +11,6 @@ import com.hbm.tileentity.bomb.TileEntityRailgun;
 import com.hbm.tileentity.machine.TileEntityAMSBase;
 import com.hbm.tileentity.machine.TileEntityAMSEmitter;
 import com.hbm.tileentity.machine.TileEntityAMSLimiter;
-import com.hbm.tileentity.machine.TileEntityConverterHeRf;
-import com.hbm.tileentity.machine.TileEntityConverterRfHe;
 import com.hbm.tileentity.machine.TileEntityCoreEmitter;
 import com.hbm.tileentity.machine.TileEntityCoreInjector;
 import com.hbm.tileentity.machine.TileEntityCoreStabilizer;
@@ -268,12 +266,6 @@ public class AuxGaugePacket implements IMessage {
 					} else if(te instanceof TileEntityCoreStabilizer) {
 						if(m.id == 0)
 							((TileEntityCoreStabilizer) te).beam = m.value;
-					} else if(te instanceof TileEntityConverterRfHe){
-						if(m.id == 0)
-							((TileEntityConverterRfHe) te).storage.setEnergyStored(m.value);
-					} else if(te instanceof TileEntityConverterHeRf){
-						if(m.id == 0)
-							((TileEntityConverterHeRf) te).storage.setEnergyStored(m.value);
 					} else if(te instanceof TileEntityCoreEmitter){
 						if(m.id == 0)
 							((TileEntityCoreEmitter) te).watts = m.value;

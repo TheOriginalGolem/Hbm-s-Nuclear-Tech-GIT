@@ -9,7 +9,6 @@ import com.hbm.items.ModItems;
 
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import static com.hbm.inventory.OreDictManager.*;
 
 public class HadronRecipes {
 

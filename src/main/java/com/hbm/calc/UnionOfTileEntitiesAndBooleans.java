@@ -1,13 +1,13 @@
 package com.hbm.calc;
 
-import com.hbm.interfaces.ISource;
+import com.hbm.interfaces.IEnergyHandler;
 
 public class UnionOfTileEntitiesAndBooleans {
 
-	public ISource source;
+	public IEnergyHandler source;
 	public boolean ticked = false;
 	
-	public UnionOfTileEntitiesAndBooleans(ISource tileentity, boolean bool)
+	public UnionOfTileEntitiesAndBooleans(IEnergyHandler tileentity, boolean bool)
 	{
 		source = tileentity;
 		ticked = bool;

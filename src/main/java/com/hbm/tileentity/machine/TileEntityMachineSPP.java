@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.hbm.blocks.ModBlocks;
 import com.hbm.interfaces.IConsumer;
-import com.hbm.interfaces.ISource;
+import com.hbm.interfaces.IEnergyHandler;
 import com.hbm.lib.Library;
 
 import net.minecraft.init.Blocks;
@@ -14,7 +14,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
 
-public class TileEntityMachineSPP extends TileEntity implements ITickable, ISource {
+public class TileEntityMachineSPP extends TileEntity implements ITickable, IEnergyHandler {
 
 	public long power;
 	public static final long maxPower = 100000;

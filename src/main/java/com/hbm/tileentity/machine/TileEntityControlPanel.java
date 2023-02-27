@@ -1,10 +1,8 @@
 package com.hbm.tileentity.machine;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.vector.Matrix4f;
 import org.lwjgl.util.vector.Vector3f;
 

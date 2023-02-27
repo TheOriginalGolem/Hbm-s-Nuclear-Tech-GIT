@@ -8,10 +8,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
 
-import com.hbm.inventory.OreDictManager.DictFrame;
 import com.hbm.inventory.RecipesCommon.ComparableStack;
 import com.hbm.inventory.material.NTMMaterial.SmeltingBehavior;
-import com.hbm.items.ModItems;
 import com.hbm.util.I18nUtil;
 import com.hbm.util.ItemStackUtil;
 

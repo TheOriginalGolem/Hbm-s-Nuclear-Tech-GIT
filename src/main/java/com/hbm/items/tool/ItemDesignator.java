@@ -54,16 +54,12 @@ public class ItemDesignator extends Item {
 		ItemStack stack = player.getHeldItem(hand);
 		if(!(world.getBlockState(pos).getBlock() instanceof LaunchPad))
 		{
-			if(stack.getTagCompound() != null)
-			{
-				stack.getTagCompound().setInteger("xCoord", pos.getX());
-				stack.getTagCompound().setInteger("zCoord", pos.getZ());
-			} else {
+			if (stack.getTagCompound() == null) {
 				stack.setTagCompound(new NBTTagCompound());
-				stack.getTagCompound().setInteger("xCoord", pos.getX());
-				stack.getTagCompound().setInteger("zCoord", pos.getZ());
 			}
-	        if(world.isRemote)
+			stack.getTagCompound().setInteger("xCoord", pos.getX());
+			stack.getTagCompound().setInteger("zCoord", pos.getZ());
+			if(world.isRemote)
 			{
 	        	player.sendMessage(new TextComponentTranslation("§a[Position set]§r"));
 			}

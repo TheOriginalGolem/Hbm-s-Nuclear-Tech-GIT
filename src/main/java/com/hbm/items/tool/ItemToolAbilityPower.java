@@ -68,14 +68,12 @@ public class ItemToolAbilityPower extends ItemToolAbility implements IBatteryIte
 	@Override
     public long getCharge(ItemStack stack) {
     	if(stack.getItem() instanceof ItemToolAbilityPower) {
-    		if(stack.hasTagCompound()) {
-    			return stack.getTagCompound().getLong("charge");
-    		} else {
-    			stack.setTagCompound(new NBTTagCompound());
-    			stack.getTagCompound().setLong("charge", ((ItemToolAbilityPower)stack.getItem()).maxPower);
-    			return stack.getTagCompound().getLong("charge");
-    		}
-    	}
+			if (!stack.hasTagCompound()) {
+				stack.setTagCompound(new NBTTagCompound());
+				stack.getTagCompound().setLong("charge", ((ItemToolAbilityPower) stack.getItem()).maxPower);
+			}
+			return stack.getTagCompound().getLong("charge");
+		}
     	
     	return 0;
     }

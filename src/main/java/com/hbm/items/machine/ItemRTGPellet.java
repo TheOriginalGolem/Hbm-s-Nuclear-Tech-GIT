@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.annotation.CheckForNull;
 
-import com.hbm.items.ModItems;
 import com.hbm.util.BobMathUtil;
 import com.hbm.util.I18nUtil;
 import com.hbm.items.special.ItemHazard;

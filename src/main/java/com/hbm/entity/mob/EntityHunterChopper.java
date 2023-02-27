@@ -128,14 +128,12 @@ public class EntityHunterChopper extends EntityFlying implements IMob, IRadiatio
 				if (this.targetedEntity != null) {
 					this.waypointX = targetedEntity.posX + (this.rand.nextFloat() * 2.0F - 1.0F) * 16.0F;
 					this.waypointZ = targetedEntity.posZ + (this.rand.nextFloat() * 2.0F - 1.0F) * 16.0F;
-					this.waypointY = this.world.getHeight((int) waypointX, (int) waypointZ) + 10
-							+ rand.nextInt(15);
 				} else {
 					this.waypointX = this.posX + (this.rand.nextFloat() * 2.0F - 1.0F) * 16.0F;
 					this.waypointZ = this.posZ + (this.rand.nextFloat() * 2.0F - 1.0F) * 16.0F;
-					this.waypointY = this.world.getHeight((int) waypointX, (int) waypointZ) + 10
-							+ rand.nextInt(15);
 				}
+				this.waypointY = this.world.getHeight((int) waypointX, (int) waypointZ) + 10
+						+ rand.nextInt(15);
 			}
 
 			if (this.courseChangeCooldown-- <= 0) {

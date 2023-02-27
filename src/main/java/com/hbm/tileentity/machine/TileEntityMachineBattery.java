@@ -7,7 +7,7 @@ import com.hbm.packet.AuxGaugePacket;
 import com.hbm.packet.PacketDispatcher;
 import com.hbm.blocks.machine.MachineBattery;
 import com.hbm.interfaces.IConsumer;
-import com.hbm.interfaces.ISource;
+import com.hbm.interfaces.IEnergyHandler;
 import com.hbm.lib.Library;
 import com.hbm.tileentity.TileEntityMachineBase;
 
@@ -20,7 +20,7 @@ import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
 
-public class TileEntityMachineBattery extends TileEntityMachineBase implements ITickable, IConsumer, ISource {
+public class TileEntityMachineBattery extends TileEntityMachineBase implements ITickable, IConsumer, IEnergyHandler {
 
 	public long[] log = new long[20];
 	public long power = 0;

@@ -32,7 +32,7 @@ public class HbmCapability {
 	
 	public static class HBMData implements IHBMData {
 
-		public static final Callable<IHBMData> FACTORY = () -> {return new HBMData();};
+		public static final Callable<IHBMData> FACTORY = () -> new HBMData();
 		
 		private final boolean[] keysPressed = new boolean[EnumKeybind.values().length];
 		

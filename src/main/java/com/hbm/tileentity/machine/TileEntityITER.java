@@ -6,7 +6,6 @@ import com.hbm.blocks.ModBlocks;
 import com.hbm.blocks.machine.MachineITER;
 import com.hbm.forgefluid.FFUtils;
 import com.hbm.forgefluid.ModForgeFluids;
-import com.hbm.interfaces.IConsumer;
 import com.hbm.interfaces.ITankPacketAcceptor;
 import com.hbm.inventory.BreederRecipes;
 import com.hbm.inventory.BreederRecipes.BreederRecipe;
@@ -20,7 +19,7 @@ import com.hbm.packet.FluidTankPacket;
 import com.hbm.packet.FluidTypePacketTest;
 import com.hbm.packet.PacketDispatcher;
 import com.hbm.render.amlfrom1710.Vec3;
-import com.hbm.tileentity.TileEntityMachineBase;
+import com.hbm.tileentity.base.TileEntityMachineEnergyBase;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -42,7 +41,7 @@ import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class TileEntityITER extends TileEntityMachineBase implements ITickable, IConsumer, IFluidHandler, ITankPacketAcceptor {
+public class TileEntityITER extends TileEntityMachineEnergyBase implements ITickable, IFluidHandler, ITankPacketAcceptor {
 
 	public long power;
 	public static final long maxPower = 10000000;
@@ -294,7 +293,6 @@ public class TileEntityITER extends TileEntityMachineBase implements ITickable, 
 		tanks[1].readFromNBT(compound.getCompoundTag("steam"));
 		plasma.readFromNBT(compound.getCompoundTag("plasma"));
 		plasmaType = FluidRegistry.getFluid(compound.getString("plasma_type"));
-		this.power = compound.getLong("power");
 		this.isOn = compound.getBoolean("isOn");
 		super.readFromNBT(compound);
 	}
@@ -306,7 +304,6 @@ public class TileEntityITER extends TileEntityMachineBase implements ITickable, 
 		compound.setTag("plasma", plasma.writeToNBT(new NBTTagCompound()));
 		if(plasmaType != null)
 			compound.setString("plasma_type", plasmaType.getName());
-		compound.setLong("power", this.power);
 		compound.setBoolean("isOn", isOn);
 		return super.writeToNBT(compound);
 	}
@@ -369,20 +366,6 @@ public class TileEntityITER extends TileEntityMachineBase implements ITickable, 
 		}
 	}
 
-	@Override
-	public void setPower(long i) {
-		this.power = i;
-	}
-
-	@Override
-	public long getPower() {
-		return power;
-	}
-
-	@Override
-	public long getMaxPower() {
-		return maxPower;
-	}
 
 	@Override
 	public IFluidTankProperties[] getTankProperties() {
@@ -465,4 +448,7 @@ public class TileEntityITER extends TileEntityMachineBase implements ITickable, 
 		}
 		return super.hasCapability(capability, facing);
 	}
+
+	
+
 }

@@ -13,7 +13,6 @@ import mezz.jei.api.recipe.IRecipeWrapper;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.client.model.b3d.B3DModel.Bone;
 import net.minecraftforge.oredict.OreDictionary;
 
 public class CentrifugeRecipes {

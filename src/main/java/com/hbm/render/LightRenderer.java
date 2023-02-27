@@ -10,10 +10,6 @@ import java.util.Set;
 
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
-import org.lwjgl.opengl.GL15;
-import org.lwjgl.opengl.GL20;
-import org.lwjgl.opengl.GL21;
-import org.lwjgl.opengl.GL33;
 import org.lwjgl.util.glu.Project;
 import org.lwjgl.util.vector.Matrix4f;
 

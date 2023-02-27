@@ -1,7 +1,6 @@
 package com.hbm.tileentity.machine;
 
 import com.hbm.blocks.machine.MachineRtgFurnace;
-import com.hbm.items.ModItems;
 import com.hbm.util.RTGUtil;
 
 import net.minecraft.entity.player.EntityPlayer;

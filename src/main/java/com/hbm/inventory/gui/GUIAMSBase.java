@@ -83,7 +83,7 @@ public class GUIAMSBase extends GuiInfoContainer {
 		drawTexturedModalRect(guiLeft + 80, guiTop + 18, 176, 32 + 16 * n, 16, 16);
 		
 		if(base.color > -1) {
-			GL11.glColor3ub((byte)((base.color & 0xFF0000) >> 16), (byte)((base.color & 0x00FF00) >> 8), (byte)((base.color & 0x0000FF) >> 0));
+			GL11.glColor3ub((byte)((base.color & 0xFF0000) >> 16), (byte)((base.color & 0x00FF00) >> 8), (byte)((base.color & 0x0000FF)));
 			drawTexturedModalRect(guiLeft + 61, guiTop + 44, 176, 160, 54, 54);
 			GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 			drawTexturedModalRect(guiLeft + 61, guiTop + 44, 176, 106, 54, 54);

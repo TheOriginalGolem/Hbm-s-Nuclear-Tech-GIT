@@ -353,14 +353,7 @@ public class EntitySchrab extends Entity implements IProjectile {
 
                     DamageSource damagesource = null;
 
-                    if (this.shootingEntity == null)
-                    {
-                        damagesource = DamageSource.causeIndirectMagicDamage(this, this);
-                    }
-                    else
-                    {
-                        damagesource = DamageSource.causeIndirectMagicDamage(this, this);
-                    }
+                    damagesource = DamageSource.causeIndirectMagicDamage(this, this);
 
                     if (this.isBurning() && !(movingobjectposition.entityHit instanceof EntityEnderman))
                     {

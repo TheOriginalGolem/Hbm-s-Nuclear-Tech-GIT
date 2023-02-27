@@ -8,7 +8,6 @@ import com.hbm.tileentity.machine.TileEntityMachineRadGen;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
-import net.minecraft.tileentity.TileEntity;
 
 public class RenderRadGen extends TileEntitySpecialRenderer<TileEntityMachineRadGen> {
 

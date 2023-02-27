@@ -60,8 +60,6 @@ public class ItemRenderWeaponShotty extends TEISRBase {
 					ResourceManager.supershotgun.render();
 				}
 				GlStateManager.shadeModel(GL11.GL_FLAT);
-				GlStateManager.enableCull();
-				GL11.glPushMatrix();
 			} else {
 				EnumHand hand = type == TransformType.FIRST_PERSON_RIGHT_HAND ? EnumHand.MAIN_HAND : EnumHand.OFF_HAND;
 				double[] recoil = HbmAnimations.getRelevantTransformation("SHOTTY_RECOIL", hand);
@@ -103,9 +101,9 @@ public class ItemRenderWeaponShotty extends TEISRBase {
 				GL11.glPopMatrix();
 				
 				ResourceManager.shotty.renderPart("Handle");
-				GlStateManager.enableCull();
-				GL11.glPushMatrix();
 			}
+			GlStateManager.enableCull();
+			GL11.glPushMatrix();
 			return;
 		case HEAD:
 		case FIXED:

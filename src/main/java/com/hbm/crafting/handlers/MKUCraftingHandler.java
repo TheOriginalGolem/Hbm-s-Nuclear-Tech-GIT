@@ -10,7 +10,6 @@ import com.hbm.items.ModItems;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.HbmWorldUtility;
 import net.minecraft.world.World;
 

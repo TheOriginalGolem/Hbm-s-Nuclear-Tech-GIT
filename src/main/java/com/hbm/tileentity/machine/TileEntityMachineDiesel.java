@@ -6,7 +6,7 @@ import java.util.List;
 import com.hbm.forgefluid.FFUtils;
 import com.hbm.forgefluid.ModForgeFluids;
 import com.hbm.interfaces.IConsumer;
-import com.hbm.interfaces.ISource;
+import com.hbm.interfaces.IEnergyHandler;
 import com.hbm.interfaces.ITankPacketAcceptor;
 import com.hbm.lib.Library;
 import com.hbm.packet.FluidTankPacket;
@@ -30,7 +30,7 @@ import net.minecraftforge.fluids.capability.IFluidTankProperties;
 import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
 import net.minecraftforge.items.CapabilityItemHandler;
 
-public class TileEntityMachineDiesel extends TileEntityMachineBase implements ITickable, ISource, IFluidHandler, ITankPacketAcceptor {
+public class TileEntityMachineDiesel extends TileEntityMachineBase implements ITickable, IEnergyHandler, IFluidHandler, ITankPacketAcceptor {
 
 	public long power;
 	public int soundCycle = 0;

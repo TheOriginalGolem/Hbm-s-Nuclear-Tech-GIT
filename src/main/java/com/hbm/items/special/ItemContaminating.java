@@ -2,14 +2,11 @@ package com.hbm.items.special;
 
 import java.util.List;
 
-import com.hbm.items.ModItems;
-import com.hbm.util.I18nUtil;
 import com.hbm.entity.effect.EntityFalloutUnderGround;
 
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 

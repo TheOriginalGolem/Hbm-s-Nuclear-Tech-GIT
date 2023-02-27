@@ -15,7 +15,6 @@ import com.hbm.util.EntityDamageUtil;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.SoundCategory;
-import net.minecraft.util.math.Vec3d;
 import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
 
 public class TileEntityTurretHoward extends TileEntityTurretBaseNT {
