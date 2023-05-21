@@ -6,7 +6,7 @@ import java.util.List;
 import com.hbm.forgefluid.FFUtils;
 import com.hbm.forgefluid.ModForgeFluids;
 import com.hbm.interfaces.IConsumer;
-import com.hbm.interfaces.IEnergyHandler;
+import com.hbm.interfaces.ISource;
 import com.hbm.interfaces.ITankPacketAcceptor;
 import com.hbm.inventory.MachineRecipes;
 import com.hbm.items.ModItems;
@@ -37,7 +37,7 @@ import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 
-public class TileEntityMachineTurbine extends TileEntity implements ITickable, IEnergyHandler, ITankPacketAcceptor, IFluidHandler {
+public class TileEntityMachineTurbine extends TileEntity implements ITickable, ISource, ITankPacketAcceptor, IFluidHandler {
 
 	public ItemStackHandler inventory;
 

@@ -1,7 +1,7 @@
 package com.hbm.packet;
 
 import com.hbm.interfaces.IConsumer;
-import com.hbm.interfaces.IEnergyHandler;
+import com.hbm.interfaces.ISource;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;
@@ -70,9 +70,9 @@ public class AuxElectricityPacket implements IMessage {
 					
 					IConsumer gen = (IConsumer) te;
 					gen.setPower(m.charge);
-				} else if (te != null && te instanceof IEnergyHandler) {
+				} else if (te != null && te instanceof ISource) {
 						
-					IEnergyHandler gen = (IEnergyHandler) te;
+					ISource gen = (ISource) te;
 					gen.setSPower(m.charge);
 				}
 				} catch (Exception x) { }

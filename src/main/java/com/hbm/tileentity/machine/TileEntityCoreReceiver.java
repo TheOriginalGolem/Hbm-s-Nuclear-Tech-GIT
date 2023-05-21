@@ -6,7 +6,7 @@ import java.util.List;
 import com.hbm.forgefluid.ModForgeFluids;
 import com.hbm.interfaces.IConsumer;
 import com.hbm.interfaces.ILaserable;
-import com.hbm.interfaces.IEnergyHandler;
+import com.hbm.interfaces.ISource;
 import com.hbm.interfaces.ITankPacketAcceptor;
 import com.hbm.lib.Library;
 import com.hbm.tileentity.TileEntityMachineBase;
@@ -27,7 +27,7 @@ import net.minecraftforge.fluids.capability.IFluidTankProperties;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class TileEntityCoreReceiver extends TileEntityMachineBase implements ITickable, IEnergyHandler, IFluidHandler, ILaserable, ITankPacketAcceptor {
+public class TileEntityCoreReceiver extends TileEntityMachineBase implements ITickable, ISource, IFluidHandler, ILaserable, ITankPacketAcceptor {
 
 	public long power;
 	public long joules;

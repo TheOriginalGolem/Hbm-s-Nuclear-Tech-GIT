@@ -69,8 +69,8 @@ public class GUIMachineDiesel extends GuiInfoContainer {
 		Minecraft.getMinecraft().getTextureManager().bindTexture(texture);
 		drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize);
 		
-		if(diFurnace.power > 0) {
-			int i = (int)diFurnace.getPowerScaled(52);
+		if(diFurnace.energyStorage.getRealEnergy() > 0) {
+			int i = (int)diFurnace.energyStorage.getPowerScaled(52);
 			drawTexturedModalRect(guiLeft + 152, guiTop + 69 - i, 176, 52 - i, 16, i);
 		}
 		

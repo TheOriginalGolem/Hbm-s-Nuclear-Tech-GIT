@@ -6,7 +6,7 @@ import java.util.List;
 import com.hbm.blocks.machine.MachineCoal;
 import com.hbm.forgefluid.FFUtils;
 import com.hbm.interfaces.IConsumer;
-import com.hbm.interfaces.IEnergyHandler;
+import com.hbm.interfaces.ISource;
 import com.hbm.interfaces.ITankPacketAcceptor;
 import com.hbm.lib.Library;
 import com.hbm.packet.AuxElectricityPacket;
@@ -39,7 +39,7 @@ import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 
-public class TileEntityMachineCoal extends TileEntity implements ITickable, ITankPacketAcceptor, IEnergyHandler, IFluidHandler {
+public class TileEntityMachineCoal extends TileEntity implements ITickable, ITankPacketAcceptor, ISource, IFluidHandler {
 
 	public ItemStackHandler inventory;
 	

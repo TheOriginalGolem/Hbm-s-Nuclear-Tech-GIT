@@ -8,7 +8,7 @@ import com.hbm.forgefluid.FFUtils;
 import com.hbm.forgefluid.ModForgeFluids;
 import com.hbm.interfaces.IConsumer;
 import com.hbm.interfaces.IReactor;
-import com.hbm.interfaces.IEnergyHandler;
+import com.hbm.interfaces.ISource;
 import com.hbm.interfaces.ITankPacketAcceptor;
 import com.hbm.items.ModItems;
 import com.hbm.lib.Library;
@@ -38,7 +38,7 @@ import net.minecraftforge.fluids.capability.IFluidTankProperties;
 import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
 import net.minecraftforge.items.ItemStackHandler;
 
-public class TileEntityFusionMultiblock extends TileEntity implements ITickable, IReactor, IEnergyHandler, IFluidHandler, ITankPacketAcceptor {
+public class TileEntityFusionMultiblock extends TileEntity implements ITickable, IReactor, ISource, IFluidHandler, ITankPacketAcceptor {
 
 	public long power;
 	public final static long maxPower = 100000000;

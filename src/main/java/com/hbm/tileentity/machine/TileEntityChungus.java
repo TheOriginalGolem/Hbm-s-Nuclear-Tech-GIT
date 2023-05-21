@@ -8,7 +8,7 @@ import com.hbm.blocks.BlockDummyable;
 import com.hbm.forgefluid.FFUtils;
 import com.hbm.forgefluid.ModForgeFluids;
 import com.hbm.interfaces.IConsumer;
-import com.hbm.interfaces.IEnergyHandler;
+import com.hbm.interfaces.ISource;
 import com.hbm.inventory.MachineRecipes;
 import com.hbm.lib.ForgeDirection;
 import com.hbm.lib.Library;
@@ -35,7 +35,7 @@ import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class TileEntityChungus extends TileEntity implements ITickable, IFluidHandler, IEnergyHandler, INBTPacketReceiver {
+public class TileEntityChungus extends TileEntity implements ITickable, IFluidHandler, ISource, INBTPacketReceiver {
 
 	public long power;
 	public static final long maxPower = 100000000000L;

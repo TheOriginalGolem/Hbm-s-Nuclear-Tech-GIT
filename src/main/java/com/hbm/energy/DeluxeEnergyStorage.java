@@ -7,25 +7,16 @@ public class DeluxeEnergyStorage extends EnergyStorage {
     public long capacity;
 
     public long energy;
-    public int maxReceive;
-    public int maxExtract = maxReceive;
-	public DeluxeEnergyStorage(int capacity) {
-		super(capacity);
-	
-	}
-	 public DeluxeEnergyStorage(int capacity, int maxTransfer)
-	    {
-	        this(capacity, maxTransfer, maxTransfer, 0);
-	    }
+    public long maxReceive;
+    public long maxExtract = maxReceive;
 
-	    public DeluxeEnergyStorage(int capacity, int maxReceive, int maxExtract)
+	    public DeluxeEnergyStorage(long capacity, long maxReceive, long maxExtract, long energy)
 	    {
-	        this(capacity, maxReceive, maxExtract, 0);
-	    }
-
-	    public DeluxeEnergyStorage(int capacity, int maxReceive, int maxExtract, int energy)
-	    {
-	        super(capacity, maxReceive, maxExtract, 0);
+			super((int)capacity, (int) maxReceive, (int) maxExtract, (int) energy);
+			this.capacity = capacity;
+			this.maxReceive = capacity;
+			this.maxExtract = capacity;
+			this.energy = Math.max(0, Math.min(capacity, energy));
 	    }
 	    @Override
 	    public int receiveEnergy(int maxReceive, boolean simulate)
@@ -74,7 +65,9 @@ public class DeluxeEnergyStorage extends EnergyStorage {
 	    public long getRealMaxEnergy(){
 	    	return capacity;
 	    }
-	   
 
+	public long getPowerScaled(long i) {
+		return (getRealEnergy() * i) /  getRealMaxEnergy();
+	}
         
 }

@@ -9,6 +9,11 @@ import java.util.Set;
 
 import javax.annotation.Nullable;
 
+import com.hbm.interfaces.IConsumer;
+import com.hbm.tileentity.conductor.TileEntityCable;
+import com.hbm.tileentity.conductor.TileEntityCableSwitch;
+import com.hbm.tileentity.machine.*;
+import net.minecraft.tileentity.TileEntity;
 import org.apache.commons.lang3.tuple.Pair;
 
 import com.google.common.base.Predicates;
@@ -20,7 +25,7 @@ import com.hbm.capability.HbmLivingCapability.IEntityHbmProps;
 import com.hbm.entity.mob.EntityHunterChopper;
 import com.hbm.entity.projectile.EntityChopperMine;
 import com.hbm.handler.WeightedRandomChestContentFrom1710;
-import com.hbm.interfaces.IEnergyHandler;
+import com.hbm.interfaces.ISource;
 import com.hbm.interfaces.Spaghetti;
 import com.hbm.items.ModItems;
 import com.hbm.render.amlfrom1710.Vec3;
@@ -659,7 +664,215 @@ public class Library {
 	//TODO: jesus christ
 	// Flut-Füll gesteuerter Energieübertragungsalgorithmus
 	// Flood fill controlled energy transmission algorithm
+	// it has taken every ounce of my will to restore this
+	public static void ffgeua(BlockPos.MutableBlockPos pos, boolean newTact, ISource that, World worldObj) {
+		Block block = worldObj.getBlockState(pos).getBlock();
+		TileEntity tileentity = worldObj.getTileEntity(pos);
 
+		// Factories
+		if(block == ModBlocks.factory_titanium_conductor && worldObj.getBlockState(pos.up()).getBlock() == ModBlocks.factory_titanium_core)
+		{
+			tileentity = worldObj.getTileEntity(pos.up());
+		}
+		if(block == ModBlocks.factory_titanium_conductor && worldObj.getBlockState(pos.down()).getBlock() == ModBlocks.factory_titanium_core)
+		{
+			tileentity = worldObj.getTileEntity(pos.down());
+		}
+		if(block == ModBlocks.factory_advanced_conductor && worldObj.getBlockState(pos.up()).getBlock() == ModBlocks.factory_advanced_core)
+		{
+			tileentity = worldObj.getTileEntity(pos.up());
+		}
+		if(block == ModBlocks.factory_advanced_conductor && worldObj.getBlockState(pos.down()).getBlock() == ModBlocks.factory_advanced_core)
+		{
+			tileentity = worldObj.getTileEntity(pos.down());
+		}
+		//Derrick
+		if(block == ModBlocks.dummy_port_well && worldObj.getBlockState(pos.add(1, 0, 0)).getBlock() == ModBlocks.machine_well)
+		{
+			tileentity = worldObj.getTileEntity(pos.add(1, 0, 0));
+		}
+		if(block == ModBlocks.dummy_port_well && worldObj.getBlockState(pos.add(-1, 0, 0)).getBlock() == ModBlocks.machine_well)
+		{
+			tileentity = worldObj.getTileEntity(pos.add(-1, 0, 0));
+		}
+		if(block == ModBlocks.dummy_port_well && worldObj.getBlockState(pos.add(0, 0, 1)).getBlock() == ModBlocks.machine_well)
+		{
+			tileentity = worldObj.getTileEntity(pos.add(0, 0, 1));
+		}
+		if(block == ModBlocks.dummy_port_well && worldObj.getBlockState(pos.add(0, 0, -1)).getBlock() == ModBlocks.machine_well)
+		{
+			tileentity = worldObj.getTileEntity(pos.add(0, 0, -1));
+		}
+		//Mining Drill
+		if(block == ModBlocks.dummy_port_drill && worldObj.getBlockState(pos.add(1, 0, 0)).getBlock() == ModBlocks.machine_drill)
+		{
+			tileentity = worldObj.getTileEntity(pos.add(1, 0, 0));
+		}
+		if(block == ModBlocks.dummy_port_drill && worldObj.getBlockState(pos.add(-1, 0, 0)).getBlock() == ModBlocks.machine_drill)
+		{
+			tileentity = worldObj.getTileEntity(pos.add(-1, 0, 0));
+		}
+		if(block == ModBlocks.dummy_port_drill && worldObj.getBlockState(pos.add(0, 0, 1)).getBlock() == ModBlocks.machine_drill)
+		{
+			tileentity = worldObj.getTileEntity(pos.add(0, 0, 1));
+		}
+		if(block == ModBlocks.dummy_port_drill && worldObj.getBlockState(pos.add(0, 0, -1)).getBlock() == ModBlocks.machine_drill)
+		{
+			tileentity = worldObj.getTileEntity(pos.add(0, 0, -1));
+		}
+		// Assembler
+		if(block == ModBlocks.dummy_port_assembler) {
+			tileentity = worldObj.getTileEntity(((TileEntityDummy) worldObj.getTileEntity(pos)).target);
+		}
+		// Chemplant
+		if(block == ModBlocks.dummy_port_chemplant) {
+			tileentity = worldObj.getTileEntity(((TileEntityDummy) worldObj.getTileEntity(pos)).target);
+		}
+		// Refinery
+		if(block == ModBlocks.dummy_port_refinery)
+		{
+			tileentity = worldObj.getTileEntity(((TileEntityDummy)worldObj.getTileEntity(pos)).target);
+		}
+		//Pumpjack
+		if(block == ModBlocks.dummy_port_pumpjack)
+		{
+			tileentity = worldObj.getTileEntity(((TileEntityDummy)worldObj.getTileEntity(pos)).target);
+		}
+		//AMS Limiter
+		if(block == ModBlocks.dummy_port_ams_limiter)
+		{
+			tileentity = worldObj.getTileEntity(((TileEntityDummy)worldObj.getTileEntity(pos)).target);
+		}
+		//AMS Emitter
+		if(block == ModBlocks.dummy_port_ams_emitter)
+		{
+			tileentity = worldObj.getTileEntity(((TileEntityDummy)worldObj.getTileEntity(pos)).target);
+		}
+		//Launchers
+		if(block == ModBlocks.dummy_port_compact_launcher || block == ModBlocks.dummy_port_launch_table)
+		{
+			tileentity = worldObj.getTileEntity(((TileEntityDummy)worldObj.getTileEntity(pos)).target);
+		}
+
+		if(1 == 0) {
+			if(1 == 0) {
+				if(Library.checkUnionList(((TileEntityCable) tileentity).uoteab, that)) {
+					for(int i = 0; i < ((TileEntityCable) tileentity).uoteab.size(); i++) {
+						if(((TileEntityCable) tileentity).uoteab.get(i).source == that) {
+							if(((TileEntityCable) tileentity).uoteab.get(i).ticked != newTact) {
+								((TileEntityCable) tileentity).uoteab.get(i).ticked = newTact;
+								that.ffgeua(pos.up(), that.getTact());
+								that.ffgeua(pos.down(), that.getTact());
+								that.ffgeua(pos.west(), that.getTact());
+								that.ffgeua(pos.east(), that.getTact());
+								that.ffgeua(pos.north(), that.getTact());
+								that.ffgeua(pos.south(), that.getTact());
+							}
+						}
+					}
+				} else {
+					((TileEntityCable) tileentity).uoteab.add(new UnionOfTileEntitiesAndBooleans(that, newTact));
+				}
+			}
+			if(tileentity instanceof TileEntityWireCoated) {
+				if(Library.checkUnionList(((TileEntityWireCoated) tileentity).uoteab, that)) {
+					for(int i = 0; i < ((TileEntityWireCoated) tileentity).uoteab.size(); i++) {
+						if(((TileEntityWireCoated) tileentity).uoteab.get(i).source == that) {
+							if(((TileEntityWireCoated) tileentity).uoteab.get(i).ticked != newTact) {
+								((TileEntityWireCoated) tileentity).uoteab.get(i).ticked = newTact;
+								that.ffgeua(pos.up(), that.getTact());
+								that.ffgeua(pos.down(), that.getTact());
+								that.ffgeua(pos.west(), that.getTact());
+								that.ffgeua(pos.east(), that.getTact());
+								that.ffgeua(pos.north(), that.getTact());
+								that.ffgeua(pos.south(), that.getTact());
+							}
+						}
+					}
+				} else {
+					((TileEntityWireCoated) tileentity).uoteab.add(new UnionOfTileEntitiesAndBooleans(that, newTact));
+				}
+			}
+			if(tileentity instanceof TileEntityCableSwitch) {
+				if(tileentity.getBlockMetadata() == 1) {
+					if(Library.checkUnionList(((TileEntityCableSwitch) tileentity).uoteab, that)) {
+						for(int i = 0; i < ((TileEntityCableSwitch) tileentity).uoteab.size(); i++) {
+							if(((TileEntityCableSwitch) tileentity).uoteab.get(i).source == that) {
+								if(((TileEntityCableSwitch) tileentity).uoteab.get(i).ticked != newTact) {
+									((TileEntityCableSwitch) tileentity).uoteab.get(i).ticked = newTact;
+									that.ffgeua(pos.up(), that.getTact());
+									that.ffgeua(pos.down(), that.getTact());
+									that.ffgeua(pos.west(), that.getTact());
+									that.ffgeua(pos.east(), that.getTact());
+									that.ffgeua(pos.north(), that.getTact());
+									that.ffgeua(pos.south(), that.getTact());
+								}
+							}
+						}
+					} else {
+						((TileEntityCableSwitch) tileentity).uoteab.add(new UnionOfTileEntitiesAndBooleans(that, newTact));
+					}
+				} else {
+					((TileEntityCableSwitch) tileentity).uoteab.clear();
+				}
+			}
+			if(tileentity instanceof TileEntityPylonRedWire) {
+				if(Library.checkUnionList(((TileEntityPylonRedWire) tileentity).uoteab, that)) {
+					for(int i = 0; i < ((TileEntityPylonRedWire) tileentity).uoteab.size(); i++) {
+						if(((TileEntityPylonRedWire) tileentity).uoteab.get(i).source == that) {
+							if(((TileEntityPylonRedWire) tileentity).uoteab.get(i).ticked != newTact) {
+								((TileEntityPylonRedWire) tileentity).uoteab.get(i).ticked = newTact;
+								for(int j = 0; j < ((TileEntityPylonRedWire) tileentity).connected.size(); j++) {
+									TileEntityPylonRedWire pylon = ((TileEntityPylonRedWire) tileentity).connected.get(j);
+									if(pylon != null) {
+										that.ffgeua(pylon.getPos().east(), that.getTact());
+										that.ffgeua(pylon.getPos().west(), that.getTact());
+										that.ffgeua(pylon.getPos().up(), that.getTact());
+										that.ffgeua(pylon.getPos().down(), that.getTact());
+										that.ffgeua(pylon.getPos().south(), that.getTact());
+										that.ffgeua(pylon.getPos().north(), that.getTact());
+
+										that.ffgeua(pylon.getPos(), that.getTact());
+									}
+								}
+							}
+						}
+					}
+				} else {
+					((TileEntityPylonRedWire) tileentity).uoteab.add(new UnionOfTileEntitiesAndBooleans(that, newTact));
+				}
+			}
+		}
+
+		// TE will not be added as consumer if:
+		// -TE is the source (will not send to itself)
+		// -TE is already full
+		// -TE is a battery set to output only
+		// -TE as well as source are transformers of the same frequency
+		if(tileentity instanceof IConsumer && newTact && !(tileentity instanceof TileEntityMachineBattery && ((TileEntityMachineBattery) tileentity).conducts) && tileentity != that && ((IConsumer) tileentity).getPower() < ((IConsumer) tileentity).getMaxPower() && !(tileentity instanceof TileEntityMachineTransformer && that instanceof TileEntityMachineTransformer && ((TileEntityMachineTransformer) tileentity).delay == ((TileEntityMachineTransformer) that).delay)) {
+			that.getList().add((IConsumer) tileentity);
+		}
+
+		if(!newTact) {
+			int size = that.getList().size();
+			if(size > 0) {
+				long part = that.getSPower() / size;
+				for(IConsumer consume : that.getList()) {
+					if(consume.getPower() < consume.getMaxPower()) {
+						if(consume.getMaxPower() - consume.getPower() >= part) {
+							that.setSPower(that.getSPower() - part);
+							consume.setPower(consume.getPower() + part);
+						} else {
+							that.setSPower(that.getSPower() - (consume.getMaxPower() - consume.getPower()));
+							consume.setPower(consume.getMaxPower());
+						}
+					}
+				}
+			}
+			that.clearList();
+		}
+
+	}
 
 
 	/**
@@ -677,7 +890,7 @@ public class Library {
 	
 
 
-	public static boolean checkUnionList(List<UnionOfTileEntitiesAndBooleans> list, IEnergyHandler that) {
+	public static boolean checkUnionList(List<UnionOfTileEntitiesAndBooleans> list, ISource that) {
 
 		for(UnionOfTileEntitiesAndBooleans union : list) {
 			if(union.source == that) {

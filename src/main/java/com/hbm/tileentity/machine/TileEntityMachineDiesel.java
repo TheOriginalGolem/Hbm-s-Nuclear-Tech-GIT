@@ -3,11 +3,13 @@ package com.hbm.tileentity.machine;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.hbm.energy.DeluxeEnergyStorage;
 import com.hbm.forgefluid.FFUtils;
 import com.hbm.forgefluid.ModForgeFluids;
 import com.hbm.interfaces.IConsumer;
-import com.hbm.interfaces.IEnergyHandler;
+import com.hbm.interfaces.ISource;
 import com.hbm.interfaces.ITankPacketAcceptor;
+import com.hbm.interfaces.ReferenceImplementation;
 import com.hbm.lib.Library;
 import com.hbm.packet.FluidTankPacket;
 import com.hbm.packet.PacketDispatcher;
@@ -20,6 +22,7 @@ import net.minecraft.util.ITickable;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
@@ -30,14 +33,21 @@ import net.minecraftforge.fluids.capability.IFluidTankProperties;
 import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
 import net.minecraftforge.items.CapabilityItemHandler;
 
-public class TileEntityMachineDiesel extends TileEntityMachineBase implements ITickable, IEnergyHandler, IFluidHandler, ITankPacketAcceptor {
+public class TileEntityMachineDiesel extends TileEntityMachineBase implements ITickable, IFluidHandler, ITankPacketAcceptor {
 
-	public long power;
+@ReferenceImplementation("How to implement energy based machines")
+
 	public int soundCycle = 0;
-	public static final long maxPower = 50000;
-	public long powerCap = 50000;
-	public int age = 0;
-	public List<IConsumer> list = new ArrayList<IConsumer>();
+    //first and foremost create a new instance of DeluxeEnergyStorage, which is a NTM-fied version of the normal RF one
+	//this fella handles 90% of TE-side energy
+	public DeluxeEnergyStorage energyStorage;
+	//these getters are merely for safety, DO NOT USE THE NORMAL ONES, ONLY USE THE "REAL" ONES
+	public long power = energyStorage.getRealEnergy();
+	public long maxPower = energyStorage.getRealMaxEnergy();
+	//this is just diesel gen weirdness, remind me to throw this out the window asap
+	long powerCap = maxPower;
+
+
 	public FluidTank tank;
 	public Fluid tankType = ModForgeFluids.diesel;
 	public boolean needsUpdate;
@@ -49,6 +59,7 @@ public class TileEntityMachineDiesel extends TileEntityMachineBase implements IT
 	public TileEntityMachineDiesel() {
 		super(3);
 		tank = new FluidTank(16000);
+		energyStorage = new DeluxeEnergyStorage(50000,0, 0,0);
 	}
 	
 	@Override
@@ -58,16 +69,14 @@ public class TileEntityMachineDiesel extends TileEntityMachineBase implements IT
 	
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound compound) {
-		compound.setLong("powerTime", power);
-		compound.setLong("powerCap", powerCap);
+        compound.setLong("energy", energyStorage.energy);
 		tank.writeToNBT(compound);
 		return super.writeToNBT(compound);
 	}
 	
 	@Override
 	public void readFromNBT(NBTTagCompound compound) {
-		this.power = compound.getLong("powerTime");
-		this.powerCap = compound.getLong("powerCap");
+		energyStorage.energy = compound.getLong("energy");
 		tank.readFromNBT(compound);
 		super.readFromNBT(compound);
 	}
@@ -78,10 +87,6 @@ public class TileEntityMachineDiesel extends TileEntityMachineBase implements IT
 		return p_94128_1_ == 0 ? slots_bottom : (p_94128_1_ == 1 ? slots_top : slots_side);
 	}
 	
-	public long getPowerScaled(long i) {
-		return (power * i) / powerCap;
-	}
-	
 	@Override
 	public void update() {
 		if(tank.getFluid() != null)
@@ -90,21 +95,16 @@ public class TileEntityMachineDiesel extends TileEntityMachineBase implements IT
 			if (needsUpdate) {
 				needsUpdate = false;
 			}
-			age++;
-			if (age >= 20) {
-				age = 0;
-			}
-
-			if (age == 9 || age == 19)
-				ffgeuaInit();
-
 
 			//Tank Management
 			if(this.inputValidForTank(-1, 0))
+				//70k: yeah I aint sure about the quality of those FFUtils functions, if they start to misbehave yell at me
 				if(FFUtils.fillFromFluidContainer(inventory, tank, 0, 1))
 					needsUpdate = true;
 
 			Fluid type = tank.getFluid() == null ? null : tank.getFluid().getFluid();
+
+			//TODO: remove this when proper fuel system exists
 			if(type != null && type == ModForgeFluids.nitan)
 				powerCap = maxPower * 10;
 			else
@@ -133,7 +133,8 @@ public class TileEntityMachineDiesel extends TileEntityMachineBase implements IT
 	public boolean hasAcceptableFuel() {
 		return getHEFromFuel() > 0;
 	}
-	
+
+	//TODO: port 1.7 fuel system instead of this horrible misery
 	public int getHEFromFuel() {
 		Fluid type = tankType;
 		if(type == null)
@@ -180,48 +181,8 @@ public class TileEntityMachineDiesel extends TileEntityMachineBase implements IT
 	private boolean isValidFluid(FluidStack stack) {
 		if(stack == null)
 			return false;
+		//TODO: EWURHGUGRHUUHRHUEGHIUEGRHIBGER
 		return stack.getFluid() == ModForgeFluids.diesel || stack.getFluid() == ModForgeFluids.nitan || stack.getFluid() == ModForgeFluids.petroil || stack.getFluid() == ModForgeFluids.biofuel;
-	}
-
-	@Override
-	public void ffgeua(BlockPos pos, boolean newTact) {
-		
-		Library.ffgeua(new BlockPos.MutableBlockPos(pos), newTact, this, world);
-	}
-
-	@Override
-	public void ffgeuaInit() {
-		ffgeua(pos.up(), getTact());
-		ffgeua(pos.down(), getTact());
-		ffgeua(pos.west(), getTact());
-		ffgeua(pos.east(), getTact());
-		ffgeua(pos.north(), getTact());
-		ffgeua(pos.south(), getTact());
-	}
-
-	@Override
-	public boolean getTact() {
-        return age >= 0 && age < 10;
-    }
-
-	@Override
-	public long getSPower() {
-		return power;
-	}
-
-	@Override
-	public void setSPower(long i) {
-		this.power = i;
-	}
-
-	@Override
-	public List<IConsumer> getList() {
-		return list;
-	}
-
-	@Override
-	public void clearList() {
-		this.list.clear();
 	}
 
 	@Override
@@ -257,9 +218,7 @@ public class TileEntityMachineDiesel extends TileEntityMachineBase implements IT
 	
 	@Override
 	public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
-		if(capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY){
-			return true;
-		} else if(capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY){
+		if(capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY || capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY ||  capability == CapabilityEnergy.ENERGY){
 			return true;
 		} else {
 			return super.hasCapability(capability, facing);
@@ -272,9 +231,12 @@ public class TileEntityMachineDiesel extends TileEntityMachineBase implements IT
 			return CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.cast(inventory);
 		} else if(capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY){
 			return CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY.cast(this);
+		} else if(capability == CapabilityEnergy.ENERGY){
+			return CapabilityEnergy.ENERGY.cast(energyStorage);
 		} else {
 			return super.getCapability(capability, facing);
 		}
+
 	}
 
 }

@@ -9,7 +9,7 @@ import com.hbm.explosion.ExplosionNukeGeneric;
 import com.hbm.forgefluid.FFUtils;
 import com.hbm.forgefluid.ModForgeFluids;
 import com.hbm.interfaces.IConsumer;
-import com.hbm.interfaces.IEnergyHandler;
+import com.hbm.interfaces.ISource;
 import com.hbm.interfaces.ITankPacketAcceptor;
 import com.hbm.items.ModItems;
 import com.hbm.items.machine.ItemFuelRod;
@@ -40,7 +40,7 @@ import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 
-public class TileEntityMachineGenerator extends TileEntity implements ITickable, IEnergyHandler, IFluidHandler, ITankPacketAcceptor {
+public class TileEntityMachineGenerator extends TileEntity implements ITickable, ISource, IFluidHandler, ITankPacketAcceptor {
 
 	public ItemStackHandler inventory;
 	

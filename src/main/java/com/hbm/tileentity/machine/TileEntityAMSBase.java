@@ -9,7 +9,7 @@ import com.hbm.forgefluid.FFUtils;
 import com.hbm.forgefluid.ModForgeFluids;
 import com.hbm.handler.ArmorUtil;
 import com.hbm.interfaces.IConsumer;
-import com.hbm.interfaces.IEnergyHandler;
+import com.hbm.interfaces.ISource;
 import com.hbm.interfaces.ITankPacketAcceptor;
 import com.hbm.items.machine.ItemCatalyst;
 import com.hbm.items.special.ItemAMSCore;
@@ -39,7 +39,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.ItemStackHandler;
 import scala.util.Random;
 
-public class TileEntityAMSBase extends TileEntity implements ITickable, IEnergyHandler, IFluidHandler, ITankPacketAcceptor {
+public class TileEntityAMSBase extends TileEntity implements ITickable, ISource, IFluidHandler, ITankPacketAcceptor {
 
 	public ItemStackHandler inventory;
 
