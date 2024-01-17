@@ -718,7 +718,7 @@ public class TileEntityMachineMiningLaser extends TileEntityMachineBase implemen
 
 	@Override
 	public int getDrillRating(){
-		return 100;
+		return 65;
 	}
 
 }
