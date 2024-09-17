@@ -25,7 +25,7 @@ Run `./gradlew runClient --no-daemon` in the terminal.
 
 Download the repository, then open a shell prompt in that folder or the terminal in your IDE, then type the following:
 
-`.\gradlew build`
+`./gradlew build`
 
 Press enter.
 
