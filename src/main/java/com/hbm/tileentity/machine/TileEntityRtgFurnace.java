@@ -1,62 +1,40 @@
 package com.hbm.tileentity.machine;
 
 import com.hbm.blocks.machine.MachineRtgFurnace;
-import com.hbm.items.ModItems;
+import com.hbm.tileentity.TileEntityMachineBase;
+
 import com.hbm.util.RTGUtil;
+import com.hbm.items.machine.ItemRTGPellet;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
-import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.items.CapabilityItemHandler;
-import net.minecraftforge.items.ItemStackHandler;
 
-public class TileEntityRtgFurnace extends TileEntity implements ITickable {
-
-	public ItemStackHandler inventory;
+public class TileEntityRtgFurnace extends TileEntityMachineBase implements ITickable {
 
 	public int dualCookTime;
 	public int heat;
 	public static final int processingSpeed = 3000;
 
-	// private static final int[] slots_top = new int[] {0};
-	// private static final int[] slots_bottom = new int[] {4};
-	// private static final int[] slots_side = new int[] {1, 2, 3};
-
-	private String customName;
+	private static final int[] slots_top = new int[] {0};
+	private static final int[] slots_bottom = new int[] {4};
+	private static final int[] slots_side = new int[] {1, 2, 3};
 
 	public TileEntityRtgFurnace() {
-		inventory = new ItemStackHandler(5) {
-			@Override
-			protected void onContentsChanged(int slot) {
-				markDirty();
-				super.onContentsChanged(slot);
-			}
-		};
+		super(5);
 	}
 
-	public String getInventoryName() {
-		return this.hasCustomInventoryName() ? this.customName : "container.rtgFurnace";
+	@Override
+	public String getName() {
+		return "container.rtgFurnace";
 	}
 
-	public boolean hasCustomInventoryName() {
-		return this.customName != null && this.customName.length() > 0;
-	}
-
-	public void setCustomName(String name) {
-		this.customName = name;
-	}
-
+	@Override
 	public boolean isUseableByPlayer(EntityPlayer player) {
-		if(world.getTileEntity(pos) != this) {
-			return false;
-		} else {
-			return player.getDistanceSq(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D) <= 64;
-		}
+		return checkUsableByPlayer(player, 64);
 	}
 
 	public boolean isLoaded() {
@@ -65,7 +43,7 @@ public class TileEntityRtgFurnace extends TileEntity implements ITickable {
 	
 	@Override
 	public void readFromNBT(NBTTagCompound compound) {
-		dualCookTime = compound.getShort("CookTime");
+		dualCookTime = compound.getShort("cookTime");
 		if(compound.hasKey("inventory"))
 			inventory.deserializeNBT(compound.getCompoundTag("inventory"));
 		super.readFromNBT(compound);
@@ -185,13 +163,47 @@ public class TileEntityRtgFurnace extends TileEntity implements ITickable {
 	}
 	
 	@Override
-	public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
-		return capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY || super.hasCapability(capability, facing);
+	public int[] getAccessibleSlotsFromSide(EnumFacing e) {
+		int slot = e.ordinal();
+		return slot == 0 ? slots_bottom : (slot == 1 ? slots_top : slots_side);
 	}
-	
+
 	@Override
-	public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
-		return capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY ? CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.cast(inventory) : super.getCapability(capability, facing);
+	public boolean isItemValidForSlot(int slot, ItemStack stack) {
+		if(slot == 1 || slot == 2 || slot == 3){
+			return stack.getItem() instanceof ItemRTGPellet;
+		}
+		
+		if(slot == 4)
+			return false;
+		
+		return true;
+	}
+
+	@Override
+	public boolean canInsertItem(int slot, ItemStack stack, int amount) {
+		return isItemValidForSlot(slot, stack);
+	}
+
+	@Override
+	public boolean canExtractItem(int slot, ItemStack stack, int amount) {
+		if (slot == 4)
+			return true;
+
+		if (slot == 1 || slot == 2 || slot == 3) {
+			if(stack == ItemStack.EMPTY){
+				return false;
+			}
+
+			if(stack.getItem() instanceof ItemRTGPellet){
+				ItemRTGPellet pellet = (ItemRTGPellet) stack.getItem();
+				if (RTGUtil.getPower(pellet, stack) == 0) {
+					return true;
+				}
+			}
+		}
+
+		return false;
 	}
 
 }

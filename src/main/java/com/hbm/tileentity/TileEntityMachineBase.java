@@ -58,11 +58,14 @@ public abstract class TileEntityMachineBase extends TileEntity implements INBTPa
 	}
 	
 	public boolean isUseableByPlayer(EntityPlayer player) {
-		if(world.getTileEntity(pos) != this)
-		{
+		return checkUsableByPlayer(player, 128);
+	}
+
+	protected boolean checkUsableByPlayer(EntityPlayer player, double distance) {
+		if (world.getTileEntity(pos) != this) {
 			return false;
-		}else{
-			return player.getDistanceSq(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D) <=128;
+		} else {
+			return player.getDistanceSq(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D) <= distance;
 		}
 	}
 	

@@ -37,13 +37,9 @@ public class TileEntityMachineElectricFurnace extends TileEntityMachineBase impl
 		return "container.electricFurnace";
 	}
 	
+	@Override
 	public boolean isUseableByPlayer(EntityPlayer player) {
-		if(world.getTileEntity(pos) != this)
-		{
-			return false;
-		}else{
-			return player.getDistanceSq(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D) <=64;
-		}
+		return checkUsableByPlayer(player, 64);
 	}
 	
 	@Override
