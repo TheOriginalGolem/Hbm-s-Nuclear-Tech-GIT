@@ -276,8 +276,7 @@ public class ResourceManager {
 	//Radgen
 	public static final IModelCustom radgen_body = new HFRWavefrontObject(new ResourceLocation(RefStrings.MODID, "models/radgen.obj"));
 
-	//Pumpjack
-	public static final IModelCustom pumpjack = AdvancedModelLoader.loadModel(new ResourceLocation(RefStrings.MODID, "models/pumpjack.obj"));
+
 
 	//Refinery
 	public static final IModelCustom refinery = new HFRWavefrontObject(new ResourceLocation(RefStrings.MODID, "models/refinery.obj"));
@@ -339,9 +338,11 @@ public class ResourceManager {
 
 	public static IModelCustom spinny_light = new HFRWavefrontObject(new ResourceLocation(RefStrings.MODID, "models/spinny_light.obj"));
 	
-	//Derrick
+	//Oil Pumps
 	public static final IModelCustom derrick = AdvancedModelLoader.loadModel(new ResourceLocation(RefStrings.MODID, "models/derrick.obj"));
-	
+	public static final IModelCustom pumpjack = AdvancedModelLoader.loadModel(new ResourceLocation(RefStrings.MODID, "models/pumpjack.obj"));
+	public static final IModelCustom fracking_tower = AdvancedModelLoader.loadModel(new ResourceLocation(RefStrings.MODID, "models/fracking_tower.obj"));
+
 	//Missile Parts
 	public static final IModelCustom missile_pad = AdvancedModelLoader.loadModel(new ResourceLocation(RefStrings.MODID, "models/missilePad.obj"));
 	public static final IModelCustom missile_assembly = AdvancedModelLoader.loadModel(new ResourceLocation(RefStrings.MODID, "models/missile_assembly.obj"));
@@ -544,11 +545,13 @@ public class ResourceManager {
 	public static final ResourceLocation mine_shrap_tex = new ResourceLocation(RefStrings.MODID, "textures/models/mine_shrap.png");
 	public static final ResourceLocation mine_fat_tex = new ResourceLocation(RefStrings.MODID, "textures/models/mine_fat.png");
 
-	//Derrick
+	//Oil Pumps
 	public static final ResourceLocation derrick_tex = new ResourceLocation(RefStrings.MODID, "textures/models/derrick.png");
-	
-	//Pumpjack
 	public static final ResourceLocation pumpjack_tex = new ResourceLocation(RefStrings.MODID, "textures/models/pumpjack.png");
+	public static final ResourceLocation fracking_tower_tex = new ResourceLocation(RefStrings.MODID, "textures/models/fracking_tower.png");
+
+	//Pipes
+	public static final IModelCustom pipe_neo = AdvancedModelLoader.loadModel(new ResourceLocation(RefStrings.MODID, "models/blocks/pipe_neo.obj"));
 
 	//Refinery
 	public static final ResourceLocation refinery_tex = new ResourceLocation(RefStrings.MODID, "textures/models/refinery.png");

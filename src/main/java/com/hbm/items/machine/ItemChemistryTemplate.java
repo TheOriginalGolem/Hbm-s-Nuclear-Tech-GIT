@@ -105,7 +105,8 @@ public class ItemChemistryTemplate extends Item implements IHasCustomModel {
 		VIT_LIQUID,
 		VIT_GAS,
 		TEL,
-		GASOLINE;
+		GASOLINE,
+		FRACKSOL;
 		
 		public static EnumChemistryTemplate getEnum(int i) {
 			if(i < EnumChemistryTemplate.values().length)
@@ -152,7 +153,8 @@ public class ItemChemistryTemplate extends Item implements IHasCustomModel {
 	        }
 		}
 	}
-	
+
+
 public static int getProcessTime(ItemStack stack) {
     	
     	if(!(stack.getItem() instanceof ItemChemistryTemplate))
@@ -304,6 +306,8 @@ public static int getProcessTime(ItemStack stack) {
         	return 40;
         case GASOLINE:
         	return 40;
+		case FRACKSOL:
+			return 20;
         default:
         	return 100;
         }

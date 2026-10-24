@@ -540,6 +540,8 @@ public class MachineRecipes {
 		case GASOLINE:
 			list.add(new ItemStack(ModItems.antiknock, 1));
 			break;
+		case FRACKSOL:
+			list.add(new ItemStack(ModItems.sulfur, 1));
 		default:
 			break;
 		}
@@ -782,6 +784,9 @@ public class MachineRecipes {
 		case GASOLINE:
 			input[0] = new FluidStack(ModForgeFluids.petroil, 10000);
 			break;
+		case FRACKSOL:
+			input[0] = new FluidStack(ModForgeFluids.petroleum, 100);
+			input[1] = new FluidStack(FluidRegistry.WATER, 1000);
 		default:
 			break;
 		}
@@ -1080,6 +1085,8 @@ public class MachineRecipes {
         case GASOLINE:
 			output[0] = new FluidStack(ModForgeFluids.gasoline, 12000);
         	break;
+		case FRACKSOL:
+			output[0] = new FluidStack(ModForgeFluids.fracksol, 1000);
 		default:
 			break;
 		}
